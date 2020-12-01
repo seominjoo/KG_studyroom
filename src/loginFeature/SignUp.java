@@ -1,6 +1,7 @@
 package loginFeature;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -19,21 +20,22 @@ public class SignUp extends JFrame implements MouseListener {
 	public SignUp() {
 		// sign.value.text;
 		// sign.value.label;
-		
+
 		int view = 0;
 		for (SignUpEnum value : SignUpEnum.values()) {
 			JLabel label = value.label;
 			JTextField text = value.text;
-			
-			
-			label.setBounds(0, view, 200, 50);
-			view += 50;
-			text.setBounds(0, view, 200, 50);
-			view += 50;
-			add(text, BorderLayout.CENTER);
-			add(label, BorderLayout.CENTER);
-		}
 
+			label.setBounds(0, view, 500, 50);
+			view += 50;
+			text.setBounds(0, view, 500, 50);
+			view += 50;
+			add(text);
+			add(label);
+		}
+		
+		SwingTools.initTestFrame(this);
+		
 //		name = new JTextField();
 //		name.setBounds(50, 50, 300, 50);
 //		phoneNumber = new JTextField();
@@ -47,8 +49,7 @@ public class SignUp extends JFrame implements MouseListener {
 //		add(phoneNumber);
 //		
 //		add(password);
-
-		SwingTools.initTestFrame(this);
+		
 	}
 
 	public static void main(String[] args) {

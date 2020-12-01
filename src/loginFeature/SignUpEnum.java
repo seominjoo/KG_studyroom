@@ -16,8 +16,8 @@ public enum SignUpEnum {
 	String labelName;
 
 	SignUpEnum(String labelName) {
-		this.label = new JLabel(labelName);
-		this.text = new JTextField();
+		this.label = new JLabel(labelName, JLabel.CENTER);
+		this.text = new JTextField(JTextField.CENTER);
 		this.labelName = labelName;
 	}
 	

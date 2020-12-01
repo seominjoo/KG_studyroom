@@ -1,5 +1,8 @@
 package loginFeature;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+
 import javax.swing.JFrame;
 
 public class SwingTools {
