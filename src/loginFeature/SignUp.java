@@ -42,23 +42,6 @@ public class SignUp extends JFrame {
 					}
 				}
 			});
-			StringBuilder keystr = new StringBuilder();
-			text.addKeyListener(new KeyAdapter() {
-				@Override
-				public void keyPressed(KeyEvent e) {
-//					System.out.println(e.getKeyChar()+", "+e.getKeyCode());
-//					if(java.util.regex.Pattern.matches("[a-zA-Z]", ""+e.getKeyChar())){
-//					keystr.append(e.getKeyChar());
-//					System.out.println(keystr.toString());
-//					}
-					// System.out.println(ktext.getText());
-					/*
-					 * 0-48 ~ 9-57
-					 * 스페이스 - 32
-					 * 지움 - 8
-					 */
-				}
-			});
 			grid_panel.add(text);
 		}
 
