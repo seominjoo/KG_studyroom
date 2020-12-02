@@ -31,11 +31,9 @@ public class SignUp extends JFrame {
 	}
 
 	public SignUp() {
-		// sign.value.text;
-		// sign.value.label;
+
 		setBounds(90, 50, 600, 800);
 		int componentLocation = getWidth() / 3;
-		//
 
 		int view = 0;
 		for (SignUpEnum value : SignUpEnum.values()) {
@@ -54,7 +52,7 @@ public class SignUp extends JFrame {
 
 		}
 		for (int i = 0; i < textList.size(); i++)
-			textList.get(i).addMouseListener(new ClearTextField(textList.get(i)));
+			textList.get(i).addMouseListener(new ClearTextField(textList, i));
 
 		addMouseListener(new MouseAdapter() {
 			@Override

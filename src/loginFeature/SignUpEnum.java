@@ -1,6 +1,7 @@
 package loginFeature;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
@@ -15,6 +16,7 @@ public enum SignUpEnum {
 	JLabel label;
 	JTextField text;
 	String labelName;
+
 
 	SignUpEnum(String labelName) {
 		this.label = new JLabel(labelName, JLabel.CENTER);

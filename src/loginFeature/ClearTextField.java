@@ -13,23 +13,33 @@ import javax.swing.JTextField;
 public class ClearTextField extends MouseAdapter/* implements MouseListener */ {
 
 	int clickCnt = 0;
-	
-	JTextField text;
 
-	public ClearTextField(JTextField text) {
-		this.text = text;
+	int listIndex;
+	ArrayList<JTextField> textList;
+
+	public ClearTextField(ArrayList<JTextField> textList, int listIndex) {
+		this.textList = textList;
+		this.listIndex = listIndex;
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getButton() == MouseEvent.BUTTON1) {
 			clickCnt++;
-			for(SignUpEnum value : SignUpEnum.values()) {
-			if (clickCnt <= 1 || text.getText().equals(value.labelName))
-				text.setText("");
+			for (SignUpEnum value : SignUpEnum.values()) {
+				if (clickCnt <= 1 || textList.get(listIndex).getText().equals(value.labelName))
+					textList.get(listIndex).setText("");
+
 			}
+			for (int i = 0; i < textList.size(); i++) {
+				if (textList.get(i).getText().equals("")) {
+					if (i != listIndex) {
+						textList.get(i).setText(SignUpEnum.values()[i].labelName);
+					}
+				}
+			}
+
 		}
 	}
-//짠! 넹 다 안들고와도 들고올거만 들고올수있게 !!ㅎㅎㅎㅎ
 
 }
