@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -32,6 +33,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class SignUp extends JFrame {
@@ -51,22 +53,31 @@ public class SignUp extends JFrame {
 		JLabel signup = new JLabel("회원가입", JLabel.CENTER); // 타이틀
 		grid_panel.add(signup);
 		for (SignUpEnum value : SignUpEnum.values()) {
+			
 			JTextField text = value.text; // 텍스트생성
-
-			grid_panel.add(text);
+			text.setFocusTraversalKeysEnabled(false);
+			if(value.equals(value.PASSWORD) || value.equals(value.PASSWORDCONFIRM)) {
+				textList.add(value.blindPW);
+				grid_panel.add(value.blindPW);
+				continue;
+			}		
 			textList.add(text);
+			grid_panel.add(text);
+
+		
 			text.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				System.out.println("값 : "+ e.getKeyChar() +", 코드 : " + e.getKeyCode());
-				System.out.println(text.getText());
+//				System.out.println("값 : "+ e.getKeyChar() +", 코드 : " + e.getKeyCode());
+//				System.out.println(text.getText());
 			}
 			
 			});
 		}
-		// 텍스트 누를 때
+		// 텍스트를 마우스로 누를 때
 		for(int i = 0; i < textList.size(); i++)
 		textList.get(i).addMouseListener(new ClearTextField(textList, i));
+
 
 		// 약관 패널
 		JPanel p1 = new JPanel(new GridLayout(2, 2, 0, 5));
@@ -91,8 +102,14 @@ public class SignUp extends JFrame {
 
 		// 가입 버튼 누를 떄
 		card_panel.add("Singup", grid_panel);
-		s_Yes.addMouseListener(new ClickSignUp());
 		
+		s_Yes.addMouseListener(new ClickSignUp());
+		s_No.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+			}
+		});
 		
 		grid_panel.add(p1);
 		grid_panel.add(p2);

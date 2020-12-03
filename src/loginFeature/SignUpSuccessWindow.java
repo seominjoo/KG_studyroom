@@ -14,6 +14,9 @@ import java.awt.CardLayout;
 import javax.swing.SwingConstants;
 import java.awt.GridLayout;
 import java.awt.Window.Type;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.Font;
 
 public class SignUpSuccessWindow extends JPanel {
@@ -44,7 +47,7 @@ public class SignUpSuccessWindow extends JPanel {
 	 */
 	
 	public SignUpSuccessWindow(int person_id, String person_name) {
-		System.out.println("처음");
+
 //		int person_id = ClickSignUp.person_id;
 //		String person_name =ClickSignUp.person_name;
 		frame.setTitle("\uD68C\uC6D0 \uAC00\uC785 \uC131\uACF5!");
@@ -55,20 +58,32 @@ public class SignUpSuccessWindow extends JPanel {
 		frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnNewButton = new JButton("\uB85C\uADF8\uC778 \uD398\uC774\uC9C0\uB85C");
-		btnNewButton.setBounds(135, 251, 145, 23);
-		contentPane.add(btnNewButton);
+		JButton toLoginPageButton = new JButton("\uB85C\uADF8\uC778 \uD398\uC774\uC9C0\uB85C");
+		toLoginPageButton.setBounds(90, 143, 145, 23);
+		contentPane.add(toLoginPageButton);
 		
-		JLabel lblNewLabel_1 = new JLabel("<html>\uAC00\uC785\uC774 \uC9C4\uD589\uB418\uC5C8\uC2B5\uB2C8\uB2E4!"
-				+ " <br/> " + person_name + "\uB2D8\uC758 \uD68C\uC6D0\uBC88\uD638 : " + person_id +"</html>");
+		toLoginPageButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(e.getButton() == MouseEvent.BUTTON1)
+					frame.dispose();
+			}
+		});
+		
+		JLabel lblNewLabel_1 = new JLabel("<html>\uAC00\uC785\uC774 "
+				+ "\uC9C4\uD589\uB418\uC5C8\uC2B5\uB2C8\uB2E4!"
+				+ " <br/> " + person_name + "\uB2D8\uC758 \uD68C\uC6D0\uBC88\uD638 : "
+				+ person_id +"</html>");
 		lblNewLabel_1.setToolTipText("");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("굴림", Font.PLAIN, 18));
-		lblNewLabel_1.setBounds(57, 91, 306, 76);
+		lblNewLabel_1.setBounds(12, 57, 306, 76);
 		contentPane.add(lblNewLabel_1);
-		System.out.println("마지막");
 		
-		SwingTools.initTestFrame(frame);
+		frame.getContentPane().setLayout(null);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(190, 150, 343, 287);
+		frame.setVisible(true);
 		
 	}
 	
