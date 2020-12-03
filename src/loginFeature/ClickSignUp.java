@@ -35,7 +35,7 @@ public class ClickSignUp extends MouseAdapter {
 		pwConfirm = SignUp.textList.get(3).getText();
 
 		if (e.getButton() == MouseEvent.BUTTON1) {
-			if (!pw.equals(pwConfirm)) {
+			if (!pw.equals(pwConfirm) || pw.equals(SignUpEnum.values()[3].labelName)) {
 				new PWnoMatch();
 			} else {
 				try {

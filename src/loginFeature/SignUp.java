@@ -73,8 +73,8 @@ public class SignUp extends JFrame {
 		// 약관 패널
 		JPanel p1 = new JPanel(new GridLayout(2, 2, 0, 5));
 		Map<JCheckBox, JButton> consent = new HashMap<>();
-		consent.put(new JCheckBox("서비스이용동의"), new JButton("약관보기"));
-		consent.put(new JCheckBox("사용정보동의약관보기"), new JButton("약관보기"));
+		consent.put(new JCheckBox("서비스 이용 동의"), new JButton("약관보기"));
+		consent.put(new JCheckBox("사용정보 동의"), new JButton("약관보기"));
 
 		for (Entry<JCheckBox, JButton> kv : consent.entrySet()) {
 			p1.add(kv.getKey());

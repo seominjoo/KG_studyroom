@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -45,7 +46,7 @@ public class SignUpFailWindow extends JFrame {
 		});
 		
 		lblNewLabel_1 = new JLabel();
-		
+
 		String[] errorNames = {"person_name","phone_number","pw"};
 		String[] errorKorNames = {"성함","전화번호","비밀번호"};
 		
