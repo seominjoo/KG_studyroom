@@ -21,17 +21,17 @@ public class PWnoMatch extends JFrame{
 //		String person_name =ClickSignUp.person_name;
 		setTitle("회원 가입 실패");
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 439, 483);
+		//setBounds(100, 100, 439, 483);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(100, 100, 100, 100));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton toLoginPageButton = new JButton("\uD655\uC778");
-		toLoginPageButton.setBounds(90, 143, 145, 23);
-		contentPane.add(toLoginPageButton);
+		JButton confirmButton = new JButton("\uD655\uC778");
+		confirmButton.setBounds(90, 143, 145, 23);
+		contentPane.add(confirmButton);
 		
-		toLoginPageButton.addMouseListener(new MouseAdapter() {
+		confirmButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(e.getButton() == MouseEvent.BUTTON1)
@@ -40,6 +40,7 @@ public class PWnoMatch extends JFrame{
 		});
 		
 		JLabel lblNewLabel_1 = new JLabel("<html>가입이 실패하였습니다 <br/>비밀번호를 다시 확인하세요.</html>");
+		SignUp.textList.get(3).setText("");
 		
 		lblNewLabel_1.setToolTipText("");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -48,7 +49,7 @@ public class PWnoMatch extends JFrame{
 		contentPane.add(lblNewLabel_1);
 		
 		getContentPane().setLayout(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(190, 150, 343, 287);
 		setVisible(true);
 	}

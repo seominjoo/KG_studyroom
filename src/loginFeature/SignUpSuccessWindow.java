@@ -26,33 +26,14 @@ public class SignUpSuccessWindow extends JPanel {
 
 	JFrame frame = new JFrame();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-//					SignUpSuccessWindow frame = new SignUpSuccessWindow();
-//					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
-	/**
-	 * Create the frame.
-	 */
-	
+
 	public SignUpSuccessWindow(int person_id, String person_name) {
 
 //		int person_id = ClickSignUp.person_id;
 //		String person_name =ClickSignUp.person_name;
 		frame.setTitle("\uD68C\uC6D0 \uAC00\uC785 \uC131\uACF5!");
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 439, 483);
+		//setBounds(100, 100, 439, 483);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(100, 100, 100, 100));
 		frame.setContentPane(contentPane);
@@ -81,7 +62,7 @@ public class SignUpSuccessWindow extends JPanel {
 		contentPane.add(lblNewLabel_1);
 		
 		frame.getContentPane().setLayout(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setBounds(190, 150, 343, 287);
 		frame.setVisible(true);
 		

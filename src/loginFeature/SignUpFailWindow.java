@@ -20,44 +20,23 @@ public class SignUpFailWindow extends JFrame {
 	
 	JLabel lblNewLabel_1;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-//					SignUpFailWindow frame = new SignUpFailWindow();
-//					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	public SignUpFailWindow() {
-		// TODO Auto-generated constructor stub
-	}
-	/*
-	 * Create the frame.
-	 */
 	public SignUpFailWindow(SQLException e1) {
 //		int person_id = ClickSignUp.person_id;
 //		String person_name =ClickSignUp.person_name;
 		setTitle("회원 가입 실패");
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 439, 483);
+		//setBounds(100, 100, 439, 483);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(100, 100, 100, 100));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton toLoginPageButton = new JButton("\uD655\uC778");
-		toLoginPageButton.setBounds(90, 143, 145, 23);
-		contentPane.add(toLoginPageButton);
+		JButton confirmButton = new JButton("\uD655\uC778");
+		confirmButton.setBounds(90, 143, 145, 23);
+		contentPane.add(confirmButton);
 		
-		toLoginPageButton.addMouseListener(new MouseAdapter() {
+		confirmButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(e.getButton() == MouseEvent.BUTTON1)
@@ -67,8 +46,8 @@ public class SignUpFailWindow extends JFrame {
 		
 		lblNewLabel_1 = new JLabel();
 		
-		String[] errorNames = {"phone_number","person_name","pw"};
-		String[] errorKorNames = {"전화번호","성함","비밀번호"};
+		String[] errorNames = {"person_name","phone_number","pw"};
+		String[] errorKorNames = {"성함","전화번호","비밀번호"};
 		
 		for(int i = 0; i < errorNames.length; ++i) {
 			if(e1.getMessage().toLowerCase().contains(errorNames[i])) {
@@ -76,6 +55,7 @@ public class SignUpFailWindow extends JFrame {
 						+ "\uC2E4\uD328\uD558\uC600\uC2B5\uB2C8\uB2E4 <br/> "
 						+ errorKorNames[i] 
 						+"를(을) \uB2E4\uC2DC \uC785\uB825\uD558\uC2ED\uC2DC\uC694</html>");
+				SignUp.textList.get(i).setText("");
 				break;
 			}
 
@@ -85,11 +65,6 @@ public class SignUpFailWindow extends JFrame {
 		frameTools();
 	}
 
-	void pwNoMatch() {
-			lblNewLabel_1 = new JLabel("<html>가입이 실패하였습니다 <br/>비밀번호를 다시 확인하세요.</html>");
-			lableTools();
-			frameTools();
-	}
 	
 	void lableTools() {
 		lblNewLabel_1.setToolTipText("");
@@ -101,7 +76,7 @@ public class SignUpFailWindow extends JFrame {
 	
 	void frameTools() {
 		getContentPane().setLayout(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(190, 150, 343, 287);
 		setVisible(true);
 	}

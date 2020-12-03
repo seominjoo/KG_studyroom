@@ -63,17 +63,8 @@ public class SignUp extends JFrame {
 			}		
 			textList.add(text);
 			grid_panel.add(text);
-
-		
-			text.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-//				System.out.println("값 : "+ e.getKeyChar() +", 코드 : " + e.getKeyCode());
-//				System.out.println(text.getText());
-			}
-			
-			});
 		}
+		
 		// 텍스트를 마우스로 누를 때
 		for(int i = 0; i < textList.size(); i++)
 		textList.get(i).addMouseListener(new ClearTextField(textList, i));
@@ -91,6 +82,8 @@ public class SignUp extends JFrame {
 			p1.add(kv.getValue());
 		}
 
+		grid_panel.add(p1);
+		
 		// 승인,거절 패널
 		JPanel p2 = new JPanel(new FlowLayout());
 		JButton s_Yes = new JButton("가입");
@@ -100,8 +93,10 @@ public class SignUp extends JFrame {
 		p2.add(s_Yes);
 		p2.add(s_No);
 
+		grid_panel.add(p2);
+		
 		// 가입 버튼 누를 떄
-		card_panel.add("Singup", grid_panel);
+		card_panel.add("Signup", grid_panel);
 		
 		s_Yes.addMouseListener(new ClickSignUp());
 		s_No.addMouseListener(new MouseAdapter() {
@@ -110,10 +105,7 @@ public class SignUp extends JFrame {
 				dispose();
 			}
 		});
-		
-		grid_panel.add(p1);
-		grid_panel.add(p2);
-		
+
 		SwingTools.initTestFrame(this);
 		setLayout(new BorderLayout(20, 20));
 		add(new JPanel(), BorderLayout.EAST);

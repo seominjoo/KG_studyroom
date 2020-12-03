@@ -60,7 +60,7 @@ public class ClickSignUp extends MouseAdapter {
 					insertPersonInfo.addBatch();
 
 					int[] rows = insertPersonInfo.executeBatch();
-//				System.out.println(Arrays.toString(rows));
+
 
 					if (insertPersonInfo != null)
 						insertPersonInfo.close();
@@ -71,12 +71,7 @@ public class ClickSignUp extends MouseAdapter {
 					ResultSet rs = read_name_ID_from_personInfo.executeQuery();
 
 					while (rs.next()) {
-//					System.out.printf("%-15s\t%-10s\t%-10d\t%-10d\n",
-//							rs.getString("last_name"),
-//							rs.getString("first_name"),
-//							rs.getInt("salary"),
-//							rs.getInt("department_id")
-//					);								
+					
 						person_id = rs.getInt(1);
 						person_name = rs.getString(2);
 					}
