@@ -24,13 +24,19 @@ public class ClearTextField extends MouseAdapter/* implements MouseListener */ {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (e.getButton() == MouseEvent.BUTTON1) {
-			clickCnt++;
-			for (SignUpEnum value : SignUpEnum.values()) {
-				if (clickCnt <= 1 || textList.get(listIndex).getText().equals(value.labelName))
-					textList.get(listIndex).setText("");
-
-			}
+		for (SignUpEnum value : SignUpEnum.values()) {
+		if (e.getButton() == MouseEvent.BUTTON1 && textList.get(listIndex).getText().contains(value.labelName)) {
+			textList.get(listIndex).setText("");
+		}
+			//clickCnt++;
+			// 최초 입력시 초기화 
+			
+//			for (SignUpEnum value : SignUpEnum.values()) {
+//				if (clickCnt <= 1 || textList.get(listIndex).getText().equals(value.labelName))
+//					textList.get(listIndex).setText("");
+//
+//			}
+			// 텍스트 눌럿을 때 다른 빈텍스트 기본값으로 표시
 			for (int i = 0; i < textList.size(); i++) {
 				if (textList.get(i).getText().equals("")) {
 					if (i != listIndex) {
