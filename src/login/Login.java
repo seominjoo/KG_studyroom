@@ -8,6 +8,8 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 
 public class Login extends JFrame {
@@ -15,16 +17,18 @@ public class Login extends JFrame {
 	public Login() {
 		String path = "image/테스트이미지.jpg";
 		JPanel login_panel = new JPanel();
-		JLabel background = new JLabel(new Conversion_image(path, 1000,562).imageicon_smooth);
-		background.setSize(1000,562);
-		login_panel.setOpaque(false); // 투명
+		JLabel background = new JLabel(new Conversion_image(path, 624,373).imageicon_smooth);
+		JTextField phone_number = new JTextField();
+		phone_number.setBounds(200, 200, 100,20);
+		JPasswordField login_pass = new JPasswordField();
+		background.add(phone_number);
 		
+//		background.setSize(624,373);
+//		login_panel.setOpaque(false); // 투명
 		
-		System.out.println(getSize());
-		SwingTool_logo.initFrame(this);
-		setSize(1000,590);
-		add(login_panel);
 		add(background);
+		SwingTool_logo.initFrame(this);
+		setSize(624,405);
 	}
 
 
