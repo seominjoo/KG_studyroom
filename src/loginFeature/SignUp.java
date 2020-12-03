@@ -7,17 +7,28 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -25,8 +36,11 @@ import javax.swing.JTextField;
 
 public class SignUp extends JFrame {
 	final int GRID = 7;
+	JPanel card_panel = new JPanel(new CardLayout());
 	JPanel grid_panel = new JPanel(new GridLayout(GRID, 1, 0, 5));
-
+	
+	
+	
 	static ArrayList<JTextField> textList;
 
 	static {
@@ -50,16 +64,17 @@ public class SignUp extends JFrame {
 			
 			});
 		}
+		// 텍스트 누를 때
 		for(int i = 0; i < textList.size(); i++)
 		textList.get(i).addMouseListener(new ClearTextField(textList, i));
 
 		// 약관 패널
 		JPanel p1 = new JPanel(new GridLayout(2, 2, 0, 5));
-		Map<JLabel, JButton> consent = new HashMap<>();
-		consent.put(new JLabel("⬜ ▣서비스이용동의"), new JButton("약관보기"));
-		consent.put(new JLabel("⬜ 사용정보동의약관보기"), new JButton("약관보기"));
+		Map<JCheckBox, JButton> consent = new HashMap<>();
+		consent.put(new JCheckBox("서비스이용동의"), new JButton("약관보기"));
+		consent.put(new JCheckBox("사용정보동의약관보기"), new JButton("약관보기"));
 
-		for (Entry<JLabel, JButton> kv : consent.entrySet()) {
+		for (Entry<JCheckBox, JButton> kv : consent.entrySet()) {
 			p1.add(kv.getKey());
 			kv.getValue().setBackground(Color.white);
 			p1.add(kv.getValue());
@@ -74,13 +89,18 @@ public class SignUp extends JFrame {
 		p2.add(s_Yes);
 		p2.add(s_No);
 
+		// 가입 버튼 누를 떄
+		card_panel.add("Singup", grid_panel);
+		s_Yes.addMouseListener(new ClickSignUp());
+		
+		
 		grid_panel.add(p1);
 		grid_panel.add(p2);
-
+		
 		SwingTools.initTestFrame(this);
 		setLayout(new BorderLayout(20, 20));
 		add(new JPanel(), BorderLayout.EAST);
-		add(grid_panel, BorderLayout.CENTER);
+		add(card_panel, BorderLayout.CENTER);
 		add(new JPanel(), BorderLayout.WEST);
 
 		// 바깥쪽 눌렀을 때 기본 값 만들어버리기
@@ -97,9 +117,16 @@ public class SignUp extends JFrame {
 		});
 		this.setBackground(Color.black);
 	}
-
+	
+	
 	public static void main(String[] args) {
 		new SignUp();
 	}
 
 }
+
+
+
+
+
+
