@@ -62,6 +62,7 @@ public class Login extends JFrame {
 		Signup.setFocusPainted(false); // ¼±ÅÃ½Ã Å×µÎ¸® ²û
 		Signup.setBounds(548, 307, 50, 50);
 		background.add(Signup);
+		//¸Ó¹Ô
 		
 		addMouseListener(new MouseAdapter() {
 			@Override
