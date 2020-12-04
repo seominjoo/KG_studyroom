@@ -10,7 +10,7 @@ public class SwingToolsMainPage {
 	public static void initTestFrame(JFrame frame) {
 		frame.setLayout(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setBounds(90, 50, 500, 500);
+		frame.setBounds(90, 50, 2241/4, 2542/3);
 		frame.setVisible(true);
 	}
 

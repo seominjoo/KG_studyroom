@@ -38,12 +38,12 @@ public class ClickSignUp extends MouseAdapter {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
-		pw = SignUp.textList.get(2).getText();
-		pwConfirm = SignUp.textList.get(3).getText();
+		pw = SignUp.textList.get(SignUpEnum.values().length - 2).getText();
+		pwConfirm = SignUp.textList.get(SignUpEnum.values().length - 1).getText();
 
 		if (e.getButton() == MouseEvent.BUTTON1) {
 
-			if (!pw.equals(pwConfirm) || pw.equals(SignUpEnum.values()[3].labelName)) {
+			if (!pw.equals(pwConfirm) || pw.equals(SignUpEnum.values()[SignUpEnum.values().length - 1].labelName)) {
 				new PWnoMatch();
 			} else {
 				// 약관 체크
@@ -60,14 +60,21 @@ public class ClickSignUp extends MouseAdapter {
 				if (consentFlag) {
 
 					try {
+						// 내일 꼭 정규표현식으로 거르기
+						// 이름, 생년월일, 휴대폰, 비번,
+						
+					
+						
 						Class.forName("oracle.jdbc.driver.OracleDriver");
 
 						Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr",
 								"1234");
-
+						
+						conn.setAutoCommit(false);
+						
 						PreparedStatement insertPersonInfo = conn.prepareStatement("INSERT INTO Person_Info "
-								+ "(Person_Id,Check_Time,Person_Name, Phone_Number,PW,Total_Payment)"
-								+ " VALUES(SignUpSeq.nextval, ?, ?, ?, ?, ?)");
+								+ "(Person_Id,Check_Time,Person_Name, person_birth, Phone_Number,PW,Total_Payment)"
+								+ " VALUES(SignUpSeq.nextval, ?, ?, ?, ?, ?, ?)");
 
 						// Batch : 일괄처리
 						DateFormat simple = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
@@ -76,8 +83,9 @@ public class ClickSignUp extends MouseAdapter {
 						insertPersonInfo.setString(1, simple.format(now));
 						insertPersonInfo.setString(2, SignUp.textList.get(0).getText());
 						insertPersonInfo.setString(3, SignUp.textList.get(1).getText());
-						insertPersonInfo.setString(4, pw);
-						insertPersonInfo.setInt(5, 0);
+						insertPersonInfo.setString(4, SignUp.textList.get(2).getText());
+						insertPersonInfo.setString(5, pw);
+						insertPersonInfo.setInt(6, 0);
 						insertPersonInfo.addBatch();
 
 						int[] rows = insertPersonInfo.executeBatch();

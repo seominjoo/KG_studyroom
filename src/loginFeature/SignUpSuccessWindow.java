@@ -18,6 +18,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.Font;
+import javax.swing.JComboBox;
 
 public class SignUpSuccessWindow extends JPanel {
 
@@ -62,6 +63,7 @@ public class SignUpSuccessWindow extends JPanel {
 		contentPane.add(lblNewLabel_1);
 		
 		frame.getContentPane().setLayout(null);
+		
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setBounds(190, 150, 343, 287);
 		frame.setVisible(true);
@@ -71,5 +73,4 @@ public class SignUpSuccessWindow extends JPanel {
 	static JPanel getpanel() {
 		return contentPane;
 	}
-	
 }

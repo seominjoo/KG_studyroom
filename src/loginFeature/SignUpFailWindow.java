@@ -47,8 +47,8 @@ public class SignUpFailWindow extends JFrame {
 		
 		lblNewLabel_1 = new JLabel();
 
-		String[] errorNames = {"person_name","phone_number","pw"};
-		String[] errorKorNames = {"성함","전화번호","비밀번호"};
+		String[] errorNames = {"person_name","person_birth","phone_number","pw"};
+		String[] errorKorNames = {"성함","생년 월일","전화 번호","비밀 번호"};
 		
 		for(int i = 0; i < errorNames.length; ++i) {
 			if(e1.getMessage().toLowerCase().contains(errorNames[i])) {
