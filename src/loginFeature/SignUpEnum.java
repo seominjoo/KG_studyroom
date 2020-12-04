@@ -9,9 +9,11 @@ import javax.swing.JTextField;
 
 public enum SignUpEnum {
 	NAME("Name *"),
+	BIRTHDAY("Birthday *"),
 	PHONENUMBER("Phone Number *"),
 	PASSWORD("Password"),
 	PASSWORDCONFIRM("Password");
+	
 	
 	JLabel label;
 	JTextField text;

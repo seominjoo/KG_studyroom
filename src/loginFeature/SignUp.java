@@ -37,7 +37,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class SignUp extends JFrame {
-	final int GRID = 7;
+	final int GRID = 8;
 	JPanel card_panel = new JPanel(new CardLayout());
 	JPanel grid_panel = new JPanel(new GridLayout(GRID, 1, 0, 5));
 	
@@ -55,13 +55,13 @@ public class SignUp extends JFrame {
 		for (SignUpEnum value : SignUpEnum.values()) {
 			
 			JTextField text = value.text; // 텍스트생성
-			
+			text.setSize(300, 50);
 			text.setFocusTraversalKeysEnabled(false);
 			if(value.equals(value.PASSWORD) || value.equals(value.PASSWORDCONFIRM)) {
 				textList.add(value.blindPW);
 				grid_panel.add(value.blindPW);
 				continue;
-			}		
+			}	
 
 			textList.add(text);
 			grid_panel.add(text);
@@ -111,7 +111,7 @@ public class SignUp extends JFrame {
 		});
 
 		SwingToolsMainPage.initTestFrame(this);
-		setLayout(new BorderLayout(20, 20));
+		setLayout(new BorderLayout(60, 60));
 		add(new JPanel(), BorderLayout.EAST);
 		add(card_panel, BorderLayout.CENTER);
 		add(new JPanel(), BorderLayout.WEST);
