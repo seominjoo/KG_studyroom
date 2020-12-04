@@ -42,7 +42,7 @@ public class SignUp extends JFrame {
 	JPanel grid_panel = new JPanel(new GridLayout(GRID, 1, 0, 5));
 	
 	
-	
+	static Map<JCheckBox, JButton> consent;
 	static ArrayList<JTextField> textList;
 
 	static {
@@ -61,6 +61,7 @@ public class SignUp extends JFrame {
 				grid_panel.add(value.blindPW);
 				continue;
 			}		
+
 			textList.add(text);
 			grid_panel.add(text);
 		}
@@ -72,7 +73,7 @@ public class SignUp extends JFrame {
 
 		// 약관 패널
 		JPanel p1 = new JPanel(new GridLayout(2, 2, 0, 5));
-		Map<JCheckBox, JButton> consent = new HashMap<>();
+		consent = new HashMap<>();
 		consent.put(new JCheckBox("서비스 이용 동의"), new JButton("약관보기"));
 		consent.put(new JCheckBox("사용정보 동의"), new JButton("약관보기"));
 
@@ -80,6 +81,7 @@ public class SignUp extends JFrame {
 			p1.add(kv.getKey());
 			kv.getValue().setBackground(Color.white);
 			p1.add(kv.getValue());
+			
 		}
 
 		grid_panel.add(p1);
