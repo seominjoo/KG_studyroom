@@ -112,7 +112,7 @@ public class _03whatHour extends JFrame {
 
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
-			putValue(NAME, "2시간");
+			putValue(NAME, "2\uC2DC\uAC04 [3,000\uC6D0]");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
@@ -121,7 +121,7 @@ public class _03whatHour extends JFrame {
 	}
 	private class SwingAction_1 extends AbstractAction {
 		public SwingAction_1() {
-			putValue(NAME, "4시간");
+			putValue(NAME, "4\uC2DC\uAC04 [4,500\uC6D0]");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
@@ -130,7 +130,7 @@ public class _03whatHour extends JFrame {
 	}
 	private class SwingAction_2 extends AbstractAction {
 		public SwingAction_2() {
-			putValue(NAME, "6시간");
+			putValue(NAME, "6\uC2DC\uAC04 [6,000\uC6D0]");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
@@ -139,7 +139,7 @@ public class _03whatHour extends JFrame {
 	}
 	private class SwingAction_3 extends AbstractAction {
 		public SwingAction_3() {
-			putValue(NAME, "8시간");
+			putValue(NAME, "8\uC2DC\uAC04 [7,500\uC6D0]");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
@@ -148,7 +148,7 @@ public class _03whatHour extends JFrame {
 	}
 	private class SwingAction_4 extends AbstractAction {
 		public SwingAction_4() {
-			putValue(NAME, "12시간");
+			putValue(NAME, "12\uC2DC\uAC04 [10,000\uC6D0]");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
@@ -158,7 +158,7 @@ public class _03whatHour extends JFrame {
 	}
 	private class SwingAction_5 extends AbstractAction {
 		public SwingAction_5() {
-			putValue(NAME, "이전 화면");
+			putValue(NAME, "\uC774\uC804 \uD654\uBA74\uC73C\uB85C");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {

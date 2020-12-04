@@ -92,7 +92,7 @@ public class _04whatWeek extends JFrame {
 
 	private class SwingAction extends AbstractAction {
 		public SwingAction() {
-			putValue(NAME, "2주");
+			putValue(NAME, "2\uC8FC [90,000\uC6D0]");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
@@ -101,7 +101,7 @@ public class _04whatWeek extends JFrame {
 	}
 	private class SwingAction_1 extends AbstractAction {
 		public SwingAction_1() {
-			putValue(NAME, "4주");
+			putValue(NAME, "4\uC8FC [130,000\uC6D0]");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
@@ -110,7 +110,7 @@ public class _04whatWeek extends JFrame {
 	}
 	private class SwingAction_2 extends AbstractAction {
 		public SwingAction_2() {
-			putValue(NAME, "8주");
+			putValue(NAME, "8\uC8FC [250,000\uC6D0]");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
@@ -119,7 +119,7 @@ public class _04whatWeek extends JFrame {
 	}
 	private class SwingAction_3 extends AbstractAction {
 		public SwingAction_3() {
-			putValue(NAME, "이전 화면");
+			putValue(NAME, "\uC774\uC804 \uD654\uBA74\uC73C\uB85C");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
