@@ -25,14 +25,41 @@ public class Login extends JFrame {
 		JPanel login_panel = new JPanel();
 		JLabel background = new JLabel(new Conversion_image(path, 624,373).imageicon_smooth);
 		background.setBounds(0, 0, 624, 373);
+	
+		JTextField phone_number1 = new JTextField("010");
+		phone_number1.setOpaque(false); // 배경 투명
+		phone_number1.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
+		phone_number1.setHorizontalAlignment(SwingConstants.CENTER);
+		phone_number1.setForeground(Color.decode("#cfab8b"));
+		phone_number1.setBounds(340, 137, 40, 30);
+		background.add(phone_number1);
 		
-		JTextField phone_number = new JTextField("   010 - ");
-		phone_number.setOpaque(false); // 배경 투명
-		phone_number.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
-		phone_number.setHorizontalAlignment(SwingConstants.CENTER);
-		phone_number.setForeground(Color.decode("#cfab8b"));
-		phone_number.setBounds(340, 137, 150, 30);
-		background.add(phone_number);
+		JLabel str = new JLabel("-", JLabel.CENTER);
+		str.setBounds(380, 137, 10, 30);
+		str.setForeground(Color.decode("#cfab8b"));
+		background.add(str);
+		
+		JTextField phone_number2 = new JTextField();
+		phone_number2.setOpaque(false); // 배경 투명
+		phone_number2.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
+		phone_number2.setHorizontalAlignment(SwingConstants.CENTER);
+		phone_number2.setForeground(Color.decode("#cfab8b"));
+		phone_number2.setBounds(390, 137, 45, 30);
+		background.add(phone_number2);
+		
+		JLabel str2 = new JLabel("-", JLabel.CENTER);
+		str2.setBounds(435, 137, 10, 30);
+		str2.setForeground(Color.decode("#cfab8b"));
+		background.add(str2);
+		
+		JTextField phone_number3 = new JTextField();
+		phone_number3.setOpaque(false); // 배경 투명
+		phone_number3.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
+		phone_number3.setHorizontalAlignment(SwingConstants.CENTER);
+		phone_number3.setForeground(Color.decode("#cfab8b"));
+		phone_number3.setBounds(445, 137, 45, 30);
+		background.add(phone_number3);
+		
 		
 		
 		JPasswordField logpass = new JPasswordField("비밀번호");
@@ -45,7 +72,6 @@ public class Login extends JFrame {
 		
 		JButton login = new JButton("로그인");
 		login.setBackground(Color.decode("#cfab8b"));
-//		login.setContentAreaFilled(false);
 		login.setFocusable(false);
 		login.setOpaque(false); // 배경 투명
 		login.setFocusPainted(false);
@@ -56,13 +82,20 @@ public class Login extends JFrame {
 		
 		JButton Signup = new JButton(new Conversion_image("image/회원가입.png", 50, 50).imageicon_smooth);
 		Signup.setForeground(Color.decode("#cfab8b"));
-		Signup.setOpaque(false); // 배경 투명
 		Signup.setBorderPainted(false); // 외곽선을 없앰
 		Signup.setContentAreaFilled(false); //내용영역을 안채움
 		Signup.setFocusPainted(false); // 선택시 테두리 끔
 		Signup.setBounds(548, 307, 50, 50);
 		background.add(Signup);
-		//머밋
+		
+		JButton find_PW = new JButton(new Conversion_image("image/PW찾기.png", 50, 50).imageicon_smooth);
+		find_PW.setForeground(Color.decode("#cfab8b"));
+		find_PW.setBorderPainted(false); // 외곽선을 없앰
+		find_PW.setContentAreaFilled(false); //내용영역을 안채움
+		find_PW.setFocusPainted(false); // 선택시 테두리 끔
+		find_PW.setBounds(550, 257, 50, 50);
+		background.add(find_PW);
+	
 		
 		addMouseListener(new MouseAdapter() {
 			@Override
