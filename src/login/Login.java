@@ -1,6 +1,9 @@
 package login;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -60,8 +63,6 @@ public class Login extends JFrame {
 		phone_number3.setBounds(445, 137, 45, 30);
 		background.add(phone_number3);
 		
-		
-		
 		JPasswordField logpass = new JPasswordField("비밀번호");
 		logpass.setOpaque(false); // 배경 투명
 		logpass.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
@@ -78,24 +79,27 @@ public class Login extends JFrame {
 		login.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
 		login.setForeground(Color.decode("#cfab8b"));
 		login.setBounds(340, 217, 150, 30);
+		login.addActionListener(new Notification(login));
+		
 		background.add(login);
 		
-		JButton Signup = new JButton(new Conversion_image("image/회원가입.png", 50, 50).imageicon_smooth);
-		Signup.setForeground(Color.decode("#cfab8b"));
-		Signup.setBorderPainted(false); // 외곽선을 없앰
-		Signup.setContentAreaFilled(false); //내용영역을 안채움
-		Signup.setFocusPainted(false); // 선택시 테두리 끔
-		Signup.setBounds(548, 307, 50, 50);
-		background.add(Signup);
 		
-		JButton find_PW = new JButton(new Conversion_image("image/PW찾기.png", 50, 50).imageicon_smooth);
+		
+		JButton find_PW = new JButton(new Conversion_image("image/PW찾기.png", 40, 40).imageicon_smooth);
 		find_PW.setForeground(Color.decode("#cfab8b"));
 		find_PW.setBorderPainted(false); // 외곽선을 없앰
 		find_PW.setContentAreaFilled(false); //내용영역을 안채움
 		find_PW.setFocusPainted(false); // 선택시 테두리 끔
-		find_PW.setBounds(550, 257, 50, 50);
+		find_PW.setBounds(545, 247, 50, 50);
 		background.add(find_PW);
 	
+		JButton Signup = new JButton(new Conversion_image("image/회원가입.png", 40	, 40).imageicon_smooth);
+		Signup.setForeground(Color.decode("#cfab8b"));
+		Signup.setBorderPainted(false); // 외곽선을 없앰
+		Signup.setContentAreaFilled(false); //내용영역을 안채움
+		Signup.setFocusPainted(false); // 선택시 테두리 끔
+		Signup.setBounds(543, 292, 50, 50);
+		background.add(Signup);
 		
 		addMouseListener(new MouseAdapter() {
 			@Override
