@@ -81,7 +81,8 @@ public class SignUp extends JFrame {
 			p1.add(kv.getKey());
 			kv.getValue().setBackground(Color.white);
 			p1.add(kv.getValue());
-			
+			// 약관 내용 보기
+			kv.getValue().addMouseListener(new ConsentContentPage());
 		}
 
 		grid_panel.add(p1);
@@ -108,7 +109,7 @@ public class SignUp extends JFrame {
 			}
 		});
 
-		SwingTools.initTestFrame(this);
+		SwingToolsMainPage.initTestFrame(this);
 		setLayout(new BorderLayout(20, 20));
 		add(new JPanel(), BorderLayout.EAST);
 		add(card_panel, BorderLayout.CENTER);
