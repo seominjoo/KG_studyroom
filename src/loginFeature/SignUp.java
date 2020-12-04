@@ -55,6 +55,7 @@ public class SignUp extends JFrame {
 		for (SignUpEnum value : SignUpEnum.values()) {
 			
 			JTextField text = value.text; // 텍스트생성
+			
 			text.setFocusTraversalKeysEnabled(false);
 			if(value.equals(value.PASSWORD) || value.equals(value.PASSWORDCONFIRM)) {
 				textList.add(value.blindPW);
@@ -82,7 +83,7 @@ public class SignUp extends JFrame {
 			kv.getValue().setBackground(Color.white);
 			p1.add(kv.getValue());
 			// 약관 내용 보기
-			kv.getValue().addMouseListener(new ConsentContentPage());
+			kv.getValue().addMouseListener(new ConsentContentClick());
 		}
 
 		grid_panel.add(p1);

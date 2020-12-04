@@ -46,6 +46,7 @@ public class ClickSignUp extends MouseAdapter {
 			if (!pw.equals(pwConfirm) || pw.equals(SignUpEnum.values()[3].labelName)) {
 				new PWnoMatch();
 			} else {
+				// 약관 체크
 				for (Entry<JCheckBox, JButton> kv : SignUp.consent.entrySet()) {
 					if (!kv.getKey().isSelected()) {
 						new ConsentFailWindow();
