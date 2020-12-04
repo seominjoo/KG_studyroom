@@ -25,8 +25,6 @@ public class Login extends JFrame {
 		JPanel login_panel = new JPanel();
 		JLabel background = new JLabel(new Conversion_image(path, 624,373).imageicon_smooth);
 		background.setBounds(0, 0, 624, 373);
-	
-		
 		
 		JTextField phone_number = new JTextField("   010 - ");
 		phone_number.setOpaque(false); // 배경 투명
