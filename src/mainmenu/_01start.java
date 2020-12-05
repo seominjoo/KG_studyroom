@@ -97,7 +97,8 @@ public class _01start extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-
+			_02dayOrWeek frame = new _02dayOrWeek();
+			frame.setVisible(true);
 		}
 	}
 	private class SwingAction_1 extends AbstractAction {
@@ -123,6 +124,7 @@ public class _01start extends JFrame {
 			frame.setVisible(true);
 		}
 	}
+	
 	private class SwingAction_3 extends AbstractAction {
 		public SwingAction_3() {
 			putValue(NAME, "Åð½ÇÇÏ±â");

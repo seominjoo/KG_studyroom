@@ -90,7 +90,7 @@ public class _02dayOrWeek extends JFrame {
 	}
 	private class SwingAction_2 extends AbstractAction {
 		public SwingAction_2() {
-			putValue(NAME, "\uC774\uC804 \uD654\uBA74\uC73C\uB85C");
+			putValue(NAME, "이전 화면");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
