@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -38,12 +39,15 @@ public class ClickSignUp extends MouseAdapter {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
-		pw = SignUp.textList.get(SignUpEnum.values().length - 2).getText();
-		pwConfirm = SignUp.textList.get(SignUpEnum.values().length - 1).getText();
+		pw = SignUp.textList.get(SignUpEnum.PASSWORD.index).getText();
+		pwConfirm = SignUp.textList.get(SignUpEnum.PASSWORDCONFIRM.index).getText();
 
 		if (e.getButton() == MouseEvent.BUTTON1) {
-
-			if (!pw.equals(pwConfirm) || pw.equals(SignUpEnum.values()[SignUpEnum.values().length - 1].labelName)) {
+			if(!Pattern.matches("[°¡-ÆR]{2,4}", SignUp.textList.get(SignUpEnum.NAME.index).getText())) {
+				
+			}
+			
+			if (!pw.equals(pwConfirm) || pw.equals(SignUpEnum.PASSWORDCONFIRM.labelName)) {
 				new PWnoMatch();
 			} else {
 				// ¾à°ü Ã¼Å©
