@@ -1,4 +1,4 @@
-package signUpFails;
+package loginFeature.signUpFails;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -18,14 +18,14 @@ import javax.swing.border.EmptyBorder;
 import loginFeature.SignUp;
 import loginFeature.SignUpEnum;
 
-public class PassWordFailWindow extends JFrame {
+public class SamePhoneNumberFail extends JFrame {
 
 	private JPanel contentPane;
 	
 	JLabel lblNewLabel_1;
 
 
-	public PassWordFailWindow() {
+	public SamePhoneNumberFail() {
 //		int person_id = ClickSignUp.person_id;
 //		String person_name =ClickSignUp.person_name;
 		setTitle("회원 가입 실패");
@@ -51,9 +51,9 @@ public class PassWordFailWindow extends JFrame {
 		lblNewLabel_1 = new JLabel();
 
 				lblNewLabel_1 = new JLabel("<html>가입이 실패하였습니다<br/>"
-						+ "비밀번호를 다시 입력하십시요 (알파벳,숫자,특수문자(2개 필수))</html>");
-				SignUp.textList.get(SignUpEnum.PASSWORD.index).setText("");
-				SignUp.textList.get(SignUpEnum.PASSWORDCONFIRM.index).setText("");
+						+ "해당 전화번호가 이미 존재합니다. 다시 입력하십시요</html>");
+				SignUp.textList.get(SignUpEnum.PHONENUMBER.index).setText("");
+
 			
 	
 		lblNewLabel_1.setToolTipText("");

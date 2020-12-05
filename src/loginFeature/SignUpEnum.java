@@ -11,8 +11,8 @@ public enum SignUpEnum {
 	NAME("Name *","성          함             ", 0),
 	BIRTHDAY("Birthday *", "생 년 월 일              ",1),
 	PHONENUMBER("Phone Number *", "전 화 번 호             ",2),
-	PASSWORD("Password", "비 밀 번 호             ",3),
-	PASSWORDCONFIRM("Password", "비 밀 번 호  확 인      ",4);
+	PASSWORD("Password", "비 밀 번 호             ",2),
+	PASSWORDCONFIRM("Password", "비 밀 번 호  확 인      ",3);
 	
 	
 	JLabel label;

@@ -22,13 +22,13 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
-import signUpFails.BirthFailWindow;
-import signUpFails.ConsentFailWindow;
-import signUpFails.NameFailWindow;
-import signUpFails.PWnoMatch;
-import signUpFails.PassWordFailWindow;
-import signUpFails.PhoneNumberFailWindow;
-import signUpFails.SamePhoneNumberFail;
+import loginFeature.signUpFails.BirthFailWindow;
+import loginFeature.signUpFails.ConsentFailWindow;
+import loginFeature.signUpFails.NameFailWindow;
+import loginFeature.signUpFails.PWnoMatch;
+import loginFeature.signUpFails.PassWordFailWindow;
+import loginFeature.signUpFails.PhoneNumberFailWindow;
+import loginFeature.signUpFails.SamePhoneNumberFail;
 
 public class ClickSignUp extends MouseAdapter {
 
@@ -47,6 +47,8 @@ public class ClickSignUp extends MouseAdapter {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		for(int i = 0; i < SignUp.textList.size(); i++)
+			System.out.println(SignUp.textList.get(i).getText());
 
 		pw = SignUp.textList.get(SignUpEnum.PASSWORD.index).getText();
 		pwConfirm = SignUp.textList.get(SignUpEnum.PASSWORDCONFIRM.index).getText();
@@ -58,9 +60,13 @@ public class ClickSignUp extends MouseAdapter {
 			else if(!Pattern.matches("[0-9]{6}", 
 					SignUp.textList.get(SignUpEnum.BIRTHDAY.index).getText()))
 				new BirthFailWindow();
-			else if(!Pattern.matches("01[0-9]-[0-9]{4}-[0-9]{4}", 
-					SignUp.textList.get(SignUpEnum.PHONENUMBER.index).getText()))
-				new PhoneNumberFailWindow();
+			else if(!(Pattern.matches("01[0-9]", SignUp.phone_number1.getText())
+					&& Pattern.matches("[0-9]{4}", SignUp.phone_number2.getText())
+							&& Pattern.matches("[0-9]{4}", SignUp.phone_number3.getText())))
+					new PhoneNumberFailWindow();
+//			else if(!Pattern.matches("^01[0-9]-[0-9]{4}-[0-9]{4}$", 
+//					SignUp.textList.get(SignUpEnum.PHONENUMBER.index).getText()))
+//				new PhoneNumberFailWindow();
 			else if(!Pattern.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,12}$", 
 					SignUp.textList.get(SignUpEnum.PASSWORD.index).getText()))
 				new PassWordFailWindow();
@@ -120,7 +126,8 @@ public class ClickSignUp extends MouseAdapter {
 						insertPersonInfo.setString(1, simple.format(now));
 						insertPersonInfo.setString(2, SignUp.textList.get(0).getText());
 						insertPersonInfo.setString(3, SignUp.textList.get(1).getText());
-						insertPersonInfo.setString(4, SignUp.textList.get(2).getText());
+						insertPersonInfo.setString(4, SignUp.phone_number1.getText()+"-"
+								+SignUp.phone_number2.getText()+"-"+SignUp.phone_number3.getText());
 						insertPersonInfo.setString(5, pw);
 						insertPersonInfo.setInt(6, 0);
 						insertPersonInfo.addBatch();

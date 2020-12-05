@@ -1,4 +1,4 @@
-package signUpFails;
+package loginFeature.signUpFails;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -18,14 +18,14 @@ import javax.swing.border.EmptyBorder;
 import loginFeature.SignUp;
 import loginFeature.SignUpEnum;
 
-public class NameFailWindow extends JFrame {
+public class BirthFailWindow extends JFrame {
 
 	private JPanel contentPane;
 	
 	JLabel lblNewLabel_1;
 
 
-	public NameFailWindow() {
+	public BirthFailWindow() {
 //		int person_id = ClickSignUp.person_id;
 //		String person_name =ClickSignUp.person_name;
 		setTitle("회원 가입 실패");
@@ -51,8 +51,8 @@ public class NameFailWindow extends JFrame {
 		lblNewLabel_1 = new JLabel();
 
 				lblNewLabel_1 = new JLabel("<html>가입이 실패하였습니다<br/>"
-						+ "성함을 다시 입력하십시요 (2~4글자)</html>");
-				SignUp.textList.get(SignUpEnum.NAME.index).setText("");
+						+ "생년 월일을 다시 입력하십시요</html>");
+				SignUp.textList.get(SignUpEnum.BIRTHDAY.index).setText("");
 		
 			
 	

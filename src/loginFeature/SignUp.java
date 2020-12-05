@@ -44,6 +44,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.xml.transform.Source;
 
 public class SignUp extends JFrame {
@@ -55,15 +56,22 @@ public class SignUp extends JFrame {
 	public static ArrayList<JTextField> textList;
 	static ImageIcon icon;
 	static BufferedImage source;
-
+//	static String[] phoneNumber3;
+	static JTextField phone_number1;
+	static JTextField phone_number2;
+	static JTextField phone_number3;
+	
 	static {
 		textList = new ArrayList<JTextField>();
+//		phoneNumber3 = new String[3];
+		
 		try {
 			source = ImageIO.read(new File("C:\\Users\\Hyun\\Desktop\\자바SW개발자 양성과정 10월 현태환\\민짱.jpg"));
 
 			icon = new ImageIcon(source.getScaledInstance(2241 / 4, 2542 / 3, Image.SCALE_SMOOTH));
 			System.out.println(source.getHeight() + " " + source.getWidth());
 
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -72,7 +80,7 @@ public class SignUp extends JFrame {
 	}
 
 	public SignUp() { // 생성자
-
+		
 		JPanel background = new JPanel() {
 			public void paintComponent(Graphics g) {
 				// Approach 1: Dispaly image at at full size
@@ -105,6 +113,7 @@ public class SignUp extends JFrame {
 			text.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 			text.setForeground(Color.decode("#cfab8b"));
 			text.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b")));
+			
 			if (value.equals(value.PASSWORD) || value.equals(value.PASSWORDCONFIRM)) {
 				JLabel jpassLabel = new JLabel(value.labelNameKor);
 				jpassLabel.setFont(new Font("맑은 고딕", Font.BOLD, 17));
@@ -120,20 +129,85 @@ public class SignUp extends JFrame {
 				textList.add(value.blindPW);
 				continue;
 			}
-
+			
 			JLabel passLabel = new JLabel( value.labelNameKor);
 			passLabel.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
 			passLabel.setForeground(Color.decode("#cfab8b"));
 			panelOfPanel.add(passLabel);
+
+
+			if(value.equals(SignUpEnum.PHONENUMBER)) {
+				JPanel phoneNumber3Texts = new JPanel(new GridLayout(1,5,0,0));
+				phoneNumber3Texts.setOpaque(false); // 배경 투명
+				//phoneNumber3Texts.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
+				//phoneNumber3Texts.setForeground(Color.decode("#cfab8b"));
+				
+				phone_number1 = new JTextField("010");
+		        phone_number1.setOpaque(false); // 배경 투명
+		        phone_number1.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
+		        phone_number1.setHorizontalAlignment(SwingConstants.CENTER);
+		        phone_number1.setForeground(Color.decode("#cfab8b"));
+		        //phone_number1.setBounds(340, 137, 40, 30);
+		        phoneNumber3Texts.add(phone_number1);
+		
+		        JLabel str = new JLabel("-", JLabel.CENTER);
+		        str.setBounds(380, 137, 10, 30);
+		        str.setForeground(Color.decode("#cfab8b"));
+		        phoneNumber3Texts.add(str);
+		
+		        phone_number2 = new JTextField();
+		        phone_number2.setOpaque(false); // 배경 투명
+		        phone_number2.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
+		        phone_number2.setHorizontalAlignment(SwingConstants.CENTER);
+		        phone_number2.setForeground(Color.decode("#cfab8b"));
+		        //phone_number2.setBounds(390, 137, 45, 30);
+		        phoneNumber3Texts.add(phone_number2);
+		
+		        JLabel str2 = new JLabel("-", JLabel.CENTER);
+		        str2.setBounds(435, 137, 10, 30);
+		        str2.setForeground(Color.decode("#cfab8b"));
+		        phoneNumber3Texts.add(str2);
+		
+		        phone_number3 = new JTextField();
+		        phone_number3.setOpaque(false); // 배경 투명
+		        phone_number3.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
+		        phone_number3.setHorizontalAlignment(SwingConstants.CENTER);
+		        phone_number3.setForeground(Color.decode("#cfab8b"));
+		        //phone_number3.setBounds(445, 137, 45, 30);
+		        phoneNumber3Texts.add(phone_number3);
+		        
+				panelOfPanel.add(phoneNumber3Texts);
+
+//				String fullPhoneNumber = phone_number1.getText()
+//						+str.getText()+phone_number2.getText()+str2.getText()+phone_number3.getText();
+//				
+//
+//				textList.add(new JTextField(fullPhoneNumber));
+				grid_panel.add(panelOfPanel);
+
+				
+				ArrayList<JTextField> phoneNumberTextList = new ArrayList<JTextField>();
+	
+				phoneNumberTextList.add(phone_number1);
+				phoneNumberTextList.add(phone_number2);
+				phoneNumberTextList.add(phone_number3);
+					
+				for (int i = 0; i < phoneNumberTextList.size(); i++)
+					phoneNumberTextList.get(i).addMouseListener(new PhoneNumberClearTextField(phoneNumberTextList, i));
+				
+				continue;
+			}
+			
 			panelOfPanel.add(text);
 			grid_panel.add(panelOfPanel);
 			textList.add(text);
-
 		}
 
 		// 텍스트를 마우스로 누를 때
-		for (int i = 0; i < textList.size(); i++)
-			textList.get(i).addMouseListener(new ClearTextField(textList, i));
+		for (int i = 0; i < textList.size(); i++) {
+			if(i != 2)
+				textList.get(i).addMouseListener(new ClearTextField(textList, i));
+		}
 
 		// 약관 패널
 		JPanel p1 = new JPanel(new GridLayout(2, 2, 0, 2));

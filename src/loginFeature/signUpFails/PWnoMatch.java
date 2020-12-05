@@ -1,12 +1,9 @@
-package signUpFails;
+package loginFeature.signUpFails;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,14 +15,11 @@ import javax.swing.border.EmptyBorder;
 import loginFeature.SignUp;
 import loginFeature.SignUpEnum;
 
-public class BirthFailWindow extends JFrame {
-
+public class PWnoMatch extends JFrame{
 	private JPanel contentPane;
 	
-	JLabel lblNewLabel_1;
-
-
-	public BirthFailWindow() {
+	
+	public PWnoMatch() {
 //		int person_id = ClickSignUp.person_id;
 //		String person_name =ClickSignUp.person_name;
 		setTitle("회원 가입 실패");
@@ -36,7 +30,7 @@ public class BirthFailWindow extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton confirmButton = new JButton("확인");
+		JButton confirmButton = new JButton("\uD655\uC778");
 		confirmButton.setBounds(90, 143, 145, 23);
 		contentPane.add(confirmButton);
 		
@@ -48,14 +42,9 @@ public class BirthFailWindow extends JFrame {
 			}
 		});
 		
-		lblNewLabel_1 = new JLabel();
-
-				lblNewLabel_1 = new JLabel("<html>가입이 실패하였습니다<br/>"
-						+ "생년 월일을 다시 입력하십시요</html>");
-				SignUp.textList.get(SignUpEnum.BIRTHDAY.index).setText("");
+		JLabel lblNewLabel_1 = new JLabel("<html>가입이 실패하였습니다 <br/>비밀번호 확인이 일치하지 않습니다.</html>", JLabel.CENTER);
+		SignUp.textList.get(SignUpEnum.PASSWORDCONFIRM.index).setText("");
 		
-			
-	
 		lblNewLabel_1.setToolTipText("");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("굴림", Font.PLAIN, 18));
@@ -68,5 +57,5 @@ public class BirthFailWindow extends JFrame {
 		setVisible(true);
 	}
 
-	
+
 }
