@@ -20,7 +20,7 @@ public enum SignUpEnum {
 	JPasswordField blindPW;
 	String labelName;
 	String labelNameKor;
-	int index;
+	public int index;
 	
 	SignUpEnum(String labelName, String labelNameKor, int index) {
 		this.label = new JLabel(labelName, label.CENTER);

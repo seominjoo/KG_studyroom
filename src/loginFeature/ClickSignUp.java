@@ -22,12 +22,21 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 
+import signUpFails.BirthFailWindow;
+import signUpFails.ConsentFailWindow;
+import signUpFails.NameFailWindow;
+import signUpFails.PWnoMatch;
+import signUpFails.PassWordFailWindow;
+import signUpFails.PhoneNumberFailWindow;
+import signUpFails.SamePhoneNumberFail;
+
 public class ClickSignUp extends MouseAdapter {
 
 	static int person_id;
 	static String person_name;
 	static String pw;
 	static String pwConfirm;
+	static String phoneNumber;
 	boolean consentFlag = true;
 //
 //	Container card_panel;
@@ -43,13 +52,21 @@ public class ClickSignUp extends MouseAdapter {
 		pwConfirm = SignUp.textList.get(SignUpEnum.PASSWORDCONFIRM.index).getText();
 
 		if (e.getButton() == MouseEvent.BUTTON1) {
-			if(!Pattern.matches("[°¡-ÆR]{2,4}", SignUp.textList.get(SignUpEnum.NAME.index).getText())) {
-				
-			}
-			
-			if (!pw.equals(pwConfirm) || pw.equals(SignUpEnum.PASSWORDCONFIRM.labelName)) {
+			if(!Pattern.matches("[°¡-ÆR]{2,4}", 
+					SignUp.textList.get(SignUpEnum.NAME.index).getText()))
+				new NameFailWindow();
+			else if(!Pattern.matches("[0-9]{6}", 
+					SignUp.textList.get(SignUpEnum.BIRTHDAY.index).getText()))
+				new BirthFailWindow();
+			else if(!Pattern.matches("01[0-9]-[0-9]{4}-[0-9]{4}", 
+					SignUp.textList.get(SignUpEnum.PHONENUMBER.index).getText()))
+				new PhoneNumberFailWindow();
+			else if(!Pattern.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,12}$", 
+					SignUp.textList.get(SignUpEnum.PASSWORD.index).getText()))
+				new PassWordFailWindow();
+			else if (!pw.equals(pwConfirm) || pw.equals(SignUpEnum.PASSWORDCONFIRM.labelName))
 				new PWnoMatch();
-			} else {
+			 else {
 				// ¾à°ü Ã¼Å©
 				for (Entry<JCheckBox, JButton> kv : SignUp.consent.entrySet()) {
 					if (!kv.getKey().isSelected()) {
@@ -66,15 +83,31 @@ public class ClickSignUp extends MouseAdapter {
 					try {
 						// ³»ÀÏ ²À Á¤±ÔÇ¥Çö½ÄÀ¸·Î °Å¸£±â
 						// ÀÌ¸§, »ý³â¿ùÀÏ, ÈÞ´ëÆù, ºñ¹ø,
-						
-					
-						
+
 						Class.forName("oracle.jdbc.driver.OracleDriver");
 
 						Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr",
 								"1234");
 						
 						conn.setAutoCommit(false);
+						
+//						PreparedStatement read_PhoneNumber = conn
+//								.prepareStatement("SELECT phone_number FROM person_info");
+//
+//						ResultSet rs = read_PhoneNumber.executeQuery();
+//
+//						while (rs.next()) {
+//							phoneNumber = rs.getString(1);
+//						}
+//						
+//						if(phoneNumber.equals(SignUp.textList.get(SignUpEnum.PHONENUMBER.index).getText())) {
+//							new SamePhoneNumberFail();
+//							return;
+//						}
+//							
+//						
+//						if(rs != null) rs.close();
+//						if(read_PhoneNumber != null) read_PhoneNumber.close();
 						
 						PreparedStatement insertPersonInfo = conn.prepareStatement("INSERT INTO Person_Info "
 								+ "(Person_Id,Check_Time,Person_Name, person_birth, Phone_Number,PW,Total_Payment)"
@@ -100,18 +133,18 @@ public class ClickSignUp extends MouseAdapter {
 						PreparedStatement read_name_ID_from_personInfo = conn
 								.prepareStatement("SELECT person_id, person_name FROM person_info");
 
-						ResultSet rs = read_name_ID_from_personInfo.executeQuery();
+						ResultSet rs2 = read_name_ID_from_personInfo.executeQuery();
 
-						while (rs.next()) {
+						while (rs2.next()) {
 
-							person_id = rs.getInt(1);
-							person_name = rs.getString(2);
+							person_id = rs2.getInt(1);
+							person_name = rs2.getString(2);
 						}
 
 						new SignUpSuccessWindow(person_id, person_name);
 
-						if (rs != null)
-							rs.close();
+						if (rs2 != null)
+							rs2.close();
 						if (read_name_ID_from_personInfo != null)
 							read_name_ID_from_personInfo.close();
 						if (conn != null)
@@ -122,7 +155,7 @@ public class ClickSignUp extends MouseAdapter {
 					} catch (SQLException e1) {
 						// e1.printStackTrace();
 						System.out.println(e1.toString());
-						new SignUpFailWindow(e1);
+						//new SignUpFailWindow(e1);
 	
 					} catch (ClassNotFoundException e1) {
 						e1.printStackTrace();

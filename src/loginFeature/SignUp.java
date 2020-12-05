@@ -52,7 +52,7 @@ public class SignUp extends JFrame {
 	JPanel grid_panel = new JPanel(new GridLayout(GRID, 1, 0, 30));
 
 	static Map<JCheckBox, JButton> consent;
-	static ArrayList<JTextField> textList;
+	public static ArrayList<JTextField> textList;
 	static ImageIcon icon;
 	static BufferedImage source;
 
