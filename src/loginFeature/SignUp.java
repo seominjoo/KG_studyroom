@@ -53,18 +53,13 @@ public class SignUp extends JFrame {
 	JPanel grid_panel = new JPanel(new GridLayout(GRID, 1, 0, 30));
 
 	static Map<JCheckBox, JButton> consent;
-	public static ArrayList<JTextField> textList;
 	static ImageIcon icon;
 	static BufferedImage source;
-//	static String[] phoneNumber3;
 	static JTextField phone_number1;
 	static JTextField phone_number2;
 	static JTextField phone_number3;
 	
-	static {
-		textList = new ArrayList<JTextField>();
-//		phoneNumber3 = new String[3];
-		
+	static {	
 		try {
 			source = ImageIO.read(new File("C:\\Users\\Hyun\\Desktop\\자바SW개발자 양성과정 10월 현태환\\민짱.jpg"));
 
@@ -126,7 +121,6 @@ public class SignUp extends JFrame {
 				panelOfPanel.add(jpassLabel);
 				panelOfPanel.add(value.blindPW);
 				grid_panel.add(panelOfPanel);
-				textList.add(value.blindPW);
 				continue;
 			}
 			
@@ -200,13 +194,14 @@ public class SignUp extends JFrame {
 			
 			panelOfPanel.add(text);
 			grid_panel.add(panelOfPanel);
-			textList.add(text);
 		}
 
 //		 텍스트를 마우스로 누를 때
-		for (int i = 0; i < textList.size(); i++) {
-			if(i != 2)
-				textList.get(i).addMouseListener(new ClearTextField(textList, i));
+		for (SignUpEnum value : SignUpEnum.values()) {
+			if(value.equals(value.PASSWORD) || value.equals(value.PASSWORDCONFIRM))
+				value.blindPW.addMouseListener(new ClearTextField(value));
+			else
+				value.text.addMouseListener(new ClearTextField(value));
 		}
 
 		
@@ -314,8 +309,10 @@ public class SignUp extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				int i = 0;
 				for (SignUpEnum value : SignUpEnum.values()) {
-					if (textList.get(i).getText().equals(""))
-						textList.get(i).setText(value.labelName);
+					if (value.text.getText().equals(""))
+						value.text.setText(value.labelName);
+					if (value.blindPW.getText().equals(""))
+						value.blindPW.setText(value.labelName);
 					i++;
 				}
 			}

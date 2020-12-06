@@ -52,7 +52,7 @@ public class PhoneNumberFailWindow extends JFrame {
 
 				lblNewLabel_1 = new JLabel("<html>가입이 실패하였습니다<br/>"
 						+ "전화 번호를 다시 입력하십시요</html>");
-				SignUp.textList.get(SignUpEnum.PHONENUMBER.index).setText("");
+				SignUpEnum.PHONENUMBER.text.setText("");
 		
 			
 	

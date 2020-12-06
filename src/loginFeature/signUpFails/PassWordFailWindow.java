@@ -52,8 +52,8 @@ public class PassWordFailWindow extends JFrame {
 
 				lblNewLabel_1 = new JLabel("<html>가입이 실패하였습니다<br/>"
 						+ "비밀번호를 다시 입력하십시요 (알파벳 대소문자 및 특수문자 1개 이상)</html>");
-				SignUp.textList.get(SignUpEnum.PASSWORD.index).setText("");
-				SignUp.textList.get(SignUpEnum.PASSWORDCONFIRM.index).setText("");
+				SignUpEnum.PASSWORD.text.setText("");
+				SignUpEnum.PASSWORDCONFIRM.text.setText("");
 			
 	
 		lblNewLabel_1.setToolTipText("");

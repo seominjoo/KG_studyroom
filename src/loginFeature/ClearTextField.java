@@ -11,22 +11,25 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 public class ClearTextField extends MouseAdapter {
-
-	int clickCnt = 0;
-
-	int listIndex;
-	ArrayList<JTextField> textList;
-
-	public ClearTextField(ArrayList<JTextField> textList, int listIndex) {
-		this.textList = textList;
-		this.listIndex = listIndex;
+	
+	SignUpEnum value;
+	
+	public ClearTextField(SignUpEnum value) {
+		this.value = value;
 	}
+
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		for (SignUpEnum value : SignUpEnum.values()) {
-		if (e.getButton() == MouseEvent.BUTTON1 && textList.get(listIndex).getText().contains(value.labelName)) {
-			textList.get(listIndex).setText("");
+		if (e.getButton() == MouseEvent.BUTTON1 && value.text.getText().contains(value.labelName)) {
+			value.text.setText("");
+			value.blindPW.setText("");
+			for(SignUpEnum other : SignUpEnum.values()) {
+				if(!other.equals(value)) {
+					other.text.setText(other.labelName);
+					other.blindPW.setText(other.labelName);
+				}
+			}
 		}
 			//clickCnt++;
 			// 최초 입력시 초기화 
@@ -37,15 +40,8 @@ public class ClearTextField extends MouseAdapter {
 //
 //			}
 			// 텍스트 눌럿을 때 다른 빈텍스트 기본값으로 표시
-			for (int i = 0; i < textList.size(); i++) {
-				if (textList.get(i).getText().equals("")) {
-					if (i != listIndex) {
-						textList.get(i).setText(SignUpEnum.values()[i].labelName);
-					}
-				}
-			}
 
-		}
+		System.out.println("되니?");
 	}
 
 }

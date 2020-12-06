@@ -48,15 +48,15 @@ public class ClickSignUp extends MouseAdapter {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
-		pw = SignUp.textList.get(SignUpEnum.PASSWORD.index).getText();
-		pwConfirm = SignUp.textList.get(SignUpEnum.PASSWORDCONFIRM.index).getText();
+		pw = SignUpEnum.PASSWORD.text.getText();
+		pwConfirm = SignUpEnum.PASSWORDCONFIRM.text.getText();
 
 		if (e.getButton() == MouseEvent.BUTTON1) {
 			if(!Pattern.matches("[°¡-ÆR]{2,4}", 
-					SignUp.textList.get(SignUpEnum.NAME.index).getText()))
+					SignUpEnum.NAME.text.getText()))
 				new NameFailWindow();
 			else if(!Pattern.matches("[0-9]{6}", 
-					SignUp.textList.get(SignUpEnum.BIRTHDAY.index).getText()))
+					SignUpEnum.BIRTHDAY.text.getText()))
 				new BirthFailWindow();
 			else if(!(Pattern.matches("01[0-9]", SignUp.phone_number1.getText())
 					&& Pattern.matches("[0-9]{4}", SignUp.phone_number2.getText())
@@ -66,7 +66,7 @@ public class ClickSignUp extends MouseAdapter {
 //					SignUp.textList.get(SignUpEnum.PHONENUMBER.index).getText()))
 //				new PhoneNumberFailWindow();
 			else if(!Pattern.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,12}$", 
-					SignUp.textList.get(SignUpEnum.PASSWORD.index).getText()))
+					pw))
 				new PassWordFailWindow();
 			else if (!pw.equals(pwConfirm) || pw.equals(SignUpEnum.PASSWORDCONFIRM.labelName))
 				new PWnoMatch();

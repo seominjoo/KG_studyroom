@@ -52,7 +52,7 @@ public class SamePhoneNumberFail extends JFrame {
 
 				lblNewLabel_1 = new JLabel("<html>가입이 실패하였습니다<br/>"
 						+ "해당 전화번호가 이미 존재합니다. 다시 입력하십시요</html>");
-				SignUp.textList.get(SignUpEnum.PHONENUMBER.index).setText("");
+				SignUpEnum.PHONENUMBER.text.setText("");
 
 			
 	

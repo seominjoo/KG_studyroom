@@ -19,7 +19,7 @@ public enum SignUpEnum {
 	
 	
 	JLabel label;
-	JTextField text;
+	public JTextField text;
 	JPasswordField blindPW;
 	String labelName;
 	String labelNameKor;

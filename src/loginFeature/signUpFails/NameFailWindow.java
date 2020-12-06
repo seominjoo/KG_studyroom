@@ -52,7 +52,7 @@ public class NameFailWindow extends JFrame {
 
 				lblNewLabel_1 = new JLabel("<html>가입이 실패하였습니다<br/>"
 						+ "성함을 다시 입력하십시요 (2~4글자)</html>");
-				SignUp.textList.get(SignUpEnum.NAME.index).setText("");
+				SignUpEnum.NAME.text.setText("");
 		
 			
 	

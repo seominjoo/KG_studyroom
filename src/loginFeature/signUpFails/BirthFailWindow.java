@@ -52,7 +52,7 @@ public class BirthFailWindow extends JFrame {
 
 				lblNewLabel_1 = new JLabel("<html>가입이 실패하였습니다<br/>"
 						+ "생년 월일을 다시 입력하십시요</html>");
-				SignUp.textList.get(SignUpEnum.BIRTHDAY.index).setText("");
+				SignUpEnum.BIRTHDAY.text.setText("");
 		
 			
 	

@@ -43,7 +43,7 @@ public class PWnoMatch extends JFrame{
 		});
 		
 		JLabel lblNewLabel_1 = new JLabel("<html>가입이 실패하였습니다 <br/>비밀번호 확인이 일치하지 않습니다.</html>", JLabel.CENTER);
-		SignUp.textList.get(SignUpEnum.PASSWORDCONFIRM.index).setText("");
+		SignUpEnum.PASSWORDCONFIRM.text.setText("");
 		
 		lblNewLabel_1.setToolTipText("");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
