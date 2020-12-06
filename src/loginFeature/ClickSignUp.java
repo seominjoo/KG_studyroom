@@ -112,7 +112,7 @@ public class ClickSignUp extends MouseAdapter {
 						ResultSet rs = read_PhoneNumber.executeQuery();
 
 						while (rs.next()) {
-							phoneNumber = rs.getString("phone_number");
+							phoneNumber = rs.getString(1);
 							if (phoneNumber.equals(text)) {
 								new SamePhoneNumberFail();
 
