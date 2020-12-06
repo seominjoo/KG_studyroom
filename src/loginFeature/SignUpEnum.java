@@ -27,7 +27,6 @@ public enum SignUpEnum {
 		this.blindPW = new JPasswordField(labelName);
 		this.labelName = labelName;
 		this.labelNameKor = labelNameKor;
-
 	}
 
 

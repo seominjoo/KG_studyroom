@@ -44,6 +44,20 @@ public class ClickSignUp extends MouseAdapter {
 //	public ClickSignUp(Container card_panel) {
 //		this.card_panel = card_panel;
 //	}
+	static String year;
+	static String month;
+	static String day;
+	
+	
+	public ClickSignUp(Object year, Object month, Object day) {
+		this.year = year.toString();
+		this.month = month.toString();
+		this.day = day.toString();
+	}
+	
+	public ClickSignUp() {
+		
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -55,9 +69,9 @@ public class ClickSignUp extends MouseAdapter {
 			if(!Pattern.matches("[°¡-ÆR]{2,4}", 
 					SignUpEnum.NAME.text.getText()))
 				new NameFailWindow();
-			else if(!Pattern.matches("[0-9]{6}", 
-					SignUpEnum.BIRTHDAY.text.getText()))
+			else if(!Pattern.matches("[0-9]{6,8}", year+month+day)) {
 				new BirthFailWindow();
+			}
 			else if(!(Pattern.matches("01[0-9]", PhoneNumberEnum.PHONENUMBER1.text.getText())
 					&& Pattern.matches("[0-9]{4}", PhoneNumberEnum.PHONENUMBER2.text.getText())
 							&& Pattern.matches("[0-9]{4}", PhoneNumberEnum.PHONENUMBER3.text.getText())))
@@ -86,9 +100,10 @@ public class ClickSignUp extends MouseAdapter {
 						// ÀÌ¸§, »ý³â¿ùÀÏ, ÈÞ´ëÆù, ºñ¹ø,
 
 						Class.forName("oracle.jdbc.driver.OracleDriver");
-
+						System.out.println("[ojdbc] ¼º°øÀûÀ¸·Î ·ÎµåµÇ¾ú½À´Ï´Ù.");
 						Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr",
 								"1234");
+						System.out.println("¿¬°á ¼º°ø");
 						
 						conn.setAutoCommit(false);
 						
@@ -98,15 +113,16 @@ public class ClickSignUp extends MouseAdapter {
 //						ResultSet rs = read_PhoneNumber.executeQuery();
 //
 //						while (rs.next()) {
-//							phoneNumber = rs.getString(1);
+//							phoneNumber = rs.getString("phone_number");
+//							System.out.println(phoneNumber);
 //						}
-//						
-//						if(phoneNumber.equals(SignUp.textList.get(SignUpEnum.PHONENUMBER.index).getText())) {
-//							new SamePhoneNumberFail();
-//							return;
-//						}
+//						System.out.println(PhoneNumberEnum.PHONENUMBER1.text.getText()+"-"
+//								+PhoneNumberEnum.PHONENUMBER2.text.getText()+"-"
+//								+PhoneNumberEnum.PHONENUMBER3.text.getText());
+////						if(phoneNumber.equals() {
+////							new SamePhoneNumberFail();
+////						}
 //							
-//						
 //						if(rs != null) rs.close();
 //						if(read_PhoneNumber != null) read_PhoneNumber.close();
 						
@@ -120,7 +136,7 @@ public class ClickSignUp extends MouseAdapter {
 
 						insertPersonInfo.setString(1, simple.format(now));
 						insertPersonInfo.setString(2, SignUpEnum.NAME.text.getText());
-						insertPersonInfo.setString(3, SignUpEnum.BIRTHDAY.text.getText());
+						insertPersonInfo.setString(3, year+month+day);
 						insertPersonInfo.setString(4, PhoneNumberEnum.PHONENUMBER1.text.getText()+"-"
 								+PhoneNumberEnum.PHONENUMBER2.text.getText()+"-"
 								+PhoneNumberEnum.PHONENUMBER3.text.getText());

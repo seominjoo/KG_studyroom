@@ -200,7 +200,7 @@ public class SignUp extends JFrame {
 					}
 				}			
 
-
+				new ClickSignUp(year.getSelectedItem(),month.getSelectedItem(),day.getSelectedItem());
 
 				day.setBounds(170, 22, 45, 30);
 				panelInGrid2.add(day);
