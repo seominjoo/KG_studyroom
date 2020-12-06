@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
-public class ClearTextField extends MouseAdapter/* implements MouseListener */ {
+public class ClearTextField extends MouseAdapter {
 
 	int clickCnt = 0;
 

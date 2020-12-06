@@ -203,12 +203,15 @@ public class SignUp extends JFrame {
 			textList.add(text);
 		}
 
-		// 텍스트를 마우스로 누를 때
+//		 텍스트를 마우스로 누를 때
 		for (int i = 0; i < textList.size(); i++) {
 			if(i != 2)
 				textList.get(i).addMouseListener(new ClearTextField(textList, i));
 		}
 
+		
+		
+		
 		// 약관 패널
 		JPanel p1 = new JPanel(new GridLayout(2, 2, 0, 2));
 		p1.setOpaque(false);
