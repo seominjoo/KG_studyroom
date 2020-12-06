@@ -107,7 +107,7 @@ public class SignUp extends JFrame {
 
 			JTextField text = value.text; // 텍스트생성
 			value.text.setOpaque(false);
-			text.setFocusTraversalKeysEnabled(false);
+			//text.setFocusTraversalKeysEnabled(false);
 			JPanel panelOfPanel = new JPanel(new GridLayout(1, 2, 0, 0));
 			panelOfPanel.setOpaque(false);
 			text.setFont(new Font("맑은 고딕", Font.BOLD, 17));

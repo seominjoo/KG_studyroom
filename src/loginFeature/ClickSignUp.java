@@ -47,8 +47,6 @@ public class ClickSignUp extends MouseAdapter {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		for(int i = 0; i < SignUp.textList.size(); i++)
-			System.out.println(SignUp.textList.get(i).getText());
 
 		pw = SignUp.textList.get(SignUpEnum.PASSWORD.index).getText();
 		pwConfirm = SignUp.textList.get(SignUpEnum.PASSWORDCONFIRM.index).getText();
@@ -124,8 +122,8 @@ public class ClickSignUp extends MouseAdapter {
 						Date now = new Date();
 
 						insertPersonInfo.setString(1, simple.format(now));
-						insertPersonInfo.setString(2, SignUp.textList.get(0).getText());
-						insertPersonInfo.setString(3, SignUp.textList.get(1).getText());
+//						insertPersonInfo.setString(2, SignUp.textList.get(0).getText());
+//						insertPersonInfo.setString(3, SignUp.textList.get(1).getText());
 						insertPersonInfo.setString(4, SignUp.phone_number1.getText()+"-"
 								+SignUp.phone_number2.getText()+"-"+SignUp.phone_number3.getText());
 						insertPersonInfo.setString(5, pw);
