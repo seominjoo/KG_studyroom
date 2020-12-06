@@ -27,6 +27,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -56,15 +57,14 @@ public class SignUp extends JFrame {
 	static Map<JCheckBox, JButton> consent;
 	static ImageIcon icon;
 	static BufferedImage source;
-	
-	static {	
+
+	static {
 		try {
 			source = ImageIO.read(new File("C:\\Users\\Hyun\\Desktop\\자바SW개발자 양성과정 10월 현태환\\민짱.jpg"));
 
 			icon = new ImageIcon(source.getScaledInstance(2241 / 4, 2542 / 3, Image.SCALE_SMOOTH));
 			System.out.println(source.getHeight() + " " + source.getWidth());
 
-			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -73,7 +73,7 @@ public class SignUp extends JFrame {
 	}
 
 	public SignUp() { // 생성자
-		
+
 		JPanel background = new JPanel() {
 			public void paintComponent(Graphics g) {
 				// Approach 1: Dispaly image at at full size
@@ -100,13 +100,13 @@ public class SignUp extends JFrame {
 
 			JTextField text = value.text; // 텍스트생성
 			value.text.setOpaque(false);
-			//text.setFocusTraversalKeysEnabled(false);
+			// text.setFocusTraversalKeysEnabled(false);
 			JPanel panelOfPanel = new JPanel(new GridLayout(1, 2, 0, 0));
 			panelOfPanel.setOpaque(false);
 			text.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 			text.setForeground(Color.decode("#cfab8b"));
 			text.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b")));
-			
+
 			if (value.equals(value.PASSWORD) || value.equals(value.PASSWORDCONFIRM)) {
 				JLabel jpassLabel = new JLabel(value.labelNameKor);
 				jpassLabel.setFont(new Font("맑은 고딕", Font.BOLD, 17));
@@ -115,90 +115,154 @@ public class SignUp extends JFrame {
 				value.blindPW.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
 				value.blindPW.setForeground(Color.decode("#cfab8b"));
 				value.blindPW.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b")));
-				//이제 즐거운 디비 시간~ 오잉...오잉..
+				// 이제 즐거운 디비 시간~ 오잉...오잉..
 				panelOfPanel.add(jpassLabel);
 				panelOfPanel.add(value.blindPW);
 				grid_panel.add(panelOfPanel);
 				continue;
 			}
-			
-			JLabel passLabel = new JLabel( value.labelNameKor);
+
+			JLabel passLabel = new JLabel(value.labelNameKor);
 			passLabel.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
 			passLabel.setForeground(Color.decode("#cfab8b"));
 			panelOfPanel.add(passLabel);
 
-//			if(value.equals(SignUpEnum.BIRTHDAY)) {
-//				JComboBox<Integer> 
-//				
-//				continue;
-//			}
-			
-			if(value.equals(SignUpEnum.PHONENUMBER)) {
-				JPanel phoneNumber3Texts = new JPanel(new GridLayout(1,5,0,0));
-				phoneNumber3Texts.setOpaque(false); // 배경 투명
-				//phoneNumber3Texts.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
-				//phoneNumber3Texts.setForeground(Color.decode("#cfab8b"));
+			if (value.equals(SignUpEnum.BIRTHDAY)) {
+				JPanel panelInGrid2 = new JPanel();
+				panelInGrid2.setLayout(null);
+				panelInGrid2.setOpaque(false);
 				
+				int firstYear = 1930;
+				int lastYear = LocalDate.now().getYear();
+				Integer[] yearTable = new Integer[lastYear - firstYear + 1];
+				for (int i = 0; i <= lastYear - 1930; i++) {
+					yearTable[i] = firstYear++;
+				}
+				JComboBox<Integer> year = new JComboBox<Integer>(yearTable);
+				year.setBounds(0, 22, 55, 30);
+				panelInGrid2.add(year);
+				year.setOpaque(false); // 배경 투명
+				year.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
+				year.setForeground(Color.decode("#cfab8b"));
+				
+				int firstMonth = 1;
+				int lastMonth = 12;
+				Integer[] monthTable = new Integer[lastMonth - firstMonth + 1];
+				for (int i = 0; i < lastMonth; i++) {
+					monthTable[i] = firstMonth++;
+				}
+				JComboBox<Integer> month = new JComboBox<Integer>(monthTable);
+				month.setBounds(90, 22, 40, 30);
+				panelInGrid2.add(month);
+				month.setOpaque(false); // 배경 투명
+				month.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
+				month.setForeground(Color.decode("#cfab8b"));
+
+				int firstDay = 1;
+				int[] monthFordayCount31 = {1, 3, 5, 7, 8, 10, 12};
+				int[] monthFordayCount30 = {4, 6, 9, 11};
+				JComboBox<Integer> day;
+				
+				Integer[] dayTable;
+				if (((int) (year.getSelectedItem()) % 4 == 0) && ((int) (month.getSelectedItem()) == 2))
+					dayTable = new Integer[29];
+				else if(((int) (year.getSelectedItem()) % 4 != 0) && ((int) (month.getSelectedItem()) == 2))
+					dayTable = new Integer[28];
+				else {
+					while(true) {
+						int i = 0;
+						if(monthFordayCount31[i] == (int) (month.getSelectedItem())) {
+							dayTable = new Integer[31];
+							break;
+						}
+						else if(monthFordayCount30[i] == (int) (month.getSelectedItem())) {
+							dayTable = new Integer[30];
+							break;
+						}
+						i++;
+					}
+				}			
+				for(int i = 0 ; i < dayTable.length; i++) {
+					dayTable[i] = i+1;
+				}
+				
+				day = new JComboBox<Integer>(dayTable);
+				day.setBounds(170, 22, 40, 30);
+				panelInGrid2.add(day);
+				day.setOpaque(false); // 배경 투명
+				day.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
+				day.setForeground(Color.decode("#cfab8b"));
+				
+
+				
+				panelOfPanel.add(panelInGrid2);
+				grid_panel.add(panelOfPanel);
+				continue;
+			}
+
+			if (value.equals(SignUpEnum.PHONENUMBER)) {
+				JPanel phoneNumber3Texts = new JPanel(new GridLayout(1, 5, 0, 0));
+				phoneNumber3Texts.setOpaque(false); // 배경 투명
+				// phoneNumber3Texts.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b")));
+				// // 테두리?
+				// phoneNumber3Texts.setForeground(Color.decode("#cfab8b"));
+
 				JTextField phone_number1 = PhoneNumberEnum.PHONENUMBER1.text;
-		        phone_number1.setOpaque(false); // 배경 투명
-		        phone_number1.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
-		        phone_number1.setHorizontalAlignment(SwingConstants.CENTER);
-		        phone_number1.setForeground(Color.decode("#cfab8b"));
-		        //phone_number1.setBounds(340, 137, 40, 30);
-		        phoneNumber3Texts.add(phone_number1);
-		
-		        JLabel str = new JLabel("-", JLabel.CENTER);
-		        str.setBounds(380, 137, 10, 30);
-		        str.setForeground(Color.decode("#cfab8b"));
-		        phoneNumber3Texts.add(str);
-		
-		        JTextField phone_number2 = PhoneNumberEnum.PHONENUMBER2.text;
-		        phone_number2.setOpaque(false); // 배경 투명
-		        phone_number2.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
-		        phone_number2.setHorizontalAlignment(SwingConstants.CENTER);
-		        phone_number2.setForeground(Color.decode("#cfab8b"));
-		        //phone_number2.setBounds(390, 137, 45, 30);
-		        phoneNumber3Texts.add(phone_number2);
-		
-		        JLabel str2 = new JLabel("-", JLabel.CENTER);
-		        str2.setBounds(435, 137, 10, 30);
-		        str2.setForeground(Color.decode("#cfab8b"));
-		        phoneNumber3Texts.add(str2);
-		
-		        JTextField phone_number3 = PhoneNumberEnum.PHONENUMBER3.text;
-		        phone_number3.setOpaque(false); // 배경 투명
-		        phone_number3.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
-		        phone_number3.setHorizontalAlignment(SwingConstants.CENTER);
-		        phone_number3.setForeground(Color.decode("#cfab8b"));
-		        //phone_number3.setBounds(445, 137, 45, 30);
-		        phoneNumber3Texts.add(phone_number3);
-		        
+				phone_number1.setOpaque(false); // 배경 투명
+				phone_number1.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
+				phone_number1.setHorizontalAlignment(SwingConstants.CENTER);
+				phone_number1.setForeground(Color.decode("#cfab8b"));
+				// phone_number1.setBounds(340, 137, 40, 30);
+				phoneNumber3Texts.add(phone_number1);
+
+				JLabel str = new JLabel("-", JLabel.CENTER);
+				str.setBounds(380, 137, 10, 30);
+				str.setForeground(Color.decode("#cfab8b"));
+				phoneNumber3Texts.add(str);
+
+				JTextField phone_number2 = PhoneNumberEnum.PHONENUMBER2.text;
+				phone_number2.setOpaque(false); // 배경 투명
+				phone_number2.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
+				phone_number2.setHorizontalAlignment(SwingConstants.CENTER);
+				phone_number2.setForeground(Color.decode("#cfab8b"));
+				// phone_number2.setBounds(390, 137, 45, 30);
+				phoneNumber3Texts.add(phone_number2);
+
+				JLabel str2 = new JLabel("-", JLabel.CENTER);
+				str2.setBounds(435, 137, 10, 30);
+				str2.setForeground(Color.decode("#cfab8b"));
+				phoneNumber3Texts.add(str2);
+
+				JTextField phone_number3 = PhoneNumberEnum.PHONENUMBER3.text;
+				phone_number3.setOpaque(false); // 배경 투명
+				phone_number3.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
+				phone_number3.setHorizontalAlignment(SwingConstants.CENTER);
+				phone_number3.setForeground(Color.decode("#cfab8b"));
+				// phone_number3.setBounds(445, 137, 45, 30);
+				phoneNumber3Texts.add(phone_number3);
+
 				panelOfPanel.add(phoneNumber3Texts);
 
 				grid_panel.add(panelOfPanel);
-				
-				for(PhoneNumberEnum phoneValue : PhoneNumberEnum.values())
+
+				for (PhoneNumberEnum phoneValue : PhoneNumberEnum.values())
 					phoneValue.text.addMouseListener(new PhoneNumberClearTextField(phoneValue));
-					
-				
+
 				continue;
 			}
-			
+
 			panelOfPanel.add(text);
 			grid_panel.add(panelOfPanel);
 		}
 
 //		 텍스트를 마우스로 누를 때
 		for (SignUpEnum value : SignUpEnum.values()) {
-			if(value.equals(value.PASSWORD) || value.equals(value.PASSWORDCONFIRM))
+			if (value.equals(value.PASSWORD) || value.equals(value.PASSWORDCONFIRM))
 				value.blindPW.addMouseListener(new ClearTextField(value));
 			else
 				value.text.addMouseListener(new ClearTextField(value));
 		}
 
-		
-		
-		
 		// 약관 패널
 		JPanel p1 = new JPanel(new GridLayout(2, 2, 0, 2));
 		p1.setOpaque(false);
@@ -234,7 +298,6 @@ public class SignUp extends JFrame {
 		JPanel p2 = new JPanel(new GridLayout(row, col, 30, 10));
 		JButton s_Yes = new JButton("가입");
 		JButton s_No = new JButton("취소");
-
 
 		for (int r = 0; r < row; r++) {
 			for (int c = 0; c < col; c++) {
@@ -305,7 +368,7 @@ public class SignUp extends JFrame {
 					if (value.blindPW.getText().equals(""))
 						value.blindPW.setText(value.labelName);
 				}
-				for(PhoneNumberEnum value : PhoneNumberEnum.values()) {
+				for (PhoneNumberEnum value : PhoneNumberEnum.values()) {
 					if (value.text.getText().equals(""))
 						value.text.setText(value.labelName);
 				}

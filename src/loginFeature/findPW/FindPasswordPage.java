@@ -42,7 +42,7 @@ public class FindPasswordPage extends JFrame {
 	public FindPasswordPage() {
 		setLayout(null);
 
-		JPanel background = new JPanel(new BorderLayout(100, 0)) {
+		JPanel background = new JPanel(new BorderLayout(0, 10)) {
 			public void paintComponent(Graphics g) {
 				// Approach 1: Dispaly image at at full size
 				g.drawImage(icon.getImage(), 0, 0, null);
@@ -61,7 +61,7 @@ public class FindPasswordPage extends JFrame {
 		add(background);
 		background.setOpaque(false);
 		JPanel blank = new JPanel();
-		// background.add(blank,BorderLayout.WEST);
+		background.add(blank,BorderLayout.NORTH);
 
 		JPanel gridAll = new JPanel(new GridLayout(3, 1, 0, 0));
 		background.add(gridAll);
