@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +22,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import loginFeature.ClearTextBackGround;
+import loginFeature.PhoneNumberClearTextField;
+import loginFeature.PhoneNumberEnum;
 
 public class FindPasswordPage extends JFrame {
 
@@ -42,7 +48,7 @@ public class FindPasswordPage extends JFrame {
 	public FindPasswordPage() {
 		setLayout(null);
 
-		JPanel background = new JPanel(new BorderLayout(0, 10)) {
+		JPanel background = new JPanel(new BorderLayout(0, 50)) {
 			public void paintComponent(Graphics g) {
 				// Approach 1: Dispaly image at at full size
 				g.drawImage(icon.getImage(), 0, 0, null);
@@ -61,10 +67,11 @@ public class FindPasswordPage extends JFrame {
 		add(background);
 		background.setOpaque(false);
 		JPanel blank = new JPanel();
+		blank.setOpaque(false);
 		background.add(blank,BorderLayout.NORTH);
 
-		JPanel gridAll = new JPanel(new GridLayout(3, 1, 0, 0));
-		background.add(gridAll);
+		JPanel gridAll = new JPanel(new GridLayout(4, 1, 0, 0));
+		background.add(gridAll, BorderLayout.CENTER);
 		gridAll.setOpaque(false);
 
 		JLabel title = new JLabel("비밀번호 찾기", JLabel.CENTER);
@@ -79,7 +86,7 @@ public class FindPasswordPage extends JFrame {
 		JLabel phoneKor = new JLabel("전화 번호 : ");
 		phoneKor.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 		phoneKor.setForeground(Color.decode("#cfab8b"));
-		phoneKor.setBounds(85, 30, 100, 50);
+		phoneKor.setBounds(85, 6, 100, 50);
 		phoneKor.setOpaque(false);
 		grid2.add(phoneKor);
 		gridAll.add(grid2);
@@ -91,43 +98,58 @@ public class FindPasswordPage extends JFrame {
 //		text.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b")));
 //		text.setBounds(250, 30, 100, 50);
 //		grid2.add(text);
-		JTextField phone_number1 = new JTextField("010");
+		JTextField phone_number1 = PhoneNumberEnum.PHONENUMBER1.text;
 		phone_number1.setOpaque(false); // 배경 투명
 		phone_number1.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
 		phone_number1.setHorizontalAlignment(SwingConstants.CENTER);
 		phone_number1.setForeground(Color.decode("#cfab8b"));
-		phone_number1.setBounds(180, 40, 40, 30);
+		phone_number1.setBounds(180, 18, 45, 30);
 		grid2.add(phone_number1);
 
 		JLabel str = new JLabel("-", JLabel.CENTER);
-		str.setBounds(230, 40, 10, 30);
+		str.setBounds(225, 18, 20, 30);
 		str.setForeground(Color.decode("#cfab8b"));
 		grid2.add(str);
 
-		JTextField phone_number2 = new JTextField();
+		JTextField phone_number2 = PhoneNumberEnum.PHONENUMBER2.text;
 		phone_number2.setOpaque(false); // 배경 투명
 		phone_number2.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
 		phone_number2.setHorizontalAlignment(SwingConstants.CENTER);
 		phone_number2.setForeground(Color.decode("#cfab8b"));
-		phone_number2.setBounds(250, 40, 45, 30);
+		phone_number2.setBounds(245, 18, 45, 30);
 		grid2.add(phone_number2);
 
 		JLabel str2 = new JLabel("-", JLabel.CENTER);
-		str2.setBounds(300, 40, 10, 30);
+		str2.setBounds(290, 18, 20, 30);
 		str2.setForeground(Color.decode("#cfab8b"));
 		grid2.add(str2);
 
-		JTextField phone_number3 = new JTextField();
+		JTextField phone_number3 = PhoneNumberEnum.PHONENUMBER3.text;
 		phone_number3.setOpaque(false); // 배경 투명
 		phone_number3.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
 		phone_number3.setHorizontalAlignment(SwingConstants.CENTER);
 		phone_number3.setForeground(Color.decode("#cfab8b"));
-		phone_number3.setBounds(320, 40, 45, 30);
+		phone_number3.setBounds(310, 18, 45, 30);
 		grid2.add(phone_number3);
 
+		for(PhoneNumberEnum value : PhoneNumberEnum.values())
+			value.text.addMouseListener(new PhoneNumberClearTextField(value));
+		addMouseListener(new ClearTextBackGround());
+		
 		JPanel grid3 = new JPanel();
-		grid3.setLayout(null);
 		grid3.setOpaque(false);
+		grid3.setLayout(null);
+		JLabel foundPW = new JLabel("", JLabel.CENTER);
+		foundPW.setBounds(85, 0, 270, 50);
+		grid3.add(foundPW);
+		foundPW.setFont(new Font("맑은 고딕", Font.BOLD, 16));
+		foundPW.setForeground(Color.decode("#cfab8b"));
+		
+		gridAll.add(grid3);
+		
+		JPanel grid4 = new JPanel();
+		grid4.setLayout(null);
+		grid4.setOpaque(false);
 
 		JButton find = new JButton("검색");
 		JButton cancel = new JButton("취소");
@@ -142,10 +164,20 @@ public class FindPasswordPage extends JFrame {
 			findCancel[i].setForeground(Color.decode("#cfab8b"));
 			findCancel[i].setFont(new Font("맑은 고딕", Font.BOLD, 17));
 			findCancel[i].setBounds(x, 0, 100, 50);
-			grid3.add(findCancel[i]);
+			grid4.add(findCancel[i]);
 			x += 120;
 		}
-		gridAll.add(grid3);
+		
+		find.addActionListener(new ClickFindPasswordPage(foundPW));
+		
+		cancel.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		
+		gridAll.add(grid4);
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setBounds(200, 200, 2241 / 5 + 16, 2542 / 7 + 39);

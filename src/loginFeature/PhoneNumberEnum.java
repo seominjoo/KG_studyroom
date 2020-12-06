@@ -9,7 +9,7 @@ public enum PhoneNumberEnum {
 	PHONENUMBER3(""),;
 
 	String labelName;
-	JTextField text;
+	public JTextField text;
 	
 	PhoneNumberEnum(String labelName) {
 		this.labelName = labelName;

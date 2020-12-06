@@ -163,36 +163,45 @@ public class SignUp extends JFrame {
 				int firstDay = 1;
 				int[] monthFordayCount31 = {1, 3, 5, 7, 8, 10, 12};
 				int[] monthFordayCount30 = {4, 6, 9, 11};
-				JComboBox<Integer> day;
 
+				Integer[] dayTable = new Integer[28];
+				for(int i = 0 ; i < dayTable.length; i++) {
+					dayTable[i] = i+1;
+				}
+				JComboBox day = new JComboBox<>();
+				DefaultComboBoxModel realDay = new DefaultComboBoxModel<>(dayTable);
+				day.setModel(realDay);
+				day.repaint();
 				
-				Integer[] dayTable;
+				month.setSelectedIndex(1);
+				
+				System.out.println(day.getSelectedItem());
+				
 				if (((int) (year.getSelectedItem()) % 4 == 0) && ((int) (month.getSelectedItem()) == 2))
-					dayTable = new Integer[29];
-				else if(((int) (year.getSelectedItem()) % 4 != 0) && ((int) (month.getSelectedItem()) == 2))
-					dayTable = new Integer[28];
+					day.addItem(29);
+				else if(((int) (year.getSelectedItem()) % 4 != 0) && ((int) (month.getSelectedItem()) == 2)) {
+					
+				}
 				else {
 					while(true) {
 						int i = 0;
 						if(monthFordayCount31[i] == (int) (month.getSelectedItem())) {
-							dayTable = new Integer[31];
+							day.addItem(29);
+							day.addItem(30);
+							day.addItem(31);
 							break;
 						}
 						else if(monthFordayCount30[i] == (int) (month.getSelectedItem())) {
-							dayTable = new Integer[30];
+							day.addItem(29);
+							day.addItem(30);
 							break;
 						}
 						i++;
 					}
 				}			
-				for(int i = 0 ; i < dayTable.length; i++) {
-					dayTable[i] = i+1;
-				}
 
-				day = new JComboBox<Integer>(dayTable);
-				DefaultComboBoxModel<Integer> realDay = new DefaultComboBoxModel<Integer>(dayTable);
-				day.setModel(realDay);
-				
+
+
 				day.setBounds(170, 22, 45, 30);
 				panelInGrid2.add(day);
 				day.setOpaque(false); // 배경 투명
@@ -365,21 +374,8 @@ public class SignUp extends JFrame {
 		background.add(p6, BorderLayout.SOUTH);
 
 		// 바깥쪽 눌렀을 때 기본 값 만들어버리기
-		addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				for (SignUpEnum value : SignUpEnum.values()) {
-					if (value.text.getText().equals(""))
-						value.text.setText(value.labelName);
-					if (value.blindPW.getText().equals(""))
-						value.blindPW.setText(value.labelName);
-				}
-				for (PhoneNumberEnum value : PhoneNumberEnum.values()) {
-					if (value.text.getText().equals(""))
-						value.text.setText(value.labelName);
-				}
-			}
-		});
+		addMouseListener(new ClearTextBackGround());
+		
 		this.setBackground(Color.black);
 	}
 

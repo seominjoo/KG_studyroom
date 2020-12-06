@@ -156,7 +156,7 @@ public class ClickSignUp extends MouseAdapter {
 						System.out.println("¼º°ø");
 
 					} catch (SQLException e1) {
-						 e1.printStackTrace();
+						 //e1.printStackTrace();
 						System.out.println(e1.toString());
 						//new SignUpFailWindow(e1);
 	
