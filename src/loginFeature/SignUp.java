@@ -30,6 +30,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,6 +38,7 @@ import java.util.Map.Entry;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -152,16 +154,17 @@ public class SignUp extends JFrame {
 					monthTable[i] = firstMonth++;
 				}
 				JComboBox<Integer> month = new JComboBox<Integer>(monthTable);
-				month.setBounds(90, 22, 40, 30);
+				month.setBounds(90, 22, 45, 30);
 				panelInGrid2.add(month);
 				month.setOpaque(false); // 배경 투명
 				month.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
 				month.setForeground(Color.decode("#cfab8b"));
-
+				
 				int firstDay = 1;
 				int[] monthFordayCount31 = {1, 3, 5, 7, 8, 10, 12};
 				int[] monthFordayCount30 = {4, 6, 9, 11};
 				JComboBox<Integer> day;
+
 				
 				Integer[] dayTable;
 				if (((int) (year.getSelectedItem()) % 4 == 0) && ((int) (month.getSelectedItem()) == 2))
@@ -185,9 +188,12 @@ public class SignUp extends JFrame {
 				for(int i = 0 ; i < dayTable.length; i++) {
 					dayTable[i] = i+1;
 				}
-				
+
 				day = new JComboBox<Integer>(dayTable);
-				day.setBounds(170, 22, 40, 30);
+				DefaultComboBoxModel<Integer> realDay = new DefaultComboBoxModel<Integer>(dayTable);
+				day.setModel(realDay);
+				
+				day.setBounds(170, 22, 45, 30);
 				panelInGrid2.add(day);
 				day.setOpaque(false); // 배경 투명
 				day.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
