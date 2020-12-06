@@ -48,8 +48,8 @@ public class ClickSignUp extends MouseAdapter {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
-		pw = SignUpEnum.PASSWORD.text.getText();
-		pwConfirm = SignUpEnum.PASSWORDCONFIRM.text.getText();
+		pw = SignUpEnum.PASSWORD.blindPW.getText();
+		pwConfirm = SignUpEnum.PASSWORDCONFIRM.blindPW.getText();
 
 		if (e.getButton() == MouseEvent.BUTTON1) {
 			if(!Pattern.matches("[°¡-ÆR]{2,4}", 
@@ -58,13 +58,10 @@ public class ClickSignUp extends MouseAdapter {
 			else if(!Pattern.matches("[0-9]{6}", 
 					SignUpEnum.BIRTHDAY.text.getText()))
 				new BirthFailWindow();
-			else if(!(Pattern.matches("01[0-9]", SignUp.phone_number1.getText())
-					&& Pattern.matches("[0-9]{4}", SignUp.phone_number2.getText())
-							&& Pattern.matches("[0-9]{4}", SignUp.phone_number3.getText())))
+			else if(!(Pattern.matches("01[0-9]", PhoneNumberEnum.PHONENUMBER1.text.getText())
+					&& Pattern.matches("[0-9]{4}", PhoneNumberEnum.PHONENUMBER2.text.getText())
+							&& Pattern.matches("[0-9]{4}", PhoneNumberEnum.PHONENUMBER3.text.getText())))
 					new PhoneNumberFailWindow();
-//			else if(!Pattern.matches("^01[0-9]-[0-9]{4}-[0-9]{4}$", 
-//					SignUp.textList.get(SignUpEnum.PHONENUMBER.index).getText()))
-//				new PhoneNumberFailWindow();
 			else if(!Pattern.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,12}$", 
 					pw))
 				new PassWordFailWindow();
@@ -122,10 +119,11 @@ public class ClickSignUp extends MouseAdapter {
 						Date now = new Date();
 
 						insertPersonInfo.setString(1, simple.format(now));
-//						insertPersonInfo.setString(2, SignUp.textList.get(0).getText());
-//						insertPersonInfo.setString(3, SignUp.textList.get(1).getText());
-						insertPersonInfo.setString(4, SignUp.phone_number1.getText()+"-"
-								+SignUp.phone_number2.getText()+"-"+SignUp.phone_number3.getText());
+						insertPersonInfo.setString(2, SignUpEnum.NAME.text.getText());
+						insertPersonInfo.setString(3, SignUpEnum.BIRTHDAY.text.getText());
+						insertPersonInfo.setString(4, PhoneNumberEnum.PHONENUMBER1.text.getText()+"-"
+								+PhoneNumberEnum.PHONENUMBER2.text.getText()+"-"
+								+PhoneNumberEnum.PHONENUMBER3.text.getText());
 						insertPersonInfo.setString(5, pw);
 						insertPersonInfo.setInt(6, 0);
 						insertPersonInfo.addBatch();
@@ -158,7 +156,7 @@ public class ClickSignUp extends MouseAdapter {
 						System.out.println("¼º°ø");
 
 					} catch (SQLException e1) {
-						// e1.printStackTrace();
+						 e1.printStackTrace();
 						System.out.println(e1.toString());
 						//new SignUpFailWindow(e1);
 	

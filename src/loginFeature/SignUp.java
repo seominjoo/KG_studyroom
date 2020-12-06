@@ -39,6 +39,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -55,9 +56,6 @@ public class SignUp extends JFrame {
 	static Map<JCheckBox, JButton> consent;
 	static ImageIcon icon;
 	static BufferedImage source;
-	static JTextField phone_number1;
-	static JTextField phone_number2;
-	static JTextField phone_number3;
 	
 	static {	
 		try {
@@ -129,14 +127,19 @@ public class SignUp extends JFrame {
 			passLabel.setForeground(Color.decode("#cfab8b"));
 			panelOfPanel.add(passLabel);
 
-
+//			if(value.equals(SignUpEnum.BIRTHDAY)) {
+//				JComboBox<Integer> 
+//				
+//				continue;
+//			}
+			
 			if(value.equals(SignUpEnum.PHONENUMBER)) {
 				JPanel phoneNumber3Texts = new JPanel(new GridLayout(1,5,0,0));
 				phoneNumber3Texts.setOpaque(false); // 배경 투명
 				//phoneNumber3Texts.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
 				//phoneNumber3Texts.setForeground(Color.decode("#cfab8b"));
 				
-				phone_number1 = new JTextField("010");
+				JTextField phone_number1 = PhoneNumberEnum.PHONENUMBER1.text;
 		        phone_number1.setOpaque(false); // 배경 투명
 		        phone_number1.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
 		        phone_number1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -149,7 +152,7 @@ public class SignUp extends JFrame {
 		        str.setForeground(Color.decode("#cfab8b"));
 		        phoneNumber3Texts.add(str);
 		
-		        phone_number2 = new JTextField();
+		        JTextField phone_number2 = PhoneNumberEnum.PHONENUMBER2.text;
 		        phone_number2.setOpaque(false); // 배경 투명
 		        phone_number2.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
 		        phone_number2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -162,7 +165,7 @@ public class SignUp extends JFrame {
 		        str2.setForeground(Color.decode("#cfab8b"));
 		        phoneNumber3Texts.add(str2);
 		
-		        phone_number3 = new JTextField();
+		        JTextField phone_number3 = PhoneNumberEnum.PHONENUMBER3.text;
 		        phone_number3.setOpaque(false); // 배경 투명
 		        phone_number3.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
 		        phone_number3.setHorizontalAlignment(SwingConstants.CENTER);
@@ -172,22 +175,11 @@ public class SignUp extends JFrame {
 		        
 				panelOfPanel.add(phoneNumber3Texts);
 
-//				String fullPhoneNumber = phone_number1.getText()
-//						+str.getText()+phone_number2.getText()+str2.getText()+phone_number3.getText();
-//				
-//
-//				textList.add(new JTextField(fullPhoneNumber));
 				grid_panel.add(panelOfPanel);
-
 				
-				ArrayList<JTextField> phoneNumberTextList = new ArrayList<JTextField>();
-	
-				phoneNumberTextList.add(phone_number1);
-				phoneNumberTextList.add(phone_number2);
-				phoneNumberTextList.add(phone_number3);
+				for(PhoneNumberEnum phoneValue : PhoneNumberEnum.values())
+					phoneValue.text.addMouseListener(new PhoneNumberClearTextField(phoneValue));
 					
-				for (int i = 0; i < phoneNumberTextList.size(); i++)
-					phoneNumberTextList.get(i).addMouseListener(new PhoneNumberClearTextField(phoneNumberTextList, i));
 				
 				continue;
 			}
@@ -307,13 +299,15 @@ public class SignUp extends JFrame {
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int i = 0;
 				for (SignUpEnum value : SignUpEnum.values()) {
 					if (value.text.getText().equals(""))
 						value.text.setText(value.labelName);
 					if (value.blindPW.getText().equals(""))
 						value.blindPW.setText(value.labelName);
-					i++;
+				}
+				for(PhoneNumberEnum value : PhoneNumberEnum.values()) {
+					if (value.text.getText().equals(""))
+						value.text.setText(value.labelName);
 				}
 			}
 		});

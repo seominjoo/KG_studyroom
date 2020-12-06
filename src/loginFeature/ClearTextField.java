@@ -25,10 +25,16 @@ public class ClearTextField extends MouseAdapter {
 			value.text.setText("");
 			value.blindPW.setText("");
 			for(SignUpEnum other : SignUpEnum.values()) {
-				if(!other.equals(value)) {
+				if(!other.equals(value) && (other.text.getText().equals("") 
+						&& other.blindPW.getText().equals(""))) {
 					other.text.setText(other.labelName);
 					other.blindPW.setText(other.labelName);
 				}
+			}
+			for(PhoneNumberEnum value : PhoneNumberEnum.values()) {
+				if(value.text.getText().equals("")) {
+					value.text.setText(value.labelName);
+				}				
 			}
 		}
 			//clickCnt++;
@@ -41,7 +47,6 @@ public class ClearTextField extends MouseAdapter {
 //			}
 			// 텍스트 눌럿을 때 다른 빈텍스트 기본값으로 표시
 
-		System.out.println("되니?");
 	}
 
 }

@@ -1,17 +1,19 @@
 package loginFeature;
 
+import javax.swing.JTextField;
+
 public enum PhoneNumberEnum {
 
-	PHONENUMBER1("010",0),
-	PHONENUMBER2("",1),
-	PHONENUMBER3("",2),;
+	PHONENUMBER1("010"),
+	PHONENUMBER2(""),
+	PHONENUMBER3(""),;
 
-	String initialStatement;
-	int index;
+	String labelName;
+	JTextField text;
 	
-	PhoneNumberEnum(String initialStatement, int index) {
-		this.initialStatement = initialStatement;
-		this.index = index;
+	PhoneNumberEnum(String labelName) {
+		this.labelName = labelName;
+		this.text = new JTextField(labelName);
 	}
 	
 	
