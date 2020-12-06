@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 
-public class style {
+public class Style {
 	
 	private static JPanel panel;
 	private JLabel label;
@@ -23,7 +23,7 @@ public class style {
 	private JPasswordField pass;
 	private JComponent cp;
 	
-	public style(JComponent cp) {
+	public Style(JComponent cp) {
 		this.cp = cp;
 			if (cp instanceof JPanel) {
 				panel = (JPanel)cp;
@@ -73,7 +73,7 @@ public class style {
 		}
 	}
 	
-	public style() {
+	public Style() {
 	}
 
 	public static JPanel getnewPanel() {

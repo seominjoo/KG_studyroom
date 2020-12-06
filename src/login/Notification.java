@@ -26,11 +26,11 @@ public class Notification extends JFrame implements ActionListener {
 
 		
 		JPanel laynull = new JPanel(new GridLayout(2, 0, 0, 0));
-		new style(laynull);
+		new Style(laynull);
 		JLabel commenteng = new JLabel("[system] still in maintenance", JLabel.CENTER);
-		new style(commenteng);
+		new Style(commenteng);
 		JLabel commentkor = new JLabel("페이지 준비 중..", JLabel.CENTER);
-		new style(commentkor);
+		new Style(commentkor);
 		
 		SwingTool_logo.initFrame(this);
 		getContentPane().setBackground(Color.decode("#404040"));
@@ -41,7 +41,7 @@ public class Notification extends JFrame implements ActionListener {
 		laynull.add(commentkor);
 		
 		JButton combtn = new JButton("닫기");
-		new style(combtn);
+		new Style(combtn);
 		combtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -49,7 +49,7 @@ public class Notification extends JFrame implements ActionListener {
 			}
 		});
 		
-		add(new style().getnewPanel(), BorderLayout.NORTH);
+		add(new Style().getnewPanel(), BorderLayout.NORTH);
 		add(laynull, BorderLayout.CENTER);
 		add(combtn, BorderLayout.SOUTH);
 	}
