@@ -32,5 +32,8 @@ public class DBwrite {
 		} catch (SQLException e) {			
 			e.printStackTrace();
 		}
+		
+		System.out.println(query +"가 실행되었습니다");
+		
 	}
 }

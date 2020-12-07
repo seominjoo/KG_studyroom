@@ -14,6 +14,10 @@ import java.awt.GridLayout;
 
 public class _05locker extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private final Action action = new SwingAction();
 
@@ -50,6 +54,10 @@ public class _05locker extends JFrame {
 	}
 
 	private class SwingAction extends AbstractAction {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		public SwingAction() {
 			putValue(NAME, "이전 화면");
 			putValue(SHORT_DESCRIPTION, "Some short description");

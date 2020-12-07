@@ -16,6 +16,11 @@ import java.awt.Insets;
 
 public class _04whatWeek extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	int Person_Id;
 	private JPanel contentPane;
 	private final Action action = new SwingAction();
 	private final Action action_1 = new SwingAction_1();
@@ -42,6 +47,7 @@ public class _04whatWeek extends JFrame {
 	 * Create the frame.
 	 */
 	public _04whatWeek() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -91,33 +97,58 @@ public class _04whatWeek extends JFrame {
 	}
 
 	private class SwingAction extends AbstractAction {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		public SwingAction() {
 			putValue(NAME, "2주");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
+			new DBwrite("INSERT Payment_Record VALUES ('Weekly_2Wk', 90000) "
+					+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
 		}
 	}
+	
 	private class SwingAction_1 extends AbstractAction {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		public SwingAction_1() {
 			putValue(NAME, "4주");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
+			new DBwrite("INSERT Payment_Record(Seat_Type, Payment)"
+					+ " VALUES ('Weekly_4Wk', 130000) "
+					+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
 		}
 	}
 	private class SwingAction_2 extends AbstractAction {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		public SwingAction_2() {
 			putValue(NAME, "8주");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
+			new DBwrite("INSERT Payment_Record(Seat_Type, Payment)"
+					+ " VALUES ('Weekly_8Wk', 250000) "
+					+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
 		}
 	}
 	private class SwingAction_3 extends AbstractAction {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		public SwingAction_3() {
 			putValue(NAME, "이전 화면");
 			putValue(SHORT_DESCRIPTION, "Some short description");
@@ -126,6 +157,7 @@ public class _04whatWeek extends JFrame {
 			setVisible(false);
 			_02dayOrWeek frame = new _02dayOrWeek();
 			frame.setVisible(true);
+		
 		}
 	}
 }

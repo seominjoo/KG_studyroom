@@ -23,6 +23,10 @@ import javax.swing.ImageIcon;
 
 public class _01start extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private final Action action = new SwingAction();
 	private final Action action_1 = new SwingAction_1();
@@ -104,6 +108,11 @@ public class _01start extends JFrame {
 	}
 
 	private class SwingAction extends AbstractAction {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
 		public SwingAction() {
 			putValue(NAME, "좌석 이용권");
 			putValue(SHORT_DESCRIPTION, "Some short description");
@@ -118,6 +127,10 @@ public class _01start extends JFrame {
 
 	}
 	private class SwingAction_1 extends AbstractAction {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		public SwingAction_1() {
 			putValue(NAME, "사물함 이용권");
 			putValue(SHORT_DESCRIPTION, "Some short description");
@@ -130,6 +143,10 @@ public class _01start extends JFrame {
 		}
 	}
 	private class SwingAction_2 extends AbstractAction {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		public SwingAction_2() {
 			putValue(NAME, "자리 이동");
 			putValue(SHORT_DESCRIPTION, "Some short description");
@@ -152,6 +169,10 @@ public class _01start extends JFrame {
 	}
 	
 	private class SwingAction_3 extends AbstractAction {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		public SwingAction_3() {
 			putValue(NAME, "퇴실하기");
 			putValue(SHORT_DESCRIPTION, "Some short description");
