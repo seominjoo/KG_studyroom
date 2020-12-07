@@ -1,6 +1,7 @@
 package login;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,35 +10,51 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 public class DateBase {
+
 	
-	
-	public DateBase(String phone_number, String password) {
-		HikariConfig config = new HikariConfig("some/path/hikari.properties");
-		HikariDataSource ds = new HikariDataSource(config);
-		
+	String login_phonenumber;
+	String login_password;
+
+	public DateBase(String login_phonenumber, String login_password) {
+		this.login_phonenumber = login_phonenumber;
+		this.login_password = login_password;
+
 		try {
-			Connection conn = ds.getConnection();
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			System.out.println("[ojdbc] 성공적으로 로드되었습니다.");
+			// 2. DriverManager 클래스를 통해 DB와의 연결을 수립
+			// - DriverManager.getConnection() 메서드에
+			// DB접속 주소와 아이디/패스워드를 전달하면 연결이 반환된다
+			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "123");
+			// 쿼리문
+			PreparedStatement pstmt = conn.prepareStatement("SELECT Person_Name, Phone_Number, PW FROM Person_Info");
+
+			conn.setAutoCommit(false);
 			
-			PreparedStatement pstmt = 
-					conn.prepareStatement("SELECT * FROM employees");
-			
-			ResultSet rs = pstmt.executeQuery();						
-			
+			// 결과
+			ResultSet rs = pstmt.executeQuery();
+
 			while (rs.next()) {
-				System.out.printf("%-15s\t%-10s\t%-10d\t%-10d\n",
-						rs.getString("last_name"),
-						rs.getString("first_name"),
-						rs.getInt("salary"),
-						rs.getInt("department_id")
-				);								
+				String name = rs.getString(1);
+				String phonenumber = rs.getString(2);
+				String password = rs.getString(3);
+				System.out.println(name + phonenumber + password + "d" + this.login_phonenumber + this.login_password);
 			}
-			
+
 			rs.close();
 			pstmt.close();
-			conn.close();				
-			
-		} catch (SQLException e) {			
+			conn.close();
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	public static void main(String[] args) {
+		new DateBase("서민주", "444444");
 	}
 }

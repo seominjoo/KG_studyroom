@@ -23,10 +23,11 @@ import javax.swing.SwingConstants;
 import login.design.Conversion_image;
 import login.design.EmptyPrice;
 import login.design.Style;
-import login.window.Notification;
+import login.window.ActionWindow;
 
 
 public class LoginPage extends JFrame {
+	
 
 	//	70	231232	현태태	19831010	010-1111-1111	12345678	0			
 	public LoginPage() {
@@ -69,19 +70,19 @@ public class LoginPage extends JFrame {
 		JButton login = new JButton("로그인");
 		new Style(login);
 		login.setBounds(340, 217, 150, 30);
-		login.addActionListener(new Notification(login));
+		login.addActionListener(new ActionWindow(login));
 		background.add(login);
 		
 		JButton find_PW = new JButton(new Conversion_image("image/PW찾기.png", 40, 40).imageicon_smooth);
 		new Style(find_PW);
 		find_PW.setBounds(545, 247, 50, 50);
-		find_PW.addActionListener(new Notification(find_PW));
+		find_PW.addActionListener(new ActionWindow(find_PW));
 		background.add(find_PW);
 	
 		JButton signup = new JButton(new Conversion_image("image/회원가입.png", 40	, 40).imageicon_smooth);
 		new Style(signup);
 		signup.setBounds(543, 292, 50, 50);
-		signup.addActionListener(new Notification(signup));
+		signup.addActionListener(new ActionWindow(signup));
 		background.add(signup);
 		
 		JButton Poweroff = new JButton(new Conversion_image("image/전원.png", 40	, 40).imageicon_smooth);
