@@ -80,7 +80,7 @@ public class _06moveSeat extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_06moveSelect frame = new _06moveSelect();
+			_06moveSeat2 frame = new _06moveSeat2();
 			frame.setVisible(true);
 		}
 	}

@@ -16,13 +16,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class _06moveMessage extends JFrame implements ActionListener {
+public class _06moveSeatMessage extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	Component com;
 	int Person_Id;
 
-	public _06moveMessage(Component com) {
+	public _06moveSeatMessage(Component com) {
 		this.com = com;
 	}
 
@@ -73,7 +73,7 @@ public class _06moveMessage extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					_06moveMessage frame = new _06moveMessage();
+					_06moveSeatMessage frame = new _06moveSeatMessage();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -85,7 +85,7 @@ public class _06moveMessage extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	public _06moveMessage() {
+	public _06moveSeatMessage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

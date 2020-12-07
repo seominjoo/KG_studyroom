@@ -19,8 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class _06moveSelect extends JFrame implements ActionListener{
-	 
+public class _06moveSeat2 extends JFrame implements ActionListener{
+
 	private static final long serialVersionUID = 1L;
 	boolean selected = false;
 	static ArrayList<JCheckBox> seats = new ArrayList<>(); //1~20번 좌석 (1인석)
@@ -47,12 +47,12 @@ public class _06moveSelect extends JFrame implements ActionListener{
 	String time_checkout;
 	String Seat_Type;
 	int Person_Id;
-//	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
-	
+	//	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
+
 
 	JPanel p1 = new JPanel();
-	_06moveSelect() {
- 
+	_06moveSeat2() {
+
 		JButton OK;
 		JButton back;
 		JLabel label = new JLabel("1인석");
@@ -83,7 +83,7 @@ public class _06moveSelect extends JFrame implements ActionListener{
 			p1.add(room.get(i));
 			e+=100;
 		}
-	
+
 		ActionListener back_btn = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -92,12 +92,12 @@ public class _06moveSelect extends JFrame implements ActionListener{
 				frame.setVisible(true);
 			}
 		};
-		
+
 		back = new JButton("이전 화면");
 		back.setBounds(230,280,100,50);
 		p1.add(back);
 		back.addActionListener(back_btn);
-	
+
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection conn = DriverManager.getConnection(
@@ -105,13 +105,13 @@ public class _06moveSelect extends JFrame implements ActionListener{
 					"hr",
 					"1234"
 					);
-			 
+
 			//시간 비교
 			String sqlmt1 = "SELECT seat_number, time_checkout FROM seat "
 					+ "WHERE seat_statement ='사용 중'";
 			PreparedStatement pstmtt1 = conn.prepareStatement(sqlmt1);
 			ResultSet rst1 = pstmtt1.executeQuery();
-		 
+
 			while(rst1.next()) {//사용중인 좌석중 퇴실시간이 지나면 사용가능으로 업뎃 
 				int seat_chk = rst1.getInt("seat_number");
 				Timestamp time_chk = rst1.getTimestamp("time_checkout");
@@ -122,13 +122,13 @@ public class _06moveSelect extends JFrame implements ActionListener{
 					int row3 = pstmtas.executeUpdate();
 				}  
 			}
-	 	 
-	
+
+
 			//좌석 - db에서 '사용 중'인지 읽은 다음 '사용 중'이면 체크박스 체크 및 비활성화(사용중 이므로 예약 못하게) 
 			String sqlm = "select seat_number from seat where seat_statement='사용 중'";
 			PreparedStatement pstmt = conn.prepareStatement(sqlm);
 			ResultSet rs = pstmt.executeQuery();
-		 
+
 			System.out.print("사용 중인 자리 : ");
 
 			while(rs.next()) { 
@@ -143,7 +143,7 @@ public class _06moveSelect extends JFrame implements ActionListener{
 					room.get(sn-101).setEnabled(false);
 				}
 			}
-			
+
 			if(rs!=null) rs.close(); 
 			if (pstmt != null) pstmt.close();
 			if (conn != null) conn.close();
@@ -151,56 +151,62 @@ public class _06moveSelect extends JFrame implements ActionListener{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-		
+
+
 		OK = new JButton("이동 하기");
 		OK.setBounds(230,380,100,50);
 		p1.add(OK);
 		OK.addActionListener(this);
 
-	 
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(600,500);
 		setLocation(0,100);
 		setVisible(true);  
-		
+
 		p1.setBounds(0, 100, 600, 500);
 		p1.setLayout(null);
 		this.add(p1);
-		 
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) { 
 
 		try {
-			
+
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection conn = DriverManager.getConnection(
 					"jdbc:oracle:thin:@localhost:1521/XEPDB1",
 					"hr",
 					"1234"
 					);
-			 
+
 			String msg="";
 
 			for(int i=0;i<=19;i++) {//이동 할 자리 체크(비활성화 되있는건 제외)
 				if(seats.get(i).isSelected()&&(seats.get(i).isEnabled()==true)) { 
 					msg=i+1+"번 (1인석) 자리로\n"; 
 					number+=i+1+"번 좌석 ";
+					new DBwrite("UPDATE Person_Info SET Seat_Number = " 
+							+ Integer.toString(i+1)
+							+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
 				}
 			}
-			
+
 			for(int i=0;i<=3;i++){
 				if(room.get(i).isSelected()&&(room.get(i).isEnabled()==true)) {
 					msg+=i+101+"호 룸으로\n"; 
 					number+=i+101+" 호 룸 ";
+					new DBwrite("UPDATE Person_Info SET Seat_Number = " 
+							+ Integer.toString(i+101)
+							+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
 				}
 			}
-				
+
 
 			msg+="이동하시겠습니까?";
-			
+
 			if(msg.length()<15) {
 				msg="이동할 자리를 선택해주세요";
 				JOptionPane.showMessageDialog(this,msg);//예약이 없으면 다시선택 메세지 창 띄우기(메세지 길이로 체크)
@@ -211,18 +217,33 @@ public class _06moveSelect extends JFrame implements ActionListener{
 					//(재 확인 창 끄기) 
 				}else if (result ==JOptionPane.NO_OPTION) {
 					JOptionPane.showMessageDialog(this,"취소");//취소 메세지
-					 
+
 				}else {   
-					
+
 					setVisible(false);
-					new DBwrite("update seat set Seat_Statement ='사용 가능'" 
+					new DBwrite("UPDATE seat SET Seat_Statement ='사용 가능'" 
 							+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
-					
-					
+
+					for(int i=0;i<=19;i++) {//이동 할 자리 DB
+						if(seats.get(i).isSelected()&&(seats.get(i).isEnabled()==true)) { 
+							new DBwrite("UPDATE Person_Info SET Seat_Number = " 
+									+ Integer.toString(i+1)
+									+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
+						}
+					}
+
+					for(int i=0;i<=3;i++){
+						if(room.get(i).isSelected()&&(room.get(i).isEnabled()==true)) {
+							new DBwrite("UPDATE Person_Info SET Seat_Number = " 
+									+ Integer.toString(i+101)
+									+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
+						}
+					}
+
 					// yes버튼 -> 이동확인 페이지
-					_06moveMessage frame = new _06moveMessage();
-					 frame.setVisible(true);
-					
+					_06moveSeatMessage frame = new _06moveSeatMessage();
+					frame.setVisible(true);
+
 				}
 			} 
 
@@ -232,10 +253,10 @@ public class _06moveSelect extends JFrame implements ActionListener{
 			e1.printStackTrace();
 		} 
 	} 
-	
-	 
+
+
 	public static void main(String[] args) {
-		new _06moveSelect(); 
+		new _06moveSeat2(); 
 	} 
 
 }

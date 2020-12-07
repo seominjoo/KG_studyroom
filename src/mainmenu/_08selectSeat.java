@@ -233,7 +233,7 @@ public class _08selectSeat extends JFrame implements ActionListener{
 	
 	 
 	public static void main(String[] args) {
-		new _06moveSelect(); 
+		new _06moveSeat2(); 
 	} 
 
 }

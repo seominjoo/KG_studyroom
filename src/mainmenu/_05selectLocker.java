@@ -1,5 +1,7 @@
 package mainmenu;
 
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,13 +14,13 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 public class _05selectLocker extends JFrame implements ActionListener{
 	 
@@ -43,12 +45,10 @@ public class _05selectLocker extends JFrame implements ActionListener{
 	String time_checkout;
 //	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
 	
-	
-	 
-	
 	JPanel p1 = new JPanel();
+	
 	_05selectLocker() {
- 
+
 		JButton OK;
 		JButton back;
 		JLabel label03 = new JLabel("사물함");
@@ -166,7 +166,7 @@ public class _05selectLocker extends JFrame implements ActionListener{
 					);
 			
 			PreparedStatement pstmt = null;
- 
+
 			String msg="";
 			
 			for(int i=0;i<=19;i++) {
@@ -204,15 +204,25 @@ public class _05selectLocker extends JFrame implements ActionListener{
 			e1.printStackTrace();
 		} 
 	} 
-	
-	
-	 
+
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
-		new _05selectLocker(); 
-	} 
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					_05selectLocker frame = new _05selectLocker();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+
+
 }
-
-	
-	
-
-
