@@ -1,6 +1,5 @@
 package mainmenu;
 
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -54,6 +53,7 @@ public class _08selectSeat extends JFrame implements ActionListener{
 	_08selectSeat() {
 
 		JButton OK;
+		JButton back;
 		JLabel label = new JLabel("1인석");
 		JLabel label02 = new JLabel("룸");
 		label_msg = new JLabel("");
@@ -83,6 +83,19 @@ public class _08selectSeat extends JFrame implements ActionListener{
 			e+=100;
 		}
 
+		ActionListener back_btn = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				_01start frame = new _01start();
+				frame.setVisible(true);
+			}
+		};
+		
+		back = new JButton("이전 화면");
+		back.setBounds(230,280,100,50);
+		p1.add(back);
+		back.addActionListener(back_btn);
 	
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -220,7 +233,7 @@ public class _08selectSeat extends JFrame implements ActionListener{
 	
 	 
 	public static void main(String[] args) {
-		new _06moveSeat2(); 
+		new _06moveSelect(); 
 	} 
 
 }

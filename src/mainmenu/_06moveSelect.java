@@ -1,4 +1,5 @@
 package mainmenu;
+
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,7 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class _06moveSeat2 extends JFrame implements ActionListener{
+public class _06moveSelect extends JFrame implements ActionListener{
 	 
 	private static final long serialVersionUID = 1L;
 	boolean selected = false;
@@ -44,13 +45,16 @@ public class _06moveSeat2 extends JFrame implements ActionListener{
 	JLabel label_msg;
 	LocalDateTime time_now = LocalDateTime.now();
 	String time_checkout;
+	String Seat_Type;
+	int Person_Id;
 //	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
 	
 
 	JPanel p1 = new JPanel();
-	_06moveSeat2() {
+	_06moveSelect() {
  
 		JButton OK;
+		JButton back;
 		JLabel label = new JLabel("1인석");
 		JLabel label02 = new JLabel("룸");
 		label_msg = new JLabel("");
@@ -79,7 +83,20 @@ public class _06moveSeat2 extends JFrame implements ActionListener{
 			p1.add(room.get(i));
 			e+=100;
 		}
-
+	
+		ActionListener back_btn = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				_01start frame = new _01start();
+				frame.setVisible(true);
+			}
+		};
+		
+		back = new JButton("이전 화면");
+		back.setBounds(230,280,100,50);
+		p1.add(back);
+		back.addActionListener(back_btn);
 	
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -157,14 +174,14 @@ public class _06moveSeat2 extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) { 
 
 		try {
+			
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection conn = DriverManager.getConnection(
 					"jdbc:oracle:thin:@localhost:1521/XEPDB1",
 					"hr",
 					"1234"
 					);
-			PreparedStatement pstmt = null;
- 
+			 
 			String msg="";
 
 			for(int i=0;i<=19;i++) {//이동 할 자리 체크(비활성화 되있는건 제외)
@@ -183,6 +200,7 @@ public class _06moveSeat2 extends JFrame implements ActionListener{
 				
 
 			msg+="이동하시겠습니까?";
+			
 			if(msg.length()<15) {
 				msg="이동할 자리를 선택해주세요";
 				JOptionPane.showMessageDialog(this,msg);//예약이 없으면 다시선택 메세지 창 띄우기(메세지 길이로 체크)
@@ -197,15 +215,17 @@ public class _06moveSeat2 extends JFrame implements ActionListener{
 				}else {   
 					
 					setVisible(false);
+					new DBwrite("update seat set Seat_Statement ='사용 가능'" 
+							+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
+					
 					
 					// yes버튼 -> 이동확인 페이지
-					_06moveSeat3 frame = new _06moveSeat3();
+					_06moveMessage frame = new _06moveMessage();
 					 frame.setVisible(true);
 					
 				}
 			} 
 
-			if (pstmt != null) pstmt.close();
 			if (conn != null) conn.close();
 		} catch (ClassNotFoundException | SQLException e1) {
 
@@ -215,7 +235,7 @@ public class _06moveSeat2 extends JFrame implements ActionListener{
 	
 	 
 	public static void main(String[] args) {
-		new _06moveSeat2(); 
+		new _06moveSelect(); 
 	} 
 
 }

@@ -1,6 +1,5 @@
 package mainmenu;
 
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +12,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import javax.swing.AbstractAction;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -50,6 +50,7 @@ public class _05selectLocker extends JFrame implements ActionListener{
 	_05selectLocker() {
  
 		JButton OK;
+		JButton back;
 		JLabel label03 = new JLabel("사물함");
 		label_msg = new JLabel("");
 		label03.setBounds(10,185,50,30);
@@ -58,7 +59,7 @@ public class _05selectLocker extends JFrame implements ActionListener{
 		label_msg.setBounds(200,310,500,30);
 		label_msg.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		p1.add(label_msg); 
-
+		
 
 		for(int i=0; i<10;i++) {// 사물함 체크박스 위치 설정
 			lockers.get(i).setBounds(20+c,220,40,30);
@@ -127,6 +128,20 @@ public class _05selectLocker extends JFrame implements ActionListener{
 		p1.add(OK);
 		OK.addActionListener(this);
 
+
+		ActionListener back_btn = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				_01start frame = new _01start();
+				frame.setVisible(true);
+			}
+		};
+		
+		back = new JButton("이전 화면");
+		back.setBounds(230,30,100,50);
+		p1.add(back);
+		back.addActionListener(back_btn);
 	 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(600,500);
@@ -149,6 +164,7 @@ public class _05selectLocker extends JFrame implements ActionListener{
 					"hr",
 					"1234"
 					);
+			
 			PreparedStatement pstmt = null;
  
 			String msg="";
@@ -160,7 +176,6 @@ public class _05selectLocker extends JFrame implements ActionListener{
 				}
 			}
 			
-
 			msg+="결제 하시겠습니까?";
 			if(msg.length()<15) {
 				msg="결제할 사물함을 선택해주세요";
@@ -182,7 +197,6 @@ public class _05selectLocker extends JFrame implements ActionListener{
 					 				
 				}
 			} 
-
 			if (pstmt != null) pstmt.close();
 			if (conn != null) conn.close();
 		} catch (ClassNotFoundException | SQLException e1) {

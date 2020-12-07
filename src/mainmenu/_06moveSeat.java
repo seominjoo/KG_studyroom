@@ -1,6 +1,5 @@
 package mainmenu;
 
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -81,7 +80,7 @@ public class _06moveSeat extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_06moveSeat2 frame = new _06moveSeat2();
+			_06moveSelect frame = new _06moveSelect();
 			frame.setVisible(true);
 		}
 	}
