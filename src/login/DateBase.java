@@ -13,8 +13,8 @@ public class DateBase {
 
 	public static Integer person_id;
 	public static String person_name;
-	static String phone_number;
-	static String password;
+	public static String phone_number;
+	public static String password;
 
 	public DateBase(String login_phonenumber, String login_password) {
 
@@ -34,21 +34,20 @@ public class DateBase {
 					);
 			
 			findID.setString(1, login_phonenumber);
+			
 			// °á°ú
 			ResultSet rs = findID.executeQuery();
 
 			while (rs.next()) {
-				person_id = rs.getInt(1);
-				person_name = rs.getString(2);
-				phone_number = rs.getString(3);
-				password = rs.getString(4);
+					person_id = rs.getInt(1);
+					person_name = rs.getString(2);
+					phone_number = rs.getString(3);
+					password = rs.getString(4);
 			}
-
+			
 			rs.close();
 			findID.close();
 			conn.close();
-
-			System.out.println(person_name + person_id + password + "d" + login_phonenumber + login_password);
 
 		} catch (SQLException e) {
 			e.printStackTrace();

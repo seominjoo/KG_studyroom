@@ -51,7 +51,7 @@ public class LoginPage extends JFrame {
 		hyphen.setBounds(380, 137, 10, 30);
 		background.add(hyphen);
 		
-		 phone_number2 = new JTextField();
+		 phone_number2 = new JTextField(4);
 		new Style(phone_number2);
 		phone_number2.setBounds(390, 137, 45, 30);
 		background.add(phone_number2);
@@ -61,7 +61,7 @@ public class LoginPage extends JFrame {
 		hyphen2.setBounds(435, 137, 10, 30);
 		background.add(hyphen2);
 		
-		 phone_number3 = new JTextField();
+		 phone_number3 = new JTextField(4);
 		new Style(phone_number3);
 		phone_number3.setBounds(445, 137, 45, 30);
 		background.add(phone_number3);
