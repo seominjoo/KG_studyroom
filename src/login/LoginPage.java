@@ -28,6 +28,11 @@ import login.window.ActionWindow;
 
 public class LoginPage extends JFrame {
 	
+	public static JTextField phone_number1;
+	public static JTextField phone_number2;
+	public static JTextField phone_number3;
+	public static JPasswordField loginpass;
+	
 
 	//	70	231232	현태태	19831010	010-1111-1111	12345678	0			
 	public LoginPage() {
@@ -36,7 +41,7 @@ public class LoginPage extends JFrame {
 		JLabel background = new JLabel(new Conversion_image("image/테스트이미지.jpg", 624,373).imageicon_smooth);
 		background.setBounds(0, 0, 624, 373);
 	
-		JTextField phone_number1 = new JTextField("010");
+		 phone_number1 = new JTextField("010");
 		new Style(phone_number1);
 		phone_number1.setBounds(340, 137, 40, 30);
 		background.add(phone_number1);
@@ -46,7 +51,7 @@ public class LoginPage extends JFrame {
 		hyphen.setBounds(380, 137, 10, 30);
 		background.add(hyphen);
 		
-		JTextField phone_number2 = new JTextField();
+		 phone_number2 = new JTextField();
 		new Style(phone_number2);
 		phone_number2.setBounds(390, 137, 45, 30);
 		background.add(phone_number2);
@@ -56,16 +61,16 @@ public class LoginPage extends JFrame {
 		hyphen2.setBounds(435, 137, 10, 30);
 		background.add(hyphen2);
 		
-		JTextField phone_number3 = new JTextField();
+		 phone_number3 = new JTextField();
 		new Style(phone_number3);
 		phone_number3.setBounds(445, 137, 45, 30);
 		background.add(phone_number3);
 		
-		JPasswordField logpass = new JPasswordField("비밀번호");
-		logpass.addMouseListener(new EmptyPrice(logpass));
-		new Style(logpass);
-		logpass.setBounds(340, 177, 150, 30);
-		background.add(logpass);
+		loginpass = new JPasswordField("비밀번호");
+		loginpass.addMouseListener(new EmptyPrice(loginpass));
+		new Style(loginpass);
+		loginpass.setBounds(340, 177, 150, 30);
+		background.add(loginpass);
 		
 		JButton login = new JButton("로그인");
 		new Style(login);

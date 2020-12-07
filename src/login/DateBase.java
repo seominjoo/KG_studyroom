@@ -11,13 +11,12 @@ import com.zaxxer.hikari.HikariDataSource;
 
 public class DateBase {
 
-	
-	String login_phonenumber;
-	String login_password;
+	public static Integer person_id;
+	public static String person_name;
+	static String phone_number;
+	static String password;
 
 	public DateBase(String login_phonenumber, String login_password) {
-		this.login_phonenumber = login_phonenumber;
-		this.login_password = login_password;
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -26,25 +25,30 @@ public class DateBase {
 			// - DriverManager.getConnection() 메서드에
 			// DB접속 주소와 아이디/패스워드를 전달하면 연결이 반환된다
 			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "123");
-			// 쿼리문
-			PreparedStatement pstmt = conn.prepareStatement("SELECT Person_Name, Phone_Number, PW FROM Person_Info");
-
 			conn.setAutoCommit(false);
 			
+			// 쿼리문
+			// 로그인에 사용된 휴대폰번호, 비밀번호만 불러오기
+			PreparedStatement findID = conn.prepareStatement(
+					"SELECT Person_Id, Person_Name, Phone_Number, PW FROM Person_Info where Phone_Number = ?"
+					);
+			
+			findID.setString(1, login_phonenumber);
 			// 결과
-			ResultSet rs = pstmt.executeQuery();
+			ResultSet rs = findID.executeQuery();
 
 			while (rs.next()) {
-				String name = rs.getString(1);
-				String phonenumber = rs.getString(2);
-				String password = rs.getString(3);
-				System.out.println(name + phonenumber + password + "d" + this.login_phonenumber + this.login_password);
+				person_id = rs.getInt(1);
+				person_name = rs.getString(2);
+				phone_number = rs.getString(3);
+				password = rs.getString(4);
 			}
 
 			rs.close();
-			pstmt.close();
+			findID.close();
 			conn.close();
 
+			System.out.println(person_name + person_id + password + "d" + login_phonenumber + login_password);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -52,9 +56,5 @@ public class DateBase {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	
-	public static void main(String[] args) {
-		new DateBase("서민주", "444444");
 	}
 }
