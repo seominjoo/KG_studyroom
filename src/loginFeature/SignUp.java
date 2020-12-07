@@ -151,6 +151,7 @@ public class SignUp extends JFrame {
 				year.setOpaque(false); // 배경 투명
 				year.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
 				year.setForeground(Color.decode("#cfab8b"));
+				year.setSelectedItem("2000");
 				
 				int firstMonth = 1;
 				int lastMonth = 12;

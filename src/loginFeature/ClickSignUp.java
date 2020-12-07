@@ -21,6 +21,7 @@ import java.util.regex.Pattern;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import loginFeature.signUpFails.BirthFailWindow;
 import loginFeature.signUpFails.ConsentFailWindow;
@@ -34,8 +35,7 @@ public class ClickSignUp extends MouseAdapter {
 
 	static int person_id;
 	static String person_name;
-	static String pw;
-	static String pwConfirm;
+
 	static String phoneNumber;
 
 	boolean consentFlag = true;
@@ -48,29 +48,46 @@ public class ClickSignUp extends MouseAdapter {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		JTextField pw;
+		JTextField pwConfirm;
 		String year = (String) SignUp.year.getSelectedItem();
 		String month = (String) SignUp.month.getSelectedItem();
 		String day = (String) SignUp.day.getSelectedItem();
 		boolean samePhoneNumber = false;
-		String text = PhoneNumberEnum.PHONENUMBER1.text.getText() + "-" + PhoneNumberEnum.PHONENUMBER2.text.getText()
-				+ "-" + PhoneNumberEnum.PHONENUMBER3.text.getText();
+		JTextField phoneNumber1 = PhoneNumberEnum.PHONENUMBER1.text;
+		JTextField phoneNumber2 = PhoneNumberEnum.PHONENUMBER2.text;
+		JTextField phoneNumber3 = PhoneNumberEnum.PHONENUMBER3.text;
+		String text = phoneNumber1.getText() + "-" + phoneNumber2.getText()
+				+ "-" + phoneNumber3.getText();
 
-		pw = SignUpEnum.PASSWORD.blindPW.getText();
-		pwConfirm = SignUpEnum.PASSWORDCONFIRM.blindPW.getText();
+		pw = SignUpEnum.PASSWORD.blindPW;
+		pwConfirm = SignUpEnum.PASSWORDCONFIRM.blindPW;
 
 		if (e.getButton() == MouseEvent.BUTTON1) {
-			if (!Pattern.matches("[°¡-ÆR]{2,4}", SignUpEnum.NAME.text.getText()))
+			if (!Pattern.matches("[°¡-ÆR]{2,4}", SignUpEnum.NAME.text.getText())) {
 				new NameFailWindow();
+				SignUpEnum.NAME.text.setCursor(null);
+			}
 			else if (!Pattern.matches("[0-9]{8}", year + month + day)) {
 				new BirthFailWindow();
-			} else if (!(Pattern.matches("01[0-9]", PhoneNumberEnum.PHONENUMBER1.text.getText())
-					&& Pattern.matches("[0-9]{4}", PhoneNumberEnum.PHONENUMBER2.text.getText())
-					&& Pattern.matches("[0-9]{4}", PhoneNumberEnum.PHONENUMBER3.text.getText())))
+			} 
+			else if (!(Pattern.matches("01[0-9]", phoneNumber1.getText())
+					&& Pattern.matches("[0-9]{4}", phoneNumber2.getText())
+					&& Pattern.matches("[0-9]{4}", phoneNumber3.getText()))) {
 				new PhoneNumberFailWindow();
-			else if (!Pattern.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,12}$", pw))
+				phoneNumber1.setText("");
+				phoneNumber2.setText("");
+				phoneNumber3.setText("");				
+			}
+			else if (!Pattern.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,12}$", pw.getText())) {
 				new PassWordFailWindow();
-			else if (!pw.equals(pwConfirm) || pw.equals(SignUpEnum.PASSWORDCONFIRM.labelName))
+				pw.setText("");
+				pwConfirm.setText("");
+			}
+			else if (!pw.getText().equals(pwConfirm.getText()) || pw.getText().equals(SignUpEnum.PASSWORDCONFIRM.labelName)) {
 				new PWnoMatch();
+				pwConfirm.setText("");
+			}
 			else {
 				// ¾à°ü Ã¼Å©
 				for (Entry<JCheckBox, JButton> kv : SignUp.consent.entrySet()) {
@@ -104,7 +121,9 @@ public class ClickSignUp extends MouseAdapter {
 							phoneNumber = rs.getString(1);
 							if (text.equals(phoneNumber)) {
 								new SamePhoneNumberFail();
-
+								phoneNumber1.setCursor(null);
+								phoneNumber2.setText("");
+								phoneNumber3.setText("");	
 								samePhoneNumber = true;
 								break;
 							}
@@ -128,7 +147,7 @@ public class ClickSignUp extends MouseAdapter {
 							insertPersonInfo.setString(2, SignUpEnum.NAME.text.getText());
 							insertPersonInfo.setString(3, year + month + day);
 							insertPersonInfo.setString(4, text);
-							insertPersonInfo.setString(5, pw);
+							insertPersonInfo.setString(5, pw.getText());
 							insertPersonInfo.setInt(6, 0);
 							insertPersonInfo.addBatch();
 
