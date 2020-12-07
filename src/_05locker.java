@@ -1,4 +1,4 @@
-package mainmenu;
+
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -6,13 +6,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
 import javax.swing.Action;
+import java.awt.GridLayout;
 
-public class _06moveSeat extends JFrame {
+public class _05locker extends JFrame {
 
 	/**
 	 * 
@@ -29,7 +29,7 @@ public class _06moveSeat extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					_06moveSeat frame = new _06moveSeat();
+					_05locker frame = new _05locker();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +41,7 @@ public class _06moveSeat extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public _06moveSeat() {
+	public _05locker() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -49,7 +49,7 @@ public class _06moveSeat extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JButton btnNewButton_1 = new JButton("현재 좌석 보기");
+		JButton btnNewButton_1 = new JButton("이용 가능한 사물함 보기");
 		btnNewButton_1.setAction(action_1);
 		contentPane.add(btnNewButton_1);
 		
@@ -59,7 +59,9 @@ public class _06moveSeat extends JFrame {
 	}
 
 	private class SwingAction extends AbstractAction {
-
+		/**
+		 * 
+		 */
 		private static final long serialVersionUID = 1L;
 		public SwingAction() {
 			putValue(NAME, "이전 화면");
@@ -72,16 +74,13 @@ public class _06moveSeat extends JFrame {
 		}
 	}
 	private class SwingAction_1 extends AbstractAction {
-
-		private static final long serialVersionUID = 1L;
 		public SwingAction_1() {
-			putValue(NAME, "현재 좌석 보기");
+			putValue(NAME, "이용 가능한 사물함 보기");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_06moveSeat2 frame = new _06moveSeat2();
-			frame.setVisible(true);
+			new _05selectLocker(); 
 		}
 	}
 }

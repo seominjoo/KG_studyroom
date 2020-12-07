@@ -1,4 +1,4 @@
-package mainmenu;
+
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -19,7 +19,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-
 public class _06moveSeat2 extends JFrame implements ActionListener{
 	 
 	private static final long serialVersionUID = 1L;
@@ -36,12 +35,6 @@ public class _06moveSeat2 extends JFrame implements ActionListener{
 			room.add(new JCheckBox(i+"호",selected));
 		}
 	}
-//	static ArrayList<JCheckBox> lockers = new ArrayList<>(); //1~20번 사물함
-//	{
-//		for(int i=1;i<=20;i++) {
-//			lockers.add(new JCheckBox(i+"",selected));
-//		}
-//	}
 
 	int a=0;
 	int b=0;
@@ -54,9 +47,7 @@ public class _06moveSeat2 extends JFrame implements ActionListener{
 	String time_checkout;
 //	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
 	
-	
-	 
-	
+
 	JPanel p1 = new JPanel();
 	_06moveSeat2() {
  
@@ -116,14 +107,13 @@ public class _06moveSeat2 extends JFrame implements ActionListener{
 				}  
 			}
 	 	 
-
-			
+	
 			//좌석 - db에서 '사용 중'인지 읽은 다음 '사용 중'이면 체크박스 체크 및 비활성화(사용중 이므로 예약 못하게) 
 			String sqlm = "select seat_number from seat where seat_statement='사용 중'";
 			PreparedStatement pstmt = conn.prepareStatement(sqlm);
 			ResultSet rs = pstmt.executeQuery();
 		 
-			System.out.print("사용중인 자리 : ");
+			System.out.print("사용 중인 자리 : ");
 
 			while(rs.next()) { 
 				int sn = rs.getInt("seat_number"); 
@@ -210,8 +200,8 @@ public class _06moveSeat2 extends JFrame implements ActionListener{
 					setVisible(false);
 					
 					// yes버튼 -> 이동확인 페이지
-//					new Payment();
-					 
+					_06moveSeat3 frame = new _06moveSeat3();
+					 frame.setVisible(true);
 					
 				}
 			} 
@@ -223,7 +213,6 @@ public class _06moveSeat2 extends JFrame implements ActionListener{
 			e1.printStackTrace();
 		} 
 	} 
-	
 	
 	 
 	public static void main(String[] args) {

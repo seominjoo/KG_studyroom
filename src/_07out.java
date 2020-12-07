@@ -1,4 +1,4 @@
-package mainmenu;
+
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -9,15 +9,18 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.swing.Action;
 import java.awt.GridLayout;
 
-public class _05locker extends JFrame {
+public class _07out extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+
+	int Person_Id;
+	
 	private JPanel contentPane;
 	private final Action action = new SwingAction();
 	private final Action action_1 = new SwingAction_1();
@@ -29,7 +32,7 @@ public class _05locker extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					_05locker frame = new _05locker();
+					_07out frame = new _07out();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,10 +41,8 @@ public class _05locker extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public _05locker() {
+
+	public _07out() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -49,9 +50,10 @@ public class _05locker extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JButton btnNewButton_1 = new JButton("이용 가능한 사물함 보기");
+		JButton btnNewButton_1 = new JButton("지금 퇴실하기");
 		btnNewButton_1.setAction(action_1);
 		contentPane.add(btnNewButton_1);
+		btnNewButton_1.addActionListener(new _07outMessage(btnNewButton_1));
 		
 		JButton btnNewButton = new JButton("이전 화면");
 		btnNewButton.setAction(action);
@@ -59,9 +61,7 @@ public class _05locker extends JFrame {
 	}
 
 	private class SwingAction extends AbstractAction {
-		/**
-		 * 
-		 */
+
 		private static final long serialVersionUID = 1L;
 		public SwingAction() {
 			putValue(NAME, "이전 화면");
@@ -74,13 +74,24 @@ public class _05locker extends JFrame {
 		}
 	}
 	private class SwingAction_1 extends AbstractAction {
+
+		private static final long serialVersionUID = 1L;
 		public SwingAction_1() {
-			putValue(NAME, "이용 가능한 사물함 보기");
+			putValue(NAME, "지금 퇴실하기");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			new _05selectLocker(); 
+			Date now = new Date();
+			SimpleDateFormat simple = new SimpleDateFormat("a K시 m분 s초");
+			String time = simple.format(now);
+			new DBwrite("INSERT Payment_Record(Exit_Time)"
+					+ " VALUES (" + time + ")"
+					+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
+			new DBwrite("INSERT Person_Info(Person_Statement)"
+					+ " VALUES ('퇴실')"
+					+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
+			
 		}
 	}
 }
