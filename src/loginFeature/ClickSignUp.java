@@ -65,27 +65,27 @@ public class ClickSignUp extends MouseAdapter {
 
 		if (e.getButton() == MouseEvent.BUTTON1) {
 			if (!Pattern.matches("[°¡-ÆR]{2,4}", SignUpEnum.NAME.text.getText())) {
-				new NameFailWindow();
+				new NameFailWindow("¼º ÇÔ");
 				SignUpEnum.NAME.text.setCursor(null);
 			}
 			else if (!Pattern.matches("[0-9]{8}", year + month + day)) {
-				new BirthFailWindow();
+				new NameFailWindow("»ý³â ¿ùÀÏ");
 			} 
 			else if (!(Pattern.matches("01[0-9]", phoneNumber1.getText())
 					&& Pattern.matches("[0-9]{4}", phoneNumber2.getText())
 					&& Pattern.matches("[0-9]{4}", phoneNumber3.getText()))) {
-				new PhoneNumberFailWindow();
+				new NameFailWindow("ÀüÈ­ ¹øÈ£");
 				phoneNumber1.setText("");
 				phoneNumber2.setText("");
 				phoneNumber3.setText("");				
 			}
 			else if (!Pattern.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,12}$", pw.getText())) {
-				new PassWordFailWindow();
+				new NameFailWindow("ºñ¹Ð ¹øÈ£");
 				pw.setText("");
 				pwConfirm.setText("");
 			}
 			else if (!pw.getText().equals(pwConfirm.getText()) || pw.getText().equals(SignUpEnum.PASSWORDCONFIRM.labelName)) {
-				new PWnoMatch();
+				new NameFailWindow("ºñ¹Ð ¹øÈ£ È®ÀÎ");
 				pwConfirm.setText("");
 			}
 			else {

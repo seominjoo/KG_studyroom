@@ -3,6 +3,7 @@ package loginFeature.signUpFails;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
@@ -17,28 +18,67 @@ import javax.swing.border.EmptyBorder;
 
 import loginFeature.SignUp;
 import loginFeature.SignUpEnum;
+import loginFeature.Style;
+import loginFeature.SwingToolsSubPage;
 
 public class NameFailWindow extends JFrame {
 
-	private JPanel contentPane;
+	private JPanel gridPanel21;
+	private JButton confirmButton;
+	private JPanel panelInGrid2;
+	private JPanel gridPanel31InGrid1;
+	private JLabel failLabel1;
+	private JLabel failLabel2;
+	private JLabel failLabel3;
+	private String error;
+	private static String[] errorList;
 	
-	JLabel lblNewLabel_1;
-
-
-	public NameFailWindow() {
-//		int person_id = ClickSignUp.person_id;
-//		String person_name =ClickSignUp.person_name;
-		setTitle("회원 가입 실패");
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//setBounds(100, 100, 439, 483);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(100, 100, 100, 100));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+	static {
+		errorList = new String[] {"성 함", "생년 월일", "전화 번호", "비밀 번호", "비밀 번호 확인"};
+	}
+	
+	public NameFailWindow(String error) {
+		this.error = error;
 		
-		JButton confirmButton = new JButton("확인");
-		confirmButton.setBounds(90, 143, 145, 23);
-		contentPane.add(confirmButton);
+		setLayout(new BorderLayout(0,20));
+		add(Style.getnewPanel(),BorderLayout.NORTH);
+		
+		gridPanel21 = new JPanel();
+		gridPanel21.setLayout(new GridLayout(2,1,0,0));
+		new Style(gridPanel21);
+		add(gridPanel21, BorderLayout.CENTER);
+		
+		gridPanel31InGrid1 = new JPanel(new GridLayout(3,1,0,0));
+		new Style(gridPanel31InGrid1);
+		
+		failLabel1 = new JLabel("가입 실패",JLabel.CENTER);
+		new Style(failLabel1);
+		gridPanel31InGrid1.add(failLabel1);
+		
+		failLabel2 = new JLabel("하기 사항을 확인하세요",JLabel.CENTER);
+		new Style(failLabel2);
+		gridPanel31InGrid1.add(failLabel2);
+		
+		for(String errorMatch : errorList) {
+			if(this.error.equals(errorMatch)) {
+				failLabel3 = new JLabel("["+this.error+"]",JLabel.CENTER);
+				break;
+			}
+		}
+		new Style(failLabel3);
+		gridPanel31InGrid1.add(failLabel3);
+		
+		gridPanel21.add(gridPanel31InGrid1);
+		
+		panelInGrid2 = new JPanel();
+		new Style(panelInGrid2);
+		gridPanel21.add(panelInGrid2);
+		panelInGrid2.setLayout(null);
+		
+		confirmButton = new JButton("확인");
+		confirmButton.setBounds(121, 35, 110, 30);
+		new Style(confirmButton);
+		panelInGrid2.add(confirmButton);
 		
 		confirmButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -47,26 +87,8 @@ public class NameFailWindow extends JFrame {
 					dispose();
 			}
 		});
-		
-		lblNewLabel_1 = new JLabel();
 
-				lblNewLabel_1 = new JLabel("<html>가입이 실패하였습니다<br/>"
-						+ "성함을 다시 입력하십시요 (2~4글자)</html>");
-				SignUpEnum.NAME.text.setText("");
-		
-			
-	
-		lblNewLabel_1.setToolTipText("");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("굴림", Font.PLAIN, 18));
-		lblNewLabel_1.setBounds(12, 57, 306, 76);
-		contentPane.add(lblNewLabel_1);
-		
-		getContentPane().setLayout(null);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(190, 150, 343, 287);
-		setVisible(true);
+		SwingToolsSubPage.initTestFrame(this);
 	}
 
-	
 }
