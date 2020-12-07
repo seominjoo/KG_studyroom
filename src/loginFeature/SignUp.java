@@ -60,6 +60,10 @@ public class SignUp extends JFrame {
 	static ImageIcon icon;
 	static BufferedImage source;
 
+	static JComboBox<String> year;
+	static JComboBox<String> month;
+	static JComboBox<String> day;
+	
 	static {
 		try {
 			source = ImageIO.read(new File("C:\\Users\\Hyun\\Desktop\\자바SW개발자 양성과정 10월 현태환\\민짱.jpg"));
@@ -136,11 +140,12 @@ public class SignUp extends JFrame {
 				
 				int firstYear = 1930;
 				int lastYear = LocalDate.now().getYear();
-				Integer[] yearTable = new Integer[lastYear - firstYear + 1];
+				String[] yearTable = new String[lastYear - firstYear + 1];
 				for (int i = 0; i <= lastYear - 1930; i++) {
-					yearTable[i] = firstYear++;
+					yearTable[i] = (firstYear+"").format("%d", firstYear);
+					firstYear++;					
 				}
-				JComboBox<Integer> year = new JComboBox<Integer>(yearTable);
+				year = new JComboBox<>(yearTable);
 				year.setBounds(0, 22, 55, 30);
 				panelInGrid2.add(year);
 				year.setOpaque(false); // 배경 투명
@@ -149,11 +154,12 @@ public class SignUp extends JFrame {
 				
 				int firstMonth = 1;
 				int lastMonth = 12;
-				Integer[] monthTable = new Integer[lastMonth - firstMonth + 1];
+				String[] monthTable = new String[lastMonth - firstMonth + 1];
 				for (int i = 0; i < lastMonth; i++) {
-					monthTable[i] = firstMonth++;
+					monthTable[i] = (firstMonth+"").format("%02d", firstMonth);
+					firstMonth++;
 				}
-				JComboBox<Integer> month = new JComboBox<Integer>(monthTable);
+				month = new JComboBox<>(monthTable);
 				month.setBounds(90, 22, 45, 30);
 				panelInGrid2.add(month);
 				month.setOpaque(false); // 배경 투명
@@ -164,43 +170,43 @@ public class SignUp extends JFrame {
 				int[] monthFordayCount31 = {1, 3, 5, 7, 8, 10, 12};
 				int[] monthFordayCount30 = {4, 6, 9, 11};
 
-				Integer[] dayTable = new Integer[28];
+				String[] dayTable = new String[28];
 				for(int i = 0 ; i < dayTable.length; i++) {
-					dayTable[i] = i+1;
+					dayTable[i] = (firstDay+"").format("%02d", firstDay);
+					firstDay++;
 				}
-				JComboBox day = new JComboBox<>();
-				DefaultComboBoxModel realDay = new DefaultComboBoxModel<>(dayTable);
+				day = new JComboBox<>();
+				DefaultComboBoxModel<String> realDay = new DefaultComboBoxModel<>(dayTable);
 				day.setModel(realDay);
 				day.repaint();
 				
-				month.setSelectedIndex(1);
+				//month.setSelectedIndex(1);
 				
 				System.out.println(day.getSelectedItem());
 				
-				if (((int) (year.getSelectedItem()) % 4 == 0) && ((int) (month.getSelectedItem()) == 2))
-					day.addItem(29);
-				else if(((int) (year.getSelectedItem()) % 4 != 0) && ((int) (month.getSelectedItem()) == 2)) {
+				if ((Integer.parseInt((String) year.getSelectedItem()) % 4 == 0) && (Integer.parseInt((String)(month.getSelectedItem())) == 2))
+					day.addItem("30");
+				else if((Integer.parseInt((String) year.getSelectedItem()) % 4 != 0) && (Integer.parseInt((String) month.getSelectedItem()) == 2)) {
 					
 				}
 				else {
 					while(true) {
 						int i = 0;
-						if(monthFordayCount31[i] == (int) (month.getSelectedItem())) {
-							day.addItem(29);
-							day.addItem(30);
-							day.addItem(31);
+						if(monthFordayCount31[i] == Integer.parseInt((String) month.getSelectedItem())) {
+							day.addItem("29");
+							day.addItem("30");
+							day.addItem("31");
 							break;
 						}
-						else if(monthFordayCount30[i] == (int) (month.getSelectedItem())) {
-							day.addItem(29);
-							day.addItem(30);
+						else if(monthFordayCount30[i] == Integer.parseInt((String) month.getSelectedItem())) {
+							day.addItem("29");
+							day.addItem("30");
 							break;
 						}
 						i++;
 					}
 				}			
 
-				new ClickSignUp(year.getSelectedItem(),month.getSelectedItem(),day.getSelectedItem());
 
 				day.setBounds(170, 22, 45, 30);
 				panelInGrid2.add(day);

@@ -45,23 +45,12 @@ public class ClickSignUp extends MouseAdapter {
 //	public ClickSignUp(Container card_panel) {
 //		this.card_panel = card_panel;
 //	}
-	static String year;
-	static String month;
-	static String day;
-
-	public ClickSignUp(Object year, Object month, Object day) {
-		this.year = year.toString();
-		this.month = month.toString();
-		this.day = day.toString();
-	}
-
-	public ClickSignUp() {
-
-	}
-	// ´ëÂî··~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		String year = (String) SignUp.year.getSelectedItem();
+		String month = (String) SignUp.month.getSelectedItem();
+		String day = (String) SignUp.day.getSelectedItem();
 		boolean samePhoneNumber = false;
 		String text = PhoneNumberEnum.PHONENUMBER1.text.getText() + "-" + PhoneNumberEnum.PHONENUMBER2.text.getText()
 				+ "-" + PhoneNumberEnum.PHONENUMBER3.text.getText();
@@ -72,7 +61,7 @@ public class ClickSignUp extends MouseAdapter {
 		if (e.getButton() == MouseEvent.BUTTON1) {
 			if (!Pattern.matches("[°¡-ÆR]{2,4}", SignUpEnum.NAME.text.getText()))
 				new NameFailWindow();
-			else if (!Pattern.matches("[0-9]{6,8}", year + month + day)) {
+			else if (!Pattern.matches("[0-9]{8}", year + month + day)) {
 				new BirthFailWindow();
 			} else if (!(Pattern.matches("01[0-9]", PhoneNumberEnum.PHONENUMBER1.text.getText())
 					&& Pattern.matches("[0-9]{4}", PhoneNumberEnum.PHONENUMBER2.text.getText())
@@ -113,7 +102,7 @@ public class ClickSignUp extends MouseAdapter {
 
 						while (rs.next()) {
 							phoneNumber = rs.getString(1);
-							if (phoneNumber.equals(text)) {
+							if (text.equals(phoneNumber)) {
 								new SamePhoneNumberFail();
 
 								samePhoneNumber = true;
