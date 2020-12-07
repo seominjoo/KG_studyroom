@@ -116,9 +116,7 @@ public class _03whatHour extends JFrame {
 	}
 
 	private class SwingAction extends AbstractAction {
-		/**
-		 * 
-		 */
+
 		private static final long serialVersionUID = 1L;
 		public SwingAction() {
 			putValue(NAME, "2시간");
@@ -126,6 +124,8 @@ public class _03whatHour extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
+			_08selectSeat frame = new _08selectSeat();
+			frame.setVisible(true);
 			new DBwrite("INSERT Payment_Record(Seat_Type, Payment)"
 					+ " VALUES ('Daily_2Hr', 3000) "
 					+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
@@ -133,9 +133,7 @@ public class _03whatHour extends JFrame {
 	}
 	
 	private class SwingAction_1 extends AbstractAction {
-		/**
-		 * 
-		 */
+
 		private static final long serialVersionUID = 1L;
 		public SwingAction_1() {
 			putValue(NAME, "4시간");
@@ -143,15 +141,15 @@ public class _03whatHour extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
+			_08selectSeat frame = new _08selectSeat();
+			frame.setVisible(true);
 			new DBwrite("INSERT Payment_Record(Seat_Type, Payment)"
 					+ " VALUES ('Daily_4Hr', 4500) "
 					+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
 		}
 	}
 	private class SwingAction_2 extends AbstractAction {
-		/**
-		 * 
-		 */
+
 		private static final long serialVersionUID = 1L;
 		public SwingAction_2() {
 			putValue(NAME, "6시간");
@@ -159,15 +157,15 @@ public class _03whatHour extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
+			_08selectSeat frame = new _08selectSeat();
+			frame.setVisible(true);
 			new DBwrite("INSERT Payment_Record(Seat_Type, Payment)"
 					+ " VALUES ('Daily_6Hr', 6000) "
 					+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
 		}
 	}
 	private class SwingAction_3 extends AbstractAction {
-		/**
-		 * 
-		 */
+
 		private static final long serialVersionUID = 1L;
 		public SwingAction_3() {
 			putValue(NAME, "8시간");
@@ -175,15 +173,15 @@ public class _03whatHour extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
+			_08selectSeat frame = new _08selectSeat();
+			frame.setVisible(true);
 			new DBwrite("INSERT Payment_Record(Seat_Type, Payment)"
 					+ " VALUES ('Daily_8Hr', 7500) "
 					+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
 		}
 	}
 	private class SwingAction_4 extends AbstractAction {
-		/**
-		 * 
-		 */
+
 		private static final long serialVersionUID = 1L;
 		public SwingAction_4() {
 			putValue(NAME, "12시간");
@@ -191,6 +189,8 @@ public class _03whatHour extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
+			_08selectSeat frame = new _08selectSeat();
+			frame.setVisible(true);
 			new DBwrite("INSERT Payment_Record(Seat_Type, Payment)"
 					+ " VALUES ('Daily_12Hr', 10000) "
 					+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
@@ -198,9 +198,7 @@ public class _03whatHour extends JFrame {
 		
 	}
 	private class SwingAction_5 extends AbstractAction {
-		/**
-		 * 
-		 */
+
 		private static final long serialVersionUID = 1L;
 		public SwingAction_5() {
 			putValue(NAME, "이전 화면");

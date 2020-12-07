@@ -123,6 +123,8 @@ public class _04whatWeek extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
+			_08selectSeat frame = new _08selectSeat();
+			frame.setVisible(true);
 			new DBwrite("INSERT Payment_Record(Seat_Type, Payment)"
 					+ " VALUES ('Weekly_4Wk', 130000) "
 					+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
@@ -139,6 +141,8 @@ public class _04whatWeek extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
+			_08selectSeat frame = new _08selectSeat();
+			frame.setVisible(true);
 			new DBwrite("INSERT Payment_Record(Seat_Type, Payment)"
 					+ " VALUES ('Weekly_8Wk', 250000) "
 					+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");

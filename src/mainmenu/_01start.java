@@ -12,6 +12,7 @@ import java.awt.Image;
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -49,9 +50,7 @@ public class _01start extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+
 	public _01start() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -108,16 +107,14 @@ public class _01start extends JFrame {
 	}
 
 	private class SwingAction extends AbstractAction {
-		/**
-		 * 
-		 */
+
 		private static final long serialVersionUID = 1L;
 
 		public SwingAction() {
 			putValue(NAME, "좌석 이용권");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
-
+		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
@@ -127,9 +124,7 @@ public class _01start extends JFrame {
 
 	}
 	private class SwingAction_1 extends AbstractAction {
-		/**
-		 * 
-		 */
+
 		private static final long serialVersionUID = 1L;
 		public SwingAction_1() {
 			putValue(NAME, "사물함 이용권");
@@ -143,9 +138,7 @@ public class _01start extends JFrame {
 		}
 	}
 	private class SwingAction_2 extends AbstractAction {
-		/**
-		 * 
-		 */
+
 		private static final long serialVersionUID = 1L;
 		public SwingAction_2() {
 			putValue(NAME, "자리 이동");
@@ -169,9 +162,7 @@ public class _01start extends JFrame {
 	}
 	
 	private class SwingAction_3 extends AbstractAction {
-		/**
-		 * 
-		 */
+
 		private static final long serialVersionUID = 1L;
 		public SwingAction_3() {
 			putValue(NAME, "퇴실하기");

@@ -59,9 +59,7 @@ public class _06moveSeat extends JFrame {
 	}
 
 	private class SwingAction extends AbstractAction {
-		/**
-		 * 
-		 */
+
 		private static final long serialVersionUID = 1L;
 		public SwingAction() {
 			putValue(NAME, "이전 화면");
@@ -74,12 +72,16 @@ public class _06moveSeat extends JFrame {
 		}
 	}
 	private class SwingAction_1 extends AbstractAction {
+
+		private static final long serialVersionUID = 1L;
 		public SwingAction_1() {
 			putValue(NAME, "현재 좌석 보기");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
+			_06moveSeat2 frame = new _06moveSeat2();
+			frame.setVisible(true);
 		}
 	}
 }

@@ -17,9 +17,6 @@ import java.awt.GridLayout;
 
 public class _07out extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	int Person_Id;
@@ -44,9 +41,7 @@ public class _07out extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
+
 	public _07out() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -66,9 +61,7 @@ public class _07out extends JFrame {
 	}
 
 	private class SwingAction extends AbstractAction {
-		/**
-		 * 
-		 */
+
 		private static final long serialVersionUID = 1L;
 		public SwingAction() {
 			putValue(NAME, "이전 화면");
@@ -81,9 +74,7 @@ public class _07out extends JFrame {
 		}
 	}
 	private class SwingAction_1 extends AbstractAction {
-		/**
-		 * 
-		 */
+
 		private static final long serialVersionUID = 1L;
 		public SwingAction_1() {
 			putValue(NAME, "지금 퇴실하기");
