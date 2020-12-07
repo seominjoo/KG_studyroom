@@ -95,7 +95,7 @@ public class SignUp extends JFrame {
 
 			}
 		};
-
+		
 		JLabel signup = new JLabel("회원가입", JLabel.CENTER); // 타이틀
 		// setLayout(null)일때만 위치 사이즈 적용 가능
 		signup.setFont(new Font("맑은 고딕", Font.BOLD, 30));

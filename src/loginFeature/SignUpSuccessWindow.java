@@ -52,6 +52,9 @@ public class SignUpSuccessWindow extends JPanel {
 			}
 		});
 		
+		new Style().getnewPanel();
+		new Style(toLoginPageButton);
+		
 		JLabel lblNewLabel_1 = new JLabel("<html>\uAC00\uC785\uC774 "
 				+ "\uC9C4\uD589\uB418\uC5C8\uC2B5\uB2C8\uB2E4!"
 				+ " <br/> " + person_name + "\uB2D8\uC758 \uD68C\uC6D0\uBC88\uD638 : "
@@ -61,6 +64,8 @@ public class SignUpSuccessWindow extends JPanel {
 		lblNewLabel_1.setFont(new Font("±¼¸²", Font.PLAIN, 18));
 		lblNewLabel_1.setBounds(12, 57, 306, 76);
 		contentPane.add(lblNewLabel_1);
+		
+		new Style(lblNewLabel_1);
 		
 		frame.getContentPane().setLayout(null);
 		
