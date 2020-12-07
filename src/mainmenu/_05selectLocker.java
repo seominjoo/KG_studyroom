@@ -121,7 +121,7 @@ public class _05selectLocker extends JFrame implements ActionListener{
 		}
 		
 		
-		OK = new JButton("결제 하기");
+		OK = new JButton("결제하기");
 		OK.setBounds(230,380,100,50);
 		p1.add(OK);
 		OK.addActionListener(this);
