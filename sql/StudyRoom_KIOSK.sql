@@ -12,6 +12,7 @@ CREATE Table Person_Info  (
   Total_Payment number(8) constraint Info_Total_Payment_NN_CK not null check(Total_Payment >= 0)
 );
 
+select*from person_info;
 
 create Table Realtime_Seat_Info(
   Seat_Number number(2) constraint Seat_Number_PK primary key,
@@ -47,6 +48,15 @@ INSERT INTO Seat_Price VALUES ('Daily_12Hr', 10000);
 INSERT INTO Seat_Price VALUES ('Weekly_2Wk', 90000);
 INSERT INTO Seat_Price VALUES ('Weekly_4Wk', 130000);
 INSERT INTO Seat_Price VALUES ('Weekly_8Wk', 250000);
+
+INSERT INTO Seat_Price VALUES ('Room_2Hr', 3000);
+INSERT INTO Seat_Price VALUES ('Room_4Hr', 4500);
+INSERT INTO Seat_Price VALUES ('Room_6Hr', 6000);
+INSERT INTO Seat_Price VALUES ('Room_8Hr', 7500);
+INSERT INTO Seat_Price VALUES ('Room_12Hr', 10000);
+INSERT INTO Seat_Price VALUES ('Room_2Wk', 90000);
+INSERT INTO Seat_Price VALUES ('Room_4Wk', 130000);
+INSERT INTO Seat_Price VALUES ('Room_8Wk', 250000);
 SELECT * FROM Seat_Price;
 
 create Table Locker_Price(
@@ -61,6 +71,25 @@ Create table Daily_Sales(
     LockerPass_Count number(4),
     Total_Price number(6)
 );
+
+create Table seat(
+  Seat_Number number(3) ,
+  Seat_Statement varchar2(20),
+   time_enter  timestamp,
+    time_checkout timestamp
+);
+ 
+create Table locker(
+  Locker_Number number(3) ,
+  Locker_Statement varchar2(20)  ,
+  l_time_enter  timestamp,
+  l_time_checkout timestamp
+);
+
+select * from seat;
+select * from locker;
+
+commit;
 
 ALTER TABLE Person_Info ADD CONSTRAINT Info_Seat_Number_FK
 FOREIGN KEY (Seat_Number) REFERENCES realtime_seat_info (seat_number);
