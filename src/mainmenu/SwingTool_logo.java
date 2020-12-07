@@ -1,3 +1,4 @@
+package mainmenu;
 
 
 import java.awt.image.BufferedImage;

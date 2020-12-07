@@ -1,5 +1,4 @@
-
-
+package mainmenu;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,8 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-
-public class _08selectSeat extends JFrame implements ActionListener{
+public class _06moveSeat2 extends JFrame implements ActionListener{
 	 
 	private static final long serialVersionUID = 1L;
 	boolean selected = false;
@@ -50,8 +48,8 @@ public class _08selectSeat extends JFrame implements ActionListener{
 	
 
 	JPanel p1 = new JPanel();
-	_08selectSeat() {
-
+	_06moveSeat2() {
+ 
 		JButton OK;
 		JLabel label = new JLabel("1인석");
 		JLabel label02 = new JLabel("룸");
@@ -108,14 +106,13 @@ public class _08selectSeat extends JFrame implements ActionListener{
 				}  
 			}
 	 	 
-
-			
+	
 			//좌석 - db에서 '사용 중'인지 읽은 다음 '사용 중'이면 체크박스 체크 및 비활성화(사용중 이므로 예약 못하게) 
 			String sqlm = "select seat_number from seat where seat_statement='사용 중'";
 			PreparedStatement pstmt = conn.prepareStatement(sqlm);
 			ResultSet rs = pstmt.executeQuery();
 		 
-			System.out.print("예약된 자리 : ");
+			System.out.print("사용 중인 자리 : ");
 
 			while(rs.next()) { 
 				int sn = rs.getInt("seat_number"); 
@@ -139,7 +136,7 @@ public class _08selectSeat extends JFrame implements ActionListener{
 		}
 		
 		
-		OK = new JButton("결제하기");
+		OK = new JButton("이동 하기");
 		OK.setBounds(230,380,100,50);
 		p1.add(OK);
 		OK.addActionListener(this);
@@ -167,27 +164,27 @@ public class _08selectSeat extends JFrame implements ActionListener{
 					"1234"
 					);
 			PreparedStatement pstmt = null;
-
+ 
 			String msg="";
 
 			for(int i=0;i<=19;i++) {//이동 할 자리 체크(비활성화 되있는건 제외)
 				if(seats.get(i).isSelected()&&(seats.get(i).isEnabled()==true)) { 
-					msg=i+1+"번 (1인석) 자리\n"; 
+					msg=i+1+"번 (1인석) 자리로\n"; 
 					number+=i+1+"번 좌석 ";
 				}
 			}
 			
 			for(int i=0;i<=3;i++){
 				if(room.get(i).isSelected()&&(room.get(i).isEnabled()==true)) {
-					msg+=i+101+"호 룸\n"; 
+					msg+=i+101+"호 룸으로\n"; 
 					number+=i+101+" 호 룸 ";
 				}
 			}
 				
 
-			msg+="결제하시겠습니까?";
+			msg+="이동하시겠습니까?";
 			if(msg.length()<15) {
-				msg="결제할 자리를 선택해주세요";
+				msg="이동할 자리를 선택해주세요";
 				JOptionPane.showMessageDialog(this,msg);//예약이 없으면 다시선택 메세지 창 띄우기(메세지 길이로 체크)
 			}else {
 				//이동하기 버튼 누를 시 (이동하시겠습니까?)재확인 -> (창끄기 or 예 or 취소)버튼 
@@ -201,9 +198,9 @@ public class _08selectSeat extends JFrame implements ActionListener{
 					
 					setVisible(false);
 					
-					// yes버튼 -> 결제 페이지
-					new _10paymentSeat();
-					 
+					// yes버튼 -> 이동확인 페이지
+					_06moveSeat3 frame = new _06moveSeat3();
+					 frame.setVisible(true);
 					
 				}
 			} 
@@ -216,11 +213,9 @@ public class _08selectSeat extends JFrame implements ActionListener{
 		} 
 	} 
 	
-	
 	 
 	public static void main(String[] args) {
 		new _06moveSeat2(); 
 	} 
 
 }
-

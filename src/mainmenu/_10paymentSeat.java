@@ -1,3 +1,4 @@
+package mainmenu;
 
 
 import java.awt.EventQueue;
@@ -6,19 +7,27 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class _09paymentLocker {
+
+
+import javax.swing.JRadioButton;
+import javax.swing.JToggleButton;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+
+public class _10paymentSeat {
 
 	private JFrame frame;
 	private JTable table;
@@ -34,7 +43,7 @@ public class _09paymentLocker {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					_09paymentLocker window = new _09paymentLocker();
+					_10paymentSeat window = new _10paymentSeat();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +55,7 @@ public class _09paymentLocker {
 	/**
 	 * Create the application.
 	 */
-	public _09paymentLocker() {
+	public _10paymentSeat() {
 		initialize();
 
 	}
@@ -72,7 +81,7 @@ public class _09paymentLocker {
 
 		String header[] = {"결제","정보"};
 		String contents[][]= {
-				{"예약 번호",_05selectLocker.number},
+				{"예약 번호",_08selectSeat.number},
 				{"입실 시간",time_now.format(dateTimeFormatter)},
 				{"퇴실 예정 시간",time_checkout}, 
 				{"결제 금액",""}
@@ -191,7 +200,7 @@ public class _09paymentLocker {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.setVisible(false);
-				new _05selectLocker();
+				new _08selectSeat();
 
 			}
 		});
