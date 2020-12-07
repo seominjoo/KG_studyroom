@@ -25,7 +25,6 @@ import javax.swing.JTextField;
 
 import loginFeature.signUpFails.BirthFailWindow;
 import loginFeature.signUpFails.ConsentFailWindow;
-import loginFeature.signUpFails.NameFailWindow;
 import loginFeature.signUpFails.PWnoMatch;
 import loginFeature.signUpFails.PassWordFailWindow;
 import loginFeature.signUpFails.PhoneNumberFailWindow;
@@ -38,7 +37,7 @@ public class ClickSignUp extends MouseAdapter {
 
 	static String phoneNumber;
 
-	boolean consentFlag = true;
+
 //
 //	Container card_panel;
 //	
@@ -48,6 +47,7 @@ public class ClickSignUp extends MouseAdapter {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		boolean consentCheck = true;
 		JTextField pw;
 		JTextField pwConfirm;
 		String year = (String) SignUp.year.getSelectedItem();
@@ -65,41 +65,40 @@ public class ClickSignUp extends MouseAdapter {
 
 		if (e.getButton() == MouseEvent.BUTTON1) {
 			if (!Pattern.matches("[°¡-ÆR]{2,4}", SignUpEnum.NAME.text.getText())) {
-				new NameFailWindow("¼º ÇÔ");
-				SignUpEnum.NAME.text.setCursor(null);
+				new ResultWindow("¼º ÇÔ");
+				SignUpEnum.NAME.text.setText("");;
 			}
 			else if (!Pattern.matches("[0-9]{8}", year + month + day)) {
-				new NameFailWindow("»ý³â ¿ùÀÏ");
+				new ResultWindow("»ý³â ¿ùÀÏ");
 			} 
 			else if (!(Pattern.matches("01[0-9]", phoneNumber1.getText())
 					&& Pattern.matches("[0-9]{4}", phoneNumber2.getText())
 					&& Pattern.matches("[0-9]{4}", phoneNumber3.getText()))) {
-				new NameFailWindow("ÀüÈ­ ¹øÈ£");
+				new ResultWindow("ÀüÈ­ ¹øÈ£");
 				phoneNumber1.setText("");
 				phoneNumber2.setText("");
 				phoneNumber3.setText("");				
 			}
 			else if (!Pattern.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,12}$", pw.getText())) {
-				new NameFailWindow("ºñ¹Ð ¹øÈ£");
+				new ResultWindow("ºñ¹Ð ¹øÈ£");
 				pw.setText("");
 				pwConfirm.setText("");
 			}
 			else if (!pw.getText().equals(pwConfirm.getText()) || pw.getText().equals(SignUpEnum.PASSWORDCONFIRM.labelName)) {
-				new NameFailWindow("ºñ¹Ð ¹øÈ£ È®ÀÎ");
+				new ResultWindow("ºñ¹Ð ¹øÈ£ È®ÀÎ");
 				pwConfirm.setText("");
 			}
 			else {
 				// ¾à°ü Ã¼Å©
 				for (Entry<JCheckBox, JButton> kv : SignUp.consent.entrySet()) {
 					if (!kv.getKey().isSelected()) {
-						new ConsentFailWindow();
-						consentFlag = false;
+						consentCheck = false;
+						new ResultWindow("¾à°ü µ¿ÀÇ");
 						break;
-					} else
-						consentFlag = true;
+					} 
 				}
 
-				if (consentFlag) {
+				if (consentCheck) {
 
 					try {
 						// ³»ÀÏ ²À Á¤±ÔÇ¥Çö½ÄÀ¸·Î °Å¸£±â
@@ -120,8 +119,8 @@ public class ClickSignUp extends MouseAdapter {
 						while (rs.next()) {
 							phoneNumber = rs.getString(1);
 							if (text.equals(phoneNumber)) {
-								new SamePhoneNumberFail();
-								phoneNumber1.setCursor(null);
+								new ResultWindow("ÀüÈ­ ¹øÈ£ Áßº¹");
+								phoneNumber1.setText("");
 								phoneNumber2.setText("");
 								phoneNumber3.setText("");	
 								samePhoneNumber = true;
@@ -166,7 +165,7 @@ public class ClickSignUp extends MouseAdapter {
 								person_name = rs2.getString(2);
 							}
 
-							new SignUpSuccessWindow(person_id, person_name);
+							new ResultWindow(person_id,person_name,true);
 
 							if (rs2 != null)
 								rs2.close();

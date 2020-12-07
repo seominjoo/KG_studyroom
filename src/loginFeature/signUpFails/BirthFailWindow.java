@@ -18,7 +18,7 @@ import javax.swing.border.EmptyBorder;
 import loginFeature.SignUp;
 import loginFeature.SignUpEnum;
 import loginFeature.Style;
-import loginFeature.SwingToolsSubPage;
+import loginFeature.SwingToolsWindow;
 
 public class BirthFailWindow extends JFrame {
 
@@ -60,7 +60,7 @@ public class BirthFailWindow extends JFrame {
 		failLabel.setBounds(12, 57, 306, 76);
 		panel.add(failLabel);
 
-		SwingToolsSubPage.initTestFrame(this);
+		SwingToolsWindow.initTestFrame(this);
 	}
 
 	

@@ -2,7 +2,7 @@ package loginFeature;
 
 import javax.swing.JFrame;
 
-public class SwingToolsSubPage {
+public class SwingToolsWindow {
 
 	public static void initTestFrame(JFrame frame) {
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
