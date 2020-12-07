@@ -39,7 +39,7 @@ public class ActionWindow extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-				
+
 		if (loginbtns.getText().equals("로그인")) {
 			String login_phonenumber = LoginPage.phone_number1.getText() + "-" + LoginPage.phone_number2.getText() + "-"
 					+ LoginPage.phone_number3.getText();
@@ -59,20 +59,17 @@ public class ActionWindow extends JFrame implements ActionListener {
 				} else {
 					comment1.setText("잘못된 비밀번호입니다.");
 					comment2.setText("다시 입력 해주세요.");
-
 				}
 
 			} else {
 				comment1.setText("가입하지 않은 아이디입니다.");
 				comment2.setText("회원가입 해주세요.");
-
 			}
 
 		} else {
 			// 페이지 준비중
 			comment1.setText("[system] still in maintenance");
 			comment2.setText("페이지 준비 중..");
-
 		}
 
 		JButton combtn = new JButton("확인");
