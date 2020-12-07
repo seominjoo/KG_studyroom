@@ -23,12 +23,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import loginFeature.signUpFails.BirthFailWindow;
-import loginFeature.signUpFails.ConsentFailWindow;
-import loginFeature.signUpFails.PWnoMatch;
-import loginFeature.signUpFails.PassWordFailWindow;
-import loginFeature.signUpFails.PhoneNumberFailWindow;
-import loginFeature.signUpFails.SamePhoneNumberFail;
 
 public class ClickSignUp extends MouseAdapter {
 

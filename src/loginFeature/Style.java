@@ -15,6 +15,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+import javax.swing.plaf.basic.BasicComboBoxUI;
+import javax.swing.plaf.basic.BasicComboPopup;
+import javax.swing.plaf.basic.ComboPopup;
 
 
 public class Style {
@@ -79,6 +83,7 @@ public class Style {
 			text.setForeground(Color.decode("#cfab8b"));
 			if(!(text.getText().equals("010") || text.getText().equals("")))
 				text.setFont(new Font("맑은 고딕", Font.BOLD, 17));
+			text.setCaretColor(Color.decode("#cfab8b")); // 커서 색상
 		}else if (cp instanceof JPasswordField) {
 			pass = (JPasswordField)cp;
 			pass.setOpaque(false); // 배경 투명
@@ -86,12 +91,22 @@ public class Style {
 			pass.setHorizontalAlignment(SwingConstants.CENTER);
 			pass.setForeground(Color.decode("#cfab8b"));
 			pass.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+			text.setCaretColor(Color.decode("#cfab8b")); // 커서 색상
 		}
 		else if (cp instanceof JComboBox<?>) {
 			jcombo = (JComboBox<?>) cp;
 			jcombo.setOpaque(false); // 배경 투명
 			jcombo.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
 			jcombo.setForeground(Color.decode("#cfab8b"));
+			jcombo.setBackground(Color.decode("#404040"));
+			jcombo.setUI(new BasicComboBoxUI() {
+			    @Override
+			    protected ComboPopup createPopup() {
+			        BasicComboPopup basicComboPopup = new BasicComboPopup(comboBox);
+			        basicComboPopup.setBorder(new LineBorder(Color.decode("#cfab8b")));
+			        return basicComboPopup;
+			    }
+			});
 		}
 	}
 	

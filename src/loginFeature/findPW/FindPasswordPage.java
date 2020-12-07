@@ -2,11 +2,13 @@ package loginFeature.findPW;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -23,6 +25,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import javax.swing.plaf.basic.BasicComboBoxUI;
+import javax.swing.plaf.basic.BasicComboPopup;
+import javax.swing.plaf.basic.ComboPopup;
 
 import loginFeature.ClearTextBackGround;
 import loginFeature.PhoneNumberClearTextField;
@@ -93,13 +100,13 @@ public class FindPasswordPage extends JFrame {
 		
 		JComboBox<String> year = BirthEnum.YEAR.birthComboBoxYear;
 		new Style(year);
-		year.setBounds(160, 22, 55, 30);
+		year.setBounds(160, 22, 65, 30);
 		JComboBox<String> month = BirthEnum.MONTH.birthComboBoxMonth;
 		new Style(month);
-		month.setBounds(250, 22, 45, 30);
+		month.setBounds(250, 22, 55, 30);
 		JComboBox<String> day = BirthEnum.DAY.birthComboBoxDay;
 		new Style(day);
-		day.setBounds(330, 22, 45, 30);
+		day.setBounds(330, 22, 55, 30);
 		
 		grid2.add(year);
 		grid2.add(month);

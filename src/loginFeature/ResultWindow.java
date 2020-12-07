@@ -1,6 +1,7 @@
 package loginFeature;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -48,6 +49,8 @@ public class ResultWindow extends JFrame {
 	}
 
 	void ResultCalc() {
+		SwingToolsWindow.initTestFrame(this);
+		getContentPane().setBackground(Color.decode("#404040"));
 		setLayout(new BorderLayout(0, 20));
 		add(Style.getnewPanel(), BorderLayout.NORTH);
 
@@ -62,13 +65,13 @@ public class ResultWindow extends JFrame {
 		if (result) {
 			failLabel1 = new JLabel("가입 성공", JLabel.CENTER);
 			failLabel2 = new JLabel("성 함 : " + this.person_name + " 님", JLabel.CENTER);
-			failLabel3 = new JLabel("회원 번호 : " + this.person_id, JLabel.CENTER);
+			failLabel3 = new JLabel("[ 회원 번호 : " + this.person_id+" ]", JLabel.CENTER);
 		} else {
 			failLabel1 = new JLabel("가입 실패", JLabel.CENTER);
 			failLabel2 = new JLabel("하기 사항을 확인하세요", JLabel.CENTER);
 			for (String errorMatch : errorList) {
 				if (this.error.equals(errorMatch)) {
-					failLabel3 = new JLabel("[" + this.error + "]", JLabel.CENTER);
+					failLabel3 = new JLabel("[ " + this.error + " ]", JLabel.CENTER);
 					break;
 				}
 			}
@@ -101,7 +104,6 @@ public class ResultWindow extends JFrame {
 			}
 		});
 
-		SwingToolsWindow.initTestFrame(this);
 	}
 
 }
