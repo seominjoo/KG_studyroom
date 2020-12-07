@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -26,6 +27,7 @@ import javax.swing.SwingConstants;
 import loginFeature.ClearTextBackGround;
 import loginFeature.PhoneNumberClearTextField;
 import loginFeature.PhoneNumberEnum;
+import loginFeature.SignUp;
 import loginFeature.Style;
 
 public class FindPasswordPage extends JFrame {
@@ -49,7 +51,7 @@ public class FindPasswordPage extends JFrame {
 	public FindPasswordPage() {
 		setLayout(null);
 
-		JPanel background = new JPanel(new BorderLayout(0, 50)) {
+		JPanel background = new JPanel(new BorderLayout(0, 30)) {
 			public void paintComponent(Graphics g) {
 				// Approach 1: Dispaly image at at full size
 				g.drawImage(icon.getImage(), 0, 0, null);
@@ -71,7 +73,7 @@ public class FindPasswordPage extends JFrame {
 		blank.setOpaque(false);
 		background.add(blank,BorderLayout.NORTH);
 
-		JPanel gridAll = new JPanel(new GridLayout(4, 1, 0, 0));
+		JPanel gridAll = new JPanel(new GridLayout(5, 1, 0, 0));
 		background.add(gridAll, BorderLayout.CENTER);
 		gridAll.setOpaque(false);
 
@@ -83,56 +85,81 @@ public class FindPasswordPage extends JFrame {
 		JPanel grid2 = new JPanel();
 		grid2.setOpaque(false);
 		grid2.setLayout(null);
+		
+		JLabel birthLabel = new JLabel("생년 월일 : ");
+		new Style(birthLabel);
+		birthLabel.setBounds(60, -14, 200, 100);
+		grid2.add(birthLabel);
+		
+		JComboBox<String> year = BirthEnum.YEAR.birthComboBoxYear;
+		new Style(year);
+		year.setBounds(160, 22, 55, 30);
+		JComboBox<String> month = BirthEnum.MONTH.birthComboBoxMonth;
+		new Style(month);
+		month.setBounds(250, 22, 45, 30);
+		JComboBox<String> day = BirthEnum.DAY.birthComboBoxDay;
+		new Style(day);
+		day.setBounds(330, 22, 45, 30);
+		
+		grid2.add(year);
+		grid2.add(month);
+		grid2.add(day);
+		
+		gridAll.add(grid2);
+		
+		JPanel grid3 = new JPanel();
+		grid3.setOpaque(false);
+		grid3.setLayout(null);
 
 		JLabel phoneKor = new JLabel("전화 번호 : ");
 		new Style(phoneKor);
 		phoneKor.setBounds(85, 6, 100, 50);
-		grid2.add(phoneKor);
-		gridAll.add(grid2);
+		grid3.add(phoneKor);
+		gridAll.add(grid3);
 
 		JTextField phone_number1 = PhoneNumberEnum.PHONENUMBER1.text;
 		new Style(phone_number1);
 		phone_number1.setBounds(180, 18, 45, 30);
-		grid2.add(phone_number1);
+		grid3.add(phone_number1);
 
 		JLabel str = new JLabel("-", JLabel.CENTER);
 		str.setBounds(225, 18, 20, 30);
 		new Style(str);
-		grid2.add(str);
+		grid3.add(str);
 
 		JTextField phone_number2 = PhoneNumberEnum.PHONENUMBER2.text;
 		new Style(phone_number2);
 		phone_number2.setBounds(245, 18, 45, 30);
-		grid2.add(phone_number2);
+		grid3.add(phone_number2);
 
 		JLabel str2 = new JLabel("-", JLabel.CENTER);
 		str2.setBounds(290, 18, 20, 30);
 		new Style(str2);
-		grid2.add(str2);
+		grid3.add(str2);
 
 		JTextField phone_number3 = PhoneNumberEnum.PHONENUMBER3.text;
 		new Style(phone_number3);
 		phone_number3.setBounds(310, 18, 45, 30);
-		grid2.add(phone_number3);
+		grid3.add(phone_number3);
 
 		for(PhoneNumberEnum value : PhoneNumberEnum.values())
 			value.text.addMouseListener(new PhoneNumberClearTextField(value));
 		addMouseListener(new ClearTextBackGround());
 		
-		JPanel grid3 = new JPanel();
-		grid3.setOpaque(false);
-		grid3.setLayout(null);
+		JPanel grid4 = new JPanel();
+		grid4.setOpaque(false);
+		grid4.setLayout(null);
 		
 		JLabel foundPW = new JLabel("", JLabel.CENTER);
 		foundPW.setBounds(85, 0, 270, 50);
-		grid3.add(foundPW);
+		grid4.add(foundPW);
 		new Style(foundPW);
 		
-		gridAll.add(grid3);
+		gridAll.add(grid4);
 		
-		JPanel grid4 = new JPanel();
-		grid4.setLayout(null);
-		grid4.setOpaque(false);
+		JPanel grid5 = new JPanel();
+		grid5.setLayout(null);
+		grid5.setOpaque(false);
 
 		JButton find = new JButton("검색");
 		JButton cancel = new JButton("취소");
@@ -141,7 +168,7 @@ public class FindPasswordPage extends JFrame {
 		for (int i = 0; i < findCancel.length; i++) {
 			new Style(findCancel[i]);
 			findCancel[i].setBounds(x, 0, 100, 50);
-			grid4.add(findCancel[i]);
+			grid5.add(findCancel[i]);
 			x += 120;
 		}
 		
@@ -154,7 +181,7 @@ public class FindPasswordPage extends JFrame {
 			}
 		});
 		
-		gridAll.add(grid4);
+		gridAll.add(grid5);
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setBounds(200, 200, 2241 / 5 + 16, 2542 / 7 + 39);

@@ -8,6 +8,7 @@ import java.awt.Font;
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -23,6 +24,7 @@ public class Style {
 	private JButton btn;
 	private JTextField text;
 	private JPasswordField pass;
+	private JComboBox<?> jcombo;
 	private JComponent cp;
 	
 	public Style(JComponent cp) {
@@ -84,6 +86,12 @@ public class Style {
 			pass.setHorizontalAlignment(SwingConstants.CENTER);
 			pass.setForeground(Color.decode("#cfab8b"));
 			pass.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+		}
+		else if (cp instanceof JComboBox<?>) {
+			jcombo = (JComboBox<?>) cp;
+			jcombo.setOpaque(false); // 배경 투명
+			jcombo.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
+			jcombo.setForeground(Color.decode("#cfab8b"));
 		}
 	}
 	

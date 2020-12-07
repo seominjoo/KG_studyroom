@@ -60,9 +60,9 @@ public class SignUp extends JFrame {
 	static ImageIcon icon;
 	static BufferedImage source;
 
-	static JComboBox<String> year;
-	static JComboBox<String> month;
-	static JComboBox<String> day;
+	public static JComboBox<String> year;
+	public static JComboBox<String> month;
+	public static JComboBox<String> day;
 	
 	static {
 		try {

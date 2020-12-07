@@ -30,6 +30,14 @@ public class ClickFindPasswordPage implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
+		String totalPhoneNumber = PhoneNumberEnum.PHONENUMBER1.text.getText()
+				+"-"+PhoneNumberEnum.PHONENUMBER2.text.getText()+"-"
+				+PhoneNumberEnum.PHONENUMBER3.text.getText();
+		
+		String totalBirth = (String) BirthEnum.YEAR.birthComboBoxYear.getSelectedItem()
+				+ (String) BirthEnum.MONTH.birthComboBoxMonth.getSelectedItem()
+				+ (String) BirthEnum.DAY.birthComboBoxDay.getSelectedItem();
+		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
@@ -39,11 +47,11 @@ public class ClickFindPasswordPage implements ActionListener{
 			conn.setAutoCommit(false);
 
 			PreparedStatement read_name_ID_from_personInfo = conn
-					.prepareStatement("SELECT pw FROM person_info where phone_number = ?");
+					.prepareStatement("SELECT pw FROM person_info where phone_number = ?"
+							+ "and person_birth = ?");
 
-			read_name_ID_from_personInfo.setString(1, PhoneNumberEnum.PHONENUMBER1.text.getText()
-					+"-"+PhoneNumberEnum.PHONENUMBER2.text.getText()+"-"
-					+PhoneNumberEnum.PHONENUMBER3.text.getText());
+			read_name_ID_from_personInfo.setString(1, totalPhoneNumber);
+			read_name_ID_from_personInfo.setString(2, totalBirth);
 			
 			password = null;
 			ResultSet rs2 = read_name_ID_from_personInfo.executeQuery();
