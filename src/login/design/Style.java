@@ -1,7 +1,8 @@
-package login;
+package login.design;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Cursor;
 
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
@@ -58,18 +59,22 @@ public class Style {
 				btn.setContentAreaFilled(false); //내용영역을 안채움
 				btn.setFocusPainted(false); // 선택시 테두리 끔
 			}
+			
 		}else if (cp instanceof JTextField) {
 			text = (JTextField) cp;
 			text.setOpaque(false); // 배경 투명
 			text.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
 			text.setHorizontalAlignment(SwingConstants.CENTER);
-			text.setForeground(Color.decode("#cfab8b"));
+			text.setForeground(Color.decode("#cfab8b")); // 글씨체 색상
+			text.setCaretColor(Color.decode("#cfab8b")); // 커서 색상
+			
 		}else if (cp instanceof JPasswordField) {
 			pass = (JPasswordField)cp;
 			pass.setOpaque(false); // 배경 투명
 			pass.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
 			pass.setHorizontalAlignment(SwingConstants.CENTER);
-			pass.setForeground(Color.decode("#cfab8b"));
+			pass.setForeground(Color.decode("#cfab8b")); // 글씨체 색상
+			pass.setCaretColor(Color.decode("#cfab8b")); // 커서 색상
 		}
 	}
 	

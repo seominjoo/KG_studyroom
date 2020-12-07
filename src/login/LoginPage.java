@@ -20,13 +20,19 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import login.design.Conversion_image;
+import login.design.EmptyPrice;
+import login.design.Style;
+import login.window.Notification;
 
-public class Login extends JFrame {
 
-	public Login() {
-		String path = "image/테스트이미지.jpg";
+public class LoginPage extends JFrame {
+
+	//	70	231232	현태태	19831010	010-1111-1111	12345678	0			
+	public LoginPage() {
+		// 디자인
 		JPanel login_panel = new JPanel();
-		JLabel background = new JLabel(new Conversion_image(path, 624,373).imageicon_smooth);
+		JLabel background = new JLabel(new Conversion_image("image/테스트이미지.jpg", 624,373).imageicon_smooth);
 		background.setBounds(0, 0, 624, 373);
 	
 		JTextField phone_number1 = new JTextField("010");
@@ -55,6 +61,7 @@ public class Login extends JFrame {
 		background.add(phone_number3);
 		
 		JPasswordField logpass = new JPasswordField("비밀번호");
+		logpass.addMouseListener(new EmptyPrice(logpass));
 		new Style(logpass);
 		logpass.setBounds(340, 177, 150, 30);
 		background.add(logpass);
@@ -71,29 +78,29 @@ public class Login extends JFrame {
 		find_PW.addActionListener(new Notification(find_PW));
 		background.add(find_PW);
 	
-		JButton Signup = new JButton(new Conversion_image("image/회원가입.png", 40	, 40).imageicon_smooth);
-		new Style(Signup);
-		Signup.setBounds(543, 292, 50, 50);
-		Signup.addActionListener(new Notification(Signup));
-		background.add(Signup);
+		JButton signup = new JButton(new Conversion_image("image/회원가입.png", 40	, 40).imageicon_smooth);
+		new Style(signup);
+		signup.setBounds(543, 292, 50, 50);
+		signup.addActionListener(new Notification(signup));
+		background.add(signup);
 		
-		addMouseListener(new MouseAdapter() {
+		JButton Poweroff = new JButton(new Conversion_image("image/전원.png", 40	, 40).imageicon_smooth);
+		new Style(Poweroff);
+		Poweroff.setBounds(0, 0, 50, 50);
+		Poweroff.addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(e.getButton() == MouseEvent.BUTTON1) {
-					System.out.println("x : " + e.getX() + " Y : " + e.getY());
-				}
+			public void actionPerformed(ActionEvent e) {
+				dispose();
 			}
 		});
-//		login_panel.setOpaque(false); // 투명
+		background.add(Poweroff);
 		
 		SwingTool_logo.initFrame(this);
 		add(background);
 		setSize(624,405);
 	}
-
-
+	
 	public static void main(String[] args) throws IOException {
-			new Login();
+			new LoginPage();
 	}
 }

@@ -1,4 +1,4 @@
-package login;
+package login.design;
 
 import java.awt.Image;
 import java.io.File;
@@ -11,7 +11,7 @@ public class Conversion_image {
 	static Image source;
 	static Image image_smooth;
 	static ImageIcon imageicon;
-	static ImageIcon imageicon_smooth;
+	public static ImageIcon imageicon_smooth;
 	
 	public Conversion_image(String path, int sizex, int sizey) {
 		try {
