@@ -23,7 +23,6 @@ import javax.swing.JComboBox;
 public class SignUpSuccessWindow extends JPanel {
 
 //	private JFrame frame;
-	private static JPanel contentPane;
 
 	JFrame frame = new JFrame();
 
@@ -33,16 +32,16 @@ public class SignUpSuccessWindow extends JPanel {
 //		int person_id = ClickSignUp.person_id;
 //		String person_name =ClickSignUp.person_name;
 		frame.setTitle("\uD68C\uC6D0 \uAC00\uC785 \uC131\uACF5!");
+		JPanel newPanel = new Style().getnewPanel();
+		frame.setContentPane(newPanel);
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//setBounds(100, 100, 439, 483);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(100, 100, 100, 100));
-		frame.setContentPane(contentPane);
-		contentPane.setLayout(null);
+		newPanel.setBorder(new EmptyBorder(100, 100, 100, 100));
+		newPanel.setLayout(null);
 		
 		JButton toLoginPageButton = new JButton("\uB85C\uADF8\uC778 \uD398\uC774\uC9C0\uB85C");
 		toLoginPageButton.setBounds(90, 143, 145, 23);
-		contentPane.add(toLoginPageButton);
+		newPanel.add(toLoginPageButton);
 		
 		toLoginPageButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -51,8 +50,9 @@ public class SignUpSuccessWindow extends JPanel {
 					frame.dispose();
 			}
 		});
+
 		
-		new Style().getnewPanel();
+		
 		new Style(toLoginPageButton);
 		
 		JLabel lblNewLabel_1 = new JLabel("<html>\uAC00\uC785\uC774 "
@@ -63,7 +63,7 @@ public class SignUpSuccessWindow extends JPanel {
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("±¼¸²", Font.PLAIN, 18));
 		lblNewLabel_1.setBounds(12, 57, 306, 76);
-		contentPane.add(lblNewLabel_1);
+		newPanel.add(lblNewLabel_1);
 		
 		new Style(lblNewLabel_1);
 		
@@ -74,8 +74,5 @@ public class SignUpSuccessWindow extends JPanel {
 		frame.setVisible(true);
 		
 	}
-	
-	static JPanel getpanel() {
-		return contentPane;
-	}
+
 }
