@@ -31,7 +31,7 @@ import javax.swing.JDialog;
 
 public class Payment {
 
-	private JFrame frame;
+	private JFrame frame;//;
 	private JTable table;
 	LocalDateTime time_now = LocalDateTime.now();
 	String time_checkout;

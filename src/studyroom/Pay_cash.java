@@ -22,7 +22,7 @@ import javax.swing.JButton;
 
 public class Pay_cash {
 
-	private JFrame frame;
+	private JFrame frame;//jk
 	private JLabel lblNewLabel_1;
 	private JTextField cash;
 	LocalDateTime time_now = LocalDateTime.now();
