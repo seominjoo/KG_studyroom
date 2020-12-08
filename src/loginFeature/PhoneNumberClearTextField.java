@@ -29,7 +29,7 @@ public class PhoneNumberClearTextField extends MouseAdapter {
 				}
 			}
 			for(SignUpEnum value : SignUpEnum.values()) {
-				if(value.blindPW.getText().equals(""))
+				if(String.valueOf(value.blindPW.getPassword()).equals(""))
 					value.blindPW.setText(value.labelName);
 				if(value.text.getText().equals(""))
 					value.text.setText(value.labelName);

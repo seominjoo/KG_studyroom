@@ -56,7 +56,7 @@ public class FindPasswordPage extends JFrame {
 	}
 
 	public FindPasswordPage() {
-		setLayout(null);
+		//setLayout(null);
 
 		JPanel background = new JPanel(new BorderLayout(0, 30)) {
 			public void paintComponent(Graphics g) {

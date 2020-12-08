@@ -26,7 +26,7 @@ public class ClearTextField extends MouseAdapter {
 			value.blindPW.setText("");
 			for(SignUpEnum other : SignUpEnum.values()) {
 				if(!other.equals(value) && (other.text.getText().equals("") 
-						&& other.blindPW.getText().equals(""))) {
+						&& String.valueOf(other.blindPW.getPassword()).equals(""))) {
 					other.text.setText(other.labelName);
 					other.blindPW.setText(other.labelName);
 				}

@@ -10,7 +10,7 @@ public class ClearTextBackGround extends MouseAdapter{
 		for (SignUpEnum value : SignUpEnum.values()) {
 			if (value.text.getText().equals(""))
 				value.text.setText(value.labelName);
-			if (value.blindPW.getText().equals(""))
+			if (String.valueOf(value.blindPW.getPassword()).equals(""))
 				value.blindPW.setText(value.labelName);
 		}
 		for (PhoneNumberEnum value : PhoneNumberEnum.values()) {
