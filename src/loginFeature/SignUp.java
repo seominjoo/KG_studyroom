@@ -160,7 +160,6 @@ public class SignUp extends JFrame {
 				
 				int lastMonth = 12;
 				String[] monthTable = new String[lastMonth+1];
-				monthTable[0] = "";
 				for (int i = 1; i < monthTable.length; i++) {
 					monthTable[i] = (i + "").format("%02d", i);
 				}
@@ -174,7 +173,6 @@ public class SignUp extends JFrame {
 	
 
 				String[] dayTable = new String[32];
-				dayTable[0] = "";
 				for (int i = 1; i < dayTable.length; i++) {
 					dayTable[i] = (i + "").format("%02d", i);
 				}
@@ -195,7 +193,8 @@ public class SignUp extends JFrame {
 				year.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						
+						month.setSelectedItem("01");
+						day.setSelectedItem("01");
 					}
 				});
 				
