@@ -37,6 +37,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.imageio.ImageIO;
+import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -109,10 +110,12 @@ public class SignUp extends JFrame {
 			// text.setFocusTraversalKeysEnabled(false);
 			JPanel panelOfPanel = new JPanel(new GridLayout(1, 2, 0, 0));
 			panelOfPanel.setOpaque(false);
+			new Style(text, 3);
+			text.setHorizontalAlignment(SwingConstants.LEFT);
 			text.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 			text.setForeground(Color.decode("#cfab8b"));
 			text.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b")));
-			new Style(text, 3);
+
 
 			if (value.equals(value.PASSWORD) || value.equals(value.PASSWORDCONFIRM)) {
 				JLabel jpassLabel = new JLabel(value.labelNameKor);
@@ -147,12 +150,13 @@ public class SignUp extends JFrame {
 					firstYear++;
 				}
 				year = new JComboBox<>(yearTable);
-				year.setBounds(0, 22, 55, 30);
+				year.setBounds(0, 23, 65, 30);
 				panelInGrid2.add(year);
 				year.setOpaque(false); // 배경 투명
 				year.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
 				year.setForeground(Color.decode("#cfab8b"));
 				year.setSelectedItem("2000");
+				new Style(year);
 
 				int firstMonth = 1;
 				int lastMonth = 12;
@@ -162,58 +166,64 @@ public class SignUp extends JFrame {
 					firstMonth++;
 				}
 				month = new JComboBox<>(monthTable);
-				month.setBounds(90, 22, 45, 30);
+				month.setBounds(77, 23, 60, 30);
 				panelInGrid2.add(month);
 				month.setOpaque(false); // 배경 투명
 				month.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
 				month.setForeground(Color.decode("#cfab8b"));
+				new Style(month);
 
-				int firstDay = 1;
-				int[] monthFordayCount31 = { 1, 3, 5, 7, 8, 10, 12 };
-				int[] monthFordayCount30 = { 4, 6, 9, 11 };
 
 				String[] dayTable = new String[28];
-				for (int i = 0; i < dayTable.length; i++) {
-					dayTable[i] = (firstDay + "").format("%02d", firstDay);
-					firstDay++;
-				}
-				day = new JComboBox<>();
-				DefaultComboBoxModel<String> realDay = new DefaultComboBoxModel<>(dayTable);
-				day.setModel(realDay);
-				day.repaint();
+				String[] initial = {"01"};
+				day = new JComboBox<>(initial);
 
-				// month.setSelectedIndex(1);
-
-				System.out.println(day.getSelectedItem());
-
-				if ((Integer.parseInt((String) year.getSelectedItem()) % 4 == 0)
-						&& (Integer.parseInt((String) (month.getSelectedItem())) == 2))
-					day.addItem("30");
-				else if ((Integer.parseInt((String) year.getSelectedItem()) % 4 != 0)
-						&& (Integer.parseInt((String) month.getSelectedItem()) == 2)) {
-
-				} else {
-					while (true) {
-						int i = 0;
-						if (monthFordayCount31[i] == Integer.parseInt((String) month.getSelectedItem())) {
-							day.addItem("29");
-							day.addItem("30");
-							day.addItem("31");
-							break;
-						} else if (monthFordayCount30[i] == Integer.parseInt((String) month.getSelectedItem())) {
-							day.addItem("29");
-							day.addItem("30");
-							break;
-						}
-						i++;
-					}
-				}
-
-				day.setBounds(170, 22, 45, 30);
+			
+				day.setBounds(149, 23, 60, 30);
 				panelInGrid2.add(day);
 				day.setOpaque(false); // 배경 투명
 				day.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
 				day.setForeground(Color.decode("#cfab8b"));
+				new Style(day);
+				System.out.println(month.getSelectedItem());
+				month.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						System.out.println(month.getSelectedItem());
+						day.removeAll();
+						for (int i = 0; i < dayTable.length; i++) {
+							dayTable[i] = (i+1 + "").format("%02d", i+1);
+						}
+						DefaultComboBoxModel<String> realDay = new DefaultComboBoxModel<>(dayTable);
+						day.setModel(realDay);
+						day.repaint();
+						
+						if ((Integer.parseInt((String) year.getSelectedItem()) % 4 == 0)
+								&& (Integer.parseInt((String)(month.getSelectedItem())) == 2)) {
+							day.addItem("29");
+						}else {
+							int[] monthFordayCount = { 1, 3, 5, 7, 8, 10, 12, 4, 6, 9, 11 };
+							int charat = -1;
+							for (int i : monthFordayCount) {
+								charat++;
+								if(charat<=6 && i == Integer.parseInt((String)(month.getSelectedItem()))) {
+									day.addItem("29");
+									day.addItem("30");
+									day.addItem("31");
+									break;
+								}
+								else if(charat > 6 && i == Integer.parseInt((String)(month.getSelectedItem()))){
+									day.addItem("29");
+									day.addItem("30");
+									break;
+								}
+							
+							}
+						}
+						
+					}
+				});
 
 				panelOfPanel.add(panelInGrid2);
 				grid_panel.add(panelOfPanel);
@@ -221,7 +231,8 @@ public class SignUp extends JFrame {
 			}
 
 			if (value.equals(SignUpEnum.PHONENUMBER)) {
-				JPanel phoneNumber3Texts = new JPanel(new GridLayout(1, 5, 0, 0));
+				JPanel phoneNumber3Texts = new JPanel();
+				phoneNumber3Texts.setLayout(null);
 				phoneNumber3Texts.setOpaque(false); // 배경 투명
 				// phoneNumber3Texts.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b")));
 				// // 테두리?
@@ -232,11 +243,11 @@ public class SignUp extends JFrame {
 				phone_number1.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
 				phone_number1.setHorizontalAlignment(SwingConstants.CENTER);
 				phone_number1.setForeground(Color.decode("#cfab8b"));
-				// phone_number1.setBounds(340, 137, 40, 30);
+				phone_number1.setBounds(0, 23, 65, 30);
 				phoneNumber3Texts.add(phone_number1);
 
 				JLabel str = new JLabel("-", JLabel.CENTER);
-				str.setBounds(380, 137, 10, 30);
+				str.setBounds(66, 21, 10, 30);
 				str.setForeground(Color.decode("#cfab8b"));
 				phoneNumber3Texts.add(str);
 
@@ -245,20 +256,20 @@ public class SignUp extends JFrame {
 				phone_number2.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
 				phone_number2.setHorizontalAlignment(SwingConstants.CENTER);
 				phone_number2.setForeground(Color.decode("#cfab8b"));
-				// phone_number2.setBounds(390, 137, 45, 30);
+				phone_number2.setBounds(77, 23, 60, 30);
 				phoneNumber3Texts.add(phone_number2);
 
 				JLabel str2 = new JLabel("-", JLabel.CENTER);
-				str2.setBounds(435, 137, 10, 30);
+				str2.setBounds(138, 21, 10, 30);
 				str2.setForeground(Color.decode("#cfab8b"));
 				phoneNumber3Texts.add(str2);
-
+			
 				JTextField phone_number3 = PhoneNumberEnum.PHONENUMBER3.text;
 				phone_number3.setOpaque(false); // 배경 투명
 				phone_number3.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
 				phone_number3.setHorizontalAlignment(SwingConstants.CENTER);
 				phone_number3.setForeground(Color.decode("#cfab8b"));
-				// phone_number3.setBounds(445, 137, 45, 30);
+				phone_number3.setBounds(149, 23, 60, 30);
 				phoneNumber3Texts.add(phone_number3);
 
 				panelOfPanel.add(phoneNumber3Texts);
