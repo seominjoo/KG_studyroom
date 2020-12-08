@@ -63,7 +63,7 @@ public class SignUp extends JFrame {
 	public static JComboBox<String> year;
 	public static JComboBox<String> month;
 	public static JComboBox<String> day;
-	
+
 	static {
 		try {
 			source = ImageIO.read(new File("C:\\Users\\Hyun\\Desktop\\자바SW개발자 양성과정 10월 현태환\\민짱.jpg"));
@@ -95,7 +95,7 @@ public class SignUp extends JFrame {
 
 			}
 		};
-		
+
 		JLabel signup = new JLabel("회원가입", JLabel.CENTER); // 타이틀
 		// setLayout(null)일때만 위치 사이즈 적용 가능
 		signup.setFont(new Font("맑은 고딕", Font.BOLD, 30));
@@ -137,13 +137,13 @@ public class SignUp extends JFrame {
 				JPanel panelInGrid2 = new JPanel();
 				panelInGrid2.setLayout(null);
 				panelInGrid2.setOpaque(false);
-				
+
 				int firstYear = 1930;
 				int lastYear = LocalDate.now().getYear();
 				String[] yearTable = new String[lastYear - firstYear + 1];
 				for (int i = 0; i <= lastYear - 1930; i++) {
-					yearTable[i] = (firstYear+"").format("%d", firstYear);
-					firstYear++;					
+					yearTable[i] = (firstYear + "").format("%d", firstYear);
+					firstYear++;
 				}
 				year = new JComboBox<>(yearTable);
 				year.setBounds(0, 22, 55, 30);
@@ -152,12 +152,12 @@ public class SignUp extends JFrame {
 				year.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
 				year.setForeground(Color.decode("#cfab8b"));
 				year.setSelectedItem("2000");
-				
+
 				int firstMonth = 1;
 				int lastMonth = 12;
 				String[] monthTable = new String[lastMonth - firstMonth + 1];
 				for (int i = 0; i < lastMonth; i++) {
-					monthTable[i] = (firstMonth+"").format("%02d", firstMonth);
+					monthTable[i] = (firstMonth + "").format("%02d", firstMonth);
 					firstMonth++;
 				}
 				month = new JComboBox<>(monthTable);
@@ -166,57 +166,54 @@ public class SignUp extends JFrame {
 				month.setOpaque(false); // 배경 투명
 				month.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
 				month.setForeground(Color.decode("#cfab8b"));
-				
+
 				int firstDay = 1;
-				int[] monthFordayCount31 = {1, 3, 5, 7, 8, 10, 12};
-				int[] monthFordayCount30 = {4, 6, 9, 11};
+				int[] monthFordayCount31 = { 1, 3, 5, 7, 8, 10, 12 };
+				int[] monthFordayCount30 = { 4, 6, 9, 11 };
 
 				String[] dayTable = new String[28];
-				for(int i = 0 ; i < dayTable.length; i++) {
-					dayTable[i] = (firstDay+"").format("%02d", firstDay);
+				for (int i = 0; i < dayTable.length; i++) {
+					dayTable[i] = (firstDay + "").format("%02d", firstDay);
 					firstDay++;
 				}
 				day = new JComboBox<>();
 				DefaultComboBoxModel<String> realDay = new DefaultComboBoxModel<>(dayTable);
 				day.setModel(realDay);
 				day.repaint();
-				
-				//month.setSelectedIndex(1);
-				
+
+				// month.setSelectedIndex(1);
+
 				System.out.println(day.getSelectedItem());
-				
-				if ((Integer.parseInt((String) year.getSelectedItem()) % 4 == 0) && (Integer.parseInt((String)(month.getSelectedItem())) == 2))
+
+				if ((Integer.parseInt((String) year.getSelectedItem()) % 4 == 0)
+						&& (Integer.parseInt((String) (month.getSelectedItem())) == 2))
 					day.addItem("30");
-				else if((Integer.parseInt((String) year.getSelectedItem()) % 4 != 0) && (Integer.parseInt((String) month.getSelectedItem()) == 2)) {
-					
-				}
-				else {
-					while(true) {
+				else if ((Integer.parseInt((String) year.getSelectedItem()) % 4 != 0)
+						&& (Integer.parseInt((String) month.getSelectedItem()) == 2)) {
+
+				} else {
+					while (true) {
 						int i = 0;
-						if(monthFordayCount31[i] == Integer.parseInt((String) month.getSelectedItem())) {
+						if (monthFordayCount31[i] == Integer.parseInt((String) month.getSelectedItem())) {
 							day.addItem("29");
 							day.addItem("30");
 							day.addItem("31");
 							break;
-						}
-						else if(monthFordayCount30[i] == Integer.parseInt((String) month.getSelectedItem())) {
+						} else if (monthFordayCount30[i] == Integer.parseInt((String) month.getSelectedItem())) {
 							day.addItem("29");
 							day.addItem("30");
 							break;
 						}
 						i++;
 					}
-				}			
-
+				}
 
 				day.setBounds(170, 22, 45, 30);
 				panelInGrid2.add(day);
 				day.setOpaque(false); // 배경 투명
 				day.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
 				day.setForeground(Color.decode("#cfab8b"));
-				
 
-				
 				panelOfPanel.add(panelInGrid2);
 				grid_panel.add(panelOfPanel);
 				continue;
@@ -292,6 +289,7 @@ public class SignUp extends JFrame {
 		consent.put(new JCheckBox(" 서비스 이용 동의"), new JButton("약관보기"));
 		consent.put(new JCheckBox(" 사용정보 동의"), new JButton("약관보기"));
 
+		int consentNum = 0;
 		for (Entry<JCheckBox, JButton> kv : consent.entrySet()) {
 			kv.getKey().setForeground(Color.decode("#cfab8b"));
 			p1.add(kv.getKey());
@@ -308,7 +306,8 @@ public class SignUp extends JFrame {
 			kv.getValue().setFont(new Font("맑은 고딕", Font.BOLD, 17));
 			kv.getValue().setBackground(Color.decode("#cfab8b"));
 			// 약관 내용 보기
-			kv.getValue().addMouseListener(new ConsentContentClick());
+			consentNum++;
+				kv.getValue().addActionListener(new ConsentContent(consentNum));
 		}
 
 		grid_panel.add(p1);
@@ -382,7 +381,7 @@ public class SignUp extends JFrame {
 
 		// 바깥쪽 눌렀을 때 기본 값 만들어버리기
 		addMouseListener(new ClearTextBackGround());
-		
+
 		this.setBackground(Color.black);
 	}
 
