@@ -113,8 +113,6 @@ public class _04whatWeek extends JFrame {
 			setVisible(false);
 			_08selectSeat frame = new _08selectSeat(time_now.plusWeeks(2));
 			frame.setVisible(true);
-			new DBwrite("INSERT Payment_Record VALUES ('Weekly_2Wk', 90000) "
-					+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
 		}
 	}
 	
@@ -131,9 +129,6 @@ public class _04whatWeek extends JFrame {
 			setVisible(false);
 			_08selectSeat frame = new _08selectSeat(time_now.plusWeeks(4));
 			frame.setVisible(true);
-			new DBwrite("INSERT Payment_Record(Seat_Type, Payment)"
-					+ " VALUES ('Weekly_4Wk', 130000) "
-					+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
 		}
 	}
 	private class SwingAction_2 extends AbstractAction {
@@ -149,9 +144,6 @@ public class _04whatWeek extends JFrame {
 			setVisible(false);
 			_08selectSeat frame = new _08selectSeat(time_now.plusWeeks(8));
 			frame.setVisible(true);
-			new DBwrite("INSERT Payment_Record(Seat_Type, Payment)"
-					+ " VALUES ('Weekly_8Wk', 250000) "
-					+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
 		}
 	}
 	private class SwingAction_3 extends AbstractAction {

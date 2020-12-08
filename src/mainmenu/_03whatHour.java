@@ -129,9 +129,6 @@ public class _03whatHour extends JFrame {
 			setVisible(false);
 			_08selectSeat frame = new _08selectSeat(time_now.plusHours(2));
 			frame.setVisible(true);
-			new DBwrite("INSERT Payment_Record(Seat_Type, Payment)"
-					+ " VALUES ('Daily_2Hr', 3000) "
-					+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
 		}
 	}
 	
@@ -146,9 +143,6 @@ public class _03whatHour extends JFrame {
 			setVisible(false);
 			_08selectSeat frame = new _08selectSeat(time_now.plusHours(4));
 			frame.setVisible(true);
-			new DBwrite("INSERT Payment_Record(Seat_Type, Payment)"
-					+ " VALUES ('Daily_4Hr', 4500) "
-					+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
 		}
 	}
 	private class SwingAction_2 extends AbstractAction {
@@ -162,9 +156,6 @@ public class _03whatHour extends JFrame {
 			setVisible(false);
 			_08selectSeat frame = new _08selectSeat(time_now.plusHours(6));
 			frame.setVisible(true);
-			new DBwrite("INSERT Payment_Record(Seat_Type, Payment)"
-					+ " VALUES ('Daily_6Hr', 6000) "
-					+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
 		}
 	}
 	private class SwingAction_3 extends AbstractAction {
@@ -178,9 +169,6 @@ public class _03whatHour extends JFrame {
 			setVisible(false);
 			_08selectSeat frame = new _08selectSeat(time_now.plusHours(8));
 			frame.setVisible(true);
-			new DBwrite("INSERT Payment_Record(Seat_Type, Payment)"
-					+ " VALUES ('Daily_8Hr', 7500) "
-					+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
 		}
 	}
 	private class SwingAction_4 extends AbstractAction {
@@ -194,9 +182,6 @@ public class _03whatHour extends JFrame {
 			setVisible(false);
 			_08selectSeat frame = new _08selectSeat(time_now.plusHours(12));
 			frame.setVisible(true);
-			new DBwrite("INSERT Payment_Record(Seat_Type, Payment)"
-					+ " VALUES ('Daily_12Hr', 10000) "
-					+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
 		}
 		
 	}
