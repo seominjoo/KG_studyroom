@@ -17,7 +17,7 @@ public class DateBase {
 	public static String password;
 
 	public DateBase(String login_phonenumber, String login_password) {
-
+// 테스트
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			System.out.println("[ojdbc] 성공적으로 로드되었습니다.");
