@@ -49,7 +49,7 @@ public class ResultWindow extends JFrame {
 	}
 
 	void ResultCalc() {
-		SwingToolsWindow.initTestFrame(this);
+		SwingToolsSubPage.initTestFrame(this);
 		getContentPane().setBackground(Color.decode("#404040"));
 		setLayout(new BorderLayout(0, 20));
 		add(Style.getnewPanel(), BorderLayout.NORTH);

@@ -3,6 +3,9 @@ package loginFeature;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
@@ -30,6 +33,7 @@ public class Style {
 	private JComboBox<?> jcombo;
 	private JScrollPane jscroll;
 	private JComponent cp;
+	private int size;
 
 	public Style(JComponent cp) {
 		this.cp = cp;
@@ -107,6 +111,18 @@ public class Style {
 			jscroll.setOpaque(false); // 배경 투명
 			jscroll.setBackground(Color.decode("#404040"));
 		}
+	}
+
+	public Style(JTextField cp, int size) {
+		new Style(cp);
+		cp.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				JTextField src = (JTextField) e.getSource();
+				if (src.getText().length() >= size)
+					e.consume();
+			}
+		});
 	}
 
 	public Style() {

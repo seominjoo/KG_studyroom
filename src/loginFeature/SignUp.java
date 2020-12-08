@@ -112,6 +112,7 @@ public class SignUp extends JFrame {
 			text.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 			text.setForeground(Color.decode("#cfab8b"));
 			text.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b")));
+			new Style(text, 3);
 
 			if (value.equals(value.PASSWORD) || value.equals(value.PASSWORDCONFIRM)) {
 				JLabel jpassLabel = new JLabel(value.labelNameKor);

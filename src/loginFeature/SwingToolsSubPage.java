@@ -2,7 +2,7 @@ package loginFeature;
 
 import javax.swing.JFrame;
 
-public class SwingToolsWindow {
+public class SwingToolsSubPage {
 
 	public static void initTestFrame(JFrame frame) {
 		frame.setLayout(null);

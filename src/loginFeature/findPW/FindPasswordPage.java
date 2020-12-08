@@ -125,7 +125,7 @@ public class FindPasswordPage extends JFrame {
 		gridAll.add(grid3);
 
 		JTextField phone_number1 = PhoneNumberEnum.PHONENUMBER1.text;
-		new Style(phone_number1);
+		new Style(phone_number1, 3);
 		phone_number1.setBounds(180, 18, 45, 30);
 		grid3.add(phone_number1);
 
@@ -135,7 +135,7 @@ public class FindPasswordPage extends JFrame {
 		grid3.add(str);
 
 		JTextField phone_number2 = PhoneNumberEnum.PHONENUMBER2.text;
-		new Style(phone_number2);
+		new Style(phone_number2, 4);
 		phone_number2.setBounds(245, 18, 45, 30);
 		grid3.add(phone_number2);
 
@@ -145,7 +145,7 @@ public class FindPasswordPage extends JFrame {
 		grid3.add(str2);
 
 		JTextField phone_number3 = PhoneNumberEnum.PHONENUMBER3.text;
-		new Style(phone_number3);
+		new Style(phone_number3, 4);
 		phone_number3.setBounds(310, 18, 45, 30);
 		grid3.add(phone_number3);
 

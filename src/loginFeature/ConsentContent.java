@@ -51,7 +51,7 @@ public class ConsentContent extends JFrame implements ActionListener {
 		});
 
 		scrollPane = new JScrollPane();
-		scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 		scrollPane.setBounds(50, 36, 1500, 750);
 		new Style(scrollPane);
 		panel.add(scrollPane);
@@ -219,7 +219,7 @@ public class ConsentContent extends JFrame implements ActionListener {
 		contentLabel.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 12));
 		contentLabel.setOpaque(true);
 		scrollPane.setViewportView(contentLabel);
-		SwingToolsWindow.initTestFrame(this);
+		SwingToolsSubPage.initTestFrame(this);
 		setBounds(50, 50, 1600, 900);
 	}
 
