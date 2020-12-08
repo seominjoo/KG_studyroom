@@ -64,7 +64,7 @@ public class _03whatHour extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JButton btnNewButton_2 = new JButton("2시간");
+		JButton btnNewButton_2 = new JButton("2시간 (3,000원)");
 		btnNewButton_2.setAction(action);
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
 		gbc_btnNewButton_2.fill = GridBagConstraints.BOTH;
@@ -73,7 +73,7 @@ public class _03whatHour extends JFrame {
 		gbc_btnNewButton_2.gridy = 0;
 		contentPane.add(btnNewButton_2, gbc_btnNewButton_2);
 		
-		JButton btnNewButton = new JButton("4시간");
+		JButton btnNewButton = new JButton("4시간 (4,500원)");
 		btnNewButton.setAction(action_1);
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.fill = GridBagConstraints.BOTH;
@@ -82,7 +82,7 @@ public class _03whatHour extends JFrame {
 		gbc_btnNewButton.gridy = 0;
 		contentPane.add(btnNewButton, gbc_btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("6시간");
+		JButton btnNewButton_1 = new JButton("6시간 (6,000원)");
 		btnNewButton_1.setAction(action_2);
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
 		gbc_btnNewButton_1.fill = GridBagConstraints.BOTH;
@@ -91,7 +91,7 @@ public class _03whatHour extends JFrame {
 		gbc_btnNewButton_1.gridy = 1;
 		contentPane.add(btnNewButton_1, gbc_btnNewButton_1);
 		
-		JButton btnNewButton_4 = new JButton("8시간");
+		JButton btnNewButton_4 = new JButton("8시간 (7,500원)");
 		btnNewButton_4.setAction(action_3);
 		GridBagConstraints gbc_btnNewButton_4 = new GridBagConstraints();
 		gbc_btnNewButton_4.fill = GridBagConstraints.BOTH;
@@ -100,7 +100,7 @@ public class _03whatHour extends JFrame {
 		gbc_btnNewButton_4.gridy = 1;
 		contentPane.add(btnNewButton_4, gbc_btnNewButton_4);
 		
-		JButton btnNewButton_3 = new JButton("12시간");
+		JButton btnNewButton_3 = new JButton("12시간 (10,000원)");
 		btnNewButton_3.setAction(action_4);
 		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
 		gbc_btnNewButton_3.fill = GridBagConstraints.BOTH;
@@ -122,13 +122,14 @@ public class _03whatHour extends JFrame {
 
 		private static final long serialVersionUID = 1L;
 		public SwingAction() {
-			putValue(NAME, "2시간");
+			putValue(NAME, "2시간 (3,000원)");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_08selectSeat frame = new _08selectSeat(time_now.plusHours(2));
+			_08selectSeat frame = new _08selectSeat(time_now.plusHours(2),3000);
 			frame.setVisible(true);
+			 
 		}
 	}
 	
@@ -136,52 +137,56 @@ public class _03whatHour extends JFrame {
 
 		private static final long serialVersionUID = 1L;
 		public SwingAction_1() {
-			putValue(NAME, "4시간");
+			putValue(NAME, "4시간 (4,500원)");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_08selectSeat frame = new _08selectSeat(time_now.plusHours(4));
+			_08selectSeat frame = new _08selectSeat(time_now.plusHours(4),4500);
 			frame.setVisible(true);
+		 
 		}
 	}
 	private class SwingAction_2 extends AbstractAction {
 
 		private static final long serialVersionUID = 1L;
 		public SwingAction_2() {
-			putValue(NAME, "6시간");
+			putValue(NAME, "6시간 (6,000원)");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_08selectSeat frame = new _08selectSeat(time_now.plusHours(6));
+			_08selectSeat frame = new _08selectSeat(time_now.plusHours(6),6000);
 			frame.setVisible(true);
+			 
 		}
 	}
 	private class SwingAction_3 extends AbstractAction {
 
 		private static final long serialVersionUID = 1L;
 		public SwingAction_3() {
-			putValue(NAME, "8시간");
+			putValue(NAME, "8시간 (7,500원)");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_08selectSeat frame = new _08selectSeat(time_now.plusHours(8));
+			_08selectSeat frame = new _08selectSeat(time_now.plusHours(8),7500);
 			frame.setVisible(true);
+		 
 		}
 	}
 	private class SwingAction_4 extends AbstractAction {
 
 		private static final long serialVersionUID = 1L;
 		public SwingAction_4() {
-			putValue(NAME, "12시간");
+			putValue(NAME, "12시간 (10,000원)");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_08selectSeat frame = new _08selectSeat(time_now.plusHours(12));
+			_08selectSeat frame = new _08selectSeat(time_now.plusHours(12),10000);
 			frame.setVisible(true);
+		 
 		}
 		
 	}

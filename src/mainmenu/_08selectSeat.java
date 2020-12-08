@@ -22,6 +22,9 @@ import javax.swing.JPanel;
 
 public class _08selectSeat extends JFrame implements ActionListener{
 	 static LocalDateTime time11;
+	 static int price11;
+	 
+	 
 	private static final long serialVersionUID = 1L;
 	boolean selected = false;
 	static ArrayList<JCheckBox> seats = new ArrayList<>(); //1~20번 좌석 (1인석)
@@ -44,13 +47,13 @@ public class _08selectSeat extends JFrame implements ActionListener{
 	int e=0; 
 	public static String number="";
 	JLabel label_msg;
-	LocalDateTime time_now = LocalDateTime.now();
+	static LocalDateTime time_now = LocalDateTime.now();
 	String time_checkout;
 //	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
 	
 
 	JPanel p1 = new JPanel();
-	_08selectSeat(LocalDateTime ss) {
+	_08selectSeat(LocalDateTime ss,int seat_price) {
 
 		JButton OK;
 		JButton back;
@@ -137,10 +140,12 @@ public class _08selectSeat extends JFrame implements ActionListener{
 					System.out.printf("%d번 ",sn); 
 					seats.get(sn-1).setSelected(true);
 					seats.get(sn-1).setEnabled(false);
+					 
 				}else if (sn>=101) {
 					System.out.printf("[%d호] ",sn); 
 					room.get(sn-101).setSelected(true);
 					room.get(sn-101).setEnabled(false);
+					 
 				}
 			}
 			
@@ -168,6 +173,7 @@ public class _08selectSeat extends JFrame implements ActionListener{
 		p1.setLayout(null);
 		this.add(p1);
 		time11  = ss;
+		price11 = seat_price;
 	}
 
 	@Override
@@ -184,7 +190,7 @@ public class _08selectSeat extends JFrame implements ActionListener{
 
 			String msg="";
 
-			for(int i=0;i<=19;i++) {//이동 할 자리 체크(비활성화 되있는건 제외)
+			for(int i=0;i<=19;i++) {//자리 체크(비활성화 되있는건 제외)
 				if(seats.get(i).isSelected()&&(seats.get(i).isEnabled()==true)) { 
 					msg=i+1+"번 (1인석) 자리\n"; 
 					number+=i+1+"번 좌석 ";
@@ -216,7 +222,7 @@ public class _08selectSeat extends JFrame implements ActionListener{
 					setVisible(false);
 					
 					// yes버튼 -> 결제 페이지
-					new _10paymentSeat(time11);
+					new _10paymentSeat(time11,price11);
 					 
 					
 				}

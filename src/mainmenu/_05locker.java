@@ -75,7 +75,7 @@ public class _05locker extends JFrame {
 	}
 	private class SwingAction_1 extends AbstractAction {
 		public SwingAction_1() {
-			putValue(NAME, "이용 가능한 사물함 보기");
+			putValue(NAME, "사물함 1개월 (25,000)");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {

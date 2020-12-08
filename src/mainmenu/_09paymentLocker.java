@@ -1,5 +1,6 @@
 package mainmenu;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,12 +11,15 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
+import javax.swing.UIManager;
+import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 
 public class _09paymentLocker {
@@ -63,14 +67,14 @@ public class _09paymentLocker {
 		frame.getContentPane().add(p2);
 		p2.setLayout(null);
 
-		time_checkout = time_now.plusHours(2).format(dateTimeFormatter);
+		time_checkout = time_now.plusMonths(1).format(dateTimeFormatter);
 
 		String header[] = {"결제","정보"};
 		String contents[][]= {
 				{"예약 번호",_05selectLocker.number},
-				{"입실 시간",time_now.format(dateTimeFormatter)},
-				{"퇴실 예정 시간",time_checkout}, 
-				{"결제 금액",""}
+				{"사용 시작 시간",time_now.format(dateTimeFormatter)},
+				{"사용 만료 시간",time_checkout}, 
+				{"결제 금액","25,000"}
 		};
 
 
@@ -79,14 +83,23 @@ public class _09paymentLocker {
 		table.setBounds(135, 104, 437, 200);
 		table.setRowHeight(40);
 		p2.add(table);
+		
+		Color color = UIManager.getColor("Table.gridColor");
+		MatteBorder border = new MatteBorder(1, 1, 0, 0, color);
+		table.setBorder(border);
+		p2.add(table);
+		
+		JRadioButton card_btn = new JRadioButton("카드");
+		card_btn.setBounds(361, 332, 121, 23);
+		p2.add(card_btn);
 
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("카드");
-		rdbtnNewRadioButton.setBounds(361, 332, 121, 23);
-		p2.add(rdbtnNewRadioButton);
-
-		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("현금");
-		rdbtnNewRadioButton_1.setBounds(200, 332, 121, 23);
-		p2.add(rdbtnNewRadioButton_1);
+		JRadioButton cash_btn = new JRadioButton("현금");
+		cash_btn.setBounds(200, 332, 121, 23);
+		p2.add(cash_btn);
+		
+		ButtonGroup group = new ButtonGroup();
+		group.add(cash_btn);
+		group.add(card_btn);
 
 		JButton back_btn = new JButton("돌아가기");
 		back_btn.setBounds(200, 381, 121, 42);
@@ -108,9 +121,20 @@ public class _09paymentLocker {
 							);
 					PreparedStatement pstmt = null;
 
-					String msg="결제가 완료되었습니다";
-					JOptionPane.showMessageDialog(null, msg);
-
+			 
+					if(cash_btn.isSelected()) {// 현금결제
+						new _12paycash_locker();
+						 
+					}
+					 
+					
+					if(card_btn.isSelected()==true) {//카드 결제
+					int result= JOptionPane.showConfirmDialog(null, "카드를 삽입하세요","Message",JOptionPane.YES_NO_OPTION);
+						if(result==JOptionPane.CLOSED_OPTION) {
+							
+						}else if(result==JOptionPane.NO_OPTION) {
+							JOptionPane.showMessageDialog(null,"취소");//취소 메세지
+						}else {
 					for(int i=0;i<20;i++) {//(예약 완료 버튼 누를시)
 						
 						
@@ -130,6 +154,8 @@ public class _09paymentLocker {
 
 							System.out.printf("%d번 사물함이 예약되었습니다.(%d행 업데이트)\n", i+1,row3);
 							System.out.printf("입실/퇴실 시간이 업데이트되었습니다.(%d행 업데이트)\n",rowt2);
+						}
+					}
 						}
 					}
 					

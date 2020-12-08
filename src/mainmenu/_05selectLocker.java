@@ -26,7 +26,7 @@ public class _05selectLocker extends JFrame implements ActionListener{
 	 
 	private static final long serialVersionUID = 1L;
 	boolean selected = false;
-
+	 
 	static ArrayList<JCheckBox> lockers = new ArrayList<>(); //1~20번 사물함
 	{
 		for(int i=1;i<=20;i++) {
@@ -47,7 +47,7 @@ public class _05selectLocker extends JFrame implements ActionListener{
 	
 	JPanel p1 = new JPanel();
 	
-	_05selectLocker( ) {
+	_05selectLocker() {
 
 		JButton OK;
 		JButton back;
@@ -111,6 +111,7 @@ public class _05selectLocker extends JFrame implements ActionListener{
 				System.out.printf("%d번 ",sn);
 				lockers.get(sn-1).setSelected(true);
 				lockers.get(sn-1).setEnabled(false); 
+				 
 			}
 			System.out.println();
 

@@ -63,7 +63,7 @@ public class _04whatWeek extends JFrame {
 		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
 		contentPane.setLayout(gbl_contentPane);
 		
-		JButton btnNewButton_2 = new JButton("2林");
+		JButton btnNewButton_2 = new JButton("2林 (90,000盔)");
 		btnNewButton_2.setAction(action);
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
 		gbc_btnNewButton_2.fill = GridBagConstraints.BOTH;
@@ -72,7 +72,7 @@ public class _04whatWeek extends JFrame {
 		gbc_btnNewButton_2.gridy = 0;
 		contentPane.add(btnNewButton_2, gbc_btnNewButton_2);
 		
-		JButton btnNewButton = new JButton("4林");
+		JButton btnNewButton = new JButton("4林 (130,000盔)");
 		btnNewButton.setAction(action_1);
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.fill = GridBagConstraints.BOTH;
@@ -81,7 +81,7 @@ public class _04whatWeek extends JFrame {
 		gbc_btnNewButton.gridy = 0;
 		contentPane.add(btnNewButton, gbc_btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("8林");
+		JButton btnNewButton_1 = new JButton("8林 (250,000盔)");
 		btnNewButton_1.setAction(action_2);
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
 		gbc_btnNewButton_1.fill = GridBagConstraints.BOTH;
@@ -105,14 +105,15 @@ public class _04whatWeek extends JFrame {
 		 */
 		private static final long serialVersionUID = 1L;
 		public SwingAction() {
-			putValue(NAME, "2林");
+			putValue(NAME, "2林 (90,000盔)");
 			
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_08selectSeat frame = new _08selectSeat(time_now.plusWeeks(2));
+			_08selectSeat frame = new _08selectSeat(time_now.plusWeeks(2),90000);
 			frame.setVisible(true);
+		 
 		}
 	}
 	
@@ -122,13 +123,14 @@ public class _04whatWeek extends JFrame {
 		 */
 		private static final long serialVersionUID = 1L;
 		public SwingAction_1() {
-			putValue(NAME, "4林");
+			putValue(NAME, "4林 (130,000盔)");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_08selectSeat frame = new _08selectSeat(time_now.plusWeeks(4));
+			_08selectSeat frame = new _08selectSeat(time_now.plusWeeks(4),130000);
 			frame.setVisible(true);
+			 
 		}
 	}
 	private class SwingAction_2 extends AbstractAction {
@@ -137,13 +139,14 @@ public class _04whatWeek extends JFrame {
 		 */
 		private static final long serialVersionUID = 1L;
 		public SwingAction_2() {
-			putValue(NAME, "8林");
+			putValue(NAME, "8林 (250,000盔)");
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_08selectSeat frame = new _08selectSeat(time_now.plusWeeks(8));
+			_08selectSeat frame = new _08selectSeat(time_now.plusWeeks(8),250000);
 			frame.setVisible(true);
+		 
 		}
 	}
 	private class SwingAction_3 extends AbstractAction {
