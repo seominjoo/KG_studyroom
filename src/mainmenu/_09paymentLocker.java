@@ -45,16 +45,11 @@ public class _09paymentLocker {
 
 	/**
 	 * Create the application.
-	 */
-	public _09paymentLocker() {
-		initialize();
-
-	}
-
+	 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	  _09paymentLocker() {
 		frame = new JFrame();
 		frame.setSize(750,500);
 		frame.setLocation(1050,100);
@@ -117,27 +112,8 @@ public class _09paymentLocker {
 					JOptionPane.showMessageDialog(null, msg);
 
 					for(int i=0;i<20;i++) {//(예약 완료 버튼 누를시)
-						if( _08selectSeat.seats.get(i).isSelected()&&(_08selectSeat.seats.get(i).isEnabled()==true)) {//이미 예약되있는 건(비활성화) 빼고 체크
-							_08selectSeat.seats.get(i).setEnabled(false);
-
-							String sql = "update seat set Seat_Statement ='사용 중' where Seat_Number= ?";
-
-							pstmt = conn.prepareStatement(sql);
-
-							pstmt.setInt(1, i+1);
-							int row = pstmt.executeUpdate();
-
-							//입실/퇴실시간 저장
-							String sqlt1 = "update seat set time_enter =?,time_checkout=? where Seat_Number= ?";
-							pstmt = conn.prepareStatement(sqlt1);
-							pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
-							pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(time_now.plusMinutes(10)));
-							pstmt.setInt(3, i+1);
-							int rowt1 = pstmt.executeUpdate();
-
-							System.out.printf("%d번 자리가 예약되었습니다.(%d행 업데이트)\n", i+1,row);
-							System.out.printf("입실/퇴실 시간이 업데이트되었습니다.(%d행 업데이트)\n",rowt1);
-						}
+						
+						
 						if( _05selectLocker.lockers.get(i).isSelected()&&(_05selectLocker.lockers.get(i).isEnabled()==true)) {
 							_05selectLocker.lockers.get(i).setEnabled(false);
 							String sql3 = "update locker set Locker_Statement ='사용 중' where Locker_Number= ?";
@@ -148,7 +124,7 @@ public class _09paymentLocker {
 							String sqlt2 = "update locker set l_time_enter =?,l_time_checkout=? where Locker_Number= ?";
 							pstmt = conn.prepareStatement(sqlt2);
 							pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
-							pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(time_now.plusMinutes(10)));
+							pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(time_now.plusMonths(1)));
 							pstmt.setInt(3, i+1);
 							int rowt2 = pstmt.executeUpdate();
 
@@ -156,25 +132,7 @@ public class _09paymentLocker {
 							System.out.printf("입실/퇴실 시간이 업데이트되었습니다.(%d행 업데이트)\n",rowt2);
 						}
 					}
-					for(int i=0;i<4;i++) {
-						if(_08selectSeat.room.get(i).isSelected()&&(_08selectSeat.room.get(i).isEnabled()==true)) {
-							_08selectSeat.room.get(i).setEnabled(false);
-							String sql2 = "update seat set Seat_Statement ='사용 중' where Seat_Number= ?";
-							pstmt = conn.prepareStatement(sql2);
-							pstmt.setInt(1, i+101);
-							int row2 = pstmt.executeUpdate();
-
-							String sqlt3 = "update seat set time_enter =?,time_checkout=? where Seat_Number= ?";
-							pstmt = conn.prepareStatement(sqlt3);
-							pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
-							pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(time_now.plusMinutes(10)));
-							pstmt.setInt(3, i+101);
-							int rowt3 = pstmt.executeUpdate();
-
-							System.out.printf("%d호 룸이 예약되었습니다.(%d행 업데이트)\n", i+101,row2);
-							System.out.printf("입실/퇴실 시간이 업데이트되었습니다.(%d행 업데이트)\n",rowt3); 
-						}
-					}  
+					
 					frame.setVisible(false);
 
 					if (pstmt != null) pstmt.close();

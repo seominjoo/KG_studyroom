@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import java.awt.GridLayout;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
+import java.time.LocalDateTime;
+
 import javax.swing.Action;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -19,6 +21,7 @@ public class _03whatHour extends JFrame {
 	/**
 	 * 
 	 */
+	LocalDateTime time_now = LocalDateTime.now();
 	private static final long serialVersionUID = 1L;
 	int Person_Id;
 	private JPanel contentPane;
@@ -124,7 +127,7 @@ public class _03whatHour extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_08selectSeat frame = new _08selectSeat();
+			_08selectSeat frame = new _08selectSeat(time_now.plusHours(2));
 			frame.setVisible(true);
 			new DBwrite("INSERT Payment_Record(Seat_Type, Payment)"
 					+ " VALUES ('Daily_2Hr', 3000) "
@@ -141,7 +144,7 @@ public class _03whatHour extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_08selectSeat frame = new _08selectSeat();
+			_08selectSeat frame = new _08selectSeat(time_now.plusHours(4));
 			frame.setVisible(true);
 			new DBwrite("INSERT Payment_Record(Seat_Type, Payment)"
 					+ " VALUES ('Daily_4Hr', 4500) "
@@ -157,7 +160,7 @@ public class _03whatHour extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_08selectSeat frame = new _08selectSeat();
+			_08selectSeat frame = new _08selectSeat(time_now.plusHours(6));
 			frame.setVisible(true);
 			new DBwrite("INSERT Payment_Record(Seat_Type, Payment)"
 					+ " VALUES ('Daily_6Hr', 6000) "
@@ -173,7 +176,7 @@ public class _03whatHour extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_08selectSeat frame = new _08selectSeat();
+			_08selectSeat frame = new _08selectSeat(time_now.plusHours(8));
 			frame.setVisible(true);
 			new DBwrite("INSERT Payment_Record(Seat_Type, Payment)"
 					+ " VALUES ('Daily_8Hr', 7500) "
@@ -189,7 +192,7 @@ public class _03whatHour extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_08selectSeat frame = new _08selectSeat();
+			_08selectSeat frame = new _08selectSeat(time_now.plusHours(12));
 			frame.setVisible(true);
 			new DBwrite("INSERT Payment_Record(Seat_Type, Payment)"
 					+ " VALUES ('Daily_12Hr', 10000) "

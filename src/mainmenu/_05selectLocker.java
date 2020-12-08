@@ -47,7 +47,7 @@ public class _05selectLocker extends JFrame implements ActionListener{
 	
 	JPanel p1 = new JPanel();
 	
-	_05selectLocker() {
+	_05selectLocker( ) {
 
 		JButton OK;
 		JButton back;

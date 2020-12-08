@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import java.awt.GridLayout;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
+import java.time.LocalDateTime;
+
 import javax.swing.Action;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -19,6 +21,7 @@ public class _04whatWeek extends JFrame {
 	/**
 	 * 
 	 */
+	LocalDateTime time_now = LocalDateTime.now();
 	private static final long serialVersionUID = 1L;
 	int Person_Id;
 	private JPanel contentPane;
@@ -103,10 +106,13 @@ public class _04whatWeek extends JFrame {
 		private static final long serialVersionUID = 1L;
 		public SwingAction() {
 			putValue(NAME, "2аж");
+			
 			putValue(SHORT_DESCRIPTION, "Some short description");
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
+			_08selectSeat frame = new _08selectSeat(time_now.plusWeeks(2));
+			frame.setVisible(true);
 			new DBwrite("INSERT Payment_Record VALUES ('Weekly_2Wk', 90000) "
 					+ "WHERE Person_Id =" + Integer.toString(Person_Id) + ";");
 		}
@@ -123,7 +129,7 @@ public class _04whatWeek extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_08selectSeat frame = new _08selectSeat();
+			_08selectSeat frame = new _08selectSeat(time_now.plusWeeks(4));
 			frame.setVisible(true);
 			new DBwrite("INSERT Payment_Record(Seat_Type, Payment)"
 					+ " VALUES ('Weekly_4Wk', 130000) "
@@ -141,7 +147,7 @@ public class _04whatWeek extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_08selectSeat frame = new _08selectSeat();
+			_08selectSeat frame = new _08selectSeat(time_now.plusWeeks(8));
 			frame.setVisible(true);
 			new DBwrite("INSERT Payment_Record(Seat_Type, Payment)"
 					+ " VALUES ('Weekly_8Wk', 250000) "

@@ -21,7 +21,7 @@ import javax.swing.JPanel;
 
 
 public class _08selectSeat extends JFrame implements ActionListener{
-	 
+	 static LocalDateTime time11;
 	private static final long serialVersionUID = 1L;
 	boolean selected = false;
 	static ArrayList<JCheckBox> seats = new ArrayList<>(); //1~20번 좌석 (1인석)
@@ -50,7 +50,7 @@ public class _08selectSeat extends JFrame implements ActionListener{
 	
 
 	JPanel p1 = new JPanel();
-	_08selectSeat() {
+	_08selectSeat(LocalDateTime ss) {
 
 		JButton OK;
 		JButton back;
@@ -167,7 +167,7 @@ public class _08selectSeat extends JFrame implements ActionListener{
 		p1.setBounds(0, 100, 600, 500);
 		p1.setLayout(null);
 		this.add(p1);
-		 
+		time11  = ss;
 	}
 
 	@Override
@@ -216,7 +216,7 @@ public class _08selectSeat extends JFrame implements ActionListener{
 					setVisible(false);
 					
 					// yes버튼 -> 결제 페이지
-					new _10paymentSeat();
+					new _10paymentSeat(time11);
 					 
 					
 				}
@@ -233,7 +233,7 @@ public class _08selectSeat extends JFrame implements ActionListener{
 	
 	 
 	public static void main(String[] args) {
-		new _06moveSeat2(); 
+		
 	} 
 
 }
