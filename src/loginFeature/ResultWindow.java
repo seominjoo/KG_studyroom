@@ -27,19 +27,15 @@ public class ResultWindow extends JFrame {
 	private JLabel failLabel2;
 	private JLabel failLabel3;
 	private String error;
-	private static String[] errorList;
 	private int person_id;
 	private String person_name;
 	private boolean result = false;
 
-	static {
-		errorList = new String[] { "성 함", "생년 월일", "전화 번호", "비밀 번호", "비밀 번호 확인", "약관 동의", "전화 번호 중복" };
-	}
 
-	public ResultWindow(int person_id, String person_name, boolean result) {
+	public ResultWindow(int person_id, String person_name) {
 		this.person_id = person_id;
 		this.person_name = person_name;
-		this.result = result;
+		result = true;
 		ResultCalc();
 	}
 
@@ -69,12 +65,7 @@ public class ResultWindow extends JFrame {
 		} else {
 			failLabel1 = new JLabel("가입 실패", JLabel.CENTER);
 			failLabel2 = new JLabel("하기 사항을 확인하세요", JLabel.CENTER);
-			for (String errorMatch : errorList) {
-				if (this.error.equals(errorMatch)) {
-					failLabel3 = new JLabel("[ " + this.error + " ]", JLabel.CENTER);
-					break;
-				}
-			}
+			failLabel3 = new JLabel("[ " + this.error + " ]", JLabel.CENTER);
 		}
 
 		new Style(failLabel1);

@@ -159,7 +159,7 @@ public class ClickSignUp extends MouseAdapter {
 								person_name = rs2.getString(2);
 							}
 
-							new ResultWindow(person_id,person_name,true);
+							new ResultWindow(person_id,person_name);
 
 							if (rs2 != null)
 								rs2.close();
