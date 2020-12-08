@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/jongh/OneDrive/바탕 화면/JAVA/HikariCP-3.4.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jongh/OneDrive/바탕 화면/JAVA/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jongh/OneDrive/바탕 화면/JAVA/slf4j-api-1.7.30.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jongh/OneDrive/바탕 화면/SQL/sqldeveloper-19.2.1.247.2212-no-jre/sqldeveloper/jdbc/lib/ojdbc8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
