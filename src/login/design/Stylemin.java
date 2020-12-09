@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 
-public class Style {
+public class Stylemin {
 	
 	private static JPanel panel;
 	private JLabel label;
@@ -24,7 +24,7 @@ public class Style {
 	private JPasswordField pass;
 	private JComponent cp;
 	
-	public Style(JComponent cp) {
+	public Stylemin(JComponent cp) {
 		this.cp = cp;
 			if (cp instanceof JPanel) {
 				panel = (JPanel)cp;
@@ -78,7 +78,7 @@ public class Style {
 		}
 	}
 	
-	public Style() {
+	public Stylemin() {
 	}
 
 	public static JPanel getnewPanel() {
