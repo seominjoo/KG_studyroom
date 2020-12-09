@@ -57,7 +57,7 @@ public class _12paycash_locker {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(700, 200, 420, 322);
+		frame.setBounds(600, 150, 420, 322);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
@@ -113,7 +113,7 @@ public class _12paycash_locker {
 
 
 
-						for(int i=0;i<20;i++) {//(카드 결제 버튼 누를시)
+						for(int i=0;i<20;i++) { 
 						 
 							if( _05selectLocker.lockers.get(i).isSelected()&&(_05selectLocker.lockers.get(i).isEnabled()==true)) {
 								_05selectLocker.lockers.get(i).setEnabled(false);
@@ -125,12 +125,23 @@ public class _12paycash_locker {
 								String sqlt2 = "update locker set l_time_enter =?,l_time_checkout=? where Locker_Number= ?";
 								pstmt = conn.prepareStatement(sqlt2);
 								pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
-								pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(time_now.plusMinutes(10)));
+								pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(time_now.plusMonths(1)));
 								pstmt.setInt(3, i+1);
 								int rowt2 = pstmt.executeUpdate();
+								
+								//결제테이블에 저장
+								String sql_pay = " insert into Payment_Record(Paid_Time,Exit_Time,Locker_Type,Pay_Method,Payment) values(?,?,?,?,?)";
+								pstmt = conn.prepareStatement(sql_pay);
+								pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
+								pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(time_now.plusMonths(1)));
+								pstmt.setString(3, "1달 이용권");
+								pstmt.setString(4, "현금");
+								pstmt.setInt(5,25000);
+								int rowp = pstmt.executeUpdate();
 
 								System.out.printf("%d번 사물함이 예약되었습니다.(%d행 업데이트)\n", i+1,row3);
 								System.out.printf("입실/퇴실 시간이 업데이트되었습니다.(%d행 업데이트)\n",rowt2);
+								System.out.printf("결제 기록이 업데이트되었습니다.(%d행 업데이트)\n",rowp);
 								
 								   
 							}

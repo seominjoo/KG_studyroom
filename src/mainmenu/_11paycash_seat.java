@@ -56,7 +56,7 @@ public class _11paycash_seat {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(700, 200, 420, 322);
+		frame.setBounds(600, 150, 420, 322);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setVisible(true);
@@ -112,7 +112,7 @@ public class _11paycash_seat {
 
 
 
-						for(int i=0;i<20;i++) {//(카드 결제 버튼 누를시)
+						for(int i=0;i<20;i++) {
 							if( _08selectSeat.seats.get(i).isSelected()&&(_08selectSeat.seats.get(i).isEnabled()==true)) {//이미 예약되있는 건(비활성화) 빼고 체크
 								_08selectSeat.seats.get(i).setEnabled(false);
 
@@ -127,12 +127,22 @@ public class _11paycash_seat {
 								String sqlt1 = "update seat set time_enter =?,time_checkout=? where Seat_Number= ?";
 								pstmt = conn.prepareStatement(sqlt1);
 								pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
-								pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(time_now.plusMinutes(10)));
+								pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(_08selectSeat.time11));
 								pstmt.setInt(3, i+1);
 								int rowt1 = pstmt.executeUpdate();
+								
+								String sql_pay = " insert into Payment_Record(Paid_Time,Exit_Time,Seat_Type,Pay_Method,Payment) values(?,?,?,?,?)";
+								pstmt = conn.prepareStatement(sql_pay);
+								pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
+								pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(_08selectSeat.time11));
+								pstmt.setString(3, _08selectSeat.type11);
+								pstmt.setString(4, "현금");
+								pstmt.setInt(5,_08selectSeat.price11);
+								int rowp = pstmt.executeUpdate();
 
 								System.out.printf("%d번 자리가 예약되었습니다.(%d행 업데이트)\n", i+1,row);
 								System.out.printf("입실/퇴실 시간이 업데이트되었습니다.(%d행 업데이트)\n",rowt1);
+								System.out.printf("결제 기록이 업데이트되었습니다.(%d행 업데이트)\n",rowp);
 							}
 						
 						}
@@ -147,12 +157,23 @@ public class _11paycash_seat {
 								String sqlt3 = "update seat set time_enter =?,time_checkout=? where Seat_Number= ?";
 								pstmt = conn.prepareStatement(sqlt3);
 								pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
-								pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(time_now.plusMinutes(10)));
+								pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(_08selectSeat.time11));
 								pstmt.setInt(3, i+101);
 								int rowt3 = pstmt.executeUpdate();
+								
+
+								String sql_pay = " insert into Payment_Record(Paid_Time,Exit_Time,Seat_Type,Pay_Method,Payment) values(?,?,?,?,?)";
+								pstmt = conn.prepareStatement(sql_pay);
+								pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
+								pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(_08selectSeat.time11));
+								pstmt.setString(3, _08selectSeat.type11);
+								pstmt.setString(4, "현금");
+								pstmt.setInt(5,_08selectSeat.price11);
+								int rowp = pstmt.executeUpdate();
 
 								System.out.printf("%d호 룸이 예약되었습니다.(%d행 업데이트)\n", i+101,row2);
 								System.out.printf("입실/퇴실 시간이 업데이트되었습니다.(%d행 업데이트)\n",rowt3); 
+								System.out.printf("결제 기록이 업데이트되었습니다.(%d행 업데이트)\n",rowp);
 
 							
 							}

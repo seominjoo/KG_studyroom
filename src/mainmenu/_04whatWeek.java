@@ -52,7 +52,7 @@ public class _04whatWeek extends JFrame {
 	public _04whatWeek() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(600, 150, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -111,7 +111,7 @@ public class _04whatWeek extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_08selectSeat frame = new _08selectSeat(time_now.plusWeeks(2),90000);
+			_08selectSeat frame = new _08selectSeat(time_now.plusWeeks(2),90000,"2주 이용권");
 			frame.setVisible(true);
 		 
 		}
@@ -128,7 +128,7 @@ public class _04whatWeek extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_08selectSeat frame = new _08selectSeat(time_now.plusWeeks(4),130000);
+			_08selectSeat frame = new _08selectSeat(time_now.plusWeeks(4),130000,"4주 이용권");
 			frame.setVisible(true);
 			 
 		}
@@ -144,7 +144,7 @@ public class _04whatWeek extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_08selectSeat frame = new _08selectSeat(time_now.plusWeeks(8),250000);
+			_08selectSeat frame = new _08selectSeat(time_now.plusWeeks(8),250000,"8주 이용권");
 			frame.setVisible(true);
 		 
 		}

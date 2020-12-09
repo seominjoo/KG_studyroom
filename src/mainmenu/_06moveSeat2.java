@@ -161,7 +161,7 @@ public class _06moveSeat2 extends JFrame implements ActionListener{
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(600,500);
-		setLocation(0,100);
+		setLocation(600,150);
 		setVisible(true);  
 
 		p1.setBounds(0, 100, 600, 500);

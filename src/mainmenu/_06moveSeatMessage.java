@@ -43,7 +43,7 @@ public class _06moveSeatMessage extends JFrame implements ActionListener {
 		SwingTool_logo.initFrame(this);
 		getContentPane().setBackground(Color.decode("#404040"));
 		setLayout(new BorderLayout(10,10));
-		setBounds(250, 170, 300, 150);
+		setBounds(600, 150, 300, 150);
 
 		laynull.add(commenteng);
 		laynull.add(commentkor);

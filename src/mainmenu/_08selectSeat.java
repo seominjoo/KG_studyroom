@@ -23,6 +23,8 @@ import javax.swing.JPanel;
 public class _08selectSeat extends JFrame implements ActionListener{
 	 static LocalDateTime time11;
 	 static int price11;
+	 static String type11;
+	 
 	 
 	 
 	private static final long serialVersionUID = 1L;
@@ -53,7 +55,7 @@ public class _08selectSeat extends JFrame implements ActionListener{
 	
 
 	JPanel p1 = new JPanel();
-	_08selectSeat(LocalDateTime ss,int seat_price) {
+	_08selectSeat(LocalDateTime ss,int seat_price,String seat_type) {
 
 		JButton OK;
 		JButton back;
@@ -123,15 +125,11 @@ public class _08selectSeat extends JFrame implements ActionListener{
 					pstmtas.setInt(1, seat_chk);
 					int row3 = pstmtas.executeUpdate();
 				}  
-			}
-	 	 
-
-			
+			} 
 			//좌석 - db에서 '사용 중'인지 읽은 다음 '사용 중'이면 체크박스 체크 및 비활성화(사용중 이므로 예약 못하게) 
 			String sqlm = "select seat_number from seat where seat_statement='사용 중'";
 			PreparedStatement pstmt = conn.prepareStatement(sqlm);
-			ResultSet rs = pstmt.executeQuery();
-		 
+			ResultSet rs = pstmt.executeQuery(); 
 			System.out.print("예약된 자리 : ");
 
 			while(rs.next()) { 
@@ -166,7 +164,7 @@ public class _08selectSeat extends JFrame implements ActionListener{
 	 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(600,500);
-		setLocation(0,100);
+		setLocation(600,150);
 		setVisible(true);  
 		
 		p1.setBounds(0, 100, 600, 500);
@@ -174,6 +172,7 @@ public class _08selectSeat extends JFrame implements ActionListener{
 		this.add(p1);
 		time11  = ss;
 		price11 = seat_price;
+		type11 = seat_type;
 	}
 
 	@Override
@@ -222,7 +221,7 @@ public class _08selectSeat extends JFrame implements ActionListener{
 					setVisible(false);
 					
 					// yes버튼 -> 결제 페이지
-					new _10paymentSeat(time11,price11);
+					new _10paymentSeat(time11,price11,type11);
 					 
 					
 				}

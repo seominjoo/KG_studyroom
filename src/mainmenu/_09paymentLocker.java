@@ -56,7 +56,7 @@ public class _09paymentLocker {
 	  _09paymentLocker() {
 		frame = new JFrame();
 		frame.setSize(750,500);
-		frame.setLocation(1050,100);
+		frame.setLocation(600,150);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
@@ -71,9 +71,10 @@ public class _09paymentLocker {
 
 		String header[] = {"결제","정보"};
 		String contents[][]= {
-				{"예약 번호",_05selectLocker.number},
+				{"사물함 번호",_05selectLocker.number},
 				{"사용 시작 시간",time_now.format(dateTimeFormatter)},
 				{"사용 만료 시간",time_checkout}, 
+				{"이용권","1달 이용권"},
 				{"결제 금액","25,000"}
 		};
 
@@ -151,9 +152,20 @@ public class _09paymentLocker {
 							pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(time_now.plusMonths(1)));
 							pstmt.setInt(3, i+1);
 							int rowt2 = pstmt.executeUpdate();
+							
+							//결제테이블에 저장
+							String sql_pay = " insert into Payment_Record(Paid_Time,Exit_Time,Locker_Type,Pay_Method,Payment) values(?,?,?,?,?)";
+							pstmt = conn.prepareStatement(sql_pay);
+							pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
+							pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(time_now.plusMonths(1)));
+							pstmt.setString(3, "1달 이용권");
+							pstmt.setString(4, "카드");
+							pstmt.setInt(5,25000);
+							int rowp = pstmt.executeUpdate();
 
 							System.out.printf("%d번 사물함이 예약되었습니다.(%d행 업데이트)\n", i+1,row3);
 							System.out.printf("입실/퇴실 시간이 업데이트되었습니다.(%d행 업데이트)\n",rowt2);
+							System.out.printf("결제 기록이 업데이트되었습니다.(%d행 업데이트)\n",rowp);
 						}
 					}
 						}

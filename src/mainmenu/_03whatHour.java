@@ -53,7 +53,7 @@ public class _03whatHour extends JFrame {
 	 */
 	public _03whatHour() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(600, 150, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -127,7 +127,7 @@ public class _03whatHour extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_08selectSeat frame = new _08selectSeat(time_now.plusHours(2),3000);
+			_08selectSeat frame = new _08selectSeat(time_now.plusHours(2),3000,"2시간 이용권");
 			frame.setVisible(true);
 			 
 		}
@@ -142,7 +142,7 @@ public class _03whatHour extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_08selectSeat frame = new _08selectSeat(time_now.plusHours(4),4500);
+			_08selectSeat frame = new _08selectSeat(time_now.plusHours(4),4500,"4시간 이용권");
 			frame.setVisible(true);
 		 
 		}
@@ -156,7 +156,7 @@ public class _03whatHour extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_08selectSeat frame = new _08selectSeat(time_now.plusHours(6),6000);
+			_08selectSeat frame = new _08selectSeat(time_now.plusHours(6),6000,"6시간 이용권");
 			frame.setVisible(true);
 			 
 		}
@@ -170,7 +170,7 @@ public class _03whatHour extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_08selectSeat frame = new _08selectSeat(time_now.plusHours(8),7500);
+			_08selectSeat frame = new _08selectSeat(time_now.plusHours(8),7500,"8시간 이용권");
 			frame.setVisible(true);
 		 
 		}
@@ -184,7 +184,7 @@ public class _03whatHour extends JFrame {
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
-			_08selectSeat frame = new _08selectSeat(time_now.plusHours(12),10000);
+			_08selectSeat frame = new _08selectSeat(time_now.plusHours(12),10000,"12시간 이용권");
 			frame.setVisible(true);
 		 
 		}

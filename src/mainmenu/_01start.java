@@ -46,9 +46,7 @@ import javax.swing.ImageIcon;
 
 public class _01start extends JFrame {
 
-	/**
-	 * 
-	 */
+	
 	JTable table;
 	 static int count_seat=0;
 	 static int count_room=0;
@@ -65,6 +63,8 @@ public class _01start extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	
+	Image img;
 	public static void main(String[] args) {
 		
 		EventQueue.invokeLater(new Runnable() {
@@ -109,7 +109,7 @@ public class _01start extends JFrame {
 			PreparedStatement pstmt = conn.prepareStatement(sqlm);
 			ResultSet rs = pstmt.executeQuery();
 		 
-			System.out.print("예약된 자리 : ");
+			 
 
 			while(rs.next()) { 
 				int sn = rs.getInt("seat_number"); 
@@ -142,7 +142,7 @@ public class _01start extends JFrame {
 			PreparedStatement pstmt2 = conn.prepareStatement(sqlm2);
 			ResultSet rs2 = pstmt2.executeQuery();
 			System.out.println();
-			System.out.printf("예약된 사물함 : ");
+		 
 			while(rs2.next()) {
 				int sn = rs2.getInt("locker_number");
 				count_locker++;
@@ -156,11 +156,9 @@ public class _01start extends JFrame {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
-		  
-		
+		 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	      setBounds(100, 100, 450, 400);
+	      setBounds(600, 150, 450, 400);
 	      contentPane = new JPanel();
 	      contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 	      setContentPane(contentPane);
@@ -172,6 +170,9 @@ public class _01start extends JFrame {
 	      btnNewButton_2.setSelectedIcon(new ImageIcon(_01start.class.getResource("/image/seat.jpg")));
 	      btnNewButton_2.setAction(action);
 	      contentPane.add(btnNewButton_2);
+	      
+	    
+	      
 	      
 	      JButton btnNewButton = new JButton("사물함 이용권");
 	      btnNewButton.setBounds(218, 95, 213, 121);
@@ -200,10 +201,7 @@ public class _01start extends JFrame {
 					 "<html>사용중 사물함<br/>&emsp;&emsp;"+Integer.toString(count_locker)+" / 20",
 					 "<html>&emsp;&nbsp;&nbsp;&nbsp;현재시간<br/>"+LocalDate.now().format(date)+"<br/>&nbsp;&nbsp;&nbsp;"+LocalTime.now().format(time)} 
 			};
-
-	
-
-			
+ 
 
 			DefaultTableModel model = new DefaultTableModel(contents,header);
 			table = new JTable(model);
@@ -251,8 +249,18 @@ public class _01start extends JFrame {
 
 		private static final long serialVersionUID = 1L;
 		public SwingAction_1() {
-			putValue(NAME, "사물함 이용권");
-			putValue(SHORT_DESCRIPTION, "Some short description");
+			   try {
+					img = ImageIO.read(new File("src/image/locker.png"));
+					Image reImage = img.getScaledInstance(80, 80,img.SCALE_SMOOTH);
+					ImageIcon ic = new ImageIcon(reImage);
+				
+				
+					putValue(SMALL_ICON,ic);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			 
 		}
 		public void actionPerformed(ActionEvent e) {
 			setVisible(false);
