@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import login.design.Conversion_image;
 import login.design.Style;
 import login.loginDataBase.DBLoggedIn;
 import login.page.LoginPage;
@@ -82,7 +83,11 @@ public class ActionWindow extends JFrame implements ActionListener {
 		} else if(loginbtns.getText().equals("회원가입")){
 			LoginPage.cards.show(LoginPage.page_panel,"회원가입");
 			
-		}else {
+		}
+		else if(loginbtns.getText().equals("비번찾기")) {
+			LoginPage.cards.show(LoginPage.page_panel, "비번찾기");
+		}
+		else {
 			// 페이지 준비중
 			comment1.setText("[system] still in maintenance");
 			comment2.setText("페이지 준비 중..");

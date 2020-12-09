@@ -35,45 +35,26 @@ import login.BirthEnum;
 import login.PhoneNumberEnum;
 import login.YearMonthClick;
 import login.design.Style;
+import login.page.LoginPage;
 import login.clearText.ClearTextBackGround;
 import login.clearText.PhoneNumberClearTextField;
 
-public class FindPasswordPage extends JFrame {
+public class FindPasswordPage extends JPanel {
 
 	static String imagePath;
 	static BufferedImage image;
 	static ImageIcon icon;
 
-	static {
-		imagePath = "C:\\Users\\Hyun\\Desktop\\자바SW개발자 양성과정 10월 현태환\\민짱.jpg";
-		try {
-			image = ImageIO.read(new File(imagePath));
-			System.out.println(image.getHeight() + " " + image.getWidth());
-			icon = new ImageIcon(image.getScaledInstance(2241 / 5, 2542 / 7, Image.SCALE_SMOOTH));
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 	public FindPasswordPage() {
 
-		JPanel background = new JPanel(new BorderLayout(0, 30)) {
-			public void paintComponent(Graphics g) {
-				g.drawImage(icon.getImage(), 0, 0, null);
-				setOpaque(false); 
-				super.paintComponent(g);
-			}
-		};
-		background.setBounds(0, 0, 2241 / 5, 2542 / 7);
-		add(background);
-		background.setOpaque(false);
+		setOpaque(false);
 		JPanel blank = new JPanel();
 		blank.setOpaque(false);
-		background.add(blank,BorderLayout.NORTH);
+		add(blank,BorderLayout.NORTH);
 
 		JPanel gridAll = new JPanel(new GridLayout(5, 1, 0, 0));
-		background.add(gridAll, BorderLayout.CENTER);
+		add(gridAll, BorderLayout.CENTER);
 		gridAll.setOpaque(false);
 
 		JLabel title = new JLabel("비밀번호 찾기", JLabel.CENTER);
@@ -179,15 +160,12 @@ public class FindPasswordPage extends JFrame {
 		cancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dispose();
+				LoginPage.cards.show(LoginPage.page_panel, "로그인");
 			}
 		});
 		
 		gridAll.add(grid5);
 
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setBounds(200, 200, 2241 / 5 + 16, 2542 / 7 + 39);
-		setVisible(true);
 	}
 
 	public static void main(String[] args) {

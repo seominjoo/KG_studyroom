@@ -43,15 +43,7 @@ public class SignUpPage extends JPanel {
 	static ImageIcon icon;
 	static BufferedImage source;
 
-	static {
-		try {
-			source = ImageIO.read(new File("image/페이지부분.jpg"));
-			icon = new ImageIcon(source.getScaledInstance(2241 / 4, 2542 / 3, Image.SCALE_SMOOTH));
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 	public SignUpPage() {
 		

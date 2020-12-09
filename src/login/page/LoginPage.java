@@ -24,6 +24,7 @@ import javax.swing.SwingConstants;
 import login.design.Conversion_image;
 import login.design.EmptyPrice;
 import login.design.Style;
+import login.findPW.FindPasswordPage;
 import login.signUp.SignUpPage;
 import login.window.ActionWindow;
 import login.window.Login_SwingTool;
@@ -65,8 +66,10 @@ public class LoginPage extends JFrame {
 		login_panel.setLayout(null);
 		new Style(login_panel);
 		
+		// 페이지 추가 작업 
 		page_panel.add("로그인", login_panel);
 		page_panel.add("회원가입", new SignUpPage());
+		page_panel.add("비번찾기", new FindPasswordPage());
 	
 		phone_number1 = new JTextField("010");
 		new Style(phone_number1);
@@ -107,6 +110,7 @@ public class LoginPage extends JFrame {
 		
 		JButton find_PW = new JButton(new Conversion_image("image/PW찾기.png", 40, 40).imageicon_smooth);
 		new Style(find_PW);
+		find_PW.setText("비번찾기");
 		find_PW.setBounds(413, 316, 50, 50);
 		find_PW.addActionListener(new ActionWindow(find_PW));
 		login_panel.add(find_PW);
