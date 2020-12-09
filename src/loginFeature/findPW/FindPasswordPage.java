@@ -36,6 +36,7 @@ import loginFeature.PhoneNumberClearTextField;
 import loginFeature.PhoneNumberEnum;
 import loginFeature.SignUp;
 import loginFeature.Style;
+import loginFeature.YearMonthClick;
 
 public class FindPasswordPage extends JFrame {
 
@@ -56,21 +57,12 @@ public class FindPasswordPage extends JFrame {
 	}
 
 	public FindPasswordPage() {
-		//setLayout(null);
 
 		JPanel background = new JPanel(new BorderLayout(0, 30)) {
 			public void paintComponent(Graphics g) {
-				// Approach 1: Dispaly image at at full size
 				g.drawImage(icon.getImage(), 0, 0, null);
-				// Approach 2: Scale image to size of component
-				// Dimension d = getSize();
-				// g.drawImage(icon.getImage(), 0, 0, d.width, d.height, null);
-				// Approach 3: Fix the image position in the scroll pane
-				// Point p = scrollPane.getViewport().getViewPosition();
-				// g.drawImage(icon.getImage(), p.x, p.y, null);
-				setOpaque(false); // 그림을 표시하게 설정,투명하게 조절
+				setOpaque(false); 
 				super.paintComponent(g);
-
 			}
 		};
 		background.setBounds(0, 0, 2241 / 5, 2542 / 7);
@@ -107,6 +99,9 @@ public class FindPasswordPage extends JFrame {
 		JComboBox<String> day = BirthEnum.DAY.birthComboBoxDay;
 		new Style(day);
 		day.setBounds(330, 22, 55, 30);
+		
+		year.addActionListener(new YearMonthClick("year"));
+		month.addActionListener(new YearMonthClick("month"));
 		
 		grid2.add(year);
 		grid2.add(month);

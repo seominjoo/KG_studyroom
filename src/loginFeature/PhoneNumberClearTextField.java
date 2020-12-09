@@ -35,15 +35,6 @@ public class PhoneNumberClearTextField extends MouseAdapter {
 					value.text.setText(value.labelName);
 			}
 		}
-			//clickCnt++;
-			// 최초 입력시 초기화 
-			
-//			for (SignUpEnum value : SignUpEnum.values()) {
-//				if (clickCnt <= 1 || textList.get(listIndex).getText().equals(value.labelName))
-//					textList.get(listIndex).setText("");
-//
-//			}
-			// 텍스트 눌럿을 때 다른 빈텍스트 기본값으로 표시
 
 	}
 

@@ -8,14 +8,17 @@ public enum BirthEnum {
 
 	YEAR(""), MONTH(""), DAY("");
 
-	JComboBox<String> birthComboBoxYear;
-	JComboBox<String> birthComboBoxMonth;
-	JComboBox<String> birthComboBoxDay;
-
+	public JComboBox<String> birthComboBoxYear;
+	public JComboBox<String> birthComboBoxMonth;
+	public JComboBox<String> birthComboBoxDay;
+	public String[] dayTable;
+	
 	BirthEnum(String string) {
 		birthComboBoxYear = new JComboBox<String>(getYearTable());
 		birthComboBoxMonth = new JComboBox<String>(getMonthTable());
 		birthComboBoxDay = new JComboBox<String>(getDayTable());
+		dayTable = getDayTable();
+		birthComboBoxYear.setSelectedItem("2000");
 	}
 
 	String[] getYearTable() {
@@ -30,23 +33,18 @@ public enum BirthEnum {
 	}
 
 	String[] getMonthTable() {
-		int firstMonth = 1;
 		int lastMonth = 12;
-		String[] monthTable = new String[lastMonth - firstMonth + 1];
-		for (int i = 0; i < lastMonth; i++) {
-			monthTable[i] = (firstMonth + "").format("%02d", firstMonth);
-			firstMonth++;
+		String[] monthTable = new String[lastMonth + 1];
+		for (int i = 1; i < monthTable.length; i++) {
+			monthTable[i] = (i + "").format("%02d", i);
 		}
 		return monthTable;
 	}
 
 	String[] getDayTable() {
-		int firstDay = 1;
-
-		String[] dayTable = new String[31]; //28
-		for (int i = 0; i < dayTable.length; i++) {
-			dayTable[i] = (firstDay + "").format("%02d", firstDay);
-			firstDay++;
+		String[] dayTable = new String[32];
+		for (int i = 1; i < dayTable.length; i++) {
+			dayTable[i] = (i + "").format("%02d", i);
 		}
 		return dayTable;
 	}

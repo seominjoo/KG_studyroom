@@ -23,6 +23,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import loginFeature.findPW.BirthEnum;
+
 
 public class ClickSignUp extends MouseAdapter {
 
@@ -44,9 +46,9 @@ public class ClickSignUp extends MouseAdapter {
 		boolean consentCheck = true;
 		JTextField pw;
 		JTextField pwConfirm;
-		String year = (String) SignUp.year.getSelectedItem();
-		String month = (String) SignUp.month.getSelectedItem();
-		String day = (String) SignUp.day.getSelectedItem();
+		String year = (String) BirthEnum.YEAR.birthComboBoxYear.getSelectedItem();
+		String month = (String) BirthEnum.MONTH.birthComboBoxMonth.getSelectedItem();
+		String day = (String) BirthEnum.DAY.birthComboBoxDay.getSelectedItem();
 		boolean samePhoneNumber = false;
 		JTextField phoneNumber1 = PhoneNumberEnum.PHONENUMBER1.text;
 		JTextField phoneNumber2 = PhoneNumberEnum.PHONENUMBER2.text;

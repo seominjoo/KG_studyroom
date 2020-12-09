@@ -10,6 +10,7 @@ import java.awt.event.KeyListener;
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -32,9 +33,10 @@ public class Style {
 	private JPasswordField pass;
 	private JComboBox<?> jcombo;
 	private JScrollPane jscroll;
+	private JCheckBox jcheck;
 	private JComponent cp;
 	private int size;
-
+	
 	public Style(JComponent cp) {
 		this.cp = cp;
 		if (cp instanceof JPanel) {
@@ -48,6 +50,7 @@ public class Style {
 				System.out.println("¹è°æ ¾øÀ½ ±âº»»ö Àû¿ë");
 				label.setBackground(Color.decode("#404040"));
 			} else if (label.getText().equals("-")) {
+				label.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 12));
 			} else if (label.getText().equals("")) {
 				label.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 16));
 			} else {
@@ -110,6 +113,12 @@ public class Style {
 			jscroll = (JScrollPane) cp;
 			jscroll.setOpaque(false); // ¹è°æ Åõ¸í
 			jscroll.getViewport().setBackground(Color.decode("#404040"));
+		}
+		else if (cp instanceof JCheckBox) {
+			jcheck = (JCheckBox) cp;
+			jcheck.setForeground(Color.decode("#cfab8b"));
+			jcheck.setOpaque(false);
+			jcheck.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 17));
 		}
 	}
 
