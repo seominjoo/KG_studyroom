@@ -90,9 +90,9 @@ public class LoginPage extends JFrame {
 		signup.addActionListener(new ActionWindow(signup));
 		background.add(signup);
 		
-		JButton Poweroff = new JButton(new Conversion_image("image/전원.png", 40	, 40).imageicon_smooth);
+		JButton Poweroff = new JButton(new Conversion_image("image/전원.png", 30	, 30).imageicon_smooth);
 		new Style(Poweroff);
-		Poweroff.setBounds(0, 0, 50, 50);
+		Poweroff.setBounds(0, 0, 30, 30);
 		Poweroff.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
