@@ -69,8 +69,9 @@ public class LoginPage extends JFrame {
 		// 페이지 추가 작업 
 		page_panel.add("로그인", login_panel);
 		page_panel.add("회원가입", new SignUpPage());
-//		page_panel.add("비번찾기", new FindPasswordPage());
+		page_panel.add("비번찾기", new FindPasswordPage());
 	
+
 		phone_number1 = new JTextField("010");
 		new Style(phone_number1);
 		phone_number1.setBounds(155, 180, 40, 30);

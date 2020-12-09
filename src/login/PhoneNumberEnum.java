@@ -6,7 +6,11 @@ public enum PhoneNumberEnum {
 
 	PHONENUMBER1("010"),
 	PHONENUMBER2(""),
-	PHONENUMBER3(""),;
+	PHONENUMBER3("");
+//	PHONENUMBER4("010"),
+//	PHONENUMBER5(""),
+//	PHONENUMBER6("");
+	
 
 	public String labelName;
 	public JTextField text;

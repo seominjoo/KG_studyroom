@@ -40,15 +40,15 @@ public class SignUpPage extends JPanel {
 	final int GRID = 8;
 	
 	static Map<JCheckBox, JButton> consent;
+	
 	static ImageIcon icon;
 	static BufferedImage source;
 
 
 
 	public SignUpPage() {
-		setOpaque(false);
 		setLayout(new BorderLayout(30, 0));
-		setSize(500,500);
+		new Style(this);
 		
 		add(Style.getnewPanel(), BorderLayout.NORTH);
 		add(Style.getnewPanel(), BorderLayout.WEST);

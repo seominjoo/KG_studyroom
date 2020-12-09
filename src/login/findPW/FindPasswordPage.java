@@ -44,17 +44,20 @@ public class FindPasswordPage extends JPanel {
 	static String imagePath;
 	static BufferedImage image;
 	static ImageIcon icon;
-
-
+	
 	public FindPasswordPage() {
 
-		setOpaque(false);
+		JPanel background = this;
+		setLayout(new BorderLayout(0, 30)) ;
+		new Style(this);
+		background.setBounds(0, 0, 2241 / 5, 2542 / 7);
+		background.setOpaque(false);
 		JPanel blank = new JPanel();
 		blank.setOpaque(false);
-		add(blank,BorderLayout.NORTH);
+		background.add(blank,BorderLayout.NORTH);
 
 		JPanel gridAll = new JPanel(new GridLayout(5, 1, 0, 0));
-		add(gridAll, BorderLayout.CENTER);
+		background.add(gridAll, BorderLayout.CENTER);
 		gridAll.setOpaque(false);
 
 		JLabel title = new JLabel("비밀번호 찾기", JLabel.CENTER);
@@ -71,13 +74,13 @@ public class FindPasswordPage extends JPanel {
 		birthLabel.setBounds(60, -14, 200, 100);
 		grid2.add(birthLabel);
 		
-		JComboBox<String> year = BirthEnum.YEAR.birthComboBoxYear;
+		JComboBox<String> year = new JComboBox<String>(BirthEnum.getYearTable());
 		new Style(year);
 		year.setBounds(160, 22, 65, 30);
-		JComboBox<String> month = BirthEnum.MONTH.birthComboBoxMonth;
+		JComboBox<String> month = new JComboBox<String>(BirthEnum.getMonthTable());
 		new Style(month);
 		month.setBounds(250, 22, 55, 30);
-		JComboBox<String> day = BirthEnum.DAY.birthComboBoxDay;
+		JComboBox<String> day = new JComboBox<String>(BirthEnum.getDayTable());
 		new Style(day);
 		day.setBounds(330, 22, 55, 30);
 		
@@ -100,7 +103,7 @@ public class FindPasswordPage extends JPanel {
 		grid3.add(phoneKor);
 		gridAll.add(grid3);
 
-		JTextField phone_number1 = PhoneNumberEnum.PHONENUMBER1.text;
+		JTextField phone_number1 = new JTextField();
 		new Style(phone_number1, 3);
 		phone_number1.setBounds(180, 18, 45, 30);
 		grid3.add(phone_number1);
@@ -110,7 +113,7 @@ public class FindPasswordPage extends JPanel {
 		new Style(str);
 		grid3.add(str);
 
-		JTextField phone_number2 = PhoneNumberEnum.PHONENUMBER2.text;
+		JTextField phone_number2 = new JTextField();
 		new Style(phone_number2, 4);
 		phone_number2.setBounds(245, 18, 45, 30);
 		grid3.add(phone_number2);
@@ -120,7 +123,7 @@ public class FindPasswordPage extends JPanel {
 		new Style(str2);
 		grid3.add(str2);
 
-		JTextField phone_number3 = PhoneNumberEnum.PHONENUMBER3.text;
+		JTextField phone_number3 = new JTextField();
 		new Style(phone_number3, 4);
 		phone_number3.setBounds(310, 18, 45, 30);
 		grid3.add(phone_number3);
