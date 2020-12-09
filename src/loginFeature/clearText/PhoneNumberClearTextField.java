@@ -1,4 +1,4 @@
-package loginFeature;
+package loginFeature.clearText;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +9,9 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+
+import loginFeature.PhoneNumberEnum;
+import loginFeature.signUp.SignUpEnum;
 
 public class PhoneNumberClearTextField extends MouseAdapter {
 	

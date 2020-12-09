@@ -1,4 +1,4 @@
-package loginFeature;
+package loginFeature.signUp;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -23,7 +23,9 @@ import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import loginFeature.findPW.BirthEnum;
+import loginFeature.BirthEnum;
+import loginFeature.PhoneNumberEnum;
+import loginFeature.signUp.window.ResultWindow;
 
 
 public class ClickSignUp extends MouseAdapter {
@@ -86,7 +88,7 @@ public class ClickSignUp extends MouseAdapter {
 			}
 			else {
 				// 약관 체크
-				for (Entry<JCheckBox, JButton> kv : SignUp.consent.entrySet()) {
+				for (Entry<JCheckBox, JButton> kv : SignUpPage.consent.entrySet()) {
 					if (!kv.getKey().isSelected()) {
 						consentCheck = false;
 						new ResultWindow("약관 동의");

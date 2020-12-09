@@ -8,7 +8,7 @@ public enum PhoneNumberEnum {
 	PHONENUMBER2(""),
 	PHONENUMBER3(""),;
 
-	String labelName;
+	public String labelName;
 	public JTextField text;
 	
 	PhoneNumberEnum(String labelName) {

@@ -1,4 +1,4 @@
-package loginFeature;
+package loginFeature.style;
 
 import java.awt.Color;
 import java.awt.Component;

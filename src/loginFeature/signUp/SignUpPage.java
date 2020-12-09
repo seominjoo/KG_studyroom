@@ -1,4 +1,4 @@
-package loginFeature;
+package loginFeature.signUp;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -25,9 +25,17 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import loginFeature.findPW.BirthEnum;
+import loginFeature.BirthEnum;
+import loginFeature.PhoneNumberEnum;
+import loginFeature.YearMonthClick;
+import loginFeature.clearText.ClearTextBackGround;
+import loginFeature.clearText.ClearTextField;
+import loginFeature.clearText.PhoneNumberClearTextField;
+import loginFeature.signUp.window.ConsentContent;
+import loginFeature.style.Style;
+import loginFeature.swingTools.SwingToolsMainPage;
 
-public class SignUp extends JFrame {
+public class SignUpPage extends JFrame {
 	final int GRID = 8;
 	JPanel card_panel = new JPanel(new CardLayout());
 	JPanel grid_panel = new JPanel(new GridLayout(GRID, 1, 0, 30));
@@ -46,7 +54,7 @@ public class SignUp extends JFrame {
 		}
 	}
 
-	public SignUp() {
+	public SignUpPage() {
 		JPanel background = new JPanel() {
 			public void paintComponent(Graphics g) {
 				g.drawImage(icon.getImage(), 0, 0, null);
@@ -249,7 +257,7 @@ public class SignUp extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		new SignUp();
+		new SignUpPage();
 	}
 
 }

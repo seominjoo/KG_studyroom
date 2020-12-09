@@ -1,4 +1,4 @@
-package loginFeature;
+package loginFeature.swingTools;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;

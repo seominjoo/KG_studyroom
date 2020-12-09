@@ -31,12 +31,13 @@ import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
 
-import loginFeature.ClearTextBackGround;
-import loginFeature.PhoneNumberClearTextField;
+import loginFeature.BirthEnum;
 import loginFeature.PhoneNumberEnum;
-import loginFeature.SignUp;
-import loginFeature.Style;
 import loginFeature.YearMonthClick;
+import loginFeature.clearText.ClearTextBackGround;
+import loginFeature.clearText.PhoneNumberClearTextField;
+import loginFeature.signUp.SignUpPage;
+import loginFeature.style.Style;
 
 public class FindPasswordPage extends JFrame {
 

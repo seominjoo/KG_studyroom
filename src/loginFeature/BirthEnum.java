@@ -1,4 +1,4 @@
-package loginFeature.findPW;
+package loginFeature;
 
 import java.time.LocalDate;
 

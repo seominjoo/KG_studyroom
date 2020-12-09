@@ -6,8 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 
-import loginFeature.findPW.BirthEnum;
-
 public class YearMonthClick implements ActionListener {
 
 	String time;

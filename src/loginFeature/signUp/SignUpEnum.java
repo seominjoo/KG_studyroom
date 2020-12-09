@@ -1,4 +1,4 @@
-package loginFeature;
+package loginFeature.signUp;
 
 import java.io.File;
 
@@ -17,8 +17,8 @@ public enum SignUpEnum {
 	
 	JLabel label;
 	public JTextField text;
-	JPasswordField blindPW;
-	String labelName;
+	public JPasswordField blindPW;
+	public String labelName;
 	String labelNameKor;
 	
 	SignUpEnum(String labelName, String labelNameKor) {

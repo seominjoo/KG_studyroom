@@ -13,13 +13,15 @@ import java.util.Date;
 
 import javax.swing.JLabel;
 
+import loginFeature.BirthEnum;
 import loginFeature.PhoneNumberEnum;
-import loginFeature.SignUpEnum;
+import loginFeature.findPW.window.PassWordSearchResultPage;
+import loginFeature.signUp.SignUpEnum;
 
 
 public class ClickFindPasswordPage implements ActionListener{
 
-	static String password;
+	public static String password;
 	JLabel foundPW;
 	
 	public ClickFindPasswordPage(JLabel foundPW) {
