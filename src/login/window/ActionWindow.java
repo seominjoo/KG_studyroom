@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import login.design.Style;
 import login.DateBase;
 import login.LoginPage;
-import login.SwingTool_logo;
+import login.Login_SwingTool;
 
 public class ActionWindow extends JFrame implements ActionListener {
 
@@ -87,7 +87,7 @@ public class ActionWindow extends JFrame implements ActionListener {
 		new Style(comment2);
 
 		// 프레임설정
-		SwingTool_logo.initFrame(this);
+		Login_SwingTool.initFrame(this);
 		getContentPane().setBackground(Color.decode("#404040"));
 		setLayout(new BorderLayout(10, 10));
 		setBounds(250, 170, 300, 150);
