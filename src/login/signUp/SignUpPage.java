@@ -33,13 +33,13 @@ import login.clearText.ClearTextField;
 import login.clearText.PhoneNumberClearTextField;
 import login.signUp.window.ConsentContent;
 import login.design.Style;
+import login.page.LoginPage;
 import login.swingTools.SwingToolsMainPage;
 
-public class SignUpPage extends JFrame {
+public class SignUpPage extends JPanel {
 	final int GRID = 8;
-	JPanel card_panel = new JPanel(new CardLayout());
-	JPanel grid_panel = new JPanel(new GridLayout(GRID, 1, 0, 30));
-
+	// this  JPanel grid_panel = new JPanel(new GridLayout(GRID, 1, 0, 30));
+	
 	static Map<JCheckBox, JButton> consent;
 	static ImageIcon icon;
 	static BufferedImage source;
@@ -55,19 +55,14 @@ public class SignUpPage extends JFrame {
 	}
 
 	public SignUpPage() {
-		JPanel background = new JPanel() {
-			public void paintComponent(Graphics g) {
-				g.drawImage(icon.getImage(), 0, 0, null);
-				setOpaque(false);
-				super.paintComponent(g);
-			}
-		};
+		
+		this.setLayout(new GridLayout(GRID, 1, 0, 30));
 
-		// �젣紐�
-		JLabel signup = new JLabel("�쉶�썝媛��엯", JLabel.CENTER);
+		// 제목
+		JLabel signup = new JLabel("회원가입", JLabel.CENTER);
 		new Style(signup);
-		signup.setFont(new Font("留묒� 怨좊뵓", Font.BOLD, 30));
-		grid_panel.add(signup);
+		signup.setFont(new Font("맑은 고딕", Font.BOLD, 30));
+		this.add(signup);
 
 		for (SignUpEnum value : SignUpEnum.values()) {
 			
@@ -77,7 +72,7 @@ public class SignUpPage extends JFrame {
 			new Style(value.text, 3);
 			value.text.setHorizontalAlignment(SwingConstants.LEFT);
 
-			// 鍮꾨쾲, 鍮꾨쾲 �솗�씤
+			// 비번, 비번 확인
 			if (value.equals(value.PASSWORD) || value.equals(value.PASSWORDCONFIRM)) {
 				JLabel passLabel = new JLabel(value.labelNameKor);
 				new Style(passLabel);
@@ -85,7 +80,7 @@ public class SignUpPage extends JFrame {
 				value.blindPW.setHorizontalAlignment(SwingConstants.LEFT);
 				gridInGrid.add(passLabel);
 				gridInGrid.add(value.blindPW);
-				grid_panel.add(gridInGrid);
+				this.add(gridInGrid);
 				continue;
 			}
 
@@ -93,7 +88,7 @@ public class SignUpPage extends JFrame {
 			new Style(Label);
 			gridInGrid.add(Label);
 
-			// �깮�뀈�썡�씪
+			// 생년월일
 			if (value.equals(SignUpEnum.BIRTHDAY)) {
 				JPanel panelInGrid2 = new JPanel();
 				new Style(panelInGrid2);
@@ -115,16 +110,16 @@ public class SignUpPage extends JFrame {
 				panelInGrid2.add(day);
 				new Style(day);
 
-				// �뿰�룄, �썡 �겢由�
+				// 연도, 월 클릭
 				year.addActionListener(new YearMonthClick("year"));
 				month.addActionListener(new YearMonthClick("month"));
 
 				gridInGrid.add(panelInGrid2);
-				grid_panel.add(gridInGrid);
+				this.add(gridInGrid);
 				continue;
 			}
 
-			// �쟾�솕踰덊샇
+			// 전화번호
 			if (value.equals(SignUpEnum.PHONENUMBER)) {
 				JPanel phoneNumber3Texts = new JPanel();
 				phoneNumber3Texts.setLayout(null);
@@ -157,59 +152,59 @@ public class SignUpPage extends JFrame {
 
 				gridInGrid.add(phoneNumber3Texts);
 
-				grid_panel.add(gridInGrid);
+				this.add(gridInGrid);
 
 				continue;
 			}
 
 			gridInGrid.add(value.text);
-			grid_panel.add(gridInGrid);
+			this.add(gridInGrid);
 		}
 
-		// �뀓�뒪�듃瑜� 留덉슦�뒪濡� �늻瑜� �븣
+		// 텍스트를 마우스로 누를 때
 		for (SignUpEnum value : SignUpEnum.values()) {
 			if (value.equals(value.PASSWORD) || value.equals(value.PASSWORDCONFIRM))
 				value.blindPW.addMouseListener(new ClearTextField(value));
 			else
 				value.text.addMouseListener(new ClearTextField(value));
 		}
-		// �쟾踰� �뀓�뒪�듃 留덉슦�뒪濡� �늻瑜� �븣
+		// 전번 텍스트 마우스로 누를 때
 		for (PhoneNumberEnum phoneValue : PhoneNumberEnum.values())
 			phoneValue.text.addMouseListener(new PhoneNumberClearTextField(phoneValue));
 
-		// �빟愿� �뙣�꼸
+		// 약관 패널
 		JPanel gridInGrid7 = new JPanel(new GridLayout(2, 2, 0, 2));
 		new Style(gridInGrid7);
 		consent = new HashMap<>();
-		consent.put(new JCheckBox(" �꽌鍮꾩뒪 �씠�슜 �룞�쓽"), new JButton("�빟愿�蹂닿린"));
-		consent.put(new JCheckBox(" �궗�슜�젙蹂� �룞�쓽"), new JButton("�빟愿�蹂닿린"));
+		consent.put(new JCheckBox(" 서비스 이용 동의"), new JButton("약관보기"));
+		consent.put(new JCheckBox(" 사용정보 동의"), new JButton("약관보기"));
 
 		int consentNum = 0;
 		for (Entry<JCheckBox, JButton> kv : consent.entrySet()) {
 			new Style(kv.getKey());
 			
 			new Style(kv.getValue());
-			kv.getValue().setFont(new Font("留묒� 怨좊뵓", Font.BOLD, 17));
+			kv.getValue().setFont(new Font("맑은 고딕", Font.BOLD, 17));
 			
 			gridInGrid7.add(kv.getKey());
 			gridInGrid7.add(kv.getValue());
 			
-			// �빟愿� �궡�슜 蹂닿린
+			// 약관 내용 보기
 			consentNum++;
 			kv.getValue().addActionListener(new ConsentContent(consentNum));
 		}
 
-		grid_panel.add(gridInGrid7);
+		this.add(gridInGrid7);
 
-		// �듅�씤,嫄곗젅 �뙣�꼸
+		// 승인,거절 패널
 		int row = 2;
 		int col = 4;
 
 		JPanel gridInGrid8 = new JPanel(new GridLayout(row, col, 30, 10));
 		new Style(gridInGrid8);
 		
-		JButton s_Yes = new JButton("媛��엯");
-		JButton s_No = new JButton("痍⑥냼");
+		JButton s_Yes = new JButton("가입");
+		JButton s_No = new JButton("취소");
 
 		for (int r = 0; r < row; r++) {
 			for (int c = 0; c < col; c++) {
@@ -227,32 +222,28 @@ public class SignUpPage extends JFrame {
 			new Style(yesNo[i]);
 		}
 
-		grid_panel.add(gridInGrid8);
-		new Style(grid_panel);
-		
-		card_panel.add("Signup", grid_panel);
-		new Style(card_panel);
+		this.add(gridInGrid8);
+		new Style(this);
 
 		s_Yes.addMouseListener(new ClickSignUp());
 		s_No.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				dispose();
+				LoginPage.cards.show(LoginPage.page_panel,"로그인");
 			}
 		});
 
-		SwingToolsMainPage.initTestFrame(this);
-		background.setBounds(0, 0, 2241 / 4, 2542 / 3);
-		add(background);
+//		background.setBounds(0, 0, 2241 / 4, 2542 / 3);
+//		add(background);
+//
+//		background.setLayout(new BorderLayout(60, 10));
+//		background.add(Style.getnewPanel(), BorderLayout.NORTH);
+//		background.add(Style.getnewPanel(), BorderLayout.EAST);
+//		background.add(car, BorderLayout.CENTER);
+//		background.add(Style.getnewPanel(), BorderLayout.WEST);
+//		background.add(Style.getnewPanel(), BorderLayout.SOUTH);
 
-		background.setLayout(new BorderLayout(60, 10));
-		background.add(Style.getnewPanel(), BorderLayout.NORTH);
-		background.add(Style.getnewPanel(), BorderLayout.EAST);
-		background.add(card_panel, BorderLayout.CENTER);
-		background.add(Style.getnewPanel(), BorderLayout.WEST);
-		background.add(Style.getnewPanel(), BorderLayout.SOUTH);
-
-		// 諛곌꼍 �닃���쓣 �븣 �뀓�뒪�듃 珥덇린�솕
+		// 배경 눌렀을 때 텍스트 초기화
 		addMouseListener(new ClearTextBackGround());
 	}
 

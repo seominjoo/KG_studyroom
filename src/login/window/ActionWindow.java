@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import login.design.Style;
 import login.loginDataBase.DataBase;
 import login.page.LoginPage;
+import login.signUp.SignUpPage;
 import login.window.Login_SwingTool;
 
 public class ActionWindow extends JFrame implements ActionListener {
@@ -55,6 +56,7 @@ public class ActionWindow extends JFrame implements ActionListener {
 					// 번호와 비번이 일치 하면
 					comment1.setText("회원번호 : " + DataBase.person_id);
 					comment2.setText(DataBase.person_name + "님 환영합니다 !!");
+//					new mainmenu();
 
 				} else {
 					comment1.setText("잘못된 비밀번호입니다.");
@@ -66,7 +68,10 @@ public class ActionWindow extends JFrame implements ActionListener {
 				comment2.setText("회원가입 해주세요.");
 			}
 
-		} else {
+		} else if(loginbtns.getText().equals("회원가입")){
+			
+			LoginPage.cards.show(LoginPage.page_panel,"회원가입");
+		}else {
 			// 페이지 준비중
 			comment1.setText("[system] still in maintenance");
 			comment2.setText("페이지 준비 중..");

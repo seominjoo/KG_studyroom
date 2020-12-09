@@ -24,6 +24,7 @@ import javax.swing.SwingConstants;
 import login.design.Conversion_image;
 import login.design.EmptyPrice;
 import login.design.Style;
+import login.signUp.SignUpPage;
 import login.window.ActionWindow;
 import login.window.Login_SwingTool;
 
@@ -34,6 +35,8 @@ public class LoginPage extends JFrame {
 	public static JTextField phone_number2;
 	public static JTextField phone_number3;
 	public static JPasswordField loginpass;
+	public static JPanel page_panel;
+	public static CardLayout cards;
 	int x = new Conversion_image("image/로그인화면.jpg", 5).x;
 	int y = new Conversion_image("image/로그인화면.jpg", 5).y;
 	
@@ -50,7 +53,9 @@ public class LoginPage extends JFrame {
 		fram_panel.add(background);
 		
 		// 낙엽쪽 카드페이지 패널
-		JPanel page_panel = new JPanel(new CardLayout());
+		page_panel = new JPanel();
+		cards = new CardLayout();
+		page_panel.setLayout(cards);
 		new Style(page_panel);
 		page_panel.setBounds(1577/5, 0, 2423/5,2250/5);
 		add(page_panel);
@@ -59,7 +64,9 @@ public class LoginPage extends JFrame {
 		JPanel login_panel = new JPanel();
 		login_panel.setLayout(null);
 		new Style(login_panel);
+		
 		page_panel.add("로그인", login_panel);
+		page_panel.add("회원가입", new SignUpPage());
 	
 		phone_number1 = new JTextField("010");
 		new Style(phone_number1);
@@ -106,6 +113,7 @@ public class LoginPage extends JFrame {
 	
 		JButton signup = new JButton(new Conversion_image("image/회원가입.png", 40	, 40).imageicon_smooth);
 		new Style(signup);
+		signup.setText("회원가입");
 		signup.setBounds(410, 365, 50, 50);
 		signup.addActionListener(new ActionWindow(signup));
 		login_panel.add(signup);
