@@ -1,4 +1,4 @@
-package login;
+package login.page;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -25,6 +25,7 @@ import login.design.Conversion_image;
 import login.design.EmptyPrice;
 import login.design.Style;
 import login.window.ActionWindow;
+import login.window.Login_SwingTool;
 
 
 public class LoginPage extends JFrame {

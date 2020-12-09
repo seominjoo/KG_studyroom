@@ -1,4 +1,4 @@
-package loginFeature;
+package login;
 
 import javax.swing.JTextField;
 

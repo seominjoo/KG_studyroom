@@ -1,4 +1,4 @@
-package loginFeature.swingTools;
+package login.swingTools;
 
 import javax.swing.JFrame;
 

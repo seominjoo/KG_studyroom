@@ -1,10 +1,10 @@
-package loginFeature.clearText;
+package login.clearText;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import loginFeature.PhoneNumberEnum;
-import loginFeature.signUp.SignUpEnum;
+import login.PhoneNumberEnum;
+import login.signUp.SignUpEnum;
 
 public class ClearTextBackGround extends MouseAdapter{
 

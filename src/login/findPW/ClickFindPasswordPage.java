@@ -1,4 +1,4 @@
-package loginFeature.findPW;
+package login.findPW;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,11 +13,8 @@ import java.util.Date;
 
 import javax.swing.JLabel;
 
-import loginFeature.BirthEnum;
-import loginFeature.PhoneNumberEnum;
-import loginFeature.findPW.window.PassWordSearchResultPage;
-import loginFeature.signUp.SignUpEnum;
-
+import login.*;
+import login.findPW.window.PassWordSearchResultPage;
 
 public class ClickFindPasswordPage implements ActionListener{
 

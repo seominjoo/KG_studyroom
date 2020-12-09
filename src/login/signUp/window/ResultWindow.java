@@ -1,4 +1,4 @@
-package loginFeature.signUp.window;
+package login.signUp.window;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -17,8 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import loginFeature.style.Style;
-import loginFeature.swingTools.SwingToolsSubPage;
+import login.design.Style;
+import login.swingTools.SwingToolsSubPage;
 
 public class ResultWindow extends JFrame {
 

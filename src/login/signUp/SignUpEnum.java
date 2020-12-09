@@ -1,4 +1,4 @@
-package loginFeature.signUp;
+package login.signUp;
 
 import java.io.File;
 

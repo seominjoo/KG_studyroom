@@ -1,4 +1,4 @@
-package loginFeature.signUp;
+package login.signUp;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -23,9 +23,9 @@ import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import loginFeature.BirthEnum;
-import loginFeature.PhoneNumberEnum;
-import loginFeature.signUp.window.ResultWindow;
+import login.BirthEnum;
+import login.PhoneNumberEnum;
+import login.signUp.window.ResultWindow;
 
 
 public class ClickSignUp extends MouseAdapter {

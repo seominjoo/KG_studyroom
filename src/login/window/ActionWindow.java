@@ -15,9 +15,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import login.design.Style;
-import login.DateBase;
-import login.LoginPage;
-import login.Login_SwingTool;
+import login.loginDataBase.DataBase;
+import login.page.LoginPage;
+import login.window.Login_SwingTool;
 
 public class ActionWindow extends JFrame implements ActionListener {
 
@@ -46,15 +46,15 @@ public class ActionWindow extends JFrame implements ActionListener {
 			String login_password = String.valueOf(LoginPage.loginpass.getPassword());
 			// 로그인 클릭 시
 			// 닫기 하면 페이지를 넘길까?
-			new DateBase(login_phonenumber, login_password);
+			new DataBase(login_phonenumber, login_password);
 
 			// 들고온 값이 디비에 있는지 확인
-			if (DateBase.person_name != null) {
+			if (DataBase.person_name != null) {
 				// 있다.
-				if (DateBase.phone_number.equals(login_phonenumber) && DateBase.password.equals(login_password)) {
+				if (DataBase.phone_number.equals(login_phonenumber) && DataBase.password.equals(login_password)) {
 					// 번호와 비번이 일치 하면
-					comment1.setText("회원번호 : " + DateBase.person_id);
-					comment2.setText(DateBase.person_name + "님 환영합니다 !!");
+					comment1.setText("회원번호 : " + DataBase.person_id);
+					comment2.setText(DataBase.person_name + "님 환영합니다 !!");
 
 				} else {
 					comment1.setText("잘못된 비밀번호입니다.");

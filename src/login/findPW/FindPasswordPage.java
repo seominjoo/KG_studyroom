@@ -1,4 +1,4 @@
-package loginFeature.findPW;
+package login.findPW;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -31,13 +31,12 @@ import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
 
-import loginFeature.BirthEnum;
-import loginFeature.PhoneNumberEnum;
-import loginFeature.YearMonthClick;
-import loginFeature.clearText.ClearTextBackGround;
-import loginFeature.clearText.PhoneNumberClearTextField;
-import loginFeature.signUp.SignUpPage;
-import loginFeature.style.Style;
+import login.BirthEnum;
+import login.PhoneNumberEnum;
+import login.YearMonthClick;
+import login.design.Style;
+import login.clearText.ClearTextBackGround;
+import login.clearText.PhoneNumberClearTextField;
 
 public class FindPasswordPage extends JFrame {
 

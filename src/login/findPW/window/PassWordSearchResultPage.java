@@ -1,8 +1,8 @@
-package loginFeature.findPW.window;
+package login.findPW.window;
 
 import javax.swing.JLabel;
 
-import loginFeature.findPW.ClickFindPasswordPage;
+import login.findPW.*;
 
 public class PassWordSearchResultPage {
 

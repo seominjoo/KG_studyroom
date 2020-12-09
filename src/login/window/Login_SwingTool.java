@@ -1,4 +1,4 @@
-package login;
+package login.window;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

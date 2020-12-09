@@ -1,4 +1,4 @@
-package login;
+package login.loginDataBase;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,14 +9,14 @@ import java.sql.SQLException;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-public class DateBase {
+public class DataBase {
 
 	public static Integer person_id;
 	public static String person_name;
 	public static String phone_number;
 	public static String password;
 
-	public DateBase(String login_phonenumber, String login_password) {
+	public DataBase(String login_phonenumber, String login_password) {
 // Å×½ºÆ®
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
