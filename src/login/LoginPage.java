@@ -38,7 +38,7 @@ public class LoginPage extends JFrame {
 	public LoginPage() {
 		// 디자인
 		JPanel login_panel = new JPanel();
-		JLabel background = new JLabel(new Conversion_image("image/테스트이미지.jpg", 624,373).imageicon_smooth);
+		JLabel background = new JLabel(new Conversion_image("image/로그인배경원본.jpg", 624,373).imageicon_smooth);
 		background.setBounds(0, 0, 624, 373);
 	
 		 phone_number1 = new JTextField("010");
