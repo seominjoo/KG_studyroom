@@ -24,37 +24,10 @@ import javax.swing.JButton;
 
 public class _11paycash_seat {
 
-	private JFrame frame;
-	private JLabel lblNewLabel_1;
-	private JTextField cash;
+	private JFrame frame; 
 	LocalDateTime time_now = LocalDateTime.now();
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					_11paycash_seat window = new _11paycash_seat();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
+	 
 	public _11paycash_seat() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(600, 150, 420, 322);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,23 +41,23 @@ public class _11paycash_seat {
 
 		String price =Integer.toString((_08selectSeat.price11));
 
-		JLabel lblNewLabel = new JLabel("결제 금액 : "+price+"원");
-		lblNewLabel.setFont(new Font("맑은 고딕", Font.BOLD, 18));
-		lblNewLabel.setForeground(Color.BLACK);
-		lblNewLabel.setBounds(57, 49, 236, 39);
-		panel.add(lblNewLabel);
+		JLabel payment = new JLabel("결제 금액 : "+price+"원");
+		payment.setFont(new Font("맑은 고딕", Font.BOLD, 18));
+		payment.setForeground(Color.BLACK);
+		payment.setBounds(57, 49, 236, 39);
+		panel.add(payment);
 
-		lblNewLabel_1 = new JLabel("\uC785\uAE08 \uAE08\uC561");
-		lblNewLabel_1.setFont(new Font("맑은 고딕", Font.BOLD, 18));
-		lblNewLabel_1.setBounds(57, 98, 120, 39);
-		panel.add(lblNewLabel_1);
+		JLabel deposit = new JLabel("입금 금액");
+		deposit.setFont(new Font("맑은 고딕", Font.BOLD, 18));
+		deposit.setBounds(57, 98, 120, 39);
+		panel.add(deposit);
 
-		cash = new JTextField();
+		JTextField cash = new JTextField();
 		cash.setBounds(173, 98, 120, 40);
 		panel.add(cash);
 		cash.setColumns(10);
 
-		JButton pay_btn = new JButton("\uACB0\uC81C");
+		JButton pay_btn = new JButton("결제");
 		pay_btn.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		pay_btn.setBounds(116, 181, 140, 39);
 		panel.add(pay_btn);
@@ -109,93 +82,90 @@ public class _11paycash_seat {
 								);
 						PreparedStatement pstmt = null;
 
+		for(int i=0;i<20;i++) {
+			if( _08selectSeat.seats.get(i).isSelected()&&(_08selectSeat.seats.get(i).isEnabled()==true)) {//이미 예약되있는 건(비활성화) 빼고 체크
+			_08selectSeat.seats.get(i).setEnabled(false);
 
+			String sql = "update seat set Seat_Statement ='사용 중' where Seat_Number= ?";
 
+			pstmt = conn.prepareStatement(sql);
 
-						for(int i=0;i<20;i++) {
-							if( _08selectSeat.seats.get(i).isSelected()&&(_08selectSeat.seats.get(i).isEnabled()==true)) {//이미 예약되있는 건(비활성화) 빼고 체크
-								_08selectSeat.seats.get(i).setEnabled(false);
+			pstmt.setInt(1, i+1);
+			int row = pstmt.executeUpdate();
 
-								String sql = "update seat set Seat_Statement ='사용 중' where Seat_Number= ?";
-
-								pstmt = conn.prepareStatement(sql);
-
-								pstmt.setInt(1, i+1);
-								int row = pstmt.executeUpdate();
-
-								//입실/퇴실시간 저장
-								String sqlt1 = "update seat set time_enter =?,time_checkout=? where Seat_Number= ?";
-								pstmt = conn.prepareStatement(sqlt1);
-								pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
-								pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(_08selectSeat.time11));
-								pstmt.setInt(3, i+1);
-								int rowt1 = pstmt.executeUpdate();
+			//입실/퇴실시간 저장
+			String sqlt1 = "update seat set time_enter =?,time_checkout=? where Seat_Number= ?";
+			pstmt = conn.prepareStatement(sqlt1);
+			pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
+			pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(_08selectSeat.time11));
+			pstmt.setInt(3, i+1);
+			int rowt1 = pstmt.executeUpdate();
 								
-								String sql_pay = " insert into Payment_Record(Paid_Time,Exit_Time,Seat_Type,Pay_Method,Payment) values(?,?,?,?,?)";
-								pstmt = conn.prepareStatement(sql_pay);
-								pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
-								pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(_08selectSeat.time11));
-								pstmt.setString(3, _08selectSeat.type11);
-								pstmt.setString(4, "현금");
-								pstmt.setInt(5,_08selectSeat.price11);
-								int rowp = pstmt.executeUpdate();
+			String sql_pay = " insert into Payment_Record(Paid_Time,Exit_Time,Seat_Type,Pay_Method,Payment) values(?,?,?,?,?)";
+			pstmt = conn.prepareStatement(sql_pay);
+			pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
+			pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(_08selectSeat.time11));
+			pstmt.setString(3, _08selectSeat.type11);
+			pstmt.setString(4, "현금");
+			pstmt.setInt(5,_08selectSeat.price11);
+			int rowp = pstmt.executeUpdate();
 
-								System.out.printf("%d번 자리가 예약되었습니다.(%d행 업데이트)\n", i+1,row);
-								System.out.printf("입실/퇴실 시간이 업데이트되었습니다.(%d행 업데이트)\n",rowt1);
-								System.out.printf("결제 기록이 업데이트되었습니다.(%d행 업데이트)\n",rowp);
-							}
+			System.out.printf("%d번 자리가 예약되었습니다.(%d행 업데이트)\n", i+1,row);
+			System.out.printf("입실/퇴실 시간이 업데이트되었습니다.(%d행 업데이트)\n",rowt1);
+			System.out.printf("결제 기록이 업데이트되었습니다.(%d행 업데이트)\n",rowp);
+		}
 						
-						}
-						for(int i=0;i<4;i++) {
-							if(_08selectSeat.room.get(i).isSelected()&&(_08selectSeat.room.get(i).isEnabled()==true)) {
-								_08selectSeat.room.get(i).setEnabled(false);
-								String sql2 = "update seat set Seat_Statement ='사용 중' where Seat_Number= ?";
-								pstmt = conn.prepareStatement(sql2);
-								pstmt.setInt(1, i+101);
-								int row2 = pstmt.executeUpdate();
+	}
+			for(int i=0;i<4;i++) {
+			if(_08selectSeat.room.get(i).isSelected()&&(_08selectSeat.room.get(i).isEnabled()==true)) {
+			_08selectSeat.room.get(i).setEnabled(false);
+			String sql2 = "update seat set Seat_Statement ='사용 중' where Seat_Number= ?";
+			pstmt = conn.prepareStatement(sql2);
+			pstmt.setInt(1, i+101);
+			int row2 = pstmt.executeUpdate();
 
-								String sqlt3 = "update seat set time_enter =?,time_checkout=? where Seat_Number= ?";
-								pstmt = conn.prepareStatement(sqlt3);
-								pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
-								pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(_08selectSeat.time11));
-								pstmt.setInt(3, i+101);
-								int rowt3 = pstmt.executeUpdate();
+			String sqlt3 = "update seat set time_enter =?,time_checkout=? where Seat_Number= ?";
+			pstmt = conn.prepareStatement(sqlt3);
+			pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
+			pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(_08selectSeat.time11));
+			pstmt.setInt(3, i+101);
+			int rowt3 = pstmt.executeUpdate();
 								
 
-								String sql_pay = " insert into Payment_Record(Paid_Time,Exit_Time,Seat_Type,Pay_Method,Payment) values(?,?,?,?,?)";
-								pstmt = conn.prepareStatement(sql_pay);
-								pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
-								pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(_08selectSeat.time11));
-								pstmt.setString(3, _08selectSeat.type11);
-								pstmt.setString(4, "현금");
-								pstmt.setInt(5,_08selectSeat.price11);
-								int rowp = pstmt.executeUpdate();
+			String sql_pay = " insert into Payment_Record(Paid_Time,Exit_Time,Seat_Type,Pay_Method,Payment) values(?,?,?,?,?)";
+			pstmt = conn.prepareStatement(sql_pay);
+			pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
+			pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(_08selectSeat.time11));
+			pstmt.setString(3, _08selectSeat.type11);
+			pstmt.setString(4, "현금");
+			pstmt.setInt(5,_08selectSeat.price11);
+			int rowp = pstmt.executeUpdate();
 
-								System.out.printf("%d호 룸이 예약되었습니다.(%d행 업데이트)\n", i+101,row2);
-								System.out.printf("입실/퇴실 시간이 업데이트되었습니다.(%d행 업데이트)\n",rowt3); 
-								System.out.printf("결제 기록이 업데이트되었습니다.(%d행 업데이트)\n",rowp);
+			System.out.printf("%d호 룸이 예약되었습니다.(%d행 업데이트)\n", i+101,row2);
+			System.out.printf("입실/퇴실 시간이 업데이트되었습니다.(%d행 업데이트)\n",rowt3); 
+			System.out.printf("결제 기록이 업데이트되었습니다.(%d행 업데이트)\n",rowp);
 
 							
-							}
+		}
 							
-							System.exit(0);
-						} 
-						if (pstmt != null) pstmt.close();
-						if (conn != null) conn.close();
-					} catch (ClassNotFoundException | SQLException e1) { 
-						e1.printStackTrace();
-					} 
- 
-					 
-				}else {
-					int change2 = Integer.parseInt(price)-Integer.parseInt(cash.getText()) ;
-					String msg2= Integer.toString(change2)+"원이 부족합니다";
-					JOptionPane.showMessageDialog(null,msg2); 
-				}
-
+		System.exit(0);
+	} 
+		if (pstmt != null) pstmt.close();
+		if (conn != null) conn.close();
+			} catch (ClassNotFoundException | SQLException e1) { 
+				e1.printStackTrace();
+			} 
+  
+		}else {
+		int change2 = Integer.parseInt(price)-Integer.parseInt(cash.getText()) ;
+		String msg2= Integer.toString(change2)+"원이 부족합니다";
+		JOptionPane.showMessageDialog(null,msg2); 
 			}
-		});
-
-
+		}
+	});
+}
+	public static void main(String[] args) {
+		_11paycash_seat window = new _11paycash_seat();
+		window.frame.setVisible(true);
 	}
 }

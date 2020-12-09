@@ -10,37 +10,15 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.Action;
 
 public class _06moveSeat extends JFrame {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	
 	private JPanel contentPane;
-	private final Action action = new SwingAction();
-	private final Action action_1 = new SwingAction_1();
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					_06moveSeat frame = new _06moveSeat();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	 
 	public _06moveSeat() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(600, 150, 450, 300);
@@ -49,39 +27,30 @@ public class _06moveSeat extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JButton btnNewButton_1 = new JButton("현재 좌석 보기");
-		btnNewButton_1.setAction(action_1);
-		contentPane.add(btnNewButton_1);
+		JButton check_seat_btn = new JButton("현재 좌석 보기"); 
+		contentPane.add(check_seat_btn);
 		
-		JButton btnNewButton = new JButton("이전 화면");
-		btnNewButton.setAction(action);
-		contentPane.add(btnNewButton);
+		JButton btn_back = new JButton("이전 화면"); 
+		contentPane.add(btn_back);
+		
+		check_seat_btn.addActionListener(new ActionListener() { //다음 페이지
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				_06moveSeat2 frame = new _06moveSeat2();
+				frame.setVisible(true);
+			}
+		});
+		
+		btn_back.addActionListener(new ActionListener() { //이전 페이지
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				_01start frame = new _01start();
+				frame.setVisible(true);
+			}
+		});
 	}
-
-	private class SwingAction extends AbstractAction {
-
-		private static final long serialVersionUID = 1L;
-		public SwingAction() {
-			putValue(NAME, "이전 화면");
-			putValue(SHORT_DESCRIPTION, "Some short description");
-		}
-		public void actionPerformed(ActionEvent e) {
-			setVisible(false);
-			_01start frame = new _01start();
-			frame.setVisible(true);
-		}
-	}
-	private class SwingAction_1 extends AbstractAction {
-
-		private static final long serialVersionUID = 1L;
-		public SwingAction_1() {
-			putValue(NAME, "현재 좌석 보기");
-			putValue(SHORT_DESCRIPTION, "Some short description");
-		}
-		public void actionPerformed(ActionEvent e) {
-			setVisible(false);
-			_06moveSeat2 frame = new _06moveSeat2();
-			frame.setVisible(true);
-		}
+	public static void main(String[] args) {
+		_06moveSeat frame = new _06moveSeat();
+		frame.setVisible(true);
 	}
 }

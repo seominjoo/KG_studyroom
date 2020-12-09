@@ -9,38 +9,15 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.Action;
 import java.awt.GridLayout;
 
-public class _05locker extends JFrame {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private final Action action = new SwingAction();
-	private final Action action_1 = new SwingAction_1();
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					_05locker frame = new _05locker();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+public class _05locker extends JFrame { 
+	
+	private JPanel contentPane; 
+	
 	public _05locker() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(600, 150, 450, 300);
@@ -49,38 +26,31 @@ public class _05locker extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JButton btnNewButton_1 = new JButton("이용 가능한 사물함 보기");
-		btnNewButton_1.setAction(action_1);
-		contentPane.add(btnNewButton_1);
+		JButton check_locker_btn = new JButton("이용 가능한 사물함 보기"); 
+		contentPane.add(check_locker_btn);
 		
-		JButton btnNewButton = new JButton("이전 화면");
-		btnNewButton.setAction(action);
-		contentPane.add(btnNewButton);
+		JButton btn_back = new JButton("이전 화면"); 
+		contentPane.add(btn_back);
+		
+		check_locker_btn.addActionListener(new ActionListener() { //다음 페이지
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				new _05selectLocker(); 
+			}
+		});
+		
+		btn_back.addActionListener(new ActionListener() { //이전 페이지
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				_01start frame = new _01start();
+				frame.setVisible(true);
+			}
+		});
 	}
-
-	private class SwingAction extends AbstractAction {
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;
-		public SwingAction() {
-			putValue(NAME, "이전 화면");
-			putValue(SHORT_DESCRIPTION, "Some short description");
-		}
-		public void actionPerformed(ActionEvent e) {
-			setVisible(false);
-			_01start frame = new _01start();
-			frame.setVisible(true);
-		}
-	}
-	private class SwingAction_1 extends AbstractAction {
-		public SwingAction_1() {
-			putValue(NAME, "사물함 1개월 (25,000)");
-			putValue(SHORT_DESCRIPTION, "Some short description");
-		}
-		public void actionPerformed(ActionEvent e) {
-			setVisible(false);
-			new _05selectLocker(); 
-		}
+	public static void main(String[] args) {
+		_05locker frame = new _05locker();
+		frame.setVisible(true);
 	}
 }

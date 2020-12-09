@@ -1,14 +1,17 @@
 package mainmenu;
 
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.GridLayout;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 
 import javax.swing.Action;
@@ -18,189 +21,107 @@ import java.awt.Insets;
 
 public class _03whatHour extends JFrame {
 
-	/**
-	 * 
-	 */
-	LocalDateTime time_now = LocalDateTime.now();
-	private static final long serialVersionUID = 1L;
-	int Person_Id;
-	private JPanel contentPane;
-	private final Action action = new SwingAction();
-	private final Action action_1 = new SwingAction_1();
-	private final Action action_2 = new SwingAction_2();
-	private final Action action_3 = new SwingAction_3();
-	private final Action action_4 = new SwingAction_4();
-	private final Action action_5 = new SwingAction_5();
+	LocalDateTime time_now = LocalDateTime.now(); 
+	private JPanel contentPane; 
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					_03whatHour frame = new _03whatHour();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+	public _03whatHour() {
+		JLabel label01 = new JLabel("<html>&emsp;&emsp;&emsp; &emsp;가격표");
+		label01.setBounds(0,0,440,80);
+		label01.setFont(new Font("Courier", Font.PLAIN, 35));
+		 
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(600, 150, 450, 350);
+		contentPane = new JPanel();
+		
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		 
+		contentPane.add(label01);
+		
+		JButton btn_2hr= new JButton("2시간");
+		btn_2hr.setBounds(5, 143, 208, 54); 
+		contentPane.add(btn_2hr);
+
+		JButton btn_4hr = new JButton("4시간");
+		btn_4hr.setBounds(218, 143, 213, 54); 
+		contentPane.add(btn_4hr);
+
+		JButton btn_6hr = new JButton("6시간");
+		btn_6hr.setBounds(5, 198, 208, 54); 
+		contentPane.add(btn_6hr);
+
+		JButton btn_8hr = new JButton("8시간");
+		btn_8hr.setBounds(218, 198, 213, 54); 
+		contentPane.add(btn_8hr);
+
+		JButton btn_12hr = new JButton("12시간");
+		btn_12hr.setBounds(5, 253, 208, 54);
+		contentPane.add(btn_12hr);
+  
+		JButton btn_back = new JButton("이전 화면");
+		btn_back.setBounds(218, 253, 213, 54);
+		contentPane.add(btn_back, btn_back);
+
+		btn_2hr.addActionListener(new ActionListener() { //다음 페이지(2시간 이용권)
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				_08selectSeat frame = new _08selectSeat(time_now.plusHours(2),3000,"2시간 이용권");
+				frame.setVisible(true);
+			}
+		}); 
+
+		btn_4hr.addActionListener(new ActionListener() { //다음 페이지(4시간 이용권)
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				_08selectSeat frame = new _08selectSeat(time_now.plusHours(4),4500,"4시간 이용권");
+				frame.setVisible(true);
+			}
+		}); 
+
+		btn_6hr.addActionListener(new ActionListener() { //다음 페이지(6시간 이용권)
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				_08selectSeat frame = new _08selectSeat(time_now.plusHours(6),6000,"6시간 이용권");
+				frame.setVisible(true);
+			}
+		});
+
+		btn_8hr.addActionListener(new ActionListener() { //다음 페이지(8시간 이용권)
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				_08selectSeat frame = new _08selectSeat(time_now.plusHours(8),7500,"8시간 이용권");
+				frame.setVisible(true);
+			}
+		});
+
+		btn_12hr.addActionListener(new ActionListener() { //다음 페이지(12시간 이용권)
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				_08selectSeat frame = new _08selectSeat(time_now.plusHours(12),10000,"12시간 이용권");
+				frame.setVisible(true);
+			}
+		});
+
+		btn_back.addActionListener(new ActionListener() { //이전 페이지
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				_02dayOrWeek frame = new _02dayOrWeek();
+				frame.setVisible(true);
 			}
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public _03whatHour() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(600, 150, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		GridBagLayout gbl_contentPane = new GridBagLayout();
-		gbl_contentPane.columnWidths = new int[]{213, 213, 0};
-		gbl_contentPane.rowHeights = new int[]{84, 84, 84, 0};
-		gbl_contentPane.columnWeights = new double[]{0.0, 0.0, Double.MIN_VALUE};
-		gbl_contentPane.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-		contentPane.setLayout(gbl_contentPane);
-		
-		JButton btnNewButton_2 = new JButton("2시간 (3,000원)");
-		btnNewButton_2.setAction(action);
-		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
-		gbc_btnNewButton_2.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton_2.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_2.gridx = 0;
-		gbc_btnNewButton_2.gridy = 0;
-		contentPane.add(btnNewButton_2, gbc_btnNewButton_2);
-		
-		JButton btnNewButton = new JButton("4시간 (4,500원)");
-		btnNewButton.setAction(action_1);
-		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton.gridx = 1;
-		gbc_btnNewButton.gridy = 0;
-		contentPane.add(btnNewButton, gbc_btnNewButton);
-		
-		JButton btnNewButton_1 = new JButton("6시간 (6,000원)");
-		btnNewButton_1.setAction(action_2);
-		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
-		gbc_btnNewButton_1.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton_1.insets = new Insets(0, 0, 5, 5);
-		gbc_btnNewButton_1.gridx = 0;
-		gbc_btnNewButton_1.gridy = 1;
-		contentPane.add(btnNewButton_1, gbc_btnNewButton_1);
-		
-		JButton btnNewButton_4 = new JButton("8시간 (7,500원)");
-		btnNewButton_4.setAction(action_3);
-		GridBagConstraints gbc_btnNewButton_4 = new GridBagConstraints();
-		gbc_btnNewButton_4.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton_4.insets = new Insets(0, 0, 5, 0);
-		gbc_btnNewButton_4.gridx = 1;
-		gbc_btnNewButton_4.gridy = 1;
-		contentPane.add(btnNewButton_4, gbc_btnNewButton_4);
-		
-		JButton btnNewButton_3 = new JButton("12시간 (10,000원)");
-		btnNewButton_3.setAction(action_4);
-		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
-		gbc_btnNewButton_3.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton_3.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNewButton_3.gridx = 0;
-		gbc_btnNewButton_3.gridy = 2;
-		contentPane.add(btnNewButton_3, gbc_btnNewButton_3);
-		
-		JButton btnNewButton_5 = new JButton("이전 화면");
-		btnNewButton_5.setAction(action_5);
-		GridBagConstraints gbc_btnNewButton_5 = new GridBagConstraints();
-		gbc_btnNewButton_5.fill = GridBagConstraints.BOTH;
-		gbc_btnNewButton_5.gridx = 1;
-		gbc_btnNewButton_5.gridy = 2;
-		contentPane.add(btnNewButton_5, gbc_btnNewButton_5);
-	}
-
-	private class SwingAction extends AbstractAction {
-
-		private static final long serialVersionUID = 1L;
-		public SwingAction() {
-			putValue(NAME, "2시간 (3,000원)");
-			putValue(SHORT_DESCRIPTION, "Some short description");
-		}
-		public void actionPerformed(ActionEvent e) {
-			setVisible(false);
-			_08selectSeat frame = new _08selectSeat(time_now.plusHours(2),3000,"2시간 이용권");
-			frame.setVisible(true);
-			 
-		}
-	}
-	
-	private class SwingAction_1 extends AbstractAction {
-
-		private static final long serialVersionUID = 1L;
-		public SwingAction_1() {
-			putValue(NAME, "4시간 (4,500원)");
-			putValue(SHORT_DESCRIPTION, "Some short description");
-		}
-		public void actionPerformed(ActionEvent e) {
-			setVisible(false);
-			_08selectSeat frame = new _08selectSeat(time_now.plusHours(4),4500,"4시간 이용권");
-			frame.setVisible(true);
-		 
-		}
-	}
-	private class SwingAction_2 extends AbstractAction {
-
-		private static final long serialVersionUID = 1L;
-		public SwingAction_2() {
-			putValue(NAME, "6시간 (6,000원)");
-			putValue(SHORT_DESCRIPTION, "Some short description");
-		}
-		public void actionPerformed(ActionEvent e) {
-			setVisible(false);
-			_08selectSeat frame = new _08selectSeat(time_now.plusHours(6),6000,"6시간 이용권");
-			frame.setVisible(true);
-			 
-		}
-	}
-	private class SwingAction_3 extends AbstractAction {
-
-		private static final long serialVersionUID = 1L;
-		public SwingAction_3() {
-			putValue(NAME, "8시간 (7,500원)");
-			putValue(SHORT_DESCRIPTION, "Some short description");
-		}
-		public void actionPerformed(ActionEvent e) {
-			setVisible(false);
-			_08selectSeat frame = new _08selectSeat(time_now.plusHours(8),7500,"8시간 이용권");
-			frame.setVisible(true);
-		 
-		}
-	}
-	private class SwingAction_4 extends AbstractAction {
-
-		private static final long serialVersionUID = 1L;
-		public SwingAction_4() {
-			putValue(NAME, "12시간 (10,000원)");
-			putValue(SHORT_DESCRIPTION, "Some short description");
-		}
-		public void actionPerformed(ActionEvent e) {
-			setVisible(false);
-			_08selectSeat frame = new _08selectSeat(time_now.plusHours(12),10000,"12시간 이용권");
-			frame.setVisible(true);
-		 
-		}
-		
-	}
-	private class SwingAction_5 extends AbstractAction {
-
-		private static final long serialVersionUID = 1L;
-		public SwingAction_5() {
-			putValue(NAME, "이전 화면");
-			putValue(SHORT_DESCRIPTION, "Some short description");
-		}
-		public void actionPerformed(ActionEvent e) {
-			setVisible(false);
-			_02dayOrWeek frame = new _02dayOrWeek();
-			frame.setVisible(true);
-		}
+	public static void main(String[] args) {
+		_03whatHour frame = new _03whatHour();
+		frame.setVisible(true);
 	}
 }
+

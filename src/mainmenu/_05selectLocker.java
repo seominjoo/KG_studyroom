@@ -23,8 +23,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 public class _05selectLocker extends JFrame implements ActionListener{
-	 
-	private static final long serialVersionUID = 1L;
+	
+	private JPanel p1;
 	boolean selected = false;
 	 
 	static ArrayList<JCheckBox> lockers = new ArrayList<>(); //1~20번 사물함
@@ -43,17 +43,16 @@ public class _05selectLocker extends JFrame implements ActionListener{
 	JLabel label_msg;
 	LocalDateTime time_now = LocalDateTime.now();
 	String time_checkout;
-//	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
 	
-	JPanel p1 = new JPanel();
+ 
 	
 	_05selectLocker() {
-
-		JButton OK;
-		JButton back;
+		
+		p1 = new JPanel();
+		 
 		JLabel label03 = new JLabel("사물함");
 		label_msg = new JLabel("");
-		label03.setBounds(10,185,50,30);
+		label03.setBounds(60,120,50,30);
 		label03.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		p1.add(label03);
 		label_msg.setBounds(200,310,500,30);
@@ -62,16 +61,15 @@ public class _05selectLocker extends JFrame implements ActionListener{
 		
 
 		for(int i=0; i<10;i++) {// 사물함 체크박스 위치 설정
-			lockers.get(i).setBounds(20+c,220,40,30);
+			lockers.get(i).setBounds(60+c,170,40,30);
 			p1.add(lockers.get(i));
 			c+=40;
 		}
 		for(int i=10; i<20;i++) {// 사물함 체크박스 위치 설정
-			lockers.get(i).setBounds(20+d,250,40,30);
+			lockers.get(i).setBounds(60+d,200,40,30);
 			p1.add(lockers.get(i));
 			d+=40;
 		}
-
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -81,33 +79,32 @@ public class _05selectLocker extends JFrame implements ActionListener{
 					"1234"
 					);
 			 
-			//시간 비교
-	 	 
-			String sqlmt2 = "SELECT Locker_Number,l_time_checkout FROM locker "
+			// 사용중인 사물함 중 이용기간이 지나면 사용가능으로 업데이트
+			String sql = "SELECT Locker_Number,l_time_checkout FROM locker "
 					+ "WHERE Locker_Statement='사용 중'";
-			PreparedStatement pstmtt2 = conn.prepareStatement(sqlmt2);
-			ResultSet rst2 = pstmtt2.executeQuery();
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			ResultSet rs = pstm.executeQuery();
 		 
-			while(rst2.next()) {//사용중인 사물함 중 이용기간이 지나면 사용가능으로 업뎃 
-				int locker_chk = rst2.getInt("Locker_Number");
-				Timestamp l_time_chk = rst2.getTimestamp("l_time_checkout");
+			while(rs.next()) { 
+				int locker_chk = rs.getInt("Locker_Number");
+				Timestamp l_time_chk = rs.getTimestamp("l_time_checkout");
 				if(time_now.isAfter(Time.TimeStampTOlocalDateTime(l_time_chk))) {
-					String change2 = "update locker set Locker_Statement ='사용 가능',l_time_enter=null,l_time_checkout=null where Locker_Number= ?";
-					PreparedStatement pstmtas2 = conn.prepareStatement(change2);
-					pstmtas2.setInt(1, locker_chk);
-					int row4 = pstmtas2.executeUpdate();
+					String change = "update locker set Locker_Statement ='사용 가능',l_time_enter=null,l_time_checkout=null where Locker_Number= ?";
+					PreparedStatement pstm2 = conn.prepareStatement(change);
+					pstm2.setInt(1, locker_chk);
+					int row4 = pstm2.executeUpdate();
 				}  
 			}
 		 
 				
-			//사물함 - db에서 '사용 중'인지 읽은 다음 '사용 중'이면 체크박스 체크 및 비활성화(사용중 이므로 예약 못하게)
-			String sqlm2 = "select locker_number from locker where locker_statement='사용 중'";
-			PreparedStatement pstmt2 = conn.prepareStatement(sqlm2);
-			ResultSet rs2 = pstmt2.executeQuery();
+			// 사용중인 사물함이면 체크박스 체크 및 비활성화 
+			sql = "select locker_number from locker where locker_statement='사용 중'";
+			pstm = conn.prepareStatement(sql);
+			rs = pstm.executeQuery();
 			System.out.println();
 			System.out.printf("예약된 사물함 : ");
-			while(rs2.next()) {
-				int sn = rs2.getInt("locker_number");
+			while(rs.next()) {
+				int sn = rs.getInt("locker_number");
 				System.out.printf("%d번 ",sn);
 				lockers.get(sn-1).setSelected(true);
 				lockers.get(sn-1).setEnabled(false); 
@@ -115,34 +112,31 @@ public class _05selectLocker extends JFrame implements ActionListener{
 			}
 			System.out.println();
 
-			if(rs2!=null) rs2.close(); 
-			if (pstmt2 != null) pstmt2.close();
+			if(rs!=null) rs.close(); 
+			if (pstm != null) pstm.close();
 			if (conn != null) conn.close();
-		} catch (ClassNotFoundException | SQLException e1) {
-			// TODO Auto-generated catch block
+		} catch (ClassNotFoundException | SQLException e1) { 
 			e1.printStackTrace();
 		}
+		 
+		JButton btn_pay = new JButton("결제하기");
+		btn_pay.setBounds(310,380,100,50);
+		p1.add(btn_pay);
+		btn_pay.addActionListener(this);
+ 
+		 
 		
-		
-		OK = new JButton("결제하기");
-		OK.setBounds(230,380,100,50);
-		p1.add(OK);
-		OK.addActionListener(this);
-
-
-		ActionListener back_btn = new ActionListener() {
+		JButton btn_back = new JButton("이전 화면");
+		btn_back.setBounds(160,380,100,50);
+		p1.add(btn_back);
+		btn_back.addActionListener(new ActionListener() { //이전 페이지
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				_01start frame = new _01start();
 				frame.setVisible(true);
 			}
-		};
-		
-		back = new JButton("이전 화면");
-		back.setBounds(230,30,100,50);
-		p1.add(back);
-		back.addActionListener(back_btn);
+		});
 	 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(600,500);
@@ -151,23 +145,12 @@ public class _05selectLocker extends JFrame implements ActionListener{
 		
 		p1.setBounds(0, 100, 600, 500);
 		p1.setLayout(null);
-		this.add(p1);
-		 
+		this.add(p1); 
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) { 
-
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			Connection conn = DriverManager.getConnection(
-					"jdbc:oracle:thin:@localhost:1521/XEPDB1",
-					"hr",
-					"1234"
-					);
 			
-			PreparedStatement pstmt = null;
-
 			String msg="";
 			
 			for(int i=0;i<=19;i++) {
@@ -187,43 +170,17 @@ public class _05selectLocker extends JFrame implements ActionListener{
 				if(result ==JOptionPane.CLOSED_OPTION) { 
 					//(재 확인 창 끄기) 
 				}else if (result ==JOptionPane.NO_OPTION) {
-					JOptionPane.showMessageDialog(this,"취소");//취소 메세지
-					 
-				}else {   
-					
-					setVisible(false);
-					
+					JOptionPane.showMessageDialog(this,"취소");//취소 메세지 
+				}else {    
+					setVisible(false); 
 					// yes버튼 -> 결제페이지 
-					new _09paymentLocker();
-					 				
+					new _09paymentLocker(); 
 				}
-			} 
-			if (pstmt != null) pstmt.close();
-			if (conn != null) conn.close();
-		} catch (ClassNotFoundException | SQLException e1) {
-
-			e1.printStackTrace();
-		} 
+			}  
 	} 
-
-	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
+ 
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					_05selectLocker frame = new _05selectLocker();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-
-
+		_05selectLocker frame = new _05selectLocker();
+		frame.setVisible(true);
+	}  
 }

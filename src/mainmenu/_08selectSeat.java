@@ -25,9 +25,6 @@ public class _08selectSeat extends JFrame implements ActionListener{
 	 static int price11;
 	 static String type11;
 	 
-	 
-	 
-	private static final long serialVersionUID = 1L;
 	boolean selected = false;
 	static ArrayList<JCheckBox> seats = new ArrayList<>(); //1~20번 좌석 (1인석)
 	{
@@ -51,12 +48,11 @@ public class _08selectSeat extends JFrame implements ActionListener{
 	JLabel label_msg;
 	static LocalDateTime time_now = LocalDateTime.now();
 	String time_checkout;
-//	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
-	
-
 	JPanel p1 = new JPanel();
+	 
+	
 	_08selectSeat(LocalDateTime ss,int seat_price,String seat_type) {
-
+		 
 		JButton OK;
 		JButton back;
 		JLabel label = new JLabel("1인석");
@@ -67,7 +63,7 @@ public class _08selectSeat extends JFrame implements ActionListener{
 		p1.add(label);
 		label02.setBounds(10,100,50,30);
 		label02.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		p1.add(label02);
+	 
 		label_msg.setBounds(200,310,500,30);
 		label_msg.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		p1.add(label_msg); 
@@ -82,23 +78,26 @@ public class _08selectSeat extends JFrame implements ActionListener{
 			p1.add(seats.get(i));
 			b+=40;
 		}
+		if(seat_price<=10000) {
 		for(int i=0; i<4;i++) {// 룸 체크박스 위치 설정
 			room.get(i).setBounds(20+e,140,100,30);
 			p1.add(room.get(i));
 			e+=100;
+		}
+		p1.add(label02);
 		}
 
 		ActionListener back_btn = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				_01start frame = new _01start();
+				_02dayOrWeek frame = new _02dayOrWeek();
 				frame.setVisible(true);
 			}
 		};
 		
 		back = new JButton("이전 화면");
-		back.setBounds(230,280,100,50);
+		back.setBounds(180,380,100,50);
 		p1.add(back);
 		back.addActionListener(back_btn);
 	
@@ -109,16 +108,15 @@ public class _08selectSeat extends JFrame implements ActionListener{
 					"hr",
 					"1234"
 					);
-			 
 			//시간 비교
-			String sqlmt1 = "SELECT seat_number, time_checkout FROM seat "
+			String sql = "SELECT seat_number, time_checkout FROM seat "
 					+ "WHERE seat_statement ='사용 중'";
-			PreparedStatement pstmtt1 = conn.prepareStatement(sqlmt1);
-			ResultSet rst1 = pstmtt1.executeQuery();
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			ResultSet rs = pstm.executeQuery();
 		 
-			while(rst1.next()) {//사용중인 좌석중 퇴실시간이 지나면 사용가능으로 업뎃 
-				int seat_chk = rst1.getInt("seat_number");
-				Timestamp time_chk = rst1.getTimestamp("time_checkout");
+			while(rs.next()) {//퇴실 시간 지난 좌석 퇴실처리
+				int seat_chk = rs.getInt("seat_number");
+				Timestamp time_chk = rs.getTimestamp("time_checkout");
 				if(time_now.isAfter(Time.TimeStampTOlocalDateTime(time_chk))) {
 					String change = "update seat set Seat_Statement ='사용 가능',time_enter=null,time_checkout=null where Seat_Number= ?";
 					PreparedStatement pstmtas = conn.prepareStatement(change);
@@ -126,10 +124,10 @@ public class _08selectSeat extends JFrame implements ActionListener{
 					int row3 = pstmtas.executeUpdate();
 				}  
 			} 
-			//좌석 - db에서 '사용 중'인지 읽은 다음 '사용 중'이면 체크박스 체크 및 비활성화(사용중 이므로 예약 못하게) 
-			String sqlm = "select seat_number from seat where seat_statement='사용 중'";
-			PreparedStatement pstmt = conn.prepareStatement(sqlm);
-			ResultSet rs = pstmt.executeQuery(); 
+			//사용중인 좌석이면 체크박스 체크 및 비활성화 
+			sql = "select seat_number from seat where seat_statement='사용 중'";
+			pstm = conn.prepareStatement(sql);
+			rs = pstm.executeQuery(); 
 			System.out.print("예약된 자리 : ");
 
 			while(rs.next()) { 
@@ -138,30 +136,25 @@ public class _08selectSeat extends JFrame implements ActionListener{
 					System.out.printf("%d번 ",sn); 
 					seats.get(sn-1).setSelected(true);
 					seats.get(sn-1).setEnabled(false);
-					 
 				}else if (sn>=101) {
 					System.out.printf("[%d호] ",sn); 
 					room.get(sn-101).setSelected(true);
 					room.get(sn-101).setEnabled(false);
-					 
 				}
 			}
 			
 			if(rs!=null) rs.close(); 
-			if (pstmt != null) pstmt.close();
+			if (pstm != null) pstm.close();
 			if (conn != null) conn.close();
-		} catch (ClassNotFoundException | SQLException e1) {
-			// TODO Auto-generated catch block
+		} catch (ClassNotFoundException | SQLException e1) { 
 			e1.printStackTrace();
 		}
 		
-		
 		OK = new JButton("결제하기");
-		OK.setBounds(230,380,100,50);
+		OK.setBounds(290,380,100,50);
 		p1.add(OK);
 		OK.addActionListener(this);
 
-	 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(600,500);
 		setLocation(600,150);
@@ -195,42 +188,33 @@ public class _08selectSeat extends JFrame implements ActionListener{
 					number+=i+1+"번 좌석 ";
 				}
 			}
-			
 			for(int i=0;i<=3;i++){
 				if(room.get(i).isSelected()&&(room.get(i).isEnabled()==true)) {
 					msg+=i+101+"호 룸\n"; 
 					number+=i+101+" 호 룸 ";
+					price11*=4;
 				}
 			}
-				
-
 			msg+="결제하시겠습니까?";
 			if(msg.length()<15) {
 				msg="결제할 자리를 선택해주세요";
 				JOptionPane.showMessageDialog(this,msg);//예약이 없으면 다시선택 메세지 창 띄우기(메세지 길이로 체크)
 			}else {
-				//이동하기 버튼 누를 시 (이동하시겠습니까?)재확인 -> (창끄기 or 예 or 취소)버튼 
+				// (창끄기 or 예 or 취소)버튼 
 				int result= JOptionPane.showConfirmDialog(null, msg,"Message",JOptionPane.YES_NO_OPTION);
 				if(result ==JOptionPane.CLOSED_OPTION) { 
 					//(재 확인 창 끄기) 
 				}else if (result ==JOptionPane.NO_OPTION) {
 					JOptionPane.showMessageDialog(this,"취소");//취소 메세지
-					 
 				}else {   
-					
 					setVisible(false);
-					
 					// yes버튼 -> 결제 페이지
 					new _10paymentSeat(time11,price11,type11);
-					 
-					
 				}
 			} 
-
 			if (pstmt != null) pstmt.close();
 			if (conn != null) conn.close();
 		} catch (ClassNotFoundException | SQLException e1) {
-
 			e1.printStackTrace();
 		} 
 	} 
@@ -238,7 +222,7 @@ public class _08selectSeat extends JFrame implements ActionListener{
 	
 	 
 	public static void main(String[] args) {
-		
+	
 	} 
 
 }
