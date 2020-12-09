@@ -24,6 +24,8 @@ import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
 
+import login.signUp.SignUpPage;
+
 public class Style {
 
 	private static JPanel panel;
@@ -36,6 +38,7 @@ public class Style {
 	private JCheckBox jcheck;
 	private JComponent cp;
 	private int size;
+	
 	
 	public Style(JComponent cp) {
 		this.cp = cp;
@@ -54,7 +57,7 @@ public class Style {
 			} else if (label.getText().equals("")) {
 				label.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 16));
 			} else {
-				label.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 17));
+				label.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
 			}
 			label.setForeground(Color.decode("#cfab8b"));
 		} else if (cp instanceof JButton) {
@@ -66,7 +69,7 @@ public class Style {
 				btn.setFocusPainted(false);
 				btn.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // Å×µÎ¸®?
 				btn.setForeground(Color.decode("#cfab8b"));
-				btn.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 17));
+				btn.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
 			} else {
 				btn.setBackground(Color.decode("#cfab8b"));
 				btn.setFocusable(false);
@@ -85,7 +88,7 @@ public class Style {
 			text.setHorizontalAlignment(SwingConstants.CENTER);
 			text.setForeground(Color.decode("#cfab8b"));
 			if (!(text.getText().equals("010") || text.getText().equals("")))
-				text.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 17));
+				text.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
 			text.setCaretColor(Color.decode("#cfab8b")); // Ä¿¼­ »ö»ó
 		} else if (cp instanceof JPasswordField) {
 			pass = (JPasswordField) cp;
@@ -118,7 +121,7 @@ public class Style {
 			jcheck = (JCheckBox) cp;
 			jcheck.setForeground(Color.decode("#cfab8b"));
 			jcheck.setOpaque(false);
-			jcheck.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 17));
+			jcheck.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
 		}
 	}
 

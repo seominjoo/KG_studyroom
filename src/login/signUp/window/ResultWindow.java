@@ -18,6 +18,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import login.design.Style;
+import login.page.LoginPage;
 import login.swingTools.SwingToolsSubPage;
 
 public class ResultWindow extends JFrame {
@@ -34,7 +35,6 @@ public class ResultWindow extends JFrame {
 	private String person_name;
 	private boolean result = false;
 
-
 	public ResultWindow(int person_id, String person_name) {
 		this.person_id = person_id;
 		this.person_name = person_name;
@@ -50,21 +50,21 @@ public class ResultWindow extends JFrame {
 	void ResultCalc() {
 		SwingToolsSubPage.initTestFrame(this);
 		getContentPane().setBackground(Color.decode("#404040"));
-		setLayout(new BorderLayout(0, 20));
+		setLayout(new BorderLayout(0, 15));
 		add(Style.getnewPanel(), BorderLayout.NORTH);
-
+		
 		gridPanel21 = new JPanel();
 		gridPanel21.setLayout(new GridLayout(2, 1, 0, 0));
 		new Style(gridPanel21);
 		add(gridPanel21, BorderLayout.CENTER);
 
-		gridPanel31InGrid1 = new JPanel(new GridLayout(3, 1, 0, 0));
+		gridPanel31InGrid1 = new JPanel(new GridLayout(3, 1, 0, 10));
 		new Style(gridPanel31InGrid1);
 
 		if (result) {
 			failLabel1 = new JLabel("가입 성공", JLabel.CENTER);
 			failLabel2 = new JLabel("성 함 : " + this.person_name + " 님", JLabel.CENTER);
-			failLabel3 = new JLabel("[ 회원 번호 : " + this.person_id+" ]", JLabel.CENTER);
+			failLabel3 = new JLabel("[ 회원 번호 : " + this.person_id + " ]", JLabel.CENTER);
 		} else {
 			failLabel1 = new JLabel("가입 실패", JLabel.CENTER);
 			failLabel2 = new JLabel("하기 사항을 확인하세요", JLabel.CENTER);
@@ -84,17 +84,22 @@ public class ResultWindow extends JFrame {
 		new Style(panelInGrid2);
 		gridPanel21.add(panelInGrid2);
 		panelInGrid2.setLayout(null);
-
+		
 		confirmButton = new JButton("확인");
-		confirmButton.setBounds(121, 35, 110, 30);
+		confirmButton.setBounds(121, 22, 110, 30);
 		new Style(confirmButton);
 		panelInGrid2.add(confirmButton);
 
 		confirmButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getButton() == MouseEvent.BUTTON1)
-					dispose();
+				if (e.getButton() == MouseEvent.BUTTON1) {
+					if (result) {
+						LoginPage.cards.show(LoginPage.page_panel, "로그인");
+					}
+						dispose();
+				}
+
 			}
 		});
 

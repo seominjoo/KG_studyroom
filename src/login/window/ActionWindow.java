@@ -19,6 +19,7 @@ import login.design.Style;
 import login.loginDataBase.DBLoggedIn;
 import login.page.LoginPage;
 import login.signUp.SignUpPage;
+import login.swingTools.SwingToolsSubPage;
 import login.window.Login_SwingTool;
 
 public class ActionWindow extends JFrame implements ActionListener {
@@ -29,11 +30,9 @@ public class ActionWindow extends JFrame implements ActionListener {
 	JLabel comment2;
 	JLabel comment3;
 
-	static String name = "서민주";
-
 	public ActionWindow(JButton loginbtns) {
 		this.loginbtns = loginbtns;
-		center_panel = new JPanel(new GridLayout(2, 0, 0, 10));
+		center_panel = new JPanel(new GridLayout(3, 1, 0, -60));
 		new Style(center_panel);
 		comment1 = new JLabel("", JLabel.CENTER);
 		comment2 = new JLabel("", JLabel.CENTER);
@@ -42,7 +41,12 @@ public class ActionWindow extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
+		JButton combtn = new JButton("확인");
+		new Style(combtn);
+		
 		if (loginbtns.getText().equals("로그인")) {
+			SwingToolsSubPage.initTestFrame(this);
+			setLayout(new BorderLayout(10, 0));
 			String login_phonenumber = LoginPage.phone_number1.getText() + "-" + LoginPage.phone_number2.getText() + "-"
 					+ LoginPage.phone_number3.getText();
 			String login_password = String.valueOf(LoginPage.loginpass.getPassword());
@@ -59,7 +63,8 @@ public class ActionWindow extends JFrame implements ActionListener {
 					comment2.setText(DBLoggedIn.person_name + "님 환영합니다 !!");
 					
 					String update = "update person_info set login_state = 'On' "
-							+ "where phone_number = "+DBLoggedIn.phone_number+" and pw = "+DBLoggedIn.password;
+							+ "where phone_number = '"+DBLoggedIn.phone_number+"' and pw = '"+DBLoggedIn.password+"'";
+					System.out.println(update);
 					DBLoggedIn db = new DBLoggedIn(update);
 					
 
@@ -71,25 +76,29 @@ public class ActionWindow extends JFrame implements ActionListener {
 			} else {
 				comment1.setText("가입하지 않은 아이디입니다.");
 				comment2.setText("회원가입 해주세요.");
+				combtn.setText("회원가입");
 			}
 
 		} else if(loginbtns.getText().equals("회원가입")){
-			
 			LoginPage.cards.show(LoginPage.page_panel,"회원가입");
+			
 		}else {
 			// 페이지 준비중
 			comment1.setText("[system] still in maintenance");
 			comment2.setText("페이지 준비 중..");
+			SwingToolsSubPage.initTestFrame(this);
+			setLayout(new BorderLayout(10, 10));
 		}
 
-		JButton combtn = new JButton("확인");
-		new Style(combtn);
+
 		combtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(combtn.getText().equals("회원가입")) {
+					LoginPage.cards.show(LoginPage.page_panel,"회원가입");
+				}
 				dispose();
-				System.out.println("여기가 될까? -- 가능");
-				// new Selectpage();
+				
 			}
 		});
 
@@ -97,19 +106,18 @@ public class ActionWindow extends JFrame implements ActionListener {
 		new Style(comment2);
 
 		// 프레임설정
-		Login_SwingTool.initFrame(this);
-		getContentPane().setBackground(Color.decode("#404040"));
-		setLayout(new BorderLayout(10, 10));
-		setBounds(250, 170, 300, 150);
 
 		// 센터패널에 코멘트붙이기
 		center_panel.add(comment1);
 		center_panel.add(comment2);
-
-		// 패널 정렬
-		add(new Style().getnewPanel(), BorderLayout.NORTH);
+		JPanel panelInGrid3 = new JPanel();
+		center_panel.add(panelInGrid3);
+		new Style(panelInGrid3);
+		panelInGrid3.setLayout(null);
+		combtn.setBounds(121, 45, 110, 30);
+		panelInGrid3.add(combtn);
+		
 		add(center_panel, BorderLayout.CENTER);
-		add(combtn, BorderLayout.SOUTH);
 
 	}
 
