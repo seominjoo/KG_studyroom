@@ -46,7 +46,7 @@ public class SignUpPage extends JPanel {
 
 
 	public SignUpPage() {
-		
+		setOpaque(false);
 		setLayout(new BorderLayout(30, 0));
 		setSize(500,500);
 		
