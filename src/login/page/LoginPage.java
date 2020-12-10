@@ -48,7 +48,7 @@ public class LoginPage extends JFrame {
 		JPanel fram_panel = new JPanel();
 		fram_panel.setLayout(null);
 		fram_panel.setBounds(0, 0, x, y);
-		
+
 		JLabel background = new JLabel(new Conversion_image("image/로그인화면.jpg", 5).imageicon_smooth);
 		background.setBounds(0, 0, x, y);
 		fram_panel.add(background);
@@ -66,6 +66,7 @@ public class LoginPage extends JFrame {
 		login_panel.setLayout(null);
 		new Style(login_panel);
 		
+		
 		// 페이지 추가 작업 
 		page_panel.add("로그인", login_panel);
 		page_panel.add("회원가입", new SignUpPage());
@@ -74,38 +75,38 @@ public class LoginPage extends JFrame {
 
 		phone_number1 = new JTextField("010");
 		new Style(phone_number1);
-		phone_number1.setBounds(145, 180, 55, 40);
+		phone_number1.setBounds(145, 150, 55, 40);
 		login_panel.add(phone_number1);
 		
 		JLabel hyphen = new JLabel("-", JLabel.CENTER);
 		new Style(hyphen);
-		hyphen.setBounds(200, 180, 15, 40);
+		hyphen.setBounds(200, 150, 15, 40);
 		login_panel.add(hyphen);
 		
 		 phone_number2 = new JTextField(4);
 		new Style(phone_number2);
-		phone_number2.setBounds(215, 180, 55, 40);
+		phone_number2.setBounds(215, 150, 55, 40);
 		login_panel.add(phone_number2);
 		
 		JLabel hyphen2 = new JLabel("-", JLabel.CENTER);
 		new Style(hyphen2);
-		hyphen2.setBounds(270, 180, 15, 40);
+		hyphen2.setBounds(270, 150, 15, 40);
 		login_panel.add(hyphen2);
 		
 		 phone_number3 = new JTextField(4);
 		new Style(phone_number3);
-		phone_number3.setBounds(285, 180, 55, 40);
+		phone_number3.setBounds(285, 150, 55, 40);
 		login_panel.add(phone_number3);
 		
 		loginpass = new JPasswordField("비밀번호");
 		loginpass.addMouseListener(new EmptyPrice(loginpass));
 		new Style(loginpass);
-		loginpass.setBounds(145, 220, 195, 40);
+		loginpass.setBounds(145, 200, 195, 40);
 		login_panel.add(loginpass);
 		
 		JButton login = new JButton("로그인");
 		new Style(login);
-		login.setBounds(145, 260, 195, 40);
+		login.setBounds(145, 250, 195, 40);
 		login.addActionListener(new ActionWindow(login));
 		login_panel.add(login);
 		

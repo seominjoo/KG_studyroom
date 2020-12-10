@@ -27,17 +27,17 @@ public class ActionWindow extends JFrame implements ActionListener {
 
 	JButton loginbtns;
 	JPanel center_panel;
-	JLabel comment1;
-	JLabel comment2;
+	static JLabel comment1;
+	static JLabel comment2;
 	JLabel comment3;
+	static String name1 = "";
+	static String name2 = "";
 
 	public ActionWindow(JButton loginbtns) {
 		this.loginbtns = loginbtns;
-		center_panel = new JPanel(new GridLayout(3, 1, 0, -60));
-		new Style(center_panel);
-		comment1 = new JLabel("", JLabel.CENTER);
-		comment2 = new JLabel("", JLabel.CENTER);
+		
 	}
+	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -60,8 +60,8 @@ public class ActionWindow extends JFrame implements ActionListener {
 				// 있다.
 				if (DBLoggedIn.phone_number.equals(login_phonenumber) && DBLoggedIn.password.equals(login_password)) {
 					// 번호와 비번이 일치 하면
-					comment1.setText("회원번호 : " + DBLoggedIn.person_id);
-					comment2.setText(DBLoggedIn.person_name + "님 환영합니다 !!");
+					name1 = "회원번호 : " + DBLoggedIn.person_id;
+					name2 = DBLoggedIn.person_name + "님 환영합니다 !!";
 					
 					String update = "update person_info set login_state = 'On' "
 							+ "where phone_number = '"+DBLoggedIn.phone_number+"' and pw = '"+DBLoggedIn.password+"'";
@@ -70,13 +70,13 @@ public class ActionWindow extends JFrame implements ActionListener {
 					
 
 				} else {
-					comment1.setText("잘못된 비밀번호입니다.");
-					comment2.setText("다시 입력 해주세요.");
+					name1 = "잘못된 비밀번호입니다.";
+					name2 = "다시 입력 해주세요.";
 				}
 
 			} else {
-				comment1.setText("가입하지 않은 아이디입니다.");
-				comment2.setText("회원가입 해주세요.");
+				name1 = "가입하지 않은 아이디입니다.";
+				name2 = "회원가입 해주세요.";
 				combtn.setText("회원가입");
 			}
 
@@ -89,13 +89,17 @@ public class ActionWindow extends JFrame implements ActionListener {
 		}
 		else {
 			// 페이지 준비중
-			comment1.setText("[system] still in maintenance");
-			comment2.setText("페이지 준비 중..");
+			name1 = "[system] still in maintenance";
+			name2 = "페이지 준비 중..";
 			SwingToolsSubPage.initTestFrame(this);
 			setLayout(new BorderLayout(10, 10));
 		}
-
-
+		LoginPage.phone_number1.setText("010");
+		LoginPage.phone_number2.setText("");
+		LoginPage.phone_number3.setText("");
+		LoginPage.loginpass.setText("");
+		
+		
 		combtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -107,14 +111,22 @@ public class ActionWindow extends JFrame implements ActionListener {
 			}
 		});
 
-		new Style(comment1);
-		new Style(comment2);
 
 		// 프레임설정
 
 		// 센터패널에 코멘트붙이기
+		center_panel = new JPanel(new GridLayout(3, 1, 0, -60));
+		new Style(center_panel);
+		
+		comment1 = new JLabel(name1, JLabel.CENTER);
+		comment2 = new JLabel(name2, JLabel.CENTER);
+		new Style(comment1);
+		new Style(comment2);
+		
 		center_panel.add(comment1);
 		center_panel.add(comment2);
+		
+		
 		JPanel panelInGrid3 = new JPanel();
 		center_panel.add(panelInGrid3);
 		new Style(panelInGrid3);

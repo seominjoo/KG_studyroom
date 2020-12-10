@@ -17,8 +17,11 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import login.PhoneNumberEnum;
 import login.design.Style;
 import login.page.LoginPage;
+import login.signUp.SignUpEnum;
+import login.signUp.SignUpPage;
 import login.swingTools.SwingToolsSubPage;
 
 public class ResultWindow extends JFrame {
@@ -65,6 +68,8 @@ public class ResultWindow extends JFrame {
 			failLabel1 = new JLabel("가입 성공", JLabel.CENTER);
 			failLabel2 = new JLabel("성 함 : " + this.person_name + " 님", JLabel.CENTER);
 			failLabel3 = new JLabel("[ 회원 번호 : " + this.person_id + " ]", JLabel.CENTER);
+			
+			
 		} else {
 			failLabel1 = new JLabel("가입 실패", JLabel.CENTER);
 			failLabel2 = new JLabel("하기 사항을 확인하세요", JLabel.CENTER);
@@ -96,6 +101,14 @@ public class ResultWindow extends JFrame {
 				if (e.getButton() == MouseEvent.BUTTON1) {
 					if (result) {
 						LoginPage.cards.show(LoginPage.page_panel, "로그인");
+						for (SignUpEnum value : SignUpEnum.values()) {
+							value.text.setText(value.labelName);;
+							value.blindPW.setText(value.labelName);
+						}
+						for(int i = 0; i < SignUpPage.phoneTotal.length; i++) {
+							SignUpPage.phoneTotal[i].setText(PhoneNumberEnum.values()[i].labelName);
+						}
+						SignUpPage.year.setSelectedItem("2000");
 					}
 						dispose();
 				}

@@ -48,13 +48,13 @@ public class ClickSignUp extends MouseAdapter {
 		boolean consentCheck = true;
 		JTextField pw;
 		JTextField pwConfirm;
-		String year = (String) BirthEnum.YEAR.birthComboBoxYear.getSelectedItem();
-		String month = (String) BirthEnum.MONTH.birthComboBoxMonth.getSelectedItem();
-		String day = (String) BirthEnum.DAY.birthComboBoxDay.getSelectedItem();
+		String year = (String) SignUpPage.year.getSelectedItem();
+		String month = (String) SignUpPage.month.getSelectedItem();
+		String day = (String) SignUpPage.day.getSelectedItem();
 		boolean samePhoneNumber = false;
-		JTextField phoneNumber1 = PhoneNumberEnum.PHONENUMBER1.text;
-		JTextField phoneNumber2 = PhoneNumberEnum.PHONENUMBER2.text;
-		JTextField phoneNumber3 = PhoneNumberEnum.PHONENUMBER3.text;
+		JTextField phoneNumber1 = SignUpPage.phone_number1;
+		JTextField phoneNumber2 = SignUpPage.phone_number2;
+		JTextField phoneNumber3 = SignUpPage.phone_number3;
 		String text = phoneNumber1.getText() + "-" + phoneNumber2.getText()
 				+ "-" + phoneNumber3.getText();
 

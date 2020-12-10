@@ -6,6 +6,9 @@ import java.awt.event.ActionListener;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 
+import login.findPW.FindPasswordPage;
+import login.signUp.SignUpPage;
+
 public class YearMonthClick implements ActionListener {
 
 	String time;
@@ -13,11 +16,17 @@ public class YearMonthClick implements ActionListener {
 	JComboBox month;
 	JComboBox day;
 
-	public YearMonthClick(String time) {
+	public YearMonthClick(String time, boolean flag) {
 		this.time = time;
-		year = BirthEnum.YEAR.birthComboBoxYear;
-		month = BirthEnum.MONTH.birthComboBoxMonth;
-		day = BirthEnum.DAY.birthComboBoxDay;
+		if (flag) {
+			year = SignUpPage.year;
+			month = SignUpPage.month;
+			day = SignUpPage.day;
+		} else {
+			year = FindPasswordPage.year;
+			month = FindPasswordPage.month;
+			day = FindPasswordPage.day;
+		}
 	}
 
 	@Override
@@ -32,6 +41,7 @@ public class YearMonthClick implements ActionListener {
 			System.out.println(yearselect + ", " + monthselect);
 			DefaultComboBoxModel<String> realDay = new DefaultComboBoxModel<>(BirthEnum.DAY.dayTable);
 			day.setModel(realDay);
+			day.setSelectedItem("");
 			int[] monthFordayCount = { 4, 6, 9, 11 };
 			if (monthselect == 2) {
 				if (yearselect % 4 == 0) {

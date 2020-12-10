@@ -19,7 +19,7 @@ import login.findPW.window.PassWordSearchResultPage;
 public class ClickFindPasswordPage implements ActionListener{
 
 	public static String password;
-	JLabel foundPW;
+	static JLabel foundPW;
 	
 	public ClickFindPasswordPage(JLabel foundPW) {
 		this.foundPW = foundPW;

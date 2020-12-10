@@ -43,9 +43,16 @@ public class SignUpPage extends JPanel {
 	
 	static ImageIcon icon;
 	static BufferedImage source;
+	public static JComboBox<String> year;
+	public static JComboBox<String> month;
+	public static JComboBox<String> day;
 
-
-
+	public static JTextField phone_number1;
+	public static JTextField phone_number2;
+	public static JTextField phone_number3;
+	
+	public static JTextField[] phoneTotal;
+	
 	public SignUpPage() {
 		setLayout(new BorderLayout(30, 0));
 		new Style(this);
@@ -89,7 +96,36 @@ public class SignUpPage extends JPanel {
 			gridInGrid.add(Label);
 
 			// 생년월일
-			
+			if (value.equals(SignUpEnum.BIRTHDAY)) {
+				JPanel panelInGrid2 = new JPanel();
+				new Style(panelInGrid2);
+				panelInGrid2.setLayout(null);
+				
+				year = new JComboBox<String>(BirthEnum.getYearTable());
+				year.setBounds(0, 3, 65, 30);
+				panelInGrid2.add(year);
+				new Style(year);
+				year.setSelectedItem("2000");
+				
+				month = new JComboBox<String>(BirthEnum.getMonthTable());
+				month.setBounds(84, 3, 50, 30);
+				panelInGrid2.add(month);
+				new Style(month);
+				
+				day = new JComboBox<String>(BirthEnum.getDayTable());
+
+				day.setBounds(152, 3, 50, 30);
+				panelInGrid2.add(day);
+				new Style(day);
+
+				// 연도, 월 클릭
+				year.addActionListener(new YearMonthClick("year", true));
+				month.addActionListener(new YearMonthClick("month", true));
+
+				gridInGrid.add(panelInGrid2);
+				grid.add(gridInGrid);
+				continue;
+			}
 
 			// 전화번호
 			if (value.equals(SignUpEnum.PHONENUMBER)) {
@@ -97,7 +133,7 @@ public class SignUpPage extends JPanel {
 				phoneNumber3Texts.setLayout(null);
 				new Style(phoneNumber3Texts);
 
-				JTextField phone_number1 = PhoneNumberEnum.PHONENUMBER1.text;
+				phone_number1 = new JTextField("010");
 				new Style(phone_number1, 3);
 				phone_number1.setBounds(0, 3, 65, 30);
 				phoneNumber3Texts.add(phone_number1);
@@ -107,7 +143,7 @@ public class SignUpPage extends JPanel {
 				new Style(str);
 				phoneNumber3Texts.add(str);
 
-				JTextField phone_number2 = PhoneNumberEnum.PHONENUMBER2.text;
+				phone_number2 = new JTextField("");
 				new Style(phone_number2, 4);
 				phone_number2.setBounds(84, 3, 50, 30);
 				phoneNumber3Texts.add(phone_number2);
@@ -117,7 +153,7 @@ public class SignUpPage extends JPanel {
 				new Style(str2);
 				phoneNumber3Texts.add(str2);
 
-				JTextField phone_number3 = PhoneNumberEnum.PHONENUMBER3.text;
+				phone_number3 = new JTextField("");
 				new Style(phone_number3, 4);
 				phone_number3.setBounds(152, 3, 50, 30);
 				phoneNumber3Texts.add(phone_number3);
@@ -140,10 +176,6 @@ public class SignUpPage extends JPanel {
 			else
 				value.text.addMouseListener(new ClearTextField(value));
 		}
-		// 전번 텍스트 마우스로 누를 때
-		for (PhoneNumberEnum phoneValue : PhoneNumberEnum.values())
-			phoneValue.text.addMouseListener(new PhoneNumberClearTextField(phoneValue));
-
 		// 약관 패널
 		JPanel gridInGrid7 = new JPanel(new GridLayout(1, 2, 0, 2));
 		new Style(gridInGrid7);
@@ -209,12 +241,30 @@ public class SignUpPage extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				LoginPage.cards.show(LoginPage.page_panel,"로그인");
+				
+				for (SignUpEnum value : SignUpEnum.values()) {
+					value.text.setText(value.labelName);;
+					value.blindPW.setText(value.labelName);
+				}
+				for(int i = 0; i < phoneTotal.length; i++) {
+					phoneTotal[i].setText(PhoneNumberEnum.values()[i].labelName);
+				}
+				year.setSelectedItem("2000");
 			}
 		});
 
 
-		// 배경 눌렀을 때 텍스트 초기화
-		addMouseListener(new ClearTextBackGround());
+		
+			phoneTotal = new JTextField[] {phone_number1,phone_number2,phone_number3};
+			// 전번 텍스트 마우스로 누를 때
+			for(int i = 0; i < phoneTotal.length; i++) {
+				phoneTotal[i].addMouseListener(new PhoneNumberClearTextField
+						(PhoneNumberEnum.values()[i], true));
+				addMouseListener(new ClearTextBackGround(phoneTotal[i], PhoneNumberEnum.values()[i]));
+			}
+			// 배경 눌렀을 때 텍스트 초기화
+		
+		
 	}
 
 
