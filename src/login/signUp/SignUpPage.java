@@ -89,35 +89,7 @@ public class SignUpPage extends JPanel {
 			gridInGrid.add(Label);
 
 			// 생년월일
-			if (value.equals(SignUpEnum.BIRTHDAY)) {
-				JPanel panelInGrid2 = new JPanel();
-				new Style(panelInGrid2);
-				panelInGrid2.setLayout(null);
-				
-				JComboBox<String> year = BirthEnum.YEAR.birthComboBoxYear;
-				year.setBounds(0, 3, 65, 30);
-				panelInGrid2.add(year);
-				new Style(year);
-				
-				JComboBox<String> month = BirthEnum.MONTH.birthComboBoxMonth;
-				month.setBounds(84, 3, 50, 30);
-				panelInGrid2.add(month);
-				new Style(month);
-				
-				JComboBox<String> day = BirthEnum.DAY.birthComboBoxDay;
-
-				day.setBounds(152, 3, 50, 30);
-				panelInGrid2.add(day);
-				new Style(day);
-
-				// 연도, 월 클릭
-				year.addActionListener(new YearMonthClick("year"));
-				month.addActionListener(new YearMonthClick("month"));
-
-				gridInGrid.add(panelInGrid2);
-				grid.add(gridInGrid);
-				continue;
-			}
+			
 
 			// 전화번호
 			if (value.equals(SignUpEnum.PHONENUMBER)) {
@@ -245,8 +217,6 @@ public class SignUpPage extends JPanel {
 		addMouseListener(new ClearTextBackGround());
 	}
 
-	public static void main(String[] args) {
-		new SignUpPage();
-	}
+
 
 }

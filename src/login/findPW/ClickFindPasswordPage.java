@@ -28,13 +28,13 @@ public class ClickFindPasswordPage implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		String totalPhoneNumber = PhoneNumberEnum.PHONENUMBER1.text.getText()
-				+"-"+PhoneNumberEnum.PHONENUMBER2.text.getText()+"-"
-				+PhoneNumberEnum.PHONENUMBER3.text.getText();
+		String totalPhoneNumber = FindPasswordPage.phone_number1.getText()
+				+"-"+FindPasswordPage.phone_number2.getText()+"-"
+				+FindPasswordPage.phone_number3.getText();
 		
-		String totalBirth = (String) BirthEnum.YEAR.birthComboBoxYear.getSelectedItem()
-				+ (String) BirthEnum.MONTH.birthComboBoxMonth.getSelectedItem()
-				+ (String) BirthEnum.DAY.birthComboBoxDay.getSelectedItem();
+		String totalBirth = (String) FindPasswordPage.year.getSelectedItem()
+				+ (String) FindPasswordPage.month.getSelectedItem()
+				+ (String) FindPasswordPage.day.getSelectedItem();
 		
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");

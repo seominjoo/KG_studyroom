@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import javax.swing.JComboBox;
 
+import login.design.Style;
+
 public enum BirthEnum {
 
 	YEAR(""), MONTH(""), DAY("");
@@ -33,17 +35,19 @@ public enum BirthEnum {
 		return yearTable;
 	}
 	
-//	public static JComboBox<String> getYearTable1() {
-//		int firstYear = 1930;
-//		int lastYear = LocalDate.now().getYear();
-//		String[] yearTable = new String[lastYear - firstYear + 1];
-//		for (int i = 0; i <= lastYear - 1930; i++) {
-//			yearTable[i] = (firstYear + "").format("%d", firstYear);
-//			firstYear++;
-//		}
-//		JComboBox<String> birthComboBoxYear = new JComboBox<>(yearTable);
-//		return birthComboBoxYear;
-//	}
+	public static JComboBox<String> getYearTable1() {
+		int firstYear = 1930;
+		int lastYear = LocalDate.now().getYear();
+		String[] yearTable = new String[lastYear - firstYear + 1];
+		for (int i = 0; i <= lastYear - 1930; i++) {
+			yearTable[i] = (firstYear + "").format("%d", firstYear);
+			firstYear++;
+		}
+		JComboBox<String> birthComboBoxYear = new JComboBox<>(yearTable);
+		new Style(birthComboBoxYear);
+		
+		return birthComboBoxYear;
+	}
 
 
 	public static String[] getMonthTable() {

@@ -74,38 +74,38 @@ public class LoginPage extends JFrame {
 
 		phone_number1 = new JTextField("010");
 		new Style(phone_number1);
-		phone_number1.setBounds(155, 180, 40, 30);
+		phone_number1.setBounds(145, 180, 55, 40);
 		login_panel.add(phone_number1);
 		
 		JLabel hyphen = new JLabel("-", JLabel.CENTER);
 		new Style(hyphen);
-		hyphen.setBounds(195, 180, 10, 30);
+		hyphen.setBounds(200, 180, 15, 40);
 		login_panel.add(hyphen);
 		
 		 phone_number2 = new JTextField(4);
 		new Style(phone_number2);
-		phone_number2.setBounds(205, 180, 45, 30);
+		phone_number2.setBounds(215, 180, 55, 40);
 		login_panel.add(phone_number2);
 		
 		JLabel hyphen2 = new JLabel("-", JLabel.CENTER);
 		new Style(hyphen2);
-		hyphen2.setBounds(250, 180, 10, 30);
+		hyphen2.setBounds(270, 180, 15, 40);
 		login_panel.add(hyphen2);
 		
 		 phone_number3 = new JTextField(4);
 		new Style(phone_number3);
-		phone_number3.setBounds(260, 180, 45, 30);
+		phone_number3.setBounds(285, 180, 55, 40);
 		login_panel.add(phone_number3);
 		
 		loginpass = new JPasswordField("비밀번호");
 		loginpass.addMouseListener(new EmptyPrice(loginpass));
 		new Style(loginpass);
-		loginpass.setBounds(155, 220, 150, 30);
+		loginpass.setBounds(145, 220, 195, 40);
 		login_panel.add(loginpass);
 		
 		JButton login = new JButton("로그인");
 		new Style(login);
-		login.setBounds(155, 260, 150, 30);
+		login.setBounds(145, 260, 195, 40);
 		login.addActionListener(new ActionWindow(login));
 		login_panel.add(login);
 		
