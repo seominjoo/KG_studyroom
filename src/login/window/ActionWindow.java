@@ -97,6 +97,8 @@ public class ActionWindow extends JFrame implements ActionListener {
 			LoginPage.cards.show(LoginPage.page_panel,"회원가입");
 		}else if(loginbtns.getText().equals("비번찾기")) {
 			LoginPage.cards.show(LoginPage.page_panel, "비번찾기");
+		}else if(loginbtns.getText().equals("관리자")) {
+			LoginPage.cards.show(LoginPage.page_panel, "관리자");
 		}else {
 			// 페이지 준비중
 			name1 = "[system] still in maintenance";
