@@ -2,33 +2,32 @@ package mainmenu;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import javax.swing.AbstractAction;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.swing.AbstractAction;
 import javax.swing.Action;
-import java.awt.GridLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
-public class _07out extends JFrame {
+public class _07in extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
 	int Person_Id=70;
 	
 	private JPanel contentPane;
-	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					_07out frame = new _07out();
+					_07in frame = new _07in();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,7 +37,7 @@ public class _07out extends JFrame {
 	}
 
 
-	public _07out() {
+	public _07in() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(600, 150, 450, 300);
 		contentPane = new JPanel();
@@ -46,9 +45,9 @@ public class _07out extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JButton out_btn = new JButton("지금 퇴실하기");
-		contentPane.add(out_btn);
-		out_btn.addActionListener(new _07outMessage(out_btn)); //알림창
+		JButton in_btn = new JButton("지금 입실하기");
+		contentPane.add(in_btn);
+		in_btn.addActionListener(new _07inMessage(in_btn)); //알림창
 		
 		JButton back_btn = new JButton("이전 화면");
 		contentPane.add(back_btn);

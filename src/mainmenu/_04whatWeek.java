@@ -58,7 +58,7 @@ public class _04whatWeek extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				_08selectSeat frame = new _08selectSeat(time_now.plusWeeks(2),90000,"2주 이용권");
+				_08reservation frame = new _08reservation(time_now.plusWeeks(2),90000,"2주 이용권");
 				frame.setVisible(true);
 			}
 		});
@@ -67,7 +67,7 @@ public class _04whatWeek extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				_08selectSeat frame = new _08selectSeat(time_now.plusWeeks(4),130000,"4주 이용권");
+				_08reservation frame = new _08reservation(time_now.plusWeeks(4),130000,"4주 이용권");
 				frame.setVisible(true);
 			}
 		});
@@ -76,7 +76,7 @@ public class _04whatWeek extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				_08selectSeat frame = new _08selectSeat(time_now.plusWeeks(8),250000,"8주 이용권");
+				_08reservation frame = new _08reservation(time_now.plusWeeks(8),250000,"8주 이용권");
 				frame.setVisible(true);
 			}
 		});

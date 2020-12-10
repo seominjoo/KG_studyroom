@@ -3,7 +3,6 @@ package mainmenu;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,12 +14,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class _07outMessage extends JFrame implements ActionListener {
+public class _07inMessage extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	Component com;
 
-	public _07outMessage(Component com) {
+	public _07inMessage(Component com) {
 		this.com = com;
 	}
 
@@ -36,7 +35,7 @@ public class _07outMessage extends JFrame implements ActionListener {
 		
 		JLabel commenteng = new JLabel("[현재 시각] " + simple.format(now) , JLabel.CENTER);
 		new Style(commenteng);
-		JLabel commentkor = new JLabel("퇴실되셨습니다", JLabel.CENTER);
+		JLabel commentkor = new JLabel("입실되셨습니다", JLabel.CENTER);
 		new Style(commentkor);
 
 		SwingTool_logo.initFrame(this);

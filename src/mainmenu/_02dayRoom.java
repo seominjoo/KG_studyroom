@@ -18,24 +18,21 @@ import java.awt.Insets;
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 
-public class _02dayOrWeek extends JFrame {
+public class _02dayRoom extends JFrame {
 
 	private JPanel contentPane;
 
-	public _02dayOrWeek() {
+	public _02dayRoom() {
 		 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(600, 150, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(0, 3, 0, 0));
+		contentPane.setLayout(new GridLayout(0, 2, 0, 0));
 
 		JButton daily_btn = new JButton("일일 이용권"); 
 		contentPane.add(daily_btn);
-
-		JButton weekly_btn = new JButton("정기 이용권"); 
-		contentPane.add(weekly_btn);
 
 		JButton back_btn = new JButton("이전 화면"); 
 		contentPane.add(back_btn);
@@ -45,19 +42,12 @@ public class _02dayOrWeek extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				_03whatHour frame = new _03whatHour();
+				_03whatHourRoom frame = new _03whatHourRoom();
 				frame.setVisible(true);
 			}
 		}); 
 
-		weekly_btn.addActionListener(new ActionListener() { //다음 페이지
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				_04whatWeek frame = new _04whatWeek();
-				frame.setVisible(true);
-			}
-		});
+
 
 		back_btn.addActionListener(new ActionListener() { //이전 페이지
 			@Override
@@ -70,7 +60,7 @@ public class _02dayOrWeek extends JFrame {
 
 	} 
 	public static void main(String[] args) {
-		_02dayOrWeek frame = new _02dayOrWeek();
+		_02dayRoom frame = new _02dayRoom();
 		frame.setVisible(true);
 	}
 } 

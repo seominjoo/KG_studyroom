@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
 
 import javax.swing.Action;
 import java.awt.GridLayout;
@@ -17,7 +18,7 @@ import java.awt.GridLayout;
 public class _05locker extends JFrame { 
 	
 	private JPanel contentPane; 
-	
+	LocalDateTime time_now = LocalDateTime.now(); 
 	public _05locker() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(600, 150, 450, 300);
@@ -36,7 +37,7 @@ public class _05locker extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				new _05selectLocker(); 
+				new _08reservation(time_now.plusMonths(1),25000,"1달 이용권 (사물함)"); 
 			}
 		});
 		

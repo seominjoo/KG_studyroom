@@ -7,6 +7,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -50,88 +51,14 @@ import javax.swing.ImageIcon;
 public class _01start extends JFrame {
  
 	JTable table;
-	static int count_seat=0;
-	static int count_room=0;
-	static int count_locker=0;
- 
+	 
 	private JPanel contentPane;
 
 	DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy년 M월 d일");
 	DateTimeFormatter time = DateTimeFormatter.ofPattern("a h시 m분 ");
 	 
-	public _01start( ) {
-		  
-		 new Style(contentPane);
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			Connection conn = DriverManager.getConnection(
-					"jdbc:oracle:thin:@localhost:1521/XEPDB1",
-					"hr",
-					"1234"
-					);
-
-			// 퇴실 시간이 지난 좌석 퇴실 처리
-			String sql = "SELECT seat_number, time_checkout FROM seat "
-					+ "WHERE seat_statement ='사용 중'";
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
-
-			while(rs.next()) { 
-				int seat_chk = rs.getInt("seat_number");
-				Timestamp time_chk = rs.getTimestamp("time_checkout");
-				if(LocalDateTime.now().isAfter(Time.TimeStampTOlocalDateTime(time_chk))) {
-					String change = "update seat set Seat_Statement ='사용 가능',time_enter=null,time_checkout=null where Seat_Number= ?";
-					PreparedStatement pstmt2 = conn.prepareStatement(change);
-					pstmt2.setInt(1, seat_chk);
-					int row3 = pstmt2.executeUpdate();
-				}  
-			}
-			// 사용중인 좌석 수 확인  
-			sql = "select seat_number from seat where seat_statement='사용 중'";
-		    pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while(rs.next()) { 
-				int sn = rs.getInt("seat_number"); 
-				if(sn<=20) {
-					count_seat++;
-				}else if (sn>=101) {
-					count_room++;
-				}
-			}
-			// 만료 시간이 지난 사물함 만료 처리
-			sql = "SELECT Locker_Number,l_time_checkout FROM locker "
-					+ "WHERE Locker_Statement='사용 중'";
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-
-			while(rs.next()) { 
-				int locker_chk = rs.getInt("Locker_Number");
-				Timestamp l_time_chk = rs.getTimestamp("l_time_checkout");
-				if(LocalDateTime.now().isAfter(Time.TimeStampTOlocalDateTime(l_time_chk))) {
-					String change2 = "update locker set Locker_Statement ='사용 가능',l_time_enter=null,l_time_checkout=null where Locker_Number= ?";
-					PreparedStatement pstmt3 = conn.prepareStatement(change2);
-					pstmt3.setInt(1, locker_chk);
-					int row4 = pstmt3.executeUpdate();
-				}  
-			}
-
-			// 사용중인 사물함 수 확인  
-			sql = "select locker_number from locker where locker_statement='사용 중'";
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			System.out.println();
-
-			while(rs.next()) {
-				int sn = rs.getInt("locker_number");
-				count_locker++; 
-			} 
-			if(rs!=null) rs.close(); 
-			if (pstmt != null) pstmt.close();
-			if (conn != null) conn.close();
-		} catch (ClassNotFoundException | SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	public _01start() { 
+		 
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(600, 150, 450, 400);
@@ -149,21 +76,21 @@ public class _01start extends JFrame {
 		locker_btn.setBounds(218, 95, 213, 121); 
 		contentPane.add(locker_btn);
 
-		JButton move_btn = new JButton("자리 이동");
-		move_btn.setBounds(5, 221, 208, 126); 
-		contentPane.add(move_btn);
+		JButton room_btn = new JButton("룸 이용권");
+		room_btn.setBounds(5, 221, 208, 126); 
+		contentPane.add(room_btn);
 
-		JButton out_btn = new JButton("퇴실하기");
-		out_btn.setBounds(218, 221, 213, 126); 
-		contentPane.add(out_btn);
+	    JButton back_btn = new JButton("이전 화면");
+	    back_btn.setBounds(218, 221, 213, 126); 
+	    contentPane.add(back_btn);
 
 		//스터디룸 상황표
 		String header[] = {"1인석","스터디룸","사물함","현재시간"};
 		String contents[][]= {
 				{
-					"<html>사용중 1인석<br/>&emsp;&emsp;"+Integer.toString(count_seat)+" / 20",
-					"<html>사용중 스터디룸<br/>&emsp;&emsp;&emsp;"+Integer.toString(count_room)+" / 4",
-					"<html>사용중 사물함<br/>&emsp;&emsp;"+Integer.toString(count_locker)+" / 20",
+					"<html>사용중 1인석<br/>&emsp;&emsp;"+Integer.toString(_00main.count_seat)+" / 20",
+					"<html>사용중 스터디룸<br/>&emsp;&emsp;&emsp;"+Integer.toString(_00main.count_room)+" / 4",
+					"<html>사용중 사물함<br/>&emsp;&emsp;"+Integer.toString(_00main.count_locker)+" / 20",
 					"<html>&emsp;&nbsp;&nbsp;&nbsp;현재시간<br/>"+LocalDate.now().format(date)+"<br/>&nbsp;&nbsp;&nbsp;"+LocalTime.now().format(time)} 
 		};
 
@@ -188,41 +115,117 @@ public class _01start extends JFrame {
 		
 		setVisible(true);
 		
-		seat_btn.addActionListener(new ActionListener() { //다음 페이지
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			 setVisible(false);
-			 _02dayOrWeek frame = new _02dayOrWeek();
-			 frame.setVisible(true);
-			}
-		}); 
+		 try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			 Connection conn = DriverManager.getConnection(
+		               "jdbc:oracle:thin:@localhost:1521/XEPDB1",
+		               "hr",
+		               "1234"
+		               );
+			 
+			 seat_btn.addActionListener(new ActionListener() { //다음 페이지
+					@Override
+					public void actionPerformed(ActionEvent e) {
+				  
+				try {//좌석만료시간이 안지나면 구매 불가 
+					String sql = "SELECT expiration_seat from person_info where login_state='On'";
+					PreparedStatement pstmt = conn.prepareStatement(sql);
+					ResultSet rs = pstmt.executeQuery();
+					
+					 while(rs.next()) { 
+				          
+				            Timestamp time_chk = rs.getTimestamp("expiration_seat");
+				            if(LocalDateTime.now().isBefore(Time.TimeStampTOlocalDateTime(time_chk))) {
+				            	String msg= "결제한 좌석이 이미 존재합니다";
+								JOptionPane.showMessageDialog(null,msg); 
+				            }else {
+				            	 setVisible(false);
+								 _02dayOrWeek frame = new _02dayOrWeek();
+								 frame.setVisible(true);
+				            }
+				         }
+					
+				} catch (SQLException e1) { 
+					e1.printStackTrace();
+				}
+			 
+					  
+					}
+				}); 
+				
+			      room_btn.addActionListener(new ActionListener() { //다음 페이지
+			          @Override
+			          public void actionPerformed(ActionEvent e) {
+			        	  try {//좌석만료시간이 안지나면 구매 불가 
+								String sql = "SELECT expiration_room from person_info where login_state='On'";
+								PreparedStatement pstmt = conn.prepareStatement(sql);
+								ResultSet rs = pstmt.executeQuery();
+								
+								 while(rs.next()) { 
+							          
+							            Timestamp time_chk = rs.getTimestamp("expiration_room");
+							            if(LocalDateTime.now().isBefore(Time.TimeStampTOlocalDateTime(time_chk))) {
+							            	String msg= "결제한 룸이 이미 존재합니다";
+											JOptionPane.showMessageDialog(null,msg); 
+							            }else {
+							           	 
+									           setVisible(false);
+									           _02dayRoom frame = new _02dayRoom();
+									           frame.setVisible(true);
+							            }
+							         }
+								
+							} catch (SQLException e1) { 
+								e1.printStackTrace();
+							} 
+			          }
+			       });  
+				
+			      back_btn.addActionListener(new ActionListener() { //이전 페이지
+			          @Override
+			          public void actionPerformed(ActionEvent e) {
+			           setVisible(false);
+			           _00main frame = new _00main();
+			           frame.setVisible(true);
+			          }
+			       });
+			      
+				locker_btn.addActionListener(new ActionListener() { //다음 페이지
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						 try {//좌석만료시간이 안지나면 구매 불가 
+								String sql = "SELECT expiration_locker from person_info where login_state='On'";
+								PreparedStatement pstmt = conn.prepareStatement(sql);
+								ResultSet rs = pstmt.executeQuery();
+								
+								 while(rs.next()) { 
+							          
+							            Timestamp time_chk = rs.getTimestamp("expiration_locker");
+							            if(LocalDateTime.now().isBefore(Time.TimeStampTOlocalDateTime(time_chk))) {
+							            	String msg= "결제한 사물함이 이미 존재합니다";
+											JOptionPane.showMessageDialog(null,msg); 
+							            }else {	 
+							            	setVisible(false);
+										 _05locker frame = new _05locker();
+										 frame.setVisible(true);
+							            }
+							         }
+								
+							} catch (SQLException e1) { 
+								e1.printStackTrace();
+							}
+				 
+					}
+				});
+				
+		} catch (ClassNotFoundException | SQLException e1) {
+		 
+			e1.printStackTrace();
+		}
+         
 		
-		move_btn.addActionListener(new ActionListener() { //다음 페이지
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			 setVisible(false);
-			 _06moveSeat frame = new _06moveSeat();
-			 frame.setVisible(true);
-			}
-		}); 
 		
-		out_btn.addActionListener(new ActionListener() { //다음 페이지
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			 setVisible(false);
-			 _07out frame = new _07out();
-			 frame.setVisible(true);
-			}
-		});
-		
-		locker_btn.addActionListener(new ActionListener() { //다음 페이지
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			 setVisible(false);
-			 _05locker frame = new _05locker();
-			 frame.setVisible(true);
-			}
-		});
+		 
 	 
 	}  
 	
