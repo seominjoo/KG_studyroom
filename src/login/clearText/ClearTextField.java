@@ -34,11 +34,11 @@ public class ClearTextField extends MouseAdapter {
 					other.blindPW.setText(other.labelName);
 				}
 			}
-			for(PhoneNumberEnum value : PhoneNumberEnum.values()) {
-				if(value.text.getText().equals("")) {
-					value.text.setText(value.labelName);
-				}				
-			}
+//			for(PhoneNumberEnum value : PhoneNumberEnum.values()) {
+//				if(value.text.getText().equals("")) {
+//					value.text.setText(value.labelName);
+//				}				
+//			}
 		}
 
 	}
