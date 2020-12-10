@@ -71,15 +71,13 @@ public class DBLoggedIn {
 			// - DriverManager.getConnection() 메서드에
 			// DB접속 주소와 아이디/패스워드를 전달하면 연결이 반환된다
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "1234");
-			conn.setAutoCommit(false);
 			// 쿼리문
 			// 로그인에 사용된 휴대폰번호, 비밀번호만 불러오기
 			PreparedStatement findID;
 			findID = conn.prepareStatement(
-					"SELECT Person_Id, Person_Name, Phone_Number, PW FROM Person_Info where Phone_Number = ? and pw = ?");
+					"SELECT Person_Id, Person_Name, Phone_Number, PW FROM Person_Info where Phone_Number = ?");
 
 			findID.setString(1, login_phonenumber);
-			findID.setString(2, login_password);
 
 			// 결과
 			ResultSet rs = findID.executeQuery();
@@ -90,6 +88,7 @@ public class DBLoggedIn {
 				phone_number = rs.getString(3);
 				password = rs.getString(4);
 			}
+			System.out.println(person_id +", "+ person_name +", "+ phone_number +", "+  password);
 			if (rs != null)
 				rs.close();
 			if (findID != null)
