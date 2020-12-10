@@ -26,9 +26,10 @@ import login.window.Login_SwingTool;
 public class ActionWindow extends JFrame implements ActionListener {
 
 	JButton loginbtns;
-	JPanel center_panel;
+	static JPanel center_panel;
 	static JLabel comment1;
 	static JLabel comment2;
+	static JPanel panelInGrid3;
 	JLabel comment3;
 	static String name1 = "";
 	static String name2 = "";
@@ -37,6 +38,25 @@ public class ActionWindow extends JFrame implements ActionListener {
 		this.loginbtns = loginbtns;
 		
 	}
+	public ActionWindow() {
+		center_panel = new JPanel(new GridLayout(3, 1, 0, -60));
+		new Style(center_panel);
+		
+		comment1 = new JLabel(name1, JLabel.CENTER);
+		comment2 = new JLabel(name2, JLabel.CENTER);
+		new Style(comment1);
+		new Style(comment2);
+		
+		center_panel.add(comment1);
+		center_panel.add(comment2);
+		
+		
+		JPanel panelInGrid3 = new JPanel();
+		center_panel.add(panelInGrid3);
+		new Style(panelInGrid3);
+		panelInGrid3.setLayout(null);
+		//panelInGrid3.add(combtn);
+	}
 	
 
 	@Override
@@ -44,6 +64,7 @@ public class ActionWindow extends JFrame implements ActionListener {
 
 		JButton combtn = new JButton("확인");
 		new Style(combtn);
+		combtn.setBounds(121, 45, 110, 30);
 		
 		if (loginbtns.getText().equals("로그인")) {
 			SwingToolsSubPage.initTestFrame(this);
@@ -115,25 +136,9 @@ public class ActionWindow extends JFrame implements ActionListener {
 		// 프레임설정
 
 		// 센터패널에 코멘트붙이기
-		center_panel = new JPanel(new GridLayout(3, 1, 0, -60));
-		new Style(center_panel);
+		new ActionWindow();		
 		
-		comment1 = new JLabel(name1, JLabel.CENTER);
-		comment2 = new JLabel(name2, JLabel.CENTER);
-		new Style(comment1);
-		new Style(comment2);
-		
-		center_panel.add(comment1);
-		center_panel.add(comment2);
-		
-		
-		JPanel panelInGrid3 = new JPanel();
-		center_panel.add(panelInGrid3);
-		new Style(panelInGrid3);
-		panelInGrid3.setLayout(null);
-		combtn.setBounds(121, 45, 110, 30);
-		panelInGrid3.add(combtn);
-		
+	
 		add(center_panel, BorderLayout.CENTER);
 
 	}

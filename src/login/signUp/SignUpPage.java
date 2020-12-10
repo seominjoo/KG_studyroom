@@ -253,20 +253,12 @@ public class SignUpPage extends JPanel {
 			}
 		});
 
-
-		
 			phoneTotal = new JTextField[] {phone_number1,phone_number2,phone_number3};
 			// 전번 텍스트 마우스로 누를 때
 			for(int i = 0; i < phoneTotal.length; i++) {
 				phoneTotal[i].addMouseListener(new PhoneNumberClearTextField
-						(phoneTotal[i], true));
+						(phoneTotal[i], "회원가입"));
 				addMouseListener(new ClearTextBackGround(phoneTotal[i], PhoneNumberEnum.values()[i]));
 			}
-			// 배경 눌렀을 때 텍스트 초기화
-		
-		
 	}
-
-
-
 }

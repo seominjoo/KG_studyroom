@@ -7,6 +7,7 @@ import javax.swing.JTextField;
 
 import login.PhoneNumberEnum;
 import login.findPW.FindPasswordPage;
+import login.page.LoginPage;
 import login.signUp.SignUpEnum;
 
 public class ClearTextBackGround extends MouseAdapter {
@@ -30,7 +31,9 @@ public class ClearTextBackGround extends MouseAdapter {
 		}
 			if (e.getButton() == MouseEvent.BUTTON1 && phonenum.getText().equals(""))
 				phonenum.setText(value.labelName);
-			
+			if(e.getButton() == MouseEvent.BUTTON1 && String.valueOf(LoginPage.loginpass.getPassword()).equals("")) {
+				LoginPage.loginpass.setText("비밀번호");
+			}
 	}
 
 }

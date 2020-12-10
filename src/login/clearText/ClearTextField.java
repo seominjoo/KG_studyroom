@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 
 import login.PhoneNumberEnum;
 import login.signUp.SignUpEnum;
+import login.signUp.SignUpPage;
 
 public class ClearTextField extends MouseAdapter {
 	
@@ -27,6 +28,11 @@ public class ClearTextField extends MouseAdapter {
 		if (e.getButton() == MouseEvent.BUTTON1 && value.text.getText().contains(value.labelName)) {
 			value.text.setText("");
 			value.blindPW.setText("");
+			for(int i = 0; i < SignUpPage.phoneTotal.length; i++) {
+				if(SignUpPage.phoneTotal[i].getText().equals("")) {
+					SignUpPage.phoneTotal[i].setText(PhoneNumberEnum.values()[i].labelName);
+				}
+			}
 			for(SignUpEnum other : SignUpEnum.values()) {
 				if(!other.equals(value) && (other.text.getText().equals("") 
 						&& String.valueOf(other.blindPW.getPassword()).equals(""))) {
@@ -34,11 +40,7 @@ public class ClearTextField extends MouseAdapter {
 					other.blindPW.setText(other.labelName);
 				}
 			}
-//			for(PhoneNumberEnum value : PhoneNumberEnum.values()) {
-//				if(value.text.getText().equals("")) {
-//					value.text.setText(value.labelName);
-//				}				
-//			}
+			
 		}
 
 	}

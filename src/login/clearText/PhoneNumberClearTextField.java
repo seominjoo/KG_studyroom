@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 
 import login.PhoneNumberEnum;
 import login.findPW.FindPasswordPage;
+import login.page.LoginPage;
 import login.signUp.SignUpEnum;
 import login.signUp.SignUpPage;
 
@@ -20,12 +21,15 @@ public class PhoneNumberClearTextField extends MouseAdapter {
 	JTextField[] phoneTotal;
 	JTextField phoneText;
 	
-	public PhoneNumberClearTextField(JTextField phoneText , boolean flag) {
+	public PhoneNumberClearTextField(JTextField phoneText , String page) {
 		this.phoneText = phoneText;
-		if(flag) {
+		if(page.equals("로그인")) {
+			phoneTotal = LoginPage.phoneTotal;
+		}
+		else if(page.equals("회원가입")){
 			phoneTotal = SignUpPage.phoneTotal;
 		}
-		else {
+		else if(page.equals("비번찾기")) {
 			phoneTotal = FindPasswordPage.phoneTotal;
 		}
 	}
@@ -36,10 +40,21 @@ public class PhoneNumberClearTextField extends MouseAdapter {
 		for(int i = 0; i < phoneTotal.length; i++) {
 			if(phoneText.equals(phoneTotal[i]) && phoneText.getText().equals(PhoneNumberEnum.values()[i].labelName)) {
 				phoneText.setText("");
+				for(SignUpEnum value : SignUpEnum.values()) {
+					if(value.text.getText().equals("")) {
+						value.text.setText(value.labelName);
+						value.blindPW.setText(value.labelName);
+					}
+				}
 			} else if(!(phoneText.equals(phoneTotal[i])) && phoneTotal[i].getText().equals("")) {
 				phoneTotal[i].setText(PhoneNumberEnum.values()[i].labelName);
 			}
+			if(String.valueOf(LoginPage.loginpass.getPassword()).equals("")) {
+				LoginPage.loginpass.setText("비밀번호");
+			}
 		}
+		
+
 		
 		
 //		int i = 0;

@@ -21,6 +21,9 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import login.PhoneNumberEnum;
+import login.clearText.ClearTextBackGround;
+import login.clearText.PhoneNumberClearTextField;
 import login.design.Conversion_image;
 import login.design.EmptyPrice;
 import login.design.Style;
@@ -41,6 +44,7 @@ public class LoginPage extends JFrame {
 	int x = new Conversion_image("image/로그인화면.jpg", 5).x;
 	int y = new Conversion_image("image/로그인화면.jpg", 5).y;
 	
+	public static JTextField[] phoneTotal;
 
 	//	70	231232	현태태	19831010	010-1111-1111	12345678	0			
 	public LoginPage() {
@@ -137,6 +141,14 @@ public class LoginPage extends JFrame {
 		
 		Login_SwingTool.initFrame(this);
 		
+		phoneTotal = new JTextField[] {phone_number1,phone_number2,phone_number3};
+		// 전번 텍스트 마우스로 누를 때
+		for(int i = 0; i < phoneTotal.length; i++) {
+			phoneTotal[i].addMouseListener(new PhoneNumberClearTextField
+					(phoneTotal[i], "로그인"));
+			addMouseListener(new ClearTextBackGround(phoneTotal[i], PhoneNumberEnum.values()[i]));
+		}
+
 	}
 	
 	public static void main(String[] args) throws IOException {

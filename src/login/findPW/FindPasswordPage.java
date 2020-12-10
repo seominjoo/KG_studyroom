@@ -148,7 +148,7 @@ public class FindPasswordPage extends JPanel {
 		
 		for(int i = 0; i < phoneTotal.length; i++) {
 			phoneTotal[i].addMouseListener(new PhoneNumberClearTextField
-					(phoneTotal[i], false));
+					(phoneTotal[i], "비번찾기"));
 		}
 
 		addMouseListener(new ClearTextBackGround(phone_number1, PhoneNumberEnum.PHONENUMBER1));
