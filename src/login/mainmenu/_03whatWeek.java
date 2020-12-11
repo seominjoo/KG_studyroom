@@ -19,11 +19,11 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-public class _04whatWeek extends JPanel {
+public class _03whatWeek extends JPanel {
 
 	LocalDateTime time_now = LocalDateTime.now();
 
-	public _04whatWeek() {
+	public _03whatWeek() {
 		JLabel label01 = new JLabel("<html>&emsp;&emsp;&emsp; &emsp;°¡°ÝÇ¥");
 		label01.setBounds(0,0,420,80);
 		label01.setFont(new Font("Courier", Font.PLAIN, 35));
@@ -88,7 +88,7 @@ public class _04whatWeek extends JPanel {
 	} 
 
 	public static void main(String[] args) {
-		_04whatWeek frame = new _04whatWeek();
+		_03whatWeek frame = new _03whatWeek();
 		frame.setVisible(true);
 	}
 }

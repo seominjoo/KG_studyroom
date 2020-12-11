@@ -53,6 +53,7 @@ public class UserBtn_Action implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String label1 = null;
 		String label2 = null;
+		// if문으로 1인석 정기권 룸 나눠야 될듯 
 
 		if (userBtn.getText().equals("이용권구매")) { // 이용권 페이지
 			MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
@@ -88,10 +89,10 @@ public class UserBtn_Action implements ActionListener {
 				String msg1 = "정기 이용권 이용자만 가능합니다";
 				JOptionPane.showMessageDialog(null, msg1);
 			}
-		}else if (userBtn.getText().equals("일일 이용권")) { // 다음 페이지(일일이용권)
+		}else if (userBtn.getText().equals("일일 이용권")) { // 좌석의 일일 이용권
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
-				MainPage.user_cards.show(MainPage.user_page_panel, "일일권가격표");
-				MainPage.userToggle = "일일권가격표";
+				MainPage.user_cards.show(MainPage.user_page_panel, "일일권가격표(좌석)");
+				MainPage.userToggle = "일일권가격표(좌석)";
 
 		} else if (userBtn.getText().equals("2시간 (3,000원)")) { // 다음 페이지(2시간 이용권)
 			MainPage.ss = _03whatHour.time_now.plusHours(2);
@@ -198,7 +199,12 @@ public class UserBtn_Action implements ActionListener {
 				e1.printStackTrace();
 			}
 
-		} else if (userBtn.getText().equals("2시간 (12,000원)")) { // 다음 페이지(2시간 이용권)
+		} else if (userBtn.getText().equals("일일 이용권")) { // 룸의 일일 이용권
+			MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+			MainPage.user_cards.show(MainPage.user_page_panel, "일일권가격표(룸)");
+			MainPage.userToggle = "일일권가격표(룸)";
+
+	} else if (userBtn.getText().equals("2시간 (12,000원)")) { // 다음 페이지(2시간 이용권)
 			MainPage.ss = _03whatHour.time_now.plusHours(2);
 			MainPage.price = 12000;
 			MainPage.seat_type = "2시간 이용권 (룸)";
@@ -255,22 +261,21 @@ public class UserBtn_Action implements ActionListener {
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "좌석이용권");
 				MainPage.userToggle = "좌석이용권";
-			} else if (MainPage.userToggle.equals("좌석이용권")) {
+			} else if (MainPage.userToggle.equals("좌석이용권")
+					|| MainPage.userToggle.equals("룸이용권")
+					|| MainPage.userToggle.equals("사물함이용권")) {
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "이용권구매");
 				MainPage.userToggle = "이용권구매";
-			} else if (MainPage.userToggle.equals("이용권구매")) {
+			} else if (MainPage.userToggle.equals("이용권구매")
+					|| MainPage.userToggle.equals("자리이동")) {
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "메인메뉴");
 				MainPage.userToggle = "메인메뉴";
-			} else if (MainPage.userToggle.equals("이용권구매")) {
+			} else if (MainPage.userToggle.equals("좌석페이지")) {
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
-				MainPage.user_cards.show(MainPage.user_page_panel, "메인메뉴");
-				MainPage.userToggle = "메인메뉴";
-			} else if (MainPage.userToggle.equals("룸이용권")) {
-				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
-				MainPage.user_cards.show(MainPage.user_page_panel, "이용권구매");
-				MainPage.userToggle = "이용권구매";
+				MainPage.user_cards.show(MainPage.user_page_panel, "자리이동");
+				MainPage.userToggle = "자리이동";
 			}
 		} else {
 			// 페이지 준비중

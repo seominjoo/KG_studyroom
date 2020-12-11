@@ -20,7 +20,7 @@ import login.mainmenu._02dayOrWeek;
 import login.mainmenu._02dayRoom;
 import login.mainmenu._03whatHour;
 import login.mainmenu._03whatHourRoom;
-import login.mainmenu._04whatWeek;
+import login.mainmenu._03whatWeek;
 import login.mainmenu._05locker;
 import login.mainmenu._06move;
 import login.mainmenu._07in_seletSeat;
@@ -89,18 +89,23 @@ public class MainPage extends JFrame {
 		// 사용자 메뉴 페이지 추가 작업
 		user_page_panel.add("메인메뉴", new _00main()); // 메뉴페이지
 		user_page_panel.add("이용권구매", new _01start()); // 이용권구매 페이지
+		user_page_panel.add("좌석이용권", new _02dayOrWeek()); // 좌석 이용권 페이지
+		user_page_panel.add("룸이용권", new _02dayRoom());
+		user_page_panel.add("일일권가격표(좌석)", new _03whatHour());
+		user_page_panel.add("정기권가격표", new _03whatWeek());
+		user_page_panel.add("일일권가격표(룸)", new _03whatHourRoom());
+		user_page_panel.add("사물함이용권", new _05locker());
 		user_page_panel.add("자리이동", new _06move());
 		user_page_panel.add("입실하기", new _07in_seletSeat());
 		user_page_panel.add("퇴실하기", new _07out());
-		user_page_panel.add("좌석이용권", new _02dayOrWeek()); // 좌석 이용권 페이지
-		user_page_panel.add("일일권가격표(좌석)", new _03whatHour());
-		user_page_panel.add("정기권가격표", new _04whatWeek());
-		user_page_panel.add("룸이용권", new _02dayRoom());
-		user_page_panel.add("사물함이용권", new _05locker());
-		user_page_panel.add("룸예약하기", new _03whatHourRoom());
 		user_page_panel.add("예약페이지", new _08reservation(ss, price, seat_type));
-//		user_page_panel.add("일일권가격표(룸)", new _02dayRoom());
-//		user_page_panel.add("룸이용권", new _02dayRoom());
+		
+		// 미처리
+//		user_page_panel.add("좌석페이지", new _06move_selectSeat());
+//		user_page_panel.add("결제페이지", new _09payment());
+//		user_page_panel.add("결제알림창", new _10paycash());
+		// 영수증에 확인 버튼(or 입장바로가기 or로그아웃off)
+//		user_page_panel.add("영수증", new _11receipt());
 		
 		
 
