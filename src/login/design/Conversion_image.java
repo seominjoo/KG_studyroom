@@ -36,7 +36,6 @@ public class Conversion_image {
 			this.image_smooth = source.getScaledInstance(sizex, sizey, source.SCALE_SMOOTH);
 			this.imageicon = new ImageIcon(source);
 			this.imageicon_smooth = new ImageIcon(image_smooth);
-			System.out.println("이미지 사이즈 : " + source.getWidth(null) + ", " + source.getHeight(null));
 			
 		} catch (IOException e) {
 			e.printStackTrace();

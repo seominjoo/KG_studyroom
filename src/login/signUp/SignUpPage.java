@@ -242,6 +242,7 @@ public class SignUpPage extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				MainPage.cards.show(MainPage.page_panel,"로그인");
+				MainPage.userToggle = "로그인";
 				
 				for (SignUpEnum value : SignUpEnum.values()) {
 					value.text.setText(value.labelName);;

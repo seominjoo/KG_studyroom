@@ -24,6 +24,12 @@ public class MainPage extends JFrame {
 	public static JPanel page_panel;
 	public static CardLayout cards;
 
+	public static String userToggle;
+	
+	static {
+		userToggle = "메인";
+	}
+	
 	public MainPage() {
 		// 배경화면
 		JPanel fram_panel = new JPanel();
@@ -51,22 +57,16 @@ public class MainPage extends JFrame {
 		// 페이지 추가 작업
 		page_panel.add("메인", main);
 		page_panel.add("로그인", new LoginPage());
-//				MainPage.page_panel.add("관리자", admin_panel);
+		page_panel.add("관리자", new AdminPage());
 		page_panel.add("회원가입", new SignUpPage());
 		page_panel.add("비번찾기", new FindPasswordPage());
 
-		JButton Poweroff = new JButton(new Conversion_image("image/전원.png", 30, 30).imageicon_smooth);
-		new Style(Poweroff);
-		Poweroff.setText("관리자");
-		Poweroff.setBounds(0, 0, 30, 30);
-		Poweroff.addActionListener(new ActionWindow(Poweroff));
-//		Poweroff.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				dispose();
-//			}
-//		});
-		background.add(Poweroff);
+		JButton changeUser = new JButton(new Conversion_image("image/전원.png", 30, 30).imageicon_smooth);
+		new Style(changeUser);
+		changeUser.setText("관리자버튼");
+		changeUser.setBounds(0, 0, 30, 30);
+		changeUser.addActionListener(new ActionWindow(changeUser));
+		background.add(changeUser);
 		fram_panel.add(background);
 
 		Login_SwingTool.initFrame(this);

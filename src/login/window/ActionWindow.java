@@ -96,12 +96,24 @@ public class ActionWindow extends JFrame implements ActionListener {
 			
 		}else if(loginbtns.getText().equals("회원가입")){
 			MainPage.cards.show(MainPage.page_panel,"회원가입");
+			MainPage.userToggle = "회원가입";
+			
 		}else if(loginbtns.getText().equals("비번찾기")) {
 			MainPage.cards.show(MainPage.page_panel, "비번찾기");
-		}else if(loginbtns.getText().equals("관리자")) {
+			MainPage.userToggle = "비번찾기";
+			
+		}else if(loginbtns.getText().equals("관리자버튼")) {
+			if(MainPage.userToggle.equals("메인")||MainPage.userToggle.equals("로그인")) {
 			MainPage.cards.show(MainPage.page_panel, "관리자");
+			MainPage.userToggle = "관리자";
+			} else {
+			MainPage.cards.show(MainPage.page_panel, "메인");
+			MainPage.userToggle = "메인";
+			}
+			
 		}else if(loginbtns.getText().contains("터치")) {
 			MainPage.cards.show(MainPage.page_panel, "로그인");
+			MainPage.userToggle = "로그인";
 		}else {
 			// 페이지 준비중
 			name1 = "[system] still in maintenance";

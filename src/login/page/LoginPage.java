@@ -110,59 +110,6 @@ public class LoginPage extends JPanel {
 		signup.addActionListener(new ActionWindow(signup));
 		this.add(signup);
 
-		// 관리자
-		phone_number4 = new JTextField("010");
-		new Style(phone_number4);
-		phone_number4.setBounds(145, 150, 55, 40);
-		admin_panel.add(phone_number4);
-
-		JLabel hyphen3 = new JLabel("-", JLabel.CENTER);
-		new Style(hyphen3);
-		hyphen3.setBounds(200, 150, 15, 40);
-		admin_panel.add(hyphen3);
-
-		phone_number5 = new JTextField(4);
-		new Style(phone_number5);
-		phone_number5.setBounds(215, 150, 55, 40);
-		admin_panel.add(phone_number5);
-
-		JLabel hyphen4 = new JLabel("-", JLabel.CENTER);
-		new Style(hyphen4);
-		hyphen4.setBounds(200, 150, 15, 40);
-		admin_panel.add(hyphen4);
-
-		phone_number6 = new JTextField(4);
-		new Style(phone_number6);
-		phone_number6.setBounds(285, 150, 55, 40);
-		this.add(phone_number6);
-		admin_panel.add(phone_number6);
-
-		admin_loginpass1 = new JPasswordField("비밀번호");
-		admin_loginpass1.addMouseListener(new EmptyPrice(admin_loginpass1));
-		new Style(admin_loginpass1);
-		admin_loginpass1.setBounds(145, 200, 195, 40);
-		admin_panel.add(admin_loginpass1);
-
-		JButton admin = new JButton("관리자로그인");
-		new Style(admin);
-		admin.setBounds(145, 250, 195, 40);
-		admin.addActionListener(new ActionWindow(admin));
-		admin_panel.add(admin);
-
-		JButton admin_find_PW1 = new JButton(new Conversion_image("image/PW찾기.png", 40, 40).imageicon_smooth);
-		new Style(admin_find_PW1);
-		admin_find_PW1.setText("비번찾기");
-		admin_find_PW1.setBounds(413, 316, 50, 50);
-		admin_find_PW1.addActionListener(new ActionWindow(admin_find_PW1));
-		admin_panel.add(admin_find_PW1);
-
-		JButton admin_signup = new JButton(new Conversion_image("image/회원가입.png", 40, 40).imageicon_smooth);
-		new Style(admin_signup);
-		admin_signup.setText("회원가입");
-		admin_signup.setBounds(410, 365, 50, 50);
-		admin_signup.addActionListener(new ActionWindow(admin_signup));
-		admin_panel.add(admin_signup);
-
 		phoneTotal = new JTextField[] { phone_number1, phone_number2, phone_number3 };
 		// 전번 텍스트 마우스로 누를 때
 		for (int i = 0; i < phoneTotal.length; i++) {
@@ -172,7 +119,5 @@ public class LoginPage extends JPanel {
 
 	}
 
-	public static void main(String[] args) throws IOException {
-		new LoginPage();
-	}
+
 }

@@ -188,6 +188,7 @@ public class FindPasswordPage extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainPage.cards.show(MainPage.page_panel, "로그인");
+				MainPage.userToggle = "로그인";
 				year.setSelectedItem("2000");
 				for(int i = 0; i < phoneTotal.length; i++) {
 					phoneTotal[i].setText(PhoneNumberEnum.values()[i].labelName);
