@@ -90,6 +90,8 @@ public class ActionWindow extends JFrame implements ActionListener {
 						+ DBLoggedIn.phone_number + "' and pw = '" + DBLoggedIn.password + "'";
 				System.out.println(update);
 				DBLoggedIn db = new DBLoggedIn(update);
+				// 버튼 바꾸기
+				combtn.setText("메뉴가기");
 
 			} else {
 				name1 = "가입하지 않은 아이디거나";
@@ -148,6 +150,8 @@ public class ActionWindow extends JFrame implements ActionListener {
 						+ DBLoggedIn.phone_number + "' and admin_pw = '" + DBLoggedIn.password + "'";
 				System.out.println(update);
 				DBLoggedIn db = new DBLoggedIn(update);
+				// 버튼바꾸기
+				combtn.setText("메뉴가기");
 
 			} else {
 				name1 = "가입하지 않은 아이디거나";
@@ -172,8 +176,16 @@ public class ActionWindow extends JFrame implements ActionListener {
 		combtn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
 				dispose();
+				if(combtn.getText().equals("메뉴가기")) {
+					if(MainPage.userToggle.equals("로그인")) {
+//						MainPage.cards.show(MainPage.page_panel, "사용자메뉴");
+//						MainPage.userToggle = "사용자메뉴";
+					}else {
+						MainPage.cards.show(MainPage.page_panel, "관리자메뉴");
+						MainPage.userToggle = "관리자메뉴";
+					}
+				}
 			}
 		});
 

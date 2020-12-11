@@ -54,6 +54,7 @@ public class MainPage extends JFrame {
 		// 페이지 추가 작업
 		page_panel.add("메인", main);
 		page_panel.add("로그인", new LoginPage());
+//		page_panel.add("사용자메뉴", new AdminMenuPage());
 		page_panel.add("관리자", new AdminPage());
 		page_panel.add("관리자메뉴", new AdminMenuPage());
 		page_panel.add("회원가입", new SignUpPage());

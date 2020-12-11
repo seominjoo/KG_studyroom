@@ -63,7 +63,7 @@ public class Style {
 		} else if (cp instanceof JButton) {
 			btn = (JButton) cp;
 			if (btn.getText().length() != 0) {
-				btn.setBackground(Color.decode("#cfab8b"));
+				btn.setBackground(Color.decode("#404040"));
 				btn.setFocusable(false);
 				btn.setOpaque(false); // 배경 투명
 				btn.setFocusPainted(false);
