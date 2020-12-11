@@ -9,9 +9,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
-
 import login.BirthEnum;
 import login.page.MainPage;
 import login.signUp.SignUpEnum;
