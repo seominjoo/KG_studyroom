@@ -144,10 +144,11 @@ public class MainBtn_Action implements ActionListener {
 			new SubWindow(label1, label2);
 		}
 
-		LoginPage.phone_number1.setText("010");
-		LoginPage.phone_number2.setText("");
-		LoginPage.phone_number3.setText("");
-		LoginPage.loginpass.setText("");
+		//로그인 값들 초기화
+//		LoginPage.phone_number1.setText("010");
+//		LoginPage.phone_number2.setText("");
+//		LoginPage.phone_number3.setText("");
+//		LoginPage.loginpass.setText("");
 		AdminPage.admin_phone_number1.setText("010");
 		AdminPage.admin_phone_number2.setText("");
 		AdminPage.admin_phone_number3.setText("");

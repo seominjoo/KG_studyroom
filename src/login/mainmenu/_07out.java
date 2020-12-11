@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import login.design.Style;
+
 import javax.swing.JButton;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
@@ -24,9 +27,8 @@ import java.util.Date;
 import javax.swing.Action;
 import java.awt.GridLayout;
 
-public class _07out extends JFrame {
+public class _07out extends JPanel {
 	
-	private JPanel contentPane;
 	int num_seat;
 	int room_seat;
 	int room_seat1;
@@ -35,18 +37,17 @@ public class _07out extends JFrame {
 	PreparedStatement pstmt;
 	ResultSet rs;
 	public _07out() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		new Style(this);
 		setBounds(600, 150, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(0,3, 0, 0));
+		this.setBorder(new EmptyBorder(5, 5, 5, 5));
+		this.setLayout(new GridLayout(0,3, 0, 0));
 		 
 		JButton out_seat = new JButton("좌석 퇴실하기");
-		contentPane.add(out_seat);
+		this.add(out_seat);
 		
 		JButton out_room = new JButton("룸 퇴실하기");
-		contentPane.add(out_room);
+		this.add(out_room);
 		
 		 try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -137,7 +138,7 @@ public class _07out extends JFrame {
  
 		
 		JButton back_btn = new JButton("이전 화면");
-		contentPane.add(back_btn);
+		this.add(back_btn);
 
 		back_btn.addActionListener(new ActionListener() { //이전 페이지
 	          @Override

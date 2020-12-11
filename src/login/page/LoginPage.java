@@ -69,7 +69,7 @@ public class LoginPage extends JPanel {
 		hyphen1.setBounds(200, 150, 15, 40);
 		this.add(hyphen1);
 
-		phone_number2 = new JTextField(4);
+		phone_number2 = new JTextField("1143");
 		new Style(phone_number2);
 		phone_number2.setBounds(215, 150, 55, 40);
 		this.add(phone_number2);
@@ -79,12 +79,12 @@ public class LoginPage extends JPanel {
 		hyphen2.setBounds(270, 150, 15, 40);
 		this.add(hyphen2);
 
-		phone_number3 = new JTextField(4);
+		phone_number3 = new JTextField("1111");
 		new Style(phone_number3);
 		phone_number3.setBounds(285, 150, 55, 40);
 		this.add(phone_number3);
 		
-		loginpass = new JPasswordField("비밀번호");
+		loginpass = new JPasswordField("12345678");
 		loginpass.addMouseListener(new EmptyPrice(loginpass));
 		new Style(loginpass);
 		loginpass.setBounds(145, 200, 195, 40);

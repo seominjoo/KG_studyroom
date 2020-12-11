@@ -15,9 +15,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class _06move extends JFrame {
+import login.design.Style;
 
-	private JPanel contentPane;
+public class _06move extends JPanel {
+
+//	private JPanel this;
 	static int num_seat;
 	static int num_room;
 	String type;
@@ -27,17 +29,16 @@ public class _06move extends JFrame {
 
 	public _06move() {
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		new Style(this);
 		setBounds(600, 150, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(0,3, 0, 0));
+		
+		this.setBorder(new EmptyBorder(5, 5, 5, 5));
+		this.setLayout(new GridLayout(0,3, 0, 0));
 		
 		JButton move_seat = new JButton("좌석 이동하기");
-		contentPane.add(move_seat);
+		this.add(move_seat);
 		JButton move_room = new JButton("룸 이동하기");
-		contentPane.add(move_room);
+		this.add(move_room);
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -107,7 +108,7 @@ public class _06move extends JFrame {
 		}
 
 		JButton back_btn = new JButton("이전 화면");
-		contentPane.add(back_btn);
+		this.add(back_btn);
 		back_btn.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -117,8 +118,4 @@ public class _06move extends JFrame {
 		}); 
 	}
 
-	public static void main(String[] args) {
-		_06move frame = new _06move();
-		frame.setVisible(true);
-	}
 }

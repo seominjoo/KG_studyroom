@@ -17,7 +17,8 @@ import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
- 
+
+import login.design.Style;
 
 import javax.swing.JButton;
 import java.awt.GridLayout;
@@ -59,7 +60,7 @@ public class _01start extends JPanel {
 	 
 	public _01start() { 
 		 
-
+		new Style(this);
 		setBounds(600, 150, 450, 400);
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 //		setthis(this);

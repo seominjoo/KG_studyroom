@@ -15,6 +15,9 @@ import login.design.Style;
 import login.findPW.FindPasswordPageUser;
 import login.mainmenu._00main;
 import login.mainmenu._01start;
+import login.mainmenu._06move;
+import login.mainmenu._07in_seletSeat;
+import login.mainmenu._07out;
 import login.signUp.SignUpPage;
 import login.window.MainBtn_Action;
 import login.window.Login_SwingTool;
@@ -72,7 +75,17 @@ public class MainPage extends JFrame {
 		
 		// 사용자 메뉴 페이지 추가 작업
 		user_page_panel.add("사용자메뉴", new _00main());
-		user_page_panel.add("이용권페이지", new _01start());
+		user_page_panel.add("이용권구매", new _01start());
+		user_page_panel.add("자리이동", new _06move());
+		user_page_panel.add("입실하기", new _07in_seletSeat());
+		user_page_panel.add("퇴실하기", new _07out());
+//		user_page_panel.add("자리이동", new _06move());
+		
+		
+		
+		
+		
+		
 
 		JButton changeUser = new JButton(new Conversion_image("image/전원.png", 30, 30).imageicon_smooth);
 		new Style(changeUser);
