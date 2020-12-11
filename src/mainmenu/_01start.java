@@ -53,7 +53,7 @@ public class _01start extends JFrame {
 	JTable table;
 	 
 	private JPanel contentPane;
-
+	static Timestamp time_chk_seat;
 	DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy년 M월 d일");
 	DateTimeFormatter time = DateTimeFormatter.ofPattern("a h시 m분 ");
 	 
@@ -123,40 +123,32 @@ public class _01start extends JFrame {
 		               "1234"
 		               );
 			 
-			 seat_btn.addActionListener(new ActionListener() { //다음 페이지
+			 seat_btn.addActionListener(new ActionListener() { //좌석 이용권 페이지
 					@Override
 					public void actionPerformed(ActionEvent e) {
 				  
-				try {//좌석만료시간이 안지나면 구매 불가 
-					String sql = "SELECT expiration_seat from person_info where login_state='On'";
-					PreparedStatement pstmt = conn.prepareStatement(sql);
-					ResultSet rs = pstmt.executeQuery();
-					
-					 while(rs.next()) { 
-				          
-				            Timestamp time_chk = rs.getTimestamp("expiration_seat");
-				            if(LocalDateTime.now().isBefore(Time.TimeStampTOlocalDateTime(time_chk))) {
+			 
+						 
+						 if(_00main.seat_chk>0) {
 				            	String msg= "결제한 좌석이 이미 존재합니다";
 								JOptionPane.showMessageDialog(null,msg); 
-				            }else {
+				            } else if(_00main.type.equals("정기 이용권")) {
+								 String msg= "정기 이용권 이용자는 입실을 이용하세요";
+								 JOptionPane.showMessageDialog(null,msg); 
+							 }else {
 				            	 setVisible(false);
 								 _02dayOrWeek frame = new _02dayOrWeek();
 								 frame.setVisible(true);
 				            }
 				         }
 					
-				} catch (SQLException e1) { 
-					e1.printStackTrace();
-				}
-			 
-					  
-					}
+			  
 				}); 
 				
-			      room_btn.addActionListener(new ActionListener() { //다음 페이지
+			      room_btn.addActionListener(new ActionListener() { //룸 이용권 페이지
 			          @Override
 			          public void actionPerformed(ActionEvent e) {
-			        	  try {//좌석만료시간이 안지나면 구매 불가 
+			        	  try {//룸만료시간이 안지나면 구매 불가 
 								String sql = "SELECT expiration_room from person_info where login_state='On'";
 								PreparedStatement pstmt = conn.prepareStatement(sql);
 								ResultSet rs = pstmt.executeQuery();
@@ -180,20 +172,11 @@ public class _01start extends JFrame {
 							} 
 			          }
 			       });  
-				
-			      back_btn.addActionListener(new ActionListener() { //이전 페이지
-			          @Override
-			          public void actionPerformed(ActionEvent e) {
-			           setVisible(false);
-			           _00main frame = new _00main();
-			           frame.setVisible(true);
-			          }
-			       });
-			      
-				locker_btn.addActionListener(new ActionListener() { //다음 페이지
+				 
+				locker_btn.addActionListener(new ActionListener() { //사물함 이용권 페이지
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						 try {//좌석만료시간이 안지나면 구매 불가 
+						 try {//사물함만료시간이 안지나면 구매 불가 
 								String sql = "SELECT expiration_locker from person_info where login_state='On'";
 								PreparedStatement pstmt = conn.prepareStatement(sql);
 								ResultSet rs = pstmt.executeQuery();
@@ -218,20 +201,23 @@ public class _01start extends JFrame {
 					}
 				});
 				
+				  back_btn.addActionListener(new ActionListener() { //이전 페이지
+			          @Override
+			          public void actionPerformed(ActionEvent e) {
+			           setVisible(false);
+			           _00main frame = new _00main();
+			           frame.setVisible(true);
+			          }
+			       });
 		} catch (ClassNotFoundException | SQLException e1) {
 		 
 			e1.printStackTrace();
 		}
-         
-		
-		
-		 
-	 
+          
 	}  
 	
 	public static void main(String[] args) {
 		new _01start(); 
-		 
 	}
 }
 

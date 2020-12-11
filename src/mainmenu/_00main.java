@@ -7,6 +7,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -47,16 +48,21 @@ import java.awt.Panel;
 
 import javax.swing.ImageIcon;
 
-public class _00main  extends JFrame {
+public class _00main extends JFrame {
  
    JTable table;
    static int count_seat;
    static int count_room;
    static int count_locker;
-   
+  public static int seat_chk;
+   int locker_chk;
+   public static int room_chk;
+  static Timestamp time_seat;
+   Timestamp time_locker;
+   Timestamp time_room;
    static int id;
    private JPanel contentPane;
-
+  static String type;
    DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy년 M월 d일");
    DateTimeFormatter time = DateTimeFormatter.ofPattern("a h시 m분 ");
     
@@ -73,17 +79,18 @@ public class _00main  extends JFrame {
                "1234"
                );
          
-         
          // 로그인된 회원번호 읽기
          String sql = "SELECT person_id from person_info where login_state = 'On'";
          PreparedStatement pstmt = conn.prepareStatement(sql);
          ResultSet rs = pstmt.executeQuery();
+         int row;
+          
          
          while(rs.next()) { 
             id = rs.getInt("person_id") ; 
             System.out.println("로그인 된 회원번호: " + id);
          }
-          
+ 
          // 퇴실 시간이 지난 좌석 퇴실 처리
           sql = "SELECT seat_number, time_checkout FROM seat "
                + "WHERE seat_statement ='사용 중'";
@@ -100,20 +107,50 @@ public class _00main  extends JFrame {
                int row3 = pstmt2.executeUpdate();
             }  
          }
+         
+          
+         
          // 사용중인 좌석 수 확인  
          sql = "select seat_number from seat where seat_statement='사용 중'";
-          pstmt = conn.prepareStatement(sql);
+         pstmt = conn.prepareStatement(sql);
          rs = pstmt.executeQuery();
          while(rs.next()) { 
             int sn = rs.getInt("seat_number"); 
-            if(sn<=20) {
-            	 
+            if(sn<=20) { 
                count_seat++;
-            }else if (sn>=101) {
-               
+            }else if (sn>=101) { 
                count_room++;
             }
          }
+       //퇴실시간(만료시간) 지나면 회원정보 만료시간 리셋
+         sql = "SELECT seat_number,room_number,locker_number,expiration_seat,expiration_locker,expiration_room,seat_type "
+      		+ "FROM person_info WHERE login_state = 'On'";
+         pstmt = conn.prepareStatement(sql);
+         rs = pstmt.executeQuery();
+
+        while(rs.next()) { 
+           seat_chk = rs.getInt("seat_number");
+           room_chk = rs.getInt("room_number");
+           locker_chk= rs.getInt("locker_number");
+           time_seat = rs.getTimestamp("expiration_seat");
+           time_locker = rs.getTimestamp("expiration_locker");
+           time_room = rs.getTimestamp("expiration_room");
+           type = rs.getString("seat_type");
+           if(LocalDateTime.now().isAfter(Time.TimeStampTOlocalDateTime(time_seat))) {
+              sql = "update person_info set seat_number =null,expiration_seat='20/01/01 00:00:00.000000000',seat_type='x' where login_state = 'On'";
+              pstmt = conn.prepareStatement(sql); 
+              row = pstmt.executeUpdate();
+           } if(LocalDateTime.now().isAfter(Time.TimeStampTOlocalDateTime(time_locker))) {
+         	  sql = "update person_info set locker_number =null,expiration_locker='20/01/01 00:00:00.000000000' where login_state = 'On'";
+         	  pstmt = conn.prepareStatement(sql); 
+         	  row = pstmt.executeUpdate();
+            }  if(LocalDateTime.now().isAfter(Time.TimeStampTOlocalDateTime(time_room))) {
+         	   sql = "update person_info set room_number =null,expiration_room='20/01/01 00:00:00.000000000' where login_state = 'On'";
+         	   pstmt = conn.prepareStatement(sql); 
+         	   row = pstmt.executeUpdate();
+             }   
+        }
+     
          // 만료 시간이 지난 사물함 만료 처리
          sql = "SELECT Locker_Number,l_time_checkout FROM locker "
                + "WHERE Locker_Statement='사용 중'";
@@ -128,7 +165,7 @@ public class _00main  extends JFrame {
                PreparedStatement pstmt3 = conn.prepareStatement(change2);
                pstmt3.setInt(1, locker_chk);
                int row4 = pstmt3.executeUpdate();
-            }  
+            } 
          }
 
          // 사용중인 사물함 수 확인  
@@ -204,7 +241,7 @@ public class _00main  extends JFrame {
       
       setVisible(true);
       
-      ticket_btn.addActionListener(new ActionListener() { //다음 페이지
+      ticket_btn.addActionListener(new ActionListener() { //이용권 페이지
          @Override
          public void actionPerformed(ActionEvent e) {
           setVisible(false);
@@ -213,16 +250,22 @@ public class _00main  extends JFrame {
          }
       }); 
       
-      move_btn.addActionListener(new ActionListener() { //다음 페이지
-         @Override
-         public void actionPerformed(ActionEvent e) {
-          setVisible(false);
-          _06moveSeat frame = new _06moveSeat();
-          frame.setVisible(true);
-         }
-      }); 
+      move_btn.addActionListener(new ActionListener() { //자리이동 페이지
+          @Override
+          public void actionPerformed(ActionEvent e) {
+         if((seat_chk>0&&seat_chk<21)||(room_chk>=101&&room_chk<=104)) {
+        	 setVisible(false);
+             _06move frame = new _06move();
+             frame.setVisible(true);
+         	 
+         } else {
+        	 String msg= "사용 중인 좌석이 없습니다.";
+ 			 JOptionPane.showMessageDialog(null,msg); 
+         	}
+          }
+       });  
       
-      out_btn.addActionListener(new ActionListener() { //다음 페이지
+      out_btn.addActionListener(new ActionListener() { //퇴실 페이지
          @Override
          public void actionPerformed(ActionEvent e) {
           setVisible(false);
@@ -230,13 +273,22 @@ public class _00main  extends JFrame {
           frame.setVisible(true);
          }
       });
-      
-      in_btn.addActionListener(new ActionListener() { //다음 페이지
+     
+      in_btn.addActionListener(new ActionListener() { //입실 페이지(정기이용권 이용자)
+     
          @Override
          public void actionPerformed(ActionEvent e) {
-          setVisible(false);
-          _07in frame = new _07in();
-          frame.setVisible(true);
+          if(seat_chk>0) {
+        		 String msg= "이미 좌석이 있습니다.";
+				 JOptionPane.showMessageDialog(null,msg); 
+        	 } else if(type.equals("정기 이용권")) {
+                 setVisible(false);
+                 _07in_seletSeat frame = new _07in_seletSeat();
+                 frame.setVisible(true);
+             }else {
+             String msg1= "정기 이용권 이용자만 가능합니다";
+        	 JOptionPane.showMessageDialog(null,msg1); 
+            }
          }
       });
     

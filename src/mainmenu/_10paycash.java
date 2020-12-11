@@ -111,11 +111,16 @@ public class _10paycash {
 			int rowp = pstmt.executeUpdate();
 			
 			//회원info 테이블에 저장(좌석번호,사물함번호,입실)
-			sql = "update person_info set seat_number=?,Expiration_seat=? where person_id=?";
+			sql = "update person_info set seat_number=?,Expiration_seat=?,seat_type=? where person_id=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, i+1);
 			pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(ss));
-			pstmt.setInt(3, _00main.id);
+			if(_08reservation.price>=90000) {
+			pstmt.setString(3, "정기 이용권");
+			}else {
+			pstmt.setString(3, "일일 이용권");
+			}
+			pstmt.setInt(4, _00main.id);
 			
 			int row3 = pstmt.executeUpdate();
 			 
@@ -154,7 +159,7 @@ public class _10paycash {
 //				회원info 테이블에 저장(좌석번호,사물함번호,입실)
 				sql2 = "update person_info set room_number=?,Expiration_room=? where person_id=?";
 				pstmt = conn.prepareStatement(sql2);
-				pstmt.setInt(1, i+1);
+				pstmt.setInt(1, i+101);
 				pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(ss));
 				pstmt.setInt(3, _00main.id);
 				int row5 = pstmt.executeUpdate();
