@@ -38,7 +38,7 @@ import login.YearMonthClick;
 import login.design.Style;
 import login.page.LoginPage;
 import login.page.MainPage;
-import login.window.ActionWindow;
+import login.window.Main_ActionWindow;
 import login.clearText.ClearTextBackGround;
 import login.clearText.PhoneNumberClearTextField;
 
@@ -192,9 +192,9 @@ public class FindPasswordPageUser extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (MainPage.userToggle.equals("관리자 비번찾기")) {
-					MainPage.cards.show(MainPage.page_panel, "관리자");
+					MainPage.main_cards.show(MainPage.main_page_panel, "관리자");
 				} else {
-					MainPage.cards.show(MainPage.page_panel, "로그인");
+					MainPage.main_cards.show(MainPage.main_page_panel, "로그인");
 					MainPage.userToggle = "로그인";
 					year.setSelectedItem("2000");
 					for (int i = 0; i < phoneTotal.length; i++) {

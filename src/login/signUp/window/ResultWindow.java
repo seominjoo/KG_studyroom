@@ -101,7 +101,7 @@ public class ResultWindow extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getButton() == MouseEvent.BUTTON1) {
 					if (result) {
-						MainPage.cards.show(MainPage.page_panel, "로그인");
+						MainPage.main_cards.show(MainPage.main_page_panel, "로그인");
 						for (SignUpEnum value : SignUpEnum.values()) {
 							value.text.setText(value.labelName);;
 							value.blindPW.setText(value.labelName);

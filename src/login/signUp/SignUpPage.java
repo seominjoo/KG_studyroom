@@ -241,7 +241,7 @@ public class SignUpPage extends JPanel {
 		s_No.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MainPage.cards.show(MainPage.page_panel,"로그인");
+				MainPage.main_cards.show(MainPage.main_page_panel,"로그인");
 				MainPage.userToggle = "로그인";
 				
 				for (SignUpEnum value : SignUpEnum.values()) {

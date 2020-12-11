@@ -1,4 +1,4 @@
-package mainmenu;
+package login.mainmenu;
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -19,12 +19,12 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-public class _03whatHourRoom extends JFrame {
+public class _03whatHour extends JFrame {
 
 	LocalDateTime time_now = LocalDateTime.now(); 
 	private JPanel contentPane; 
 	 
-	public _03whatHourRoom() {
+	public _03whatHour() {
 		 
 		
 		JLabel label01 = new JLabel("<html>&emsp;&emsp;&emsp; &emsp;가격표");
@@ -42,23 +42,23 @@ public class _03whatHourRoom extends JFrame {
 		 
 		contentPane.add(label01);
 		
-		JButton btn_2hr= new JButton("2시간 (12,000원)");
+		JButton btn_2hr= new JButton("2시간 (3,000원)");
 		btn_2hr.setBounds(5, 143, 208, 54); 
 		contentPane.add(btn_2hr);
 
-		JButton btn_4hr = new JButton("4시간 (18,000원)");
+		JButton btn_4hr = new JButton("4시간 (2,000원)");
 		btn_4hr.setBounds(218, 143, 213, 54); 
 		contentPane.add(btn_4hr);
 
-		JButton btn_6hr = new JButton("6시간 (24,000원)");
+		JButton btn_6hr = new JButton("6시간 (2,000원)");
 		btn_6hr.setBounds(5, 198, 208, 54); 
 		contentPane.add(btn_6hr);
 
-		JButton btn_8hr = new JButton("8시간 (30,000원)");
+		JButton btn_8hr = new JButton("8시간 (2,000원)");
 		btn_8hr.setBounds(218, 198, 213, 54); 
 		contentPane.add(btn_8hr);
 
-		JButton btn_12hr = new JButton("12시간 (36,000원)");
+		JButton btn_12hr = new JButton("12시간 (2,000원)");
 		btn_12hr.setBounds(5, 253, 208, 54);
 		contentPane.add(btn_12hr);
   
@@ -71,7 +71,7 @@ public class _03whatHourRoom extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				_08reservation frame = new _08reservation(time_now.plusHours(2),12000,"2시간 이용권 (룸)");
+				_08reservation frame = new _08reservation(time_now.plusHours(2),3000,"2시간 이용권 (1인석)");
 				frame.setVisible(true);
 			}
 		}); 
@@ -80,7 +80,7 @@ public class _03whatHourRoom extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				_08reservation frame = new _08reservation(time_now.plusHours(4),18000,"4시간 이용권 (룸)");
+				_08reservation frame = new _08reservation(time_now.plusHours(4),4500,"4시간 이용권 (1인석)");
 				frame.setVisible(true);
 			}
 		}); 
@@ -89,7 +89,7 @@ public class _03whatHourRoom extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				_08reservation frame = new _08reservation(time_now.plusHours(6),24000,"6시간 이용권 (룸)");
+				_08reservation frame = new _08reservation(time_now.plusHours(6),6000,"6시간 이용권 (1인석)");
 				frame.setVisible(true);
 			}
 		});
@@ -98,7 +98,7 @@ public class _03whatHourRoom extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				_08reservation frame = new _08reservation(time_now.plusHours(8),30000,"8시간 이용권 (룸)");
+				_08reservation frame = new _08reservation(time_now.plusHours(8),7500,"8시간 이용권 (1인석)");
 				frame.setVisible(true);
 			}
 		});
@@ -107,7 +107,7 @@ public class _03whatHourRoom extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				_08reservation frame = new _08reservation(time_now.plusHours(12),36000,"12시간 이용권 (룸)");
+				_08reservation frame = new _08reservation(time_now.plusHours(12),10000,"12시간 이용권 (1인석)");
 				frame.setVisible(true);
 			}
 		});
@@ -116,14 +116,14 @@ public class _03whatHourRoom extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				_02dayRoom frame = new _02dayRoom();
+				_02dayOrWeek frame = new _02dayOrWeek();
 				frame.setVisible(true);
 			}
 		});
 	}
 
 	public static void main(String[] args) {
-		_03whatHourRoom frame = new _03whatHourRoom();
+		_03whatHour frame = new _03whatHour();
 		frame.setVisible(true);
 	}
 }

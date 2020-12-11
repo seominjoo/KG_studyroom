@@ -25,7 +25,7 @@ import login.signUp.SignUpPage;
 import login.swingTools.SwingToolsSubPage;
 import login.window.Login_SwingTool;
 
-public class ActionWindow extends JFrame implements ActionListener {
+public class Main_ActionWindow extends JFrame implements ActionListener {
 
 	JButton loginbtns;
 	static JPanel center_panel;
@@ -34,7 +34,7 @@ public class ActionWindow extends JFrame implements ActionListener {
 	static JButton combtn;
 	static JPanel panelInGrid3;
 
-	public ActionWindow(JButton loginbtns) {
+	public Main_ActionWindow(JButton loginbtns) {
 		this.loginbtns = loginbtns;
 
 		center_panel = new JPanel(new GridLayout(3, 1, 0, -60));
@@ -99,29 +99,29 @@ public class ActionWindow extends JFrame implements ActionListener {
 			}
 
 		} else if (loginbtns.getText().equals("회원가입")) {
-			MainPage.cards.show(MainPage.page_panel, "회원가입");
+			MainPage.main_cards.show(MainPage.main_page_panel, "회원가입");
 			MainPage.userToggle = "회원가입";
 
 		} else if (loginbtns.getText().equals("비번찾기")) {
-			MainPage.cards.show(MainPage.page_panel, "비번찾기");
+			MainPage.main_cards.show(MainPage.main_page_panel, "비번찾기");
 			MainPage.userToggle = "비번찾기";
 				
 		} else if (loginbtns.getText().equals("관리자 비번찾기")) {
-			MainPage.cards.show(MainPage.page_panel, "비번찾기");
+			MainPage.main_cards.show(MainPage.main_page_panel, "비번찾기");
 			MainPage.userToggle = "관리자 비번찾기";
 			
 		} else if (loginbtns.getText().equals("관리자버튼")) {
 			if (MainPage.userToggle.equals("메인") || MainPage.userToggle.equals("로그인")) {
-				MainPage.cards.show(MainPage.page_panel, "관리자");
+				MainPage.main_cards.show(MainPage.main_page_panel, "관리자");
 				MainPage.userToggle = "관리자";
 			} else {
-				MainPage.cards.show(MainPage.page_panel, "메인");
+				MainPage.main_cards.show(MainPage.main_page_panel, "메인");
 				System.out.println(MainPage.userToggle);
 				MainPage.userToggle = "메인";
 			}
 
 		} else if (loginbtns.getText().contains("터치")) {
-			MainPage.cards.show(MainPage.page_panel, "로그인");
+			MainPage.main_cards.show(MainPage.main_page_panel, "로그인");
 			MainPage.userToggle = "로그인";
 			System.out.println(MainPage.userToggle);
 			
@@ -179,10 +179,10 @@ public class ActionWindow extends JFrame implements ActionListener {
 				dispose();
 				if(combtn.getText().equals("메뉴가기")) {
 					if(MainPage.userToggle.equals("로그인")) {
-//						MainPage.cards.show(MainPage.page_panel, "사용자메뉴");
-//						MainPage.userToggle = "사용자메뉴";
+						MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+						MainPage.userToggle = "사용자메뉴";
 					}else {
-						MainPage.cards.show(MainPage.page_panel, "관리자메뉴");
+						MainPage.main_cards.show(MainPage.main_page_panel, "관리자메뉴");
 						MainPage.userToggle = "관리자메뉴";
 					}
 				}

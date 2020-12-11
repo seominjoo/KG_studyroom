@@ -1,4 +1,4 @@
-package mainmenu;
+package login.mainmenu;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;

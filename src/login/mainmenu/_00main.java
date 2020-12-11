@@ -1,4 +1,4 @@
-package mainmenu;
+package login.mainmenu;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -48,7 +48,7 @@ import java.awt.Panel;
 
 import javax.swing.ImageIcon;
 
-public class _00main extends JFrame {
+public class _00main extends JPanel {
  
    JTable table;
    static int count_seat;
@@ -72,7 +72,7 @@ public class _00main extends JFrame {
 	   count_room=0;
 	   count_seat=0;
       try {
-         Class.forName("oracle.jdbc.driver.OracleDriver");
+    	 Class.forName("oracle.jdbc.driver.OracleDriver");
          Connection conn = DriverManager.getConnection(
                "jdbc:oracle:thin:@localhost:1521/XEPDB1",
                "hr",
@@ -88,6 +88,7 @@ public class _00main extends JFrame {
          
          while(rs.next()) { 
             id = rs.getInt("person_id") ; 
+            
             System.out.println("로그인 된 회원번호: " + id);
          }
  
@@ -186,11 +187,9 @@ public class _00main extends JFrame {
          e1.printStackTrace();
       }
 
-      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      setBounds(600, 150, 450, 400);
       contentPane = new JPanel();
       contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-      setContentPane(contentPane);
+      this.add(contentPane);
       contentPane.setLayout(null);
 
       //메뉴 버튼 4개
@@ -238,8 +237,6 @@ public class _00main extends JFrame {
       table.getColumn("사물함").setCellRenderer(celAlignCenter);
       table.getColumn("현재시간").setCellRenderer(celAlignCenter);
       contentPane.add(table); 
-      
-      setVisible(true);
       
       ticket_btn.addActionListener(new ActionListener() { //이용권 페이지
          @Override
@@ -293,8 +290,5 @@ public class _00main extends JFrame {
       });
     
    }  
-   
-   public static void main(String[] args) {
-      new _00main();    
-   }
+  
 }
