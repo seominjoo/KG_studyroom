@@ -42,6 +42,7 @@ public class MainBtn_Action implements ActionListener {
 		if (loginbtns.getText().equals("회원가입")) {
 			MainPage.main_cards.show(MainPage.main_page_panel, "회원가입");
 			MainPage.userToggle = "회원가입";
+			SignUpPage.passAlert.setText(""); // 회원가입 비번 알림 초기화
 
 		} else if (loginbtns.getText().equals("비번찾기")) {
 			MainPage.main_cards.show(MainPage.main_page_panel, "비번찾기");

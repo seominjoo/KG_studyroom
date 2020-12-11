@@ -2,10 +2,13 @@ package login.signUp;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -14,6 +17,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.regex.Pattern;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -39,9 +44,9 @@ import login.swingTools.SwingToolsMainPage;
 
 public class SignUpPage extends JPanel {
 	final int GRID = 8;
-	
+
 	static Map<JCheckBox, JButton> consent;
-	
+
 	static ImageIcon icon;
 	static BufferedImage source;
 	public static JComboBox<String> year;
@@ -51,18 +56,22 @@ public class SignUpPage extends JPanel {
 	public static JTextField phone_number1;
 	public static JTextField phone_number2;
 	public static JTextField phone_number3;
-	
+
 	public static JTextField[] phoneTotal;
+
+	static JPanel panelInGrid7_1;
+	
+	public static JLabel passAlert;
 	
 	public SignUpPage() {
 		setLayout(new BorderLayout(30, 0));
 		new Style(this);
-		
+
 		add(Style.getnewPanel(), BorderLayout.NORTH);
 		add(Style.getnewPanel(), BorderLayout.WEST);
 		add(Style.getnewPanel(), BorderLayout.EAST);
 		add(Style.getnewPanel(), BorderLayout.SOUTH);
-		
+
 		JPanel grid = new JPanel(new GridLayout(GRID, 1, 0, 20));
 		add(grid, BorderLayout.CENTER);
 		new Style(grid);
@@ -74,7 +83,7 @@ public class SignUpPage extends JPanel {
 		grid.add(signup);
 
 		for (SignUpEnum value : SignUpEnum.values()) {
-			
+
 			JPanel gridInGrid = new JPanel(new GridLayout(1, 2, 0, 0));
 			new Style(gridInGrid);
 			new Style(value.text, 3);
@@ -82,13 +91,55 @@ public class SignUpPage extends JPanel {
 
 			// 비번, 비번 확인
 			if (value.equals(value.PASSWORD) || value.equals(value.PASSWORDCONFIRM)) {
+				panelInGrid7_1 = new JPanel();
+				panelInGrid7_1.setLayout(null);
+				new Style(panelInGrid7_1);
+
 				JLabel passLabel = new JLabel(value.labelNameKor);
 				new Style(passLabel);
+				passLabel.setBounds(0, -11, 200, 50);
+
+				if (value.equals(value.PASSWORD)) {
+
+					JLabel passNoticement = new JLabel("※ 대소문자 & 특수문자 각 1개");
+					new Style(passNoticement);
+					passNoticement.setFont(new Font("맑은 고딕", Font.BOLD, 10));
+					passNoticement.setBounds(0, 17, 150, 25);
+					panelInGrid7_1.add(passNoticement);
+
+					passAlert = new JLabel("");
+					new Style(passAlert);
+					passAlert.setFont(new Font("맑은 고딕", Font.BOLD, 10));
+					passAlert.setBounds(155, 8, 100, 25);
+					panelInGrid7_1.add(passAlert);
+
+					value.PASSWORD.blindPW.addKeyListener(new KeyAdapter() {
+						@Override
+						public void keyReleased(KeyEvent e) {
+							if(Pattern.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,12}$",
+									String.valueOf(value.PASSWORD.blindPW.getPassword()))) {
+								passAlert.setText("사용가능");
+								passAlert.setForeground(Color.decode("#04ff00"));
+							} 
+							else {
+								passAlert.setText("사용불가");
+								passAlert.setForeground(Color.decode("#fc0303"));
+							}
+
+						}
+					});
+
+				}
+
+				panelInGrid7_1.add(passLabel);
+
+				gridInGrid.add(panelInGrid7_1);
+
 				new Style(value.blindPW, 12);
 				value.blindPW.setHorizontalAlignment(SwingConstants.LEFT);
-				gridInGrid.add(passLabel);
 				gridInGrid.add(value.blindPW);
 				grid.add(gridInGrid);
+
 				continue;
 			}
 
@@ -101,18 +152,18 @@ public class SignUpPage extends JPanel {
 				JPanel panelInGrid2 = new JPanel();
 				new Style(panelInGrid2);
 				panelInGrid2.setLayout(null);
-				
+
 				year = new JComboBox<String>(BirthEnum.getYearTable());
 				year.setBounds(0, 3, 65, 30);
 				panelInGrid2.add(year);
 				new Style(year);
 				year.setSelectedItem("2000");
-				
+
 				month = new JComboBox<String>(BirthEnum.getMonthTable());
 				month.setBounds(84, 3, 50, 30);
 				panelInGrid2.add(month);
 				new Style(month);
-				
+
 				day = new JComboBox<String>(BirthEnum.getDayTable());
 
 				day.setBounds(152, 3, 50, 30);
@@ -186,20 +237,20 @@ public class SignUpPage extends JPanel {
 		int consentNum = 0;
 		for (Entry<JCheckBox, JButton> kv : consent.entrySet()) {
 			new Style(kv.getKey());
-			
+
 			new Style(kv.getValue());
 			kv.getValue().setFont(new Font("맑은 고딕", Font.BOLD, 13));
-			
+
 			gridInGrid7.add(kv.getKey());
-			
+
 			JPanel gridInGrid72 = new JPanel();
 			new Style(gridInGrid72);
 			gridInGrid72.setLayout(null);
 			gridInGrid7.add(gridInGrid72);
 			kv.getValue().setBounds(102, 3, 100, 30);
-			
+
 			gridInGrid72.add(kv.getValue());
-			
+
 			// 약관 내용 보기
 			consentNum++;
 			kv.getValue().addActionListener(new ConsentContent(consentNum));
@@ -212,22 +263,19 @@ public class SignUpPage extends JPanel {
 		int col = 4;
 		JPanel gridInGrid8 = new JPanel(new GridLayout(1, col, 30, 10));
 		new Style(gridInGrid8);
-		
+
 		JButton s_Yes = new JButton("가입");
-		
-		
+
 		JButton s_No = new JButton("취소");
 
-
-			for (int c = 0; c < col; c++) {
-				if (c == 1)
-					gridInGrid8.add(s_Yes);
-				else if (c == 2)
-					gridInGrid8.add(s_No);
-				else
-					gridInGrid8.add(new JLabel());
-			}
-		
+		for (int c = 0; c < col; c++) {
+			if (c == 1)
+				gridInGrid8.add(s_Yes);
+			else if (c == 2)
+				gridInGrid8.add(s_No);
+			else
+				gridInGrid8.add(new JLabel());
+		}
 
 		JButton[] yesNo = { s_Yes, s_No };
 		for (int i = 0; i < yesNo.length; i++) {
@@ -241,26 +289,26 @@ public class SignUpPage extends JPanel {
 		s_No.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MainPage.main_cards.show(MainPage.main_page_panel,"로그인");
+				MainPage.main_cards.show(MainPage.main_page_panel, "로그인");
 				MainPage.userToggle = "로그인";
-				
+
 				for (SignUpEnum value : SignUpEnum.values()) {
-					value.text.setText(value.labelName);;
+					value.text.setText(value.labelName);
+					;
 					value.blindPW.setText(value.labelName);
 				}
-				for(int i = 0; i < phoneTotal.length; i++) {
+				for (int i = 0; i < phoneTotal.length; i++) {
 					phoneTotal[i].setText(PhoneNumberEnum.values()[i].labelName);
 				}
 				year.setSelectedItem("2000");
 			}
 		});
 
-			phoneTotal = new JTextField[] {phone_number1,phone_number2,phone_number3};
-			// 전번 텍스트 마우스로 누를 때
-			for(int i = 0; i < phoneTotal.length; i++) {
-				phoneTotal[i].addMouseListener(new PhoneNumberClearTextField
-						(phoneTotal[i], "회원가입"));
-				addMouseListener(new ClearTextBackGround(phoneTotal[i], PhoneNumberEnum.values()[i]));
-			}
+		phoneTotal = new JTextField[] { phone_number1, phone_number2, phone_number3 };
+		// 전번 텍스트 마우스로 누를 때
+		for (int i = 0; i < phoneTotal.length; i++) {
+			phoneTotal[i].addMouseListener(new PhoneNumberClearTextField(phoneTotal[i], "회원가입"));
+			addMouseListener(new ClearTextBackGround(phoneTotal[i], PhoneNumberEnum.values()[i]));
+		}
 	}
 }
