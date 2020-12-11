@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.text.Format;
+import java.time.LocalDateTime;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,9 +21,11 @@ import login.design.Conversion_image;
 import login.design.Style;
 import login.loginDataBase.DBLoggedIn;
 import login.mainmenu._00main;
+import login.mainmenu._03whatHour;
 import login.mainmenu._06move;
 import login.mainmenu._07in_seletSeat;
 import login.mainmenu._07out;
+import login.mainmenu._08reservation;
 import login.page.AdminPage;
 import login.page.LoginPage;
 import login.page.MainPage;
@@ -78,10 +81,13 @@ public class UserBtn_Action implements ActionListener {
 		        	 JOptionPane.showMessageDialog(null,msg1);
 		      }
 			
-		} else if (userBtn.getText().equals("퇴실하기")) { // 퇴실 페이지
+		} else if (userBtn.getText().equals("2시간 (3,000원)")) { // 퇴실 페이지
+			MainPage.ss = _03whatHour.time_now.plusHours(2);
+			MainPage.price = 3000;
+			MainPage.seat_type = "2시간 이용권 (1인석)";
 			MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
-			MainPage.user_cards.show(MainPage.user_page_panel, "퇴실하기");
-			MainPage.userToggle = "퇴실하기";
+			MainPage.user_cards.show(MainPage.user_page_panel, "예약하기");
+			MainPage.userToggle = "예약하기";
 			
 		} else if (userBtn.getText().equals("퇴실하기")) { // 퇴실 페이지
 			MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");

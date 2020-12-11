@@ -7,6 +7,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+
+import login.window.UserBtn_Action;
+
 import javax.swing.JButton;
 import java.awt.GridLayout;
 import javax.swing.AbstractAction;
@@ -21,7 +25,7 @@ import java.awt.Insets;
 
 public class _03whatHour extends JFrame {
 
-	LocalDateTime time_now = LocalDateTime.now(); 
+	public static LocalDateTime time_now = LocalDateTime.now(); 
 	private JPanel contentPane; 
 	 
 	public _03whatHour() {
@@ -67,60 +71,55 @@ public class _03whatHour extends JFrame {
 		contentPane.add(btn_back, btn_back);
 		
 
-		btn_2hr.addActionListener(new ActionListener() { //다음 페이지(2시간 이용권)
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				_08reservation frame = new _08reservation(time_now.plusHours(2),3000,"2시간 이용권 (1인석)");
-				frame.setVisible(true);
-			}
-		}); 
-
-		btn_4hr.addActionListener(new ActionListener() { //다음 페이지(4시간 이용권)
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				_08reservation frame = new _08reservation(time_now.plusHours(4),4500,"4시간 이용권 (1인석)");
-				frame.setVisible(true);
-			}
-		}); 
-
-		btn_6hr.addActionListener(new ActionListener() { //다음 페이지(6시간 이용권)
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				_08reservation frame = new _08reservation(time_now.plusHours(6),6000,"6시간 이용권 (1인석)");
-				frame.setVisible(true);
-			}
-		});
-
-		btn_8hr.addActionListener(new ActionListener() { //다음 페이지(8시간 이용권)
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				_08reservation frame = new _08reservation(time_now.plusHours(8),7500,"8시간 이용권 (1인석)");
-				frame.setVisible(true);
-			}
-		});
-
-		btn_12hr.addActionListener(new ActionListener() { //다음 페이지(12시간 이용권)
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				_08reservation frame = new _08reservation(time_now.plusHours(12),10000,"12시간 이용권 (1인석)");
-				frame.setVisible(true);
-			}
-		});
-
-		btn_back.addActionListener(new ActionListener() { //이전 페이지
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				_02dayOrWeek frame = new _02dayOrWeek();
-				frame.setVisible(true);
-			}
-		});
+		btn_2hr.addActionListener(new UserBtn_Action(btn_2hr)); //다음 페이지(2시간 이용권)
+		
 	}
+//
+//		btn_4hr.addActionListener(new UserBtn_Action(ticket_btn)); //다음 페이지(4시간 이용권)
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				setVisible(false);
+//				_08reservation frame = new _08reservation(time_now.plusHours(4),4500,"4시간 이용권 (1인석)");
+//				frame.setVisible(true);
+//			}
+//		}); 
+//
+//		btn_6hr.addActionListener(new UserBtn_Action(ticket_btn)); //다음 페이지(6시간 이용권)
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				setVisible(false);
+//				_08reservation frame = new _08reservation(time_now.plusHours(6),6000,"6시간 이용권 (1인석)");
+//				frame.setVisible(true);
+//			}
+//		});
+//
+//		btn_8hr.addActionListener(new UserBtn_Action(ticket_btn)); //다음 페이지(8시간 이용권)
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				setVisible(false);
+//				_08reservation frame = new _08reservation(time_now.plusHours(8),7500,"8시간 이용권 (1인석)");
+//				frame.setVisible(true);
+//			}
+//		});
+//
+//		btn_12hr.addActionListener(new UserBtn_Action(ticket_btn)); //다음 페이지(12시간 이용권)
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				setVisible(false);
+//				_08reservation frame = new _08reservation(time_now.plusHours(12),10000,"12시간 이용권 (1인석)");
+//				frame.setVisible(true);
+//			}
+//		});
+//
+//		btn_back.addActionListener(new UserBtn_Action(ticket_btn)); //이전 페이지
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				setVisible(false);
+//				_02dayOrWeek frame = new _02dayOrWeek();
+//				frame.setVisible(true);
+//			}
+//		});
+//	}
 
 	public static void main(String[] args) {
 		_03whatHour frame = new _03whatHour();

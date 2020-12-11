@@ -234,7 +234,7 @@ public class _00main extends JPanel {
 
 		ticket_btn.addActionListener(new UserBtn_Action(ticket_btn)); // 이용권 페이지
 
-		move_btn.addActionListener(new UserBtn_Action(move_btn));
+		move_btn.addActionListener(new UserBtn_Action(move_btn)); // 자리이동 페이지
 
 		out_btn.addActionListener(new UserBtn_Action(out_btn)); // 퇴실 페이지
 

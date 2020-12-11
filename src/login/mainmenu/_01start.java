@@ -63,7 +63,6 @@ public class _01start extends JPanel {
 		new Style(this);
 		setBounds(600, 150, 450, 400);
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
-//		setthis(this);
 		this.setLayout(null);
 
 		//메뉴 버튼 4개

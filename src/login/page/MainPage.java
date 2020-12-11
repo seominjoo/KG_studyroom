@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,6 +19,7 @@ import login.mainmenu._01start;
 import login.mainmenu._06move;
 import login.mainmenu._07in_seletSeat;
 import login.mainmenu._07out;
+import login.mainmenu._08reservation;
 import login.signUp.SignUpPage;
 import login.window.MainBtn_Action;
 import login.window.Login_SwingTool;
@@ -32,6 +34,11 @@ public class MainPage extends JFrame {
 	public static CardLayout user_cards;
 
 	public static String userToggle;
+	
+	// 예약하기 필요한 매개변수
+	public static LocalDateTime ss;
+	public static int price;
+	public static String seat_type;
 	
 	public MainPage() {
 		userToggle = "메인";
@@ -79,12 +86,8 @@ public class MainPage extends JFrame {
 		user_page_panel.add("자리이동", new _06move());
 		user_page_panel.add("입실하기", new _07in_seletSeat());
 		user_page_panel.add("퇴실하기", new _07out());
+		user_page_panel.add("예약하기", new _08reservation(ss, price, seat_type));
 //		user_page_panel.add("자리이동", new _06move());
-		
-		
-		
-		
-		
 		
 
 		JButton changeUser = new JButton(new Conversion_image("image/전원.png", 30, 30).imageicon_smooth);
