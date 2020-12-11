@@ -16,6 +16,12 @@ import login.design.Style;
 import login.findPW.FindPasswordPageUser;
 import login.mainmenu._00main;
 import login.mainmenu._01start;
+import login.mainmenu._02dayOrWeek;
+import login.mainmenu._02dayRoom;
+import login.mainmenu._03whatHour;
+import login.mainmenu._03whatHourRoom;
+import login.mainmenu._04whatWeek;
+import login.mainmenu._05locker;
 import login.mainmenu._06move;
 import login.mainmenu._07in_seletSeat;
 import login.mainmenu._07out;
@@ -81,13 +87,21 @@ public class MainPage extends JFrame {
 		main_page_panel.add("비번찾기", new FindPasswordPageUser());
 		
 		// 사용자 메뉴 페이지 추가 작업
-		user_page_panel.add("사용자메뉴", new _00main());
-		user_page_panel.add("이용권구매", new _01start());
+		user_page_panel.add("메인메뉴", new _00main()); // 메뉴페이지
+		user_page_panel.add("이용권구매", new _01start()); // 이용권구매 페이지
 		user_page_panel.add("자리이동", new _06move());
 		user_page_panel.add("입실하기", new _07in_seletSeat());
 		user_page_panel.add("퇴실하기", new _07out());
-		user_page_panel.add("예약하기", new _08reservation(ss, price, seat_type));
-//		user_page_panel.add("자리이동", new _06move());
+		user_page_panel.add("좌석이용권", new _02dayOrWeek()); // 좌석 이용권 페이지
+		user_page_panel.add("일일권가격표(좌석)", new _03whatHour());
+		user_page_panel.add("정기권가격표", new _04whatWeek());
+		user_page_panel.add("룸이용권", new _02dayRoom());
+		user_page_panel.add("사물함이용권", new _05locker());
+		user_page_panel.add("룸예약하기", new _03whatHourRoom());
+		user_page_panel.add("예약페이지", new _08reservation(ss, price, seat_type));
+//		user_page_panel.add("일일권가격표(룸)", new _02dayRoom());
+//		user_page_panel.add("룸이용권", new _02dayRoom());
+		
 		
 
 		JButton changeUser = new JButton(new Conversion_image("image/전원.png", 30, 30).imageicon_smooth);

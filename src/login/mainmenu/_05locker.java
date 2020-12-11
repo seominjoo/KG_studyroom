@@ -15,23 +15,20 @@ import java.time.LocalDateTime;
 import javax.swing.Action;
 import java.awt.GridLayout;
 
-public class _05locker extends JFrame { 
+public class _05locker extends JPanel { 
 	
-	private JPanel contentPane; 
 	LocalDateTime time_now = LocalDateTime.now(); 
 	public _05locker() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		setBounds(600, 150, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
+		this.setBorder(new EmptyBorder(5, 5, 5, 5));
+		this.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		JButton check_locker_btn = new JButton("이용 가능한 사물함 보기"); 
-		contentPane.add(check_locker_btn);
+		this.add(check_locker_btn);
 		
 		JButton btn_back = new JButton("이전 화면"); 
-		contentPane.add(btn_back);
+		this.add(btn_back);
 		
 		check_locker_btn.addActionListener(new ActionListener() { //다음 페이지
 			@Override

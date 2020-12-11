@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import login.design.Style;
+
 import javax.swing.JButton;
 import java.awt.GridLayout;
 import javax.swing.AbstractAction;
@@ -18,24 +21,21 @@ import java.awt.Insets;
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 
-public class _02dayRoom extends JFrame {
+public class _02dayRoom extends JPanel {
 
-	private JPanel contentPane;
 
 	public _02dayRoom() {
-		 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		new Style(this);
 		setBounds(600, 150, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(0, 2, 0, 0));
+		this.setBorder(new EmptyBorder(5, 5, 5, 5));
+		this.setLayout(new GridLayout(0, 2, 0, 0));
 
 		JButton daily_btn = new JButton("일일 이용권"); 
-		contentPane.add(daily_btn);
+		this.add(daily_btn);
 
 		JButton back_btn = new JButton("이전 화면"); 
-		contentPane.add(back_btn);
+		this.add(back_btn);
 
 		
 		daily_btn.addActionListener(new ActionListener() { //다음 페이지

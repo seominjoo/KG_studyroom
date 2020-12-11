@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import login.design.Style;
+import login.window.UserBtn_Action;
+
 import javax.swing.JButton;
 import java.awt.GridLayout;
 import javax.swing.AbstractAction;
@@ -18,59 +22,31 @@ import java.awt.Insets;
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 
-public class _02dayOrWeek extends JFrame {
+public class _02dayOrWeek extends JPanel {
 
-	private JPanel contentPane;
 
 	public _02dayOrWeek() {
 		 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		new Style(this);
 		setBounds(600, 150, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(0, 3, 0, 0));
+		this.setBorder(new EmptyBorder(5, 5, 5, 5));
+		this.setLayout(new GridLayout(0, 3, 0, 0));
 
 		JButton daily_btn = new JButton("일일 이용권"); 
-		contentPane.add(daily_btn);
+		this.add(daily_btn);
 
 		JButton weekly_btn = new JButton("정기 이용권"); 
-		contentPane.add(weekly_btn);
+		this.add(weekly_btn);
 
 		JButton back_btn = new JButton("이전 화면"); 
-		contentPane.add(back_btn);
+		this.add(back_btn);
 
 		
-		daily_btn.addActionListener(new ActionListener() { //다음 페이지
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				_03whatHour frame = new _03whatHour();
-				frame.setVisible(true);
-			}
-		}); 
+		daily_btn.addActionListener(new UserBtn_Action(daily_btn)); //다음 페이지(일일이용권)
 
-		weekly_btn.addActionListener(new ActionListener() { //다음 페이지
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				_04whatWeek frame = new _04whatWeek();
-				frame.setVisible(true);
-			}
-		});
+		weekly_btn.addActionListener(new UserBtn_Action(daily_btn)); //다음 페이지(정기이용권)
 
-		back_btn.addActionListener(new ActionListener() { //이전 페이지
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				_01start frame = new _01start();
-				frame.setVisible(true);
-			}
-		}); 
+		back_btn.addActionListener(new UserBtn_Action(daily_btn)); //이전 페이지
 
 	} 
-	public static void main(String[] args) {
-		_02dayOrWeek frame = new _02dayOrWeek();
-		frame.setVisible(true);
-	}
 } 

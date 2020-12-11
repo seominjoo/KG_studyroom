@@ -19,40 +19,36 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-public class _04whatWeek extends JFrame {
+public class _04whatWeek extends JPanel {
 
-	LocalDateTime time_now = LocalDateTime.now(); 
-	private JPanel contentPane;
+	LocalDateTime time_now = LocalDateTime.now();
 
 	public _04whatWeek() {
 		JLabel label01 = new JLabel("<html>&emsp;&emsp;&emsp; &emsp;가격표");
 		label01.setBounds(0,0,420,80);
 		label01.setFont(new Font("Courier", Font.PLAIN, 35));
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(600, 150, 450, 470);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		this.setBorder(new EmptyBorder(5, 5, 5, 5));
+		this.setLayout(null);
 		
-		contentPane.add(label01);
+		this.add(label01);
 
 		JButton btn_2wk = new JButton("2주 (90,000원)");  
 		btn_2wk.setBounds(5, 166, 208, 121);
-		contentPane.add(btn_2wk);
+		this.add(btn_2wk);
 
 		JButton btn_4wk = new JButton("4주 (130,000원)"); 
 		btn_4wk.setBounds(218, 166, 213, 121);
-		contentPane.add(btn_4wk);
+		this.add(btn_4wk);
 
 		JButton btn_8wk = new JButton("8주 (250,000원)");  
 		btn_8wk.setBounds(5, 297, 208, 126);
-		contentPane.add(btn_8wk);
+		this.add(btn_8wk);
 
 		JButton btn_back = new JButton("이전 화면");  
 		btn_back.setBounds(218, 297, 213, 126);
-		contentPane.add(btn_back);
+		this.add(btn_back);
 
 		btn_2wk.addActionListener(new ActionListener() { //다음 페이지(2주 이용권)
 			@Override
