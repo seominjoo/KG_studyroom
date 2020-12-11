@@ -48,11 +48,11 @@ import java.awt.Panel;
 
 import javax.swing.ImageIcon;
 
-public class _01start extends JFrame {
+public class _01start extends JPanel {
  
 	JTable table;
 	 
-	private JPanel contentPane;
+//	private JPanel this;
 	static Timestamp time_chk_seat;
 	DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy년 M월 d일");
 	DateTimeFormatter time = DateTimeFormatter.ofPattern("a h시 m분 ");
@@ -60,29 +60,27 @@ public class _01start extends JFrame {
 	public _01start() { 
 		 
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(600, 150, 450, 400);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		this.setBorder(new EmptyBorder(5, 5, 5, 5));
+//		setthis(this);
+		this.setLayout(null);
 
 		//메뉴 버튼 4개
 		JButton seat_btn = new JButton("좌석 이용권"); 
 		seat_btn.setBounds(5, 95, 208, 121);  
-		contentPane.add(seat_btn);
+		this.add(seat_btn);
 
 		JButton locker_btn = new JButton("사물함 이용권");
 		locker_btn.setBounds(218, 95, 213, 121); 
-		contentPane.add(locker_btn);
+		this.add(locker_btn);
 
 		JButton room_btn = new JButton("룸 이용권");
 		room_btn.setBounds(5, 221, 208, 126); 
-		contentPane.add(room_btn);
+		this.add(room_btn);
 
 	    JButton back_btn = new JButton("이전 화면");
 	    back_btn.setBounds(218, 221, 213, 126); 
-	    contentPane.add(back_btn);
+	    this.add(back_btn);
 
 		//스터디룸 상황표
 		String header[] = {"1인석","스터디룸","사물함","현재시간"};
@@ -111,7 +109,7 @@ public class _01start extends JFrame {
 		table.getColumn("스터디룸").setCellRenderer(celAlignCenter);
 		table.getColumn("사물함").setCellRenderer(celAlignCenter);
 		table.getColumn("현재시간").setCellRenderer(celAlignCenter);
-		contentPane.add(table); 
+		this.add(table); 
 		
 		setVisible(true);
 		

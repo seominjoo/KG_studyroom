@@ -16,7 +16,7 @@ import javax.swing.JLabel;
 import login.*;
 import login.findPW.window.PassWordSearchResultPage;
 import login.page.MainPage;
-import login.window.Main_ActionWindow;
+import login.window.MainBtn_Action;
 
 public class ClickFindPasswordPage implements ActionListener {
 

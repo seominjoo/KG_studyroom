@@ -21,9 +21,15 @@ public class SubWindow extends JFrame {
 	static JLabel comment2;
 	static JButton combtn;
 	static JPanel panelInGrid3;
-
+	
+	
 	public SubWindow(String label1, String label2) {
-		String nextcard = Main_ActionWindow.nextcard;
+		String nextcard = "";
+		new SubWindow(label1, label2, nextcard);	
+	}
+
+	public SubWindow(String label1, String label2, String nextcard) {
+		
 		SwingToolsSubPage.initTestFrame(this);
 		setLayout(new BorderLayout(10, 0));
 

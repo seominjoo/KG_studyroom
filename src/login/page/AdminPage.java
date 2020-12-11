@@ -12,7 +12,7 @@ import login.clearText.PhoneNumberClearTextField;
 import login.design.Conversion_image;
 import login.design.EmptyPrice;
 import login.design.Style;
-import login.window.Main_ActionWindow;
+import login.window.MainBtn_Action;
 
 public class AdminPage extends JPanel{
 	public static JTextField admin_phone_number1;
@@ -65,14 +65,14 @@ public class AdminPage extends JPanel{
 		JButton admin = new JButton("관리자 로그인");
 		new Style(admin);
 		admin.setBounds(145, 250, 195, 40);
-		admin.addActionListener(new Main_ActionWindow(admin));
+		admin.addActionListener(new MainBtn_Action(admin));
 		this.add(admin);
 
 		JButton admin_find_PW1 = new JButton(new Conversion_image("image/PW찾기.png", 40, 40).imageicon_smooth);
 		new Style(admin_find_PW1);
 		admin_find_PW1.setText("관리자 비번찾기");
 		admin_find_PW1.setBounds(413, 316, 50, 50);
-		admin_find_PW1.addActionListener(new Main_ActionWindow(admin_find_PW1));
+		admin_find_PW1.addActionListener(new MainBtn_Action(admin_find_PW1));
 		this.add(admin_find_PW1);
 		
 		phoneTotal = new JTextField[] { admin_phone_number1, admin_phone_number2, admin_phone_number3 };

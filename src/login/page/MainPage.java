@@ -14,8 +14,9 @@ import login.design.Conversion_image;
 import login.design.Style;
 import login.findPW.FindPasswordPageUser;
 import login.mainmenu._00main;
+import login.mainmenu._01start;
 import login.signUp.SignUpPage;
-import login.window.Main_ActionWindow;
+import login.window.MainBtn_Action;
 import login.window.Login_SwingTool;
 
 public class MainPage extends JFrame {
@@ -57,7 +58,7 @@ public class MainPage extends JFrame {
 		JButton touch = new JButton("<html>터치를 하여<br/>이용해주세요</html>");
 		new Style(touch);
 		touch.setBorder(null);
-		touch.addActionListener(new Main_ActionWindow(touch));
+		touch.addActionListener(new MainBtn_Action(touch));
 		main.add(touch);
 
 		// 메인 페이지 추가 작업
@@ -71,12 +72,13 @@ public class MainPage extends JFrame {
 		
 		// 사용자 메뉴 페이지 추가 작업
 		user_page_panel.add("사용자메뉴", new _00main());
+		user_page_panel.add("이용권페이지", new _01start());
 
 		JButton changeUser = new JButton(new Conversion_image("image/전원.png", 30, 30).imageicon_smooth);
 		new Style(changeUser);
 		changeUser.setText("관리자버튼");
 		changeUser.setBounds(0, 0, 30, 30);
-		changeUser.addActionListener(new Main_ActionWindow(changeUser));
+		changeUser.addActionListener(new MainBtn_Action(changeUser));
 		background.add(changeUser);
 		fram_panel.add(background);
 

@@ -29,7 +29,7 @@ import login.design.EmptyPrice;
 import login.design.Style;
 import login.findPW.FindPasswordPageUser;
 import login.signUp.SignUpPage;
-import login.window.Main_ActionWindow;
+import login.window.MainBtn_Action;
 import login.window.Login_SwingTool;
 
 public class LoginPage extends JPanel {
@@ -93,21 +93,21 @@ public class LoginPage extends JPanel {
 		JButton login = new JButton("로그인");
 		new Style(login);
 		login.setBounds(145, 250, 195, 40);
-		login.addActionListener(new Main_ActionWindow(login));
+		login.addActionListener(new MainBtn_Action(login));
 		this.add(login);
 		
 		JButton find_PW = new JButton(new Conversion_image("image/PW찾기.png", 40, 40).imageicon_smooth);
 		new Style(find_PW);
 		find_PW.setText("비번찾기");
 		find_PW.setBounds(413, 316, 50, 50);
-		find_PW.addActionListener(new Main_ActionWindow(find_PW));
+		find_PW.addActionListener(new MainBtn_Action(find_PW));
 		this.add(find_PW);
 		
 		JButton signup = new JButton(new Conversion_image("image/회원가입.png", 40, 40).imageicon_smooth);
 		new Style(signup);
 		signup.setText("회원가입");
 		signup.setBounds(410, 365, 50, 50);
-		signup.addActionListener(new Main_ActionWindow(signup));
+		signup.addActionListener(new MainBtn_Action(signup));
 		this.add(signup);
 
 		phoneTotal = new JTextField[] { phone_number1, phone_number2, phone_number3 };
