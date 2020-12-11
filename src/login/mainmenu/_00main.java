@@ -61,7 +61,6 @@ public class _00main extends JPanel {
    Timestamp time_locker;
    Timestamp time_room;
    static int id;
-   private JPanel contentPane;
   static String type;
    DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy년 M월 d일");
    DateTimeFormatter time = DateTimeFormatter.ofPattern("a h시 m분 ");
@@ -187,27 +186,25 @@ public class _00main extends JPanel {
          e1.printStackTrace();
       }
 
-      contentPane = new JPanel();
-      contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-      this.add(contentPane);
-      contentPane.setLayout(null);
+      this.setBorder(new EmptyBorder(5, 5, 5, 5));
+      this.setLayout(null);
 
       //메뉴 버튼 4개
       JButton ticket_btn = new JButton("이용권 구매"); 
       ticket_btn.setBounds(5, 95, 208, 121);  
-      contentPane.add(ticket_btn);
+      this.add(ticket_btn);
 
       JButton in_btn = new JButton("입실하기");
       in_btn.setBounds(218, 95, 213, 121); 
-      contentPane.add(in_btn);
+      this.add(in_btn);
 
       JButton move_btn = new JButton("자리 이동");
       move_btn.setBounds(5, 221, 208, 126); 
-      contentPane.add(move_btn);
+      this.add(move_btn);
 
       JButton out_btn = new JButton("퇴실하기");
       out_btn.setBounds(218, 221, 213, 126); 
-      contentPane.add(out_btn);
+      this.add(out_btn);
 
       //스터디룸 상황표
       String header[] = {"1인석","스터디룸","사물함","현재시간"};
@@ -236,7 +233,7 @@ public class _00main extends JPanel {
       table.getColumn("스터디룸").setCellRenderer(celAlignCenter);
       table.getColumn("사물함").setCellRenderer(celAlignCenter);
       table.getColumn("현재시간").setCellRenderer(celAlignCenter);
-      contentPane.add(table); 
+      this.add(table); 
       
       ticket_btn.addActionListener(new ActionListener() { //이용권 페이지
          @Override

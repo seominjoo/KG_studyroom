@@ -63,5 +63,4 @@ public class AdminMenuPage extends JPanel{
       
    }
 
-   
 }
