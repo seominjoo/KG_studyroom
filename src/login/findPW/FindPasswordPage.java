@@ -36,6 +36,7 @@ import login.PhoneNumberEnum;
 import login.YearMonthClick;
 import login.design.Style;
 import login.page.LoginPage;
+import login.page.MainPage;
 import login.clearText.ClearTextBackGround;
 import login.clearText.PhoneNumberClearTextField;
 
@@ -186,7 +187,7 @@ public class FindPasswordPage extends JPanel {
 		cancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				LoginPage.cards.show(LoginPage.page_panel, "로그인");
+				MainPage.cards.show(MainPage.page_panel, "로그인");
 				year.setSelectedItem("2000");
 				for(int i = 0; i < phoneTotal.length; i++) {
 					phoneTotal[i].setText(PhoneNumberEnum.values()[i].labelName);

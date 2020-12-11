@@ -34,6 +34,7 @@ import login.clearText.PhoneNumberClearTextField;
 import login.signUp.window.ConsentContent;
 import login.design.Style;
 import login.page.LoginPage;
+import login.page.MainPage;
 import login.swingTools.SwingToolsMainPage;
 
 public class SignUpPage extends JPanel {
@@ -240,7 +241,7 @@ public class SignUpPage extends JPanel {
 		s_No.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				LoginPage.cards.show(LoginPage.page_panel,"로그인");
+				MainPage.cards.show(MainPage.page_panel,"로그인");
 				
 				for (SignUpEnum value : SignUpEnum.values()) {
 					value.text.setText(value.labelName);;

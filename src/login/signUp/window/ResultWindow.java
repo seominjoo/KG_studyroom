@@ -20,6 +20,7 @@ import javax.swing.border.EmptyBorder;
 import login.PhoneNumberEnum;
 import login.design.Style;
 import login.page.LoginPage;
+import login.page.MainPage;
 import login.signUp.SignUpEnum;
 import login.signUp.SignUpPage;
 import login.swingTools.SwingToolsSubPage;
@@ -100,7 +101,7 @@ public class ResultWindow extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if (e.getButton() == MouseEvent.BUTTON1) {
 					if (result) {
-						LoginPage.cards.show(LoginPage.page_panel, "로그인");
+						MainPage.cards.show(MainPage.page_panel, "로그인");
 						for (SignUpEnum value : SignUpEnum.values()) {
 							value.text.setText(value.labelName);;
 							value.blindPW.setText(value.labelName);

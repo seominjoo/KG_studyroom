@@ -19,6 +19,7 @@ import login.design.Conversion_image;
 import login.design.Style;
 import login.loginDataBase.DBLoggedIn;
 import login.page.LoginPage;
+import login.page.MainPage;
 import login.signUp.SignUpPage;
 import login.swingTools.SwingToolsSubPage;
 import login.window.Login_SwingTool;
@@ -93,12 +94,14 @@ public class ActionWindow extends JFrame implements ActionListener {
 				name2 = "잘못된 비밀번호입니다.";
 			}
 			
-		} else if(loginbtns.getText().equals("회원가입")){
-			LoginPage.cards.show(LoginPage.page_panel,"회원가입");
+		}else if(loginbtns.getText().equals("회원가입")){
+			MainPage.cards.show(MainPage.page_panel,"회원가입");
 		}else if(loginbtns.getText().equals("비번찾기")) {
-			LoginPage.cards.show(LoginPage.page_panel, "비번찾기");
+			MainPage.cards.show(MainPage.page_panel, "비번찾기");
 		}else if(loginbtns.getText().equals("관리자")) {
-			LoginPage.cards.show(LoginPage.page_panel, "관리자");
+			MainPage.cards.show(MainPage.page_panel, "관리자");
+		}else if(loginbtns.getText().contains("터치")) {
+			MainPage.cards.show(MainPage.page_panel, "로그인");
 		}else {
 			// 페이지 준비중
 			name1 = "[system] still in maintenance";
