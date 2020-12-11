@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JTextField;
 
 import login.PhoneNumberEnum;
-import login.findPW.FindPasswordPage;
+import login.findPW.FindPasswordPageUser;
 import login.page.AdminPage;
 import login.page.LoginPage;
 import login.signUp.SignUpEnum;

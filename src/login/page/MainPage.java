@@ -12,7 +12,8 @@ import javax.swing.JPanel;
 
 import login.design.Conversion_image;
 import login.design.Style;
-import login.findPW.FindPasswordPage;
+import login.findPW.FindPasswordPageUser;
+import login.findPW.FindPasswordPageAdmin;
 import login.signUp.SignUpPage;
 import login.window.ActionWindow;
 import login.window.Login_SwingTool;
@@ -26,11 +27,8 @@ public class MainPage extends JFrame {
 
 	public static String userToggle;
 	
-	static {
-		userToggle = "메인";
-	}
-	
 	public MainPage() {
+		userToggle = "메인";
 		// 배경화면
 		JPanel fram_panel = new JPanel();
 		fram_panel.setLayout(null);
@@ -58,8 +56,10 @@ public class MainPage extends JFrame {
 		page_panel.add("메인", main);
 		page_panel.add("로그인", new LoginPage());
 		page_panel.add("관리자", new AdminPage());
+		page_panel.add("관리자메뉴", new AdminMenuPage());
 		page_panel.add("회원가입", new SignUpPage());
-		page_panel.add("비번찾기", new FindPasswordPage());
+		page_panel.add("비번찾기", new FindPasswordPageUser());
+		page_panel.add("관리자 비번찾기", new FindPasswordPageAdmin());
 
 		JButton changeUser = new JButton(new Conversion_image("image/전원.png", 30, 30).imageicon_smooth);
 		new Style(changeUser);

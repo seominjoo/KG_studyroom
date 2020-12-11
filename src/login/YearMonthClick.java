@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 
-import login.findPW.FindPasswordPage;
+import login.findPW.FindPasswordPageUser;
 import login.signUp.SignUpPage;
 
 public class YearMonthClick implements ActionListener {
@@ -23,9 +23,9 @@ public class YearMonthClick implements ActionListener {
 			month = SignUpPage.month;
 			day = SignUpPage.day;
 		} else {
-			year = FindPasswordPage.year;
-			month = FindPasswordPage.month;
-			day = FindPasswordPage.day;
+			year = FindPasswordPageUser.year;
+			month = FindPasswordPageUser.month;
+			day = FindPasswordPageUser.day;
 		}
 	}
 

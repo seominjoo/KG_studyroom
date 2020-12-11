@@ -7,7 +7,7 @@ import login.findPW.*;
 public class PassWordSearchResultPage {
 
 	public PassWordSearchResultPage(JLabel foundPW, String password) {
-		if(ClickFindPasswordPage.password == null) {
+		if(password.equals("")) {
 			foundPW.setText("해당 전화번호는 존재하지 않습니다");
 		}
 		else {

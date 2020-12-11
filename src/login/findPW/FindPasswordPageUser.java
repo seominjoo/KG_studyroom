@@ -38,10 +38,11 @@ import login.YearMonthClick;
 import login.design.Style;
 import login.page.LoginPage;
 import login.page.MainPage;
+import login.window.ActionWindow;
 import login.clearText.ClearTextBackGround;
 import login.clearText.PhoneNumberClearTextField;
 
-public class FindPasswordPage extends JPanel {
+public class FindPasswordPageUser extends JPanel {
 
 	static String imagePath;
 	static BufferedImage image;
@@ -56,8 +57,11 @@ public class FindPasswordPage extends JPanel {
 	public static JTextField phone_number3;
 
 	public static JTextField[] phoneTotal;
-	
-	public FindPasswordPage() {
+
+	public static String query = "SELECT pw FROM person_info where phone_number = ?"
+			+ "and person_birth = ?";
+
+	public FindPasswordPageUser() {
 
 		JPanel background = this;
 		setLayout(new BorderLayout(0, 10));
@@ -94,7 +98,7 @@ public class FindPasswordPage extends JPanel {
 		new Style(year);
 		year.setBounds(160, 42, 65, 30);
 		year.setSelectedItem("2000");
-		
+
 		month = new JComboBox<String>(BirthEnum.getMonthTable());
 		new Style(month);
 		month.setBounds(250, 42, 55, 30);
@@ -146,11 +150,10 @@ public class FindPasswordPage extends JPanel {
 		phone_number3.setBounds(310, 38, 45, 30);
 		grid3.add(phone_number3);
 
-		phoneTotal = new JTextField[] {phone_number1, phone_number2, phone_number3};
-		
-		for(int i = 0; i < phoneTotal.length; i++) {
-			phoneTotal[i].addMouseListener(new PhoneNumberClearTextField
-					(phoneTotal[i], "비번찾기"));
+		phoneTotal = new JTextField[] { phone_number1, phone_number2, phone_number3 };
+
+		for (int i = 0; i < phoneTotal.length; i++) {
+			phoneTotal[i].addMouseListener(new PhoneNumberClearTextField(phoneTotal[i], "비번찾기"));
 		}
 
 		addMouseListener(new ClearTextBackGround(phone_number1, PhoneNumberEnum.PHONENUMBER1));
@@ -161,10 +164,10 @@ public class FindPasswordPage extends JPanel {
 		grid4.setOpaque(false);
 		grid4.setLayout(null);
 
-		JLabel foundPW = new JLabel("", JLabel.CENTER);
-		foundPW.setBounds(100, 15, 270, 50);
-		grid4.add(foundPW);
-		new Style(foundPW);
+		JLabel foundPW1 = new JLabel("", JLabel.CENTER);
+		foundPW1.setBounds(100, 15, 270, 50);
+		grid4.add(foundPW1);
+		new Style(foundPW1);
 
 		gridAll.add(grid4);
 
@@ -182,21 +185,22 @@ public class FindPasswordPage extends JPanel {
 			grid5.add(findCancel[i]);
 			x += 120;
 		}
-		
-		
-		find.addActionListener(new ClickFindPasswordPage(foundPW));
+
+		find.addActionListener(new ClickFindPasswordPage(foundPW1, query, true));
 
 		cancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//MainPage.cards.show(MainPage.page_panel, "관리자");
 				MainPage.cards.show(MainPage.page_panel, "로그인");
 				MainPage.userToggle = "로그인";
 				year.setSelectedItem("2000");
-				for(int i = 0; i < phoneTotal.length; i++) {
+				for (int i = 0; i < phoneTotal.length; i++) {
 					phoneTotal[i].setText(PhoneNumberEnum.values()[i].labelName);
 				}
 				ClickFindPasswordPage.foundPW.setText("");
 			}
+
 		});
 
 		gridAll.add(grid5);

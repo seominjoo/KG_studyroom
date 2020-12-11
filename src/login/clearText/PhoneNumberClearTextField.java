@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 import login.PhoneNumberEnum;
-import login.findPW.FindPasswordPage;
+import login.findPW.FindPasswordPageUser;
 import login.page.AdminPage;
 import login.page.LoginPage;
 import login.signUp.SignUpEnum;
@@ -31,7 +31,7 @@ public class PhoneNumberClearTextField extends MouseAdapter {
 			phoneTotal = SignUpPage.phoneTotal;
 		}
 		else if(page.equals("비번찾기")) {
-			phoneTotal = FindPasswordPage.phoneTotal;
+			phoneTotal = FindPasswordPageUser.phoneTotal;
 		}
 		else if(page.equals("관리자")) {
 			phoneTotal = AdminPage.phoneTotal;

@@ -70,7 +70,7 @@ public class AdminPage extends JPanel{
 
 		JButton admin_find_PW1 = new JButton(new Conversion_image("image/PW찾기.png", 40, 40).imageicon_smooth);
 		new Style(admin_find_PW1);
-		admin_find_PW1.setText("비번찾기");
+		admin_find_PW1.setText("관리자 비번찾기");
 		admin_find_PW1.setBounds(413, 316, 50, 50);
 		admin_find_PW1.addActionListener(new ActionWindow(admin_find_PW1));
 		this.add(admin_find_PW1);

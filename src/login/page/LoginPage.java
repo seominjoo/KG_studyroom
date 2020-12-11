@@ -27,7 +27,7 @@ import login.clearText.PhoneNumberClearTextField;
 import login.design.Conversion_image;
 import login.design.EmptyPrice;
 import login.design.Style;
-import login.findPW.FindPasswordPage;
+import login.findPW.FindPasswordPageUser;
 import login.signUp.SignUpPage;
 import login.window.ActionWindow;
 import login.window.Login_SwingTool;
