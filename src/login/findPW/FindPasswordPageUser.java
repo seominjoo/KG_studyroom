@@ -58,9 +58,6 @@ public class FindPasswordPageUser extends JPanel {
 
 	public static JTextField[] phoneTotal;
 
-	public static String query = "SELECT pw FROM person_info where phone_number = ?"
-			+ "and person_birth = ?";
-
 	public FindPasswordPageUser() {
 
 		JPanel background = this;
@@ -150,6 +147,8 @@ public class FindPasswordPageUser extends JPanel {
 		phone_number3.setBounds(310, 38, 45, 30);
 		grid3.add(phone_number3);
 
+		System.out.println("여기는 비번 페이지 : " + MainPage.userToggle);
+
 		phoneTotal = new JTextField[] { phone_number1, phone_number2, phone_number3 };
 
 		for (int i = 0; i < phoneTotal.length; i++) {
@@ -164,10 +163,10 @@ public class FindPasswordPageUser extends JPanel {
 		grid4.setOpaque(false);
 		grid4.setLayout(null);
 
-		JLabel foundPW1 = new JLabel("", JLabel.CENTER);
-		foundPW1.setBounds(100, 15, 270, 50);
-		grid4.add(foundPW1);
-		new Style(foundPW1);
+		JLabel foundPW = new JLabel("", JLabel.CENTER);
+		foundPW.setBounds(100, 15, 270, 50);
+		grid4.add(foundPW);
+		new Style(foundPW);
 
 		gridAll.add(grid4);
 
@@ -185,22 +184,25 @@ public class FindPasswordPageUser extends JPanel {
 			grid5.add(findCancel[i]);
 			x += 120;
 		}
+		System.out.println(MainPage.userToggle);
 
-		find.addActionListener(new ClickFindPasswordPage(foundPW1, query, true));
+		find.addActionListener(new ClickFindPasswordPage(foundPW));
 
 		cancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//MainPage.cards.show(MainPage.page_panel, "관리자");
-				MainPage.cards.show(MainPage.page_panel, "로그인");
-				MainPage.userToggle = "로그인";
-				year.setSelectedItem("2000");
-				for (int i = 0; i < phoneTotal.length; i++) {
-					phoneTotal[i].setText(PhoneNumberEnum.values()[i].labelName);
+				if (MainPage.userToggle.equals("관리자 비번찾기")) {
+					MainPage.cards.show(MainPage.page_panel, "관리자");
+				} else {
+					MainPage.cards.show(MainPage.page_panel, "로그인");
+					MainPage.userToggle = "로그인";
+					year.setSelectedItem("2000");
+					for (int i = 0; i < phoneTotal.length; i++) {
+						phoneTotal[i].setText(PhoneNumberEnum.values()[i].labelName);
+					}
+					ClickFindPasswordPage.foundPW.setText("");
 				}
-				ClickFindPasswordPage.foundPW.setText("");
 			}
-
 		});
 
 		gridAll.add(grid5);

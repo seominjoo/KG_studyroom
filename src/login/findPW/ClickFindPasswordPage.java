@@ -22,35 +22,31 @@ public class ClickFindPasswordPage implements ActionListener {
 
 	public static String password;
 	static JLabel foundPW;
-	String query;
-	boolean flag;
 
 	String totalPhoneNumber;
 	String totalBirth;
 
-	public ClickFindPasswordPage(JLabel foundPW, String query, boolean flag) {
+	String query;
+
+	public ClickFindPasswordPage(JLabel foundPW) {
 		this.foundPW = foundPW;
-		this.query = query;
-		this.flag = flag;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (flag) {
-			totalPhoneNumber = FindPasswordPageUser.phone_number1.getText() + "-" + FindPasswordPageUser.phone_number2.getText()
-					+ "-" + FindPasswordPageUser.phone_number3.getText();
-
-			totalBirth = (String) FindPasswordPageUser.year.getSelectedItem()
-					+ (String) FindPasswordPageUser.month.getSelectedItem()
-					+ (String) FindPasswordPageUser.day.getSelectedItem();
-		} else {
-			totalPhoneNumber = FindPasswordPageAdmin.phone_number1.getText() + "-" + FindPasswordPageAdmin.phone_number2.getText()
-					+ "-" + FindPasswordPageAdmin.phone_number3.getText();
-
-			totalBirth = (String) FindPasswordPageAdmin.year.getSelectedItem()
-					+ (String) FindPasswordPageAdmin.month.getSelectedItem()
-					+ (String) FindPasswordPageAdmin.day.getSelectedItem();
+		if(MainPage.userToggle.equals("비번찾기")) {
+			query = "SELECT pw FROM person_info where phone_number = ?" + "and person_birth = ?";
 		}
+		else if(MainPage.userToggle.equals("관리자 비번찾기")) {
+			query = "select admin_pw from admin_info where admin_phonenumber = ? and admin_birth = ?";
+		}
+
+		totalPhoneNumber = FindPasswordPageUser.phone_number1.getText() + "-"
+				+ FindPasswordPageUser.phone_number2.getText() + "-" + FindPasswordPageUser.phone_number3.getText();
+
+		totalBirth = (String) FindPasswordPageUser.year.getSelectedItem()
+				+ (String) FindPasswordPageUser.month.getSelectedItem()
+				+ (String) FindPasswordPageUser.day.getSelectedItem();
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");

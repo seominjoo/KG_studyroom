@@ -73,6 +73,7 @@ public class ActionWindow extends JFrame implements ActionListener {
 			String login_password = String.valueOf(LoginPage.loginpass.getPassword());
 			// 로그인 클릭 시
 			// 닫기 하면 페이지를 넘길까?
+			
 			new DBLoggedIn(login_phonenumber, login_password);
 
 			// 들고온 값이 디비에 있는지 확인
@@ -100,20 +101,11 @@ public class ActionWindow extends JFrame implements ActionListener {
 			MainPage.userToggle = "회원가입";
 
 		} else if (loginbtns.getText().equals("비번찾기")) {
-			if (MainPage.userToggle.equals("메인") || MainPage.userToggle.equals("로그인")) {
-				MainPage.cards.show(MainPage.page_panel, "관리자");
-				MainPage.userToggle = "관리자";
-			} else {
-				MainPage.cards.show(MainPage.page_panel, "메인");
-				MainPage.userToggle = "메인";
-			}
-			
-			
 			MainPage.cards.show(MainPage.page_panel, "비번찾기");
 			MainPage.userToggle = "비번찾기";
-			
+				
 		} else if (loginbtns.getText().equals("관리자 비번찾기")) {
-			MainPage.cards.show(MainPage.page_panel, "관리자 비번찾기");
+			MainPage.cards.show(MainPage.page_panel, "비번찾기");
 			MainPage.userToggle = "관리자 비번찾기";
 			
 		} else if (loginbtns.getText().equals("관리자버튼")) {
@@ -122,6 +114,7 @@ public class ActionWindow extends JFrame implements ActionListener {
 				MainPage.userToggle = "관리자";
 			} else {
 				MainPage.cards.show(MainPage.page_panel, "메인");
+				System.out.println(MainPage.userToggle);
 				MainPage.userToggle = "메인";
 			}
 
@@ -129,6 +122,7 @@ public class ActionWindow extends JFrame implements ActionListener {
 			MainPage.cards.show(MainPage.page_panel, "로그인");
 			MainPage.userToggle = "로그인";
 			System.out.println(MainPage.userToggle);
+			
 		} else if (loginbtns.getText().equals("관리자 로그인")) {
 			SwingToolsSubPage.initTestFrame(this);
 			setLayout(new BorderLayout(10, 0));
@@ -137,6 +131,7 @@ public class ActionWindow extends JFrame implements ActionListener {
 			String admin_password = String.valueOf(AdminPage.admin_loginpass.getPassword());
 			// 로그인 클릭 시
 			// 닫기 하면 페이지를 넘길까?
+			
 			new DBLoggedIn(admin_phonenumber, admin_password);
 
 			// 들고온 값이 디비에 있는지 확인
