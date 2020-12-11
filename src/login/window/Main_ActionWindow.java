@@ -66,6 +66,7 @@ public class Main_ActionWindow extends JFrame implements ActionListener {
 		String name2 = null;
 
 		if (loginbtns.getText().equals("로그인")) {
+			MainPage.userToggle = "로그인";
 			SwingToolsSubPage.initTestFrame(this);
 			setLayout(new BorderLayout(10, 0));
 			String login_phonenumber = LoginPage.phone_number1.getText() + "-" + LoginPage.phone_number2.getText() + "-"
@@ -177,6 +178,7 @@ public class Main_ActionWindow extends JFrame implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
+				System.out.println(MainPage.userToggle);
 				if(combtn.getText().equals("메뉴가기")) {
 					if(MainPage.userToggle.equals("로그인")) {
 						MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
