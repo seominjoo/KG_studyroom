@@ -81,6 +81,9 @@ public class AdminPage extends JPanel{
 			phoneTotal[i].addMouseListener(new PhoneNumberClearTextField(phoneTotal[i], "°ü¸®ÀÚ"));
 			addMouseListener(new ClearTextBackGround(phoneTotal[i], PhoneNumberEnum.values()[i]));
 		}
+		
+		admin_loginpass.addMouseListener(new EmptyPrice(admin_loginpass));
+		
 	}
 	
 }

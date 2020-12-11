@@ -23,6 +23,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
@@ -181,6 +182,7 @@ public class FindPasswordPage extends JPanel {
 			grid5.add(findCancel[i]);
 			x += 120;
 		}
+		
 		
 		find.addActionListener(new ClickFindPasswordPage(foundPW));
 

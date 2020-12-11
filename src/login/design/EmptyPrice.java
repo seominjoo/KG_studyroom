@@ -8,6 +8,7 @@ import javax.swing.JComponent;
 import javax.swing.JTextField;
 
 import login.PhoneNumberEnum;
+import login.page.AdminPage;
 import login.page.LoginPage;
 
 public class EmptyPrice extends MouseAdapter {
@@ -27,6 +28,11 @@ public class EmptyPrice extends MouseAdapter {
 			for(int i = 0; i < LoginPage.phoneTotal.length; i++) {
 				if(LoginPage.phoneTotal[i].getText().equals("")) {
 					LoginPage.phoneTotal[i].setText(PhoneNumberEnum.values()[i].labelName);
+				}
+			}
+			for(int i = 0; i < AdminPage.phoneTotal.length; i++) {
+				if(AdminPage.phoneTotal[i].getText().equals("")) {
+					AdminPage.phoneTotal[i].setText(PhoneNumberEnum.values()[i].labelName);
 				}
 			}
 		}

@@ -13,6 +13,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 import login.BirthEnum;
+import login.page.MainPage;
 import login.signUp.SignUpEnum;
 
 public class DBLoggedIn {
@@ -22,7 +23,8 @@ public class DBLoggedIn {
 	public static String phone_number;
 	public static String password;
 	public static Connection conn;
-
+	String selectQuery;
+	
 	public DBLoggedIn() {
 
 	}
@@ -61,8 +63,17 @@ public class DBLoggedIn {
 		}
 
 	}
-
+		
 	public DBLoggedIn(String login_phonenumber, String login_password) {
+		
+		if(MainPage.userToggle.equals("로그인")) {
+			selectQuery = "SELECT Person_Id, Person_Name, Phone_Number, PW FROM Person_Info where Phone_Number = ?";
+		}else if(MainPage.userToggle.equals("관리자")){
+			selectQuery = "SELECT admin_Id, admin_Name, admin_PhoneNumber, admin_PW FROM admin_Info where admin_PhoneNumber = ?";
+		}else {
+			System.out.println("페이지 인식안됨 데이터 베이스");
+		}
+		
 // 테스트
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -74,8 +85,7 @@ public class DBLoggedIn {
 			// 쿼리문
 			// 로그인에 사용된 휴대폰번호, 비밀번호만 불러오기
 			PreparedStatement findID;
-			findID = conn.prepareStatement(
-					"SELECT Person_Id, Person_Name, Phone_Number, PW FROM Person_Info where Phone_Number = ?");
+			findID = conn.prepareStatement(selectQuery);
 
 			findID.setString(1, login_phonenumber);
 

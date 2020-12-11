@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import login.design.Conversion_image;
 import login.design.Style;
 import login.loginDataBase.DBLoggedIn;
+import login.page.AdminPage;
 import login.page.LoginPage;
 import login.page.MainPage;
 import login.signUp.SignUpPage;
@@ -114,7 +115,38 @@ public class ActionWindow extends JFrame implements ActionListener {
 		}else if(loginbtns.getText().contains("터치")) {
 			MainPage.cards.show(MainPage.page_panel, "로그인");
 			MainPage.userToggle = "로그인";
-		}else {
+		}
+		else if(loginbtns.getText().equals("관리자 로그인")) {
+			SwingToolsSubPage.initTestFrame(this);
+			setLayout(new BorderLayout(10, 0));
+			String admin_phonenumber = AdminPage.admin_phone_number1.getText() + "-" + AdminPage.admin_phone_number2.getText() + "-"
+					+ AdminPage.admin_phone_number3.getText();
+			String admin_password = String.valueOf(AdminPage.admin_loginpass.getPassword());
+			// 로그인 클릭 시
+			// 닫기 하면 페이지를 넘길까?
+			new DBLoggedIn(admin_phonenumber, admin_password);
+
+			// 들고온 값이 디비에 있는지 확인
+			System.out.println(admin_phonenumber + ", " + admin_password);
+			System.out.println(DBLoggedIn.phone_number + ", " + DBLoggedIn.password);
+			
+			if (DBLoggedIn.person_name != null && DBLoggedIn.phone_number.equals(admin_phonenumber) && DBLoggedIn.password.equals(admin_password)) {
+					// 번호와 비번이 일치 하면
+					name1 = "회원번호 : " + DBLoggedIn.person_id;
+					name2 = DBLoggedIn.person_name + "님 환영합니다 !!";
+					
+					String update = "update admin_info set admin_loginstate = 'On' "
+							+ "where admin_phonenumber = '"+DBLoggedIn.phone_number+"' and admin_pw = '"+DBLoggedIn.password+"'";
+					System.out.println(update);
+					DBLoggedIn db = new DBLoggedIn(update);
+				
+			} else {
+				name1 = "가입하지 않은 아이디거나";
+				name2 = "잘못된 비밀번호입니다.";
+			}
+			
+		}
+		else {
 			// 페이지 준비중
 			name1 = "[system] still in maintenance";
 			name2 = "페이지 준비 중..";
