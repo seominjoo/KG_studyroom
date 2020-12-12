@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -20,14 +21,17 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import login.design.Style;
+import login.page.MainPage;
 
 
 public class _08reservation extends JPanel implements ActionListener{
-	 static LocalDateTime time11;
-	 static int price11; 
-	 static int price; 
+	 public static LocalDateTime time11 = LocalDateTime.now();
+	 static int price11 = 0; 
 	 static int price_r; 
-	 static String type11;
+	 static String type11 = "";
+	 
+	 // 예약하기 필요한 매개변수
+	 static int price; 
 	 
 	static boolean selected = false;
 	static ArrayList<JCheckBox> seats = new ArrayList<>(); //1~20번 좌석 (1인석)
@@ -60,7 +64,7 @@ public class _08reservation extends JPanel implements ActionListener{
 	String time_checkout;
 	 
 	
-	public _08reservation(LocalDateTime ss,int price,String seat_type) {
+	public _08reservation() {
 		 
 		new Style(this);
 		JButton OK;
@@ -68,7 +72,6 @@ public class _08reservation extends JPanel implements ActionListener{
 		JLabel label = new JLabel("1인석");
 		JLabel label02 = new JLabel("룸");
 		label_msg = new JLabel("");
-		label.setBounds(10,10,50,30);
 		label.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		this.add(label);
 		label02.setBounds(10,100,50,30);
@@ -144,8 +147,9 @@ public class _08reservation extends JPanel implements ActionListener{
 				for(int i=0;i<20;i++) {
 					lockers.get(i).setSelected(false);
 				} 
-				_01start frame = new _01start();
-				frame.setVisible(true);
+				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+				MainPage.user_cards.show(MainPage.user_page_panel, "이용권구매");
+				MainPage.userToggle = "이용권구매";
 				 number="";
 			}
 		};
@@ -247,9 +251,6 @@ public class _08reservation extends JPanel implements ActionListener{
 		
 		this.setBounds(0, 100, 600, 500);
 		this.setLayout(null);
-		time11  = ss;
-		price11 = price; 
-		type11 = seat_type;
 	}
 
 	@Override
@@ -322,8 +323,13 @@ public class _08reservation extends JPanel implements ActionListener{
 					setVisible(false);
 					// yes버튼 -> 결제 페이지
 					 
-					new _09payment(time11,price,type11);
-					 
+					_09payment.ss = time11;
+					_09payment.price = price11;
+					_09payment.seat_type = type11;
+					MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+					MainPage.user_cards.show(MainPage.user_page_panel, "결제페이지");
+					MainPage.userToggle = "결제페이지"; 
+					
 				}
 			} 
 			if (pstmt != null) pstmt.close();

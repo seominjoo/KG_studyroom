@@ -13,25 +13,26 @@ import javax.swing.UIManager;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 
-public class _11receipt extends JFrame{
+public class _11receipt extends JPanel{
 
 	JTable table;
 	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
- 
+	public static LocalDateTime ss = LocalDateTime.now();
+	public static int price = 0;
 	
-	public _11receipt(LocalDateTime ss,int price) {
+	public _11receipt() {
 		JLabel label01 = new JLabel("<html><pre>		 영수증</pre>");
 		label01.setBounds(0,0,440,80);
 		label01.setFont(new Font("Courier", Font.PLAIN, 35));
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		setSize(750,500);
 		setLocation(600,150);
 		setVisible(true); 
 		
 		JPanel p2 = new JPanel();
 		p2.setBounds(12, 10, 706, 453);
-		getContentPane().add(p2);
+		add(p2);
 		p2.setLayout(null);
 		
 		p2.add(label01);

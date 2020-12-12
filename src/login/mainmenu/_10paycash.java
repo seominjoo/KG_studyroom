@@ -9,6 +9,9 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import login.page.MainPage;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.TextField;
@@ -26,8 +29,9 @@ public class _10paycash extends JPanel{
 
 	public static int change;
 	LocalDateTime time_now = LocalDateTime.now();
+	public static LocalDateTime ss;
 	 
-	public _10paycash(LocalDateTime ss) {
+	public _10paycash() {
 
 		setBounds(600, 150, 420, 322);
 
@@ -213,7 +217,12 @@ public class _10paycash extends JPanel{
 				}
 			}
 			
-		 new _11receipt(ss,Integer.parseInt(cash.getText()));
+
+		_11receipt.ss = time_now;
+		_11receipt.price = Integer.parseInt(cash.getText());
+			MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+			MainPage.user_cards.show(MainPage.user_page_panel, "영수증");
+			MainPage.userToggle = "영수증";
 		if (pstmt != null) pstmt.close();
 		if (conn != null) conn.close();
 		 
