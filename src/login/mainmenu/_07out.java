@@ -9,7 +9,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import login.design.Style;
-import login.page.MainPage;
 
 import javax.swing.JButton;
 import javax.swing.AbstractAction;
@@ -144,11 +143,14 @@ public class _07out extends JPanel {
 		back_btn.addActionListener(new ActionListener() { //이전 페이지
 	          @Override
 	          public void actionPerformed(ActionEvent e) {
-	        	  MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
-					MainPage.user_cards.show(MainPage.user_page_panel, "메인메뉴");
-					MainPage.userToggle = "메인메뉴";
+	           setVisible(false);
+	           _00main frame = new _00main();
+	           frame.setVisible(true);
 	          }
 	       }); 
 	}
-
+	public static void main(String[] args) {
+		_07out frame = new _07out();
+		frame.setVisible(true);
+	}
 }

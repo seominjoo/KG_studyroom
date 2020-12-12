@@ -28,8 +28,6 @@ import login.mainmenu._07in_seletSeat;
 import login.mainmenu._07out;
 import login.mainmenu._08reservation;
 import login.mainmenu._09payment;
-import login.mainmenu._10paycash;
-import login.mainmenu._11receipt;
 import login.signUp.SignUpPage;
 import login.window.MainBtn_Action;
 import login.window.Login_SwingTool;
@@ -45,6 +43,10 @@ public class MainPage extends JFrame {
 
 	public static String userToggle;
 	
+	// 예약하기 필요한 매개변수
+	public static LocalDateTime ss;
+	public static int price;
+	public static String seat_type;
 	
 	public MainPage() {
 		userToggle = "메인";
@@ -99,14 +101,14 @@ public class MainPage extends JFrame {
 		user_page_panel.add("자리이동", new _06move());
 		user_page_panel.add("입실페이지", new _07in_seletSeat());
 		user_page_panel.add("퇴실페이지", new _07out());
-		user_page_panel.add("예약페이지", new _08reservation());
+		user_page_panel.add("예약페이지", new _08reservation(ss,price,seat_type));
 		user_page_panel.add("자리페이지", new _06move_selectSeat());
-		user_page_panel.add("결제페이지", new _09payment());
-		user_page_panel.add("결제알림창", new _10paycash());
+//		user_page_panel.add("결제페이지", new _09payment(ss, price, seat_type));
 		
 		// 미처리
+//		user_page_panel.add("결제알림창", new _10paycash());
 		// 영수증에 확인 버튼(or 입장바로가기 or로그아웃off)
-		user_page_panel.add("영수증", new _11receipt());
+//		user_page_panel.add("영수증", new _11receipt());
 		
 		
 

@@ -16,7 +16,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import login.design.Style;
-import login.page.MainPage;
 
 public class _06move extends JPanel {
 
@@ -66,9 +65,9 @@ public class _06move extends JPanel {
 							JOptionPane.showMessageDialog(null,msg); 
 						}else {
 						System.out.println("이동할 좌석: "+num_seat+"번");
-						MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
-						MainPage.user_cards.show(MainPage.user_page_panel, "자리페이지");
-						MainPage.userToggle = "자리페이지";
+						  setVisible(false);
+				           _06move_selectSeat frame = new _06move_selectSeat();
+				           frame.setVisible(true);
 						}
 					} catch (SQLException e1) {
 						e1.printStackTrace();
@@ -94,9 +93,9 @@ public class _06move extends JPanel {
 							JOptionPane.showMessageDialog(null,msg); 
 						}else {
 						System.out.println("이동할 룸: "+num_seat+"호");
-						MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
-						MainPage.user_cards.show(MainPage.user_page_panel, "자리페이지");
-						MainPage.userToggle = "자리페이지";
+						  setVisible(false);
+				           _06move_selectSeat frame = new _06move_selectSeat();
+				           frame.setVisible(true);
 						}
 					} catch (SQLException e1) {
 						e1.printStackTrace();
@@ -112,9 +111,9 @@ public class _06move extends JPanel {
 		this.add(back_btn);
 		back_btn.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) {
-				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
-				MainPage.user_cards.show(MainPage.user_page_panel, "메인메뉴");
-				MainPage.userToggle = "메인메뉴";
+				setVisible(false);
+				_00main frame = new _00main();
+				frame.setVisible(true);
 			}
 		}); 
 	}

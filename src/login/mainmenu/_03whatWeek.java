@@ -56,9 +56,9 @@ public class _03whatWeek extends JPanel {
 		btn_2wk.addActionListener(new ActionListener() { //다음 페이지(2주 이용권)
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				_08reservation.time11 = time_now.plusHours(2);
-				_08reservation.price11 = 90000;
-				_08reservation.type11 = "2주 이용권 (1인석)";
+				MainPage.ss = time_now.plusHours(2);
+				MainPage.price = 90000;
+				MainPage.seat_type = "2주 이용권 (1인석)";
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";
@@ -68,9 +68,9 @@ public class _03whatWeek extends JPanel {
 		btn_4wk.addActionListener(new ActionListener() { //다음 페이지(4주 이용권)
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				_08reservation.time11 = time_now.plusHours(4);
-				_08reservation.price11 = 130000;
-				_08reservation.type11 = "4주 이용권 (1인석)";
+				MainPage.ss = time_now.plusHours(4);
+				MainPage.price = 130000;
+				MainPage.seat_type = "4주 이용권 (1인석)";
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";
@@ -80,9 +80,9 @@ public class _03whatWeek extends JPanel {
 		btn_8wk.addActionListener(new ActionListener() { //다음 페이지(8주 이용권)
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				_08reservation.time11 = time_now.plusHours(8);
-				_08reservation.price11 = 250000;
-				_08reservation.type11 = "8주 이용권 (1인석)";
+				MainPage.ss = time_now.plusHours(8);
+				MainPage.price = 250000;
+				MainPage.seat_type = "8주 이용권 (1인석)";
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";

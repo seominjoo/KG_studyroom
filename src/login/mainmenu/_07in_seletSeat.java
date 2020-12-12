@@ -20,7 +20,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import login.design.Style;
-import login.page.MainPage;
 
 
 public class _07in_seletSeat extends JPanel implements ActionListener{
@@ -125,9 +124,8 @@ public class _07in_seletSeat extends JPanel implements ActionListener{
 				for(int i=0;i<20;i++) {
 					seats.get(i).setSelected(false);
 				} 
-				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
-				MainPage.user_cards.show(MainPage.user_page_panel, "이용권구매");
-				MainPage.userToggle = "이용권구매";
+				_01start frame = new _01start();
+				frame.setVisible(true);
 				
 			}
 		};
