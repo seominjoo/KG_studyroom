@@ -276,7 +276,21 @@ public class UserBtn_Action implements ActionListener {
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "자리이동");
 				MainPage.userToggle = "자리이동";
+			} else if(MainPage.userToggle.equals("일일권가격표(좌석)")) {
+				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+				MainPage.user_cards.show(MainPage.user_page_panel, "좌석이용권");
+				MainPage.userToggle = "좌석이용권";
+			} else if(MainPage.userToggle.equals("일일권가격표(룸)")) {
+				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+				MainPage.user_cards.show(MainPage.user_page_panel, "룸이용권");
+				MainPage.userToggle = "룸이용권";
+			} else if(MainPage.userToggle.equals("정기권가격표")) {
+				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+				MainPage.user_cards.show(MainPage.user_page_panel, "좌석이용권");
+				MainPage.userToggle = "좌석이용권";
 			}
+			
+			
 		} else {
 			// 페이지 준비중
 			label1 = "[system] still in maintenance";

@@ -7,12 +7,16 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import login.design.Style;
+import login.window.UserBtn_Action;
 
 import javax.swing.JButton;
 import java.awt.GridLayout;
 import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import javax.swing.Action;
 import java.awt.GridBagLayout;
@@ -23,7 +27,7 @@ import javax.swing.BoxLayout;
 
 public class _02dayRoom extends JPanel {
 
-
+	
 	public _02dayRoom() {
 
 		new Style(this);
@@ -38,26 +42,28 @@ public class _02dayRoom extends JPanel {
 		this.add(back_btn);
 
 		
-		daily_btn.addActionListener(new ActionListener() { //다음 페이지
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				_03whatHourRoom frame = new _03whatHourRoom();
-				frame.setVisible(true);
-			}
-		}); 
+//		daily_btn.addActionListener(new ActionListener() { //다음 페이지
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				setVisible(false);
+//				_03whatHourRoom frame = new _03whatHourRoom();
+//				frame.setVisible(true);
+//			}
+//		}); 
+//
+//
+//		back_btn.addActionListener(new ActionListener() { //이전 페이지
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				setVisible(false);
+//				_01start frame = new _01start();
+//				frame.setVisible(true);
+//			}
+//		}); 
 
-
-
-		back_btn.addActionListener(new ActionListener() { //이전 페이지
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				_01start frame = new _01start();
-				frame.setVisible(true);
-			}
-		}); 
-
+		daily_btn.addActionListener(new UserBtn_Action(daily_btn));
+		back_btn.addActionListener(new UserBtn_Action(back_btn));
+		
 	} 
 	public static void main(String[] args) {
 		_02dayRoom frame = new _02dayRoom();

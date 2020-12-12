@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import login.window.UserBtn_Action;
+
 import javax.swing.JButton;
 import java.awt.GridLayout;
 import javax.swing.AbstractAction;
@@ -50,41 +53,46 @@ public class _03whatWeek extends JPanel {
 		btn_back.setBounds(218, 297, 213, 126);
 		this.add(btn_back);
 
-		btn_2wk.addActionListener(new ActionListener() { //다음 페이지(2주 이용권)
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				_08reservation frame = new _08reservation(time_now.plusWeeks(2),90000,"2주 이용권");
-				frame.setVisible(true);
-			}
-		});
+		btn_2wk.addActionListener(new UserBtn_Action(btn_2wk));
+		btn_4wk.addActionListener(new UserBtn_Action(btn_4wk));
+		btn_8wk.addActionListener(new UserBtn_Action(btn_8wk));
+		btn_back.addActionListener(new UserBtn_Action(btn_back));
 
-		btn_4wk.addActionListener(new ActionListener() { //다음 페이지(4주 이용권)
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				_08reservation frame = new _08reservation(time_now.plusWeeks(4),130000,"4주 이용권");
-				frame.setVisible(true);
-			}
-		});
-
-		btn_8wk.addActionListener(new ActionListener() { //다음 페이지(8주 이용권)
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				_08reservation frame = new _08reservation(time_now.plusWeeks(8),250000,"8주 이용권");
-				frame.setVisible(true);
-			}
-		});
-
-		btn_back.addActionListener(new ActionListener() { //이전 페이지
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				_02dayOrWeek frame = new _02dayOrWeek();
-				frame.setVisible(true);
-			}
-		});
+//		btn_2wk.addActionListener(new ActionListener() { //다음 페이지(2주 이용권)
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				setVisible(false);
+//				_08reservation frame = new _08reservation(time_now.plusWeeks(2),90000,"2주 이용권");
+//				frame.setVisible(true);
+//			}
+//		});
+//
+//		btn_4wk.addActionListener(new ActionListener() { //다음 페이지(4주 이용권)
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				setVisible(false);
+//				_08reservation frame = new _08reservation(time_now.plusWeeks(4),130000,"4주 이용권");
+//				frame.setVisible(true);
+//			}
+//		});
+//
+//		btn_8wk.addActionListener(new ActionListener() { //다음 페이지(8주 이용권)
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				setVisible(false);
+//				_08reservation frame = new _08reservation(time_now.plusWeeks(8),250000,"8주 이용권");
+//				frame.setVisible(true);
+//			}
+//		});
+//
+//		btn_back.addActionListener(new ActionListener() { //이전 페이지
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				setVisible(false);
+//				_02dayOrWeek frame = new _02dayOrWeek();
+//				frame.setVisible(true);
+//			}
+//		});
 	} 
 
 	public static void main(String[] args) {

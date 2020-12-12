@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import login.design.Style;
+import login.window.UserBtn_Action;
 
 import javax.swing.JButton;
 import java.awt.GridLayout;
@@ -64,60 +65,66 @@ public class _03whatHourRoom extends JPanel {
 		btn_back.setBounds(218, 253, 213, 54);
 		this.add(btn_back, btn_back);
 		
+		btn_2hr.addActionListener(new UserBtn_Action(btn_2hr));
+		btn_4hr.addActionListener(new UserBtn_Action(btn_4hr));
+		btn_6hr.addActionListener(new UserBtn_Action(btn_6hr));
+		btn_8hr.addActionListener(new UserBtn_Action(btn_8hr));
+		btn_12hr.addActionListener(new UserBtn_Action(btn_12hr));
+		btn_back.addActionListener(new UserBtn_Action(btn_back));
 
-		btn_2hr.addActionListener(new ActionListener() { //다음 페이지(2시간 이용권)
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				_08reservation frame = new _08reservation(time_now.plusHours(2),12000,"2시간 이용권 (룸)");
-				frame.setVisible(true);
-			}
-		}); 
-
-		btn_4hr.addActionListener(new ActionListener() { //다음 페이지(4시간 이용권)
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				_08reservation frame = new _08reservation(time_now.plusHours(4),18000,"4시간 이용권 (룸)");
-				frame.setVisible(true);
-			}
-		}); 
-
-		btn_6hr.addActionListener(new ActionListener() { //다음 페이지(6시간 이용권)
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				_08reservation frame = new _08reservation(time_now.plusHours(6),24000,"6시간 이용권 (룸)");
-				frame.setVisible(true);
-			}
-		});
-
-		btn_8hr.addActionListener(new ActionListener() { //다음 페이지(8시간 이용권)
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				_08reservation frame = new _08reservation(time_now.plusHours(8),30000,"8시간 이용권 (룸)");
-				frame.setVisible(true);
-			}
-		});
-
-		btn_12hr.addActionListener(new ActionListener() { //다음 페이지(12시간 이용권)
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				_08reservation frame = new _08reservation(time_now.plusHours(12),36000,"12시간 이용권 (룸)");
-				frame.setVisible(true);
-			}
-		});
-
-		btn_back.addActionListener(new ActionListener() { //이전 페이지
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				_02dayRoom frame = new _02dayRoom();
-				frame.setVisible(true);
-			}
-		});
+//		btn_2hr.addActionListener(new ActionListener() { //다음 페이지(2시간 이용권)
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				setVisible(false);
+//				_08reservation frame = new _08reservation(time_now.plusHours(2),12000,"2시간 이용권 (룸)");
+//				frame.setVisible(true);
+//			}
+//		}); 
+//
+//		btn_4hr.addActionListener(new ActionListener() { //다음 페이지(4시간 이용권)
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				setVisible(false);
+//				_08reservation frame = new _08reservation(time_now.plusHours(4),18000,"4시간 이용권 (룸)");
+//				frame.setVisible(true);
+//			}
+//		}); 
+//
+//		btn_6hr.addActionListener(new ActionListener() { //다음 페이지(6시간 이용권)
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				setVisible(false);
+//				_08reservation frame = new _08reservation(time_now.plusHours(6),24000,"6시간 이용권 (룸)");
+//				frame.setVisible(true);
+//			}
+//		});
+//
+//		btn_8hr.addActionListener(new ActionListener() { //다음 페이지(8시간 이용권)
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				setVisible(false);
+//				_08reservation frame = new _08reservation(time_now.plusHours(8),30000,"8시간 이용권 (룸)");
+//				frame.setVisible(true);
+//			}
+//		});
+//
+//		btn_12hr.addActionListener(new ActionListener() { //다음 페이지(12시간 이용권)
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				setVisible(false);
+//				_08reservation frame = new _08reservation(time_now.plusHours(12),36000,"12시간 이용권 (룸)");
+//				frame.setVisible(true);
+//			}
+//		});
+//
+//		btn_back.addActionListener(new ActionListener() { //이전 페이지
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				setVisible(false);
+//				_02dayRoom frame = new _02dayRoom();
+//				frame.setVisible(true);
+//			}
+//		});
 	}
 
 	public static void main(String[] args) {
