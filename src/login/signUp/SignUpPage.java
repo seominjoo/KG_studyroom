@@ -64,6 +64,14 @@ public class SignUpPage extends JPanel {
 	public static JLabel passAlert;
 	
 	public SignUpPage() {
+		setLayout(null);
+		
+		passAlert = new JLabel("");
+		new Style(passAlert);
+		passAlert.setFont(new Font("맑은 고딕", Font.BOLD, 10));
+		passAlert.setBounds(390, 241, 100, 25);
+		add(passAlert);
+		
 		setLayout(new BorderLayout(30, 0));
 		new Style(this);
 
@@ -73,6 +81,7 @@ public class SignUpPage extends JPanel {
 		add(Style.getnewPanel(), BorderLayout.SOUTH);
 
 		JPanel grid = new JPanel(new GridLayout(GRID, 1, 0, 20));
+
 		add(grid, BorderLayout.CENTER);
 		new Style(grid);
 
@@ -101,29 +110,24 @@ public class SignUpPage extends JPanel {
 
 				if (value.equals(value.PASSWORD)) {
 
-					JLabel passNoticement = new JLabel("※ 대소문자 & 특수문자 각 1개");
+					JLabel passNoticement = new JLabel("※ 대소문자 & 숫자 각 1개 (8~12자리)");
 					new Style(passNoticement);
 					passNoticement.setFont(new Font("맑은 고딕", Font.BOLD, 10));
-					passNoticement.setBounds(0, 17, 150, 25);
+					passNoticement.setBounds(0, 19, 180, 25);
 					panelInGrid7_1.add(passNoticement);
 
-					passAlert = new JLabel("");
-					new Style(passAlert);
-					passAlert.setFont(new Font("맑은 고딕", Font.BOLD, 10));
-					passAlert.setBounds(155, 8, 100, 25);
-					panelInGrid7_1.add(passAlert);
-
+					
 					value.PASSWORD.blindPW.addKeyListener(new KeyAdapter() {
 						@Override
 						public void keyReleased(KeyEvent e) {
 							if(Pattern.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,12}$",
 									String.valueOf(value.PASSWORD.blindPW.getPassword()))) {
 								passAlert.setText("사용가능");
-								passAlert.setForeground(Color.decode("#04ff00"));
+								passAlert.setForeground(Color.decode("#9fda84"));
 							} 
 							else {
 								passAlert.setText("사용불가");
-								passAlert.setForeground(Color.decode("#fc0303"));
+								passAlert.setForeground(Color.decode("#da9784"));
 							}
 
 						}
@@ -137,6 +141,8 @@ public class SignUpPage extends JPanel {
 
 				new Style(value.blindPW, 12);
 				value.blindPW.setHorizontalAlignment(SwingConstants.LEFT);
+				
+				
 				gridInGrid.add(value.blindPW);
 				grid.add(gridInGrid);
 
