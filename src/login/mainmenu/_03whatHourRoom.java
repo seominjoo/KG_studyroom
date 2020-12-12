@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import login.design.Style;
+import login.page.MainPage;
 import login.window.UserBtn_Action;
 
 import javax.swing.JButton;
@@ -65,12 +66,74 @@ public class _03whatHourRoom extends JPanel {
 		btn_back.setBounds(218, 253, 213, 54);
 		this.add(btn_back, btn_back);
 		
-		btn_2hr.addActionListener(new UserBtn_Action(btn_2hr));
-		btn_4hr.addActionListener(new UserBtn_Action(btn_4hr));
-		btn_6hr.addActionListener(new UserBtn_Action(btn_6hr));
-		btn_8hr.addActionListener(new UserBtn_Action(btn_8hr));
-		btn_12hr.addActionListener(new UserBtn_Action(btn_12hr));
-		btn_back.addActionListener(new UserBtn_Action(btn_back));
+		btn_2hr.addActionListener(new ActionListener() { //다음 페이지(2시간 이용권)
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainPage.ss = time_now.plusHours(2);
+				MainPage.price = 12000;
+				MainPage.seat_type = "2시간 이용권 (룸)";
+				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
+				MainPage.userToggle = "예약페이지";
+			}
+		}); 
+
+		btn_4hr.addActionListener(new ActionListener() { //다음 페이지(4시간 이용권)
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainPage.ss = time_now.plusHours(4);
+				MainPage.price = 18000;
+				MainPage.seat_type = "4시간 이용권 (룸)";
+				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
+				MainPage.userToggle = "예약페이지";
+			}
+		}); 
+
+		btn_6hr.addActionListener(new ActionListener() { //다음 페이지(6시간 이용권)
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainPage.ss = time_now.plusHours(6);
+				MainPage.price = 24000;
+				MainPage.seat_type = "6시간 이용권 (룸)";
+				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
+				MainPage.userToggle = "예약페이지";
+			}
+		});
+
+		btn_8hr.addActionListener(new ActionListener() { //다음 페이지(8시간 이용권)
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainPage.ss = time_now.plusHours(8);
+				MainPage.price = 30000;
+				MainPage.seat_type = "8시간 이용권 (룸)";
+				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
+				MainPage.userToggle = "예약페이지";
+			}
+		});
+
+		btn_12hr.addActionListener(new ActionListener() { //다음 페이지(12시간 이용권)
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainPage.ss = time_now.plusHours(12);
+				MainPage.price = 36000;
+				MainPage.seat_type = "12시간 이용권 (룸)";
+				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
+				MainPage.userToggle = "예약페이지";
+			}
+		});
+
+		btn_back.addActionListener(new ActionListener() { //이전 페이지
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+				MainPage.user_cards.show(MainPage.user_page_panel, "룸이용권");
+				MainPage.userToggle = "룸이용권";
+			}
+		});
 
 //		btn_2hr.addActionListener(new ActionListener() { //다음 페이지(2시간 이용권)
 //			@Override

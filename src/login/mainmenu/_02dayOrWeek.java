@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import login.design.Style;
+import login.page.MainPage;
 import login.window.UserBtn_Action;
 
 import javax.swing.JButton;
@@ -32,7 +33,7 @@ public class _02dayOrWeek extends JPanel {
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setLayout(new GridLayout(0, 3, 0, 0));
 
-		JButton daily_btn = new JButton("일일 이용권"); 
+		JButton daily_btn = new JButton("당일 이용권"); 
 		this.add(daily_btn);
 
 		JButton weekly_btn = new JButton("정기 이용권"); 
@@ -42,11 +43,32 @@ public class _02dayOrWeek extends JPanel {
 		this.add(back_btn);
 
 		
-		daily_btn.addActionListener(new UserBtn_Action(daily_btn)); //다음 페이지(일일이용권)
+		daily_btn.addActionListener(new ActionListener() { //다음 페이지
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+				MainPage.user_cards.show(MainPage.user_page_panel, "당일권가격표(좌석)");
+				MainPage.userToggle = "당일권가격표(좌석)";
+			}
+		}); 
 
-		weekly_btn.addActionListener(new UserBtn_Action(daily_btn)); //다음 페이지(정기이용권)
+		weekly_btn.addActionListener(new ActionListener() { //다음 페이지
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+				MainPage.user_cards.show(MainPage.user_page_panel, "정기권가격표");
+				MainPage.userToggle = "정기권가격표";
+			}
+		});
 
-		back_btn.addActionListener(new UserBtn_Action(daily_btn)); //이전 페이지
+		back_btn.addActionListener(new ActionListener() { //이전 페이지
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+				MainPage.user_cards.show(MainPage.user_page_panel, "이용권구매");
+				MainPage.userToggle = "이용권구매";
+			}
+		}); 
 
 	} 
 } 

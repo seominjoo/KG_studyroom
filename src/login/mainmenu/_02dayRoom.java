@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import login.design.Style;
+import login.page.MainPage;
 import login.window.UserBtn_Action;
 
 import javax.swing.JButton;
@@ -41,8 +42,25 @@ public class _02dayRoom extends JPanel {
 		JButton back_btn = new JButton("이전 화면"); 
 		this.add(back_btn);
 
-		daily_btn.addActionListener(new UserBtn_Action(daily_btn));
-		back_btn.addActionListener(new UserBtn_Action(back_btn));
+		daily_btn.addActionListener(new ActionListener() { //다음 페이지
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+				MainPage.user_cards.show(MainPage.user_page_panel, "당일권가격표(룸)");
+				MainPage.userToggle = "당일권가격표(룸)";
+			}
+		}); 
+
+
+
+		back_btn.addActionListener(new ActionListener() { //이전 페이지
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+				MainPage.user_cards.show(MainPage.user_page_panel, "이용권구매");
+				MainPage.userToggle = "이용권구매";
+			}
+		}); 
 		
 	} 
 	public static void main(String[] args) {

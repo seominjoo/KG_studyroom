@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import login.design.Style;
+import login.page.MainPage;
 import login.window.UserBtn_Action;
 
 import javax.swing.JButton;
@@ -117,13 +118,91 @@ public class _01start extends JPanel {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "1234");
 
-			seat_btn.addActionListener(new UserBtn_Action(seat_btn)); // 좌석 이용권 페이지
-
-			room_btn.addActionListener(new UserBtn_Action(room_btn)); // 룸 이용권 페이지
-
-			locker_btn.addActionListener(new UserBtn_Action(locker_btn)); // 사물함 이용권 페이지
-
-			back_btn.addActionListener(new UserBtn_Action(back_btn)); // 이전 페이지
+			seat_btn.addActionListener(new ActionListener() { //좌석 이용권 페이지
+				@Override
+				public void actionPerformed(ActionEvent e) {
+			  
+		 
+					 
+					 if(_00main.seat_chk>0) {
+			            	String msg= "결제한 좌석이 이미 존재합니다";
+							JOptionPane.showMessageDialog(null,msg); 
+			            } else if(_00main.type.equals("정기 이용권")) {
+							 String msg= "정기 이용권 이용자는 입실을 이용하세요";
+							 JOptionPane.showMessageDialog(null,msg); 
+						 }else {
+							 MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+								MainPage.user_cards.show(MainPage.user_page_panel, "좌석이용권");
+								MainPage.userToggle = "좌석이용권";
+			            }
+			         }
+				
+		  
+			}); 
+			
+		      room_btn.addActionListener(new ActionListener() { //룸 이용권 페이지
+		          @Override
+		          public void actionPerformed(ActionEvent e) {
+		        	  try {//룸만료시간이 안지나면 구매 불가 
+							String sql = "SELECT expiration_room from person_info where login_state='On'";
+							PreparedStatement pstmt = conn.prepareStatement(sql);
+							ResultSet rs = pstmt.executeQuery();
+							
+							 while(rs.next()) { 
+						          
+						            Timestamp time_chk = rs.getTimestamp("expiration_room");
+						            if(LocalDateTime.now().isBefore(Time.TimeStampTOlocalDateTime(time_chk))) {
+						            	String msg= "결제한 룸이 이미 존재합니다";
+										JOptionPane.showMessageDialog(null,msg); 
+						            }else {				         
+						            	MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+										MainPage.user_cards.show(MainPage.user_page_panel, "룸이용권");
+										MainPage.userToggle = "룸이용권";
+						            }
+						         }
+							
+						} catch (SQLException e1) { 
+							e1.printStackTrace();
+						} 
+		          }
+		       });  
+			 
+			locker_btn.addActionListener(new ActionListener() { //사물함 이용권 페이지
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					 try {//사물함만료시간이 안지나면 구매 불가 
+							String sql = "SELECT expiration_locker from person_info where login_state='On'";
+							PreparedStatement pstmt = conn.prepareStatement(sql);
+							ResultSet rs = pstmt.executeQuery();
+							
+							 while(rs.next()) { 
+						          
+						            Timestamp time_chk = rs.getTimestamp("expiration_locker");
+						            if(LocalDateTime.now().isBefore(Time.TimeStampTOlocalDateTime(time_chk))) {
+						            	String msg= "결제한 사물함이 이미 존재합니다";
+										JOptionPane.showMessageDialog(null,msg); 
+						            }else {	 
+						            	MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+										MainPage.user_cards.show(MainPage.user_page_panel, "사물함이용권");
+										MainPage.userToggle = "사물함이용권";
+						            }
+						         }
+							
+						} catch (SQLException e1) { 
+							e1.printStackTrace();
+						}
+			 
+				}
+			});
+			
+			  back_btn.addActionListener(new ActionListener() { //이전 페이지
+		          @Override
+		          public void actionPerformed(ActionEvent e) {
+		        	  MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+						MainPage.user_cards.show(MainPage.user_page_panel, "메인메뉴");
+						MainPage.userToggle = "메인메뉴";
+		          }
+		       });
 
 		} catch (ClassNotFoundException | SQLException e1) {
 
