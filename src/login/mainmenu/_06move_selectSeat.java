@@ -19,7 +19,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class _06move_selectSeat extends JFrame implements ActionListener{
+import login.design.Style;
+import login.page.MainPage;
+
+public class _06move_selectSeat extends JPanel implements ActionListener{
 	 
 		static boolean selected = false;
 		static ArrayList<JCheckBox> seats = new ArrayList<>(); //1~20번 좌석 (1인석)
@@ -49,10 +52,10 @@ public class _06move_selectSeat extends JFrame implements ActionListener{
 		JLabel label_msg;
 		static LocalDateTime time_now = LocalDateTime.now();
 		String time_checkout;
-		JPanel p1 = new JPanel();
 		
-	_06move_selectSeat() {
+	public _06move_selectSeat() {
 			
+		new Style(this);
 		JButton OK;
 		JButton back;
 		JLabel label = new JLabel("1인석");
@@ -60,27 +63,27 @@ public class _06move_selectSeat extends JFrame implements ActionListener{
 		label_msg = new JLabel("");
 		label.setBounds(10,10,50,30);
 		label.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		p1.add(label);
+		this.add(label);
 		label02.setBounds(10,100,50,30);
 		label02.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 			
 		label_msg.setBounds(200,310,500,30);
 		label_msg.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		p1.add(label_msg); 
-		p1.add(label02);
+		this.add(label_msg); 
+		this.add(label02);
 			
 		JLabel label03 = new JLabel("사물함");
 		label_msg = new JLabel("");
 		label03.setBounds(10,175,50,30);
 		label03.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		p1.add(label03);
+		this.add(label03);
 		label_msg.setBounds(200,310,500,30);
 		label_msg.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		p1.add(label_msg); 
+		this.add(label_msg); 
 			
 		for(int i=0; i<10;i++) { // 1인석 체크박스 위치 설정
 			seats.get(i).setBounds(20+a,40,40,30);
-			p1.add(seats.get(i));
+			this.add(seats.get(i));
 			a+=40;
 			if(_06move.num_seat==0) {
 				seats.get(i).setEnabled(false);
@@ -88,7 +91,7 @@ public class _06move_selectSeat extends JFrame implements ActionListener{
 		}
 		for(int i=10; i<20;i++) {// 1인석 체크박스 위치 설정
 			seats.get(i).setBounds(20+b,70,40,30);
-			p1.add(seats.get(i));
+			this.add(seats.get(i));
 			b+=40;
 			if(_06move.num_seat==0) {
 				seats.get(i).setEnabled(false);
@@ -96,7 +99,7 @@ public class _06move_selectSeat extends JFrame implements ActionListener{
 		}
 		for(int i=0; i<4;i++) {// 룸 체크박스 위치 설정
 			room.get(i).setBounds(20+e,140,100,30);
-			p1.add(room.get(i));
+			this.add(room.get(i));
 			e+=100;
 			if(_06move.num_room==0) {
 				room.get(i).setEnabled(false);
@@ -105,13 +108,13 @@ public class _06move_selectSeat extends JFrame implements ActionListener{
 		}
 		for(int i=0; i<10;i++) {// 사물함 체크박스 위치 설정
 			lockers.get(i).setBounds(20+c,200,40,30);
-			p1.add(lockers.get(i));
+			this.add(lockers.get(i));
 			c+=40;
 			lockers.get(i).setEnabled(false);
 		}
 		for(int i=10; i<20;i++) {// 사물함 체크박스 위치 설정
 			lockers.get(i).setBounds(60+d,230,40,30);
-			p1.add(lockers.get(i));
+			this.add(lockers.get(i));
 			d+=40;
 			lockers.get(i).setEnabled(false);	
 		}
@@ -119,7 +122,6 @@ public class _06move_selectSeat extends JFrame implements ActionListener{
 		ActionListener back_btn = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
 				for(int i=0;i<20;i++) {
 					seats.get(i).setSelected(false);
 					seats.get(i).setEnabled(true);
@@ -129,14 +131,15 @@ public class _06move_selectSeat extends JFrame implements ActionListener{
 					room.get(i).setEnabled(true);
 				} 
 				
-				_06move frame = new _06move();
-				frame.setVisible(true);
+				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+				MainPage.user_cards.show(MainPage.user_page_panel, "자리이동");
+				MainPage.userToggle = "자리이동";
 			}
 		};
 			
 		back = new JButton("이전 화면");
 		back.setBounds(180,380,100,50);
-		p1.add(back);
+		this.add(back);
 		back.addActionListener(back_btn);
 			
 		try {
@@ -173,17 +176,15 @@ public class _06move_selectSeat extends JFrame implements ActionListener{
 				
 				OK = new JButton("좌석 이동하기");
 				OK.setBounds(290,380,100,50);
-				p1.add(OK);
+				this.add(OK);
 				OK.addActionListener(this);
 
-				setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				setSize(600,500);
 				setLocation(600,150);
 				setVisible(true);  
 				
-				p1.setBounds(0, 100, 600, 500);
-				p1.setLayout(null);
-				this.add(p1);
+				this.setBounds(0, 100, 600, 500);
+				this.setLayout(null);
 				
 			}
 				

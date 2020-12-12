@@ -41,26 +41,6 @@ public class _02dayRoom extends JPanel {
 		JButton back_btn = new JButton("이전 화면"); 
 		this.add(back_btn);
 
-		
-//		daily_btn.addActionListener(new ActionListener() { //다음 페이지
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
-//				_03whatHourRoom frame = new _03whatHourRoom();
-//				frame.setVisible(true);
-//			}
-//		}); 
-//
-//
-//		back_btn.addActionListener(new ActionListener() { //이전 페이지
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
-//				_01start frame = new _01start();
-//				frame.setVisible(true);
-//			}
-//		}); 
-
 		daily_btn.addActionListener(new UserBtn_Action(daily_btn));
 		back_btn.addActionListener(new UserBtn_Action(back_btn));
 		

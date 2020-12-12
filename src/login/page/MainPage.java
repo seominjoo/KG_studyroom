@@ -23,9 +23,11 @@ import login.mainmenu._03whatHourRoom;
 import login.mainmenu._03whatWeek;
 import login.mainmenu._05locker;
 import login.mainmenu._06move;
+import login.mainmenu._06move_selectSeat;
 import login.mainmenu._07in_seletSeat;
 import login.mainmenu._07out;
 import login.mainmenu._08reservation;
+import login.mainmenu._09payment;
 import login.signUp.SignUpPage;
 import login.window.MainBtn_Action;
 import login.window.Login_SwingTool;
@@ -99,10 +101,10 @@ public class MainPage extends JFrame {
 		user_page_panel.add("입실하기", new _07in_seletSeat());
 		user_page_panel.add("퇴실하기", new _07out());
 		user_page_panel.add("예약페이지", new _08reservation(ss, price, seat_type));
+		user_page_panel.add("좌석페이지", new _06move_selectSeat());
+		user_page_panel.add("결제페이지", new _09payment(ss, price, seat_type));
 		
 		// 미처리
-//		user_page_panel.add("좌석페이지", new _06move_selectSeat());
-//		user_page_panel.add("결제페이지", new _09payment());
 //		user_page_panel.add("결제알림창", new _10paycash());
 		// 영수증에 확인 버튼(or 입장바로가기 or로그아웃off)
 //		user_page_panel.add("영수증", new _11receipt());

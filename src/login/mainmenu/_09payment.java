@@ -12,7 +12,6 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -29,26 +28,24 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
-public class _09payment {
+public class _09payment extends JPanel{
 
-	private JFrame frame;
 	private JTable table;
 	static LocalDateTime time_now = LocalDateTime.now();
 	String time_checkout;
 	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
   
-	_09payment(LocalDateTime ss,int seat_price, String seat_type) {
-		frame = new JFrame();
-		frame.setSize(750,500);
-		frame.setLocation(600,150);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+	public _09payment(LocalDateTime ss, int seat_price, String seat_type) {
 
-		frame.setVisible(true);
+		this.setSize(750,500);
+		this.setLocation(600,150);
+		this.setLayout(null);
+
+		this.setVisible(true);
 
 		JPanel p2 = new JPanel();
 		p2.setBounds(12, 10, 706, 453);
-		frame.getContentPane().add(p2);
+		this.add(p2);
 		p2.setLayout(null);
 
 
@@ -255,8 +252,7 @@ public class _09payment {
 						}
 					}
 			
-			JOptionPane.showMessageDialog(null,"결제 완료"); 
-			frame.setVisible(false);
+			JOptionPane.showMessageDialog(null,"결제 완료");
 			new _11receipt(ss,_08reservation.price);
 
 			}
@@ -273,7 +269,6 @@ public class _09payment {
 		back_btn.addActionListener(new ActionListener() { 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		frame.setVisible(false);
 		_08reservation.number="";
 		for(int i=0;i<20;i++) {
 			_08reservation.seats.get(i).setSelected(false);
@@ -294,7 +289,6 @@ public class _09payment {
 	} 
 	public static void main(String[] args) {
 		_09payment window = new _09payment(_08reservation.time11,_08reservation.price11,_08reservation.type11);
-		window.frame.setVisible(true);
 	}
  
 }

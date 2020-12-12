@@ -22,22 +22,21 @@ import java.time.LocalDateTime;
 
 import javax.swing.JButton;
 
-public class _10paycash {
+public class _10paycash extends JPanel{
 
 	public static int change;
-	private JFrame frame; 
 	LocalDateTime time_now = LocalDateTime.now();
 	 
 	public _10paycash(LocalDateTime ss) {
-		frame = new JFrame();
-		frame.setBounds(600, 150, 420, 322);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		frame.setVisible(true);
+
+		setBounds(600, 150, 420, 322);
+
+		setLayout(null);
+		setVisible(true);
 
 		JPanel panel = new JPanel();
 		panel.setBounds(12, 10, 381, 266);
-		frame.getContentPane().add(panel);
+		add(panel);
 		panel.setLayout(null);
 
 		String price =Integer.toString((_08reservation.price11));
@@ -217,7 +216,6 @@ public class _10paycash {
 		 new _11receipt(ss,Integer.parseInt(cash.getText()));
 		if (pstmt != null) pstmt.close();
 		if (conn != null) conn.close();
-		frame.setVisible(false);
 		 
 		 
 			} catch (ClassNotFoundException | SQLException e1) { 
