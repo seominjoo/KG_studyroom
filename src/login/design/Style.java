@@ -41,6 +41,7 @@ public class Style {
 	private JCheckBox jcheck;
 	private JTable jtable;
 	private JRadioButton jradio;
+	private DefaultTableCellRenderer renderer;
 	private JComponent cp;
 	private int size;
 	
@@ -134,7 +135,6 @@ public class Style {
 			// 아래 두개는 표 내부를 투명화할 때 반드시 필요
 			jtable.setOpaque(false);
 			((DefaultTableCellRenderer)jtable.getDefaultRenderer(Object.class)).setOpaque(false);
-			//
 			jtable.setFont(new Font("맑은 고딕", Font.PLAIN, 10));
 			jtable.setForeground(Color.decode("#cfab8b"));
 			jtable.setGridColor(Color.decode("#cfab8b")); // 테이블 내부 선 색
@@ -146,6 +146,10 @@ public class Style {
 			jradio.setOpaque(false);
 			jradio.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 			jradio.setForeground(Color.decode("#cfab8b"));
+		}
+		else if(cp instanceof DefaultTableCellRenderer) {
+			renderer = (DefaultTableCellRenderer) cp;
+			renderer.setOpaque(false);
 		}
 	}
 

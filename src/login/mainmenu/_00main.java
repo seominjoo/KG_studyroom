@@ -224,7 +224,7 @@ public class _00main extends JPanel {
 		Color color = UIManager.getColor("Table.gridColor");
 		MatteBorder border = new MatteBorder(1, 1, 0, 0, color);
 		table.setBorder(border);
-
+		
 		// »óÈ²Ç¥ ±Û¾¾ Áß¾Ó Á¤·Ä
 		DefaultTableCellRenderer celAlignCenter = new DefaultTableCellRenderer();
 		celAlignCenter.setHorizontalAlignment(JLabel.CENTER);
@@ -232,7 +232,8 @@ public class _00main extends JPanel {
 		table.getColumn("½ºÅÍµð·ë").setCellRenderer(celAlignCenter);
 		table.getColumn("»ç¹°ÇÔ").setCellRenderer(celAlignCenter);
 		table.getColumn("ÇöÀç½Ã°£").setCellRenderer(celAlignCenter);
-
+		
+		new Style(celAlignCenter);
 		new Style(table);
 		table.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 11));
 		this.add(table);
