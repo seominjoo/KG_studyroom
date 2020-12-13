@@ -17,12 +17,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
+import javax.swing.table.DefaultTableCellRenderer;
 
 import login.signUp.SignUpPage;
 
@@ -36,6 +38,7 @@ public class Style {
 	private JComboBox<?> jcombo;
 	private JScrollPane jscroll;
 	private JCheckBox jcheck;
+	private JTable jtable;
 	private JComponent cp;
 	private int size;
 	
@@ -122,6 +125,17 @@ public class Style {
 			jcheck.setForeground(Color.decode("#cfab8b"));
 			jcheck.setOpaque(false);
 			jcheck.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
+		}
+		else if (cp instanceof JTable) {
+			jtable = (JTable) cp;
+			jtable.setOpaque(false);
+			((DefaultTableCellRenderer)jtable.getDefaultRenderer(Object.class)).setOpaque(false);
+			jtable.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 10));
+			jtable.setForeground(Color.decode("#cfab8b"));
+			jtable.setGridColor(Color.decode("#cfab8b"));
+			//jtable.setBackground(Color.decode("#cfab8b"));
+			jtable.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b")));
+		
 		}
 	}
 
