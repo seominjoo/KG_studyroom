@@ -51,6 +51,7 @@ public class Style {
 			panel = (JPanel) cp;
 			panel.setOpaque(false); // 배경 투명
 			panel.setBackground(Color.decode("#404040"));
+//			panel.setBackground(Color.decode("#f6f1ed")); 색상 보류
 		} else if (cp instanceof JLabel) {
 			label = (JLabel) cp;
 			label.setOpaque(false); // 배경 투명
@@ -130,14 +131,15 @@ public class Style {
 		}
 		else if (cp instanceof JTable) {
 			jtable = (JTable) cp;
+			// 아래 두개는 표 내부를 투명화할 때 반드시 필요
 			jtable.setOpaque(false);
 			((DefaultTableCellRenderer)jtable.getDefaultRenderer(Object.class)).setOpaque(false);
+			//
 			jtable.setFont(new Font("맑은 고딕", Font.PLAIN, 10));
 			jtable.setForeground(Color.decode("#cfab8b"));
-			jtable.setGridColor(Color.decode("#cfab8b"));
-			//jtable.setBackground(Color.decode("#cfab8b"));
+			jtable.setGridColor(Color.decode("#cfab8b")); // 테이블 내부 선 색
 			jtable.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b")));
-			jtable.setEnabled(false);
+			jtable.setEnabled(false); // 사용자가 테이블을 클릭하거나 편집하는 것을 방지
 		}
 		else if(cp instanceof JRadioButton) {
 			jradio = (JRadioButton) cp;

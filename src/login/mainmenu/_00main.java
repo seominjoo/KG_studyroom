@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,7 +21,6 @@ import javax.swing.table.TableColumnModel;
 
 import login.design.Style;
 import login.page.MainPage;
-
 
 import javax.swing.JButton;
 import java.awt.GridLayout;
@@ -216,6 +216,7 @@ public class _00main extends JPanel {
 
 		DefaultTableModel model = new DefaultTableModel(contents, header);
 		table = new JTable(model);
+
 		table.setBounds(0, 0, 437, 80);
 		table.setRowHeight(80);
 
@@ -231,59 +232,65 @@ public class _00main extends JPanel {
 		table.getColumn("스터디룸").setCellRenderer(celAlignCenter);
 		table.getColumn("사물함").setCellRenderer(celAlignCenter);
 		table.getColumn("현재시간").setCellRenderer(celAlignCenter);
+
+		new Style(table);
+		table.setFont(new Font("맑은 고딕", Font.BOLD, 11));
 		this.add(table);
 
-		 ticket_btn.addActionListener(new ActionListener() { //이용권 페이지
-	         @Override
-	         public void actionPerformed(ActionEvent e) {
-	        	 MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
-	 			MainPage.user_cards.show(MainPage.user_page_panel, "이용권구매");
-	 			MainPage.userToggle = "이용권구매";
-	         }
-	      }); 
-	      
-	      move_btn.addActionListener(new ActionListener() { //자리이동 페이지
-	          @Override
-	          public void actionPerformed(ActionEvent e) {
-	         if((seat_chk>0&&seat_chk<21)||(room_chk>=101&&room_chk<=104)) {
-	        	 MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+		ticket_btn.addActionListener(new ActionListener() { // 이용권 페이지
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+				MainPage.user_cards.show(MainPage.user_page_panel, "이용권구매");
+				MainPage.userToggle = "이용권구매";
+			}
+		});
+
+		move_btn.addActionListener(new ActionListener() { // 자리이동 페이지
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if ((seat_chk > 0 && seat_chk < 21) || (room_chk >= 101 && room_chk <= 104)) {
+					MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 					MainPage.user_cards.show(MainPage.user_page_panel, "자리이동");
 					MainPage.userToggle = "자리이동";
-	         	 
-	         } else {
-	        	 String msg= "사용 중인 좌석이 없습니다.";
-	 			 JOptionPane.showMessageDialog(null,msg); 
-	         	}
-	          }
-	       });  
-	      
-	      out_btn.addActionListener(new ActionListener() { //퇴실 페이지
-	         @Override
-	         public void actionPerformed(ActionEvent e) {
-	        	 MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
-	 			MainPage.user_cards.show(MainPage.user_page_panel, "퇴실페이지");
-	 			MainPage.userToggle = "퇴실페이지";
-	         }
-	      });
-	     
-	      in_btn.addActionListener(new ActionListener() { //입실 페이지(정기이용권 이용자)
-	     
-	         @Override
-	         public void actionPerformed(ActionEvent e) {
-	          if(seat_chk>0) {
-	        		 String msg= "이미 좌석이 있습니다.";
-					 JOptionPane.showMessageDialog(null,msg); 
-	        	 } else if(type.equals("정기 이용권")) {
-	        		 MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
-	 				MainPage.user_cards.show(MainPage.user_page_panel, "입실페이지");
-	 				MainPage.userToggle = "입실페이지";
-	             }else {
-	             String msg1= "정기 이용권 이용자만 가능합니다";
-	        	 JOptionPane.showMessageDialog(null,msg1); 
-	            }
-	         }
-	      });
+
+				} else {
+					String msg = "사용 중인 좌석이 없습니다.";
+					JOptionPane.showMessageDialog(null, msg);
+				}
+			}
+		});
+
+		out_btn.addActionListener(new ActionListener() { // 퇴실 페이지
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+				MainPage.user_cards.show(MainPage.user_page_panel, "퇴실페이지");
+				MainPage.userToggle = "퇴실페이지";
+			}
+		});
+
+		in_btn.addActionListener(new ActionListener() { // 입실 페이지(정기이용권 이용자)
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (seat_chk > 0) {
+					String msg = "이미 좌석이 있습니다.";
+					JOptionPane.showMessageDialog(null, msg);
+				} else if (type.equals("정기 이용권")) {
+					MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+					MainPage.user_cards.show(MainPage.user_page_panel, "입실페이지");
+					MainPage.userToggle = "입실페이지";
+				} else {
+					String msg1 = "정기 이용권 이용자만 가능합니다";
+					JOptionPane.showMessageDialog(null, msg1);
+				}
+			}
+		});
 
 	}
 
+	public static void main(String[] args) {
+		new _00main();
+	}
 }

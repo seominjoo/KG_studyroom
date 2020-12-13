@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import login.design.Style;
 import login.page.MainPage;
 
 import javax.swing.JButton;
@@ -27,30 +28,37 @@ public class _03whatWeek extends JPanel {
 	LocalDateTime time_now = LocalDateTime.now();
 
 	public _03whatWeek() {
-		JLabel label01 = new JLabel("<html>&emsp;&emsp;&emsp; &emsp;가격표");
-		label01.setBounds(0,0,420,80);
+		setLayout(null);
+		new Style(this);
+		
+		JLabel label01 = new JLabel("가격표");
+		new Style(label01);
+		label01.setBounds(188,0,440,80);
 		label01.setFont(new Font("Courier", Font.PLAIN, 35));
 		
-		setBounds(600, 150, 450, 470);
-		this.setBorder(new EmptyBorder(5, 5, 5, 5));
-		this.setLayout(null);
+		//setBounds(600, 150, 450, 470);
+		//this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
 		this.add(label01);
 
-		JButton btn_2wk = new JButton("2주 (90,000원)");  
-		btn_2wk.setBounds(5, 166, 208, 121);
+		JButton btn_2wk = new JButton("2주 (90,000원)"); 
+		new Style(btn_2wk);
+		btn_2wk.setBounds(40, 138, 188, 48); 
 		this.add(btn_2wk);
 
 		JButton btn_4wk = new JButton("4주 (130,000원)"); 
-		btn_4wk.setBounds(218, 166, 213, 121);
+		new Style(btn_4wk);
+		btn_4wk.setBounds(253, 138, 193, 48); 
 		this.add(btn_4wk);
 
 		JButton btn_8wk = new JButton("8주 (250,000원)");  
-		btn_8wk.setBounds(5, 297, 208, 126);
+		new Style(btn_8wk);
+		btn_8wk.setBounds(40, 273, 188, 48);
 		this.add(btn_8wk);
 
-		JButton btn_back = new JButton("이전 화면");  
-		btn_back.setBounds(218, 297, 213, 126);
+		JButton btn_back = new JButton("이전 화면"); 
+		new Style(btn_back);
+		btn_back.setBounds(253, 273, 193, 48);
 		this.add(btn_back);
 
 		btn_2wk.addActionListener(new ActionListener() { //다음 페이지(2주 이용권)

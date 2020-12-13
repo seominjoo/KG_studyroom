@@ -52,10 +52,12 @@ public class MainPage extends JFrame {
 		userToggle = "메인";
 		// 배경화면
 		JPanel fram_panel = new JPanel();
+		new Style(fram_panel);
 		fram_panel.setLayout(null);
 		fram_panel.setBounds(0, 0, x, y);
 
 		JLabel background = new JLabel(new Conversion_image("image/로그인화면.jpg", 5).imageicon_smooth);
+		background.setOpaque(false);
 		background.setBounds(0, 0, x, y);
 
 		// 낙엽쪽 카드페이지 패널

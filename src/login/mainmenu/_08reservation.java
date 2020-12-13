@@ -34,19 +34,28 @@ public class _08reservation extends JPanel implements ActionListener{
 	static ArrayList<JCheckBox> seats = new ArrayList<>(); //1~20¹ø ÁÂ¼® (1ÀÎ¼®)
 	{
 		for(int i=1;i<=20;i++) {
-			seats.add(new JCheckBox(i+"",selected));
+			JCheckBox jcheck1 = new JCheckBox(i+"",selected);
+			new Style(jcheck1);
+			jcheck1.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 11));
+			seats.add(jcheck1);	
 		}
 	}
 	static ArrayList<JCheckBox> room = new ArrayList<>(); //101~104È£ (·ë)
 	{
 		for(int i=101;i<=104;i++) {
-			room.add(new JCheckBox(i+"È£",selected));
+			JCheckBox jcheck2 = new JCheckBox(i+"È£",selected);
+			new Style(jcheck2);
+			jcheck2.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 11));
+			room.add(jcheck2);
 		}
 	}
 	static ArrayList<JCheckBox> lockers = new ArrayList<>(); //1~20¹ø »ç¹°ÇÔ
 	{
 		for(int i=1;i<=20;i++) {
-			lockers.add(new JCheckBox(i+"",selected));
+			JCheckBox jcheck3 = new JCheckBox(i+"",selected);
+			new Style(jcheck3);
+			jcheck3.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 11));
+			lockers.add(jcheck3);
 		}
 	}
 
@@ -67,12 +76,15 @@ public class _08reservation extends JPanel implements ActionListener{
 		JButton OK;
 		JButton back;
 		JLabel label = new JLabel("1ÀÎ¼®");
+		new Style(label);
 		JLabel label02 = new JLabel("·ë");
+		new Style(label02);
 		label_msg = new JLabel("");
+		new Style(label_msg);
 		label.setBounds(10,10,50,30);
 		label.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
 		this.add(label);
-		label02.setBounds(10,100,50,30);
+		label02.setBounds(10,103,50,30);
 		label02.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
 	 
 		label_msg.setBounds(200,310,500,30);
@@ -81,8 +93,9 @@ public class _08reservation extends JPanel implements ActionListener{
 		this.add(label02);
 		
 		JLabel label03 = new JLabel("»ç¹°ÇÔ");
+		new Style(label03);
 		label_msg = new JLabel("");
-		label03.setBounds(10,175,50,30);
+		label03.setBounds(10,172,50,30);
 		label03.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
 		this.add(label03);
 		label_msg.setBounds(200,310,500,30);
@@ -153,7 +166,8 @@ public class _08reservation extends JPanel implements ActionListener{
 		};
 		
 		back = new JButton("ÀÌÀü È­¸é");
-		back.setBounds(180,380,100,50);
+		new Style(back);
+		back.setBounds(118,335,100,50);
 		this.add(back);
 		back.addActionListener(back_btn);
 	
@@ -240,7 +254,8 @@ public class _08reservation extends JPanel implements ActionListener{
 		}
 		
 		OK = new JButton("°áÁ¦ÇÏ±â");
-		OK.setBounds(290,380,100,50);
+		new Style(OK);
+		OK.setBounds(248,335,100,50);
 		this.add(OK);
 		OK.addActionListener(this);
 
@@ -340,10 +355,6 @@ public class _08reservation extends JPanel implements ActionListener{
 	} 
 	
 	
-	 
-	public static void main(String[] args) {
-		 
-	} 
 
 }
 
