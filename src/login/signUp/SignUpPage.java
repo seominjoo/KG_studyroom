@@ -60,18 +60,25 @@ public class SignUpPage extends JPanel {
 	public static JTextField[] phoneTotal;
 
 	static JPanel panelInGrid7_1;
-	
+
 	public static JLabel passAlert;
-	
+	public static JLabel passConfirmAlert;
+
 	public SignUpPage() {
 		setLayout(null);
-		
+
 		passAlert = new JLabel("");
 		new Style(passAlert);
 		passAlert.setFont(new Font("맑은 고딕", Font.BOLD, 10));
 		passAlert.setBounds(390, 241, 100, 25);
 		add(passAlert);
-		
+
+		passConfirmAlert = new JLabel("",JLabel.RIGHT);
+		new Style(passConfirmAlert);
+		passConfirmAlert.setFont(new Font("맑은 고딕", Font.BOLD, 10));
+		passConfirmAlert.setBounds(330, 297, 100, 25);
+		add(passConfirmAlert);
+
 		setLayout(new BorderLayout(30, 0));
 		new Style(this);
 
@@ -116,20 +123,20 @@ public class SignUpPage extends JPanel {
 					passNoticement.setBounds(0, 19, 180, 25);
 					panelInGrid7_1.add(passNoticement);
 
-					
 					value.PASSWORD.blindPW.addKeyListener(new KeyAdapter() {
 						@Override
 						public void keyReleased(KeyEvent e) {
-							if(Pattern.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,12}$",
+				
+							if (Pattern.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,12}$",
 									String.valueOf(value.PASSWORD.blindPW.getPassword()))) {
 								passAlert.setText("사용가능");
 								passAlert.setForeground(Color.decode("#9fda84"));
-							} 
-							else {
+							} else if (String.valueOf(value.PASSWORD.blindPW.getPassword()).length() >= 1) {
 								passAlert.setText("사용불가");
 								passAlert.setForeground(Color.decode("#da9784"));
+							} else {
+								passAlert.setText("");
 							}
-
 						}
 					});
 
@@ -141,10 +148,24 @@ public class SignUpPage extends JPanel {
 
 				new Style(value.blindPW, 12);
 				value.blindPW.setHorizontalAlignment(SwingConstants.LEFT);
-				
-				
+
 				gridInGrid.add(value.blindPW);
 				grid.add(gridInGrid);
+
+				value.PASSWORDCONFIRM.blindPW.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyReleased(KeyEvent e) {
+				
+						if (String.valueOf(value.PASSWORD.blindPW.getPassword())
+								.equals(String.valueOf(value.PASSWORDCONFIRM.blindPW.getPassword()))) {
+							passConfirmAlert.setText("비밀번호 일치");
+							passConfirmAlert.setForeground(Color.decode("#9fda84"));
+						} else {
+							passConfirmAlert.setText("비밀번호 불일치");
+							passConfirmAlert.setForeground(Color.decode("#da9784"));
+						}
+					}
+				});
 
 				continue;
 			}
