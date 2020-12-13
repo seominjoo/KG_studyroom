@@ -16,6 +16,7 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -39,6 +40,7 @@ public class Style {
 	private JScrollPane jscroll;
 	private JCheckBox jcheck;
 	private JTable jtable;
+	private JRadioButton jradio;
 	private JComponent cp;
 	private int size;
 	
@@ -135,7 +137,13 @@ public class Style {
 			jtable.setGridColor(Color.decode("#cfab8b"));
 			//jtable.setBackground(Color.decode("#cfab8b"));
 			jtable.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b")));
-		
+			jtable.setEnabled(false);
+		}
+		else if(cp instanceof JRadioButton) {
+			jradio = (JRadioButton) cp;
+			jradio.setOpaque(false);
+			jradio.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
+			jradio.setForeground(Color.decode("#cfab8b"));
 		}
 	}
 

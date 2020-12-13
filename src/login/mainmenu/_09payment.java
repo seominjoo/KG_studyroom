@@ -19,6 +19,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import login.design.Style;
 import login.page.MainPage;
 
 import javax.swing.JRadioButton;
@@ -41,14 +42,14 @@ public class _09payment extends JPanel{
 //		this.setSize(750,500);
 //		this.setLocation(600,150);
 		this.setLayout(null);
-
+		new Style(this);
 		this.setVisible(true);
 
 		JPanel p2 = new JPanel();
 		p2.setBounds(0, 0, 706, 453);
 		this.add(p2);
 		p2.setLayout(null);
-
+		new Style(p2);
 
 		 
 		String header[] = {"결제","정보"};
@@ -63,20 +64,23 @@ public class _09payment extends JPanel{
 
 		DefaultTableModel model = new DefaultTableModel(contents,header);
 		table = new JTable(model);
-		table.setBounds(21, 104, 437, 200);
-		table.setRowHeight(40);
+		new Style(table);
+		table.setBounds(40, 104, 390, 175);
+		table.setRowHeight(35);
 
-		Color color = UIManager.getColor("Table.gridColor");
-		MatteBorder border = new MatteBorder(1, 1, 0, 0, color);
-		table.setBorder(border);
+//		Color color = UIManager.getColor("Table.gridColor");
+//		MatteBorder border = new MatteBorder(1, 1, 0, 0, color);
+//		table.setBorder(border);
 		p2.add(table);
 
 		JRadioButton card_btn = new JRadioButton("카드");
-		card_btn.setBounds(296, 332, 121, 23);
+		new Style(card_btn);
+		card_btn.setBounds(291, 320, 70, 23);
 		p2.add(card_btn);
 
 		JRadioButton cash_btn = new JRadioButton("현금");
-		cash_btn.setBounds(136, 332, 121, 23);
+		new Style(cash_btn);
+		cash_btn.setBounds(131, 320, 70, 23);
 		p2.add(cash_btn);
 
 		ButtonGroup group = new ButtonGroup();
@@ -85,11 +89,13 @@ public class _09payment extends JPanel{
 
 
 		JButton back_btn = new JButton("돌아가기");
-		back_btn.setBounds(99, 381, 121, 42);
+		new Style(back_btn);
+		back_btn.setBounds(93, 381, 121, 42);
 		p2.add(back_btn);
 
 		JButton pay_btn = new JButton("결제하기");
-		pay_btn.setBounds(259, 381, 121, 42);
+		new Style(pay_btn);
+		pay_btn.setBounds(253, 381, 121, 42);
 		p2.add(pay_btn);
 
 		pay_btn.addActionListener(new ActionListener() { 

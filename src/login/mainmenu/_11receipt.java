@@ -54,8 +54,6 @@ public class _11receipt extends JPanel {
 		new Style(table);
 		table.setBounds(40, 104, 390, 245);
 		table.setRowHeight(35);
-		
-		table.setEnabled(false);
 
 //		Color color = UIManager.getColor("Table.gridColor");
 //		MatteBorder border = new MatteBorder(1, 1, 0, 0, color);
