@@ -56,9 +56,8 @@ public class _03whatWeek extends JPanel {
 		btn_2wk.addActionListener(new ActionListener() { //다음 페이지(2주 이용권)
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MainPage.ss = time_now.plusHours(2);
-				MainPage.price = 90000;
-				MainPage.seat_type = "2주 이용권 (1인석)";
+				MainPage.user_page_panel.add
+				("예약페이지",new _08reservation(time_now.plusHours(2), 90000, "2주 이용권 (1인석)"));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";
@@ -68,9 +67,8 @@ public class _03whatWeek extends JPanel {
 		btn_4wk.addActionListener(new ActionListener() { //다음 페이지(4주 이용권)
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MainPage.ss = time_now.plusHours(4);
-				MainPage.price = 130000;
-				MainPage.seat_type = "4주 이용권 (1인석)";
+				MainPage.user_page_panel.add
+				("예약페이지",new _08reservation(time_now.plusHours(4), 130000, "4주 이용권 (1인석)"));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";
@@ -80,9 +78,8 @@ public class _03whatWeek extends JPanel {
 		btn_8wk.addActionListener(new ActionListener() { //다음 페이지(8주 이용권)
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MainPage.ss = time_now.plusHours(8);
-				MainPage.price = 250000;
-				MainPage.seat_type = "8주 이용권 (1인석)";
+				MainPage.user_page_panel.add
+				("예약페이지",new _08reservation(time_now.plusHours(8), 250000, "8주 이용권 (1인석)"));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";
@@ -98,45 +95,7 @@ public class _03whatWeek extends JPanel {
 			}
 		});
 
-//		btn_2wk.addActionListener(new ActionListener() { //다음 페이지(2주 이용권)
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
-//				_08reservation frame = new _08reservation(time_now.plusWeeks(2),90000,"2주 이용권");
-//				frame.setVisible(true);
-//			}
-//		});
-//
-//		btn_4wk.addActionListener(new ActionListener() { //다음 페이지(4주 이용권)
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
-//				_08reservation frame = new _08reservation(time_now.plusWeeks(4),130000,"4주 이용권");
-//				frame.setVisible(true);
-//			}
-//		});
-//
-//		btn_8wk.addActionListener(new ActionListener() { //다음 페이지(8주 이용권)
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
-//				_08reservation frame = new _08reservation(time_now.plusWeeks(8),250000,"8주 이용권");
-//				frame.setVisible(true);
-//			}
-//		});
-//
-//		btn_back.addActionListener(new ActionListener() { //이전 페이지
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
-//				_02dayOrWeek frame = new _02dayOrWeek();
-//				frame.setVisible(true);
-//			}
-//		});
 	} 
 
-	public static void main(String[] args) {
-		_03whatWeek frame = new _03whatWeek();
-		frame.setVisible(true);
-	}
+
 }

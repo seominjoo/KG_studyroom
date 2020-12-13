@@ -70,9 +70,8 @@ public class _03whatHour extends JPanel {
 		btn_2hr.addActionListener(new ActionListener() { //다음 페이지(2시간 이용권)
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MainPage.ss = time_now.plusHours(2);
-				MainPage.price = 3000;
-				MainPage.seat_type = "2시간 이용권 (1인석)";
+				MainPage.user_page_panel.add
+				("예약페이지",new _08reservation(time_now.plusHours(2), 3000, "2시간 이용권 (1인석)"));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";
@@ -82,9 +81,8 @@ public class _03whatHour extends JPanel {
 		btn_4hr.addActionListener(new ActionListener() { //다음 페이지(4시간 이용권)
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MainPage.ss = time_now.plusHours(4);
-				MainPage.price = 4500;
-				MainPage.seat_type = "4시간 이용권 (1인석)";
+				MainPage.user_page_panel.add
+				("예약페이지",new _08reservation(time_now.plusHours(4), 4500, "4시간 이용권 (1인석)"));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";
@@ -94,9 +92,8 @@ public class _03whatHour extends JPanel {
 		btn_6hr.addActionListener(new ActionListener() { //다음 페이지(6시간 이용권)
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MainPage.ss = time_now.plusHours(6);
-				MainPage.price = 6000;
-				MainPage.seat_type = "6시간 이용권 (1인석)";
+				MainPage.user_page_panel.add
+				("예약페이지",new _08reservation(time_now.plusHours(6), 6000, "6시간 이용권 (1인석)"));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";
@@ -106,9 +103,8 @@ public class _03whatHour extends JPanel {
 		btn_8hr.addActionListener(new ActionListener() { //다음 페이지(8시간 이용권)
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MainPage.ss = time_now.plusHours(8);
-				MainPage.price = 7500;
-				MainPage.seat_type = "8시간 이용권 (1인석)";
+				MainPage.user_page_panel.add
+				("예약페이지",new _08reservation(time_now.plusHours(8), 7500, "8시간 이용권 (1인석)"));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";
@@ -118,9 +114,8 @@ public class _03whatHour extends JPanel {
 		btn_12hr.addActionListener(new ActionListener() { //다음 페이지(12시간 이용권)
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MainPage.ss = time_now.plusHours(12);
-				MainPage.price = 10000;
-				MainPage.seat_type = "12시간 이용권 (1인석)";
+				MainPage.user_page_panel.add
+				("예약페이지",new _08reservation(time_now.plusHours(12), 10000, "12시간 이용권 (1인석)"));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";

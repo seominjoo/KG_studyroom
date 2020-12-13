@@ -63,8 +63,5 @@ public class _02dayRoom extends JPanel {
 		}); 
 		
 	} 
-	public static void main(String[] args) {
-		_02dayRoom frame = new _02dayRoom();
-		frame.setVisible(true);
-	}
+
 } 
