@@ -39,10 +39,8 @@ public class _05locker extends JPanel {
 		check_locker_btn.addActionListener(new ActionListener() { //다음 페이지
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new _08reservation(time_now.plusMonths(1),25000,"1달 이용권 (사물함)"); 
-				MainPage.ss = time_now.plusMonths(1);
-				MainPage.price = 25000;
-				MainPage.seat_type = "1달 이용권 (사물함)";
+				MainPage.user_page_panel.add
+				("예약페이지",new _08reservation(time_now.plusMonths(1),25000,"1달 이용권 (사물함)"));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";
@@ -58,8 +56,5 @@ public class _05locker extends JPanel {
 			}
 		});
 	}
-	public static void main(String[] args) {
-		_05locker frame = new _05locker();
-		frame.setVisible(true);
-	}
+
 }

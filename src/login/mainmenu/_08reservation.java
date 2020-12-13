@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import login.design.Style;
+import login.page.MainPage;
 
 
 public class _08reservation extends JPanel implements ActionListener{
@@ -144,8 +145,9 @@ public class _08reservation extends JPanel implements ActionListener{
 				for(int i=0;i<20;i++) {
 					lockers.get(i).setSelected(false);
 				} 
-				_01start frame = new _01start();
-				frame.setVisible(true);
+				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+				MainPage.user_cards.show(MainPage.user_page_panel, "이용권구매");
+				MainPage.userToggle = "이용권구매";
 				 number="";
 			}
 		};
@@ -322,8 +324,12 @@ public class _08reservation extends JPanel implements ActionListener{
 					setVisible(false);
 					// yes버튼 -> 결제 페이지
 					 
-					new _09payment(time11,price,type11);
-					 
+					MainPage.user_page_panel.add
+					("결제페이지",new _09payment(time11,price,type11));
+					MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+					MainPage.user_cards.show(MainPage.user_page_panel, "결제페이지");
+					MainPage.userToggle = "결제페이지"; 
+					
 				}
 			} 
 			if (pstmt != null) pstmt.close();

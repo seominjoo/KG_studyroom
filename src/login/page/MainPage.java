@@ -101,14 +101,13 @@ public class MainPage extends JFrame {
 		user_page_panel.add("자리이동", new _06move());
 		user_page_panel.add("입실페이지", new _07in_seletSeat());
 		user_page_panel.add("퇴실페이지", new _07out());
-		user_page_panel.add("예약페이지", new _08reservation(ss,price,seat_type));
+		//user_page_panel.add("예약페이지", new _08reservation(ss,price,seat_type));
 		user_page_panel.add("자리페이지", new _06move_selectSeat());
-//		user_page_panel.add("결제페이지", new _09payment(ss, price, seat_type));
+		//user_page_panel.add("결제페이지", new _09payment(ss, price, seat_type));
+//		user_page_panel.add("결제알림창", new _10paycash(ss));
 		
-		// 미처리
-//		user_page_panel.add("결제알림창", new _10paycash());
 		// 영수증에 확인 버튼(or 입장바로가기 or로그아웃off)
-//		user_page_panel.add("영수증", new _11receipt());
+//		user_page_panel.add("영수증", new _11receipt(ss, price));
 		
 		
 

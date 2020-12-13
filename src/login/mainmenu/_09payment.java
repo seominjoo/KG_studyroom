@@ -19,6 +19,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import login.page.MainPage;
 
 import javax.swing.JRadioButton;
 import javax.swing.JToggleButton;
@@ -104,8 +105,12 @@ public class _09payment extends JPanel{
 					PreparedStatement pstmt = null;
 
 			if(cash_btn.isSelected()) {// 현금결제
-				new _10paycash(ss);
 
+				MainPage.user_page_panel.add
+				("결제알림창",new _10paycash(ss));
+				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+				MainPage.user_cards.show(MainPage.user_page_panel, "결제알림창");
+				MainPage.userToggle = "결제알림창"; 
 			}
 
 
@@ -253,8 +258,13 @@ public class _09payment extends JPanel{
 					}
 			
 			JOptionPane.showMessageDialog(null,"결제 완료");
-			new _11receipt(ss,_08reservation.price);
-
+			
+			MainPage.user_page_panel.add
+			("영수증",new _11receipt(ss,_08reservation.price));
+			MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+			MainPage.user_cards.show(MainPage.user_page_panel, "영수증");
+			MainPage.userToggle = "영수증"; 
+			
 			}
 		}
 			if (pstmt != null) pstmt.close();
@@ -279,16 +289,19 @@ public class _09payment extends JPanel{
 		for(int i=0;i<20;i++) {
 			_08reservation.lockers.get(i).setSelected(false);
 		} 
-		new _08reservation(_08reservation.time11,
+
+		MainPage.user_page_panel.add
+		("예약페이지", new _08reservation(_08reservation.time11,
 				_08reservation.price11,
-				_08reservation.type11);
+				_08reservation.type11));
+		MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+		MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
+		MainPage.userToggle = "예약페이지"; 
 		}
 	
 	
 		}); 
 	} 
-	public static void main(String[] args) {
-		_09payment window = new _09payment(_08reservation.time11,_08reservation.price11,_08reservation.type11);
-	}
+
  
 }
