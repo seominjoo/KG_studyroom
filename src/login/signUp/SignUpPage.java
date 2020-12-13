@@ -160,7 +160,11 @@ public class SignUpPage extends JPanel {
 								.equals(String.valueOf(value.PASSWORDCONFIRM.blindPW.getPassword()))) {
 							passConfirmAlert.setText("비밀번호 일치");
 							passConfirmAlert.setForeground(Color.decode("#9fda84"));
-						} else {
+						} 
+						else if(String.valueOf(value.PASSWORDCONFIRM.blindPW.getPassword()).equals("")) {
+							passConfirmAlert.setText("");
+						}
+						else {
 							passConfirmAlert.setText("비밀번호 불일치");
 							passConfirmAlert.setForeground(Color.decode("#da9784"));
 						}
