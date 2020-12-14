@@ -45,6 +45,9 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 	JButton monthTotal;
 	JButton dayTotal;
 	
+	JButton back;
+	static JLabel totalPayment;
+	
 	public SalesManagementPage() {
 		setLayout(null);
 		new Style(this);
@@ -55,6 +58,25 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 //		title.setBounds(250, 10, 100, 100);
 //		add(title);
 
+		back = new JButton("이전");
+		new Style(back);
+		back.setBounds(410, 488, 100, 50);
+		add(back);
+		
+		back.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//MainPage.main_page_panel.add("관리자메뉴", new AdminMenuPage());
+				MainPage.main_cards.show(MainPage.main_page_panel, "관리자메뉴");
+				MainPage.userToggle = "관리자메뉴";
+			}
+		});
+		
+		totalPayment = new JLabel();
+		new Style(totalPayment);
+		totalPayment.setBounds(100, 458, 200, 100);
+		add(totalPayment);
+		
 		scrollPane = new JScrollPane();
 		new Style(scrollPane);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
