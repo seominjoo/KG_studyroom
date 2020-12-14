@@ -56,18 +56,18 @@ public class ManagementPage extends JPanel implements ActionListener {
 		scrollPane.setBounds(50, 100, 500, 400);
 		add(scrollPane);
 		
-		year = new JComboBox<String>(BirthEnum.getYearTable());
+		year = new JComboBox<String>(new ManagementDate().yearTable);
 		year.setBounds(0, 3, 65, 30);
 		add(year);
 		new Style(year);
 		year.setSelectedItem("2020");
 
-		month = new JComboBox<String>(BirthEnum.getMonthTable());
+		month = new JComboBox<String>(new ManagementDate().monthTable);
 		month.setBounds(84, 3, 50, 30);
 		add(month);
 		new Style(month);
 
-		day = new JComboBox<String>(BirthEnum.getDayTable());
+		day = new JComboBox<String>(new ManagementDate().dayTable);
 		day.setBounds(152, 3, 50, 30);
 		add(day);
 		new Style(day);
@@ -77,9 +77,6 @@ public class ManagementPage extends JPanel implements ActionListener {
 		month.addActionListener(new YearMonthClick("month", true));
 
 		try {
-			// 내일 꼭 정규표현식으로 거르기
-			// 이름, 생년월일, 휴대폰, 비번,
-
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
 			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "1234");
