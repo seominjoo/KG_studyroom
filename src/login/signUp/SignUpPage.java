@@ -202,8 +202,8 @@ public class SignUpPage extends JPanel {
 				new Style(day);
 
 				// 연도, 월 클릭
-				year.addActionListener(new YearMonthClick("year", true));
-				month.addActionListener(new YearMonthClick("month", true));
+				year.addActionListener(new YearMonthClick("year", "회원가입"));
+				month.addActionListener(new YearMonthClick("month", "회원가입"));
 
 				gridInGrid.add(panelInGrid2);
 				grid.add(gridInGrid);

@@ -19,18 +19,16 @@ public class ManagementDate {
 
 		
 		int lastMonth = 12;
-		monthTable = new String[lastMonth + 1 + 1];
-		for (int i = 1; i < monthTable.length - 1; i++) {
+		monthTable = new String[lastMonth + 1];
+		for (int i = 1; i < monthTable.length; i++) {
 			monthTable[i] = (i + "").format("%02d", i);
 		}
-		monthTable[lastMonth + 1 + 1 - 1] = "연매출";
 		
 		
-		dayTable = new String[32 + 1];
+		dayTable = new String[31 + 1];
 		for (int i = 1; i < dayTable.length - 1; i++) {
 			dayTable[i] = (i + "").format("%02d", i);
 		}
-		dayTable[32 + 1 - 1] = "월매출";
 	}
 	
 	String[] getYearTable() {

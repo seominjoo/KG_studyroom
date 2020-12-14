@@ -29,18 +29,18 @@ import login.mainmenu._10paycash;
 import login.signUp.SignUpEnum;
 import login.signUp.window.ResultWindow;
 
-public class ManagementPage extends JPanel implements ActionListener {
+public class SalesManagementPage extends JPanel implements ActionListener {
 
 	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
 	JLabel title;
 	JScrollPane scrollPane;
 	JTable table;
 	
-	JComboBox<String> year;
-	JComboBox<String> month;
-	JComboBox<String> day;
+	public static JComboBox<String> year;
+	public static JComboBox<String> month;
+	public static JComboBox<String> day;
 	
-	public ManagementPage() {
+	public SalesManagementPage() {
 		setLayout(null);
 		new Style(this);
 
@@ -73,8 +73,8 @@ public class ManagementPage extends JPanel implements ActionListener {
 		new Style(day);
 
 		// 연도, 월 클릭
-		year.addActionListener(new YearMonthClick("year", true));
-		month.addActionListener(new YearMonthClick("month", true));
+		year.addActionListener(new YearMonthClick("year", "매출관리"));
+		month.addActionListener(new YearMonthClick("month", "매출관리"));
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -143,7 +143,7 @@ public class ManagementPage extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		MainPage.main_page_panel.add("매출관리", new ManagementPage());
+		MainPage.main_page_panel.add("매출관리", new SalesManagementPage());
 		MainPage.main_cards.show(MainPage.main_page_panel, "매출관리");
 		MainPage.userToggle = "매출관리";
 

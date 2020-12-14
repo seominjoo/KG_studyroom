@@ -103,8 +103,8 @@ public class FindPasswordPageUser extends JPanel {
 		new Style(day);
 		day.setBounds(330, 42, 55, 30);
 
-		year.addActionListener(new YearMonthClick("year", false));
-		month.addActionListener(new YearMonthClick("month", false));
+		year.addActionListener(new YearMonthClick("year", "비번찾기"));
+		month.addActionListener(new YearMonthClick("month", "비번찾기"));
 
 		grid2.add(year);
 		grid2.add(month);
