@@ -13,12 +13,15 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import login.BirthEnum;
+import login.YearMonthClick;
 import login.design.Style;
 import login.mainmenu._08reservation;
 import login.mainmenu._09payment;
@@ -32,6 +35,10 @@ public class ManagementPage extends JPanel implements ActionListener {
 	JLabel title;
 	JScrollPane scrollPane;
 	JTable table;
+	
+	JComboBox<String> year;
+	JComboBox<String> month;
+	JComboBox<String> day;
 	
 	public ManagementPage() {
 		setLayout(null);
@@ -49,7 +56,25 @@ public class ManagementPage extends JPanel implements ActionListener {
 		scrollPane.setBounds(50, 100, 500, 400);
 		add(scrollPane);
 		
-		
+		year = new JComboBox<String>(BirthEnum.getYearTable());
+		year.setBounds(0, 3, 65, 30);
+		add(year);
+		new Style(year);
+		year.setSelectedItem("2020");
+
+		month = new JComboBox<String>(BirthEnum.getMonthTable());
+		month.setBounds(84, 3, 50, 30);
+		add(month);
+		new Style(month);
+
+		day = new JComboBox<String>(BirthEnum.getDayTable());
+		day.setBounds(152, 3, 50, 30);
+		add(day);
+		new Style(day);
+
+		// 연도, 월 클릭
+		year.addActionListener(new YearMonthClick("year", true));
+		month.addActionListener(new YearMonthClick("month", true));
 
 		try {
 			// 내일 꼭 정규표현식으로 거르기
@@ -60,7 +85,6 @@ public class ManagementPage extends JPanel implements ActionListener {
 			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "1234");
 
 			conn.setAutoCommit(false);
-			//
 			
 			PreparedStatement count = conn.prepareStatement
 					("select count(*) from payment_record");
