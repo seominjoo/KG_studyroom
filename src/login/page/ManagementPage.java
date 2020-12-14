@@ -49,30 +49,7 @@ public class ManagementPage extends JPanel implements ActionListener {
 		scrollPane.setBounds(50, 100, 500, 400);
 		add(scrollPane);
 		
-		String header[] = { "결제일시", "이용권명", "사물함", "결제방식", "결제금액" };
-		String contents[][] = { { "번호", _08reservation.number }
-				
-				
-				
-				 };
-
-		DefaultTableModel model = new DefaultTableModel(contents, header);
-
-		table = new JTable(model);
-		new Style(table);
-		table.setBounds(40, 104, 390, 245);
-		table.setRowHeight(35);
 		
-		scrollPane.setViewportView(table);
-		
-		
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		MainPage.main_page_panel.add("매출관리", new ManagementPage());
-		MainPage.main_cards.show(MainPage.main_page_panel, "매출관리");
-		MainPage.userToggle = "매출관리";
 
 		try {
 			// 내일 꼭 정규표현식으로 거르기
@@ -84,26 +61,45 @@ public class ManagementPage extends JPanel implements ActionListener {
 
 			conn.setAutoCommit(false);
 			//
-			PreparedStatement read_PhoneNumber = conn.prepareStatement("SELECT phone_number FROM person_info");
-
-			ResultSet rs = read_PhoneNumber.executeQuery();
-
-			while (rs.next()) {
-//				phoneNumber = rs.getString(1);
-//				if (text.equals(phoneNumber)) {
-//				
-//					phoneNumber1.setText("");
-//					phoneNumber2.setText("");
-//					phoneNumber3.setText("");
-//					samePhoneNumber = true;
-				break;
-//				}
+			
+			PreparedStatement count = conn.prepareStatement
+					("select count(*) from payment_record");
+			
+			ResultSet rs = count.executeQuery();
+			int row = 0;
+			while(rs.next()) {
+				row = rs.getInt(1);
 			}
+			String header[] = { "결제일시", "이용권명", "사물함", "결제방식", "결제금액" };
+			String[][] contents = new String[row][header.length];
+			
+			PreparedStatement read_data = conn.prepareStatement
+					("SELECT paid_time,seat_type,locker_type,pay_method,payment"
+							+ " FROM payment_record order by paid_time");
 
+			rs = read_data.executeQuery();
+			
+			int i = 0;
+			while (rs.next()) {
+				for(int j = 0; j < header.length; j++) {
+					contents[i][j] = rs.getString(j+1);
+				}
+				i++;
+			}
+			
+			DefaultTableModel model = new DefaultTableModel(contents, header);
+
+			table = new JTable(model);
+			new Style(table);
+			table.setBounds(40, 104, 390, 245);
+			table.setRowHeight(35);
+			
+			scrollPane.setViewportView(table);
+			
 			if (rs != null)
 				rs.close();
-			if (read_PhoneNumber != null)
-				read_PhoneNumber.close();
+			if (read_data != null)
+				read_data.close();
 
 			if (conn != null)
 				conn.close();
@@ -119,6 +115,17 @@ public class ManagementPage extends JPanel implements ActionListener {
 			e1.printStackTrace();
 			System.out.println("[ojdbc] 클래스 경로가 틀렸습니다.");
 		}
+
+		
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		MainPage.main_page_panel.add("매출관리", new ManagementPage());
+		MainPage.main_cards.show(MainPage.main_page_panel, "매출관리");
+		MainPage.userToggle = "매출관리";
+
 	}
 
 }

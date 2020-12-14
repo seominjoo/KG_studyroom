@@ -122,7 +122,7 @@ public class Style {
 		} else if (cp instanceof JScrollPane) {
 			jscroll = (JScrollPane) cp;
 			jscroll.setOpaque(false); // 배경 투명
-			jscroll.getViewport().setBackground(Color.decode("#404040"));
+			jscroll.getViewport().setOpaque(false);
 		}
 		else if (cp instanceof JCheckBox) {
 			jcheck = (JCheckBox) cp;
