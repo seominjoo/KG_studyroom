@@ -34,10 +34,8 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 
 	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
 	JLabel title;
-	JScrollPane scrollPane;
-	JTable table;
-	String sql = "SELECT paid_time,seat_type,locker_type,pay_method,payment"
-			+ " FROM payment_record where order by paid_time";
+	static JScrollPane scrollPane;
+	//JTable table;
 	
 	public static JComboBox<String> year;
 	public static JComboBox<String> month;
@@ -85,76 +83,49 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 
 		yearTotal = new JButton("연매출");
 		new Style(yearTotal);
-		yearTotal.setBounds(100, 100, 50, 50);
+		yearTotal.setBounds(100, 50, 50, 50);
 		add(yearTotal);
+		
+		yearTotal.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new SalesDB("SELECT paid_time,seat_type,locker_type,pay_method,payment"
+						+ " FROM payment_record where substr(paid_time,1,2) = ? order by paid_time", 1);
+			}
+		});
 		
 		monthTotal = new JButton("월매출");
 		new Style(monthTotal);
-		monthTotal.setBounds(170, 100, 50, 50);
+		monthTotal.setBounds(170, 50, 50, 50);
 		add(monthTotal);
+		
+		monthTotal.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new SalesDB("SELECT paid_time,seat_type,locker_type,pay_method,payment"
+						+ " FROM payment_record where substr(paid_time,1,2) = ? " 
+						+ "and substr(paid_time,4,2) = ? order by paid_time", 2);
+			}
+		});
 		
 		dayTotal = new JButton("일매출");
 		new Style(dayTotal);
-		dayTotal.setBounds(240, 100, 50, 50);
+		dayTotal.setBounds(240, 50, 50, 50);
 		add(dayTotal);
 
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-
-			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "1234");
-
-			conn.setAutoCommit(false);
-			
-			PreparedStatement count = conn.prepareStatement
-					("select count(*) from payment_record");
-			
-			ResultSet rs = count.executeQuery();
-			int row = 0;
-			while(rs.next()) {
-				row = rs.getInt(1);
+		dayTotal.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new SalesDB("SELECT paid_time,seat_type,locker_type,pay_method,payment"
+						+ " FROM payment_record where substr(paid_time,1,2) = ? " 
+						+ "and substr(paid_time,4,2) = ? "
+						+ "and substr(paid_time,7,2) = ? order by paid_time", 3);
 			}
-			String header[] = { "결제일시", "이용권명", "사물함", "결제방식", "결제금액" };
-			String[][] contents = new String[row][header.length];
-			
-			PreparedStatement read_data = conn.prepareStatement(sql);
-
-			rs = read_data.executeQuery();
-			
-			int i = 0;
-			while (rs.next()) {
-				for(int j = 0; j < header.length; j++) {
-					contents[i][j] = rs.getString(j+1);
-				}
-				i++;
-			}
-			
-			DefaultTableModel model = new DefaultTableModel(contents, header);
-
-			table = new JTable(model);
-			new Style(table);
-			table.setBounds(40, 104, 390, 245);
-			table.setRowHeight(35);
-			
-			scrollPane.setViewportView(table);
-			
-			if (rs != null)
-				rs.close();
-			if (read_data != null)
-				read_data.close();
-
-			if (conn != null)
-				conn.close();
-
-			System.out.println("성공");
-
-		} catch (SQLException e1) {
-			// e1.printStackTrace();
-			System.out.println(e1.toString());
-		} catch (ClassNotFoundException e1) {
-			//e1.printStackTrace();
-			System.out.println("[ojdbc] 클래스 경로가 틀렸습니다.");
-		}
-
+		});
+		
+		
+		new SalesDB("SELECT paid_time,seat_type,locker_type,pay_method,payment"
+			+ " FROM payment_record order by paid_time", 0);
 		
 		
 	}
