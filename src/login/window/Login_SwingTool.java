@@ -11,8 +11,8 @@ import login.design.Conversion_image;
 
 public class Login_SwingTool extends JFrame{
 	static BufferedImage image;
-	static int x = new Conversion_image("image/로그인화면.jpg", 5).x;
-	static int y = new Conversion_image("image/로그인화면.jpg", 5).y;
+	static int x = new Conversion_image("image/로그인화면.jpg", 4).x;
+	static int y = new Conversion_image("image/로그인화면.jpg", 4).y;
 	
 
 	public static void initFrame(JFrame frame) {

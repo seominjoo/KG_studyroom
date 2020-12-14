@@ -34,8 +34,8 @@ import login.window.Login_SwingTool;
 
 public class MainPage extends JFrame {
 
-	int x = new Conversion_image("image/로그인화면.jpg", 5).x;
-	int y = new Conversion_image("image/로그인화면.jpg", 5).y;
+	int x = new Conversion_image("image/로그인화면.jpg", 4).x;
+	int y = new Conversion_image("image/로그인화면.jpg", 4).y;
 	public static JPanel main_page_panel;
 	public static CardLayout main_cards;
 	public static JPanel user_page_panel;
@@ -56,7 +56,7 @@ public class MainPage extends JFrame {
 		fram_panel.setLayout(null);
 		fram_panel.setBounds(0, 0, x, y);
 
-		JLabel background = new JLabel(new Conversion_image("image/로그인화면.jpg", 5).imageicon_smooth);
+		JLabel background = new JLabel(new Conversion_image("image/로그인화면.jpg", 4).imageicon_smooth);
 		background.setOpaque(false);
 		background.setBounds(0, 0, x, y);
 
@@ -65,13 +65,13 @@ public class MainPage extends JFrame {
 		main_cards = new CardLayout();
 		main_page_panel.setLayout(main_cards);
 		new Style(main_page_panel);
-		main_page_panel.setBounds(1577 / 5, 0, 2423 / 5, 2250 / 5);
+		main_page_panel.setBounds(394, 0, 605, 562);
 		
 		user_page_panel = new JPanel();
 		user_cards = new CardLayout();
 		user_page_panel.setLayout(user_cards);
 		new Style(user_page_panel);
-		user_page_panel.setBounds(1577 / 5, 0, 2423 / 5, 2250 / 5);
+		user_page_panel.setBounds(394, 0, 605, 562);
 		
 		JPanel main = new JPanel(new BorderLayout());
 		new Style(main);
@@ -120,8 +120,6 @@ public class MainPage extends JFrame {
 		changeUser.addActionListener(new MainBtn_Action(changeUser));
 		background.add(changeUser);
 		fram_panel.add(background);
-
-		Login_SwingTool.initFrame(this);
 
 		add(main_page_panel);
 		add(fram_panel);
