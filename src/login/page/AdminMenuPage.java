@@ -55,6 +55,8 @@ public class AdminMenuPage extends JPanel{
       sales_Management.setBounds(185,175,100,100);
       this.add(sales_Management);
       
+      sales_Management.addActionListener(new ManagementPage());
+      
       JButton member_Management = new JButton("회원관리");
       new Style(member_Management);
       member_Management.setOpaque(true);

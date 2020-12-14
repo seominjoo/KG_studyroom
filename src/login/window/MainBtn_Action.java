@@ -58,6 +58,7 @@ public class MainBtn_Action implements ActionListener {
 			if (MainPage.userToggle.equals("메인") || MainPage.userToggle.equals("로그인")) {
 				MainPage.main_cards.show(MainPage.main_page_panel, "관리자");
 				MainPage.userToggle = "관리자";
+
 			} else {
 				// 첫화면
 				MainPage.main_cards.show(MainPage.main_page_panel, "메인");
@@ -151,10 +152,10 @@ public class MainBtn_Action implements ActionListener {
 //		LoginPage.phone_number2.setText("");
 //		LoginPage.phone_number3.setText("");
 //		LoginPage.loginpass.setText("");
-		AdminPage.admin_phone_number1.setText("010");
-		AdminPage.admin_phone_number2.setText("");
-		AdminPage.admin_phone_number3.setText("");
-		AdminPage.admin_loginpass.setText("");
+//		AdminPage.admin_phone_number1.setText("010");
+//		AdminPage.admin_phone_number2.setText("");
+//		AdminPage.admin_phone_number3.setText("");
+//		AdminPage.admin_loginpass.setText("");
 	}
 
 }

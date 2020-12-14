@@ -33,7 +33,7 @@ import javax.swing.JDialog;
 public class _09payment extends JPanel{
 
 	private JTable table;
-	static LocalDateTime time_now = LocalDateTime.now();
+	public static LocalDateTime time_now = LocalDateTime.now();
 	String time_checkout;
 	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
   
