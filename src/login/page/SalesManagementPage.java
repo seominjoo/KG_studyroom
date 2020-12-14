@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -35,10 +36,16 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 	JLabel title;
 	JScrollPane scrollPane;
 	JTable table;
+	String sql = "SELECT paid_time,seat_type,locker_type,pay_method,payment"
+			+ " FROM payment_record where order by paid_time";
 	
 	public static JComboBox<String> year;
 	public static JComboBox<String> month;
 	public static JComboBox<String> day;
+	
+	JButton yearTotal;
+	JButton monthTotal;
+	JButton dayTotal;
 	
 	public SalesManagementPage() {
 		setLayout(null);
@@ -76,6 +83,21 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 		year.addActionListener(new YearMonthClick("year", "매출관리"));
 		month.addActionListener(new YearMonthClick("month", "매출관리"));
 
+		yearTotal = new JButton("연매출");
+		new Style(yearTotal);
+		yearTotal.setBounds(100, 100, 50, 50);
+		add(yearTotal);
+		
+		monthTotal = new JButton("월매출");
+		new Style(monthTotal);
+		monthTotal.setBounds(170, 100, 50, 50);
+		add(monthTotal);
+		
+		dayTotal = new JButton("일매출");
+		new Style(dayTotal);
+		dayTotal.setBounds(240, 100, 50, 50);
+		add(dayTotal);
+
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
@@ -94,9 +116,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 			String header[] = { "결제일시", "이용권명", "사물함", "결제방식", "결제금액" };
 			String[][] contents = new String[row][header.length];
 			
-			PreparedStatement read_data = conn.prepareStatement
-					("SELECT paid_time,seat_type,locker_type,pay_method,payment"
-							+ " FROM payment_record order by paid_time");
+			PreparedStatement read_data = conn.prepareStatement(sql);
 
 			rs = read_data.executeQuery();
 			
@@ -130,10 +150,8 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 		} catch (SQLException e1) {
 			// e1.printStackTrace();
 			System.out.println(e1.toString());
-			// new SignUpFailWindow(e1);
-
 		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
+			//e1.printStackTrace();
 			System.out.println("[ojdbc] 클래스 경로가 틀렸습니다.");
 		}
 
