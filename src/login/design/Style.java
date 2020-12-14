@@ -140,6 +140,7 @@ public class Style {
 			jtable.setGridColor(Color.decode("#cfab8b")); // 테이블 내부 선 색
 			jtable.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b")));
 			jtable.setEnabled(false); // 사용자가 테이블을 클릭하거나 편집하는 것을 방지
+			
 		}
 		else if(cp instanceof JRadioButton) {
 			jradio = (JRadioButton) cp;

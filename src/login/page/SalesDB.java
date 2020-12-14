@@ -57,7 +57,8 @@ public class SalesDB {
 
 			int i = 0;
 			while (rs.next()) {
-				for (int j = 0; j < header.length; j++) {
+				contents[i][0] = rs.getString(1).substring(0,19);
+				for (int j = 1; j < header.length; j++) {
 					contents[i][j] = rs.getString(j + 1);
 				}
 				i++;
@@ -67,8 +68,14 @@ public class SalesDB {
 
 			table = new JTable(model);
 			new Style(table);
-			table.setBounds(40, 104, 390, 245);
+			table.getTableHeader().setOpaque(false);
+			//table.setBounds(40, 104, 390, 245);
 			table.setRowHeight(35);
+			table.getColumnModel().getColumn(0).setPreferredWidth(150);
+			table.getColumnModel().getColumn(1).setPreferredWidth(150);
+			table.getColumnModel().getColumn(2).setPreferredWidth(100);
+			table.getColumnModel().getColumn(3).setPreferredWidth(50);
+			table.getColumnModel().getColumn(4).setPreferredWidth(50);
 
 			SalesManagementPage.scrollPane.setViewportView(table);
 

@@ -49,31 +49,31 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 		setLayout(null);
 		new Style(this);
 
-		title = new JLabel("매출 관리");
-		new Style(title);
-		title.setFont(new Font("맑은 고딕", Font.BOLD, 18));
-		title.setBounds(250, 10, 100, 100);
-		add(title);
+//		title = new JLabel("매출 관리");
+//		new Style(title);
+//		title.setFont(new Font("맑은 고딕", Font.BOLD, 18));
+//		title.setBounds(250, 10, 100, 100);
+//		add(title);
 
 		scrollPane = new JScrollPane();
 		new Style(scrollPane);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
-		scrollPane.setBounds(50, 100, 500, 400);
+		scrollPane.setBounds(50, 85, 500, 380);
 		add(scrollPane);
 		
 		year = new JComboBox<String>(new ManagementDate().yearTable);
-		year.setBounds(0, 3, 65, 30);
+		year.setBounds(100, 30, 65, 30);
 		add(year);
 		new Style(year);
 		year.setSelectedItem("2020");
 
 		month = new JComboBox<String>(new ManagementDate().monthTable);
-		month.setBounds(84, 3, 50, 30);
+		month.setBounds(245, 30, 50, 30);
 		add(month);
 		new Style(month);
 
 		day = new JComboBox<String>(new ManagementDate().dayTable);
-		day.setBounds(152, 3, 50, 30);
+		day.setBounds(375, 30, 50, 30);
 		add(day);
 		new Style(day);
 
@@ -83,7 +83,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 
 		yearTotal = new JButton("연매출");
 		new Style(yearTotal);
-		yearTotal.setBounds(100, 50, 50, 50);
+		yearTotal.setBounds(175, 30, 50, 30);
 		add(yearTotal);
 		
 		yearTotal.addActionListener(new ActionListener() {
@@ -96,7 +96,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 		
 		monthTotal = new JButton("월매출");
 		new Style(monthTotal);
-		monthTotal.setBounds(170, 50, 50, 50);
+		monthTotal.setBounds(305, 30, 50, 30);
 		add(monthTotal);
 		
 		monthTotal.addActionListener(new ActionListener() {
@@ -110,7 +110,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 		
 		dayTotal = new JButton("일매출");
 		new Style(dayTotal);
-		dayTotal.setBounds(240, 50, 50, 50);
+		dayTotal.setBounds(435, 30, 50, 30);
 		add(dayTotal);
 
 		dayTotal.addActionListener(new ActionListener() {
