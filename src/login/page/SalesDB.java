@@ -30,7 +30,6 @@ public class SalesDB {
 
 			conn.setAutoCommit(false);
 
-			
 			PreparedStatement read_data = conn.prepareStatement(sql);
 
 			if (maxCnt == 1) {
@@ -43,27 +42,26 @@ public class SalesDB {
 				read_data.setString(2, (String) SalesManagementPage.month.getSelectedItem());
 				read_data.setString(3, (String) SalesManagementPage.day.getSelectedItem());
 			}
-			
+
 			ResultSet rs = read_data.executeQuery();
-			
+
 			String header[] = { "결제일시", "이용권명", "사물함", "결제방식", "결제금액" };
 
 			int realRow = 0;
-			
+
 			while (rs.next()) {
 				realRow++;
 			}
-			
+
 			String[][] contents = new String[realRow][header.length];
-			
+
 			// read_data.executeBatch();
-		
+
 			int i = 0;
 			int sum = 0;
-			int weekRow = 0;
-			int weekSum = 0;
 			int weekindex = 0;
-			
+			int weekSum = 0;
+
 			ResultSet rs1 = read_data.executeQuery();
 			while (rs1.next()) {
 
@@ -72,37 +70,25 @@ public class SalesDB {
 					contents[i][j] = rs1.getString(j + 1);
 					if (j == 4) {
 						sum += Integer.parseInt(rs1.getString(j + 1));
-
 					}
 
 				}
-
+				if (maxCnt == 2) {
+					for (int day = 1; day <= SalesManagementPage.day.getItemCount() - 1; day++) {
+						weekSum += Integer.parseInt(rs1.getString(5));
+						if (day % 7 == 0) {
+							SalesManagementPage.weekTotal[weekindex].setText((weekindex + 1) + "주차 매출 : " + weekSum);
+							weekSum = 0;
+							weekindex++;
+							System.out.println("여기가 목적");
+						}
+					}
+				}
 				i++;
 			}
-			
-			if(maxCnt == 2) {
-				for(int dayIndex = 0; dayIndex < Integer.
-						parseInt((String)SalesManagementPage.month.getSelectedItem()); dayIndex++){
-					
-				}
-			}
 
-			
-//			if(maxCnt == 2) {
-//				weekRow++;
-//				weekSum+=Integer.parseInt(rs1.getString(j + 1));
-//				System.out.println("weekRow : " + weekRow);
-//				System.out.println("weekSum : " + weekSum);
-//			}
-//			if(weekRow % 7 == 0 && maxCnt == 2) {
-//				SalesManagementPage.weekTotal[weekindex].setText((weekindex + 1) + "주차 매출 : " + weekSum);
-//				weekSum = 0;
-//				weekindex++;
-//				System.out.println("여기가 목적");
-//			}
-			
 			SalesManagementPage.totalPayment.setText("총 매출 : " + NumberFormat.getInstance().format(sum) + "원");
-			
+
 			DefaultTableModel model = new DefaultTableModel(contents, header);
 
 			table = new JTable(model);
@@ -110,13 +96,13 @@ public class SalesDB {
 			table.getTableHeader().setOpaque(false);
 			// table.setBounds(40, 104, 390, 245);
 			table.setRowHeight(35);
-			//table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+			// table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 			table.getColumnModel().getColumn(0).setPreferredWidth(150);
 			table.getColumnModel().getColumn(1).setPreferredWidth(150);
 			table.getColumnModel().getColumn(2).setPreferredWidth(100);
 			table.getColumnModel().getColumn(3).setPreferredWidth(50);
 			table.getColumnModel().getColumn(4).setPreferredWidth(50);
-			
+
 			SalesManagementPage.scrollPane.setViewportView(table);
 
 			if (rs1 != null)

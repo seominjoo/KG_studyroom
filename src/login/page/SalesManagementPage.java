@@ -54,6 +54,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 		setLayout(null);
 		new Style(this);
 
+		
 //		title = new JLabel("매출 관리");
 //		new Style(title);
 //		title.setFont(new Font("맑은 고딕", Font.BOLD, 18));
@@ -111,6 +112,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 		add(day);
 		new Style(day);
 
+		
 		// ㅇㅇ
 		// 연도, 월 클릭
 		year.addActionListener(new YearMonthClick("year", "매출관리"));
