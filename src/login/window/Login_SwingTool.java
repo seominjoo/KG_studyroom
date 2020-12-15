@@ -8,24 +8,19 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 import login.design.Conversion_image;
+import login.design.Style;
 
 public class Login_SwingTool extends JFrame{
-	static BufferedImage image;
-	static int x = new Conversion_image("image/로그인화면.jpg", 4).x;
-	static int y = new Conversion_image("image/로그인화면.jpg", 4).y;
-	
+   static int x = new Conversion_image("image/배경화면.jpg", 4).x;
+   static int y = new Conversion_image("image/배경화면.jpg", 4).y;
+   
 
-	public static void initFrame(JFrame frame) {
-		
-		try {
-			image = ImageIO.read(new File("image\\로고.png"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		frame.setIconImage(image);
-		frame.setLayout(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setBounds(90, 50, x+12, y+35);
-		frame.setVisible(true);
-	}
+   public static void initFrame(JFrame frame) {
+      
+      new Style(frame);
+      frame.setLayout(null);
+      frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      frame.setBounds(90, 50, x+12, y+35);
+      frame.setVisible(true);
+   }
 }

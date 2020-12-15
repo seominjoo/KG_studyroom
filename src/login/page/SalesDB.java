@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.Format;
 import java.text.NumberFormat;
 
 import javax.swing.JScrollPane;
@@ -61,32 +62,64 @@ public class SalesDB {
 			int sum = 0;
 			int weekindex = 0;
 			int weekSum = 0;
-
+			int weekNumber = 0;
+			int week1 = 0;
+			int week2 = 0;
+			int week3 = 0;
+			int week4 = 0;
+			int week5 = 0;
+			
+			
+			
 			ResultSet rs1 = read_data.executeQuery();
 			while (rs1.next()) {
-
 				contents[i][0] = rs1.getString(1).substring(0, 19);
 				for (int j = 1; j < header.length; j++) {
 					contents[i][j] = rs1.getString(j + 1);
 					if (j == 4) {
 						sum += Integer.parseInt(rs1.getString(j + 1));
+						weekNumber = Integer.parseInt(rs1.getString(j + 1));
 					}
-
 				}
+				
+
 				if (maxCnt == 2) {
+					
 					for (int day = 1; day <= SalesManagementPage.day.getItemCount() - 1; day++) {
-						weekSum += Integer.parseInt(rs1.getString(5));
-						if (day % 7 == 0) {
-							SalesManagementPage.weekTotal[weekindex].setText((weekindex + 1) + "주차 매출 : " + weekSum);
-							weekSum = 0;
-							weekindex++;
-							System.out.println("여기가 목적");
+						String single = null;
+						if(java.util.regex.Pattern.matches("0[0-9]", rs1.getString(1).substring(8, 10))) {
+						single = rs1.getString(1).substring(8, 10).replace("0", "");
+						} else {
+						single = rs1.getString(1).substring(8, 10);
 						}
+						if(Integer.parseInt(single) <= 7) {
+							week1 += Integer.parseInt(rs1.getString(5));
+						} else if(Integer.parseInt(single) <= 14) {
+							week2 += Integer.parseInt(rs1.getString(5));
+						} else if(Integer.parseInt(single) <= 21) {
+							week3 += Integer.parseInt(rs1.getString(5));
+						} else if(Integer.parseInt(single) <= 28) {
+							week4 += Integer.parseInt(rs1.getString(5));
+						} else {
+							week5 += Integer.parseInt(rs1.getString(5));
+						}
+						//weekSum += weekNumber;
+						//if (day % 7 == 0) {
+							SalesManagementPage.weekTotal[0].setText(1 + "주차 매출 : " + week1);
+							SalesManagementPage.weekTotal[1].setText(2 + "주차 매출 : " + week2);
+							SalesManagementPage.weekTotal[2].setText(3 + "주차 매출 : " + week3);
+							SalesManagementPage.weekTotal[3].setText(4 + "주차 매출 : " + week4);
+							SalesManagementPage.weekTotal[4].setText(5 + "주차 매출 : " + week5);
+							//weekSum = 0;
+							//weekindex++;
+							System.out.println("여기가 목적");
+						//}
 					}
 				}
 				i++;
 			}
-
+			
+			
 			SalesManagementPage.totalPayment.setText("총 매출 : " + NumberFormat.getInstance().format(sum) + "원");
 
 			DefaultTableModel model = new DefaultTableModel(contents, header);
@@ -127,3 +160,4 @@ public class SalesDB {
 	}
 
 }
+
