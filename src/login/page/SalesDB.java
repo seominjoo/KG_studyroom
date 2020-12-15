@@ -73,7 +73,6 @@ public class SalesDB {
 				i++;
 			}
 			
-
 			
 			SalesManagementPage.totalPayment.setText("ÃÑ ¸ÅÃâ : " + sum + "¿ø");
 			
@@ -90,7 +89,7 @@ public class SalesDB {
 			table.getColumnModel().getColumn(2).setPreferredWidth(100);
 			table.getColumnModel().getColumn(3).setPreferredWidth(50);
 			table.getColumnModel().getColumn(4).setPreferredWidth(50);
-
+			
 			SalesManagementPage.scrollPane.setViewportView(table);
 
 			if (rs1 != null)

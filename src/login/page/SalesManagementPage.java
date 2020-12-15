@@ -99,6 +99,8 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 		add(day);
 		new Style(day);
 
+		
+		
 		// 연도, 월 클릭
 		year.addActionListener(new YearMonthClick("year", "매출관리"));
 		month.addActionListener(new YearMonthClick("month", "매출관리"));
