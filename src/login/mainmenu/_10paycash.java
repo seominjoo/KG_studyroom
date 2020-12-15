@@ -221,7 +221,7 @@ public class _10paycash extends JFrame {
                         // 회원info 테이블에 저장(좌석번호,사물함번호,입실)
                         sql3 = "update person_info set locker_number=?,Expiration_locker=? where person_id=?";
                         pstmt = conn.prepareStatement(sql3);
-                        pstmt.setInt(1, i + 101);
+                        pstmt.setInt(1, i + 1);
                         pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(time_now.plusMonths(1)));
                         pstmt.setInt(3, _00main.id);
                         int row1 = pstmt.executeUpdate();

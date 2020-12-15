@@ -1,5 +1,6 @@
 package login.page;
 
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -60,17 +61,13 @@ public class SalesDB {
 
 			int i = 0;
 			int sum = 0;
-			int weekindex = 0;
-			int weekSum = 0;
-			int weekNumber = 0;
+
 			int week1 = 0;
 			int week2 = 0;
 			int week3 = 0;
 			int week4 = 0;
 			int week5 = 0;
-			
-			
-			
+
 			ResultSet rs1 = read_data.executeQuery();
 			while (rs1.next()) {
 				contents[i][0] = rs1.getString(1).substring(0, 19);
@@ -78,63 +75,54 @@ public class SalesDB {
 					contents[i][j] = rs1.getString(j + 1);
 					if (j == 4) {
 						sum += Integer.parseInt(rs1.getString(j + 1));
-						weekNumber = Integer.parseInt(rs1.getString(j + 1));
 					}
 				}
-				
 
+				// 주간 매출 부분
 				if (maxCnt == 2) {
-					
-					for (int day = 1; day <= SalesManagementPage.day.getItemCount() - 1; day++) {
-						String single = null;
-						if(java.util.regex.Pattern.matches("0[0-9]", rs1.getString(1).substring(8, 10))) {
-						single = rs1.getString(1).substring(8, 10).replace("0", "");
-						} else {
-						single = rs1.getString(1).substring(8, 10);
-						}
-						if(Integer.parseInt(single) <= 7) {
-							week1 += Integer.parseInt(rs1.getString(5));
-						} else if(Integer.parseInt(single) <= 14) {
-							week2 += Integer.parseInt(rs1.getString(5));
-						} else if(Integer.parseInt(single) <= 21) {
-							week3 += Integer.parseInt(rs1.getString(5));
-						} else if(Integer.parseInt(single) <= 28) {
-							week4 += Integer.parseInt(rs1.getString(5));
-						} else {
-							week5 += Integer.parseInt(rs1.getString(5));
-						}
-						//weekSum += weekNumber;
-						//if (day % 7 == 0) {
-							SalesManagementPage.weekTotal[0].setText(1 + "주차 매출 : " + week1);
-							SalesManagementPage.weekTotal[1].setText(2 + "주차 매출 : " + week2);
-							SalesManagementPage.weekTotal[2].setText(3 + "주차 매출 : " + week3);
-							SalesManagementPage.weekTotal[3].setText(4 + "주차 매출 : " + week4);
-							SalesManagementPage.weekTotal[4].setText(5 + "주차 매출 : " + week5);
-							//weekSum = 0;
-							//weekindex++;
-							System.out.println("여기가 목적");
-						//}
+					int single = Integer.parseInt(rs1.getString(1).substring(8, 10));
+	
+					if (single <= 7) {
+						week1 += Integer.parseInt(rs1.getString(5));
+					} else if (single <= 14) {
+						week2 += Integer.parseInt(rs1.getString(5));
+					} else if (single <= 21) {
+						week3 += Integer.parseInt(rs1.getString(5));
+					} else if (single <= 28) {
+						week4 += Integer.parseInt(rs1.getString(5));
+					} else {
+						week5 += Integer.parseInt(rs1.getString(5));
 					}
+
+					SalesManagementPage.weekTotal[0]
+							.setText(1 + "주차 매출 : " + NumberFormat.getInstance().format(week1) + "원");
+					SalesManagementPage.weekTotal[1]
+							.setText(2 + "주차 매출 : " + NumberFormat.getInstance().format(week2) + "원");
+					SalesManagementPage.weekTotal[2]
+							.setText(3 + "주차 매출 : " + NumberFormat.getInstance().format(week3) + "원");
+					SalesManagementPage.weekTotal[3]
+							.setText(4 + "주차 매출 : " + NumberFormat.getInstance().format(week4) + "원");
+					SalesManagementPage.weekTotal[4]
+							.setText(5 + "주차 매출 : " + NumberFormat.getInstance().format(week5) + "원");
+
 				}
 				i++;
 			}
-			
-			
+
 			SalesManagementPage.totalPayment.setText("총 매출 : " + NumberFormat.getInstance().format(sum) + "원");
 
 			DefaultTableModel model = new DefaultTableModel(contents, header);
 
 			table = new JTable(model);
 			new Style(table);
-			table.getTableHeader().setOpaque(false);
 			// table.setBounds(40, 104, 390, 245);
 			table.setRowHeight(35);
 			// table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-			table.getColumnModel().getColumn(0).setPreferredWidth(150);
-			table.getColumnModel().getColumn(1).setPreferredWidth(150);
-			table.getColumnModel().getColumn(2).setPreferredWidth(100);
-			table.getColumnModel().getColumn(3).setPreferredWidth(50);
-			table.getColumnModel().getColumn(4).setPreferredWidth(50);
+			table.getColumnModel().getColumn(0).setPreferredWidth(140);
+			table.getColumnModel().getColumn(1).setPreferredWidth(140);
+			table.getColumnModel().getColumn(2).setPreferredWidth(90);
+			table.getColumnModel().getColumn(3).setPreferredWidth(65);
+			table.getColumnModel().getColumn(4).setPreferredWidth(65);
 
 			SalesManagementPage.scrollPane.setViewportView(table);
 
@@ -160,4 +148,3 @@ public class SalesDB {
 	}
 
 }
-

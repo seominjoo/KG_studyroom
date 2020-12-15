@@ -63,6 +63,7 @@ public class AdminMenuPage extends JPanel{
       member_Management.setBounds(331,175,100,100);
       this.add(member_Management);
       
+      member_Management.addActionListener(new MemberManagementPage());
    }
 
 }
