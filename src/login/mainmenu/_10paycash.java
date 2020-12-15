@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import login.design.Style;
 import login.page.MainPage;
 
 import java.awt.Color;
@@ -31,7 +32,8 @@ public class _10paycash extends JPanel{
 	LocalDateTime time_now = LocalDateTime.now();
 	 
 	public _10paycash(LocalDateTime ss) {
-
+		new Style(this);
+		JButton back;
 		setBounds(600, 150, 420, 322);
 
 		setLayout(null);
@@ -41,7 +43,7 @@ public class _10paycash extends JPanel{
 		panel.setBounds(12, 10, 381, 266);
 		add(panel);
 		panel.setLayout(null);
-
+ 
 		String price =Integer.toString((_08reservation.price11));
 
 		JLabel payment = new JLabel("결제 금액 : "+price+"원");
@@ -53,6 +55,7 @@ public class _10paycash extends JPanel{
 		JLabel deposit = new JLabel("입금 금액");
 		deposit.setFont(new Font("맑은 고딕", Font.BOLD, 18));
 		deposit.setBounds(57, 98, 120, 39);
+		deposit.setForeground(Color.BLACK);
 		panel.add(deposit);
 
 		JTextField cash = new JTextField();
@@ -62,9 +65,34 @@ public class _10paycash extends JPanel{
 
 		JButton pay_btn = new JButton("결제");
 		pay_btn.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		pay_btn.setBounds(116, 181, 140, 39);
+		pay_btn.setBounds(90, 181, 120, 39);
 		panel.add(pay_btn);
 
+		new Style(panel);
+		new Style(pay_btn);
+		
+		ActionListener back_btn = new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+				MainPage.user_cards.show(MainPage.user_page_panel, "결제페이지");
+				MainPage.userToggle = "결제페이지";
+				 
+			}
+		};
+		
+		back = new JButton("결제 취소");
+		new Style(back);
+		back.setBounds(230,191,120,39);
+		this.add(back);
+		back.addActionListener(back_btn);
+		
+		
+		
+		
+		
+		
+		
 		pay_btn.addActionListener(new ActionListener() { 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -84,8 +112,8 @@ public class _10paycash extends JPanel{
 						PreparedStatement pstmt = null;
 
 		for(int i=0;i<20;i++) {
-			if( _08reservation.seats.get(i).isSelected()&&(_08reservation.seats.get(i).isEnabled()==true)) {//이미 예약되있는 건(비활성화) 빼고 체크
-				_08reservation.seats.get(i).setEnabled(false);
+			if( _08reservation.seats_btn.get(i).isSelected()&&(_08reservation.seats_btn.get(i).isEnabled()==true)) {//이미 예약되있는 건(비활성화) 빼고 체크
+				_08reservation.seats_btn.get(i).setEnabled(false);
 
 			String sql = "update seat set Seat_Statement ='사용 중' where Seat_Number= ?";
 
@@ -134,8 +162,8 @@ public class _10paycash extends JPanel{
 						
 	}
 		for(int i=0;i<4;i++) {
-			 if(_08reservation.room.get(i).isSelected()&&(_08reservation.room.get(i).isEnabled()==true)) {
-				 _08reservation.room.get(i).setEnabled(false);
+			 if(_08reservation.room_btn.get(i).isSelected()&&(_08reservation.room_btn.get(i).isEnabled()==true)) {
+				 _08reservation.room_btn.get(i).setEnabled(false);
 				String sql2 = "update seat set Seat_Statement ='사용 중' where Seat_Number= ?";
 				pstmt = conn.prepareStatement(sql2);
 				pstmt.setInt(1, i+101);
@@ -176,8 +204,8 @@ public class _10paycash extends JPanel{
 	}
 		for(int i=0;i<20;i++) { 
 			 
-			if( _08reservation.lockers.get(i).isSelected()&&(_08reservation.lockers.get(i).isEnabled()==true)) {
-				_08reservation.lockers.get(i).setEnabled(false);
+			if( _08reservation.locker_btn.get(i).isSelected()&&(_08reservation.locker_btn.get(i).isEnabled()==true)) {
+				_08reservation.locker_btn.get(i).setEnabled(false);
 				String sql3 = "update locker set Locker_Statement ='사용 중' where Locker_Number= ?";
 				pstmt = conn.prepareStatement(sql3);
 				pstmt.setInt(1, i+1);

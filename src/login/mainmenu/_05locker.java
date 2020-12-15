@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import login.design.Style;
 import login.page.MainPage;
 
 
@@ -23,7 +24,7 @@ public class _05locker extends JPanel {
 	
 	LocalDateTime time_now = LocalDateTime.now(); 
 	public _05locker() {
-		
+		new Style(this);
 		setBounds(600, 150, 450, 300);
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setLayout(new GridLayout(0, 1, 0, 0));
@@ -34,7 +35,8 @@ public class _05locker extends JPanel {
 		JButton btn_back = new JButton("이전 화면"); 
 		this.add(btn_back);
 		
-
+		new Style(check_locker_btn);
+		new Style(btn_back);
 		
 		check_locker_btn.addActionListener(new ActionListener() { //다음 페이지
 			@Override
@@ -50,6 +52,7 @@ public class _05locker extends JPanel {
 		btn_back.addActionListener(new ActionListener() { //이전 페이지
 			@Override
 			public void actionPerformed(ActionEvent e) {
+			 
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "이용권구매");
 				MainPage.userToggle = "이용권구매";

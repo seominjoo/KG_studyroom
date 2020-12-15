@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import login.design.Style;
+import login.mainmenu._00main;
 import login.page.MainPage;
 import login.swingTools.SwingToolsSubPage;
 
@@ -63,6 +64,7 @@ public class SubWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				if (nextcard.equals("사용자메뉴")) {
+					MainPage.user_page_panel.add("메인메뉴", new _00main()); // 메뉴페이지
 					MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 					MainPage.user_cards.show(MainPage.user_page_panel, "메인메뉴");
 					MainPage.userToggle = "메인메뉴";

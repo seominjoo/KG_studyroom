@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,7 +18,7 @@ import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
-
+ 
 import login.design.Style;
 import login.page.MainPage;
 
@@ -84,8 +85,11 @@ public class _01start extends JPanel {
 		JButton back_btn = new JButton("이전 화면");
 		back_btn.setBounds(218, 221, 213, 126);
 		this.add(back_btn);
-
-		// 스터디룸 상황표
+		new Style(seat_btn);
+		new Style(locker_btn);
+		new Style(room_btn);
+		new Style(back_btn);
+ 		// 스터디룸 상황표
 		String header[] = { "1인석", "스터디룸", "사물함", "현재시간" };
 		String contents[][] = { { "<html>사용중 1인석<br/>&emsp;&emsp;" + Integer.toString(_00main.count_seat) + " / 20",
 				"<html>사용중 스터디룸<br/>&emsp;&emsp;&emsp;" + Integer.toString(_00main.count_room) + " / 4",
@@ -111,9 +115,11 @@ public class _01start extends JPanel {
 		table.getColumn("사물함").setCellRenderer(celAlignCenter);
 		table.getColumn("현재시간").setCellRenderer(celAlignCenter);
 		this.add(table);
-
+		new Style(celAlignCenter);
+		new Style(table);
+		table.setFont(new Font("맑은 고딕", Font.BOLD, 11));
 		setVisible(true);
-
+		 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "1234");
@@ -121,7 +127,8 @@ public class _01start extends JPanel {
 			seat_btn.addActionListener(new ActionListener() { //좌석 이용권 페이지
 				@Override
 				public void actionPerformed(ActionEvent e) {
-			  
+					System.out.println("좌석번호 현재"+_00main.seat_chk);
+					System.out.println("이용권 현재"+_00main.type);
 		 
 					 
 					 if(_00main.seat_chk>0) {
@@ -131,6 +138,7 @@ public class _01start extends JPanel {
 							 String msg= "정기 이용권 이용자는 입실을 이용하세요";
 							 JOptionPane.showMessageDialog(null,msg); 
 						 }else {
+							 MainPage.user_page_panel.add("좌석이용권", new _02dayOrWeek()); // 좌석 이용권 페이지
 							 MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 								MainPage.user_cards.show(MainPage.user_page_panel, "좌석이용권");
 								MainPage.userToggle = "좌석이용권";
@@ -155,6 +163,7 @@ public class _01start extends JPanel {
 						            	String msg= "결제한 룸이 이미 존재합니다";
 										JOptionPane.showMessageDialog(null,msg); 
 						            }else {				         
+						            	MainPage.user_page_panel.add("룸이용권", new _02dayRoom());// 룸 이용권 페이지
 						            	MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 										MainPage.user_cards.show(MainPage.user_page_panel, "룸이용권");
 										MainPage.userToggle = "룸이용권";
@@ -182,6 +191,7 @@ public class _01start extends JPanel {
 						            	String msg= "결제한 사물함이 이미 존재합니다";
 										JOptionPane.showMessageDialog(null,msg); 
 						            }else {	 
+						            	MainPage.user_page_panel.add("사물함이용권", new _05locker());
 						            	MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 										MainPage.user_cards.show(MainPage.user_page_panel, "사물함이용권");
 										MainPage.userToggle = "사물함이용권";
@@ -198,6 +208,7 @@ public class _01start extends JPanel {
 			  back_btn.addActionListener(new ActionListener() { //이전 페이지
 		          @Override
 		          public void actionPerformed(ActionEvent e) {
+		        	  MainPage.user_page_panel.add("메인메뉴", new _00main()); // 메뉴페이지
 		        	  MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 						MainPage.user_cards.show(MainPage.user_page_panel, "메인메뉴");
 						MainPage.userToggle = "메인메뉴";

@@ -42,10 +42,13 @@ public class _02dayOrWeek extends JPanel {
 		JButton back_btn = new JButton("이전 화면"); 
 		this.add(back_btn);
 
-		
+		new Style(daily_btn);
+		new Style(weekly_btn);
+		new Style(back_btn);
 		daily_btn.addActionListener(new ActionListener() { //다음 페이지
 			@Override
 			public void actionPerformed(ActionEvent e) {
+ 				MainPage.user_page_panel.add("당일권가격표(좌석)", new _03whatHour());
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "당일권가격표(좌석)");
 				MainPage.userToggle = "당일권가격표(좌석)";
@@ -55,6 +58,7 @@ public class _02dayOrWeek extends JPanel {
 		weekly_btn.addActionListener(new ActionListener() { //다음 페이지
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				MainPage.user_page_panel.add("정기권가격표", new _03whatWeek());
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "정기권가격표");
 				MainPage.userToggle = "정기권가격표";
@@ -64,6 +68,7 @@ public class _02dayOrWeek extends JPanel {
 		back_btn.addActionListener(new ActionListener() { //이전 페이지
 			@Override
 			public void actionPerformed(ActionEvent e) {
+ 
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "이용권구매");
 				MainPage.userToggle = "이용권구매";

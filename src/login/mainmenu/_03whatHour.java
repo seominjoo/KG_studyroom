@@ -50,22 +50,22 @@ public class _03whatHour extends JPanel {
 		btn_2hr.setBounds(40, 138, 188, 48); 
 		this.add(btn_2hr);
 
-		JButton btn_4hr = new JButton("4시간 (2,000원)");
+		JButton btn_4hr = new JButton("4시간 (4,500원)");
 		new Style(btn_4hr);
 		btn_4hr.setBounds(253, 138, 193, 48); 
 		this.add(btn_4hr);
 
-		JButton btn_6hr = new JButton("6시간 (2,000원)");
+		JButton btn_6hr = new JButton("6시간 (6,000원)");
 		new Style(btn_6hr);
 		btn_6hr.setBounds(40, 203, 188, 48); 
 		this.add(btn_6hr);
 
-		JButton btn_8hr = new JButton("8시간 (2,000원)");
+		JButton btn_8hr = new JButton("8시간 (7,500원)");
 		new Style(btn_8hr);
 		btn_8hr.setBounds(253, 203, 193, 48); 
 		this.add(btn_8hr);
 
-		JButton btn_12hr = new JButton("12시간 (2,000원)");
+		JButton btn_12hr = new JButton("12시간 (10,000원)");
 		new Style(btn_12hr);
 		btn_12hr.setBounds(40, 273, 188, 48);
 		this.add(btn_12hr);
@@ -134,6 +134,7 @@ public class _03whatHour extends JPanel {
 		btn_back.addActionListener(new ActionListener() { //이전 페이지
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				 
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "좌석이용권");
 				MainPage.userToggle = "좌석이용권";

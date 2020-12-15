@@ -33,7 +33,7 @@ import javax.swing.JDialog;
 public class _09payment extends JPanel{
 
 	private JTable table;
-	public static LocalDateTime time_now = LocalDateTime.now();
+	static LocalDateTime time_now = LocalDateTime.now();
 	String time_checkout;
 	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
   
@@ -129,8 +129,8 @@ public class _09payment extends JPanel{
 		}else {
 
 		for(int i=0;i<20;i++) {//(카드 결제 버튼 누를시)
-			if( _08reservation.seats.get(i).isSelected()&&(_08reservation.seats.get(i).isEnabled()==true)) {//이미 예약되있는 건(비활성화) 빼고 체크
-				_08reservation.seats.get(i).setEnabled(false);
+			if( _08reservation.seats_btn.get(i).isSelected()&&(_08reservation.seats_btn.get(i).isEnabled()==true)) {//이미 예약되있는 건(비활성화) 빼고 체크
+				_08reservation.seats_btn.get(i).setEnabled(false);
 									
 				//사용중으로 db저장
 				String sql = "update seat set Seat_Statement ='사용 중' where Seat_Number= ?";
@@ -181,8 +181,8 @@ public class _09payment extends JPanel{
 		} 
 		
 		for(int i=0;i<4;i++) {
-			if(_08reservation.room.get(i).isSelected()&&(_08reservation.room.get(i).isEnabled()==true)) {
-				_08reservation.room.get(i).setEnabled(false);
+			if(_08reservation.room_btn.get(i).isSelected()&&(_08reservation.room_btn.get(i).isEnabled()==true)) {
+				_08reservation.room_btn.get(i).setEnabled(false);
 			String sql2 = "update seat set Seat_Statement ='사용 중' where Seat_Number= ?";
 			pstmt = conn.prepareStatement(sql2);
 			pstmt.setInt(1, i+101);
@@ -222,8 +222,8 @@ public class _09payment extends JPanel{
 		for(int i=0;i<20;i++) {//(예약 완료 버튼 누를시)
 
 
-			if( _08reservation.lockers.get(i).isSelected()&&(_08reservation.lockers.get(i).isEnabled()==true)) {
-				_08reservation.lockers.get(i).setEnabled(false);
+			if( _08reservation.locker_btn.get(i).isSelected()&&(_08reservation.locker_btn.get(i).isEnabled()==true)) {
+				_08reservation.locker_btn.get(i).setEnabled(false);
 				String sql3 = "update locker set Locker_Statement ='사용 중' where Locker_Number= ?";
 				pstmt = conn.prepareStatement(sql3);
 				pstmt.setInt(1, i+1);
@@ -287,13 +287,13 @@ public class _09payment extends JPanel{
 	public void actionPerformed(ActionEvent e) {
 		_08reservation.number="";
 		for(int i=0;i<20;i++) {
-			_08reservation.seats.get(i).setSelected(false);
+			_08reservation.seats_btn.get(i).setSelected(false);
 		} 
 		for(int i=0;i<4;i++) {
-			_08reservation.room.get(i).setSelected(false);
+			_08reservation.room_btn.get(i).setSelected(false);
 		}
 		for(int i=0;i<20;i++) {
-			_08reservation.lockers.get(i).setSelected(false);
+			_08reservation.locker_btn.get(i).setSelected(false);
 		} 
 
 		MainPage.user_page_panel.add

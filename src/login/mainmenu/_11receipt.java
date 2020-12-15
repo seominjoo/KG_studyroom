@@ -2,6 +2,10 @@ package login.mainmenu;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -60,6 +64,33 @@ public class _11receipt extends JPanel {
 //		table.setBorder(border);
 		p2.add(table);
 
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection conn = DriverManager.getConnection(
+					"jdbc:oracle:thin:@localhost:1521/XEPDB1",
+					"hr",
+					"1234"
+					);
+			PreparedStatement pstmt = null;
+			String sql = "update person_info set login_state ='Off' where person_id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, _00main.id);
+			int row = pstmt.executeUpdate();
+			
+			System.out.printf("%d번 회원 로그아웃(%d행 업데이트)\n",1, _00main.id,row);
+			
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
+		} catch (ClassNotFoundException | SQLException e) { 
+			e.printStackTrace();
+		}
+	 
+		
+		
+		
+		
+		
+		
 	}
 
 }

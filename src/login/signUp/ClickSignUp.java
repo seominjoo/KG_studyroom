@@ -154,9 +154,8 @@ public class ClickSignUp extends MouseAdapter {
 								insertPersonInfo.close();
 
 							PreparedStatement read_name_ID_from_personInfo = conn.prepareStatement(
-									"SELECT person_id, person_name FROM person_info where phone_number = ?");
+									"SELECT person_id, person_name FROM person_info order by check_time");
 
-							read_name_ID_from_personInfo.setString(1, text);
 							ResultSet rs2 = read_name_ID_from_personInfo.executeQuery();
 
 							while (rs2.next()) {

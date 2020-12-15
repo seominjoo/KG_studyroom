@@ -50,6 +50,9 @@ public class _07out extends JPanel {
 		JButton out_room = new JButton("룸 퇴실하기");
 		this.add(out_room);
 		
+		new Style(out_seat);
+		new Style(out_room);
+		
 		 try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				 Connection conn = DriverManager.getConnection(
@@ -140,10 +143,12 @@ public class _07out extends JPanel {
 		
 		JButton back_btn = new JButton("이전 화면");
 		this.add(back_btn);
+		new Style(back_btn);
 
 		back_btn.addActionListener(new ActionListener() { //이전 페이지
 	          @Override
 	          public void actionPerformed(ActionEvent e) {
+	        	  MainPage.user_page_panel.add("메인메뉴", new _00main()); // 메뉴페이지
 	        	  MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 					MainPage.user_cards.show(MainPage.user_page_panel, "메인메뉴");
 					MainPage.userToggle = "메인메뉴";

@@ -60,7 +60,7 @@ public class LoginPage extends JPanel {
 		new Style(admin_panel);
 
 		phone_number1 = new JTextField("010");
-		new Style(phone_number1, 3);
+		new Style(phone_number1);
 		phone_number1.setBounds(145, 150, 55, 40);
 		this.add(phone_number1);
 
@@ -70,7 +70,7 @@ public class LoginPage extends JPanel {
 		this.add(hyphen1);
 
 		phone_number2 = new JTextField("1143");
-		new Style(phone_number2, 4);
+		new Style(phone_number2);
 		phone_number2.setBounds(215, 150, 55, 40);
 		this.add(phone_number2);
 
@@ -80,13 +80,13 @@ public class LoginPage extends JPanel {
 		this.add(hyphen2);
 
 		phone_number3 = new JTextField("1111");
-		new Style(phone_number3, 4);
+		new Style(phone_number3);
 		phone_number3.setBounds(285, 150, 55, 40);
 		this.add(phone_number3);
 		
 		loginpass = new JPasswordField("12345678");
 		loginpass.addMouseListener(new EmptyPrice(loginpass));
-		new Style(loginpass, 12);
+		new Style(loginpass);
 		loginpass.setBounds(145, 200, 195, 40);
 		this.add(loginpass);
 		

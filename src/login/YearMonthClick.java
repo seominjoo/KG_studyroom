@@ -23,7 +23,7 @@ public class YearMonthClick implements ActionListener {
 			year = SignUpPage.year;
 			month = SignUpPage.month;
 			day = SignUpPage.day;
-		} else if (flag.equals("비번찾기")) {
+		} else if(flag.equals("비번찾기")){
 			year = FindPasswordPageUser.year;
 			month = FindPasswordPageUser.month;
 			day = FindPasswordPageUser.day;
