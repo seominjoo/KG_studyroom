@@ -27,7 +27,8 @@ public class _06move extends JPanel {
 	String sql;
 	PreparedStatement pstmt;
 	ResultSet rs;
-
+	static int chk=0;
+	
 	public _06move() {
 		
 		new Style(this);
@@ -40,7 +41,8 @@ public class _06move extends JPanel {
 		this.add(move_seat);
 		JButton move_room = new JButton("룸 이동하기");
 		this.add(move_room);
-
+		new Style(move_seat);
+		new Style(move_room);
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection conn = DriverManager.getConnection(
@@ -52,6 +54,7 @@ public class _06move extends JPanel {
 			move_seat.addActionListener(new ActionListener() {//1인석
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					chk=1;
 					//회원의 현재 좌석번호 
 					sql = "SELECT seat_number,room_number FROM person_info "
 							+ "WHERE login_state = 'On'";
@@ -66,7 +69,7 @@ public class _06move extends JPanel {
 							JOptionPane.showMessageDialog(null,msg); 
 						}else {
 						System.out.println("이동할 좌석: "+num_seat+"번");
-						
+						MainPage.user_page_panel.add("자리페이지", new _06move_selectSeat());
 							MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 							MainPage.user_cards.show(MainPage.user_page_panel, "자리페이지");
 							MainPage.userToggle = "자리페이지";
@@ -80,22 +83,23 @@ public class _06move extends JPanel {
 			move_room.addActionListener(new ActionListener() {//룸
 				@Override
 				public void actionPerformed(ActionEvent e) { 
-
+					 chk=2;	
 					//회원의 현재 룸번호 
-					sql = "SELECT room_number FROM person_info "
-							+ "WHERE login_state = 'On'";
+					 sql = "SELECT seat_number,room_number FROM person_info "
+								+ "WHERE login_state = 'On'";
 					try {
 						pstmt = conn.prepareStatement(sql);
 						rs = pstmt.executeQuery();
 						while(rs.next()) { 
+							num_seat = rs.getInt("seat_number");
 							num_room = rs.getInt("room_number");
 						}
 						if(num_room==0) {
 							String msg= "결제한 룸이 없습니다";
 							JOptionPane.showMessageDialog(null,msg); 
 						}else {
-						System.out.println("이동할 룸: "+num_seat+"호");
-						
+						System.out.println("이동할 룸: "+num_room+"호");
+						MainPage.user_page_panel.add("자리페이지", new _06move_selectSeat());
 						MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 						MainPage.user_cards.show(MainPage.user_page_panel, "자리페이지");
 						MainPage.userToggle = "자리페이지";
@@ -119,6 +123,7 @@ public class _06move extends JPanel {
 				MainPage.userToggle = "메인메뉴";
 			}
 		}); 
+		new Style(back_btn);
 	}
 
 }

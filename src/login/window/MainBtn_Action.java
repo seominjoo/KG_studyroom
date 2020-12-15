@@ -7,7 +7,10 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.Format;
 
 import javax.swing.JButton;
@@ -18,6 +21,7 @@ import javax.swing.JPanel;
 import login.design.Conversion_image;
 import login.design.Style;
 import login.loginDataBase.DBLoggedIn;
+import login.mainmenu._00main;
 import login.page.AdminPage;
 import login.page.LoginPage;
 import login.page.MainPage;
@@ -58,12 +62,41 @@ public class MainBtn_Action implements ActionListener {
 			if (MainPage.userToggle.equals("메인") || MainPage.userToggle.equals("로그인")) {
 				MainPage.main_cards.show(MainPage.main_page_panel, "관리자");
 				MainPage.userToggle = "관리자";
-
 			} else {
 				// 첫화면
 				MainPage.main_cards.show(MainPage.main_page_panel, "메인");
 				MainPage.userToggle = "메인";
 			}
+
+		}else if (loginbtns.getText().equals("로그아웃")) {
+			//로그아웃 
+			try {
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+				Connection conn = DriverManager.getConnection(
+						"jdbc:oracle:thin:@localhost:1521/XEPDB1",
+						"hr",
+						"1234"
+						);
+				MainPage.main_cards.show(MainPage.main_page_panel, "로그인");
+				MainPage.userToggle = "로그인";
+				
+				PreparedStatement pstmt = null;
+				String sql = "update person_info set login_state ='Off'";
+				pstmt = conn.prepareStatement(sql);
+			
+				int row = pstmt.executeUpdate();
+				
+				System.out.printf("로그아웃 %d\n",row);
+				
+				if (pstmt != null) pstmt.close();
+				if (conn != null) conn.close();
+			} catch (ClassNotFoundException | SQLException e1) { 
+				e1.printStackTrace();
+			}
+		 
+			
+			 
+			
 
 		} else if (loginbtns.getText().contains("터치")) {
 			MainPage.main_cards.show(MainPage.main_page_panel, "로그인");
@@ -152,10 +185,10 @@ public class MainBtn_Action implements ActionListener {
 //		LoginPage.phone_number2.setText("");
 //		LoginPage.phone_number3.setText("");
 //		LoginPage.loginpass.setText("");
-//		AdminPage.admin_phone_number1.setText("010");
-//		AdminPage.admin_phone_number2.setText("");
-//		AdminPage.admin_phone_number3.setText("");
-//		AdminPage.admin_loginpass.setText("");
+		AdminPage.admin_phone_number1.setText("010");
+		AdminPage.admin_phone_number2.setText("");
+		AdminPage.admin_phone_number3.setText("");
+		AdminPage.admin_loginpass.setText("");
 	}
 
 }

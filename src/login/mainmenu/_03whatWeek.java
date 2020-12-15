@@ -97,6 +97,7 @@ public class _03whatWeek extends JPanel {
 		btn_back.addActionListener(new ActionListener() { //이전 페이지
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				 
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "좌석이용권");
 				MainPage.userToggle = "좌석이용권";

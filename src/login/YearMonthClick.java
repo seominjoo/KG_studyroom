@@ -7,7 +7,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 
 import login.findPW.FindPasswordPageUser;
-import login.page.SalesManagementPage;
 import login.signUp.SignUpPage;
 
 public class YearMonthClick implements ActionListener {
@@ -17,21 +16,16 @@ public class YearMonthClick implements ActionListener {
 	JComboBox month;
 	JComboBox day;
 
-	public YearMonthClick(String time, String flag) {
+	public YearMonthClick(String time, boolean flag) {
 		this.time = time;
-		if (flag.equals("회원가입")) {
+		if (flag) {
 			year = SignUpPage.year;
 			month = SignUpPage.month;
 			day = SignUpPage.day;
-		} else if (flag.equals("비번찾기")) {
+		} else {
 			year = FindPasswordPageUser.year;
 			month = FindPasswordPageUser.month;
 			day = FindPasswordPageUser.day;
-		}
-		else if(flag.equals("매출관리")) {
-			year = SalesManagementPage.year;
-			month = SalesManagementPage.month;
-			day = SalesManagementPage.day;
 		}
 	}
 

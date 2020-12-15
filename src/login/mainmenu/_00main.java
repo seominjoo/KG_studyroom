@@ -96,12 +96,12 @@ public class _00main extends JPanel {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				int seat_chk = rs.getInt("seat_number");
+				int seat_out = rs.getInt("seat_number");
 				Timestamp time_chk = rs.getTimestamp("time_checkout");
 				if (LocalDateTime.now().isAfter(Time.TimeStampTOlocalDateTime(time_chk))) {
 					String change = "update seat set Seat_Statement ='사용 가능',time_enter=null,time_checkout=null where Seat_Number= ?";
 					PreparedStatement pstmt2 = conn.prepareStatement(change);
-					pstmt2.setInt(1, seat_chk);
+					pstmt2.setInt(1, seat_out);
 					int row3 = pstmt2.executeUpdate();
 				}
 			}
@@ -118,6 +118,8 @@ public class _00main extends JPanel {
 					count_room++;
 				}
 			}
+			
+			System.out.println("db실행");
 			// 퇴실시간(만료시간) 지나면 회원정보 만료시간 리셋
 			sql = "SELECT seat_number,room_number,locker_number,expiration_seat,expiration_locker,expiration_room,seat_type "
 					+ "FROM person_info WHERE login_state = 'On'";
@@ -205,7 +207,10 @@ public class _00main extends JPanel {
 		JButton out_btn = new JButton("퇴실하기");
 		out_btn.setBounds(218, 221, 213, 126);
 		this.add(out_btn);
-
+		new Style(ticket_btn);
+		new Style(in_btn);
+		new Style(move_btn);
+		new Style(out_btn);
 		// 스터디룸 상황표
 		String header[] = { "1인석", "스터디룸", "사물함", "현재시간" };
 		String contents[][] = { { "<html>사용중 1인석<br/>&emsp;&emsp;" + Integer.toString(count_seat) + " / 20",
@@ -237,10 +242,11 @@ public class _00main extends JPanel {
 		new Style(table);
 		table.setFont(new Font("맑은 고딕", Font.BOLD, 11));
 		this.add(table);
-
+ 
 		ticket_btn.addActionListener(new ActionListener() { // 이용권 페이지
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				MainPage.user_page_panel.add("이용권구매", new _01start()); // 이용권구매 페이지 
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "이용권구매");
 				MainPage.userToggle = "이용권구매";
@@ -251,6 +257,7 @@ public class _00main extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if ((seat_chk > 0 && seat_chk < 21) || (room_chk >= 101 && room_chk <= 104)) {
+					MainPage.user_page_panel.add("자리이동", new _06move());
 					MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 					MainPage.user_cards.show(MainPage.user_page_panel, "자리이동");
 					MainPage.userToggle = "자리이동";
@@ -265,6 +272,7 @@ public class _00main extends JPanel {
 		out_btn.addActionListener(new ActionListener() { // 퇴실 페이지
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				MainPage.user_page_panel.add("퇴실페이지", new _07out());
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "퇴실페이지");
 				MainPage.userToggle = "퇴실페이지";
@@ -279,6 +287,7 @@ public class _00main extends JPanel {
 					String msg = "이미 좌석이 있습니다.";
 					JOptionPane.showMessageDialog(null, msg);
 				} else if (type.equals("정기 이용권")) {
+					  MainPage.user_page_panel.add("입실페이지", new _07in_selectSeat());
 					MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 					MainPage.user_cards.show(MainPage.user_page_panel, "입실페이지");
 					MainPage.userToggle = "입실페이지";

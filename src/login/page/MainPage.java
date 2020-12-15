@@ -24,7 +24,7 @@ import login.mainmenu._03whatWeek;
 import login.mainmenu._05locker;
 import login.mainmenu._06move;
 import login.mainmenu._06move_selectSeat;
-import login.mainmenu._07in_seletSeat;
+import login.mainmenu._07in_selectSeat;
 import login.mainmenu._07out;
 import login.mainmenu._08reservation;
 import login.mainmenu._09payment;
@@ -92,19 +92,19 @@ public class MainPage extends JFrame {
 		
 		
 		// 사용자 메뉴 페이지 추가 작업
-		user_page_panel.add("메인메뉴", new _00main()); // 메뉴페이지
-		user_page_panel.add("이용권구매", new _01start()); // 이용권구매 페이지
-		user_page_panel.add("좌석이용권", new _02dayOrWeek()); // 좌석 이용권 페이지
-		user_page_panel.add("룸이용권", new _02dayRoom());
-		user_page_panel.add("당일권가격표(좌석)", new _03whatHour());
-		user_page_panel.add("정기권가격표", new _03whatWeek());
-		user_page_panel.add("당일권가격표(룸)", new _03whatHourRoom());
-		user_page_panel.add("사물함이용권", new _05locker());
-		user_page_panel.add("자리이동", new _06move());
-		user_page_panel.add("입실페이지", new _07in_seletSeat());
-		user_page_panel.add("퇴실페이지", new _07out());
-		//user_page_panel.add("예약페이지", new _08reservation(ss,price,seat_type));
-		user_page_panel.add("자리페이지", new _06move_selectSeat());
+//		user_page_panel.add("메인메뉴", new _00main()); // 메뉴페이지
+//		user_page_panel.add("이용권구매", new _01start()); // 이용권구매 페이지
+//		user_page_panel.add("좌석이용권", new _02dayOrWeek()); // 좌석 이용권 페이지
+//		user_page_panel.add("룸이용권", new _02dayRoom());
+//		user_page_panel.add("당일권가격표(좌석)", new _03whatHour());
+//		user_page_panel.add("정기권가격표", new _03whatWeek());
+//		user_page_panel.add("당일권가격표(룸)", new _03whatHourRoom());
+//		user_page_panel.add("사물함이용권", new _05locker());
+//		user_page_panel.add("자리이동", new _06move());
+//		user_page_panel.add("입실페이지", new _07in_seletSeat());
+//		user_page_panel.add("퇴실페이지", new _07out());
+//		//user_page_panel.add("예약페이지", new _08reservation(ss,price,seat_type));
+//		user_page_panel.add("자리페이지", new _06move_selectSeat());
 		//user_page_panel.add("결제페이지", new _09payment(ss, price, seat_type));
 //		user_page_panel.add("결제알림창", new _10paycash(ss));
 		
@@ -114,13 +114,22 @@ public class MainPage extends JFrame {
 		
 
 		JButton changeUser = new JButton(new Conversion_image("image/전원.png", 30, 30).imageicon_smooth);
-		new Style(changeUser);
-		changeUser.setText("관리자버튼");
-		changeUser.setBounds(0, 0, 30, 30);
-		changeUser.addActionListener(new MainBtn_Action(changeUser));
-		background.add(changeUser);
-		fram_panel.add(background);
+        new Style(changeUser);
+        changeUser.setText("관리자버튼");
+        changeUser.setBounds(0, 0, 30, 30);
+        changeUser.addActionListener(new MainBtn_Action(changeUser));
 
+        JButton logout = new JButton("로그아웃");
+        new Style(logout);
+       
+        logout.setBounds(890, 0, 100, 30);
+        logout.addActionListener(new MainBtn_Action(logout));
+        background.add(logout);
+        background.add(changeUser);
+        fram_panel.add(background);
+	 
+		
+		 
 		add(main_page_panel);
 		add(fram_panel);
 		Login_SwingTool.initFrame(this);
