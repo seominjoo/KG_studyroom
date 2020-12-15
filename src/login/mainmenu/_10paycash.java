@@ -24,6 +24,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 public class _10paycash extends JPanel{
@@ -40,36 +41,39 @@ public class _10paycash extends JPanel{
 		setVisible(true);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(12, 10, 381, 266);
+		panel.setBounds(100, 120, 350, 180);
+		panel.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b")));
 		add(panel);
 		panel.setLayout(null);
+		
  
 		String price =Integer.toString((_08reservation.price11));
 
 		JLabel payment = new JLabel("결제 금액 : "+price+"원");
 		payment.setFont(new Font("맑은 고딕", Font.BOLD, 18));
-		payment.setForeground(Color.BLACK);
+		payment.setForeground(Color.decode("#cfab8b"));
 		payment.setBounds(57, 49, 236, 39);
 		panel.add(payment);
 
-		JLabel deposit = new JLabel("입금 금액");
+		JLabel deposit = new JLabel("입금 금액 : ");
 		deposit.setFont(new Font("맑은 고딕", Font.BOLD, 18));
 		deposit.setBounds(57, 98, 120, 39);
-		deposit.setForeground(Color.BLACK);
+		deposit.setForeground(Color.decode("#cfab8b"));
 		panel.add(deposit);
 
 		JTextField cash = new JTextField();
-		cash.setBounds(173, 98, 120, 40);
+		cash.setBounds(160, 98, 120, 40);
 		panel.add(cash);
 		cash.setColumns(10);
 
 		JButton pay_btn = new JButton("결제");
 		pay_btn.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		pay_btn.setBounds(90, 181, 120, 39);
-		panel.add(pay_btn);
-
+		pay_btn.setBounds(140, 320, 100, 50);
+		this.add(pay_btn);
+		
 		new Style(panel);
 		new Style(pay_btn);
+		new Style(cash);
 		
 		ActionListener back_btn = new ActionListener() {
 			@Override
@@ -83,7 +87,7 @@ public class _10paycash extends JPanel{
 		
 		back = new JButton("결제 취소");
 		new Style(back);
-		back.setBounds(230,191,120,39);
+		back.setBounds(310, 320, 100, 50);
 		this.add(back);
 		back.addActionListener(back_btn);
 		

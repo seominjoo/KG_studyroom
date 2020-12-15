@@ -13,6 +13,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -84,18 +85,17 @@ public class _08reservation extends JPanel implements ActionListener{
 //		this.add(label02);
 		
 		JLabel label03 = new JLabel("»ç¹°ÇÔ");
-		label_msg = new JLabel("");
-		label03.setBounds(15,320,50,30);
-		label03.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 10));
-		this.add(label03);
-		label_msg.setBounds(200,310,500,30);
-		label_msg.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
-		this.add(label_msg); 
-		new Style(label03);
+		label03.setBounds(15,350,50,30);
+		label03.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
+		this.add(label03); 
+		label03.setForeground(Color.gray);
+		
 		JLabel label04 = new JLabel("ÈÞ°Ô½Ç");
-		label04.setOpaque(true);
-		label04.setBackground(Color.gray);
-		label04.setBounds(250,225,180,85);
+		label04.setOpaque(true); 
+		label04.setBorder(BorderFactory.createLineBorder(Color.gray));
+		label04.setBackground(Color.black);
+		label04.setForeground(Color.decode("#5590cf"));
+		label04.setBounds(250,255,180,85);
 		label04.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
 		label04.setHorizontalAlignment(JLabel.CENTER);
 		this.add(label04);
@@ -105,7 +105,7 @@ public class _08reservation extends JPanel implements ActionListener{
 		label05.setBackground(Color.black);
 		label05.setForeground(Color.orange);
 		label05.setHorizontalAlignment(JLabel.CENTER);
-		label05.setBounds(40,435,100,30);
+		label05.setBounds(40,465,100,30);
 		this.add(label05);
 		
 		JLabel label06 = new JLabel("»ç¿ë Áß");
@@ -113,7 +113,7 @@ public class _08reservation extends JPanel implements ActionListener{
 		label06.setBackground(Color.black);
 		label06.setForeground(Color.gray);
 		label06.setHorizontalAlignment(JLabel.CENTER);
-		label06.setBounds(40,470,100,30);
+		label06.setBounds(40,500,100,30);
 		this.add(label06);
 		
 		for(int i=0;i<3;i++) {// 1ÀÎ¼® ¹öÆ° À§Ä¡ ¼³Á¤
@@ -122,9 +122,10 @@ public class _08reservation extends JPanel implements ActionListener{
 			seats_btn.get(i).setForeground(Color.orange);
 			this.add(seats_btn.get(i));
 			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
-			seats_btn.get(i).setBounds(30+f,10,60,60); 
+			seats_btn.get(i).setBounds(30+f,40,60,60); 
 			f+=60;  
-if(!(price>=3000&&price<=10000||price>=90000)) {
+			seats_btn.get(i).setEnabled(true);
+				if(!(price>=3000&&price<=10000||price>=90000)) {
 				seats_btn.get(i).setEnabled(false);
 			}
 		}
@@ -134,9 +135,10 @@ if(!(price>=3000&&price<=10000||price>=90000)) {
 			seats_btn.get(i).setForeground(Color.orange);
 			this.add(seats_btn.get(i));
 			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
-			seats_btn.get(i).setBounds(70+f,10,60,60); 
+			seats_btn.get(i).setBounds(70+f,40,60,60); 
 			f+=60;  
-if(!(price>=3000&&price<=10000||price>=90000)) {
+			seats_btn.get(i).setEnabled(true);
+				if(!(price>=3000&&price<=10000||price>=90000)) {
 				seats_btn.get(i).setEnabled(false);
 			}
 		}
@@ -146,9 +148,10 @@ if(!(price>=3000&&price<=10000||price>=90000)) {
 			seats_btn.get(i).setForeground(Color.orange);
 			this.add(seats_btn.get(i));
 			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
-			seats_btn.get(i).setBounds(120+f,10+a,60,60); 
+			seats_btn.get(i).setBounds(120+f,40+a,60,60); 
 			a+=60;
-if(!(price>=3000&&price<=10000||price>=90000)) {
+			seats_btn.get(i).setEnabled(true);
+				if(!(price>=3000&&price<=10000||price>=90000)) {
 				seats_btn.get(i).setEnabled(false);
 			}
 		}
@@ -159,9 +162,10 @@ if(!(price>=3000&&price<=10000||price>=90000)) {
 			seats_btn.get(i).setForeground(Color.orange);
 			this.add(seats_btn.get(i));
 			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
-			seats_btn.get(i).setBounds(30+g,70,60,60);
+			seats_btn.get(i).setBounds(30+g,110,60,60);
 			g+=60;  
-if(!(price>=3000&&price<=10000||price>=90000)) {
+			seats_btn.get(i).setEnabled(true);
+				if(!(price>=3000&&price<=10000||price>=90000)) {
 				seats_btn.get(i).setEnabled(false);
 			}
 		}
@@ -172,9 +176,10 @@ if(!(price>=3000&&price<=10000||price>=90000)) {
 			seats_btn.get(i).setForeground(Color.orange);
 			this.add(seats_btn.get(i));
 			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
-			seats_btn.get(i).setBounds(70+g,70,60,60);
+			seats_btn.get(i).setBounds(70+g,110,60,60);
 			g+=60;  
-if(!(price>=3000&&price<=10000||price>=90000)) {
+			seats_btn.get(i).setEnabled(true);
+				if(!(price>=3000&&price<=10000||price>=90000)) {
 				seats_btn.get(i).setEnabled(false);
 			}
 		}
@@ -186,9 +191,10 @@ if(!(price>=3000&&price<=10000||price>=90000)) {
 			seats_btn.get(i).setForeground(Color.orange);
 			this.add(seats_btn.get(i));
 			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
-			seats_btn.get(i).setBounds(70+g,160,60,60);
+			seats_btn.get(i).setBounds(70+g,190,60,60);
 			g+=60;  
-if(!(price>=3000&&price<=10000||price>=90000)) {
+			seats_btn.get(i).setEnabled(true);
+				if(!(price>=3000&&price<=10000||price>=90000)) {
 				seats_btn.get(i).setEnabled(false);
 			}
 		}
@@ -199,8 +205,9 @@ if(!(price>=3000&&price<=10000||price>=90000)) {
 			room_btn.get(i).setForeground(Color.orange);
 			this.add(room_btn.get(i));
 			room_btn.get(i).addActionListener(new ActionBtn_select(room_btn.get(i))); 
-			room_btn.get(i).setBounds(30+e,160,90,75);
+			room_btn.get(i).setBounds(30+e,190,90,75);
 			e+=90; 
+			room_btn.get(i).setEnabled(true);
 				if(!(price>=12000&&price<=40000&&price!=25000))
 				room_btn.get(i).setEnabled(false); 
 		}
@@ -211,8 +218,9 @@ if(!(price>=3000&&price<=10000||price>=90000)) {
 			room_btn.get(i).setForeground(Color.orange);
 			this.add(room_btn.get(i));
 			room_btn.get(i).addActionListener(new ActionBtn_select(room_btn.get(i))); 
-			room_btn.get(i).setBounds(30+d,235,90,75);
+			room_btn.get(i).setBounds(30+d,265,90,75);
 			d+=90; 
+			room_btn.get(i).setEnabled(true);
 				if(!(price>=12000&&price<=40000&&price!=25000))
 				room_btn.get(i).setEnabled(false); 
 		}
@@ -222,8 +230,9 @@ if(!(price>=3000&&price<=10000||price>=90000)) {
 			locker_btn.get(i).setForeground(Color.orange);
 			this.add(locker_btn.get(i));
 			locker_btn.get(i).addActionListener(new ActionBtn_select( locker_btn.get(i)));
-			locker_btn.get(i).setBounds(10+c,350,60,30);
+			locker_btn.get(i).setBounds(10+c,380,60,30);
 			c+=55;
+			locker_btn.get(i).setEnabled(true);
 			if(price!=25000) {
 				locker_btn.get(i).setEnabled(false);
 			}
@@ -236,8 +245,9 @@ if(!(price>=3000&&price<=10000||price>=90000)) {
 			locker_btn.get(i).setForeground(Color.orange);
 			this.add(locker_btn.get(i));
 			locker_btn.get(i).addActionListener(new ActionBtn_select( locker_btn.get(i)));
-			locker_btn.get(i).setBounds(10+d,380,60,30);
+			locker_btn.get(i).setBounds(10+d,410,60,30);
 			d+=55;   
+			locker_btn.get(i).setEnabled(true);
 			if(price!=25000) {
 				locker_btn.get(i).setEnabled(false);
 			}
@@ -269,7 +279,7 @@ if(!(price>=3000&&price<=10000||price>=90000)) {
 		
 		back = new JButton("ÀÌÀü È­¸é");
 		new Style(back);
-		back.setBounds(200,430,150,80);
+		back.setBounds(200,460,150,80);
 		this.add(back);
 		back.addActionListener(back_btn);
 	
@@ -357,7 +367,7 @@ if(!(price>=3000&&price<=10000||price>=90000)) {
 		
 		OK = new JButton("°áÁ¦ÇÏ±â");
 		new Style(OK);
-		OK.setBounds(360,430,150,80);
+		OK.setBounds(360,460,150,80);
 		this.add(OK);
 		OK.addActionListener(this);
 

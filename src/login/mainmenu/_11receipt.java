@@ -39,7 +39,7 @@ public class _11receipt extends JPanel {
 
 		JPanel p2 = new JPanel();
 		new Style(p2);
-		p2.setBounds(0, 0, 693, 453);
+		p2.setBounds(70, 100, 693, 453);
 		add(p2);
 		p2.setLayout(null);
 

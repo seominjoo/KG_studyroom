@@ -30,18 +30,20 @@ public class _02dayOrWeek extends JPanel {
 		 
 		new Style(this);
 		setBounds(600, 150, 450, 300);
-		this.setBorder(new EmptyBorder(5, 5, 5, 5));
-		this.setLayout(new GridLayout(0, 3, 0, 0));
+		this.setLayout(null);
 
 		JButton daily_btn = new JButton("당일 이용권"); 
 		this.add(daily_btn);
+		daily_btn.setBounds(140, 120, 300, 80);
 
 		JButton weekly_btn = new JButton("정기 이용권"); 
 		this.add(weekly_btn);
-
+		weekly_btn.setBounds(140, 220, 300, 80);
+		
 		JButton back_btn = new JButton("이전 화면"); 
 		this.add(back_btn);
-
+		back_btn.setBounds(140, 320, 300, 80);
+		
 		new Style(daily_btn);
 		new Style(weekly_btn);
 		new Style(back_btn);

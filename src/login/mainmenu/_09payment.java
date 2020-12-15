@@ -65,7 +65,7 @@ public class _09payment extends JPanel{
 		DefaultTableModel model = new DefaultTableModel(contents,header);
 		table = new JTable(model);
 		new Style(table);
-		table.setBounds(40, 104, 390, 175);
+		table.setBounds(60, 104, 450, 175);
 		table.setRowHeight(35);
 
 //		Color color = UIManager.getColor("Table.gridColor");
@@ -75,12 +75,12 @@ public class _09payment extends JPanel{
 
 		JRadioButton card_btn = new JRadioButton("카드");
 		new Style(card_btn);
-		card_btn.setBounds(291, 320, 70, 23);
+		card_btn.setBounds(350, 320, 70, 23);
 		p2.add(card_btn);
 
 		JRadioButton cash_btn = new JRadioButton("현금");
 		new Style(cash_btn);
-		cash_btn.setBounds(131, 320, 70, 23);
+		cash_btn.setBounds(150, 320, 70, 23);
 		p2.add(cash_btn);
 
 		ButtonGroup group = new ButtonGroup();
@@ -90,12 +90,12 @@ public class _09payment extends JPanel{
 
 		JButton back_btn = new JButton("돌아가기");
 		new Style(back_btn);
-		back_btn.setBounds(93, 381, 121, 42);
+		back_btn.setBounds(120, 381, 121, 42);
 		p2.add(back_btn);
 
 		JButton pay_btn = new JButton("결제하기");
 		new Style(pay_btn);
-		pay_btn.setBounds(253, 381, 121, 42);
+		pay_btn.setBounds(330, 381, 121, 42);
 		p2.add(pay_btn);
 
 		pay_btn.addActionListener(new ActionListener() { 

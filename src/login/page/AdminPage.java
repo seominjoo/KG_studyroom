@@ -31,7 +31,7 @@ public class AdminPage extends JPanel{
 
 		// 관리자
 		admin_phone_number1 = new JTextField("010");
-		new Style(admin_phone_number1);
+		new Style(admin_phone_number1, 3);
 		admin_phone_number1.setBounds(145, 150, 55, 40);
 		this.add(admin_phone_number1);
 
@@ -40,8 +40,8 @@ public class AdminPage extends JPanel{
 		hyphen1.setBounds(200, 150, 15, 40);
 		this.add(hyphen1);
 
-		admin_phone_number2 = new JTextField(4);
-		new Style(admin_phone_number2);
+		admin_phone_number2 = new JTextField("1111");
+		new Style(admin_phone_number2, 4);
 		admin_phone_number2.setBounds(215, 150, 55, 40);
 		this.add(admin_phone_number2);
 
@@ -50,15 +50,15 @@ public class AdminPage extends JPanel{
 		hyphen2.setBounds(200, 150, 15, 40);
 		this.add(hyphen2);
 
-		admin_phone_number3 = new JTextField(4);
-		new Style(admin_phone_number3);
+		admin_phone_number3 = new JTextField("1111");
+		new Style(admin_phone_number3, 4);
 		admin_phone_number3.setBounds(285, 150, 55, 40);
 		this.add(admin_phone_number3);
 		this.add(admin_phone_number3);
 
-		admin_loginpass = new JPasswordField("비밀번호");
+		admin_loginpass = new JPasswordField("12345678");
 		admin_loginpass.addMouseListener(new EmptyPrice(admin_loginpass));
-		new Style(admin_loginpass);
+		new Style(admin_loginpass, 12);
 		admin_loginpass.setBounds(145, 200, 195, 40);
 		this.add(admin_loginpass);
 

@@ -15,12 +15,14 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
+import javax.swing.plaf.FontUIResource;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 import login.design.Style;
 import login.page.MainPage;
+//import swing.btn.actions.RandomBtnAction;
 
 import javax.swing.JButton;
 import java.awt.GridLayout;
@@ -58,15 +60,16 @@ public class _00main extends JPanel {
 	static int count_room;
 	static int count_locker;
 	public static int seat_chk;
-	int locker_chk;
+	public static int locker_chk;
 	public static int room_chk;
-	static Timestamp time_seat;
-	Timestamp time_locker;
-	Timestamp time_room;
+	public static Timestamp time_seat;
+	public static Timestamp time_locker;
+	public static Timestamp time_room;
 	static int id;
 	public static String type;
 	DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy년 M월 d일");
 	DateTimeFormatter time = DateTimeFormatter.ofPattern("a h시 m분 ");
+	public static DateTimeFormatter datetime = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 ");
 
 	public _00main() {
 
@@ -193,24 +196,31 @@ public class _00main extends JPanel {
 
 		// 메뉴 버튼 4개
 		JButton ticket_btn = new JButton("이용권구매");
-		ticket_btn.setBounds(5, 95, 208, 121);
+		ticket_btn.setBounds(85, 195, 208, 121);
 		this.add(ticket_btn);
 
 		JButton in_btn = new JButton("입실하기");
-		in_btn.setBounds(218, 95, 213, 121);
+		in_btn.setBounds(298, 195, 213, 121);
 		this.add(in_btn);
 
 		JButton move_btn = new JButton("자리이동");
-		move_btn.setBounds(5, 221, 208, 126);
+		move_btn.setBounds(85, 321, 208, 126);
 		this.add(move_btn);
 
 		JButton out_btn = new JButton("퇴실하기");
-		out_btn.setBounds(218, 221, 213, 126);
+		out_btn.setBounds(298, 321, 213, 126);
 		this.add(out_btn);
+		
+		JButton chk_info = new JButton("마이 페이지");
+		chk_info.setBounds(85, 460, 120, 30);
+		this.add(chk_info);
+		
+		
 		new Style(ticket_btn);
 		new Style(in_btn);
 		new Style(move_btn);
 		new Style(out_btn);
+		new Style(chk_info);
 		// 스터디룸 상황표
 		String header[] = { "1인석", "스터디룸", "사물함", "현재시간" };
 		String contents[][] = { { "<html>사용중 1인석<br/>&emsp;&emsp;" + Integer.toString(count_seat) + " / 20",
@@ -222,7 +232,7 @@ public class _00main extends JPanel {
 		DefaultTableModel model = new DefaultTableModel(contents, header);
 		table = new JTable(model);
 
-		table.setBounds(0, 0, 437, 80);
+		table.setBounds(80, 80, 437, 80);
 		table.setRowHeight(80);
 
 		// 테두리
@@ -242,7 +252,19 @@ public class _00main extends JPanel {
 		new Style(table);
 		table.setFont(new Font("맑은 고딕", Font.BOLD, 11));
 		this.add(table);
- 
+		
+		 
+		 
+		chk_info.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				 
+				new _00myPage();
+				 
+				 
+			}
+		});
 		ticket_btn.addActionListener(new ActionListener() { // 이용권 페이지
 			@Override
 			public void actionPerformed(ActionEvent e) {

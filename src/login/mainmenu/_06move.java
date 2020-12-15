@@ -33,14 +33,15 @@ public class _06move extends JPanel {
 		
 		new Style(this);
 		setBounds(600, 150, 450, 300);
-		
-		this.setBorder(new EmptyBorder(5, 5, 5, 5));
-		this.setLayout(new GridLayout(0,3, 0, 0));
+		setLayout(null);
+	
 		
 		JButton move_seat = new JButton("좌석 이동하기");
 		this.add(move_seat);
+		move_seat.setBounds(160,100,300,100);
 		JButton move_room = new JButton("룸 이동하기");
 		this.add(move_room);
+		move_room.setBounds(160,220,300,100);
 		new Style(move_seat);
 		new Style(move_room);
 		try {
@@ -116,6 +117,7 @@ public class _06move extends JPanel {
 
 		JButton back_btn = new JButton("이전 화면");
 		this.add(back_btn);
+		back_btn.setBounds(160,340,300,100);
 		back_btn.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) {
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");

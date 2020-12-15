@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.NumberFormat;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -59,22 +60,48 @@ public class SalesDB {
 		
 			int i = 0;
 			int sum = 0;
+			int weekRow = 0;
+			int weekSum = 0;
+			int weekindex = 0;
 			
 			ResultSet rs1 = read_data.executeQuery();
-			
-			while (rs1.next()) {	
+			while (rs1.next()) {
+
 				contents[i][0] = rs1.getString(1).substring(0, 19);
 				for (int j = 1; j < header.length; j++) {
 					contents[i][j] = rs1.getString(j + 1);
 					if (j == 4) {
 						sum += Integer.parseInt(rs1.getString(j + 1));
+
 					}
+
 				}
+
 				i++;
 			}
 			
+			if(maxCnt == 2) {
+				for(int dayIndex = 0; dayIndex < Integer.
+						parseInt((String)SalesManagementPage.month.getSelectedItem()); dayIndex++){
+					
+				}
+			}
+
 			
-			SalesManagementPage.totalPayment.setText("총 매출 : " + sum + "원");
+//			if(maxCnt == 2) {
+//				weekRow++;
+//				weekSum+=Integer.parseInt(rs1.getString(j + 1));
+//				System.out.println("weekRow : " + weekRow);
+//				System.out.println("weekSum : " + weekSum);
+//			}
+//			if(weekRow % 7 == 0 && maxCnt == 2) {
+//				SalesManagementPage.weekTotal[weekindex].setText((weekindex + 1) + "주차 매출 : " + weekSum);
+//				weekSum = 0;
+//				weekindex++;
+//				System.out.println("여기가 목적");
+//			}
+			
+			SalesManagementPage.totalPayment.setText("총 매출 : " + NumberFormat.getInstance().format(sum) + "원");
 			
 			DefaultTableModel model = new DefaultTableModel(contents, header);
 

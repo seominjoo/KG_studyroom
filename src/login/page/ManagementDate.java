@@ -20,13 +20,13 @@ public class ManagementDate {
 		
 		int lastMonth = 12;
 		monthTable = new String[lastMonth + 1];
-		for (int i = 1; i < monthTable.length - 1; i++) {
+		for (int i = 1; i < monthTable.length ; i++) {
 			monthTable[i] = (i + "").format("%02d", i);
 		}
 		
 		
 		dayTable = new String[31 + 1];
-		for (int i = 1; i < dayTable.length - 1; i++) {
+		for (int i = 1; i < dayTable.length ; i++) {
 			dayTable[i] = (i + "").format("%02d", i);
 		}
 	}

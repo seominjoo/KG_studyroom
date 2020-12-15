@@ -71,19 +71,19 @@ public class _01start extends JPanel {
 
 		// 메뉴 버튼 4개
 		JButton seat_btn = new JButton("좌석 이용권");
-		seat_btn.setBounds(5, 95, 208, 121);
+		seat_btn.setBounds(85, 195, 208, 121);
 		this.add(seat_btn);
 
 		JButton locker_btn = new JButton("사물함 이용권");
-		locker_btn.setBounds(218, 95, 213, 121);
+		locker_btn.setBounds(298, 195, 213, 121);
 		this.add(locker_btn);
 
 		JButton room_btn = new JButton("룸 이용권");
-		room_btn.setBounds(5, 221, 208, 126);
+		room_btn.setBounds(85, 321, 208, 126);
 		this.add(room_btn);
 
 		JButton back_btn = new JButton("이전 화면");
-		back_btn.setBounds(218, 221, 213, 126);
+		back_btn.setBounds(298, 321, 213, 126);
 		this.add(back_btn);
 		new Style(seat_btn);
 		new Style(locker_btn);
@@ -99,7 +99,7 @@ public class _01start extends JPanel {
 
 		DefaultTableModel model = new DefaultTableModel(contents, header);
 		table = new JTable(model);
-		table.setBounds(0, 0, 437, 80);
+		table.setBounds(80, 80, 437, 80);
 		table.setRowHeight(80);
 
 		// 테두리

@@ -30,35 +30,30 @@ public class _03whatWeek extends JPanel {
 	public _03whatWeek() {
 		setLayout(null);
 		new Style(this);
-		
-		JLabel label01 = new JLabel("가격표");
-		new Style(label01);
-		label01.setBounds(188,0,440,80);
-		label01.setFont(new Font("Courier", Font.PLAIN, 35));
-		
+	 
 		//setBounds(600, 150, 450, 470);
 		//this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
-		this.add(label01);
+ 
 
 		JButton btn_2wk = new JButton("2주 (90,000원)"); 
 		new Style(btn_2wk);
-		btn_2wk.setBounds(40, 138, 188, 48); 
+		btn_2wk.setBounds(150, 168, 250, 48); 
 		this.add(btn_2wk);
 
 		JButton btn_4wk = new JButton("4주 (130,000원)"); 
 		new Style(btn_4wk);
-		btn_4wk.setBounds(253, 138, 193, 48); 
+		btn_4wk.setBounds(150, 233, 250, 48); 
 		this.add(btn_4wk);
 
 		JButton btn_8wk = new JButton("8주 (250,000원)");  
 		new Style(btn_8wk);
-		btn_8wk.setBounds(40, 273, 188, 48);
+		btn_8wk.setBounds(150, 303, 250, 48);
 		this.add(btn_8wk);
 
 		JButton btn_back = new JButton("이전 화면"); 
 		new Style(btn_back);
-		btn_back.setBounds(253, 273, 193, 48);
+		btn_back.setBounds(150, 373, 250, 48);
 		this.add(btn_back);
 
 		btn_2wk.addActionListener(new ActionListener() { //다음 페이지(2주 이용권)

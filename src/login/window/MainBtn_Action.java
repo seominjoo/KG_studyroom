@@ -185,10 +185,10 @@ public class MainBtn_Action implements ActionListener {
 //		LoginPage.phone_number2.setText("");
 //		LoginPage.phone_number3.setText("");
 //		LoginPage.loginpass.setText("");
-		AdminPage.admin_phone_number1.setText("010");
-		AdminPage.admin_phone_number2.setText("");
-		AdminPage.admin_phone_number3.setText("");
-		AdminPage.admin_loginpass.setText("");
+//		AdminPage.admin_phone_number1.setText("010");
+//		AdminPage.admin_phone_number2.setText("");
+//		AdminPage.admin_phone_number3.setText("");
+//		AdminPage.admin_loginpass.setText("");
 	}
 
 }

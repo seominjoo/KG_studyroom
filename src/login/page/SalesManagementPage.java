@@ -35,19 +35,21 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
 	JLabel title;
 	static JScrollPane scrollPane;
-	//JTable table;
-	
+	// JTable table;
+
 	public static JComboBox<String> year;
 	public static JComboBox<String> month;
 	public static JComboBox<String> day;
-	
+
 	JButton yearTotal;
 	JButton monthTotal;
 	JButton dayTotal;
-	
+
 	JButton back;
 	static JLabel totalPayment;
-	
+
+	static JLabel[] weekTotal = new JLabel[5];
+
 	public SalesManagementPage() {
 		setLayout(null);
 		new Style(this);
@@ -58,31 +60,41 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 //		title.setBounds(250, 10, 100, 100);
 //		add(title);
 
+		int y = 430;
+		for (int i = 0; i < weekTotal.length; i++) {
+			weekTotal[i] = new JLabel("");
+			new Style(weekTotal[i]);
+			weekTotal[i].setFont(new Font("맑은 고딕", Font.BOLD, 13));
+			weekTotal[i].setBounds(200, y, 200, 50);
+			y += 20;
+			add(weekTotal[i]);
+		}
+
 		back = new JButton("이전");
 		new Style(back);
-		back.setBounds(410, 488, 100, 50);
+		back.setBounds(50, 473, 100, 50);
 		add(back);
-		
+
 		back.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//MainPage.main_page_panel.add("관리자메뉴", new AdminMenuPage());
+				// MainPage.main_page_panel.add("관리자메뉴", new AdminMenuPage());
 				MainPage.main_cards.show(MainPage.main_page_panel, "관리자메뉴");
 				MainPage.userToggle = "관리자메뉴";
 			}
 		});
-		
+
 		totalPayment = new JLabel();
 		new Style(totalPayment);
-		totalPayment.setBounds(100, 458, 200, 100);
+		totalPayment.setBounds(410, 443, 200, 100);
 		add(totalPayment);
-		
+
 		scrollPane = new JScrollPane();
 		new Style(scrollPane);
 		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
-		scrollPane.setBounds(50, 85, 500, 380);
+		scrollPane.setBounds(50, 85, 500, 350);
 		add(scrollPane);
-		
+
 		year = new JComboBox<String>(new ManagementDate().yearTable);
 		year.setBounds(100, 30, 65, 30);
 		add(year);
@@ -99,8 +111,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 		add(day);
 		new Style(day);
 
-		
-		//ㅇㅇ
+		// ㅇㅇ
 		// 연도, 월 클릭
 		year.addActionListener(new YearMonthClick("year", "매출관리"));
 		month.addActionListener(new YearMonthClick("month", "매출관리"));
@@ -109,7 +120,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 		new Style(yearTotal);
 		yearTotal.setBounds(175, 30, 50, 30);
 		add(yearTotal);
-		
+
 		yearTotal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -117,21 +128,21 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 						+ " FROM payment_record where substr(paid_time,1,2) = ? order by paid_time", 1);
 			}
 		});
-		
+
 		monthTotal = new JButton("월매출");
 		new Style(monthTotal);
 		monthTotal.setBounds(305, 30, 50, 30);
 		add(monthTotal);
-		
+
 		monthTotal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new SalesDB("SELECT paid_time,seat_type,locker_type,pay_method,payment"
-						+ " FROM payment_record where substr(paid_time,1,2) = ? " 
+						+ " FROM payment_record where substr(paid_time,1,2) = ? "
 						+ "and substr(paid_time,4,2) = ? order by paid_time", 2);
 			}
 		});
-		
+
 		dayTotal = new JButton("일매출");
 		new Style(dayTotal);
 		dayTotal.setBounds(435, 30, 50, 30);
@@ -140,18 +151,18 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 		dayTotal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new SalesDB("SELECT paid_time,seat_type,locker_type,pay_method,payment"
-						+ " FROM payment_record where substr(paid_time,1,2) = ? " 
-						+ "and substr(paid_time,4,2) = ? "
-						+ "and substr(paid_time,7,2) = ? order by paid_time", 3);
+				new SalesDB(
+						"SELECT paid_time,seat_type,locker_type,pay_method,payment"
+								+ " FROM payment_record where substr(paid_time,1,2) = ? "
+								+ "and substr(paid_time,4,2) = ? " + "and substr(paid_time,7,2) = ? order by paid_time",
+						3);
 			}
 		});
-		
-		
-		new SalesDB("SELECT paid_time,seat_type,locker_type,pay_method,payment"
-			+ " FROM payment_record order by paid_time", 0);
-		
-		
+
+		new SalesDB(
+				"SELECT paid_time,seat_type,locker_type,pay_method,payment" + " FROM payment_record order by paid_time",
+				0);
+
 	}
 
 	@Override

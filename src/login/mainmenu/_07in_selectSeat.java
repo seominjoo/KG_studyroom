@@ -13,6 +13,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -78,15 +79,17 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 		
 		JLabel label03 = new JLabel("사물함");
 	 
-		label03.setBounds(15,320,50,30);
+		label03.setBounds(15,350,50,30);
 		label03.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		this.add(label03); 
 		new Style(label03);
 		
 		JLabel label04 = new JLabel("휴게실");
 		label04.setOpaque(true);
-		label04.setBackground(Color.gray);
-		label04.setBounds(250,225,180,85);
+		label04.setBorder(BorderFactory.createLineBorder(Color.gray));
+		label04.setBackground(Color.black);
+		label04.setForeground(Color.decode("#5590cf"));
+		label04.setBounds(250,255,180,85);
 		label04.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		label04.setHorizontalAlignment(JLabel.CENTER);
 		this.add(label04);
@@ -96,7 +99,7 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 		label05.setBackground(Color.black);
 		label05.setForeground(Color.orange);
 		label05.setHorizontalAlignment(JLabel.CENTER);
-		label05.setBounds(40,435,100,30);
+		label05.setBounds(40,465,100,30);
 		this.add(label05);
 		
 		JLabel label06 = new JLabel("선택 불가");
@@ -104,7 +107,7 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 		label06.setBackground(Color.black);
 		label06.setForeground(Color.gray);
 		label06.setHorizontalAlignment(JLabel.CENTER);
-		label06.setBounds(40,470,100,30);
+		label06.setBounds(40,500,100,30);
 		this.add(label06);
 
 		for(int i=0;i<3;i++) {// 1인석 버튼 위치 설정
@@ -114,7 +117,7 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 			seats_btn.get(i).setForeground(Color.orange);
 			this.add(seats_btn.get(i));
 			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
-			seats_btn.get(i).setBounds(30+f,10,60,60); 
+			seats_btn.get(i).setBounds(30+f,40,60,60); 
 			f+=60;  
 		}
 
@@ -125,7 +128,7 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 			seats_btn.get(i).setForeground(Color.orange);
 			this.add(seats_btn.get(i));
 			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
-			seats_btn.get(i).setBounds(70+f,10,60,60); 
+			seats_btn.get(i).setBounds(70+f,40,60,60); 
 			f+=60;  
 		}
 		for(int i=6;i<11;i++) {// 1인석 버튼 위치 설정
@@ -135,7 +138,7 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 			seats_btn.get(i).setForeground(Color.orange);
 			this.add(seats_btn.get(i));
 			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
-			seats_btn.get(i).setBounds(120+f,10+a,60,60); 
+			seats_btn.get(i).setBounds(120+f,40+a,60,60); 
 			a+=60;
 		}
 		for(int i=11; i<14;i++) { // 1인석 버튼 위치 설정
@@ -145,7 +148,7 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 			seats_btn.get(i).setForeground(Color.orange);
 			this.add(seats_btn.get(i));
 			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
-			seats_btn.get(i).setBounds(30+g,70,60,60);
+			seats_btn.get(i).setBounds(30+g,100,60,60);
 			g+=60;  
 		}
 		for(int i=14; i<17;i++) { // 1인석 버튼 위치 설정
@@ -155,7 +158,7 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 			seats_btn.get(i).setForeground(Color.orange);
 			this.add(seats_btn.get(i));
 			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
-			seats_btn.get(i).setBounds(70+g,70,60,60);
+			seats_btn.get(i).setBounds(70+g,100,60,60);
 			g+=60;  
 		}
 		g-=180;
@@ -166,7 +169,7 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 			seats_btn.get(i).setForeground(Color.orange);
 			this.add(seats_btn.get(i));
 			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
-			seats_btn.get(i).setBounds(70+g,160,60,60);
+			seats_btn.get(i).setBounds(70+g,190,60,60);
 			g+=60;  
 		}
 
@@ -176,7 +179,7 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 			room_btn.get(i).setForeground(Color.orange);
 			this.add(room_btn.get(i));
 			room_btn.get(i).addActionListener(new ActionBtn_select(room_btn.get(i))); 
-			room_btn.get(i).setBounds(30+e,160,90,75);
+			room_btn.get(i).setBounds(30+e,190,90,75);
 			e+=90; 
 			room_btn.get(i).setEnabled(false);
 		}
@@ -186,7 +189,7 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 			room_btn.get(i).setForeground(Color.orange);
 			this.add(room_btn.get(i));
 			room_btn.get(i).addActionListener(new ActionBtn_select(room_btn.get(i))); 
-			room_btn.get(i).setBounds(30+d,235,90,75);
+			room_btn.get(i).setBounds(30+d,265,90,75);
 			d+=90; 
 			room_btn.get(i).setEnabled(false);
 		}
@@ -196,7 +199,7 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 			locker_btn.get(i).setForeground(Color.orange);
 			this.add(locker_btn.get(i));
 			locker_btn.get(i).addActionListener(new ActionBtn_select( locker_btn.get(i)));
-			locker_btn.get(i).setBounds(10+c,350,60,30);
+			locker_btn.get(i).setBounds(10+c,380,60,30);
 			c+=55;
 			locker_btn.get(i).setEnabled(false);
 		}	
@@ -208,7 +211,7 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 			locker_btn.get(i).setForeground(Color.orange);
 			this.add(locker_btn.get(i));
 			locker_btn.get(i).addActionListener(new ActionBtn_select( locker_btn.get(i)));
-			locker_btn.get(i).setBounds(10+d,380,60,30);
+			locker_btn.get(i).setBounds(10+d,410,60,30);
 			d+=55;   
 			locker_btn.get(i).setEnabled(false);
 		}
@@ -230,7 +233,7 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 		};
 		
 		back = new JButton("이전 화면");
-		back.setBounds(200,430,150,80);
+		back.setBounds(200,460,150,80);
 		this.add(back);
 		back.addActionListener(back_btn);
 		new Style(back);
@@ -283,12 +286,12 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 		}
 		
 		OK = new JButton("좌석 선택(입실)");
-		OK.setBounds(360,430,150,80);
+		OK.setBounds(360,460,150,80);
 		this.add(OK);
 		OK.addActionListener(this);
 		new Style(OK);
 		setSize(600,500);
-		setLocation(600,150);
+		setLocation(600,180);
 		setVisible(true);  
 		
 		this.setBounds(0, 100, 600, 500);

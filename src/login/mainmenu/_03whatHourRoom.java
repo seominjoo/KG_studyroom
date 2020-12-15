@@ -45,32 +45,32 @@ public class _03whatHourRoom extends JPanel {
 		
 		JButton btn_2hr= new JButton("2시간 (12,000원)");
 		new Style(btn_2hr);
-		btn_2hr.setBounds(40, 138, 188, 48); 
+		btn_2hr.setBounds(90, 130, 188, 80); 
 		this.add(btn_2hr);
 
 		JButton btn_4hr = new JButton("4시간 (18,000원)");
 		new Style(btn_4hr);
-		btn_4hr.setBounds(253, 138, 193, 48); 
+		btn_4hr.setBounds(303, 130, 193, 80); 
 		this.add(btn_4hr);
 
 		JButton btn_6hr = new JButton("6시간 (24,000원)");
 		new Style(btn_6hr);
-		btn_6hr.setBounds(40, 203, 188, 48); 
+		btn_6hr.setBounds(90, 230, 188, 80); 
 		this.add(btn_6hr);
 
 		JButton btn_8hr = new JButton("8시간 (30,000원)");
 		new Style(btn_8hr);
-		btn_8hr.setBounds(253, 203, 193, 48); 
+		btn_8hr.setBounds(303, 230, 193, 80); 
 		this.add(btn_8hr);
 
 		JButton btn_12hr = new JButton("12시간 (36,000원)");
 		new Style(btn_12hr);
-		btn_12hr.setBounds(40, 273, 188, 48);
+		btn_12hr.setBounds(90, 330, 188, 80);
 		this.add(btn_12hr);
   
 		JButton btn_back = new JButton("이전 화면");
 		new Style(btn_back);
-		btn_back.setBounds(253, 273, 193, 48);
+		btn_back.setBounds(303, 330, 193, 80);
 		this.add(btn_back, btn_back);
 		
 		btn_2hr.addActionListener(new ActionListener() { //다음 페이지(2시간 이용권)

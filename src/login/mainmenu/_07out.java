@@ -41,15 +41,15 @@ public class _07out extends JPanel {
 		
 		new Style(this);
 		setBounds(600, 150, 450, 300);
-		this.setBorder(new EmptyBorder(5, 5, 5, 5));
-		this.setLayout(new GridLayout(0,3, 0, 0));
-		 
+		setLayout(null);
+	
 		JButton out_seat = new JButton("좌석 퇴실하기");
 		this.add(out_seat);
+		out_seat.setBounds(160,100,300,100);
 		
 		JButton out_room = new JButton("룸 퇴실하기");
 		this.add(out_room);
-		
+		out_room.setBounds(160,220,300,100);
 		new Style(out_seat);
 		new Style(out_room);
 		
@@ -144,7 +144,7 @@ public class _07out extends JPanel {
 		JButton back_btn = new JButton("이전 화면");
 		this.add(back_btn);
 		new Style(back_btn);
-
+		back_btn.setBounds(160,340,300,100);
 		back_btn.addActionListener(new ActionListener() { //이전 페이지
 	          @Override
 	          public void actionPerformed(ActionEvent e) {

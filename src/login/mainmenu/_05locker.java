@@ -26,15 +26,14 @@ public class _05locker extends JPanel {
 	public _05locker() {
 		new Style(this);
 		setBounds(600, 150, 450, 300);
-		this.setBorder(new EmptyBorder(5, 5, 5, 5));
-		this.setLayout(new GridLayout(0, 1, 0, 0));
+		setLayout(null);
 		
 		JButton check_locker_btn = new JButton("이용 가능한 사물함 보기"); 
 		this.add(check_locker_btn);
-		
+		check_locker_btn.setBounds(140, 200, 300, 80);
 		JButton btn_back = new JButton("이전 화면"); 
 		this.add(btn_back);
-		
+		btn_back.setBounds(140, 300, 300, 80);
 		new Style(check_locker_btn);
 		new Style(btn_back);
 		
