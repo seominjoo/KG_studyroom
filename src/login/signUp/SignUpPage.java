@@ -58,7 +58,7 @@ public class SignUpPage extends JPanel {
 
 	public static JTextField[] phoneTotal;
 
-	static JPanel panelInGrid7_1;
+	static JPanel panelInGrid5_1;
 
 	public static JLabel passAlert;
 	public static JLabel passConfirmAlert;
@@ -72,7 +72,7 @@ public class SignUpPage extends JPanel {
 		passAlert.setBounds(340, 291, 100, 25);
 		add(passAlert);
 
-		passConfirmAlert = new JLabel("",JLabel.RIGHT);
+		passConfirmAlert = new JLabel("", JLabel.RIGHT);
 		new Style(passConfirmAlert);
 		passConfirmAlert.setFont(new Font("맑은 고딕", Font.BOLD, 10));
 		passConfirmAlert.setBounds(380, 347, 100, 25);
@@ -101,14 +101,21 @@ public class SignUpPage extends JPanel {
 
 			JPanel gridInGrid = new JPanel(new GridLayout(1, 2, 0, 0));
 			new Style(gridInGrid);
+
+			JPanel nullPanelInGrid2_2 = new JPanel();
+			nullPanelInGrid2_2.setLayout(null);
+			new Style(nullPanelInGrid2_2);
+
 			new Style(value.text, 4);
 			value.text.setHorizontalAlignment(SwingConstants.LEFT);
+			value.text.setBounds(0, 11, 202, 30);
+			nullPanelInGrid2_2.add(value.text);
 
 			// 비번, 비번 확인
 			if (value.equals(value.PASSWORD) || value.equals(value.PASSWORDCONFIRM)) {
-				panelInGrid7_1 = new JPanel();
-				panelInGrid7_1.setLayout(null);
-				new Style(panelInGrid7_1);
+				panelInGrid5_1 = new JPanel();
+				panelInGrid5_1.setLayout(null);
+				new Style(panelInGrid5_1);
 
 				JLabel passLabel = new JLabel(value.labelNameKor);
 				new Style(passLabel);
@@ -120,12 +127,12 @@ public class SignUpPage extends JPanel {
 					new Style(passNoticement);
 					passNoticement.setFont(new Font("맑은 고딕", Font.BOLD, 10));
 					passNoticement.setBounds(0, 19, 180, 25);
-					panelInGrid7_1.add(passNoticement);
+					panelInGrid5_1.add(passNoticement);
 
 					value.PASSWORD.blindPW.addKeyListener(new KeyAdapter() {
 						@Override
 						public void keyReleased(KeyEvent e) {
-				
+
 							if (Pattern.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,12}$",
 									String.valueOf(value.PASSWORD.blindPW.getPassword()))) {
 								passAlert.setText("사용가능");
@@ -141,29 +148,33 @@ public class SignUpPage extends JPanel {
 
 				}
 
-				panelInGrid7_1.add(passLabel);
+				panelInGrid5_1.add(passLabel);
 
-				gridInGrid.add(panelInGrid7_1);
+				gridInGrid.add(panelInGrid5_1);
+
+				JPanel nullPanelInGrid56_2 = new JPanel();
+				nullPanelInGrid56_2.setLayout(null);
+				new Style(nullPanelInGrid56_2);
 
 				new Style(value.blindPW, 12);
 				value.blindPW.setHorizontalAlignment(SwingConstants.LEFT);
+				value.blindPW.setBounds(0, 0, 202, 30);
 
-				gridInGrid.add(value.blindPW);
+				nullPanelInGrid56_2.add(value.blindPW);
+				gridInGrid.add(nullPanelInGrid56_2);
 				grid.add(gridInGrid);
 
 				value.PASSWORDCONFIRM.blindPW.addKeyListener(new KeyAdapter() {
 					@Override
 					public void keyReleased(KeyEvent e) {
-				
+
 						if (String.valueOf(value.PASSWORD.blindPW.getPassword())
 								.equals(String.valueOf(value.PASSWORDCONFIRM.blindPW.getPassword()))) {
 							passConfirmAlert.setText("비밀번호 일치");
 							passConfirmAlert.setForeground(Color.decode("#9fda84"));
-						} 
-						else if(String.valueOf(value.PASSWORDCONFIRM.blindPW.getPassword()).equals("")) {
+						} else if (String.valueOf(value.PASSWORDCONFIRM.blindPW.getPassword()).equals("")) {
 							passConfirmAlert.setText("");
-						}
-						else {
+						} else {
 							passConfirmAlert.setText("비밀번호 불일치");
 							passConfirmAlert.setForeground(Color.decode("#da9784"));
 						}
@@ -184,19 +195,19 @@ public class SignUpPage extends JPanel {
 				panelInGrid2.setLayout(null);
 
 				year = new JComboBox<String>(BirthEnum.getYearTable());
-				year.setBounds(0, 3, 65, 30);
+				year.setBounds(0, 10, 65, 30);
 				panelInGrid2.add(year);
 				new Style(year);
 				year.setSelectedItem("2000");
 
 				month = new JComboBox<String>(BirthEnum.getMonthTable());
-				month.setBounds(84, 3, 50, 30);
+				month.setBounds(84, 10, 50, 30);
 				panelInGrid2.add(month);
 				new Style(month);
 
 				day = new JComboBox<String>(BirthEnum.getDayTable());
 
-				day.setBounds(152, 3, 50, 30);
+				day.setBounds(152, 10, 50, 30);
 				panelInGrid2.add(day);
 				new Style(day);
 
@@ -217,27 +228,27 @@ public class SignUpPage extends JPanel {
 
 				phone_number1 = new JTextField("010");
 				new Style(phone_number1, 3);
-				phone_number1.setBounds(0, 3, 65, 30);
+				phone_number1.setBounds(0, 10, 65, 30);
 				phoneNumber3Texts.add(phone_number1);
 
 				JLabel str = new JLabel("-");
-				str.setBounds(73, 1, 10, 30);
+				str.setBounds(73, 10, 10, 30);
 				new Style(str);
 				phoneNumber3Texts.add(str);
 
 				phone_number2 = new JTextField("");
 				new Style(phone_number2, 4);
-				phone_number2.setBounds(84, 3, 50, 30);
+				phone_number2.setBounds(84, 10, 50, 30);
 				phoneNumber3Texts.add(phone_number2);
 
 				JLabel str2 = new JLabel("-");
-				str2.setBounds(141, 1, 10, 30);
+				str2.setBounds(141, 10, 10, 30);
 				new Style(str2);
 				phoneNumber3Texts.add(str2);
 
 				phone_number3 = new JTextField("");
 				new Style(phone_number3, 4);
-				phone_number3.setBounds(152, 3, 50, 30);
+				phone_number3.setBounds(152, 10, 50, 30);
 				phoneNumber3Texts.add(phone_number3);
 
 				gridInGrid.add(phoneNumber3Texts);
@@ -247,7 +258,7 @@ public class SignUpPage extends JPanel {
 				continue;
 			}
 
-			gridInGrid.add(value.text);
+			gridInGrid.add(nullPanelInGrid2_2);
 			grid.add(gridInGrid);
 		}
 
@@ -277,7 +288,7 @@ public class SignUpPage extends JPanel {
 			new Style(gridInGrid72);
 			gridInGrid72.setLayout(null);
 			gridInGrid7.add(gridInGrid72);
-			kv.getValue().setBounds(102, 3, 100, 30);
+			kv.getValue().setBounds(102, 10, 100, 30);
 
 			gridInGrid72.add(kv.getValue());
 
@@ -294,16 +305,28 @@ public class SignUpPage extends JPanel {
 		JPanel gridInGrid8 = new JPanel(new GridLayout(1, col, 30, 10));
 		new Style(gridInGrid8);
 
+		JPanel nullPanelInGrid8_1 = new JPanel();
+		nullPanelInGrid8_1.setLayout(null);
+		new Style(nullPanelInGrid8_1);
+
 		JButton s_Yes = new JButton("가입");
+		s_Yes.setBounds(10, 0, 100, 30);
+
+		JPanel nullPanelInGrid8_2 = new JPanel();
+		nullPanelInGrid8_2.setLayout(null);
+		new Style(nullPanelInGrid8_2);
 
 		JButton s_No = new JButton("취소");
+		s_No.setBounds(5, 0, 100, 30);
 
 		for (int c = 0; c < col; c++) {
-			if (c == 1)
-				gridInGrid8.add(s_Yes);
-			else if (c == 2)
-				gridInGrid8.add(s_No);
-			else
+			if (c == 1) {
+				nullPanelInGrid8_1.add(s_Yes);
+				gridInGrid8.add(nullPanelInGrid8_1);
+			} else if (c == 2) {
+				nullPanelInGrid8_2.add(s_No);
+				gridInGrid8.add(nullPanelInGrid8_2);
+			} else
 				gridInGrid8.add(new JLabel());
 		}
 
