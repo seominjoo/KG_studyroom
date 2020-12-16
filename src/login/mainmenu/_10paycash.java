@@ -4,9 +4,14 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 import login.design.Style;
 import login.page.MainPage;
@@ -19,6 +24,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 
@@ -26,7 +32,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 public class _10paycash extends JFrame {
-
+	
    public static int change;
    LocalDateTime time_now = LocalDateTime.now();
 
@@ -238,7 +244,7 @@ public class _10paycash extends JFrame {
                   MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
                   MainPage.user_cards.show(MainPage.user_page_panel, "영수증");
                   MainPage.userToggle = "영수증";
-
+                  
                   if (pstmt != null)
                      pstmt.close();
                   if (conn != null)
@@ -254,6 +260,8 @@ public class _10paycash extends JFrame {
                JOptionPane.showMessageDialog(null, msg2);
             }
             frame.setVisible(false);
+            
+         
          }
       });
    }

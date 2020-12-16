@@ -55,10 +55,13 @@ import javax.swing.ImageIcon;
 
 public class _00main extends JPanel {
 
-	JTable table;
-	static int count_seat;
-	static int count_room;
-	static int count_locker;
+//	JTable table;
+//	public static int count_seat;
+//	public static int count_room;
+//	public static int count_locker;
+//	DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy년 M월 d일");
+//	DateTimeFormatter time = DateTimeFormatter.ofPattern("a h시 m분 ");
+	
 	public static int seat_chk;
 	public static int locker_chk;
 	public static int room_chk;
@@ -67,16 +70,11 @@ public class _00main extends JPanel {
 	public static Timestamp time_room;
 	static int id;
 	public static String type;
-	DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy년 M월 d일");
-	DateTimeFormatter time = DateTimeFormatter.ofPattern("a h시 m분 ");
 	public static DateTimeFormatter datetime = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 ");
 
 	public _00main() {
 
 		new Style(this);
-		count_locker = 0;
-		count_room = 0;
-		count_seat = 0;
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "1234");
@@ -106,19 +104,6 @@ public class _00main extends JPanel {
 					PreparedStatement pstmt2 = conn.prepareStatement(change);
 					pstmt2.setInt(1, seat_out);
 					int row3 = pstmt2.executeUpdate();
-				}
-			}
-
-			// 사용중인 좌석 수 확인
-			sql = "select seat_number from seat where seat_statement='사용 중'";
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				int sn = rs.getInt("seat_number");
-				if (sn <= 20) {
-					count_seat++;
-				} else if (sn >= 101) {
-					count_room++;
 				}
 			}
 			
@@ -169,17 +154,7 @@ public class _00main extends JPanel {
 					int row4 = pstmt3.executeUpdate();
 				}
 			}
-
-			// 사용중인 사물함 수 확인
-			sql = "select locker_number from locker where locker_statement='사용 중'";
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				int sn = rs.getInt("locker_number");
-
-				count_locker++;
-			}
+			
 			if (rs != null)
 				rs.close();
 			if (pstmt != null)
@@ -221,38 +196,39 @@ public class _00main extends JPanel {
 		new Style(move_btn);
 		new Style(out_btn);
 		new Style(chk_info);
-		// 스터디룸 상황표
-		String header[] = { "1인석", "스터디룸", "사물함", "현재시간" };
-		String contents[][] = { { "<html>사용중 1인석<br/>&emsp;&emsp;" + Integer.toString(count_seat) + " / 20",
-				"<html>사용중 스터디룸<br/>&emsp;&emsp;&emsp;" + Integer.toString(count_room) + " / 4",
-				"<html>사용중 사물함<br/>&emsp;&emsp;" + Integer.toString(count_locker) + " / 20",
-				"<html>&emsp;&nbsp;&nbsp;&nbsp;현재시간<br/>" + LocalDate.now().format(date) + "<br/>&nbsp;&nbsp;&nbsp;"
-						+ LocalTime.now().format(time) } };
-
-		DefaultTableModel model = new DefaultTableModel(contents, header);
-		table = new JTable(model);
-
-		table.setBounds(80, 80, 437, 80);
-		table.setRowHeight(80);
-
-		// 테두리
-		Color color = UIManager.getColor("Table.gridColor");
-		MatteBorder border = new MatteBorder(1, 1, 0, 0, color);
-		table.setBorder(border);
 		
-		// 상황표 글씨 중앙 정렬
-		DefaultTableCellRenderer celAlignCenter = new DefaultTableCellRenderer();
-		celAlignCenter.setHorizontalAlignment(JLabel.CENTER);
-		table.getColumn("1인석").setCellRenderer(celAlignCenter);
-		table.getColumn("스터디룸").setCellRenderer(celAlignCenter);
-		table.getColumn("사물함").setCellRenderer(celAlignCenter);
-		table.getColumn("현재시간").setCellRenderer(celAlignCenter);
-		
-		new Style(celAlignCenter);
-		new Style(table);
-		table.setFont(new Font("맑은 고딕", Font.BOLD, 11));
-		this.add(table);
-		
+//		// 스터디룸 상황표
+//		String header[] = { "1인석", "스터디룸", "사물함", "현재시간" };
+//		String contents[][] = { { "<html>사용중 1인석<br/>&emsp;&emsp;" + Integer.toString(count_seat) + " / 20",
+//				"<html>사용중 스터디룸<br/>&emsp;&emsp;&emsp;" + Integer.toString(count_room) + " / 4",
+//				"<html>사용중 사물함<br/>&emsp;&emsp;" + Integer.toString(count_locker) + " / 20",
+//				"<html>&emsp;&nbsp;&nbsp;&nbsp;현재시간<br/>" + LocalDate.now().format(date) + "<br/>&nbsp;&nbsp;&nbsp;"
+//						+ LocalTime.now().format(time) } };
+//
+//		DefaultTableModel model = new DefaultTableModel(contents, header);
+//		table = new JTable(model);
+//
+//		table.setBounds(80, 80, 437, 80);
+//		table.setRowHeight(80);
+//
+//		// 테두리
+//		Color color = UIManager.getColor("Table.gridColor");
+//		MatteBorder border = new MatteBorder(1, 1, 0, 0, color);
+//		table.setBorder(border);
+//		
+//		// 상황표 글씨 중앙 정렬
+//		DefaultTableCellRenderer celAlignCenter = new DefaultTableCellRenderer();
+//		celAlignCenter.setHorizontalAlignment(JLabel.CENTER);
+//		table.getColumn("1인석").setCellRenderer(celAlignCenter);
+//		table.getColumn("스터디룸").setCellRenderer(celAlignCenter);
+//		table.getColumn("사물함").setCellRenderer(celAlignCenter);
+//		table.getColumn("현재시간").setCellRenderer(celAlignCenter);
+//		
+//		new Style(celAlignCenter);
+//		new Style(table);
+//		table.setFont(new Font("맑은 고딕", Font.BOLD, 11));
+//		this.add(table);
+//		
 		 
 		 
 		chk_info.addActionListener(new ActionListener() {

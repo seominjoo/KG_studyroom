@@ -54,7 +54,7 @@ import javax.swing.ImageIcon;
 
 public class _01start extends JPanel {
 
-	JTable table;
+	
 	public static Connection conn;
 
 //	private JPanel this;
@@ -89,36 +89,7 @@ public class _01start extends JPanel {
 		new Style(locker_btn);
 		new Style(room_btn);
 		new Style(back_btn);
- 		// 스터디룸 상황표
-		String header[] = { "1인석", "스터디룸", "사물함", "현재시간" };
-		String contents[][] = { { "<html>사용중 1인석<br/>&emsp;&emsp;" + Integer.toString(_00main.count_seat) + " / 20",
-				"<html>사용중 스터디룸<br/>&emsp;&emsp;&emsp;" + Integer.toString(_00main.count_room) + " / 4",
-				"<html>사용중 사물함<br/>&emsp;&emsp;" + Integer.toString(_00main.count_locker) + " / 20",
-				"<html>&emsp;&nbsp;&nbsp;&nbsp;현재시간<br/>" + LocalDate.now().format(date) + "<br/>&nbsp;&nbsp;&nbsp;"
-						+ LocalTime.now().format(time) } };
-
-		DefaultTableModel model = new DefaultTableModel(contents, header);
-		table = new JTable(model);
-		table.setBounds(80, 80, 437, 80);
-		table.setRowHeight(80);
-
-		// 테두리
-		Color color = UIManager.getColor("Table.gridColor");
-		MatteBorder border = new MatteBorder(1, 1, 0, 0, color);
-		table.setBorder(border);
-
-		// 상황표 글씨 중앙 정렬
-		DefaultTableCellRenderer celAlignCenter = new DefaultTableCellRenderer();
-		celAlignCenter.setHorizontalAlignment(JLabel.CENTER);
-		table.getColumn("1인석").setCellRenderer(celAlignCenter);
-		table.getColumn("스터디룸").setCellRenderer(celAlignCenter);
-		table.getColumn("사물함").setCellRenderer(celAlignCenter);
-		table.getColumn("현재시간").setCellRenderer(celAlignCenter);
-		this.add(table);
-		new Style(celAlignCenter);
-		new Style(table);
-		table.setFont(new Font("맑은 고딕", Font.BOLD, 11));
-		setVisible(true);
+		
 		 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");

@@ -2,21 +2,32 @@ package login.page;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.UIManager;
+import javax.swing.border.MatteBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 import login.design.Conversion_image;
 import login.design.Style;
 import login.findPW.FindPasswordPageUser;
 import login.mainmenu._00main;
-import login.mainmenu._01start;
 import login.mainmenu._02dayOrWeek;
 import login.mainmenu._02dayRoom;
 import login.mainmenu._03whatHour;
@@ -29,6 +40,7 @@ import login.mainmenu._07in_selectSeat;
 import login.mainmenu._07out;
 import login.mainmenu._08reservation;
 import login.mainmenu._09payment;
+import login.mainmenu._10paycash;
 import login.signUp.SignUpPage;
 import login.swingTools.Login_SwingTool;
 import login.window.MainBtn_Action;
@@ -41,7 +53,11 @@ public class MainPage extends JFrame implements Runnable {
 	public static CardLayout main_cards;
 	public static JPanel user_page_panel;
 	public static CardLayout user_cards;
-
+	public static int count_seat;
+	public static int count_room;
+	public static int count_locker;
+	public static JLabel background;
+	public static JTable table;
 	Thread thread;
 	JLabel clock;
 
@@ -61,8 +77,7 @@ public class MainPage extends JFrame implements Runnable {
 		fram_panel.setLayout(null);
 		fram_panel.setBounds(0, 0, x, y);
 
-
-		JLabel background = new JLabel(new Conversion_image("image/배경화면(누런).jpg", 4).imageicon_smooth);
+		background = new JLabel(new Conversion_image("image/배경화면(누런).jpg", 4).imageicon_smooth);
 		background.setOpaque(false);
 		background.setBounds(0, 0, x, y);
 
@@ -127,41 +142,107 @@ public class MainPage extends JFrame implements Runnable {
 
 		logout.setBounds(890, 0, 100, 30);
 		logout.addActionListener(new MainBtn_Action(logout));
-		background.add(logout);
-		background.add(changeUser);
-		fram_panel.add(background);
 
-		add(main_page_panel);
-		add(fram_panel);
-		Login_SwingTool.initFrame(this);
-
+		// 현재 시간
 		clock = new JLabel();
+		new Style(clock);
+		clock.setForeground(Color.decode("#dec5ae"));
 		clock.setHorizontalAlignment(JLabel.CENTER);
 		if (thread == null) {
 			thread = new Thread(this);
 			thread.start();
 		}
+		clock.setBounds(8, 150, 300, 30);
 
-		add(clock);
-		clock.setBounds(110, 0, 300, 30);
+		// 사용중인 좌석 수 확인
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "1234");
+			String sql4 = "select seat_number from seat where seat_statement='사용 중'";
+			PreparedStatement pstmt = conn.prepareStatement(sql4);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				int sn = rs.getInt("seat_number");
+				if (sn <= 20) {
+					count_seat++;
+				} else if (sn >= 101) {
+					count_room++;
+				}
+			}
+
+			// 사용중인 사물함 수 확인
+			String sql5 = "select locker_number from locker where locker_statement='사용 중'";
+			pstmt = conn.prepareStatement(sql5);
+			ResultSet rs5 = pstmt.executeQuery();
+
+			while (rs.next()) {
+				int sn = rs.getInt("locker_number");
+				count_locker++;
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+
+		// 스터디룸 상황표
+		String header[] = { "1인석", "스터디룸", "사물함" };
+		String contents[][] = { { "<html>사용중 1인석<br/>&emsp;&emsp;" + Integer.toString(count_seat) + " / 20",
+				"<html>사용중 스터디룸<br/>&emsp;&emsp;&emsp;" + Integer.toString(count_room) + " / 4",
+				"<html>사용중 사물함<br/>&emsp;&emsp;" + Integer.toString(count_locker) + " / 20", } };
+
+		DefaultTableModel model = new DefaultTableModel(contents, header);
+		MainPage.table = new JTable(model);
+
+		MainPage.table.setBounds(18, 190, 280, 50);
+		MainPage.table.setRowHeight(50);
+
+		// 테두리
+		Color color = UIManager.getColor("Table.gridColor");
+		MatteBorder border = new MatteBorder(1, 1, 0, 0, color);
+		MainPage.table.setBorder(border);
+
+		// 상황표 글씨 중앙 정렬
+		DefaultTableCellRenderer celAlignCenter = new DefaultTableCellRenderer();
+		celAlignCenter.setHorizontalAlignment(JLabel.CENTER);
+		MainPage.table.getColumn("1인석").setCellRenderer(celAlignCenter);
+		MainPage.table.getColumn("스터디룸").setCellRenderer(celAlignCenter);
+		MainPage.table.getColumn("사물함").setCellRenderer(celAlignCenter);
+
+		// 디자인 적용
+		new Style(celAlignCenter);
+		celAlignCenter.setForeground(Color.decode("#dec5ae"));
+		new Style(MainPage.table);
+		MainPage.table.setGridColor(Color.decode("#dec5ae")); // 테이블 내부 선 색
+		MainPage.table.setBorder(BorderFactory.createLineBorder(Color.decode("#dec5ae")));
+
+		background.add(logout);
+		background.add(changeUser);
+		background.add(clock);
+		background.add(table);
+
+		fram_panel.add(background);
+
+		Login_SwingTool.initFrame(this);
+		add(main_page_panel);
+		add(fram_panel);
 	}
 
 	@Override
 	public void run() {
-//		while (true) {
-//			Calendar cal = Calendar.getInstance();
-//			String now = cal.get(Calendar.YEAR) + "년 " + 
-//			(cal.get(Calendar.MONTH) + 1) + "월 " + cal.get(Calendar.DATE)
-//					+ "일 " + cal.get(Calendar.HOUR) + "시 " 
-//			+ cal.get(Calendar.MINUTE) + "분 " + cal.get(Calendar.SECOND)
-//					+ "초 ";
-//			clock.setText(now);
-//			try {
-//				Thread.sleep(1000);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
-//		}
+		while (true) {
+			Calendar cal = Calendar.getInstance();
+			String now = cal.get(Calendar.YEAR) + "년 " + (cal.get(Calendar.MONTH) + 1) + "월 " + cal.get(Calendar.DATE)
+					+ "일 " + cal.get(Calendar.HOUR) + "시 " + cal.get(Calendar.MINUTE) + "분 " + cal.get(Calendar.SECOND)
+					+ "초 ";
+			clock.setText(now);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public static void main(String[] args) {

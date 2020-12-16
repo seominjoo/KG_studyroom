@@ -60,7 +60,9 @@ public class Style {
 	// 컴포넌트 스타일
 	public Style(JComponent cp) {
 		this.cp = cp;
-//      .getViewport().setBackground(Color.decode("#404040")); 색상 보류
+//      .getViewport().setBackground(Color.decode("#404040")); 어두운 색상 보류
+//		.setForeground(Color.decode("#cfab8b")); 밝은색상 보류
+
 		if (cp instanceof JPanel) {
 			panel = (JPanel) cp;
 			panel.setOpaque(false); // 배경 투명
@@ -146,6 +148,7 @@ public class Style {
 				protected void configureScrollBarColors() {
 					this.thumbColor = Color.decode("#fffcfa");
 				}
+
 				// 수직 스크롤 바 아래화살표 버튼색
 				@Override
 				protected JButton createIncreaseButton(int orientation) {
@@ -154,6 +157,7 @@ public class Style {
 					button.setForeground(Color.decode("#805b38"));
 					return button;
 				}
+
 				// 수직 스크롤 바 윗화살표 버튼색
 				@Override
 				protected JButton createDecreaseButton(int orientation) {
@@ -162,15 +166,16 @@ public class Style {
 					button.setForeground(Color.decode("#805b38"));
 					return button;
 				}
-				
+
 			});
-			
+
 			jscroll.getHorizontalScrollBar().setUI(new BasicScrollBarUI() {
 				// 수평 스크롤 바 색
 				@Override
 				protected void configureScrollBarColors() {
 					this.thumbColor = Color.decode("#fffcfa");
 				}
+
 				// 수평 스크롤 바 아래화살표 버튼색
 				@Override
 				protected JButton createIncreaseButton(int orientation) {
@@ -179,6 +184,7 @@ public class Style {
 					button.setForeground(Color.decode("#805b38"));
 					return button;
 				}
+
 				// 수평 스크롤 바 윗화살표 버튼색
 				@Override
 				protected JButton createDecreaseButton(int orientation) {
@@ -199,12 +205,12 @@ public class Style {
 			// 아래 두개는 표 내부를 투명화할 때 반드시 필요
 			jtable.setOpaque(false);
 			((DefaultTableCellRenderer) jtable.getDefaultRenderer(Object.class)).setOpaque(false);
-			jtable.setFont(new Font("맑은 고딕", Font.PLAIN, 10));
+			jtable.setFont(new Font("맑은 고딕", Font.PLAIN, 11));
 			jtable.setForeground(Color.decode("#805b38"));
 			jtable.setGridColor(Color.decode("#805b38")); // 테이블 내부 선 색
 			jtable.setBorder(BorderFactory.createLineBorder(Color.decode("#805b38")));
-			jtable.getTableHeader().setBackground(Color.decode("#fffcfa"));
 			jtable.getTableHeader().setForeground(Color.decode("#805b38"));
+			jtable.getTableHeader().setBackground(Color.decode("#fffcfa"));
 			jtable.setEnabled(false); // 사용자가 테이블을 클릭하거나 편집하는 것을 방지
 		} else if (cp instanceof JRadioButton) {
 			jradio = (JRadioButton) cp;
@@ -214,6 +220,7 @@ public class Style {
 		} else if (cp instanceof DefaultTableCellRenderer) {
 			renderer = (DefaultTableCellRenderer) cp;
 			renderer.setOpaque(false);
+			
 		}
 	}
 
