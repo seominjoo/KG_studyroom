@@ -61,13 +61,13 @@ public class FindPasswordPageUser extends JPanel {
 	public FindPasswordPageUser() {
 
 		JPanel background = this;
-		setLayout(new BorderLayout(0, 10));
+		setLayout(new BorderLayout(0, 70));
 		new Style(this);
 		background.setBounds(0, 0, 2241 / 5, 2542 / 7);
 		background.setOpaque(false);
 		background.add(Style.getnewPanel(), BorderLayout.NORTH);
 
-		JPanel gridAll = new JPanel(new GridLayout(5, 1, 0, -90));
+		JPanel gridAll = new JPanel(new GridLayout(5, 1, 0, -150));
 		background.add(gridAll, BorderLayout.CENTER);
 		new Style(gridAll);
 
@@ -79,7 +79,7 @@ public class FindPasswordPageUser extends JPanel {
 		JLabel title = new JLabel("ºñ¹Ð¹øÈ£ Ã£±â", JLabel.CENTER);
 		new Style(title);
 		title.setBounds(245, 10, 200, 100);
-		title.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 25));
+		title.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 23));
 		panelInGrid1.add(title);
 
 		JPanel grid2 = new JPanel();
@@ -88,6 +88,7 @@ public class FindPasswordPageUser extends JPanel {
 
 		JLabel birthLabel = new JLabel("»ý³â ¿ùÀÏ : ");
 		new Style(birthLabel);
+		birthLabel.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
 		birthLabel.setBounds(175, 5, 200, 100);
 		grid2.add(birthLabel);
 
@@ -118,6 +119,7 @@ public class FindPasswordPageUser extends JPanel {
 
 		JLabel phoneKor = new JLabel("ÀüÈ­ ¹øÈ£ : ");
 		new Style(phoneKor);
+		phoneKor.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
 		phoneKor.setBounds(200, 26, 100, 50);
 		grid3.add(phoneKor);
 		gridAll.add(grid3);
@@ -162,9 +164,11 @@ public class FindPasswordPageUser extends JPanel {
 		grid4.setLayout(null);
 
 		JLabel foundPW = new JLabel("",JLabel.CENTER);
-		foundPW.setBounds(205, 15, 270, 50);
-		grid4.add(foundPW);
 		new Style(foundPW);
+		foundPW.setBounds(205, 15, 270, 50);
+		foundPW.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
+		grid4.add(foundPW);
+
 
 		gridAll.add(grid4);
 
@@ -178,7 +182,7 @@ public class FindPasswordPageUser extends JPanel {
 		int x = 245;
 		for (int i = 0; i < findCancel.length; i++) {
 			new Style(findCancel[i]);
-			findCancel[i].setBounds(x, 15, 80, 40);
+			findCancel[i].setBounds(x, 15, 70, 35);
 			grid5.add(findCancel[i]);
 			x += 120;
 		}

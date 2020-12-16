@@ -239,6 +239,7 @@ public class Style {
 		}
 		frame.setIconImage(image);
 		frame.getContentPane().setBackground(Color.decode("#f2ede9"));
+
 	}
 
 	// 텍스트 칸제한

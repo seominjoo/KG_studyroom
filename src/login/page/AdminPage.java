@@ -32,46 +32,46 @@ public class AdminPage extends JPanel{
       // 관리자
       admin_phone_number1 = new JTextField("010");
       new Style(admin_phone_number1, 3);
-      admin_phone_number1.setBounds(145, 150, 55, 40);
+      admin_phone_number1.setBounds(245, 200, 55, 40);
       this.add(admin_phone_number1);
 
       JLabel hyphen1 = new JLabel("-", JLabel.CENTER);
       new Style(hyphen1);
-      hyphen1.setBounds(200, 150, 15, 40);
+      hyphen1.setBounds(300, 200, 15, 40);
       this.add(hyphen1);
 
       admin_phone_number2 = new JTextField("1111");
       new Style(admin_phone_number2, 4);
-      admin_phone_number2.setBounds(215, 150, 55, 40);
+      admin_phone_number2.setBounds(315, 200, 55, 40);
       this.add(admin_phone_number2);
 
       JLabel hyphen2 = new JLabel("-", JLabel.CENTER);
       new Style(hyphen2);
-      hyphen2.setBounds(200, 150, 15, 40);
+      hyphen2.setBounds(370, 200, 15, 40);
       this.add(hyphen2);
 
       admin_phone_number3 = new JTextField("1111");
       new Style(admin_phone_number3, 4);
-      admin_phone_number3.setBounds(285, 150, 55, 40);
+      admin_phone_number3.setBounds(385, 200, 55, 40);
       this.add(admin_phone_number3);
       this.add(admin_phone_number3);
 
       admin_loginpass = new JPasswordField("12345678");
       admin_loginpass.addMouseListener(new EmptyPrice(admin_loginpass));
       new Style(admin_loginpass, 12);
-      admin_loginpass.setBounds(145, 200, 195, 40);
+      admin_loginpass.setBounds(245, 250, 195, 40);
       this.add(admin_loginpass);
 
       JButton admin = new JButton("관리자 로그인");
       new Style(admin);
-      admin.setBounds(145, 250, 195, 40);
+      admin.setBounds(245, 300, 195, 40);
       admin.addActionListener(new MainBtn_Action(admin));
       this.add(admin);
 
       JButton admin_find_PW1 = new JButton(new Conversion_image("image/PW찾기(진한).png", 40, 40).imageicon_smooth);
       new Style(admin_find_PW1);
       admin_find_PW1.setText("관리자 비번찾기");
-      admin_find_PW1.setBounds(413, 316, 50, 50);
+      admin_find_PW1.setBounds(620, 490, 50, 50);
       admin_find_PW1.addActionListener(new MainBtn_Action(admin_find_PW1));
       this.add(admin_find_PW1);
       
