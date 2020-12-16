@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
@@ -25,6 +26,7 @@ import javax.swing.JTextField;
 
 import login.BirthEnum;
 import login.PhoneNumberEnum;
+import login.mainmenu.Time;
 import login.signUp.window.ResultWindow;
 
 
@@ -34,7 +36,18 @@ public class ClickSignUp extends MouseAdapter {
 	static String person_name;
 
 	static String phoneNumber;
+//	 java.sql.Timestamp timestamp 
+//     = java.sql.Timestamp.valueOf(LocalDateTime.of(
+//              2020,
+//              01,
+//              01,
+//              00,
+//              00,
+//              00,
+//              000000
+//           ));
 
+	   
 
 //
 //	Container card_panel;
@@ -146,6 +159,10 @@ public class ClickSignUp extends MouseAdapter {
 							insertPersonInfo.setString(4, text);
 							insertPersonInfo.setString(5, pw.getText());
 							insertPersonInfo.setInt(6, 0);
+//							insertPersonInfo.setTimestamp(7, timestamp);
+//							insertPersonInfo.setTimestamp(8, timestamp);
+//							insertPersonInfo.setTimestamp(9,timestamp);
+//							insertPersonInfo.setString(10, "x");
 							insertPersonInfo.addBatch();
 
 							int[] rows = insertPersonInfo.executeBatch();
