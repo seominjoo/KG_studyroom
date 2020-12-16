@@ -35,8 +35,8 @@ import login.window.Login_SwingTool;
 
 public class MainPage extends JFrame implements Runnable {
 
-	int x = new Conversion_image("image/배경화면.jpg", 4).x;
-	int y = new Conversion_image("image/배경화면.jpg", 4).y;
+	int x = new Conversion_image("image/배경화면(누런).jpg", 4).x;
+	int y = new Conversion_image("image/배경화면(누런).jpg", 4).y;
 	public static JPanel main_page_panel;
 	public static CardLayout main_cards;
 	public static JPanel user_page_panel;
@@ -61,7 +61,8 @@ public class MainPage extends JFrame implements Runnable {
 		fram_panel.setLayout(null);
 		fram_panel.setBounds(0, 0, x, y);
 
-		JLabel background = new JLabel(new Conversion_image("image/배경화면.jpg", 4).imageicon_smooth);
+
+		JLabel background = new JLabel(new Conversion_image("image/배경화면(누런).jpg", 4).imageicon_smooth);
 		background.setOpaque(false);
 		background.setBounds(0, 0, x, y);
 

@@ -135,14 +135,18 @@ public class Style {
 			jscroll = (JScrollPane) cp;
 			jscroll.setOpaque(false); // 배경 투명
 			jscroll.getViewport().setBackground(Color.decode("#fffcfa"));
+			// 수직 스크롤바 바탕색
 			jscroll.getVerticalScrollBar().setBackground(Color.decode("#805b38"));
+			// 수평 스크롤바 바탕색
+			jscroll.getHorizontalScrollBar().setBackground(Color.decode("#805b38"));
 			// jscroll.getHorizontalScrollBar().setBackground(Color.decode("#805b38"));
 			jscroll.getVerticalScrollBar().setUI(new BasicScrollBarUI() {
+				// 수직 스크롤 바 색
 				@Override
 				protected void configureScrollBarColors() {
 					this.thumbColor = Color.decode("#fffcfa");
 				}
-
+				// 수직 스크롤 바 아래화살표 버튼색
 				@Override
 				protected JButton createIncreaseButton(int orientation) {
 					JButton button = new BasicArrowButton(orientation);
@@ -150,7 +154,7 @@ public class Style {
 					button.setForeground(Color.decode("#805b38"));
 					return button;
 				}
-
+				// 수직 스크롤 바 윗화살표 버튼색
 				@Override
 				protected JButton createDecreaseButton(int orientation) {
 					JButton button = new BasicArrowButton(orientation);
@@ -159,6 +163,30 @@ public class Style {
 					return button;
 				}
 				
+			});
+			
+			jscroll.getHorizontalScrollBar().setUI(new BasicScrollBarUI() {
+				// 수평 스크롤 바 색
+				@Override
+				protected void configureScrollBarColors() {
+					this.thumbColor = Color.decode("#fffcfa");
+				}
+				// 수평 스크롤 바 아래화살표 버튼색
+				@Override
+				protected JButton createIncreaseButton(int orientation) {
+					JButton button = new BasicArrowButton(orientation);
+					button.setBackground(Color.decode("#fffcfa"));
+					button.setForeground(Color.decode("#805b38"));
+					return button;
+				}
+				// 수평 스크롤 바 윗화살표 버튼색
+				@Override
+				protected JButton createDecreaseButton(int orientation) {
+					JButton button = new BasicArrowButton(orientation);
+					button.setBackground(Color.decode("#fffcfa"));
+					button.setForeground(Color.decode("#805b38"));
+					return button;
+				}
 			});
 
 		} else if (cp instanceof JCheckBox) {
