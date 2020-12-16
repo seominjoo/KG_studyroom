@@ -18,6 +18,8 @@ import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 
 import login.design.Style;
+import login.page.MainPage;
+import login.swingTools.State;
 
 public class _11receipt extends JPanel {
 
@@ -25,6 +27,9 @@ public class _11receipt extends JPanel {
 	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
 
 	public _11receipt(LocalDateTime ss, int price) {
+		MainPage.updateTable.add(new State());
+		MainPage.statecard.next(MainPage.updateTable);
+		
 		setLayout(null);
 		new Style(this);
 
@@ -84,12 +89,6 @@ public class _11receipt extends JPanel {
 		} catch (ClassNotFoundException | SQLException e) { 
 			e.printStackTrace();
 		}
-	 
-		
-		
-		
-		
-		
 		
 	}
 

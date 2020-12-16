@@ -43,6 +43,7 @@ import login.mainmenu._09payment;
 import login.mainmenu._10paycash;
 import login.signUp.SignUpPage;
 import login.swingTools.Login_SwingTool;
+import login.swingTools.State;
 import login.window.MainBtn_Action;
 
 public class MainPage extends JFrame implements Runnable {
@@ -53,11 +54,10 @@ public class MainPage extends JFrame implements Runnable {
 	public static CardLayout main_cards;
 	public static JPanel user_page_panel;
 	public static CardLayout user_cards;
-	public static int count_seat;
-	public static int count_room;
-	public static int count_locker;
+	public static CardLayout statecard;
 	public static JLabel background;
-	public static JTable table;
+	
+	public static JPanel updateTable;
 	Thread thread;
 	JLabel clock;
 
@@ -93,6 +93,16 @@ public class MainPage extends JFrame implements Runnable {
 		user_page_panel.setLayout(user_cards);
 		new Style(user_page_panel);
 		user_page_panel.setBounds(316, 0, 683, 562);
+		
+		updateTable = new JPanel();
+		new Style(updateTable);
+		statecard = new CardLayout();
+		updateTable.setLayout(statecard);
+		updateTable.setBounds(18, 190, 280, 50);
+		updateTable.add(new State());
+		
+		MainPage.updateTable.add(new State());
+		MainPage.statecard.next(MainPage.updateTable);
 
 		JPanel main = new JPanel(new BorderLayout());
 		new Style(main);
@@ -154,79 +164,18 @@ public class MainPage extends JFrame implements Runnable {
 		}
 		clock.setBounds(8, 150, 300, 30);
 
-		// 사용중인 좌석 수 확인
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "1234");
-			String sql4 = "select seat_number from seat where seat_statement='사용 중'";
-			PreparedStatement pstmt = conn.prepareStatement(sql4);
-			ResultSet rs = pstmt.executeQuery();
-			while (rs.next()) {
-				int sn = rs.getInt("seat_number");
-				if (sn <= 20) {
-					count_seat++;
-				} else if (sn >= 101) {
-					count_room++;
-				}
-			}
-
-			// 사용중인 사물함 수 확인
-			String sql5 = "select locker_number from locker where locker_statement='사용 중'";
-			pstmt = conn.prepareStatement(sql5);
-			ResultSet rs5 = pstmt.executeQuery();
-
-			while (rs.next()) {
-				int sn = rs.getInt("locker_number");
-				count_locker++;
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-
-		// 스터디룸 상황표
-		String header[] = { "1인석", "스터디룸", "사물함" };
-		String contents[][] = { { "<html>사용중 1인석<br/>&emsp;&emsp;" + Integer.toString(count_seat) + " / 20",
-				"<html>사용중 스터디룸<br/>&emsp;&emsp;&emsp;" + Integer.toString(count_room) + " / 4",
-				"<html>사용중 사물함<br/>&emsp;&emsp;" + Integer.toString(count_locker) + " / 20", } };
-
-		DefaultTableModel model = new DefaultTableModel(contents, header);
-		MainPage.table = new JTable(model);
-
-		MainPage.table.setBounds(18, 190, 280, 50);
-		MainPage.table.setRowHeight(50);
-
-		// 테두리
-		Color color = UIManager.getColor("Table.gridColor");
-		MatteBorder border = new MatteBorder(1, 1, 0, 0, color);
-		MainPage.table.setBorder(border);
-
-		// 상황표 글씨 중앙 정렬
-		DefaultTableCellRenderer celAlignCenter = new DefaultTableCellRenderer();
-		celAlignCenter.setHorizontalAlignment(JLabel.CENTER);
-		MainPage.table.getColumn("1인석").setCellRenderer(celAlignCenter);
-		MainPage.table.getColumn("스터디룸").setCellRenderer(celAlignCenter);
-		MainPage.table.getColumn("사물함").setCellRenderer(celAlignCenter);
-
-		// 디자인 적용
-		new Style(celAlignCenter);
-		celAlignCenter.setForeground(Color.decode("#dec5ae"));
-		new Style(MainPage.table);
-		MainPage.table.setGridColor(Color.decode("#dec5ae")); // 테이블 내부 선 색
-		MainPage.table.setBorder(BorderFactory.createLineBorder(Color.decode("#dec5ae")));
-
 		background.add(logout);
 		background.add(changeUser);
 		background.add(clock);
-		background.add(table);
+		background.add(updateTable);
+		
 
 		fram_panel.add(background);
 
 		Login_SwingTool.initFrame(this);
 		add(main_page_panel);
 		add(fram_panel);
+		
 	}
 
 	@Override
