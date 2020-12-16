@@ -11,6 +11,7 @@ public class StoreBtnAction implements ActionListener{
 	public StoreBtnAction (int g, String type) {
 		this.type = type;
 		this.g = g;
+
 	}
 	
 	@Override

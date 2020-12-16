@@ -63,21 +63,21 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 	int q=0;
 	int count = 0;
 
-	static ArrayList<JButton> seats_btn = new ArrayList<>(); //1~20번 좌석 (1인석) 버튼
+	ArrayList<JButton> seats_btn = new ArrayList<>(); //1~20번 좌석 (1인석) 버튼
 	{
 		for(int i=0;i<20;i++) {
 			seats_btn.add(new JButton());
 			seats_btn.get(i).addActionListener(new StoreBtnAction(i, "좌석"));
 		}
 	}
-	static ArrayList<JButton> room_btn = new ArrayList<>(); //101~104호 (룸) 버튼
+	ArrayList<JButton> room_btn = new ArrayList<>(); //101~104호 (룸) 버튼
 	{
 		for(int i=0;i<4;i++) {//0~3
 			room_btn.add(new JButton());		
 			room_btn.get(i).addActionListener(new StoreBtnAction(i, "룸"));
 		}
 	}
-	static ArrayList<JButton> locker_btn = new ArrayList<>(); //1~20번 사물함 버튼
+	ArrayList<JButton> locker_btn = new ArrayList<>(); //1~20번 사물함 버튼
 	{
 		for(int i=0;i<20;i++) {
 			locker_btn.add(new JButton()); 
@@ -85,7 +85,7 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 		}
 	}
 	
-	static ArrayList<JMenuItem> seat = new ArrayList(); //1~20번 좌석 (1인석) 메뉴 버튼
+	ArrayList<JMenuItem> seat = new ArrayList(); //1~20번 좌석 (1인석) 메뉴 버튼
 	{
 	for(int i=0; i<20; ++i) {
 		seat.add(new JMenuItem(Integer.toString(i+1)+"번"));
@@ -94,7 +94,7 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 	}
 	}
 	
-	static ArrayList<JMenuItem> room = new ArrayList(); //101~104호 (룸) 메뉴 버튼
+	ArrayList<JMenuItem> room = new ArrayList(); //101~104호 (룸) 메뉴 버튼
 	{
 	for(int i=0; i<4; ++i) {
 		room.add(new JMenuItem(Integer.toString(i+101)+"호"));
@@ -103,7 +103,7 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 	}
 	}
 
-	static ArrayList<JMenuItem> locker = new ArrayList(); //1~20번 사물함 메뉴 버튼
+	ArrayList<JMenuItem> locker = new ArrayList(); //1~20번 사물함 메뉴 버튼
 	{
 	for(int i=0; i<20; ++i) {
 		locker.add(new JMenuItem(Integer.toString(i+1)+"번"));
@@ -316,7 +316,6 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 		back.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.main_cards.show(MainPage.main_page_panel, "관리자메뉴");
 				MainPage.userToggle = "관리자메뉴";
 			}
