@@ -36,25 +36,7 @@ public class ClickSignUp extends MouseAdapter {
 	static String person_name;
 
 	static String phoneNumber;
-//	 java.sql.Timestamp timestamp 
-//     = java.sql.Timestamp.valueOf(LocalDateTime.of(
-//              2020,
-//              01,
-//              01,
-//              00,
-//              00,
-//              00,
-//              000000
-//           ));
 
-	   
-
-//
-//	Container card_panel;
-//	
-//	public ClickSignUp(Container card_panel) {
-//		this.card_panel = card_panel;
-//	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -112,8 +94,6 @@ public class ClickSignUp extends MouseAdapter {
 				if (consentCheck) {
 
 					try {
-						// 내일 꼭 정규표현식으로 거르기
-						// 이름, 생년월일, 휴대폰, 비번,
 
 						Class.forName("oracle.jdbc.driver.OracleDriver");
 
@@ -159,10 +139,7 @@ public class ClickSignUp extends MouseAdapter {
 							insertPersonInfo.setString(4, text);
 							insertPersonInfo.setString(5, pw.getText());
 							insertPersonInfo.setInt(6, 0);
-//							insertPersonInfo.setTimestamp(7, timestamp);
-//							insertPersonInfo.setTimestamp(8, timestamp);
-//							insertPersonInfo.setTimestamp(9,timestamp);
-//							insertPersonInfo.setString(10, "x");
+
 							insertPersonInfo.addBatch();
 
 							int[] rows = insertPersonInfo.executeBatch();
@@ -171,8 +148,10 @@ public class ClickSignUp extends MouseAdapter {
 								insertPersonInfo.close();
 
 							PreparedStatement read_name_ID_from_personInfo = conn.prepareStatement(
-									"SELECT person_id, person_name FROM person_info order by check_time");
-
+									"SELECT person_id, person_name FROM person_info where phone_number = ?");
+							
+							read_name_ID_from_personInfo.setString(1, text);
+							
 							ResultSet rs2 = read_name_ID_from_personInfo.executeQuery();
 
 							while (rs2.next()) {

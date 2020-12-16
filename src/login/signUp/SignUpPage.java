@@ -102,7 +102,7 @@ public class SignUpPage extends JPanel {
 
 			JPanel gridInGrid = new JPanel(new GridLayout(1, 2, 0, 0));
 			new Style(gridInGrid);
-			new Style(value.text, 3);
+			new Style(value.text, 4);
 			value.text.setHorizontalAlignment(SwingConstants.LEFT);
 
 			// 비번, 비번 확인
