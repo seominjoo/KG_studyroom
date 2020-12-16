@@ -50,13 +50,14 @@ public class StoreBtnPage extends JFrame {
 			String exp = "";
 			String name ="";
 			String type ="";
+			String pn = "";
 			Timestamp time = null;
 			JLabel title = null;
 			JLabel info = null;
 
 			if (StoreManagementPage.type.equals("사물함")) {
 
-				sql = "SELECT Person_Id, Person_Name, Expiration_locker FROM person_info WHERE locker_number =?";
+				sql = "SELECT Person_Id, Person_Name, Expiration_locker, Phone_Number FROM person_info WHERE locker_number =?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, StoreManagementPage.locker_number); 
 				ResultSet rs = pstmt.executeQuery(); 
@@ -64,20 +65,22 @@ public class StoreBtnPage extends JFrame {
 					id = rs.getInt(1);
 					name = rs.getString(2);
 					time = rs.getTimestamp(3);
-					exp = Time.TimeStampTOlocalDateTime(time).format(dateTimeFormatter);			
+					exp = Time.TimeStampTOlocalDateTime(time).format(dateTimeFormatter);	
+					pn = rs.getString(4);
 				}
 				
 				title = new JLabel(StoreManagementPage.locker_number +"번 사물함 정보");
 				info = new JLabel(
 						"<html>회원번호 : "+id+"번"+
 						"<br/>회원이름 : "+name+
+						"<br/>핸드폰번호 : "+pn+
 						"<br/>만료기간 : "+exp
 						);
 				if (rs != null)
 					rs.close();
 
 			} else if (StoreManagementPage.type.equals("룸")) {
-				sql = "SELECT Person_Id, Person_Name, Expiration_room, Seat_Type FROM person_info WHERE room_number =?";
+				sql = "SELECT Person_Id, Person_Name, Expiration_room, Seat_Type, Phone_Number FROM person_info WHERE room_number =?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, StoreManagementPage.room_number); 
 				ResultSet rs2 = pstmt.executeQuery(); 
@@ -87,12 +90,14 @@ public class StoreBtnPage extends JFrame {
 					time = rs2.getTimestamp(3);
 					exp = Time.TimeStampTOlocalDateTime(time).format(dateTimeFormatter);
 					type = rs2.getString(4);
+					pn = rs2.getString(5);
 				}
 				
 				title = new JLabel(StoreManagementPage.room_number +"호 룸 정보");
 				info = new JLabel(
 						"<html>회원번호 : "+id+"번"+
 						"<br/>회원이름 : "+name+
+						"<br/>핸드폰번호 : "+pn+
 						"<br/>만료기간 : "+exp+
 						"<br/>이용권 : "+type
 						);
@@ -103,7 +108,7 @@ public class StoreBtnPage extends JFrame {
 					conn.close();
 				
 			} else if (StoreManagementPage.type.equals("좌석")) {
-				sql = "SELECT Person_Id, Person_Name, Expiration_seat, Seat_Type FROM person_info WHERE seat_number =?";
+				sql = "SELECT Person_Id, Person_Name, Expiration_seat, Seat_Type, Phone_Number FROM person_info WHERE seat_number =?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, StoreManagementPage.seat_number); 
 				ResultSet rs3 = pstmt.executeQuery(); 
@@ -113,12 +118,14 @@ public class StoreBtnPage extends JFrame {
 					time = rs3.getTimestamp(3);
 					exp = Time.TimeStampTOlocalDateTime(time).format(dateTimeFormatter);
 					type = rs3.getString(4);
+					pn = rs3.getString(5);
 				}
 				
 				title = new JLabel(StoreManagementPage.seat_number +"번 좌석 정보");
 				info = new JLabel(
 						"<html>회원번호 : "+id+"번"+
 						"<br/>회원이름 : "+name+
+						"<br/>핸드폰번호 : "+pn+
 						"<br/>만료기간 : "+exp+
 						"<br/>이용권 : "+type
 						);

@@ -11,11 +11,11 @@ public class StoreBtnAction implements ActionListener{
 	public StoreBtnAction (int g, String type) {
 		this.type = type;
 		this.g = g;
-
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
 		StoreManagementPage.seat_number=0;
 		StoreManagementPage.room_number=0;
 		StoreManagementPage.locker_number=0;
