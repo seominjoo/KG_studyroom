@@ -32,6 +32,7 @@ public class SubWindow extends JFrame {
    public SubWindow(String label1, String label2, String nextcard) {
       
       SwingToolsSubPage.initTestFrame(this);
+      new Style(this);
       setLayout(new BorderLayout(10, 0));
 
       center_panel = new JPanel(new GridLayout(3, 1, 0, -60));

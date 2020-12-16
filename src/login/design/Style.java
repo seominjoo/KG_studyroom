@@ -68,14 +68,14 @@ public class Style {
 		if (cp instanceof JPanel) {
 			panel = (JPanel) cp;
 			panel.setOpaque(false); // 배경 투명
-			panel.setBackground(Color.decode("#fffcfa"));
+			panel.setBackground(Color.decode("#f2ede9"));
 //         panel.setBorder(BorderFactory.createLineBorder(Color.decode("#805b38")));
 		} else if (cp instanceof JLabel) {
 			label = (JLabel) cp;
 			label.setOpaque(false); // 배경 투명
 			if (label.getBackground() == Color.decode("#eeeeee")) {
 				System.out.println("배경 없음 기본색 적용");
-				label.setBackground(Color.decode("#fffcfa"));
+				label.setBackground(Color.decode("#f2ede9"));
 			} else if (label.getText().equals("-")) {
 				label.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 			} else if (label.getText().equals("")) {
@@ -87,7 +87,7 @@ public class Style {
 		} else if (cp instanceof JButton) {
 			btn = (JButton) cp;
 			if (btn.getText().length() != 0) {
-				btn.setBackground(Color.decode("#fffcfa"));
+				btn.setBackground(Color.decode("#f2ede9"));
 				btn.setFocusable(false);
 				btn.setOpaque(false); // 배경 투명
 				btn.setFocusPainted(false);
@@ -95,7 +95,7 @@ public class Style {
 				btn.setForeground(Color.decode("#805b38"));
 				btn.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 			} else {
-				btn.setBackground(Color.decode("#fffcfa"));
+				btn.setBackground(Color.decode("#f2ede9"));
 				btn.setFocusable(false);
 				btn.setOpaque(false); // 배경 투명
 				btn.setFocusPainted(false);
@@ -126,7 +126,7 @@ public class Style {
 			jcombo.setOpaque(false); // 배경 투명
 			jcombo.setBorder(BorderFactory.createLineBorder(Color.decode("#805b38"))); // 테두리?
 			jcombo.setForeground(Color.decode("#805b38"));
-			jcombo.setBackground(Color.decode("#fffcfa"));
+			jcombo.setBackground(Color.decode("#f2ede9"));
 			jcombo.setUI(new BasicComboBoxUI() {
 				@Override
 				protected ComboPopup createPopup() {
@@ -140,7 +140,7 @@ public class Style {
 		else if (cp instanceof JScrollPane) {
 			jscroll = (JScrollPane) cp;
 			jscroll.setOpaque(false); // 배경 투명
-			jscroll.getViewport().setBackground(Color.decode("#fffcfa"));
+			jscroll.getViewport().setBackground(Color.decode("#f2ede9"));
 			// 수직 스크롤바 바탕색
 			jscroll.getVerticalScrollBar().setBackground(Color.decode("#805b38"));
 			// 수평 스크롤바 바탕색
@@ -150,14 +150,14 @@ public class Style {
 				// 수직 스크롤 바 색
 				@Override
 				protected void configureScrollBarColors() {
-					this.thumbColor = Color.decode("#fffcfa");
+					this.thumbColor = Color.decode("#f2ede9");
 				}
 
 				// 수직 스크롤 바 아래화살표 버튼색
 				@Override
 				protected JButton createIncreaseButton(int orientation) {
 					JButton button = new BasicArrowButton(orientation);
-					button.setBackground(Color.decode("#fffcfa"));
+					button.setBackground(Color.decode("#f2ede9"));
 					button.setForeground(Color.decode("#805b38"));
 					return button;
 				}
@@ -166,7 +166,7 @@ public class Style {
 				@Override
 				protected JButton createDecreaseButton(int orientation) {
 					JButton button = new BasicArrowButton(orientation);
-					button.setBackground(Color.decode("#fffcfa"));
+					button.setBackground(Color.decode("#f2ede9"));
 					button.setForeground(Color.decode("#805b38"));
 					return button;
 				}
@@ -177,14 +177,14 @@ public class Style {
 				// 수평 스크롤 바 색
 				@Override
 				protected void configureScrollBarColors() {
-					this.thumbColor = Color.decode("#fffcfa");
+					this.thumbColor = Color.decode("#f2ede9");
 				}
 
 				// 수평 스크롤 바 아래화살표 버튼색
 				@Override
 				protected JButton createIncreaseButton(int orientation) {
 					JButton button = new BasicArrowButton(orientation);
-					button.setBackground(Color.decode("#fffcfa"));
+					button.setBackground(Color.decode("#f2ede9"));
 					button.setForeground(Color.decode("#805b38"));
 					return button;
 				}
@@ -193,7 +193,7 @@ public class Style {
 				@Override
 				protected JButton createDecreaseButton(int orientation) {
 					JButton button = new BasicArrowButton(orientation);
-					button.setBackground(Color.decode("#fffcfa"));
+					button.setBackground(Color.decode("#f2ede9"));
 					button.setForeground(Color.decode("#805b38"));
 					return button;
 				}
@@ -214,7 +214,7 @@ public class Style {
 			jtable.setGridColor(Color.decode("#805b38")); // 테이블 내부 선 색
 			jtable.setBorder(BorderFactory.createLineBorder(Color.decode("#805b38")));
 			jtable.getTableHeader().setForeground(Color.decode("#805b38"));
-			jtable.getTableHeader().setBackground(Color.decode("#fffcfa"));
+			jtable.getTableHeader().setBackground(Color.decode("#f2ede9"));
 			jtable.setEnabled(false); // 사용자가 테이블을 클릭하거나 편집하는 것을 방지
 		} else if (cp instanceof JRadioButton) {
 			jradio = (JRadioButton) cp;
@@ -238,7 +238,7 @@ public class Style {
 			e.printStackTrace();
 		}
 		frame.setIconImage(image);
-		frame.getContentPane().setBackground(Color.decode("#fffcfa"));
+		frame.getContentPane().setBackground(Color.decode("#f2ede9"));
 	}
 
 	// 텍스트 칸제한
@@ -261,7 +261,7 @@ public class Style {
 	public static JPanel getnewPanel() {
 		panel = new JPanel();
 		panel.setOpaque(false); // 배경 투명
-		panel.setBackground(Color.decode("#fffcfa"));
+		panel.setBackground(Color.decode("#f2ede9"));
 		return panel;
 	}
 

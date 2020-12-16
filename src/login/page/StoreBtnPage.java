@@ -32,7 +32,6 @@ public class StoreBtnPage extends JFrame {
 	JButton move;
 
 	public StoreBtnPage() {
-		
 		try {
 			
 			image = ImageIO.read(new File("image/·Î°í.png"));
@@ -100,6 +99,8 @@ public class StoreBtnPage extends JFrame {
 				
 				if (rs2 != null)
 					rs2.close();
+				if (conn != null)
+					conn.close();
 				
 			} else if (StoreManagementPage.type.equals("ÁÂ¼®")) {
 				sql = "SELECT Person_Id, Person_Name, Expiration_seat, Seat_Type FROM person_info WHERE seat_number =?";
@@ -124,6 +125,8 @@ public class StoreBtnPage extends JFrame {
 				System.out.println(id);
 				if (rs3 != null)
 					rs3.close();
+				if (conn != null)
+					conn.close();
 			}
 			
 			title.setBounds(120,0,300,40);
@@ -133,19 +136,18 @@ public class StoreBtnPage extends JFrame {
 			add(title);
 			add(info);
 			
-			out = new JButton("Åð½Ç");
-			move = new JButton("ÀÌµ¿");
-			new Style(out);
-			new Style(move);
-			add(out);
-			add(move);
-			move.setBounds(50,200,100,50);
-			out.setBounds(180,200,100,50);
+//			out = new JButton("Åð½Ç");
+//			move = new JButton("ÀÌµ¿");
+//			new Style(out);
+//			new Style(move);
+//			add(out);
+//			add(move);
+//			move.setBounds(50,200,100,50);
+//			out.setBounds(180,200,100,50);
 			
 			setLayout(null);
 			getContentPane().setBackground(Color.decode("#404040"));
-			setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			setBounds(550, 300, 350, 320);
+			setBounds(550, 300, 350, 220);
 			setVisible(true);
 
 			if (pstmt != null) pstmt.close();

@@ -45,9 +45,11 @@ public class LoginPage extends JPanel {
 	public static JPasswordField admin_loginpass1;
 
 	public static JTextField[] phoneTotal;
-
-	// 70 231232 현태태 19831010 010-1111-1111 12345678 0
+	
+	// 683, 562
 	public LoginPage() {
+		MainPage.updateTable.add(new State());
+		MainPage.statecard.next(MainPage.updateTable);
 
 		this.setLayout(null);
 		new Style(this);
@@ -58,52 +60,52 @@ public class LoginPage extends JPanel {
 
 		phone_number1 = new JTextField("010");
 		new Style(phone_number1);
-		phone_number1.setBounds(145, 150, 55, 40);
+		phone_number1.setBounds(245, 200, 55, 40);
 		this.add(phone_number1);
 
 		JLabel hyphen1 = new JLabel("-", JLabel.CENTER);
 		new Style(hyphen1);
-		hyphen1.setBounds(200, 150, 15, 40);
+		hyphen1.setBounds(300, 200, 15, 40);
 		this.add(hyphen1);
 
 		phone_number2 = new JTextField("1143");
 		new Style(phone_number2);
-		phone_number2.setBounds(215, 150, 55, 40);
+		phone_number2.setBounds(315, 200, 55, 40);
 		this.add(phone_number2);
 
 		JLabel hyphen2 = new JLabel("-", JLabel.CENTER);
 		new Style(hyphen2);
-		hyphen2.setBounds(270, 150, 15, 40);
+		hyphen2.setBounds(370, 200, 15, 40);
 		this.add(hyphen2);
 
 		phone_number3 = new JTextField("1111");
 		new Style(phone_number3);
-		phone_number3.setBounds(285, 150, 55, 40);
+		phone_number3.setBounds(385, 200, 55, 40);
 		this.add(phone_number3);
 
 		loginpass = new JPasswordField("12345678");
 		loginpass.addMouseListener(new EmptyPrice(loginpass));
 		new Style(loginpass);
-		loginpass.setBounds(145, 200, 195, 40);
+		loginpass.setBounds(245, 250, 195, 40);
 		this.add(loginpass);
 
 		JButton login = new JButton("로그인");
 		new Style(login);
-		login.setBounds(145, 250, 195, 40);
+		login.setBounds(245, 300, 195, 40);
 		login.addActionListener(new MainBtn_Action(login));
 		this.add(login);
 
 		JButton find_PW = new JButton(new Conversion_image("image/PW찾기(진한).png", 40, 40).imageicon_smooth);
 		new Style(find_PW);
 		find_PW.setText("비번찾기");
-		find_PW.setBounds(413, 316, 50, 50);
+		find_PW.setBounds(622, 450, 50, 50);
 		find_PW.addActionListener(new MainBtn_Action(find_PW));
 		this.add(find_PW);
 
 		JButton signup = new JButton(new Conversion_image("image/회원가입(진한).png", 40, 40).imageicon_smooth);
 		new Style(signup);
 		signup.setText("회원가입");
-		signup.setBounds(410, 365, 50, 50);
+		signup.setBounds(620, 500, 50, 50);
 		signup.addActionListener(new MainBtn_Action(signup));
 		this.add(signup);
 

@@ -43,7 +43,7 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 	Thread thread;
 	
 	JMenuBar bar = new JMenuBar();
-	JMenu menu = new JMenu("           번호별 현재 좌석 / 사물함            ");
+	JMenu menu = new JMenu("                        번호별 현재 좌석 / 룸 / 사물함 사용 정보                    ");
 	JMenu s = new JMenu("1인석");
 	JMenu r = new JMenu("룸");	
 	JMenu l = new JMenu("사물함");
@@ -168,8 +168,6 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 			seats_btn.get(i).setBackground(Color.BLACK);
 			seats_btn.get(i).setText(i+1+"번");
 			seats_btn.get(i).setForeground(Color.orange);
-			seats_btn.get(i).setEnabled(true);
-			seats_btn.get(i).setSelected(false);
 			c.add(seats_btn.get(i));
 			seats_btn.get(i).setBounds(30+f,10,60,60); 
 			f+=60;  
@@ -178,8 +176,6 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 			seats_btn.get(i).setBackground(Color.BLACK);
 			seats_btn.get(i).setText(i+1+"번");
 			seats_btn.get(i).setForeground(Color.orange);
-			seats_btn.get(i).setEnabled(true);
-			seats_btn.get(i).setSelected(false);
 			c.add(seats_btn.get(i));
 			seats_btn.get(i).setBounds(70+f,10,60,60); 
 			f+=60;  
@@ -188,42 +184,31 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 			seats_btn.get(i).setBackground(Color.BLACK);
 			seats_btn.get(i).setText(i+1+"번");
 			seats_btn.get(i).setForeground(Color.orange);
-			seats_btn.get(i).setEnabled(true);
-			seats_btn.get(i).setSelected(false);
 			c.add(seats_btn.get(i));
 			seats_btn.get(i).setBounds(120+f,10+a,60,60); 
 			a+=60;
 		}
 		for(int i=11; i<14;i++) { // 1인석 버튼 위치 설정
-			seats_btn.add(new JButton()); 
 			seats_btn.get(i).setBackground(Color.BLACK);
 			seats_btn.get(i).setText(i+1+"번");
 			seats_btn.get(i).setForeground(Color.orange);
-			seats_btn.get(i).setEnabled(true);
-			seats_btn.get(i).setSelected(false);
 			c.add(seats_btn.get(i));
 			seats_btn.get(i).setBounds(30+g,70,60,60);
 			g+=60;  
 		}
 		for(int i=14; i<17;i++) { // 1인석 버튼 위치 설정
-			seats_btn.add(new JButton()); 
 			seats_btn.get(i).setBackground(Color.BLACK);
 			seats_btn.get(i).setText(i+1+"번");
 			seats_btn.get(i).setForeground(Color.orange);
-			seats_btn.get(i).setEnabled(true);
-			seats_btn.get(i).setSelected(false);
 			c.add(seats_btn.get(i));
 			seats_btn.get(i).setBounds(70+g,70,60,60);
 			g+=60;  
 		}
 		g-=180;
 		for(int i=17; i<20;i++) { // 1인석 버튼 위치 설정
-			seats_btn.add(new JButton()); 
 			seats_btn.get(i).setBackground(Color.BLACK);
 			seats_btn.get(i).setText(i+1+"번");
 			seats_btn.get(i).setForeground(Color.orange);
-			seats_btn.get(i).setEnabled(true);
-			seats_btn.get(i).setSelected(false);
 			c.add(seats_btn.get(i));
 			seats_btn.get(i).setBounds(70+g,160,60,60);
 			g+=60;  
@@ -232,8 +217,6 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 			room_btn.get(i).setBackground(Color.BLACK);
 			room_btn.get(i).setText(i+101+"호");
 			room_btn.get(i).setForeground(Color.orange);
-			room_btn.get(i).setEnabled(true);
-			room_btn.get(i).setSelected(false);
 			c.add(room_btn.get(i));
 			room_btn.get(i).setBounds(30+e,160,90,75);
 			e+=90; 
@@ -242,8 +225,6 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 			room_btn.get(i).setBackground(Color.BLACK);
 			room_btn.get(i).setText(i+101+"호");
 			room_btn.get(i).setForeground(Color.orange);
-			room_btn.get(i).setEnabled(true);
-			room_btn.get(i).setSelected(false);
 			c.add(room_btn.get(i));
 			room_btn.get(i).setBounds(30+d,235,90,75);
 			d+=90; 
@@ -252,8 +233,6 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 			locker_btn.get(i).setBackground(Color.BLACK);
 			locker_btn.get(i).setText(i+1+"번");
 			locker_btn.get(i).setForeground(Color.orange);
-			locker_btn.get(i).setEnabled(true);
-			locker_btn.get(i).setSelected(false);
 			c.add(locker_btn.get(i));
 			locker_btn.get(i).setBounds(10+q,350,60,30);
 			q+=55;
@@ -263,8 +242,6 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 			locker_btn.get(i).setBackground(Color.BLACK);
 			locker_btn.get(i).setText(i+1+"번");
 			locker_btn.get(i).setForeground(Color.orange);
-			locker_btn.get(i).setEnabled(true);
-			locker_btn.get(i).setSelected(false);
 			c.add(locker_btn.get(i));
 			locker_btn.get(i).setBounds(10+d,380,60,30);
 			d+=55;   
@@ -333,7 +310,7 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 		
 		back = new JButton("이전");
 		new Style(back);
-		back.setBounds(430,435,100,65);
+		back.setBounds(430,435,120,65);
 		c.add(back);
 
 		back.addActionListener(new ActionListener() {

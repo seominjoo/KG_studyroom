@@ -36,7 +36,7 @@ public class StoreDB {
 				
 				sql="SELECT seat_number, seat_statement, time_enter,time_checkout FROM seat WHERE seat_statement = '사용 중' AND seat_number < 100"; 
 				
-				String header[] = {"좌석 번호", "사용 여부","입실 시간","퇴실(/예정)시간"};
+				String header[] = {"좌석", "사용 여부","입실 시간","퇴실(/예정)시간"};
 				length = header.length;		
 				PreparedStatement pstm = conn.prepareStatement(sql);
 				ResultSet rs = pstm.executeQuery();
@@ -67,7 +67,7 @@ public class StoreDB {
 					
 					sql="SELECT seat_number, seat_statement, time_enter,time_checkout FROM seat WHERE seat_statement = '사용 중' AND seat_number>100"; 
 					
-					String header[] = {"룸 번호", "사용 여부","입실 시간","퇴실(/예정)시간"};
+					String header[] = {"룸", "사용 여부","입실 시간","퇴실(/예정)시간"};
 					length = header.length;
 					PreparedStatement pstm = conn.prepareStatement(sql);
 					ResultSet rs3 = pstm.executeQuery();
@@ -99,7 +99,7 @@ public class StoreDB {
 				
 				sql="SELECT locker_number, locker_statement, l_time_enter,l_time_checkout FROM locker WHERE locker_statement = '사용 중'"; 
 				
-				String header[] = {"사물함 번호", "사용 여부","사용 시작 시간","만료(/예정)시간"};
+				String header[] = {"사물함", "사용 여부","사용 시작 시간","만료(/예정)시간"};
 				length = header.length;
 				PreparedStatement pstm = conn.prepareStatement(sql);
 				ResultSet rs5 = pstm.executeQuery();
@@ -127,10 +127,10 @@ public class StoreDB {
 					pstm.close();
 			}
 			
-			table.getColumnModel().getColumn(0).setPreferredWidth(60);
-			table.getColumnModel().getColumn(1).setPreferredWidth(80);
-			table.getColumnModel().getColumn(2).setPreferredWidth(180);
-			table.getColumnModel().getColumn(3).setPreferredWidth(180);
+			table.getColumnModel().getColumn(0).setPreferredWidth(55);
+			table.getColumnModel().getColumn(1).setPreferredWidth(60);
+			table.getColumnModel().getColumn(2).setPreferredWidth(185);
+			table.getColumnModel().getColumn(3).setPreferredWidth(200);
 
 			StoreDBPage.total.setText("사용 중인 " + type + " 수 : "+ num);
 			

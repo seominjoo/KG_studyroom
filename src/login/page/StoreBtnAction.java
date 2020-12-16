@@ -15,7 +15,6 @@ public class StoreBtnAction implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub	
 		StoreManagementPage.seat_number=0;
 		StoreManagementPage.room_number=0;
 		StoreManagementPage.locker_number=0;

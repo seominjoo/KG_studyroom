@@ -33,7 +33,7 @@ public class StoreDBPage extends JPanel implements ActionListener {
 		
 		seat = new JButton("ÁÂ¼®");
 		new Style(seat);
-		seat.setBounds(125, 40, 60, 30);
+		seat.setBounds(105, 40, 100, 30);
 		add(seat);
 		seat.addActionListener(new ActionListener() { 
 			@Override
@@ -44,7 +44,7 @@ public class StoreDBPage extends JPanel implements ActionListener {
 		
 		room = new JButton("·ë");
 		new Style(room);
-		room.setBounds(225, 40, 40, 30);
+		room.setBounds(245, 40, 100, 30);
 		add(room);
 		room.addActionListener(new ActionListener() { 
 			@Override
@@ -55,7 +55,7 @@ public class StoreDBPage extends JPanel implements ActionListener {
 		
 		locker = new JButton("»ç¹°ÇÔ");
 		new Style(locker);
-		locker.setBounds(305, 40, 70, 30);
+		locker.setBounds(380, 40, 110, 30);
 		add(locker);
 		locker.addActionListener(new ActionListener() { 
 			@Override
