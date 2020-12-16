@@ -64,47 +64,68 @@ public class SalesDB {
 			int week4 = 0;
 			int week5 = 0;
 
-			ResultSet rs1 = read_data.executeQuery();
-			while (rs1.next()) {
-				contents[i][0] = rs1.getString(1).substring(0, 19);
-				for (int j = 1; j < header.length; j++) {
-					contents[i][j] = rs1.getString(j + 1);
-					if (j == 4) {
-						sum += Integer.parseInt(rs1.getString(j + 1));
-					}
-				}
+			int[] weeks = { week1, week2, week3, week4, week5 };
 
-				// 주간 매출 부분
-				if (maxCnt == 2) {
-					int single = Integer.parseInt(rs1.getString(1).substring(8, 10));
-	
-					if (single <= 7) {
-						week1 += Integer.parseInt(rs1.getString(5));
-					} else if (single <= 14) {
-						week2 += Integer.parseInt(rs1.getString(5));
-					} else if (single <= 21) {
-						week3 += Integer.parseInt(rs1.getString(5));
-					} else if (single <= 28) {
-						week4 += Integer.parseInt(rs1.getString(5));
+			if (realRow == 0) {
+				for (int i2 = 0; i2 < weeks.length; i2++) {
+					SalesManagementPage.weekTotal[i2].setText("");
+				}
+			} else {
+				ResultSet rs1 = read_data.executeQuery();
+				while (rs1.next()) {
+					contents[i][0] = rs1.getString(1).substring(0, 19);
+					for (int j = 1; j < header.length; j++) {
+						contents[i][j] = rs1.getString(j + 1);
+						if (j == 4) {
+							sum += Integer.parseInt(rs1.getString(j + 1));
+						}
+					}
+
+					// 주간 매출 부분
+					if (maxCnt == 2) {
+						System.out.println("realRow : " + realRow);
+
+						int single = Integer.parseInt(rs1.getString(1).substring(8, 10));
+
+						if (single <= 7) {
+							weeks[0] += Integer.parseInt(rs1.getString(5));
+						} else if (single <= 14) {
+							weeks[1] += Integer.parseInt(rs1.getString(5));
+						} else if (single <= 21) {
+							weeks[2] += Integer.parseInt(rs1.getString(5));
+						} else if (single <= 28) {
+							weeks[3] += Integer.parseInt(rs1.getString(5));
+						} else {
+							weeks[4] += Integer.parseInt(rs1.getString(5));
+						}
+
+						for (int i2 = 0; i2 < weeks.length; i2++) {
+							SalesManagementPage.weekTotal[i2].setText(
+									(i2 + 1) + "주차 매출 : " + NumberFormat.getInstance().format(weeks[i2]) + "원");
+						}
+
+//						SalesManagementPage.weekTotal[0]
+//								.setText(1 + "주차 매출 : " + NumberFormat.getInstance().format(week1) + "원");
+//						SalesManagementPage.weekTotal[1]
+//								.setText(2 + "주차 매출 : " + NumberFormat.getInstance().format(week2) + "원");
+//						SalesManagementPage.weekTotal[2]
+//								.setText(3 + "주차 매출 : " + NumberFormat.getInstance().format(week3) + "원");
+//						SalesManagementPage.weekTotal[3]
+//								.setText(4 + "주차 매출 : " + NumberFormat.getInstance().format(week4) + "원");
+//						SalesManagementPage.weekTotal[4]
+//								.setText(5 + "주차 매출 : " + NumberFormat.getInstance().format(week5) + "원");
+
 					} else {
-						week5 += Integer.parseInt(rs1.getString(5));
+						for (int i2 = 0; i2 < SalesManagementPage.weekTotal.length; i2++) {
+							SalesManagementPage.weekTotal[i2].setText("");
+						}
 					}
-
-					SalesManagementPage.weekTotal[0]
-							.setText(1 + "주차 매출 : " + NumberFormat.getInstance().format(week1) + "원");
-					SalesManagementPage.weekTotal[1]
-							.setText(2 + "주차 매출 : " + NumberFormat.getInstance().format(week2) + "원");
-					SalesManagementPage.weekTotal[2]
-							.setText(3 + "주차 매출 : " + NumberFormat.getInstance().format(week3) + "원");
-					SalesManagementPage.weekTotal[3]
-							.setText(4 + "주차 매출 : " + NumberFormat.getInstance().format(week4) + "원");
-					SalesManagementPage.weekTotal[4]
-							.setText(5 + "주차 매출 : " + NumberFormat.getInstance().format(week5) + "원");
-
+					i++;
 				}
-				i++;
-			}
 
+				if (rs1 != null)
+					rs1.close();
+			}
 			SalesManagementPage.totalPayment.setText("총 매출 : " + NumberFormat.getInstance().format(sum) + "원");
 
 			DefaultTableModel model = new DefaultTableModel(contents, header);
@@ -122,8 +143,6 @@ public class SalesDB {
 
 			SalesManagementPage.scrollPane.setViewportView(table);
 
-			if (rs1 != null)
-				rs1.close();
 			if (rs != null)
 				rs.close();
 			if (read_data != null)

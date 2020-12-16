@@ -48,8 +48,6 @@ public class LoginPage extends JPanel {
 
 	// 70 231232 гЖебеб 19831010 010-1111-1111 12345678 0
 	public LoginPage() {
-		MainPage.updateTable.add(new State());
-		MainPage.statecard.next(MainPage.updateTable);
 
 		this.setLayout(null);
 		new Style(this);

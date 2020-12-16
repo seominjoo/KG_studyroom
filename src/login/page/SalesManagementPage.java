@@ -35,7 +35,6 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
 	JLabel title;
 	static JScrollPane scrollPane;
-	// JTable table;
 
 	public static JComboBox<String> year;
 	public static JComboBox<String> month;
@@ -65,20 +64,19 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 			weekTotal[i] = new JLabel("");
 			new Style(weekTotal[i]);
 			weekTotal[i].setFont(new Font("맑은 고딕", Font.BOLD, 13));
-			weekTotal[i].setBounds(280, y, 200, 50);
+			weekTotal[i].setBounds(210, y, 200, 50);
 			y += 20;
 			add(weekTotal[i]);
 		}
 
 		back = new JButton("이전");
 		new Style(back);
-		back.setBounds(450, 481, 100, 30);
+		back.setBounds(449, 481, 100, 30);
 		add(back);
 
 		back.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// MainPage.main_page_panel.add("관리자메뉴", new AdminMenuPage());
 				MainPage.main_cards.show(MainPage.main_page_panel, "관리자메뉴");
 				MainPage.userToggle = "관리자메뉴";
 			}
@@ -86,7 +84,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 
 		totalPayment = new JLabel();
 		new Style(totalPayment);
-		totalPayment.setBounds(400, 403, 200, 100);
+		totalPayment.setBounds(398, 403, 200, 100);
 		add(totalPayment);
 
 		scrollPane = new JScrollPane();
@@ -111,7 +109,6 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 		add(day);
 		new Style(day);
 
-		// ㅇㅇ
 		// 연도, 월 클릭
 		year.addActionListener(new YearMonthClick("year", "매출관리"));
 		month.addActionListener(new YearMonthClick("month", "매출관리"));
