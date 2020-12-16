@@ -40,7 +40,6 @@ import login.signUp.window.ConsentContent;
 import login.design.Style;
 import login.page.LoginPage;
 import login.page.MainPage;
-import login.swingTools.SwingToolsMainPage;
 
 public class SignUpPage extends JPanel {
 	final int GRID = 8;

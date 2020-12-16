@@ -1,4 +1,4 @@
-package login.window;
+package login.swingTools;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -9,10 +9,9 @@ import javax.swing.JFrame;
 
 import login.design.Conversion_image;
 import login.design.Style;
+import login.page.MainPage;
 
 public class Login_SwingTool extends JFrame{
-   static int x = new Conversion_image("image/배경화면.jpg", 4).x;
-   static int y = new Conversion_image("image/배경화면.jpg", 4).y;
    
 
    public static void initFrame(JFrame frame) {
@@ -20,7 +19,7 @@ public class Login_SwingTool extends JFrame{
       new Style(frame);
       frame.setLayout(null);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      frame.setBounds(90, 50, x+12, y+35);
+      frame.setBounds(90, 50, MainPage.x+12, MainPage.y+35);
       frame.setVisible(true);
    }
 }

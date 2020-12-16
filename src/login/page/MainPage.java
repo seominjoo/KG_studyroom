@@ -30,13 +30,13 @@ import login.mainmenu._07out;
 import login.mainmenu._08reservation;
 import login.mainmenu._09payment;
 import login.signUp.SignUpPage;
+import login.swingTools.Login_SwingTool;
 import login.window.MainBtn_Action;
-import login.window.Login_SwingTool;
 
 public class MainPage extends JFrame implements Runnable {
 
-	int x = new Conversion_image("image/배경화면(누런).jpg", 4).x;
-	int y = new Conversion_image("image/배경화면(누런).jpg", 4).y;
+	public static int x = new Conversion_image("image/배경화면(누런).jpg", 4).x;
+	public static int y = new Conversion_image("image/배경화면(누런).jpg", 4).y;
 	public static JPanel main_page_panel;
 	public static CardLayout main_cards;
 	public static JPanel user_page_panel;
