@@ -21,10 +21,6 @@ public class SalesDB {
 
 	public SalesDB(String sql, int maxCnt) {
 
-		System.out.println((String) SalesManagementPage.year.getSelectedItem().toString().substring(2, 4));
-		System.out.println((String) SalesManagementPage.month.getSelectedItem());
-		System.out.println((String) SalesManagementPage.day.getSelectedItem());
-
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 

@@ -109,6 +109,8 @@ public class MemberManagementPage extends JPanel implements ActionListener{
 				MainPage.userToggle = "관리자메뉴";
 			}
 		});
+		
+		new MemberDB(1);
 	}
 
 	@Override

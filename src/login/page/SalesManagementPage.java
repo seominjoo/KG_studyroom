@@ -44,6 +44,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 	JButton yearTotal;
 	JButton monthTotal;
 	JButton dayTotal;
+	JButton total;
 
 	JButton back;
 	static JLabel totalPayment;
@@ -54,26 +55,24 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 		setLayout(null);
 		new Style(this);
 
-		
-//		title = new JLabel("매출 관리");
-//		new Style(title);
-//		title.setFont(new Font("맑은 고딕", Font.BOLD, 18));
-//		title.setBounds(250, 10, 100, 100);
-//		add(title);
+		total = new JButton("누적매출");
+		new Style(total);
+		total.setBounds(200, 481, 100, 30);
+		add(total);
 
 		int y = 430;
 		for (int i = 0; i < weekTotal.length; i++) {
 			weekTotal[i] = new JLabel("");
 			new Style(weekTotal[i]);
 			weekTotal[i].setFont(new Font("맑은 고딕", Font.BOLD, 13));
-			weekTotal[i].setBounds(200, y, 200, 50);
+			weekTotal[i].setBounds(280, y, 200, 50);
 			y += 20;
 			add(weekTotal[i]);
 		}
 
 		back = new JButton("이전");
 		new Style(back);
-		back.setBounds(50, 473, 100, 50);
+		back.setBounds(50, 481, 100, 30);
 		add(back);
 
 		back.addActionListener(new ActionListener() {
@@ -87,7 +86,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 
 		totalPayment = new JLabel();
 		new Style(totalPayment);
-		totalPayment.setBounds(410, 443, 200, 100);
+		totalPayment.setBounds(460, 443, 200, 100);
 		add(totalPayment);
 
 		scrollPane = new JScrollPane();
@@ -112,7 +111,6 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 		add(day);
 		new Style(day);
 
-		
 		// ㅇㅇ
 		// 연도, 월 클릭
 		year.addActionListener(new YearMonthClick("year", "매출관리"));
@@ -161,6 +159,15 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 			}
 		});
 
+		total.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new SalesDB("SELECT paid_time,seat_type,locker_type,pay_method,payment"
+						+ " FROM payment_record order by paid_time", 0);
+			}
+		});
+
+		// 초기 화면
 		new SalesDB(
 				"SELECT paid_time,seat_type,locker_type,pay_method,payment" + " FROM payment_record order by paid_time",
 				0);
