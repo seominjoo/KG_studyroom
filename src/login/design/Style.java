@@ -14,12 +14,14 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -133,7 +135,9 @@ public class Style {
 					return basicComboPopup;
 				}
 			});
-		} else if (cp instanceof JScrollPane) {
+
+		} 
+		else if (cp instanceof JScrollPane) {
 			jscroll = (JScrollPane) cp;
 			jscroll.setOpaque(false); // 배경 투명
 			jscroll.getViewport().setBackground(Color.decode("#fffcfa"));

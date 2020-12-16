@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 
 import login.design.Conversion_image;
 import login.design.Style;
-import login.swingTools.Login_SwingTool;
 import login.window.MainBtn_Action;
 
 public class AdminMenuPage extends JPanel{
@@ -48,6 +47,8 @@ public class AdminMenuPage extends JPanel{
       store_Management.setOpaque(true);
       store_Management.setBounds(39,175,100,100);
       this.add(store_Management);
+      
+      store_Management.addActionListener(new StoreManagementPage());
       
       JButton sales_Management = new JButton("매출관리");
       new Style(sales_Management);

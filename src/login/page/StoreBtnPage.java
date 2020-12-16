@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.format.DateTimeFormatter;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -20,12 +21,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import login.design.Style;
+import login.mainmenu.Time;
 import login.mainmenu._00myPage;
 
 public class StoreBtnPage extends JFrame {
 
-	JButton back;
 	static BufferedImage image;
+	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
+	JButton out;
+	JButton move;
 
 	public StoreBtnPage() {
 		
@@ -44,72 +48,111 @@ public class StoreBtnPage extends JFrame {
 			PreparedStatement pstmt = null;
 			String sql="";
 			int id=0;
+			String exp = "";
 			String name ="";
 			String type ="";
 			Timestamp time = null;
+			JLabel title = null;
 			JLabel info = null;
 
-			if (StoreManagementPage.number>20 && StoreManagementPage.number<100) {
-				StoreManagementPage.number-=20;
-				sql = "SELECT Person_Id, Person_Name, Expiration_locker"
-						+ " FROM person_info WHERE locker_number =?";
+			if (StoreManagementPage.type.equals("사물함")) {
+
+				sql = "SELECT Person_Id, Person_Name, Expiration_locker FROM person_info WHERE locker_number =?";
 				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, StoreManagementPage.number); 
+				pstmt.setInt(1, StoreManagementPage.locker_number); 
 				ResultSet rs = pstmt.executeQuery(); 
 				while(rs.next()) { 
-					id = rs.getInt("Person_Id");
-					name = rs.getString("Person_Name");
-					time = rs.getTimestamp("Expiration_locker");
-				}
-
-				info = new JLabel(
-						"<html>회원번호 : "+id+"번"+
-						"<br/>회원이름 : "+name+
-						"<br/>만료기간 : "+time
-						);
-
-			} else {
-				sql = "SELECT Person_Id, Person_Name, Expiration_seat, Seat_Type"
-						+ " FROM person_info WHERE seat_number =?";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setInt(1, StoreManagementPage.number); 
-				ResultSet rs = pstmt.executeQuery(); 
-				while(rs.next()) { 
-					id = rs.getInt("Person_Id");
-					name = rs.getString("Person_Name");
-					type = rs.getString("Seat_Type");
-					time = rs.getTimestamp("Expiration_seat");
+					id = rs.getInt(1);
+					name = rs.getString(2);
+					time = rs.getTimestamp(3);
+					exp = Time.TimeStampTOlocalDateTime(time).format(dateTimeFormatter);			
 				}
 				
+				title = new JLabel(StoreManagementPage.locker_number +"번 사물함 정보");
 				info = new JLabel(
 						"<html>회원번호 : "+id+"번"+
 						"<br/>회원이름 : "+name+
-						"<br/>만료기간 : "+time+
+						"<br/>만료기간 : "+exp
+						);
+				if (rs != null)
+					rs.close();
+
+			} else if (StoreManagementPage.type.equals("룸")) {
+				sql = "SELECT Person_Id, Person_Name, Expiration_room, Seat_Type FROM person_info WHERE room_number =?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, StoreManagementPage.room_number); 
+				ResultSet rs2 = pstmt.executeQuery(); 
+				while(rs2.next()) { 
+					id = rs2.getInt(1);
+					name = rs2.getString(2);
+					time = rs2.getTimestamp(3);
+					exp = Time.TimeStampTOlocalDateTime(time).format(dateTimeFormatter);
+					type = rs2.getString(4);
+				}
+				
+				title = new JLabel(StoreManagementPage.room_number +"호 룸 정보");
+				info = new JLabel(
+						"<html>회원번호 : "+id+"번"+
+						"<br/>회원이름 : "+name+
+						"<br/>만료기간 : "+exp+
 						"<br/>이용권 : "+type
 						);
+				
+				if (rs2 != null)
+					rs2.close();
+				
+			} else if (StoreManagementPage.type.equals("좌석")) {
+				sql = "SELECT Person_Id, Person_Name, Expiration_seat, Seat_Type FROM person_info WHERE seat_number =?";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, StoreManagementPage.seat_number); 
+				ResultSet rs3 = pstmt.executeQuery(); 
+				while(rs3.next()) { 
+					id = rs3.getInt(1);
+					name = rs3.getString(2);
+					time = rs3.getTimestamp(3);
+					exp = Time.TimeStampTOlocalDateTime(time).format(dateTimeFormatter);
+					type = rs3.getString(4);
+				}
+				
+				title = new JLabel(StoreManagementPage.seat_number +"번 좌석 정보");
+				info = new JLabel(
+						"<html>회원번호 : "+id+"번"+
+						"<br/>회원이름 : "+name+
+						"<br/>만료기간 : "+exp+
+						"<br/>이용권 : "+type
+						);
+				System.out.println(id);
+				if (rs3 != null)
+					rs3.close();
 			}
-
-			new Style(info);
+			
+			title.setBounds(120,0,300,40);
+			info.setBounds(20,0,300,190);
+			title.setForeground(Color.white);
+			info.setForeground(Color.white);
+			add(title);
 			add(info);
-			info.setBounds(20,0,400,190);
+			
+			out = new JButton("퇴실");
+			move = new JButton("이동");
+			new Style(out);
+			new Style(move);
+			add(out);
+			add(move);
+			move.setBounds(50,200,100,50);
+			out.setBounds(180,200,100,50);
+			
 			setLayout(null);
 			getContentPane().setBackground(Color.decode("#404040"));
 			setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			setBounds(550, 300, 450, 220);
+			setBounds(550, 300, 350, 320);
 			setVisible(true);
 
 			if (pstmt != null) pstmt.close();
 			if (conn != null) conn.close();
-			
-			StoreManagementPage.number = 0;
 
 		} catch (ClassNotFoundException | IOException | SQLException e1) {
 			e1.printStackTrace();
 		}
 	}
-	
-	public static void main(String[] args) {
-		new StoreBtnPage();
-	}
-
 }

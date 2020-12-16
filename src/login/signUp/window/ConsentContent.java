@@ -36,12 +36,10 @@ public class ConsentContent extends JFrame implements ActionListener {
    @Override
    public void actionPerformed(ActionEvent e) {
       panel = new JPanel();
-//      panel.setBorder(new EmptyBorder(100, 100, 100, 100));
+
       panel.setLayout(null);
       new Style(panel);
-      panel.setOpaque(true);
-      //add(panel);
-      //setBounds(0, 0, 1600, 900);
+
       setContentPane(panel);
 
       confirmButton = new JButton("확인");

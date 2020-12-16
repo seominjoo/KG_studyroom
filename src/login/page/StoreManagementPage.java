@@ -1,5 +1,6 @@
 package login.page;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -28,17 +30,27 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 
 import login.design.Style;
+import login.findPW.FindPasswordPageUser;
+import login.mainmenu._01start;
 
-public class StoreManagementPage extends JFrame implements Runnable{
+public class StoreManagementPage extends JPanel implements ActionListener {
 
 	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
 	JLabel title;
 	JLabel clock;
 	JButton back;
-	JButton info = new JButton("좌석 정보 보기");
+	JButton info;
 	Thread thread;
-
-	public static int number= 0;
+	
+	JMenuBar bar = new JMenuBar();
+	JMenu menu = new JMenu("           번호별 현재 좌석 / 사물함            ");
+	JMenu s = new JMenu("1인석");
+	JMenu r = new JMenu("룸");	
+	JMenu l = new JMenu("사물함");
+	public static int seat_number;
+	public static int room_number;
+	public static int locker_number;
+	public static String type;
 	static LocalDateTime time_now = LocalDateTime.now();
 	String time_checkout;
 
@@ -48,112 +60,109 @@ public class StoreManagementPage extends JFrame implements Runnable{
 	int f=0; 
 	int g=0;
 	int c=0;
+	int q=0;
 	int count = 0;
 
 	static ArrayList<JButton> seats_btn = new ArrayList<>(); //1~20번 좌석 (1인석) 버튼
 	{
 		for(int i=0;i<20;i++) {
 			seats_btn.add(new JButton());
+			seats_btn.get(i).addActionListener(new StoreBtnAction(i, "좌석"));
 		}
 	}
 	static ArrayList<JButton> room_btn = new ArrayList<>(); //101~104호 (룸) 버튼
 	{
 		for(int i=0;i<4;i++) {//0~3
-			room_btn.add(new JButton()); 
+			room_btn.add(new JButton());		
+			room_btn.get(i).addActionListener(new StoreBtnAction(i, "룸"));
 		}
 	}
 	static ArrayList<JButton> locker_btn = new ArrayList<>(); //1~20번 사물함 버튼
 	{
 		for(int i=0;i<20;i++) {
 			locker_btn.add(new JButton()); 
+			locker_btn.get(i).addActionListener(new StoreBtnAction(i, "사물함"));
 		}
 	}
+	
+	static ArrayList<JMenuItem> seat = new ArrayList(); //1~20번 좌석 (1인석) 메뉴 버튼
+	{
+	for(int i=0; i<20; ++i) {
+		seat.add(new JMenuItem(Integer.toString(i+1)+"번"));
+		s.add(seat.get(i));
+		seat.get(i).addActionListener(new StoreBtnAction(i, "좌석"));
+	}
+	}
+	
+	static ArrayList<JMenuItem> room = new ArrayList(); //101~104호 (룸) 메뉴 버튼
+	{
+	for(int i=0; i<4; ++i) {
+		room.add(new JMenuItem(Integer.toString(i+101)+"호"));
+		r.add(room.get(i));
+		room.get(i).addActionListener(new StoreBtnAction(i, "룸"));
+	}
+	}
 
+	static ArrayList<JMenuItem> locker = new ArrayList(); //1~20번 사물함 메뉴 버튼
+	{
+	for(int i=0; i<20; ++i) {
+		locker.add(new JMenuItem(Integer.toString(i+1)+"번"));
+		l.add(locker.get(i));
+		locker.get(i).addActionListener(new StoreBtnAction(i, "사물함"));
+	}
+	}
+	
 	public StoreManagementPage() {
 
-		JMenuBar bar = new JMenuBar();
-		JMenu menu = new JMenu("좌석 정보 보기");
-		JMenu all = new JMenu("전체");
-		JMenu s = new JMenu("1인석");
-		JMenu r = new JMenu("룸");	
-		JMenu l = new JMenu("사물함");
-
-		ArrayList<JMenuItem> seat = new ArrayList();
-		for(int i=0; i<20; ++i) {
-			seat.add(new JMenuItem(Integer.toString(i+1)+"번"));
-			s.add(seat.get(i));
-			seat.get(i).addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					System.out.println("hi");
-				}
-			});
-		}
-
-		ArrayList<JMenuItem> locker = new ArrayList();
-		for(int i=0; i<20; ++i) {
-			locker.add(new JMenuItem(Integer.toString(i+1)+"번"));
-			l.add(locker.get(i));
-			locker.get(i).addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					System.out.println("hi");
-				}
-			});
-		}
-
-		ArrayList<JMenuItem> room = new ArrayList();
-		for(int i=0; i<4; ++i) {
-			room.add(new JMenuItem(Integer.toString(i+101)+"호"));
-			r.add(room.get(i));
-			room.get(i).addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					System.out.println("hi");
-				}
-			});
-		}
-		
-		menu.add(all);
+		this.setLayout(new BorderLayout());
+		new Style(this);
+			
 		menu.add(s);
 		menu.add(r);
 		menu.add(l);
 		bar.add(menu);
-		setJMenuBar(bar);
-		setBounds(600, 40, 590, 630);
-		setLayout(null);
-		setVisible(true);
-		getContentPane().setBackground(Color.white);
+		
+		JPanel top = new JPanel();
+		top.add(bar);
+		new Style(top);
+		add(top, BorderLayout.NORTH);
+		
+		JPanel c = new JPanel();
+		add(c, BorderLayout.CENTER);
+		c.setLayout(null);
+		new Style(c);
 
 		JLabel label03 = new JLabel("사물함");
-		label03.setBounds(15,350,50,30);
+		label03.setBounds(15,320,50,30);
 		label03.setFont(new Font("맑은 고딕", Font.BOLD, 10));
-		add(label03);
+		c.add(label03);
 		new Style(label03);
 
 		JLabel label04 = new JLabel("휴게실");
-		label04.setOpaque(true);
-		label04.setBackground(Color.gray);
-		label04.setBounds(250,255,180,85);
+		label04.setOpaque(true); 
+		label04.setBorder(BorderFactory.createLineBorder(Color.gray));
+		label04.setBackground(Color.black);
+		label04.setForeground(Color.decode("#5590cf"));
+		label04.setBounds(250,225,180,85);
 		label04.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		label04.setHorizontalAlignment(JLabel.CENTER);
-		add(label04);
+		c.add(label04);
 
 		JLabel label05 = new JLabel("사용 가능");
 		label05.setOpaque(true);
 		label05.setBackground(Color.black);
 		label05.setForeground(Color.orange);
 		label05.setHorizontalAlignment(JLabel.CENTER);
-		label05.setBounds(40,465,100,30);
-		add(label05);
+		label05.setBounds(40,435,100,30);
+		c.add(label05);
 
 		JLabel label06 = new JLabel("사용 중");
 		label06.setOpaque(true);
 		label06.setBackground(Color.black);
 		label06.setForeground(Color.gray);
 		label06.setHorizontalAlignment(JLabel.CENTER);
-		label06.setBounds(40,500,100,30);
-		add(label06);
+		label06.setBounds(40,470,100,30);
+		c.add(label06);
 
 		for(int i=0;i<3;i++) {// 1인석 버튼 위치 설정
 			seats_btn.get(i).setBackground(Color.BLACK);
@@ -161,8 +170,8 @@ public class StoreManagementPage extends JFrame implements Runnable{
 			seats_btn.get(i).setForeground(Color.orange);
 			seats_btn.get(i).setEnabled(true);
 			seats_btn.get(i).setSelected(false);
-			add(seats_btn.get(i));
-			seats_btn.get(i).setBounds(30+f,40,60,60); 
+			c.add(seats_btn.get(i));
+			seats_btn.get(i).setBounds(30+f,10,60,60); 
 			f+=60;  
 		}
 		for(int i=3;i<6;i++) {// 1인석 버튼 위치 설정
@@ -171,8 +180,8 @@ public class StoreManagementPage extends JFrame implements Runnable{
 			seats_btn.get(i).setForeground(Color.orange);
 			seats_btn.get(i).setEnabled(true);
 			seats_btn.get(i).setSelected(false);
-			add(seats_btn.get(i));
-			seats_btn.get(i).setBounds(70+f,40,60,60); 
+			c.add(seats_btn.get(i));
+			seats_btn.get(i).setBounds(70+f,10,60,60); 
 			f+=60;  
 		}
 		for(int i=6;i<11;i++) {// 1인석 버튼 위치 설정
@@ -181,8 +190,8 @@ public class StoreManagementPage extends JFrame implements Runnable{
 			seats_btn.get(i).setForeground(Color.orange);
 			seats_btn.get(i).setEnabled(true);
 			seats_btn.get(i).setSelected(false);
-			add(seats_btn.get(i));
-			seats_btn.get(i).setBounds(120+f,40+a,60,60); 
+			c.add(seats_btn.get(i));
+			seats_btn.get(i).setBounds(120+f,10+a,60,60); 
 			a+=60;
 		}
 		for(int i=11; i<14;i++) { // 1인석 버튼 위치 설정
@@ -192,8 +201,8 @@ public class StoreManagementPage extends JFrame implements Runnable{
 			seats_btn.get(i).setForeground(Color.orange);
 			seats_btn.get(i).setEnabled(true);
 			seats_btn.get(i).setSelected(false);
-			add(seats_btn.get(i));
-			seats_btn.get(i).setBounds(30+g,100,60,60);
+			c.add(seats_btn.get(i));
+			seats_btn.get(i).setBounds(30+g,70,60,60);
 			g+=60;  
 		}
 		for(int i=14; i<17;i++) { // 1인석 버튼 위치 설정
@@ -203,8 +212,8 @@ public class StoreManagementPage extends JFrame implements Runnable{
 			seats_btn.get(i).setForeground(Color.orange);
 			seats_btn.get(i).setEnabled(true);
 			seats_btn.get(i).setSelected(false);
-			add(seats_btn.get(i));
-			seats_btn.get(i).setBounds(70+g,100,60,60);
+			c.add(seats_btn.get(i));
+			seats_btn.get(i).setBounds(70+g,70,60,60);
 			g+=60;  
 		}
 		g-=180;
@@ -215,8 +224,8 @@ public class StoreManagementPage extends JFrame implements Runnable{
 			seats_btn.get(i).setForeground(Color.orange);
 			seats_btn.get(i).setEnabled(true);
 			seats_btn.get(i).setSelected(false);
-			add(seats_btn.get(i));
-			seats_btn.get(i).setBounds(70+g,190,60,60);
+			c.add(seats_btn.get(i));
+			seats_btn.get(i).setBounds(70+g,160,60,60);
 			g+=60;  
 		}
 		for(int i=0;i<2;i++) {//0~3 룸 버튼 위치 설정
@@ -225,8 +234,8 @@ public class StoreManagementPage extends JFrame implements Runnable{
 			room_btn.get(i).setForeground(Color.orange);
 			room_btn.get(i).setEnabled(true);
 			room_btn.get(i).setSelected(false);
-			add(room_btn.get(i));
-			room_btn.get(i).setBounds(30+e,190,90,75);
+			c.add(room_btn.get(i));
+			room_btn.get(i).setBounds(30+e,160,90,75);
 			e+=90; 
 		}
 		for(int i=2;i<4;i++) {//0~3 룸 버튼 위치 설정
@@ -235,8 +244,8 @@ public class StoreManagementPage extends JFrame implements Runnable{
 			room_btn.get(i).setForeground(Color.orange);
 			room_btn.get(i).setEnabled(true);
 			room_btn.get(i).setSelected(false);
-			add(room_btn.get(i));
-			room_btn.get(i).setBounds(30+d,265,90,75);
+			c.add(room_btn.get(i));
+			room_btn.get(i).setBounds(30+d,235,90,75);
 			d+=90; 
 		}
 		for(int i=0;i<10;i++) {// 사물함 버튼 위치 설정
@@ -245,9 +254,9 @@ public class StoreManagementPage extends JFrame implements Runnable{
 			locker_btn.get(i).setForeground(Color.orange);
 			locker_btn.get(i).setEnabled(true);
 			locker_btn.get(i).setSelected(false);
-			add(locker_btn.get(i));
-			locker_btn.get(i).setBounds(10+c,380,60,30);
-			c+=55;
+			c.add(locker_btn.get(i));
+			locker_btn.get(i).setBounds(10+q,350,60,30);
+			q+=55;
 		}
 		d=0;
 		for(int i=10; i<20;i++) { // 사물함 버튼 위치 설정
@@ -256,45 +265,10 @@ public class StoreManagementPage extends JFrame implements Runnable{
 			locker_btn.get(i).setForeground(Color.orange);
 			locker_btn.get(i).setEnabled(true);
 			locker_btn.get(i).setSelected(false);
-			add(locker_btn.get(i));
-			locker_btn.get(i).setBounds(10+d,410,60,30);
+			c.add(locker_btn.get(i));
+			locker_btn.get(i).setBounds(10+d,380,60,30);
 			d+=55;   
 		}
-
-		for(int i=0;i<=19;i++) {
-			seats_btn.get(i).addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					new StoreBtnPage();					
-				}			
-			});
-			if(seats_btn.get(i).isSelected()) {
-				number+=i+1;
-			}
-		}
-
-		for(int i=0;i<=3;i++) {
-			room_btn.get(i).addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					new StoreBtnPage();				
-				}		
-			});
-			if(room_btn.get(i).isSelected())
-				number+=i+101;
-		}
-
-		for(int i=0;i<=19;i++) {
-			locker_btn.get(i).addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					new StoreBtnPage();			
-				}		
-			});
-			if(locker_btn.get(i).isSelected())
-				number+=i+21;
-		}
-
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -315,9 +289,9 @@ public class StoreManagementPage extends JFrame implements Runnable{
 				if(sn<=20) {
 					System.out.printf("%d번 ",sn); 
 					seats_btn.get(sn-1).setForeground(Color.gray);
-				}else if (sn>=101) {
+				}else if (sn>100) {
 					System.out.printf("[%d호] ",sn); 
-					room_btn.get(sn-1).setForeground(Color.gray);
+					room_btn.get(sn-101).setForeground(Color.gray);
 				}
 			}
 
@@ -339,44 +313,45 @@ public class StoreManagementPage extends JFrame implements Runnable{
 
 		} catch (ClassNotFoundException | SQLException e1) { 
 			e1.printStackTrace();
-		}
-		
-		info.setBounds(200,465,300,65);
-		this.add(info);
-		
-		clock = new JLabel();
-		clock.setHorizontalAlignment(JLabel.CENTER);
-		if(thread == null){
-			thread = new Thread(this);
-			thread.start();
-		}
-		
-		add(clock);
-		clock.setBounds(110,0,300,30);
-		
-	}
+		}		
 
-	public static void main(String[] args) {
-		new StoreManagementPage();	
+		info = new JButton("매장 관리 테이블");
+		info.addActionListener(new StoreDBPage());
+		info.setBounds(180,435,220,65);
+		new Style(info);
+		c.add(info);
+		
+		info.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainPage.main_page_panel.add("매장관리테이블", new StoreDBPage());
+				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+				MainPage.main_cards.show(MainPage.main_page_panel, "매장관리테이블");
+				MainPage.userToggle = "매장관리테이블";
+			}
+		});
+		
+		back = new JButton("이전");
+		new Style(back);
+		back.setBounds(430,435,100,65);
+		c.add(back);
+
+		back.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+				MainPage.main_cards.show(MainPage.main_page_panel, "관리자메뉴");
+				MainPage.userToggle = "관리자메뉴";
+			}
+		});
+
 	}
 
 	@Override
-	public void run() {
-//		while(true){
-//			Calendar cal = Calendar.getInstance();
-//			String now = cal.get(Calendar.YEAR)+"년 "+
-//			(cal.get(Calendar.MONTH)+1)+"월 "+
-//			cal.get(Calendar.DATE)+"일 "+
-//			cal.get(Calendar.HOUR)+"시 "+
-//			cal.get(Calendar.MINUTE)+"분 "+
-//			cal.get(Calendar.SECOND)+"초 ";
-//			clock.setText(now);
-//		try{
-//			Thread.sleep(1000);
-//		}catch(InterruptedException e){
-//			e.printStackTrace();
-//		}
-//		}
+	public void actionPerformed(ActionEvent e) {
+		MainPage.main_page_panel.add("매장관리", new StoreManagementPage());
+		MainPage.main_cards.show(MainPage.main_page_panel, "매장관리");
+		MainPage.userToggle = "매장관리";
 	}
 
 }
