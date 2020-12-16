@@ -67,7 +67,7 @@ public class FindPasswordPageUser extends JPanel {
 		background.setOpaque(false);
 		background.add(Style.getnewPanel(), BorderLayout.NORTH);
 
-		JPanel gridAll = new JPanel(new GridLayout(5, 1, 0, -50));
+		JPanel gridAll = new JPanel(new GridLayout(5, 1, 0, -90));
 		background.add(gridAll, BorderLayout.CENTER);
 		new Style(gridAll);
 
@@ -78,7 +78,7 @@ public class FindPasswordPageUser extends JPanel {
 
 		JLabel title = new JLabel("비밀번호 찾기", JLabel.CENTER);
 		new Style(title);
-		title.setBounds(130, 0, 200, 100);
+		title.setBounds(245, 10, 200, 100);
 		title.setFont(new Font("맑은 고딕", Font.BOLD, 25));
 		panelInGrid1.add(title);
 
@@ -88,20 +88,20 @@ public class FindPasswordPageUser extends JPanel {
 
 		JLabel birthLabel = new JLabel("생년 월일 : ");
 		new Style(birthLabel);
-		birthLabel.setBounds(60, 4, 200, 100);
+		birthLabel.setBounds(175, 5, 200, 100);
 		grid2.add(birthLabel);
 
 		year = new JComboBox<String>(BirthEnum.getYearTable());
 		new Style(year);
-		year.setBounds(160, 42, 65, 30);
+		year.setBounds(275, 43, 65, 30);
 		year.setSelectedItem("2000");
 
 		month = new JComboBox<String>(BirthEnum.getMonthTable());
 		new Style(month);
-		month.setBounds(250, 42, 55, 30);
+		month.setBounds(365, 43, 55, 30);
 		day = new JComboBox<String>(BirthEnum.getDayTable());
 		new Style(day);
-		day.setBounds(330, 42, 55, 30);
+		day.setBounds(445, 43, 55, 30);
 
 		year.addActionListener(new YearMonthClick("year", "비번찾기"));
 		month.addActionListener(new YearMonthClick("month", "비번찾기"));
@@ -118,36 +118,34 @@ public class FindPasswordPageUser extends JPanel {
 
 		JLabel phoneKor = new JLabel("전화 번호 : ");
 		new Style(phoneKor);
-		phoneKor.setBounds(85, 26, 100, 50);
+		phoneKor.setBounds(200, 26, 100, 50);
 		grid3.add(phoneKor);
 		gridAll.add(grid3);
 
 		phone_number1 = new JTextField("010");
 		new Style(phone_number1, 3);
-		phone_number1.setBounds(180, 38, 45, 30);
+		phone_number1.setBounds(295, 38, 45, 30);
 		grid3.add(phone_number1);
 
 		JLabel str = new JLabel("-", JLabel.CENTER);
-		str.setBounds(225, 38, 20, 30);
+		str.setBounds(340, 38, 20, 30);
 		new Style(str);
 		grid3.add(str);
 
 		phone_number2 = new JTextField();
 		new Style(phone_number2, 4);
-		phone_number2.setBounds(245, 38, 45, 30);
+		phone_number2.setBounds(360, 38, 45, 30);
 		grid3.add(phone_number2);
 
 		JLabel str2 = new JLabel("-", JLabel.CENTER);
-		str2.setBounds(290, 38, 20, 30);
+		str2.setBounds(405, 38, 20, 30);
 		new Style(str2);
 		grid3.add(str2);
 
 		phone_number3 = new JTextField();
 		new Style(phone_number3, 4);
-		phone_number3.setBounds(310, 38, 45, 30);
+		phone_number3.setBounds(425, 38, 45, 30);
 		grid3.add(phone_number3);
-
-		System.out.println("여기는 비번 페이지 : " + MainPage.userToggle);
 
 		phoneTotal = new JTextField[] { phone_number1, phone_number2, phone_number3 };
 
@@ -163,8 +161,8 @@ public class FindPasswordPageUser extends JPanel {
 		grid4.setOpaque(false);
 		grid4.setLayout(null);
 
-		JLabel foundPW = new JLabel("", JLabel.CENTER);
-		foundPW.setBounds(100, 15, 270, 50);
+		JLabel foundPW = new JLabel("",JLabel.CENTER);
+		foundPW.setBounds(205, 15, 270, 50);
 		grid4.add(foundPW);
 		new Style(foundPW);
 
@@ -177,7 +175,7 @@ public class FindPasswordPageUser extends JPanel {
 		JButton find = new JButton("검색");
 		JButton cancel = new JButton("취소");
 		JButton[] findCancel = { find, cancel };
-		int x = 130;
+		int x = 245;
 		for (int i = 0; i < findCancel.length; i++) {
 			new Style(findCancel[i]);
 			findCancel[i].setBounds(x, 15, 80, 40);
