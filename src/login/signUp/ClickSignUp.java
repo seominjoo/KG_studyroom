@@ -29,14 +29,12 @@ import login.PhoneNumberEnum;
 import login.mainmenu.Time;
 import login.signUp.window.ResultWindow;
 
-
 public class ClickSignUp extends MouseAdapter {
 
 	static int person_id;
 	static String person_name;
 
 	static String phoneNumber;
-
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -50,8 +48,7 @@ public class ClickSignUp extends MouseAdapter {
 		JTextField phoneNumber1 = SignUpPage.phone_number1;
 		JTextField phoneNumber2 = SignUpPage.phone_number2;
 		JTextField phoneNumber3 = SignUpPage.phone_number3;
-		String text = phoneNumber1.getText() + "-" + phoneNumber2.getText()
-				+ "-" + phoneNumber3.getText();
+		String text = phoneNumber1.getText() + "-" + phoneNumber2.getText() + "-" + phoneNumber3.getText();
 
 		pw = SignUpEnum.PASSWORD.blindPW;
 		pwConfirm = SignUpEnum.PASSWORDCONFIRM.blindPW;
@@ -59,36 +56,33 @@ public class ClickSignUp extends MouseAdapter {
 		if (e.getButton() == MouseEvent.BUTTON1) {
 			if (!Pattern.matches("[°¡-ÆR]{2,4}", SignUpEnum.NAME.text.getText())) {
 				new ResultWindow("¼º ÇÔ");
-				SignUpEnum.NAME.text.setText("");;
-			}
-			else if (!Pattern.matches("[0-9]{8}", year + month + day)) {
+				SignUpEnum.NAME.text.setText("");
+				;
+			} else if (!Pattern.matches("[0-9]{8}", year + month + day)) {
 				new ResultWindow("»ý³â ¿ùÀÏ");
-			} 
-			else if (!(Pattern.matches("01[0-9]", phoneNumber1.getText())
+			} else if (!(Pattern.matches("01[0-9]", phoneNumber1.getText())
 					&& Pattern.matches("[0-9]{4}", phoneNumber2.getText())
 					&& Pattern.matches("[0-9]{4}", phoneNumber3.getText()))) {
 				new ResultWindow("ÀüÈ­ ¹øÈ£");
 				phoneNumber1.setText("");
 				phoneNumber2.setText("");
-				phoneNumber3.setText("");				
-			}
-			else if (!Pattern.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,12}$", pw.getText())) {
+				phoneNumber3.setText("");
+			} else if (!Pattern.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,12}$", pw.getText())) {
 				new ResultWindow("ºñ¹Ð ¹øÈ£");
 				pw.setText("");
 				pwConfirm.setText("");
-			}
-			else if (!pw.getText().equals(pwConfirm.getText()) || pw.getText().equals(SignUpEnum.PASSWORDCONFIRM.labelName)) {
+			} else if (!pw.getText().equals(pwConfirm.getText())
+					|| pw.getText().equals(SignUpEnum.PASSWORDCONFIRM.labelName)) {
 				new ResultWindow("ºñ¹Ð ¹øÈ£ È®ÀÎ");
 				pwConfirm.setText("");
-			}
-			else {
+			} else {
 				// ¾à°ü Ã¼Å©
 				for (Entry<JCheckBox, JButton> kv : SignUpPage.consent.entrySet()) {
 					if (!kv.getKey().isSelected()) {
 						consentCheck = false;
 						new ResultWindow("¾à°ü µ¿ÀÇ");
 						break;
-					} 
+					}
 				}
 
 				if (consentCheck) {
@@ -113,7 +107,7 @@ public class ClickSignUp extends MouseAdapter {
 								new ResultWindow("ÀüÈ­ ¹øÈ£ Áßº¹");
 								phoneNumber1.setText("");
 								phoneNumber2.setText("");
-								phoneNumber3.setText("");	
+								phoneNumber3.setText("");
 								samePhoneNumber = true;
 								break;
 							}
@@ -125,20 +119,31 @@ public class ClickSignUp extends MouseAdapter {
 							read_PhoneNumber.close();
 
 						if (!samePhoneNumber) {
+
+							PreparedStatement read_MaxIDNum = conn
+									.prepareStatement("select max(person_id) from person_info group by person_id");
+
+							ResultSet rs1 = read_MaxIDNum.executeQuery();
+
+							while (rs1.next()) {
+								person_id = rs1.getInt(1);
+							}
+
 							PreparedStatement insertPersonInfo = conn.prepareStatement("INSERT INTO Person_Info "
 									+ "(Person_Id,Check_Time,Person_Name, person_birth, Phone_Number,PW,Total_Payment)"
-									+ " VALUES(SignUpSeq.nextval, ?, ?, ?, ?, ?, ?)");
+									+ " VALUES(?, ?, ?, ?, ?, ?, ?)");
 
 							// Batch : ÀÏ°ýÃ³¸®
 							DateFormat simple = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 							Date now = new Date();
 
-							insertPersonInfo.setString(1, simple.format(now));
-							insertPersonInfo.setString(2, SignUpEnum.NAME.text.getText());
-							insertPersonInfo.setString(3, year + month + day);
-							insertPersonInfo.setString(4, text);
-							insertPersonInfo.setString(5, pw.getText());
-							insertPersonInfo.setInt(6, 0);
+							insertPersonInfo.setInt(1, person_id + 1);
+							insertPersonInfo.setString(2, simple.format(now));
+							insertPersonInfo.setString(3, SignUpEnum.NAME.text.getText());
+							insertPersonInfo.setString(4, year + month + day);
+							insertPersonInfo.setString(5, text);
+							insertPersonInfo.setString(6, pw.getText());
+							insertPersonInfo.setInt(7, 0);
 
 							insertPersonInfo.addBatch();
 
@@ -149,9 +154,9 @@ public class ClickSignUp extends MouseAdapter {
 
 							PreparedStatement read_name_ID_from_personInfo = conn.prepareStatement(
 									"SELECT person_id, person_name FROM person_info where phone_number = ?");
-							
+
 							read_name_ID_from_personInfo.setString(1, text);
-							
+
 							ResultSet rs2 = read_name_ID_from_personInfo.executeQuery();
 
 							while (rs2.next()) {
@@ -159,8 +164,12 @@ public class ClickSignUp extends MouseAdapter {
 								person_name = rs2.getString(2);
 							}
 
-							new ResultWindow(person_id,person_name);
+							new ResultWindow(person_id, person_name);
 
+							if (rs1 != null)
+								rs1.close();
+							if (read_MaxIDNum != null)
+								read_MaxIDNum.close();
 							if (rs2 != null)
 								rs2.close();
 							if (read_name_ID_from_personInfo != null)
