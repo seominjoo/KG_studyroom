@@ -1,0 +1,259 @@
+package login.page;
+
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.format.DateTimeFormatter;
+
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import login.design.Style;
+import login.mainmenu.Time;
+import login.mainmenu._06move;
+
+public class StoreMoveBtnPage extends JFrame {
+
+	static BufferedImage image;
+	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
+	JButton move;
+
+	String sql_move ="";
+	String type ="";
+	
+	int id=0;
+	String exp = "";
+	String name ="";
+	String pn = "";
+	Timestamp time = null;
+
+	public StoreMoveBtnPage() {
+		
+		String sql="";			
+		JLabel title = null;
+
+		move = new JButton("확인");
+		
+		if (StoreManagementPage.type != StoreMovePage.type) {
+			JOptionPane.showMessageDialog(null,"이동 불가한 선택입니다.");
+		} else {
+		
+		try {
+			
+			image = ImageIO.read(new File("image/로고.png"));
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			if (StoreManagementPage.type.equals("사물함")) {
+
+				title = new JLabel(StoreMovePage.locker_move_number +"번 사물함으로 이동하시겠습니까?");
+			
+				move.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {	
+						try {
+							Connection conn;
+							conn = DriverManager.getConnection(
+									"jdbc:oracle:thin:@localhost:1521/XEPDB1",
+									"hr",
+									"1234"
+									);
+							
+							sql_move = "SELECT l_time_enter, l_time_checkout FROM locker WHERE locker_number =?";
+							PreparedStatement pstmt = conn.prepareStatement(sql_move);
+							pstmt.setInt(1, StoreManagementPage.locker_number);
+							ResultSet rs0 = pstmt.executeQuery(); 
+							while(rs0.next()) { 
+								Timestamp te = rs0.getTimestamp("l_time_enter");
+								Timestamp tco = rs0.getTimestamp("l_time_checkout");
+								String sql = "UPDATE locker SET Locker_Statement ='사용 중',l_time_enter=?,l_time_checkout=? WHERE Locker_Number=?";
+								pstmt = conn.prepareStatement(sql);
+								pstmt.setTimestamp(1, te);
+								pstmt.setTimestamp(2, tco);
+								pstmt.setInt(3, StoreMovePage.locker_move_number);
+								int row = pstmt.executeUpdate(); 
+							}
+		
+							sql_move = "UPDATE locker SET Locker_Statement ='사용 가능',l_time_enter=null,l_time_checkout=null WHERE Locker_Number=?";
+							pstmt = conn.prepareStatement(sql_move);
+							pstmt.setInt(1, StoreManagementPage.locker_number);
+							int row2 = pstmt.executeUpdate(); 
+												
+							sql_move = "UPDATE person_info SET Locker_number=? WHERE Person_Id =?";
+							pstmt = conn.prepareStatement(sql_move);
+							pstmt.setInt(1, StoreMovePage.locker_move_number);
+							pstmt.setInt(2, id);
+							int row3 = pstmt.executeUpdate(); 
+							
+							if (pstmt != null) pstmt.close();
+							if (rs0 != null) rs0.close();
+							if (conn != null) conn.close();
+							
+							System.out.printf("%d번 사물함이 이동되었습니다. (locker %d행, person_info %d행이 변경되었습니다)\n",StoreManagementPage.locker_number, row2, row3);
+							
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}						
+						JOptionPane.showMessageDialog(null, "이동되었습니다.");
+						setVisible(false);
+						MainPage.main_page_panel.add("매장관리", new StoreManagementPage());
+						MainPage.main_cards.show(MainPage.main_page_panel, "매장관리");
+						MainPage.userToggle = "매장관리";
+					}
+				});
+
+			} else if (StoreManagementPage.type.equals("룸")) {
+
+				title = new JLabel(StoreMovePage.room_move_number +"호 룸으로 이동하시겠습니까?");	
+				
+				move.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+											
+						try {
+							Connection conn;
+							conn = DriverManager.getConnection(
+									"jdbc:oracle:thin:@localhost:1521/XEPDB1",
+									"hr",
+									"1234"
+									);
+							sql_move = "SELECT time_enter, time_checkout FROM seat WHERE seat_number =?";
+							PreparedStatement pstmt = conn.prepareStatement(sql_move);
+							pstmt.setInt(1, StoreManagementPage.room_number);
+							ResultSet rs0 = pstmt.executeQuery(); 
+							while(rs0.next()) { 
+								Timestamp te = rs0.getTimestamp("time_enter");
+								Timestamp tco = rs0.getTimestamp("time_checkout");
+								String sql = "UPDATE seat SET seat_Statement ='사용 중',time_enter=?,time_checkout=? WHERE seat_Number=?";
+								pstmt = conn.prepareStatement(sql);
+								pstmt.setTimestamp(1, te);
+								pstmt.setTimestamp(2, tco);
+								pstmt.setInt(3, StoreMovePage.room_move_number);
+								int row = pstmt.executeUpdate(); 
+							}
+							sql_move = "UPDATE seat SET Seat_Statement ='사용 가능',time_enter=null,time_checkout=null WHERE Seat_Number=?";
+							pstmt = conn.prepareStatement(sql_move);
+							pstmt.setInt(1, StoreManagementPage.room_number);
+							int row2 = pstmt.executeUpdate(); 
+												
+							sql_move = "UPDATE person_info SET room_number=? WHERE Person_Id =?";
+							pstmt = conn.prepareStatement(sql_move);
+							pstmt.setInt(1, StoreMovePage.room_move_number);
+							pstmt.setInt(2, id);
+							int row3 = pstmt.executeUpdate(); 
+							
+							if (pstmt != null) pstmt.close();
+							if (rs0 != null) rs0.close();
+							if (conn != null) conn.close();
+							
+							System.out.printf("%d호 룸이 이동되었습니다. (seat %d행, person_info %d행이 변경되었습니다)\n",StoreManagementPage.locker_number, row2, row3);
+							
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						JOptionPane.showMessageDialog(null, "이동되었습니다.");
+						setVisible(false);
+						MainPage.main_page_panel.add("매장관리", new StoreManagementPage());
+						MainPage.main_cards.show(MainPage.main_page_panel, "매장관리");
+						MainPage.userToggle = "매장관리";						
+					}
+				});
+
+			} else if (StoreManagementPage.type.equals("좌석")) {
+
+				title = new JLabel(StoreMovePage.seat_move_number +"번 좌석으로 이동하시겠습니까?");
+
+				move.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						try {
+							Connection conn;
+							conn = DriverManager.getConnection(
+									"jdbc:oracle:thin:@localhost:1521/XEPDB1",
+									"hr",
+									"1234"
+									);
+							
+							sql_move = "SELECT time_enter, time_checkout FROM seat WHERE seat_number =?";
+							PreparedStatement pstmt = conn.prepareStatement(sql_move);
+							pstmt.setInt(1, StoreManagementPage.seat_number);
+							ResultSet rs0 = pstmt.executeQuery(); 
+							while(rs0.next()) { 
+								Timestamp te = rs0.getTimestamp("time_enter");
+								Timestamp tco = rs0.getTimestamp("time_checkout");
+								String sql = "UPDATE seat SET Seat_Statement ='사용 중',time_enter=?,time_checkout=? WHERE Seat_Number=?";
+								pstmt = conn.prepareStatement(sql);
+								pstmt.setTimestamp(1, te);
+								pstmt.setTimestamp(2, tco);
+								pstmt.setInt(3, StoreMovePage.seat_move_number);
+								int row = pstmt.executeUpdate(); 
+							}
+		
+							sql_move = "UPDATE seat SET Seat_Statement ='사용 가능',time_enter=null,time_checkout=null WHERE Seat_Number=?";
+							pstmt = conn.prepareStatement(sql_move);
+							pstmt.setInt(1, StoreManagementPage.seat_number);
+							int row2 = pstmt.executeUpdate(); 
+												
+							sql_move = "UPDATE person_info SET seat_number=? WHERE Person_Id =?";
+							pstmt = conn.prepareStatement(sql_move);
+							pstmt.setInt(1, StoreMovePage.seat_move_number);
+							pstmt.setInt(2, id);
+							int row3 = pstmt.executeUpdate(); 
+							
+							if (pstmt != null) pstmt.close();
+							if (rs0 != null) rs0.close();
+							if (conn != null) conn.close();
+							
+							System.out.printf("%d번 좌석이 이동되었습니다. (seat %d행, person_info %d행이 변경되었습니다)\n",StoreManagementPage.locker_number, row2, row3);
+							
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}						
+						JOptionPane.showMessageDialog(null, "이동되었습니다.");
+						setVisible(false);
+						MainPage.main_page_panel.add("매장관리", new StoreManagementPage());
+						MainPage.main_cards.show(MainPage.main_page_panel, "매장관리");
+						MainPage.userToggle = "매장관리";
+					}
+				});
+			} 
+
+			title.setBounds(70,10,300,80);
+			title.setForeground(Color.white);
+			add(title);
+
+			new Style(move);
+			move.setBorder(BorderFactory.createLineBorder(Color.white));
+			move.setForeground(Color.white);
+			add(move);
+			move.setBounds(80,100,180,50);
+			
+			setLayout(null);
+			getContentPane().setBackground(Color.decode("#404040"));
+			setBounds(550, 200, 350, 250);
+			setVisible(true);
+
+
+		} catch (ClassNotFoundException | IOException e1) {
+			e1.printStackTrace();
+		}
+		}
+	}
+}
+
+

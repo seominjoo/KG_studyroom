@@ -19,11 +19,10 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
 import login.design.Style;
 import login.mainmenu.Time;
-import login.mainmenu._00myPage;
 
 public class StoreBtnPage extends JFrame {
 
@@ -32,120 +31,274 @@ public class StoreBtnPage extends JFrame {
 	JButton out;
 	JButton move;
 
+	String sql_out ="";
+	String type ="";
+
 	public StoreBtnPage() {
+		
+		String sql="";	
+		String sql2="";
+		int id=0;
+		String exp = "";
+		String name ="";
+		String pn = "";
+		Timestamp time = null;
+		JLabel title = null;
+		JLabel info = null;
+		out = new JButton("퇴실");
+		move = new JButton("이동");
+
+		
 		try {
 			
 			image = ImageIO.read(new File("image/로고.png"));
-
 			Class.forName("oracle.jdbc.driver.OracleDriver");
+
 			Connection conn;
 			conn = DriverManager.getConnection(
 					"jdbc:oracle:thin:@localhost:1521/XEPDB1",
 					"hr",
 					"1234"
 					);
-
 			PreparedStatement pstmt = null;
-			String sql="";
-			int id=0;
-			String exp = "";
-			String name ="";
-			String type ="";
-			String pn = "";
-			Timestamp time = null;
-			JLabel title = null;
-			JLabel info = null;
-
+			
 			if (StoreManagementPage.type.equals("사물함")) {
+				
+				sql = "SELECT Person_Id, Person_Name, Phone_Number, l_time_checkout FROM person_info, locker WHERE locker.locker_number =?";
 
-				sql = "SELECT Person_Id, Person_Name, Expiration_locker, Phone_Number FROM person_info WHERE locker_number =?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, StoreManagementPage.locker_number); 
 				ResultSet rs = pstmt.executeQuery(); 
 				while(rs.next()) { 
 					id = rs.getInt(1);
 					name = rs.getString(2);
-					time = rs.getTimestamp(3);
-					exp = Time.TimeStampTOlocalDateTime(time).format(dateTimeFormatter);	
-					pn = rs.getString(4);
+					pn = rs.getString(3);
+					time = rs.getTimestamp(4);
+					exp = Time.TimeStampTOlocalDateTime(time).format(dateTimeFormatter);
 				}
 				
 				title = new JLabel(StoreManagementPage.locker_number +"번 사물함 정보");
 				info = new JLabel(
-						"<html>회원번호 : "+id+"번"+
-						"<br/>회원이름 : "+name+
-						"<br/>핸드폰번호 : "+pn+
-						"<br/>만료기간 : "+exp
+								"<html>회원번호 : "+id+"번"+
+								"<br/>회원이름 : "+name+
+								"<br/>핸드폰번호 : "+pn+
+								"<br/>만료기간 : "+exp
 						);
-				if (rs != null)
-					rs.close();
+
+				out.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+
+						try {
+							Connection conn;
+							conn = DriverManager.getConnection(
+									"jdbc:oracle:thin:@localhost:1521/XEPDB1",
+									"hr",
+									"1234"
+									);
+							sql_out = "UPDATE locker SET Locker_Statement ='사용 가능',l_time_enter=null,l_time_checkout=null WHERE Locker_Number=?";
+							PreparedStatement pstmt = conn.prepareStatement(sql_out);
+							pstmt.setInt(1, StoreManagementPage.locker_number);
+							int row = pstmt.executeUpdate(); 
+							
+							sql_out = "UPDATE person_info SET locker_number=null WHERE Locker_Number=?";
+							pstmt = conn.prepareStatement(sql_out);
+							pstmt.setInt(1, StoreManagementPage.locker_number);
+							int row2 = pstmt.executeUpdate(); 
+							
+							if (pstmt != null) pstmt.close();
+							if (rs != null) rs.close();
+							System.out.printf("%d번 사물함이 반납되었습니다. (locker %d행, person_info %d행이 변경되었습니다)\n",StoreManagementPage.locker_number, row, row2);
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						JOptionPane.showMessageDialog(null, StoreManagementPage.locker_number+"번 사물함이 반납되었습니다");
+						setVisible(false);
+						MainPage.main_page_panel.add("매장관리", new StoreManagementPage());
+						MainPage.main_cards.show(MainPage.main_page_panel, "매장관리");
+						MainPage.userToggle = "매장관리";
+					}
+				});
+				
+				move.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {					
+						int result = JOptionPane.showConfirmDialog(null, "이동할 사물함을 선택해주세요",null, JOptionPane.OK_CANCEL_OPTION);
+						if(result==0) {					
+						setVisible(false);
+						MainPage.main_page_panel.add("매장관리-이동", new StoreMovePage());
+						MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+						MainPage.main_cards.show(MainPage.main_page_panel, "매장관리-이동");
+						MainPage.userToggle = "매장관리-이동";
+						}
+					}
+				});
 
 			} else if (StoreManagementPage.type.equals("룸")) {
-				sql = "SELECT Person_Id, Person_Name, Expiration_room, Seat_Type, Phone_Number FROM person_info WHERE room_number =?";
+				
+				sql = "SELECT Person_Id, Person_Name, seat_type, Phone_Number, time_checkout FROM person_info, seat WHERE seat.seat_number =?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, StoreManagementPage.room_number); 
-				ResultSet rs2 = pstmt.executeQuery(); 
-				while(rs2.next()) { 
-					id = rs2.getInt(1);
-					name = rs2.getString(2);
-					time = rs2.getTimestamp(3);
+				ResultSet rs = pstmt.executeQuery(); 
+				while(rs.next()) { 
+					id = rs.getInt(1);
+					name = rs.getString(2);
+					type = rs.getString(3);
+					pn = rs.getString(4);
+					time = rs.getTimestamp(5);
 					exp = Time.TimeStampTOlocalDateTime(time).format(dateTimeFormatter);
-					type = rs2.getString(4);
-					pn = rs2.getString(5);
 				}
-				
+
 				title = new JLabel(StoreManagementPage.room_number +"호 룸 정보");
 				info = new JLabel(
-						"<html>회원번호 : "+id+"번"+
-						"<br/>회원이름 : "+name+
-						"<br/>핸드폰번호 : "+pn+
-						"<br/>만료기간 : "+exp+
-						"<br/>이용권 : "+type
+								"<html>회원번호 : "+id+"번"+
+								"<br/>회원이름 : "+name+
+								"<br/>핸드폰번호 : "+pn+
+								"<br/>만료기간 : "+exp+
+								"<br/>이용권 : "+type
 						);
 				
-				if (rs2 != null)
-					rs2.close();
-				if (conn != null)
-					conn.close();
+				out.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+
+						try {
+							Connection conn;
+							conn = DriverManager.getConnection(
+									"jdbc:oracle:thin:@localhost:1521/XEPDB1",
+									"hr",
+									"1234"
+									);
+							
+							sql_out = "UPDATE seat SET Seat_Statement ='사용 가능',time_enter=null,time_checkout=null WHERE Seat_Number=?";
+							PreparedStatement pstmt = conn.prepareStatement(sql_out);
+							pstmt.setInt(1, StoreManagementPage.room_number);
+							int row = pstmt.executeUpdate(); 
+							
+							sql_out = "UPDATE person_info SET room_number=null, Seat_Type ='x' WHERE Room_Number=?";
+							pstmt = conn.prepareStatement(sql_out);
+							pstmt.setInt(1, StoreManagementPage.room_number);
+							int row2 = pstmt.executeUpdate(); 
+							
+							System.out.printf("%d호 룸이 퇴실되었습니다. (seat %d행, person_info %d행이 변경되었습니다)\n",StoreManagementPage.room_number, row, row2);
+							if (pstmt != null) pstmt.close();
+							if (rs != null) rs.close();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						JOptionPane.showMessageDialog(null, StoreManagementPage.room_number+ "호 룸이 퇴실되었습니다");
+						setVisible(false);
+						MainPage.main_page_panel.add("매장관리", new StoreManagementPage());
+						MainPage.main_cards.show(MainPage.main_page_panel, "매장관리");
+						MainPage.userToggle = "매장관리";
+					}
+				});
 				
+				move.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						int result = JOptionPane.showConfirmDialog(null, "이동할 룸을 선택해주세요",null, JOptionPane.OK_CANCEL_OPTION);
+						if(result==0) {					
+						setVisible(false);
+						MainPage.main_page_panel.add("매장관리-이동", new StoreMovePage());
+						MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+						MainPage.main_cards.show(MainPage.main_page_panel, "매장관리-이동");
+						MainPage.userToggle = "매장관리-이동";
+						}
+					}
+				});
+
 			} else if (StoreManagementPage.type.equals("좌석")) {
-				sql = "SELECT Person_Id, Person_Name, Expiration_seat, Seat_Type, Phone_Number FROM person_info WHERE seat_number =?";
+
+				sql = "SELECT Person_Id, Person_Name, seat_type, Phone_Number, time_checkout FROM person_info, seat WHERE seat.seat_number =?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, StoreManagementPage.seat_number); 
-				ResultSet rs3 = pstmt.executeQuery(); 
-				while(rs3.next()) { 
-					id = rs3.getInt(1);
-					name = rs3.getString(2);
-					time = rs3.getTimestamp(3);
+				ResultSet rs = pstmt.executeQuery(); 
+				while(rs.next()) { 
+					id = rs.getInt(1);
+					name = rs.getString(2);
+					type = rs.getString(3);
+					pn = rs.getString(4);
+					time = rs.getTimestamp(5);
 					exp = Time.TimeStampTOlocalDateTime(time).format(dateTimeFormatter);
-					type = rs3.getString(4);
-					pn = rs3.getString(5);
 				}
-				
+
 				title = new JLabel(StoreManagementPage.seat_number +"번 좌석 정보");
 				info = new JLabel(
-						"<html>회원번호 : "+id+"번"+
-						"<br/>회원이름 : "+name+
-						"<br/>핸드폰번호 : "+pn+
-						"<br/>만료기간 : "+exp+
-						"<br/>이용권 : "+type
+								"<html>회원번호 : "+id+"번"+
+								"<br/>회원이름 : "+name+
+								"<br/>핸드폰번호 : "+pn+
+								"<br/>만료기간 : "+exp+
+								"<br/>이용권 : "+type
 						);
-				System.out.println(id);
-				if (rs3 != null)
-					rs3.close();
-				if (conn != null)
-					conn.close();
+				
+				out.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+
+						try {
+							Connection conn;
+							conn = DriverManager.getConnection(
+									"jdbc:oracle:thin:@localhost:1521/XEPDB1",
+									"hr",
+									"1234"
+									);
+							
+							sql_out = "UPDATE seat SET Seat_Statement ='사용 가능',time_enter=null,time_checkout=null WHERE Seat_Number=?";
+							PreparedStatement pstmt = conn.prepareStatement(sql_out);
+							pstmt.setInt(1, StoreManagementPage.seat_number);
+							int row = pstmt.executeUpdate(); 
+							System.out.printf("%d번 좌석이 퇴실되었습니다.(seat %d행이 변경되었습니다.)\n",StoreManagementPage.seat_number, row);
+							
+							if (type.equals("일일 이용권")) {
+							sql_out = "UPDATE person_info SET seat_number=null, Seat_Type ='x' WHERE Seat_Number=?";
+							pstmt = conn.prepareStatement(sql_out);
+							pstmt.setInt(1, StoreManagementPage.seat_number);
+							int row2 = pstmt.executeUpdate(); 
+							System.out.printf("person_info %d행이 변경되었습니다.\n", row2);
+							}
+							if (pstmt != null) pstmt.close();
+							if (rs != null) rs.close();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						JOptionPane.showMessageDialog(null, StoreManagementPage.seat_number+ "번 좌석이 퇴실되었습니다");
+						setVisible(false);
+						MainPage.main_page_panel.add("메인", new MainPage());
+						MainPage.main_page_panel.add("매장관리", new StoreManagementPage());
+						MainPage.main_cards.show(MainPage.main_page_panel, "매장관리");
+						MainPage.userToggle = "매장관리";
+					}
+				});
+				
+				move.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						int result = JOptionPane.showConfirmDialog(null, "이동할 좌석을 선택해주세요",null, JOptionPane.OK_CANCEL_OPTION);
+						if(result==0) {					
+						setVisible(false);
+						MainPage.main_page_panel.add("매장관리-이동", new StoreMovePage());
+						MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+						MainPage.main_cards.show(MainPage.main_page_panel, "매장관리-이동");
+						MainPage.userToggle = "매장관리-이동";
+						}
+					}
+				});	
+				if (pstmt != null) pstmt.close();
+				if (rs != null) rs.close();
 			} 
-			
+
 			title.setBounds(120,10,300,40);
 			info.setBounds(20,0,300,190);
 			title.setForeground(Color.white);
 			info.setForeground(Color.white);
 			add(title);
 			add(info);
-			
-			out = new JButton("퇴실");
-			move = new JButton("이동");
+
 			new Style(out);
 			new Style(move);
 			out.setBorder(BorderFactory.createLineBorder(Color.white));
@@ -162,7 +315,6 @@ public class StoreBtnPage extends JFrame {
 			setBounds(550, 300, 350, 300);
 			setVisible(true);
 
-			if (pstmt != null) pstmt.close();
 			if (conn != null) conn.close();
 
 		} catch (ClassNotFoundException | IOException | SQLException e1) {
@@ -170,3 +322,4 @@ public class StoreBtnPage extends JFrame {
 		}
 	}
 }
+

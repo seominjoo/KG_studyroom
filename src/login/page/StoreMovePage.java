@@ -5,9 +5,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,24 +13,18 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 
 import login.design.Style;
-import login.findPW.FindPasswordPageUser;
-import login.mainmenu._01start;
 
-public class StoreManagementPage extends JPanel implements ActionListener {
+public class StoreMovePage extends JPanel implements ActionListener {
 
 	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
 	JLabel title;
@@ -47,9 +38,9 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 	JMenu s = new JMenu("1인석");
 	JMenu r = new JMenu("룸");	
 	JMenu l = new JMenu("사물함");
-	public static int seat_number;
-	public static int room_number;
-	public static int locker_number;
+	public static int seat_move_number;
+	public static int room_move_number;
+	public static int locker_move_number;
 	public static String type;
 	static LocalDateTime time_now = LocalDateTime.now();
 	String time_checkout;
@@ -67,21 +58,21 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 	{
 		for(int i=0;i<20;i++) {
 			seats_btn.add(new JButton());
-			seats_btn.get(i).addActionListener(new StoreBtnAction(i, "좌석"));
+			seats_btn.get(i).addActionListener(new StoreMoveBtnAction(i, "좌석"));
 		}
 	}
 	ArrayList<JButton> room_btn = new ArrayList<>(); //101~104호 (룸) 버튼
 	{
 		for(int i=0;i<4;i++) {//0~3
 			room_btn.add(new JButton());		
-			room_btn.get(i).addActionListener(new StoreBtnAction(i, "룸"));
+			room_btn.get(i).addActionListener(new StoreMoveBtnAction(i, "룸"));
 		}
 	}
 	ArrayList<JButton> locker_btn = new ArrayList<>(); //1~20번 사물함 버튼
 	{
 		for(int i=0;i<20;i++) {
 			locker_btn.add(new JButton()); 
-			locker_btn.get(i).addActionListener(new StoreBtnAction(i, "사물함"));
+			locker_btn.get(i).addActionListener(new StoreMoveBtnAction(i, "사물함"));
 		}
 	}
 	
@@ -89,7 +80,7 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 	{
 	for(int i=0; i<20; ++i) {
 		seat.add(new JMenuItem(Integer.toString(i+1)+"번"));
-		seat.get(i).addActionListener(new StoreBtnAction(i, "좌석"));
+		seat.get(i).addActionListener(new StoreMoveBtnAction(i, "좌석"));
 		s.add(seat.get(i));
 	}
 	}
@@ -98,7 +89,7 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 	{
 	for(int i=0; i<4; ++i) {
 		room.add(new JMenuItem(Integer.toString(i+101)+"호"));
-		room.get(i).addActionListener(new StoreBtnAction(i, "룸"));
+		room.get(i).addActionListener(new StoreMoveBtnAction(i, "룸"));
 		r.add(room.get(i));
 	}
 	}
@@ -107,12 +98,12 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 	{
 	for(int i=0; i<20; ++i) {
 		locker.add(new JMenuItem(Integer.toString(i+1)+"번"));
-		locker.get(i).addActionListener(new StoreBtnAction(i, "사물함"));
+		locker.get(i).addActionListener(new StoreMoveBtnAction(i, "사물함"));
 		l.add(locker.get(i));
 	}
 	}
 	
-	public StoreManagementPage() {
+	public StoreMovePage() {
 
 		this.setLayout(new BorderLayout());
 		new Style(this);
@@ -324,9 +315,10 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		MainPage.main_page_panel.add("매장관리", new StoreManagementPage());
-		MainPage.main_cards.show(MainPage.main_page_panel, "매장관리");
-		MainPage.userToggle = "매장관리";
+		MainPage.main_page_panel.add("매장관리-이동", new StoreMovePage());
+		MainPage.main_cards.show(MainPage.main_page_panel, "매장관리-이동");
+		MainPage.userToggle = "매장관리-이동";
 	}
 
 }
+
