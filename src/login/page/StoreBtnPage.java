@@ -15,6 +15,7 @@ import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;
 
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -134,27 +135,31 @@ public class StoreBtnPage extends JFrame {
 					rs3.close();
 				if (conn != null)
 					conn.close();
-			}
+			} 
 			
-			title.setBounds(120,0,300,40);
+			title.setBounds(120,10,300,40);
 			info.setBounds(20,0,300,190);
 			title.setForeground(Color.white);
 			info.setForeground(Color.white);
 			add(title);
 			add(info);
 			
-//			out = new JButton("Åð½Ç");
-//			move = new JButton("ÀÌµ¿");
-//			new Style(out);
-//			new Style(move);
-//			add(out);
-//			add(move);
-//			move.setBounds(50,200,100,50);
-//			out.setBounds(180,200,100,50);
+			out = new JButton("Åð½Ç");
+			move = new JButton("ÀÌµ¿");
+			new Style(out);
+			new Style(move);
+			out.setBorder(BorderFactory.createLineBorder(Color.white));
+			out.setForeground(Color.white);
+			move.setBorder(BorderFactory.createLineBorder(Color.white));
+			move.setForeground(Color.white);
+			add(out);
+			add(move);
+			move.setBounds(50,180,100,50);
+			out.setBounds(180,180,100,50);
 			
 			setLayout(null);
 			getContentPane().setBackground(Color.decode("#404040"));
-			setBounds(550, 300, 350, 220);
+			setBounds(550, 300, 350, 300);
 			setVisible(true);
 
 			if (pstmt != null) pstmt.close();
