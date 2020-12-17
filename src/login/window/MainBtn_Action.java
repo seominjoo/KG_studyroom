@@ -97,6 +97,7 @@ public class MainBtn_Action implements ActionListener {
             if (pstmt2 != null) pstmt.close();
             if (pstmt != null) pstmt.close();
             if (conn != null) conn.close();
+            MainPage.logoutcard.show(MainPage.logout, "1");
          } catch (ClassNotFoundException | SQLException e1) { 
             e1.printStackTrace();
          }
