@@ -66,11 +66,18 @@ public class SalesDB {
 
 			int[] weeks = { week1, week2, week3, week4, week5 };
 
-			if (realRow == 0) {
+			if (realRow == 0 && maxCnt == 2) {
+				for (int i2 = 0; i2 < weeks.length; i2++) {
+					SalesManagementPage.weekTotal[i2].setText(
+							(i2 + 1) + "주차 매출 : " + 0 + "원");
+				}
+			} 
+			else if(realRow == 0 && maxCnt != 2) {
 				for (int i2 = 0; i2 < weeks.length; i2++) {
 					SalesManagementPage.weekTotal[i2].setText("");
 				}
-			} else {
+			}
+			else {
 				ResultSet rs1 = read_data.executeQuery();
 				while (rs1.next()) {
 					contents[i][0] = rs1.getString(1).substring(0, 19);
@@ -103,17 +110,6 @@ public class SalesDB {
 							SalesManagementPage.weekTotal[i2].setText(
 									(i2 + 1) + "주차 매출 : " + NumberFormat.getInstance().format(weeks[i2]) + "원");
 						}
-
-//						SalesManagementPage.weekTotal[0]
-//								.setText(1 + "주차 매출 : " + NumberFormat.getInstance().format(week1) + "원");
-//						SalesManagementPage.weekTotal[1]
-//								.setText(2 + "주차 매출 : " + NumberFormat.getInstance().format(week2) + "원");
-//						SalesManagementPage.weekTotal[2]
-//								.setText(3 + "주차 매출 : " + NumberFormat.getInstance().format(week3) + "원");
-//						SalesManagementPage.weekTotal[3]
-//								.setText(4 + "주차 매출 : " + NumberFormat.getInstance().format(week4) + "원");
-//						SalesManagementPage.weekTotal[4]
-//								.setText(5 + "주차 매출 : " + NumberFormat.getInstance().format(week5) + "원");
 
 					} else {
 						for (int i2 = 0; i2 < SalesManagementPage.weekTotal.length; i2++) {

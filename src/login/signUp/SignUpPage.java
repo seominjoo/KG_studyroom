@@ -44,7 +44,7 @@ import login.page.MainPage;
 public class SignUpPage extends JPanel {
 	final int GRID = 8;
 
-	static Map<JCheckBox, JButton> consent;
+	public static Map<JCheckBox, JButton> consent;
 
 	static ImageIcon icon;
 	static BufferedImage source;
@@ -355,6 +355,9 @@ public class SignUpPage extends JPanel {
 					phoneTotal[i].setText(PhoneNumberEnum.values()[i].labelName);
 				}
 				year.setSelectedItem("2000");
+				for (Entry<JCheckBox, JButton> kv : consent.entrySet()) {
+					kv.getKey().setSelected(false);
+				}
 			}
 		});
 

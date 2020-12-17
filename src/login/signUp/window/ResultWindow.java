@@ -9,8 +9,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map.Entry;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -109,6 +111,9 @@ public class ResultWindow extends JFrame {
 							SignUpPage.phoneTotal[i].setText(PhoneNumberEnum.values()[i].labelName);
 						}
 						SignUpPage.year.setSelectedItem("2000");
+						for (Entry<JCheckBox, JButton> kv : SignUpPage.consent.entrySet()) {
+							kv.getKey().setSelected(false);
+						}
 					}
 						dispose();
 				}
