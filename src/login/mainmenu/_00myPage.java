@@ -53,7 +53,7 @@ public class _00myPage extends JFrame {
       DefaultTableModel model = new DefaultTableModel(contents, header);
       table = new JTable(model);
 
-      table.setBounds(45, 30, 380, 120);
+      table.setBounds(30, 30, 380, 120);
       table.setRowHeight(30);
 
       // 가로 길이

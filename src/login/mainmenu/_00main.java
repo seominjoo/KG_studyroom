@@ -61,7 +61,7 @@ public class _00main extends JPanel {
 //	public static int count_locker;
 //	DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy년 M월 d일");
 //	DateTimeFormatter time = DateTimeFormatter.ofPattern("a h시 m분 ");
-	
+
 	public static int seat_chk;
 	public static int locker_chk;
 	public static int room_chk;
@@ -107,7 +107,7 @@ public class _00main extends JPanel {
 					int row3 = pstmt2.executeUpdate();
 				}
 			}
-			
+
 			System.out.println("db실행");
 			// 퇴실시간(만료시간) 지나면 회원정보 만료시간 리셋
 			sql = "SELECT seat_number,room_number,locker_number,expiration_seat,seat_type "
@@ -144,22 +144,29 @@ public class _00main extends JPanel {
 					int row4 = pstmt3.executeUpdate();
 				}
 			}
-			
-			//회원의 름 만료시간 가져오기
-			sql = "select time_checkout from seat where seat_number = "+room_chk+"";
-			pstmt = conn.prepareStatement(sql); 
-			rs = pstmt.executeQuery(); 
-			while (rs.next()) {
-				 time_room = rs.getTimestamp("time_checkout");
+			System.out.println(room_chk);
+			// 회원의 름 만료시간 가져오기
+			if (room_chk == 0) {
+				time_room = Timestamp.valueOf("0001-01-01 00:00:00");
+			} else {
+				sql = "select time_checkout from seat where seat_number = " + room_chk + "";
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					time_room = rs.getTimestamp("time_checkout");
+				}
 			}
-			
-			sql = "select l_time_checkout from locker where locker_number = "+locker_chk+"";
-			pstmt = conn.prepareStatement(sql); 
-			rs = pstmt.executeQuery(); 
-			while (rs.next()) {
-				 time_locker = rs.getTimestamp("l_time_checkout");
+			if (locker_chk == 0) {
+				time_locker = Timestamp.valueOf("0001-01-01 00:00:00");
+			} else {
+				sql = "select l_time_checkout from locker where locker_number = " + locker_chk + "";
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while (rs.next()) {
+					time_locker = rs.getTimestamp("l_time_checkout");
+				}
 			}
-			
+
 			if (rs != null)
 				rs.close();
 			if (pstmt != null)
@@ -176,32 +183,31 @@ public class _00main extends JPanel {
 
 		// 메뉴 버튼 4개
 		JButton ticket_btn = new JButton("이용권구매");
-		ticket_btn.setBounds(85, 195, 208, 121);
+		ticket_btn.setBounds(130, 150, 208, 121);
 		this.add(ticket_btn);
 
 		JButton in_btn = new JButton("입실하기");
-		in_btn.setBounds(298, 195, 213, 121);
+		in_btn.setBounds(348, 150, 213, 121);
 		this.add(in_btn);
 
 		JButton move_btn = new JButton("자리이동");
-		move_btn.setBounds(85, 321, 208, 126);
+		move_btn.setBounds(130, 281, 208, 126);
 		this.add(move_btn);
 
 		JButton out_btn = new JButton("퇴실하기");
-		out_btn.setBounds(298, 321, 213, 126);
+		out_btn.setBounds(348, 281, 213, 126);
 		this.add(out_btn);
-		
+
 		JButton chk_info = new JButton("마이 페이지");
-		chk_info.setBounds(85, 460, 120, 30);
+		chk_info.setBounds(130, 110, 120, 30);
 		this.add(chk_info);
-		
-		
+
 		new Style(ticket_btn);
 		new Style(in_btn);
 		new Style(move_btn);
 		new Style(out_btn);
 		new Style(chk_info);
-		
+
 //		// 스터디룸 상황표
 //		String header[] = { "1인석", "스터디룸", "사물함", "현재시간" };
 //		String contents[][] = { { "<html>사용중 1인석<br/>&emsp;&emsp;" + Integer.toString(count_seat) + " / 20",
@@ -234,22 +240,20 @@ public class _00main extends JPanel {
 //		table.setFont(new Font("맑은 고딕", Font.BOLD, 11));
 //		this.add(table);
 //		
-		 
-		 
+
 		chk_info.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				 
+
 				new _00myPage();
-				 
-				 
+
 			}
 		});
 		ticket_btn.addActionListener(new ActionListener() { // 이용권 페이지
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MainPage.user_page_panel.add("이용권구매", new _01start()); // 이용권구매 페이지 
+				MainPage.user_page_panel.add("이용권구매", new _01start()); // 이용권구매 페이지
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "이용권구매");
 				MainPage.userToggle = "이용권구매";
@@ -290,7 +294,7 @@ public class _00main extends JPanel {
 					String msg = "이미 좌석이 있습니다.";
 					JOptionPane.showMessageDialog(null, msg);
 				} else if (type.equals("정기 이용권")) {
-					  MainPage.user_page_panel.add("입실페이지", new _07in_selectSeat());
+					MainPage.user_page_panel.add("입실페이지", new _07in_selectSeat());
 					MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 					MainPage.user_cards.show(MainPage.user_page_panel, "입실페이지");
 					MainPage.userToggle = "입실페이지";
@@ -303,7 +307,4 @@ public class _00main extends JPanel {
 
 	}
 
-	public static void main(String[] args) {
-		new _00main();
-	}
 }

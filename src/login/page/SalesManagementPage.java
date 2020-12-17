@@ -121,7 +121,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 		yearTotal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new SalesDB("SELECT paid_time,seat_type,locker_type,pay_method,payment"
+				new SalesDB("SELECT paid_time,person_id,seat_type,locker_type,pay_method,payment"
 						+ " FROM payment_record where substr(paid_time,1,2) = ? order by paid_time", 1);
 			}
 		});
@@ -134,7 +134,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 		monthTotal.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new SalesDB("SELECT paid_time,seat_type,locker_type,pay_method,payment"
+				new SalesDB("SELECT paid_time,person_id,seat_type,locker_type,pay_method,payment"
 						+ " FROM payment_record where substr(paid_time,1,2) = ? "
 						+ "and substr(paid_time,4,2) = ? order by paid_time", 2);
 			}
@@ -149,7 +149,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new SalesDB(
-						"SELECT paid_time,seat_type,locker_type,pay_method,payment"
+						"SELECT paid_time,person_id,seat_type,locker_type,pay_method,payment"
 								+ " FROM payment_record where substr(paid_time,1,2) = ? "
 								+ "and substr(paid_time,4,2) = ? " + "and substr(paid_time,7,2) = ? order by paid_time",
 						3);
@@ -159,14 +159,14 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 		total.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new SalesDB("SELECT paid_time,seat_type,locker_type,pay_method,payment"
+				new SalesDB("SELECT paid_time,person_id,seat_type,locker_type,pay_method,payment"
 						+ " FROM payment_record order by paid_time", 0);
 			}
 		});
 
 		// 초기 화면
 		new SalesDB(
-				"SELECT paid_time,seat_type,locker_type,pay_method,payment" + " FROM payment_record order by paid_time",
+				"SELECT paid_time,person_id,seat_type,locker_type,pay_method,payment" + " FROM payment_record order by paid_time",
 				0);
 
 	}

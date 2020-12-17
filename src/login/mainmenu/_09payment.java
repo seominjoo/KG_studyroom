@@ -146,13 +146,14 @@ public class _09payment extends JPanel{
             int rowt1 = pstmt.executeUpdate();
 
             //결제테이블에 저장
-            String sql_pay = " insert into Payment_Record(Paid_Time,Exit_Time,Seat_Type,Pay_Method,Payment) values(?,?,?,?,?)";
+            String sql_pay = " insert into Payment_Record(Paid_Time,Exit_Time,person_id,Seat_Type,Pay_Method,Payment) values(?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(sql_pay);
             pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
             pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(ss));
-             pstmt.setString(3, _08reservation.type11);
-            pstmt.setString(4, "카드");
-            pstmt.setInt(5,_08reservation.price);
+            pstmt.setInt(3, _00main.id);
+             pstmt.setString(4, _08reservation.type11);
+            pstmt.setString(5, "카드");
+            pstmt.setInt(6,_08reservation.price);
             int rowp = pstmt.executeUpdate(); 
             
             //회원info 테이블에 저장(좌석번호,사물함번호,입실)

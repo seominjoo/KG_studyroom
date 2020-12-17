@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 
 import login.design.Style;
 import login.page.MainPage;
+import login.swingTools.State;
 
 
 public class _07in_selectSeat extends JPanel implements ActionListener{
@@ -365,6 +366,9 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 				System.out.printf("%d번 자리가 예약되었습니다.(%d행 업데이트)\n", i+1,row);
 				System.out.printf("입실/퇴실 시간이 업데이트되었습니다.(%d행 업데이트)\n",rowt1); 
 				System.out.printf("회원 정보가 업데이트되었습니다.(%d행 업데이트)\n",row3); 
+				
+			    MainPage.updateTable.add(new State());
+			    MainPage.statecard.next(MainPage.updateTable);
 			}
 		}
 		setVisible(false);
@@ -380,11 +384,6 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 		} 
 	} 
 	
-	
-		
-	public static void main(String[] args) {
-		 
-	} 
 
 }
 

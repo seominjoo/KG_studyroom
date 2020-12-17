@@ -43,7 +43,7 @@ public class SalesDB {
 
 			ResultSet rs = read_data.executeQuery();
 
-			String header[] = { "결제일시", "이용권명", "사물함", "결제방식", "결제금액" };
+			String header[] = {"결제일시", "회원번호", "이용권명", "사물함", "결제방식", "결제금액" };
 
 			int realRow = 0;
 
@@ -83,7 +83,9 @@ public class SalesDB {
 					contents[i][0] = rs1.getString(1).substring(0, 19);
 					for (int j = 1; j < header.length; j++) {
 						contents[i][j] = rs1.getString(j + 1);
-						if (j == 4) {
+						if(j == 1)
+							System.out.println(rs1.getString(j + 1));
+						if (j == 5) {
 							sum += Integer.parseInt(rs1.getString(j + 1));
 						}
 					}
@@ -95,15 +97,15 @@ public class SalesDB {
 						int single = Integer.parseInt(rs1.getString(1).substring(8, 10));
 
 						if (single <= 7) {
-							weeks[0] += Integer.parseInt(rs1.getString(5));
+							weeks[0] += Integer.parseInt(rs1.getString(6));
 						} else if (single <= 14) {
-							weeks[1] += Integer.parseInt(rs1.getString(5));
+							weeks[1] += Integer.parseInt(rs1.getString(6));
 						} else if (single <= 21) {
-							weeks[2] += Integer.parseInt(rs1.getString(5));
+							weeks[2] += Integer.parseInt(rs1.getString(6));
 						} else if (single <= 28) {
-							weeks[3] += Integer.parseInt(rs1.getString(5));
+							weeks[3] += Integer.parseInt(rs1.getString(6));
 						} else {
-							weeks[4] += Integer.parseInt(rs1.getString(5));
+							weeks[4] += Integer.parseInt(rs1.getString(6));
 						}
 
 						for (int i2 = 0; i2 < weeks.length; i2++) {
@@ -126,19 +128,24 @@ public class SalesDB {
 
 			DefaultTableModel model = new DefaultTableModel(contents, header);
 
+			
+			String[] columns = {"결제일시", "회원번호", "이용권명", "사물함", "결제방식", "결제금액"};
 			table = new JTable(model);
-			new Style(table);
+			new Style(table, columns);
 			// table.setBounds(40, 104, 390, 245);
 			table.setRowHeight(35);
 			// table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 			table.getColumnModel().getColumn(0).setPreferredWidth(140);
-			table.getColumnModel().getColumn(1).setPreferredWidth(140);
-			table.getColumnModel().getColumn(2).setPreferredWidth(90);
-			table.getColumnModel().getColumn(3).setPreferredWidth(65);
-			table.getColumnModel().getColumn(4).setPreferredWidth(65);
+			table.getColumnModel().getColumn(1).setPreferredWidth(60);
+			table.getColumnModel().getColumn(2).setPreferredWidth(130);
+			table.getColumnModel().getColumn(3).setPreferredWidth(60);
+			table.getColumnModel().getColumn(4).setPreferredWidth(55);
+			table.getColumnModel().getColumn(5).setPreferredWidth(55);
 
+
+			
 			SalesManagementPage.scrollPane.setViewportView(table);
-
+			
 			if (rs != null)
 				rs.close();
 			if (read_data != null)

@@ -216,6 +216,8 @@ public class Style {
 			jtable.getTableHeader().setForeground(Color.decode("#805b38"));
 			jtable.getTableHeader().setBackground(Color.decode("#f2ede9"));
 			jtable.setEnabled(false); // 사용자가 테이블을 클릭하거나 편집하는 것을 방지
+			
+			
 		} else if (cp instanceof JRadioButton) {
 			jradio = (JRadioButton) cp;
 			jradio.setOpaque(false);
@@ -255,6 +257,27 @@ public class Style {
 		});
 	}
 
+	// 테이블 내부정렬
+	public Style(JTable table, String[] columns) {
+		jtable = table;
+		// 아래 두개는 표 내부를 투명화할 때 반드시 필요
+		jtable.setOpaque(false);
+		((DefaultTableCellRenderer) jtable.getDefaultRenderer(Object.class)).setOpaque(false);
+		jtable.setFont(new Font("맑은 고딕", Font.PLAIN, 11));
+		jtable.setForeground(Color.decode("#805b38"));
+		jtable.setGridColor(Color.decode("#805b38")); // 테이블 내부 선 색
+		jtable.setBorder(BorderFactory.createLineBorder(Color.decode("#805b38")));
+		jtable.getTableHeader().setForeground(Color.decode("#805b38"));
+		jtable.getTableHeader().setBackground(Color.decode("#f2ede9"));
+		jtable.setEnabled(false); // 사용자가 테이블을 클릭하거나 편집하는 것을 방지
+		DefaultTableCellRenderer celAlignCenter = new DefaultTableCellRenderer();
+		celAlignCenter.setHorizontalAlignment(JLabel.CENTER);
+		for(String column : columns) {
+			jtable.getColumn(column).setCellRenderer(celAlignCenter);
+		}
+		
+	}
+	
 	// 새로운 패널 받기위한 생성자
 	public Style() {
 	}
