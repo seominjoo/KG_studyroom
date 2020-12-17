@@ -122,15 +122,15 @@ public class _01start extends JPanel {
 		      room_btn.addActionListener(new ActionListener() { //룸 이용권 페이지
 		          @Override
 		          public void actionPerformed(ActionEvent e) {
-		        	  try {//룸만료시간이 안지나면 구매 불가 
-							String sql = "SELECT expiration_room from person_info where login_state='On'";
+		        	  try {//룸 만료시간이 안지나면 구매 불가 
+							String sql = "SELECT room_number from person_info where login_state='On'";
 							PreparedStatement pstmt = conn.prepareStatement(sql);
 							ResultSet rs = pstmt.executeQuery();
 							
 							 while(rs.next()) { 
 						          
-						            Timestamp time_chk = rs.getTimestamp("expiration_room");
-						            if(LocalDateTime.now().isBefore(Time.TimeStampTOlocalDateTime(time_chk))) {
+								 int room_chk = rs.getInt("room_number");
+						            if(room_chk>0) {
 						            	String msg= "결제한 룸이 이미 존재합니다";
 										JOptionPane.showMessageDialog(null,msg); 
 						            }else {				         
@@ -151,14 +151,14 @@ public class _01start extends JPanel {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					 try {//사물함만료시간이 안지나면 구매 불가 
-							String sql = "SELECT expiration_locker from person_info where login_state='On'";
+							String sql = "SELECT locker_number from person_info where login_state='On'";
 							PreparedStatement pstmt = conn.prepareStatement(sql);
 							ResultSet rs = pstmt.executeQuery();
 							
 							 while(rs.next()) { 
 						          
-						            Timestamp time_chk = rs.getTimestamp("expiration_locker");
-						            if(LocalDateTime.now().isBefore(Time.TimeStampTOlocalDateTime(time_chk))) {
+						            int locker_chk = rs.getInt("locker_number");
+						            if(locker_chk>0) {
 						            	String msg= "결제한 사물함이 이미 존재합니다";
 										JOptionPane.showMessageDialog(null,msg); 
 						            }else {	 

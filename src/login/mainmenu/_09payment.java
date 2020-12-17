@@ -205,11 +205,10 @@ public class _09payment extends JPanel{
          int rowp = pstmt.executeUpdate();
                            
 //         회원info 테이블에 저장(좌석번호,사물함번호,입실)
-         sql2 = "update person_info set room_number=?,Expiration_room=? where person_id=?";
+         sql2 = "update person_info set room_number=? where person_id=?";
          pstmt = conn.prepareStatement(sql2);
          pstmt.setInt(1,i+101);
-         pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(ss));
-         pstmt.setInt(3, _00main.id);
+         pstmt.setInt(2, _00main.id);
          int row5 = pstmt.executeUpdate();
          
          System.out.printf("%d호 룸이 예약되었습니다.(%d행 업데이트)\n", i+101,row2);
@@ -246,11 +245,10 @@ public class _09payment extends JPanel{
             int rowp = pstmt.executeUpdate();
             
             //회원info 테이블에 저장(좌석번호,사물함번호,입실)
-            sql3 = "update person_info set locker_number=?,Expiration_locker=? where person_id=?";
+            sql3 = "update person_info set locker_number=? where person_id=?";
             pstmt = conn.prepareStatement(sql3);
             pstmt.setInt(1, i+1);
-            pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(time_now.plusMonths(1)));
-            pstmt.setInt(3, _00main.id);
+            pstmt.setInt(2, _00main.id);
             int row1 = pstmt.executeUpdate();
 
             System.out.printf("%d번 사물함이 예약되었습니다.(%d행 업데이트)\n", i+1,row3);
