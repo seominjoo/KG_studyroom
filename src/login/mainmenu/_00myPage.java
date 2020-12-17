@@ -38,7 +38,7 @@ public class _00myPage extends JFrame {
                Time.TimeStampTOlocalDateTime(_00main.time_room).format(_00main.datetime) + "까지" },
          { "사물함", _00main.locker_chk + "번",
                Time.TimeStampTOlocalDateTime(_00main.time_locker).format(_00main.datetime) + "까지" },
-         { "이용권", _00main.type } };
+         { "이용권", _00main.type.substring(0,2)} };
       
       for (String[] str : contents) {
          if (str[1].equals("0번")) {

@@ -401,8 +401,8 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
 					int row2 = pstmt.executeUpdate();
 				}
 						
-				sql = "UPDATE seat SET seat_statement='사용 가능', time_enter=null, "
-						+ "time_checkout = null WHERE Seat_Number= ?";
+				sql = "UPDATE seat SET seat_statement='사용 가능', time_enter='01/01/01 00:00:00.000000000', "
+						+ "time_checkout = '01/01/01 00:00:00.000000000' WHERE Seat_Number= ?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, _06move.num_seat);
 				int row = pstmt.executeUpdate();
@@ -447,8 +447,8 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
 						int row2 = pstmt.executeUpdate();
 					}
 							
-					sql = "UPDATE seat SET seat_statement='사용 가능', time_enter=null, "
-							+ "time_checkout = null WHERE Seat_Number= ?";
+					sql = "UPDATE seat SET seat_statement='사용 가능', time_enter='01/01/01 00:00:00.000000000', "
+							+ "time_checkout = '01/01/01 00:00:00.000000000' WHERE Seat_Number= ?";
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setInt(1, _06move.num_room);
 					int row = pstmt.executeUpdate();

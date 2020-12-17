@@ -66,8 +66,9 @@ public class _00main extends JPanel {
 	public static int locker_chk;
 	public static int room_chk;
 	public static Timestamp time_seat;
-	public static Timestamp time_locker;
 	public static Timestamp time_room;
+	public static Timestamp time_locker;
+
 	static int id;
 	public static String type;
 	public static DateTimeFormatter datetime = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 ");
@@ -121,7 +122,7 @@ public class _00main extends JPanel {
 				time_seat = rs.getTimestamp("expiration_seat");
 				type = rs.getString("seat_type");
 				if (LocalDateTime.now().isAfter(Time.TimeStampTOlocalDateTime(time_seat))) {
-					sql = "update person_info set seat_number =null,expiration_seat='20/01/01 00:00:00.000000000',seat_type='x' where login_state = 'On'";
+					sql = "update person_info set seat_number =null,expiration_seat='01/01/01 00:00:00.000000000',seat_type='x' where login_state = 'On'";
 					pstmt = conn.prepareStatement(sql);
 					row = pstmt.executeUpdate();
 				}
@@ -136,11 +137,27 @@ public class _00main extends JPanel {
 				int locker_chk = rs.getInt("Locker_Number");
 				Timestamp l_time_chk = rs.getTimestamp("l_time_checkout");
 				if (LocalDateTime.now().isAfter(Time.TimeStampTOlocalDateTime(l_time_chk))) {
-					String change2 = "update locker set Locker_Statement ='사용 가능',l_time_enter=null,l_time_checkout=null where Locker_Number= ?";
+					String change2 = "update locker set Locker_Statement ='사용 가능',l_time_enter='01/01/01 00:00:00.000000000',"
+							+ "l_time_checkout='01/01/01 00:00:00.000000000' where Locker_Number= ?";
 					PreparedStatement pstmt3 = conn.prepareStatement(change2);
 					pstmt3.setInt(1, locker_chk);
 					int row4 = pstmt3.executeUpdate();
 				}
+			}
+			
+			//회원의 름 만료시간 가져오기
+			sql = "select time_checkout from seat where seat_number = "+room_chk+"";
+			pstmt = conn.prepareStatement(sql); 
+			rs = pstmt.executeQuery(); 
+			while (rs.next()) {
+				 time_room = rs.getTimestamp("time_checkout");
+			}
+			
+			sql = "select l_time_checkout from locker where locker_number = "+locker_chk+"";
+			pstmt = conn.prepareStatement(sql); 
+			rs = pstmt.executeQuery(); 
+			while (rs.next()) {
+				 time_locker = rs.getTimestamp("l_time_checkout");
 			}
 			
 			if (rs != null)
