@@ -85,18 +85,20 @@ public class _07out extends JPanel {
 
                      // 정기이용권 사용자는 퇴실 시 좌석만 삭제
                      if (type.equals("정기 이용권")) {
-                        sql = "update person_info set seat_number=null where login_state = 'On'";
+                        sql = "update person_info set seat_number=0 where login_state = 'On'";
                         pstmt = conn.prepareStatement(sql);
                         int row5 = pstmt.executeUpdate();
                         System.out.printf("(%d행 업데이트)\n", row5);
                      }
                      // 일일이용권 사용자는 만료시간 리셋
                      else {
-                        sql = "update person_info set seat_number=null,expiration_seat='01/01/01 00:00:00.000000000' ,seat_type='없음' where login_state = 'On'";
+                        sql = "update person_info set seat_number=0,expiration_seat='01/01/01 00:00:00.000000000' ,seat_type='없음' where login_state = 'On'";
                         pstmt = conn.prepareStatement(sql);
                         int row5 = pstmt.executeUpdate();
                         System.out.printf("(%d행 업데이트)\n", row5);
                      }
+                     String warning=String.format("%d번 좌석이 퇴실 되었습니다.",num_seat);
+                 JOptionPane.showMessageDialog(null,warning); 
                      MainPage.updateTable.add(new State());
                      MainPage.statecard.next(MainPage.updateTable);
                   }
@@ -105,6 +107,7 @@ public class _07out extends JPanel {
                   e1.printStackTrace();
                }
             }
+            
          });
 
          out_room.addActionListener(new ActionListener() {
@@ -122,12 +125,15 @@ public class _07out extends JPanel {
                      JOptionPane.showMessageDialog(null, msg);
                   } else {
                      System.out.printf("%d번 룸이 퇴실 되었습니다.(%d행 업데이트)\n", _00main.room_chk, row3);
-
-                     sql = "update person_info set room_number=null where login_state = 'On'";
+                     String warning=String.format("%d번 좌석이 퇴실 되었습니다.",_00main.room_chk);
+                     JOptionPane.showMessageDialog(null,warning); 
+                     sql = "update person_info set room_number=0 where login_state = 'On'";
                      pstmt = conn.prepareStatement(sql);
                      int row5 = pstmt.executeUpdate();
                      System.out.printf("(%d행 업데이트)\n", row5);
                   }
+                  
+ 
                   MainPage.updateTable.add(new State());
                   MainPage.statecard.next(MainPage.updateTable);
                } catch (SQLException e1) {

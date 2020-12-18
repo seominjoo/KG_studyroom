@@ -243,9 +243,9 @@ public class _09payment extends JPanel{
             pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
             pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(time_now.plusMonths(1)));
             pstmt.setInt(3, _00main.id);
-            pstmt.setString(4, "1달 이용권");
+            pstmt.setString(4, _08reservation.type11);
             pstmt.setString(5, "카드");
-             pstmt.setInt(6,25000);
+             pstmt.setInt(6, _08reservation.price11);
             int rowp = pstmt.executeUpdate();
             
             //회원info 테이블에 저장(좌석번호,사물함번호,입실)

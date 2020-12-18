@@ -124,7 +124,7 @@ public class StoreBtnPage extends JFrame {
 								int row = pstmt.executeUpdate(); 
 								System.out.printf("locker %d행이 바뀌었습니다\n",row);
 
-								String sql_out2 = "UPDATE person_info SET locker_number=null WHERE Person_Id=?";
+								String sql_out2 = "UPDATE person_info SET locker_number=0 WHERE Person_Id=?";
 								pstmt = conn.prepareStatement(sql_out2);
 								pstmt.setInt(1, id);
 								int row2 = pstmt.executeUpdate(); 
@@ -209,7 +209,7 @@ public class StoreBtnPage extends JFrame {
 								int row = pstmt.executeUpdate(); 
 								System.out.printf("seat %d행이 바뀌었습니다\n",row);
 
-								String sql_out2 = "UPDATE person_info SET room_number=null WHERE Person_Id=?";
+								String sql_out2 = "UPDATE person_info SET room_number=0 WHERE Person_Id=?";
 								pstmt = conn.prepareStatement(sql_out2);
 								pstmt.setInt(1, id);
 								int row2 = pstmt.executeUpdate(); 
@@ -298,7 +298,7 @@ public class StoreBtnPage extends JFrame {
 									int row = pstmt.executeUpdate(); 
 									System.out.printf("seat %d행이 변경되었습니다.\n", row);
 									
-									String sql_out2 = "UPDATE person_info SET seat_number=null, seat_type='없음', expiration_seat ='01/01/01 00:00:00.000000000'"
+									String sql_out2 = "UPDATE person_info SET seat_number=0, seat_type='없음', expiration_seat ='01/01/01 00:00:00.000000000'"
 											+ " WHERE Person_Id = ?";
 									pstmt = conn.prepareStatement(sql_out2);
 									pstmt.setInt(1, id);
@@ -318,14 +318,14 @@ public class StoreBtnPage extends JFrame {
 									int row = pstmt.executeUpdate(); 
 									System.out.printf("seat %d행이 변경되었습니다.\n", row);
 									
-									String sql_out2 = "UPDATE person_info SET seat_number=null"
+									String sql_out2 = "UPDATE person_info SET seat_number=0"
 											+ " WHERE Person_Id = ?";
 									pstmt = conn.prepareStatement(sql_out2);
 									pstmt.setInt(1, id);
 									int row2 = pstmt.executeUpdate(); 
 									System.out.printf("person_info %d행이 변경되었습니다.\n", row2);
 									
-									System.out.printf("%번 좌석이 퇴실되었습니다.\n",StoreManagementPage.seat_number);
+									System.out.printf("%d번 좌석이 퇴실되었습니다.\n",StoreManagementPage.seat_number);
 
 									if (pstmt != null) pstmt.close();
 								}

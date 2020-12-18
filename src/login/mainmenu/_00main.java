@@ -122,7 +122,7 @@ public class _00main extends JPanel {
 				time_seat = rs.getTimestamp("expiration_seat");
 				type = rs.getString("seat_type");
 				if (LocalDateTime.now().isAfter(Time.TimeStampTOlocalDateTime(time_seat))) {
-					sql = "update person_info set seat_number =null,expiration_seat='01/01/01 00:00:00.000000000',seat_type='없음' where login_state = 'On'";
+					sql = "update person_info set seat_number =0,expiration_seat='01/01/01 00:00:00.000000000',seat_type='없음' where login_state = 'On'";
 					pstmt = conn.prepareStatement(sql);
 					row = pstmt.executeUpdate();
 				}
