@@ -73,16 +73,16 @@ public class ActionBtn_select extends JFrame implements ActionListener {
          btn.setSelected(true);
          System.out.println();
 
-      } else {
-         btn.setBackground(Color.BLACK);
-         btn.setForeground(Color.orange);
-         btn.setSelected(false);
-
+         on = 0;
       }
-      System.out.println("이 메서드는 무엇  ?" + btn.isSelected());
+//      else {
+//         btn.setBackground(Color.BLACK);
+//         btn.setForeground(Color.orange);
+//         btn.setSelected(false);
+//
+//      }
+      System.out.println(on);
    }
 
-   public static void main(String[] args) {
-      new MainPage();
-   }
+
 }

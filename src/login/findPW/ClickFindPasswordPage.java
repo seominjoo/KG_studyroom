@@ -30,10 +30,12 @@ public class ClickFindPasswordPage implements ActionListener {
 
 	public ClickFindPasswordPage(JLabel foundPW) {
 		this.foundPW = foundPW;
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+
 		if(MainPage.userToggle.equals("비번찾기")) {
 			query = "SELECT pw FROM person_info where phone_number = ?" + "and person_birth = ?";
 		}
