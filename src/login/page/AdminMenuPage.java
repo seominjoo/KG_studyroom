@@ -65,6 +65,16 @@ public class AdminMenuPage extends JPanel{
       this.add(member_Management);
       
       member_Management.addActionListener(new MemberManagementPage());
+      
+      JButton price_change = new JButton("이용권 가격 조정");
+      new Style(price_change);
+      price_change.setOpaque(true);
+      price_change.setBounds(185,300,150,50);
+      this.add(price_change);
+      
+      price_change.addActionListener(new PassChange());
+      
+      
    }
 
 }

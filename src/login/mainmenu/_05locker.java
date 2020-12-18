@@ -28,7 +28,7 @@ public class _05locker extends JPanel {
 		setBounds(600, 150, 450, 300);
 		setLayout(null);
 		
-		JButton check_locker_btn = new JButton("이용 가능한 사물함 보기"); 
+		JButton check_locker_btn = new JButton(_03whatHour.pass_price.get(0)+"("+_03whatHour.pass_price.get(1)+")"); 
 		this.add(check_locker_btn);
 		check_locker_btn.setBounds(140, 200, 300, 80);
 		JButton btn_back = new JButton("이전 화면"); 
@@ -41,7 +41,8 @@ public class _05locker extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainPage.user_page_panel.add
-				("예약페이지",new _08reservation(time_now.plusMonths(1),25000,"1달 이용권 (사물함)"));
+				("예약페이지",new _08reservation(time_now.plusMonths(1),
+						Integer.parseInt(_03whatHour.pass_price.get(1)), _03whatHour.pass_price.get(0)));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";

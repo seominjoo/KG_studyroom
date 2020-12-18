@@ -26,12 +26,48 @@ public class ActionBtn_select extends JFrame implements ActionListener {
 
       if (on++ % 2 == 0) {
          for (JButton seat_btn : _08reservation.seats_btn) {
-            if (seat_btn.isEnabled() == true) { // 이미 있는 좌석은 제외
+            if (seat_btn.isSelected() == true) { // 이미 있는 좌석은 제외
                seat_btn.setBackground(Color.BLACK);
                seat_btn.setForeground(Color.orange);
                seat_btn.setSelected(false);
             }
          }
+         for (JButton room_btn : _08reservation.room_btn) {
+             if (room_btn.isSelected() == true) { // 이미 있는 좌석은 제외
+            	 room_btn.setBackground(Color.BLACK);
+            	 room_btn.setForeground(Color.orange);
+            	 room_btn.setSelected(false);
+             }
+          }
+         for (JButton locker_btn : _08reservation.locker_btn) {
+             if (locker_btn.isSelected() == true) { // 이미 있는 좌석은 제외
+            	 locker_btn.setBackground(Color.BLACK);
+            	 locker_btn.setForeground(Color.orange);
+            	 locker_btn.setSelected(false);
+             }
+          }
+         for (JButton seats_btn : _06move_selectSeat.seats_btn) {
+             if (seats_btn.isSelected() == true) { // 이미 있는 좌석은 제외
+            	 seats_btn.setBackground(Color.BLACK);
+            	 seats_btn.setForeground(Color.orange);
+            	 seats_btn.setSelected(false);
+             }
+          }
+         for (JButton room_btn : _06move_selectSeat.room_btn) {
+             if (room_btn.isSelected() == true) { // 이미 있는 좌석은 제외
+            	 room_btn.setBackground(Color.BLACK);
+            	 room_btn.setForeground(Color.orange);
+            	 room_btn.setSelected(false);
+             }
+          }
+         for (JButton seats_btn : _07in_selectSeat.seats_btn) {
+             if (seats_btn.isSelected() == true) { // 이미 있는 좌석은 제외
+            	 seats_btn.setBackground(Color.BLACK);
+            	 seats_btn.setForeground(Color.orange);
+            	 seats_btn.setSelected(false);
+             }
+          }
+         
          btn.setBackground(Color.orange);
          btn.setForeground(Color.BLACK);
          btn.setSelected(true);

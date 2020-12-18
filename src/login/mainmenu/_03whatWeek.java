@@ -36,17 +36,17 @@ public class _03whatWeek extends JPanel {
 		
  
 
-		JButton btn_2wk = new JButton("2주 (90,000원)"); 
+		JButton btn_2wk = new JButton(_03whatHour.pass_price.get(12)+"("+_03whatHour.pass_price.get(13)+")"); 
 		new Style(btn_2wk);
 		btn_2wk.setBounds(150, 168, 250, 48); 
 		this.add(btn_2wk);
 
-		JButton btn_4wk = new JButton("4주 (130,000원)"); 
+		JButton btn_4wk = new JButton(_03whatHour.pass_price.get(14)+"("+_03whatHour.pass_price.get(15)+")"); 
 		new Style(btn_4wk);
 		btn_4wk.setBounds(150, 233, 250, 48); 
 		this.add(btn_4wk);
 
-		JButton btn_8wk = new JButton("8주 (250,000원)");  
+		JButton btn_8wk = new JButton(_03whatHour.pass_price.get(16)+"("+_03whatHour.pass_price.get(17)+")");  
 		new Style(btn_8wk);
 		btn_8wk.setBounds(150, 303, 250, 48);
 		this.add(btn_8wk);
@@ -60,7 +60,8 @@ public class _03whatWeek extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainPage.user_page_panel.add
-				("예약페이지",new _08reservation(time_now.plusHours(2), 90000, "2주 이용권 (1인석)"));
+				("예약페이지",new _08reservation(time_now.plusHours(2), 
+						Integer.parseInt(_03whatHour.pass_price.get(13)), _03whatHour.pass_price.get(12)));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";
@@ -71,7 +72,8 @@ public class _03whatWeek extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainPage.user_page_panel.add
-				("예약페이지",new _08reservation(time_now.plusHours(4), 130000, "4주 이용권 (1인석)"));
+				("예약페이지",new _08reservation(time_now.plusHours(4), 
+						Integer.parseInt(_03whatHour.pass_price.get(15)), _03whatHour.pass_price.get(14)));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";
@@ -82,7 +84,8 @@ public class _03whatWeek extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainPage.user_page_panel.add
-				("예약페이지",new _08reservation(time_now.plusHours(8), 250000, "8주 이용권 (1인석)"));
+				("예약페이지",new _08reservation(time_now.plusHours(8), 
+						Integer.parseInt(_03whatHour.pass_price.get(17)), _03whatHour.pass_price.get(16)));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";

@@ -273,10 +273,10 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 					System.out.printf("%dπ¯ ",sn); 
 					seats_btn.get(sn-1).setEnabled(true);
 					seats_btn.get(sn-1).setForeground(Color.orange);
-;				}else if (sn>100) {
+				}else if (sn>100) {
 					System.out.printf("[%d»£] ",sn); 
-					room_btn.get(sn-1).setEnabled(true);
-					seats_btn.get(sn-1).setForeground(Color.orange);
+					room_btn.get(sn-101).setEnabled(true);
+					room_btn.get(sn-101).setForeground(Color.orange);
 				}
 			}
 
