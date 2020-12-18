@@ -43,6 +43,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import javax.swing.Action;
 import java.awt.GridBagLayout;
@@ -61,7 +62,7 @@ public class _01start extends JPanel {
 	static Timestamp time_chk_seat;
 	DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy년 M월 d일");
 	DateTimeFormatter time = DateTimeFormatter.ofPattern("a h시 m분 ");
-
+	static ArrayList<String> pass_price = new ArrayList<>();
 	public _01start() {
 
 		new Style(this);
@@ -94,7 +95,25 @@ public class _01start extends JPanel {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "1234");
-
+			// 로그인된 회원번호 읽기
+						String sql = "select * from seat_price_info,locker_price_info";
+						PreparedStatement pstmt = conn.prepareStatement(sql);
+						ResultSet rs = pstmt.executeQuery();
+						int row=0;
+						int loc=0;
+						while (rs.next()) {
+							if(loc==0) {
+							pass_price.add(rs.getString(3));
+							pass_price.add(Integer.toString(rs.getInt(4)));
+							loc=1;
+							}
+							pass_price.add(rs.getString(1));
+							pass_price.add(Integer.toString(rs.getInt(2)));
+						}
+//						System.out.println(pass_price.get(0));//락커 이용권 타입
+//						System.out.println(pass_price.get(1));//락커 가격
+//						System.out.println(pass_price.get(2));//seat_price_info 1행 타입
+//						System.out.println(pass_price.get(3));//seat_price_info 1행 가격 
 			seat_btn.addActionListener(new ActionListener() { //좌석 이용권 페이지
 				@Override
 				public void actionPerformed(ActionEvent e) {

@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -19,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 
 import login.design.Style;
 import login.page.MainPage;
+import login.signUp.window.ResultWindow;
 import login.swingTools.State;
 
 public class _11receipt extends JPanel {
@@ -29,7 +31,7 @@ public class _11receipt extends JPanel {
 	public _11receipt(LocalDateTime ss, int price) {
 		MainPage.updateTable.add(new State());
 		MainPage.statecard.next(MainPage.updateTable);
-		
+
 		setLayout(null);
 		new Style(this);
 
@@ -71,32 +73,43 @@ public class _11receipt extends JPanel {
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			Connection conn = DriverManager.getConnection(
-					"jdbc:oracle:thin:@localhost:1521/XEPDB1",
-					"hr",
-					"1234"
-					);
+			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "1234");
 			PreparedStatement pstmt = null;
 			String sql = "update person_info set login_state ='Off' where person_id=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, _00main.id);
 			int row = pstmt.executeUpdate();
-			
-			System.out.printf("%d번 회원 로그아웃(%d행 업데이트)\n",1, _00main.id,row);
-			
-		      String total_payment = "update person_info set total_payment = total_payment + ? where person_id = ?";
-		      pstmt = conn.prepareStatement(total_payment);
-		      pstmt.setInt(1, _08reservation.price);
-		      pstmt.setInt(2, _00main.id);
-		      int rowtp = pstmt.executeUpdate();
-			
-		      
-			if (pstmt != null) pstmt.close();
-			if (conn != null) conn.close();
-		} catch (ClassNotFoundException | SQLException e) { 
+
+			System.out.printf("%d번 회원 로그아웃(%d행 업데이트)\n", 1, _00main.id, row);
+
+			PreparedStatement readPrice = conn
+					.prepareStatement("SELECT payment FROM payment_record where person_id = ?");
+			readPrice.setInt(1, _00main.id);
+			ResultSet rs = readPrice.executeQuery();
+
+			int payment = 0;
+			while (rs.next()) {
+				payment = rs.getInt(1);
+			}
+
+			String total_payment = "update person_info set total_payment = total_payment + ? where person_id = ?";
+			pstmt = conn.prepareStatement(total_payment);
+			pstmt.setInt(1, payment);
+			pstmt.setInt(2, _00main.id);
+			int rowtp = pstmt.executeUpdate();
+
+			if (rs != null)
+				rs.close();
+			if (readPrice != null)
+				readPrice.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

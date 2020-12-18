@@ -45,74 +45,74 @@ public class MemberDB {
          if(chk==1) {
             if(MemberManagementPage.month.getSelectedItem().equals("전체")) {
                sql=" SELECT distinct person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number,"
-               		+ " b.time_checkout , a.locker_number ,"
-               		+ " c.l_time_checkout, seat_type, check_time "
-               		+ " from person_info a, seat b ,locker c"
-               		+ " where a.room_number=b.seat_number or a.locker_number = c.locker_number"; 
+                     + " b.time_checkout , a.locker_number ,"
+                     + " c.l_time_checkout, seat_type, check_time "
+                     + " from person_info a, seat b ,locker c"
+                     + " where a.room_number=b.seat_number and a.locker_number = c.locker_number"; 
                
                
                
             }else {
                sql=" SELECT distinct person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number,"
-               		+ " b.time_checkout , a.locker_number ,"
-               		+ " c.l_time_checkout, seat_type, check_time "
-               		+ " from person_info a, seat b ,locker c"
-               		+ " where (a.room_number=b.seat_number or a.locker_number = c.locker_number) and substr(a.CHECK_TIME,1,2) = ?";
+                     + " b.time_checkout , a.locker_number ,"
+                     + " c.l_time_checkout, seat_type, check_time "
+                     + " from person_info a, seat b ,locker c"
+                     + " where (a.room_number=b.seat_number and a.locker_number = c.locker_number) and substr(a.CHECK_TIME,1,2) = ?";
     
             }
 
          }else if(chk==2) {
             if(MemberManagementPage.dayOrWeek.getSelectedItem().equals("전체")) {
                sql=" SELECT distinct person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number, "
-               		+ " b.time_checkout , a.locker_number ,"
-               		+ " c.l_time_checkout, seat_type, check_time "
-               		+ " from person_info a, seat b ,locker c"
-               		+ " where (a.room_number=b.seat_number or a.locker_number = c.locker_number) and a.seat_type != 'x'"; 
+                     + " b.time_checkout , a.locker_number ,"
+                     + " c.l_time_checkout, seat_type, check_time "
+                     + " from person_info a, seat b ,locker c"
+                     + " where (a.room_number=b.seat_number and a.locker_number = c.locker_number) and a.seat_type != '없음'"; 
               
             }else if(MemberManagementPage.dayOrWeek.getSelectedItem().equals("정기")){
                sql=" SELECT distinct person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number, "
-               		+ " b.time_checkout , a.locker_number ,"
-               		+ " c.l_time_checkout, seat_type, check_time "
-               		+ " from person_info a, seat b ,locker c"
-               		+ " where (a.room_number=b.seat_number or a.locker_number = c.locker_number) and a.seat_type ='정기 이용권'"; 
+                     + " b.time_checkout , a.locker_number ,"
+                     + " c.l_time_checkout, seat_type, check_time "
+                     + " from person_info a, seat b ,locker c"
+                     + " where (a.room_number=b.seat_number and a.locker_number = c.locker_number) and a.seat_type ='정기 이용권'"; 
            
             }else if(MemberManagementPage.dayOrWeek.getSelectedItem().equals("일일")){
                sql=" SELECT distinct person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number, "
-               		+ " b.time_checkout , a.locker_number ,"
-               		+ " c.l_time_checkout, seat_type, check_time "
-               		+ " from person_info a, seat b ,locker c"
-               		+ " where (a.room_number=b.seat_number or a.locker_number = c.locker_number) and a.seat_type ='일일 이용권'"; 
+                     + " b.time_checkout , a.locker_number ,"
+                     + " c.l_time_checkout, seat_type, check_time "
+                     + " from person_info a, seat b ,locker c"
+                     + " where (a.room_number=b.seat_number and a.locker_number = c.locker_number) and a.seat_type ='일일 이용권'"; 
                
             }
 
          }else if(chk==3) {
             if(MemberManagementPage.seat_room_locker.getSelectedItem().equals("전체")) {
                sql=" SELECT distinct person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number, "
-               		+ " b.time_checkout , a.locker_number ,"
-               		+ " c.l_time_checkout, seat_type, check_time "
-               		+ " from person_info a, seat b ,locker c"
-               		+ " where (a.room_number=b.seat_number or a.locker_number = c.locker_number) and ((a.seat_number is not null) or (a.room_number is not null) or (a.locker_number is not null))";
+                     + " b.time_checkout , a.locker_number ,"
+                     + " c.l_time_checkout, seat_type, check_time "
+                     + " from person_info a, seat b ,locker c"
+                     + " where (a.room_number=b.seat_number and a.locker_number = c.locker_number) and ((a.seat_number !=0) or (a.room_number !=0) or (a.locker_number !=0))";
               
             }else if(MemberManagementPage.seat_room_locker.getSelectedItem().equals("좌석")) {
                sql=" SELECT distinct person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number, "
-               		+ " b.time_checkout , a.locker_number ,"
-               		+ " c.l_time_checkout, seat_type, check_time "
-               		+ " from person_info a, seat b ,locker c"
-               		+ " where (a.room_number=b.seat_number or a.locker_number = c.locker_number) and a.seat_number is not null";
+                     + " b.time_checkout , a.locker_number ,"
+                     + " c.l_time_checkout, seat_type, check_time "
+                     + " from person_info a, seat b ,locker c"
+                     + " where (a.room_number=b.seat_number and a.locker_number = c.locker_number) and a.seat_number !=0";
             
             }else if(MemberManagementPage.seat_room_locker.getSelectedItem().equals("룸")) {
                sql=" SELECT distinct person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number, "
-               		+ " b.time_checkout , a.locker_number ,"
-               		+ " c.l_time_checkout, seat_type, check_time "
-               		+ " from person_info a, seat b ,locker c"
-               		+ " where (a.room_number=b.seat_number or a.locker_number = c.locker_number) and a.room_number is not null"; 
+                     + " b.time_checkout , a.locker_number ,"
+                     + " c.l_time_checkout, seat_type, check_time "
+                     + " from person_info a, seat b ,locker c"
+                     + " where (a.room_number=b.seat_number and a.locker_number = c.locker_number) and a.room_number !=0"; 
              
             }else if(MemberManagementPage.seat_room_locker.getSelectedItem().equals("사물함")) {
                sql=" SELECT distinct person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number, "
-               		+ " b.time_checkout , a.locker_number ,"
-               		+ " c.l_time_checkout, seat_type, check_time "
-               		+ " from person_info a, seat b ,locker c"
-               		+ " where (a.room_number=b.seat_number or a.locker_number = c.locker_number) and a.locker_number is not null"; 
+                     + " b.time_checkout , a.locker_number ,"
+                     + " c.l_time_checkout, seat_type, check_time "
+                     + " from person_info a, seat b ,locker c"
+                     + " where (a.room_number=b.seat_number and a.locker_number = c.locker_number) and a.locker_number !=0"; 
          
             }
 

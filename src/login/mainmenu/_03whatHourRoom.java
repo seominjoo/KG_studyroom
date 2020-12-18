@@ -43,27 +43,27 @@ public class _03whatHourRoom extends JPanel {
 		
 		this.add(label01);
 		
-		JButton btn_2hr= new JButton(_03whatHour.pass_price.get(18)+"("+_03whatHour.pass_price.get(19)+")");
+		JButton btn_2hr= new JButton(_01start.pass_price.get(18)+"("+_01start.pass_price.get(19)+")");
 		new Style(btn_2hr);
 		btn_2hr.setBounds(90, 130, 188, 80); 
 		this.add(btn_2hr);
 
-		JButton btn_4hr = new JButton(_03whatHour.pass_price.get(20)+"("+_03whatHour.pass_price.get(21)+")");
+		JButton btn_4hr = new JButton(_01start.pass_price.get(20)+"("+_01start.pass_price.get(21)+")");
 		new Style(btn_4hr);
 		btn_4hr.setBounds(303, 130, 193, 80); 
 		this.add(btn_4hr);
 
-		JButton btn_6hr = new JButton(_03whatHour.pass_price.get(22)+"("+_03whatHour.pass_price.get(23)+")");
+		JButton btn_6hr = new JButton(_01start.pass_price.get(22)+"("+_01start.pass_price.get(23)+")");
 		new Style(btn_6hr);
 		btn_6hr.setBounds(90, 230, 188, 80); 
 		this.add(btn_6hr);
 
-		JButton btn_8hr = new JButton(_03whatHour.pass_price.get(24)+"("+_03whatHour.pass_price.get(25)+")");
+		JButton btn_8hr = new JButton(_01start.pass_price.get(24)+"("+_01start.pass_price.get(25)+")");
 		new Style(btn_8hr);
 		btn_8hr.setBounds(303, 230, 193, 80); 
 		this.add(btn_8hr);
 
-		JButton btn_12hr = new JButton(_03whatHour.pass_price.get(26)+"("+_03whatHour.pass_price.get(27)+")");
+		JButton btn_12hr = new JButton(_01start.pass_price.get(26)+"("+_01start.pass_price.get(27)+")");
 		new Style(btn_12hr);
 		btn_12hr.setBounds(90, 330, 188, 80);
 		this.add(btn_12hr);
@@ -78,7 +78,7 @@ public class _03whatHourRoom extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				MainPage.user_page_panel.add
 				("예약페이지",new _08reservation(time_now.plusHours(2), 
-						Integer.parseInt(_03whatHour.pass_price.get(19)), _03whatHour.pass_price.get(18)));
+						Integer.parseInt(_01start.pass_price.get(19)), _01start.pass_price.get(18)));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";
@@ -90,7 +90,7 @@ public class _03whatHourRoom extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				MainPage.user_page_panel.add
 				("예약페이지",new _08reservation(time_now.plusHours(4), 
-						Integer.parseInt(_03whatHour.pass_price.get(21)), _03whatHour.pass_price.get(20)));
+						Integer.parseInt(_01start.pass_price.get(21)), _01start.pass_price.get(20)));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";
@@ -102,7 +102,7 @@ public class _03whatHourRoom extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				MainPage.user_page_panel.add
 				("예약페이지",new _08reservation(time_now.plusHours(6), 
-						Integer.parseInt(_03whatHour.pass_price.get(23)), _03whatHour.pass_price.get(22)));
+						Integer.parseInt(_01start.pass_price.get(23)), _01start.pass_price.get(22)));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";
@@ -114,7 +114,7 @@ public class _03whatHourRoom extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				MainPage.user_page_panel.add
 				("예약페이지",new _08reservation(time_now.plusHours(8), 
-						Integer.parseInt(_03whatHour.pass_price.get(25)), _03whatHour.pass_price.get(24)));
+						Integer.parseInt(_01start.pass_price.get(25)), _01start.pass_price.get(24)));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";
@@ -126,7 +126,7 @@ public class _03whatHourRoom extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				MainPage.user_page_panel.add
 				("예약페이지",new _08reservation(time_now.plusHours(12), 
-						Integer.parseInt(_03whatHour.pass_price.get(27)), _03whatHour.pass_price.get(26)));
+						Integer.parseInt(_01start.pass_price.get(27)), _01start.pass_price.get(26)));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";

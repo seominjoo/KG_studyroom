@@ -272,10 +272,12 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 				if(sn<=20) {
 					System.out.printf("%d¹ø ",sn); 
 					seats_btn.get(sn-1).setEnabled(true);
+					seat.get(sn-1).setEnabled(true);
 					seats_btn.get(sn-1).setForeground(Color.orange);
-				}else if (sn>100) {
+;				}else if (sn>100) {
 					System.out.printf("[%dÈ£] ",sn); 
 					room_btn.get(sn-101).setEnabled(true);
+					room.get(sn-101).setEnabled(true);
 					room_btn.get(sn-101).setForeground(Color.orange);
 				}
 			}
@@ -291,6 +293,7 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 				System.out.printf("%d¹ø ",sn);
 				locker_btn.get(sn-1).setForeground(Color.orange);
 				locker_btn.get(sn-1).setEnabled(true);
+				locker.get(sn-1).setEnabled(true);
 			}
 
 			if(rs!=null) rs.close(); 

@@ -238,7 +238,7 @@ public class _09payment extends JPanel{
             int rowt2 = pstmt.executeUpdate();
 
             //결제테이블에 저장
-            String sql_pay = " insert into Payment_Record(Paid_Time,Exit_Time,person_id,Locker_Type,Pay_Method,Payment) values(?,?,?,?,?)";
+            String sql_pay = " insert into Payment_Record(Paid_Time,Exit_Time,person_id,Locker_Type,Pay_Method,Payment) values(?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(sql_pay);
             pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
             pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(time_now.plusMonths(1)));

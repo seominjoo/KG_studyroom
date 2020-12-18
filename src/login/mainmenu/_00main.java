@@ -146,25 +146,19 @@ public class _00main extends JPanel {
 			}
 			System.out.println(room_chk);
 			// 회원의 름 만료시간 가져오기
-			if (room_chk == 0) {
-				time_room = Timestamp.valueOf("0001-01-01 00:00:00");
-			} else {
-				sql = "select time_checkout from seat where seat_number = " + room_chk + "";
-				pstmt = conn.prepareStatement(sql);
-				rs = pstmt.executeQuery();
-				while (rs.next()) {
-					time_room = rs.getTimestamp("time_checkout");
-				}
+
+			sql = "select time_checkout from seat where seat_number = " + room_chk + "";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				time_room = rs.getTimestamp("time_checkout");
 			}
-			if (locker_chk == 0) {
-				time_locker = Timestamp.valueOf("0001-01-01 00:00:00");
-			} else {
-				sql = "select l_time_checkout from locker where locker_number = " + locker_chk + "";
-				pstmt = conn.prepareStatement(sql);
-				rs = pstmt.executeQuery();
-				while (rs.next()) {
-					time_locker = rs.getTimestamp("l_time_checkout");
-				}
+
+			sql = "select l_time_checkout from locker where locker_number = " + locker_chk + "";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				time_locker = rs.getTimestamp("l_time_checkout");
 			}
 
 			if (rs != null)

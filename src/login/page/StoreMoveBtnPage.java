@@ -81,29 +81,31 @@ public class StoreMoveBtnPage extends JFrame {
 							
 							while(rs.next()) { 
 								String st = rs.getString("locker_statement");
-								Timestamp tc = rs.getTimestamp("l_time_enter");
+								Timestamp te = rs.getTimestamp("l_time_enter");
 								Timestamp tco = rs.getTimestamp("l_time_checkout");
 								
+								//locker 테이블에 사물함 새로 업데이트
 								sql = "UPDATE locker SET locker_statement =?, l_time_enter=?, l_time_checkout=? WHERE Locker_Number= ?";
 								pstmt = conn.prepareStatement(sql);
 								pstmt.setString(1, st);
-								pstmt.setTimestamp(2, tc);
+								pstmt.setTimestamp(2, te);
 								pstmt.setTimestamp(3, tco);
 								pstmt.setInt(4, StoreMovePage.locker_move_number);
 								int row2 = pstmt.executeUpdate();
 							}
-									
-							String sql2 = "UPDATE locker SET locker_statement='사용 가능', time_enter='01/01/01 00:00:00.000000000',"
-									+ " time_checkout = '01/01/01 00:00:00.000000000' WHERE Locker_Number= ?";
+							
+							//locker 테이블에 이전 사물함 비우기
+							String sql2 = "UPDATE locker SET locker_statement='사용 가능', l_time_enter='01/01/01 00:00:00.000000000',"
+									+ " l_time_checkout = '01/01/01 00:00:00.000000000' WHERE Locker_Number= ?";
 							pstmt = conn.prepareStatement(sql2);
 							pstmt.setInt(1, StoreManagementPage.locker_number);
 							int row = pstmt.executeUpdate();
 							
-							//회원info 테이블에 좌석번호 업데이트
-							sql = "UPDATE person_info SET locker_number=? WHERE person_id=?";
-							pstmt = conn.prepareStatement(sql);
+							//회원info 테이블에 사물함 번호 업데이트
+							String sql3 = "UPDATE person_info SET locker_number=? WHERE person_id=?";
+							pstmt = conn.prepareStatement(sql3);
 							pstmt.setInt(1, StoreMovePage.locker_move_number);
-							pstmt.setInt(2, id);
+							pstmt.setInt(2, StoreBtnPage.id);
 							int row3 = pstmt.executeUpdate();
 												
 							System.out.printf("%d번 자리로 이동되었습니다.(%d행 업데이트)\n", StoreMovePage.locker_move_number,row);
@@ -111,6 +113,7 @@ public class StoreMoveBtnPage extends JFrame {
 							
 							if (pstmt != null) pstmt.close();
 							if (conn != null) conn.close();
+							
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -148,18 +151,20 @@ public class StoreMoveBtnPage extends JFrame {
 							
 							while(rs.next()) { 
 								String st = rs.getString("seat_statement");
-								Timestamp tc = rs.getTimestamp("time_enter");
+								Timestamp te = rs.getTimestamp("time_enter");
 								Timestamp tco = rs.getTimestamp("time_checkout");
 								
+								//seat 테이블에 룸 새로 업데이트
 								sql = "UPDATE seat SET seat_statement =?, time_enter=?, time_checkout=? WHERE Seat_Number= ?";
 								pstmt = conn.prepareStatement(sql);
 								pstmt.setString(1, st);
-								pstmt.setTimestamp(2, tc);
+								pstmt.setTimestamp(2, te);
 								pstmt.setTimestamp(3, tco);
 								pstmt.setInt(4, StoreMovePage.room_move_number);
 								int row2 = pstmt.executeUpdate();
 							}
-									
+							
+							//seat 테이블에 이전 룸 비우기
 							String sql2 = "UPDATE seat SET seat_statement='사용 가능', time_enter='01/01/01 00:00:00.000000000', "
 									+ "time_checkout = '01/01/01 00:00:00.000000000' WHERE Seat_Number= ?";
 							pstmt = conn.prepareStatement(sql2);
@@ -167,10 +172,10 @@ public class StoreMoveBtnPage extends JFrame {
 							int row = pstmt.executeUpdate();
 							
 							//회원info 테이블에 좌석번호 업데이트
-							sql = "UPDATE person_info SET room_number=? WHERE person_id=?";
-							pstmt = conn.prepareStatement(sql);
+							String sql3 = "UPDATE person_info SET room_number=? WHERE person_id=?";
+							pstmt = conn.prepareStatement(sql3);
 							pstmt.setInt(1, StoreMovePage.room_move_number);
-							pstmt.setInt(2, id);
+							pstmt.setInt(2, StoreBtnPage.id);
 							int row3 = pstmt.executeUpdate();
 												
 							System.out.printf("%d번 자리로 이동되었습니다.(%d행 업데이트)\n", StoreMovePage.room_move_number,row);
@@ -215,18 +220,20 @@ public class StoreMoveBtnPage extends JFrame {
 							
 							while(rs.next()) { 
 								String st = rs.getString("seat_statement");
-								Timestamp tc = rs.getTimestamp("time_enter");
+								Timestamp te = rs.getTimestamp("time_enter");
 								Timestamp tco = rs.getTimestamp("time_checkout");
 								
+								//seat 테이블에 좌석 새로 업데이트
 								sql = "UPDATE seat SET seat_statement =?, time_enter=?, time_checkout=? WHERE Seat_Number= ?";
 								pstmt = conn.prepareStatement(sql);
 								pstmt.setString(1, st);
-								pstmt.setTimestamp(2, tc);
+								pstmt.setTimestamp(2, te);
 								pstmt.setTimestamp(3, tco);
 								pstmt.setInt(4, StoreMovePage.seat_move_number);
 								int row2 = pstmt.executeUpdate();
 							}
-									
+							
+							//seat 테이블에 이전 좌석 비우기
 							String sql2 = "UPDATE seat SET seat_statement='사용 가능', time_enter='01/01/01 00:00:00.000000000', "
 									+ "time_checkout = '01/01/01 00:00:00.000000000' WHERE Seat_Number= ?";
 							pstmt = conn.prepareStatement(sql2);
@@ -234,10 +241,10 @@ public class StoreMoveBtnPage extends JFrame {
 							int row = pstmt.executeUpdate();
 							
 							//회원info 테이블에 좌석번호 업데이트
-							sql = "UPDATE person_info SET seat_number=? WHERE person_id=?";
-							pstmt = conn.prepareStatement(sql);
+							String sql3 = "UPDATE person_info SET seat_number=? WHERE person_id=?";
+							pstmt = conn.prepareStatement(sql3);
 							pstmt.setInt(1, StoreMovePage.seat_move_number);
-							pstmt.setInt(2, id);
+							pstmt.setInt(2, StoreBtnPage.id);
 							int row3 = pstmt.executeUpdate();
 												
 							System.out.printf("%d번 자리로 이동되었습니다.(%d행 업데이트)\n", StoreMovePage.seat_move_number,row);
@@ -273,7 +280,6 @@ public class StoreMoveBtnPage extends JFrame {
 			getContentPane().setBackground(Color.decode("#404040"));
 			setBounds(550, 200, 350, 250);
 			setVisible(true);
-
 
 		} catch (ClassNotFoundException | IOException e1) {
 			e1.printStackTrace();
