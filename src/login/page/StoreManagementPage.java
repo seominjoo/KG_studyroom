@@ -68,6 +68,7 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 		for(int i=0;i<20;i++) {
 			seats_btn.add(new JButton());
 			seats_btn.get(i).addActionListener(new StoreBtnAction(i, "좌석"));
+			seats_btn.get(i).setEnabled(false);
 		}
 	}
 	ArrayList<JButton> room_btn = new ArrayList<>(); //101~104호 (룸) 버튼
@@ -75,6 +76,7 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 		for(int i=0;i<4;i++) {//0~3
 			room_btn.add(new JButton());		
 			room_btn.get(i).addActionListener(new StoreBtnAction(i, "룸"));
+			room_btn.get(i).setEnabled(false);
 		}
 	}
 	ArrayList<JButton> locker_btn = new ArrayList<>(); //1~20번 사물함 버튼
@@ -82,6 +84,7 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 		for(int i=0;i<20;i++) {
 			locker_btn.add(new JButton()); 
 			locker_btn.get(i).addActionListener(new StoreBtnAction(i, "사물함"));
+			locker_btn.get(i).setEnabled(false);
 		}
 	}
 	
@@ -90,6 +93,7 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 	for(int i=0; i<20; ++i) {
 		seat.add(new JMenuItem(Integer.toString(i+1)+"번"));
 		seat.get(i).addActionListener(new StoreBtnAction(i, "좌석"));
+		seat.get(i).setEnabled(false);
 		s.add(seat.get(i));
 	}
 	}
@@ -99,6 +103,7 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 	for(int i=0; i<4; ++i) {
 		room.add(new JMenuItem(Integer.toString(i+101)+"호"));
 		room.get(i).addActionListener(new StoreBtnAction(i, "룸"));
+		room.get(i).setEnabled(false);
 		r.add(room.get(i));
 	}
 	}
@@ -108,6 +113,7 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 	for(int i=0; i<20; ++i) {
 		locker.add(new JMenuItem(Integer.toString(i+1)+"번"));
 		locker.get(i).addActionListener(new StoreBtnAction(i, "사물함"));
+		locker.get(i).setEnabled(false);
 		l.add(locker.get(i));
 	}
 	}
@@ -151,7 +157,7 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 		JLabel label05 = new JLabel("사용 가능");
 		label05.setOpaque(true);
 		label05.setBackground(Color.black);
-		label05.setForeground(Color.orange);
+		label05.setForeground(Color.gray);
 		label05.setHorizontalAlignment(JLabel.CENTER);
 		label05.setBounds(90,435,100,30);
 		c.add(label05);
@@ -159,7 +165,7 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 		JLabel label06 = new JLabel("사용 중");
 		label06.setOpaque(true);
 		label06.setBackground(Color.black);
-		label06.setForeground(Color.gray);
+		label06.setForeground(Color.orange);
 		label06.setHorizontalAlignment(JLabel.CENTER);
 		label06.setBounds(90,470,100,30);
 		c.add(label06);
@@ -265,10 +271,12 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 				int sn = rs.getInt("seat_number"); 
 				if(sn<=20) {
 					System.out.printf("%d번 ",sn); 
-					seats_btn.get(sn-1).setForeground(Color.gray);
-				}else if (sn>100) {
+					seats_btn.get(sn-1).setEnabled(true);
+					seats_btn.get(sn-1).setForeground(Color.orange);
+;				}else if (sn>100) {
 					System.out.printf("[%d호] ",sn); 
-					room_btn.get(sn-101).setForeground(Color.gray);
+					room_btn.get(sn-1).setEnabled(true);
+					seats_btn.get(sn-1).setForeground(Color.orange);
 				}
 			}
 
@@ -281,7 +289,8 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 			while(rs.next()) {
 				int sn = rs.getInt("locker_number");
 				System.out.printf("%d번 ",sn);
-				locker_btn.get(sn-1).setForeground(Color.gray);
+				locker_btn.get(sn-1).setForeground(Color.orange);
+				locker_btn.get(sn-1).setEnabled(true);
 			}
 
 			if(rs!=null) rs.close(); 

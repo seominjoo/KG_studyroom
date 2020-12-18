@@ -257,9 +257,11 @@ public class StoreMovePage extends JPanel implements ActionListener {
 				if(sn<=20) {
 					System.out.printf("%d¹ø ",sn); 
 					seats_btn.get(sn-1).setForeground(Color.gray);
+					seats_btn.get(sn-1).setEnabled(false);
 				}else if (sn>100) {
 					System.out.printf("[%dÈ£] ",sn); 
 					room_btn.get(sn-101).setForeground(Color.gray);
+					room_btn.get(sn-1).setEnabled(false);
 				}
 			}
 
@@ -273,6 +275,7 @@ public class StoreMovePage extends JPanel implements ActionListener {
 				int sn = rs.getInt("locker_number");
 				System.out.printf("%d¹ø ",sn);
 				locker_btn.get(sn-1).setForeground(Color.gray);
+				locker_btn.get(sn-1).setEnabled(false);
 			}
 
 			if(rs!=null) rs.close(); 

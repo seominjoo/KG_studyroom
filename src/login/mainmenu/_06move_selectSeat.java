@@ -32,22 +32,18 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
 	int d=0;
 	int e=0; 
 	int a=0;
+	
 	static ArrayList<JButton> seats_btn = new ArrayList<>(); //1~20번 좌석 (1인석) 버튼
-	{
-		for(int i=0;i<20;i++) {
-			seats_btn.add(new JButton());
-		}
-	 }
 	static ArrayList<JButton> room_btn = new ArrayList<>(); //1~20번 좌석 (1인석) 버튼
-	{
-		for(int i=0;i<4;i++) {//0~3
-			room_btn.add(new JButton()); 
-		}
-	}
 	static ArrayList<JButton> locker_btn = new ArrayList<>(); //1~20번 좌석 (1인석) 버튼
-	{
-		for(int i=0;i<20;i++) {
+
+	static {
+		for(int i = 0; i < 20; i++) {
+			seats_btn.add(new JButton());
 			locker_btn.add(new JButton()); 
+		}
+		for(int i = 0; i < 4; i++) {
+			room_btn.add(new JButton()); 
 		}
 	}
 		JLabel label_msg;
