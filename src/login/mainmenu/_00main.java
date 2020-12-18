@@ -101,7 +101,7 @@ public class _00main extends JPanel {
 				int seat_out = rs.getInt("seat_number");
 				Timestamp time_chk = rs.getTimestamp("time_checkout");
 				if (LocalDateTime.now().isAfter(Time.TimeStampTOlocalDateTime(time_chk))) {
-					String change = "update seat set Seat_Statement ='사용 가능',time_enter=null,time_checkout=null where Seat_Number= ?";
+					String change = "update seat set Seat_Statement ='사용 가능',time_enter='01/01/01 00:00:00.000000000',time_checkout='01/01/01 00:00:00.000000000' where Seat_Number= ?";
 					PreparedStatement pstmt2 = conn.prepareStatement(change);
 					pstmt2.setInt(1, seat_out);
 					int row3 = pstmt2.executeUpdate();
@@ -122,7 +122,7 @@ public class _00main extends JPanel {
 				time_seat = rs.getTimestamp("expiration_seat");
 				type = rs.getString("seat_type");
 				if (LocalDateTime.now().isAfter(Time.TimeStampTOlocalDateTime(time_seat))) {
-					sql = "update person_info set seat_number =null,expiration_seat='01/01/01 00:00:00.000000000',seat_type='x' where login_state = 'On'";
+					sql = "update person_info set seat_number =null,expiration_seat='01/01/01 00:00:00.000000000',seat_type='없음' where login_state = 'On'";
 					pstmt = conn.prepareStatement(sql);
 					row = pstmt.executeUpdate();
 				}

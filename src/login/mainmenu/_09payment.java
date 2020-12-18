@@ -156,6 +156,7 @@ public class _09payment extends JPanel{
             pstmt.setInt(6,_08reservation.price);
             int rowp = pstmt.executeUpdate(); 
             
+         
             //회원info 테이블에 저장(좌석번호,사물함번호,입실)
             sql = "update person_info set seat_number=?,Expiration_seat=?,seat_type=? where person_id=?";
             pstmt = conn.prepareStatement(sql);
@@ -196,13 +197,14 @@ public class _09payment extends JPanel{
          int rowt3 = pstmt.executeUpdate();
                            
          //결제테이블에 저장
-         String sql_pay = " insert into Payment_Record(Paid_Time,Exit_Time,Seat_Type,Pay_Method,Payment) values(?,?,?,?,?)";
+         String sql_pay = " insert into Payment_Record(Paid_Time,Exit_Time,person_id,Seat_Type,Pay_Method,Payment) values(?,?,?,?,?,?)";
          pstmt = conn.prepareStatement(sql_pay);
          pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
          pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(ss));
-         pstmt.setString(3, _08reservation.type11);
-         pstmt.setString(4, "카드");
-         pstmt.setInt(5,_08reservation.price);
+         pstmt.setInt(3, _00main.id);
+         pstmt.setString(4, _08reservation.type11);
+         pstmt.setString(5, "카드");
+         pstmt.setInt(6,_08reservation.price);
          int rowp = pstmt.executeUpdate();
                            
 //         회원info 테이블에 저장(좌석번호,사물함번호,입실)
@@ -236,13 +238,14 @@ public class _09payment extends JPanel{
             int rowt2 = pstmt.executeUpdate();
 
             //결제테이블에 저장
-            String sql_pay = " insert into Payment_Record(Paid_Time,Exit_Time,Locker_Type,Pay_Method,Payment) values(?,?,?,?,?)";
+            String sql_pay = " insert into Payment_Record(Paid_Time,Exit_Time,person_id,Locker_Type,Pay_Method,Payment) values(?,?,?,?,?)";
             pstmt = conn.prepareStatement(sql_pay);
             pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
             pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(time_now.plusMonths(1)));
-            pstmt.setString(3, "1달 이용권");
-            pstmt.setString(4, "카드");
-             pstmt.setInt(5,25000);
+            pstmt.setInt(3, _00main.id);
+            pstmt.setString(4, "1달 이용권");
+            pstmt.setString(5, "카드");
+             pstmt.setInt(6,25000);
             int rowp = pstmt.executeUpdate();
             
             //회원info 테이블에 저장(좌석번호,사물함번호,입실)
@@ -261,6 +264,7 @@ public class _09payment extends JPanel{
                   }
                }
          
+      
          JOptionPane.showMessageDialog(null,"결제 완료");
          
          MainPage.user_page_panel.add

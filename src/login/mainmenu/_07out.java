@@ -92,7 +92,7 @@ public class _07out extends JPanel {
                      }
                      // 일일이용권 사용자는 만료시간 리셋
                      else {
-                        sql = "update person_info set seat_number=null,expiration_seat='01/01/01 00:00:00.000000000' where login_state = 'On'";
+                        sql = "update person_info set seat_number=null,expiration_seat='01/01/01 00:00:00.000000000' ,seat_type='없음' where login_state = 'On'";
                         pstmt = conn.prepareStatement(sql);
                         int row5 = pstmt.executeUpdate();
                         System.out.printf("(%d행 업데이트)\n", row5);

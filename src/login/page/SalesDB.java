@@ -141,16 +141,16 @@ public class SalesDB {
 			table.getColumnModel().getColumn(3).setPreferredWidth(60);
 			table.getColumnModel().getColumn(4).setPreferredWidth(55);
 			table.getColumnModel().getColumn(5).setPreferredWidth(55);
-
-
 			
-			SalesManagementPage.scrollPane.setViewportView(table);
+			SalesManagementPage.scrollPane.setViewportView(table);		
 			
 			if (rs != null)
 				rs.close();
 			if (read_data != null)
 				read_data.close();
 
+
+			
 			if (conn != null)
 				conn.close();
 

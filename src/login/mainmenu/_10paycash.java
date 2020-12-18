@@ -174,13 +174,14 @@ public class _10paycash extends JFrame {
                         pstmt.setInt(3, i + 101);
                         int rowt3 = pstmt.executeUpdate();
 
-                        String sql_pay = " insert into Payment_Record(Paid_Time,Exit_Time,Seat_Type,Pay_Method,Payment) values(?,?,?,?,?)";
+                        String sql_pay = " insert into Payment_Record(Paid_Time,Exit_Time,person_id,Seat_Type,Pay_Method,Payment) values(?,?,?,?,?)";
                         pstmt = conn.prepareStatement(sql_pay);
                         pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
                         pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(_08reservation.time11));
-                        pstmt.setString(3, _08reservation.type11);
-                        pstmt.setString(4, "현금");
-                        pstmt.setInt(5, _08reservation.price11);
+                        pstmt.setInt(3, _00main.id);
+                        pstmt.setString(4, _08reservation.type11);
+                        pstmt.setString(5, "현금");
+                        pstmt.setInt(6, _08reservation.price11);
                         int rowp = pstmt.executeUpdate();
 
 //            회원info 테이블에 저장(좌석번호,사물함번호,입실)
@@ -215,13 +216,14 @@ public class _10paycash extends JFrame {
                         int rowt2 = pstmt.executeUpdate();
 
                         // 결제테이블에 저장
-                        String sql_pay = " insert into Payment_Record(Paid_Time,Exit_Time,Locker_Type,Pay_Method,Payment) values(?,?,?,?,?)";
+                        String sql_pay = " insert into Payment_Record(Paid_Time,Exit_Time,person_id,Locker_Type,Pay_Method,Payment) values(?,?,?,?,?)";
                         pstmt = conn.prepareStatement(sql_pay);
                         pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
                         pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(time_now.plusMonths(1)));
-                        pstmt.setString(3, "1달 이용권");
-                        pstmt.setString(4, "현금");
-                        pstmt.setInt(5, 25000);
+                        pstmt.setInt(3, _00main.id);
+                        pstmt.setString(4, "1달 이용권");
+                        pstmt.setString(5, "현금");
+                        pstmt.setInt(6, 25000);
                         int rowp = pstmt.executeUpdate();
 
                         // 회원info 테이블에 저장(좌석번호,사물함번호,입실)
@@ -239,6 +241,8 @@ public class _10paycash extends JFrame {
                      }
                   }
 
+                  
+                  
                   MainPage.user_page_panel.add("영수증", new _11receipt(ss, Integer.parseInt(cash.getText())));
                   MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
                   MainPage.user_cards.show(MainPage.user_page_panel, "영수증");

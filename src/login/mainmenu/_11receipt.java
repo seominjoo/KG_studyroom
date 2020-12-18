@@ -84,6 +84,13 @@ public class _11receipt extends JPanel {
 			
 			System.out.printf("%d번 회원 로그아웃(%d행 업데이트)\n",1, _00main.id,row);
 			
+		      String total_payment = "update person_info set total_payment = total_payment + ? where person_id = ?";
+		      pstmt = conn.prepareStatement(total_payment);
+		      pstmt.setInt(1, _08reservation.price);
+		      pstmt.setInt(2, _00main.id);
+		      int rowtp = pstmt.executeUpdate();
+			
+		      
 			if (pstmt != null) pstmt.close();
 			if (conn != null) conn.close();
 		} catch (ClassNotFoundException | SQLException e) { 
