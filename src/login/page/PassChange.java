@@ -33,13 +33,9 @@ public class PassChange extends JPanel implements ActionListener{
 		}
 	}
 
-	public static ArrayList<JComboBox<String>> combobox = new ArrayList<>(); 
-	{
-		combobox.add(new JComboBox<String>(new ManagementDate().passTable));
-		combobox.add(new JComboBox<String>(new ManagementDate().passTable2));
-		combobox.add(new JComboBox<String>(new ManagementDate().passTable3));
-		combobox.add(new JComboBox<String>(new ManagementDate().passTable4));
-	}
+	public static ArrayList<JComboBox<String>> combobox; 
+	
+	
 	ArrayList<JButton> change = new ArrayList<>();
 	{
 		for (int i = 0; i < 4; i++) {
@@ -52,7 +48,11 @@ public class PassChange extends JPanel implements ActionListener{
 	int c=0;
 	int d=0;
 	public PassChange() { 
-
+		combobox = new ArrayList<JComboBox<String>>();
+		combobox.add(new JComboBox<String>(new ManagementDate().passTable));
+		combobox.add(new JComboBox<String>(new ManagementDate().passTable2));
+		combobox.add(new JComboBox<String>(new ManagementDate().passTable3));
+		combobox.add(new JComboBox<String>(new ManagementDate().passTable4));
 
 		setLayout(null);
 		new Style(this);
