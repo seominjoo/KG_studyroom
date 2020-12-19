@@ -15,17 +15,15 @@ import login.design.Style;
 import login.window.MainBtn_Action;
 
 public class AdminPage extends JPanel{
+	
    public static JTextField admin_phone_number1;
    public static JTextField admin_phone_number2;
    public static JTextField admin_phone_number3;
    public static JPasswordField admin_loginpass;
    public static JTextField[] phoneTotal;
 
-   
    public AdminPage() {
-      this.setLayout(null);
-      new Style(this);
-
+	   
       this.setLayout(null);
       new Style(this);
 

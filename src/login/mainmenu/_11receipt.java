@@ -1,6 +1,5 @@
 package login.mainmenu;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,17 +9,13 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.UIManager;
-import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 
 import login.design.Style;
 import login.page.MainPage;
-import login.signUp.window.ResultWindow;
 import login.swingTools.State;
 
 public class _11receipt extends JPanel {
@@ -29,27 +24,24 @@ public class _11receipt extends JPanel {
 	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
 
 	public _11receipt(LocalDateTime ss, int price) {
+		
 		MainPage.updateTable.add(new State());
 		MainPage.statecard.next(MainPage.updateTable);
 
 		setLayout(null);
 		new Style(this);
+		setVisible(true);
 
 		JLabel label01 = new JLabel("<html><pre>영수증</pre>");
 		new Style(label01);
 		label01.setBounds(183, 0, 440, 80);
 		label01.setFont(new Font("Courier", Font.PLAIN, 35));
 
-		// setSize(750,500);
-		// setLocation(600,150);
-		setVisible(true);
-
 		JPanel p2 = new JPanel();
 		new Style(p2);
 		p2.setBounds(70, 100, 693, 453);
 		add(p2);
 		p2.setLayout(null);
-
 		p2.add(label01);
 
 		String header[] = { "결제", "정보" };
@@ -65,10 +57,6 @@ public class _11receipt extends JPanel {
 		new Style(table);
 		table.setBounds(40, 104, 390, 245);
 		table.setRowHeight(35);
-
-//		Color color = UIManager.getColor("Table.gridColor");
-//		MatteBorder border = new MatteBorder(1, 1, 0, 0, color);
-//		table.setBorder(border);
 		p2.add(table);
 
 		try {
@@ -98,18 +86,12 @@ public class _11receipt extends JPanel {
 			pstmt.setInt(2, _00main.id);
 			int rowtp = pstmt.executeUpdate();
 
-			if (rs != null)
-				rs.close();
-			if (readPrice != null)
-				readPrice.close();
-			if (pstmt != null)
-				pstmt.close();
-			if (conn != null)
-				conn.close();
+			if (rs != null) rs.close();
+			if (readPrice != null) readPrice.close();
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
-
 }

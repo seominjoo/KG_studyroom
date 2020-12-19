@@ -1,40 +1,23 @@
 package login.mainmenu;
 
-import java.awt.EventQueue;
-import java.awt.Font;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
 
 import login.design.Style;
 import login.page.MainPage;
 
-import javax.swing.JButton;
-import java.awt.GridLayout;
-import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
-
-import javax.swing.Action;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 
 public class _03whatWeek extends JPanel {
 
 	LocalDateTime time_now = LocalDateTime.now();
 
 	public _03whatWeek() {
+		
 		setLayout(null);
 		new Style(this);
-	 
-		//setBounds(600, 150, 450, 470);
-		//this.setBorder(new EmptyBorder(5, 5, 5, 5));
-		
- 
 
 		JButton btn_2wk = new JButton(_01start.pass_price.get(12)+"("+_01start.pass_price.get(13)+")"); 
 		new Style(btn_2wk);
@@ -101,8 +84,5 @@ public class _03whatWeek extends JPanel {
 				MainPage.userToggle = "ÁÂ¼®ÀÌ¿ë±Ç";
 			}
 		});
-
 	} 
-
-
 }

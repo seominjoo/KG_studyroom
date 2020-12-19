@@ -1,25 +1,10 @@
 package login.page;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 import login.PhoneNumberEnum;
 import login.clearText.ClearTextBackGround;
@@ -27,9 +12,6 @@ import login.clearText.PhoneNumberClearTextField;
 import login.design.Conversion_image;
 import login.design.EmptyPrice;
 import login.design.Style;
-import login.findPW.FindPasswordPageUser;
-import login.signUp.SignUpPage;
-import login.swingTools.Login_SwingTool;
 import login.swingTools.State;
 import login.window.MainBtn_Action;
 
@@ -38,16 +20,16 @@ public class LoginPage extends JPanel {
 	public static JTextField phone_number1;
 	public static JTextField phone_number2;
 	public static JTextField phone_number3;
-	public static JPasswordField loginpass;
 	public static JTextField phone_number4;
 	public static JTextField phone_number5;
 	public static JTextField phone_number6;
+	public static JTextField[] phoneTotal;
+	
+	public static JPasswordField loginpass;
 	public static JPasswordField admin_loginpass1;
 
-	public static JTextField[] phoneTotal;
-
-	// 683, 562
 	public LoginPage() {
+		
 		MainPage.updateTable.add(new State());
 		MainPage.statecard.next(MainPage.updateTable);
 

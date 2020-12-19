@@ -1,34 +1,24 @@
 package login.mainmenu;
 
-import java.awt.EventQueue;
 import java.awt.Font;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
 
 import login.design.Style;
 import login.page.MainPage;
 
-
-import javax.swing.JButton;
-import java.awt.GridLayout;
-import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
-
-import javax.swing.Action;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 
 public class _03whatHourRoom extends JPanel {
 
 	LocalDateTime time_now = LocalDateTime.now(); 
 	 
 	public _03whatHourRoom() {
+		
 		setLayout(null);
 		new Style(this);
 		
@@ -36,10 +26,6 @@ public class _03whatHourRoom extends JPanel {
 		new Style(label01);
 		label01.setBounds(188,0,440,80);
 		label01.setFont(new Font("Courier", Font.PLAIN, 35));
-		  
-		//setBounds(600, 150, 450, 350);
-		
-		//this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
 		this.add(label01);
 		
@@ -142,8 +128,6 @@ public class _03whatHourRoom extends JPanel {
 				MainPage.userToggle = "·ëÀÌ¿ë±Ç";
 			}
 		});
-
 	}
-
 }
 

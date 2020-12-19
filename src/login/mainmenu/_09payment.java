@@ -1,34 +1,25 @@
 package login.mainmenu;
 
-import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import javax.swing.JPanel;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import login.design.Style;
 import login.page.MainPage;
 
 import javax.swing.JRadioButton;
-import javax.swing.JToggleButton;
-import javax.swing.UIManager;
-import javax.swing.border.MatteBorder;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 
 public class _09payment extends JPanel{
 
@@ -39,18 +30,14 @@ public class _09payment extends JPanel{
   
    public _09payment(LocalDateTime ss, int seat_price, String seat_type) {
 
-//      this.setSize(750,500);
-//      this.setLocation(600,150);
-      this.setLayout(null);
+      setLayout(null);
       new Style(this);
-      this.setVisible(true);
 
       JPanel p2 = new JPanel();
       p2.setBounds(0, 0, 706, 453);
       this.add(p2);
       p2.setLayout(null);
       new Style(p2);
-
        
       String header[] = {"결제","정보"};
       String contents[][]= {
@@ -67,11 +54,11 @@ public class _09payment extends JPanel{
       new Style(table);
       table.setBounds(60, 104, 450, 175);
       table.setRowHeight(35);
+      p2.add(table);
 
 //      Color color = UIManager.getColor("Table.gridColor");
 //      MatteBorder border = new MatteBorder(1, 1, 0, 0, color);
 //      table.setBorder(border);
-      p2.add(table);
 
       JRadioButton card_btn = new JRadioButton("카드");
       new Style(card_btn);
@@ -86,7 +73,6 @@ public class _09payment extends JPanel{
       ButtonGroup group = new ButtonGroup();
       group.add(cash_btn);
       group.add(card_btn);
-
 
       JButton back_btn = new JButton("돌아가기");
       new Style(back_btn);
@@ -110,12 +96,8 @@ public class _09payment extends JPanel{
                      );
                PreparedStatement pstmt = null;
 
-         if(cash_btn.isSelected()) {// 현금결제
-
+         if(cash_btn.isSelected()) {// 현금 결제 프레임 창 띄우기
             new _10paycash(ss);
-//            MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
-//            MainPage.user_cards.show(MainPage.user_page_panel, "결제알림창");
-//            MainPage.userToggle = "결제알림창"; 
          }
 
 
@@ -123,11 +105,11 @@ public class _09payment extends JPanel{
       int result= JOptionPane.showConfirmDialog(null, "카드를 삽입하세요","Message",JOptionPane.YES_NO_OPTION);
       if(result==JOptionPane.CLOSED_OPTION) {
 
-      }else if(result==JOptionPane.NO_OPTION) {
-         JOptionPane.showMessageDialog(null,"취소");//취소 메세지
-      }else {
+      }else if(result==JOptionPane.NO_OPTION) { //취소 메세지
+         JOptionPane.showMessageDialog(null,"취소");
+      }else { //(카드 결제 버튼 누를시)
 
-      for(int i=0;i<20;i++) {//(카드 결제 버튼 누를시)
+      for(int i=0;i<20;i++) {
          if( _08reservation.seats_btn.get(i).isSelected()&&(_08reservation.seats_btn.get(i).isEnabled()==true)) {//이미 예약되있는 건(비활성화) 빼고 체크
             _08reservation.seats_btn.get(i).setEnabled(false);
                            
@@ -151,12 +133,11 @@ public class _09payment extends JPanel{
             pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
             pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(ss));
             pstmt.setInt(3, _00main.id);
-             pstmt.setString(4, _08reservation.type11);
+            pstmt.setString(4, _08reservation.type11);
             pstmt.setString(5, "카드");
             pstmt.setInt(6,_08reservation.price);
             int rowp = pstmt.executeUpdate(); 
-            
-         
+              
             //회원info 테이블에 저장(좌석번호,사물함번호,입실)
             sql = "update person_info set seat_number=?,Expiration_seat=?,seat_type=? where person_id=?";
             pstmt = conn.prepareStatement(sql);
@@ -168,17 +149,12 @@ public class _09payment extends JPanel{
             pstmt.setString(3, "일일 이용권");
             }
             pstmt.setInt(4, _00main.id);
-            
             int row3 = pstmt.executeUpdate();
-            
-            
-            
             System.out.printf("%d번 자리가 예약되었습니다.(%d행 업데이트)\n", i+1,row);
             System.out.printf("입실/퇴실 시간이 업데이트되었습니다.(%d행 업데이트)\n",rowt1);
             System.out.printf("결제 기록이 업데이트되었습니다.(%d행 업데이트)\n",rowp);
             System.out.printf("회원 정보가 업데이트되었습니다.(%d행 업데이트)\n",row3);
          }
-
       } 
       
       for(int i=0;i<4;i++) {
@@ -189,7 +165,7 @@ public class _09payment extends JPanel{
          pstmt.setInt(1, i+101);
          int row2 = pstmt.executeUpdate();
 
-           String sqlt3 = "update seat set time_enter =?,time_checkout=? where Seat_Number= ?";
+         String sqlt3 = "update seat set time_enter =?,time_checkout=? where Seat_Number= ?";
          pstmt = conn.prepareStatement(sqlt3);
          pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
          pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(ss));
@@ -207,7 +183,7 @@ public class _09payment extends JPanel{
          pstmt.setInt(6,_08reservation.price);
          int rowp = pstmt.executeUpdate();
                            
-//         회원info 테이블에 저장(좌석번호,사물함번호,입실)
+         //회원info 테이블에 저장(좌석번호,사물함번호,입실)
          sql2 = "update person_info set room_number=? where person_id=?";
          pstmt = conn.prepareStatement(sql2);
          pstmt.setInt(1,i+101);
@@ -221,7 +197,6 @@ public class _09payment extends JPanel{
       }   
    }
       for(int i=0;i<20;i++) {//(예약 완료 버튼 누를시)
-
 
          if( _08reservation.locker_btn.get(i).isSelected()&&(_08reservation.locker_btn.get(i).isEnabled()==true)) {
             _08reservation.locker_btn.get(i).setEnabled(false);
@@ -245,7 +220,7 @@ public class _09payment extends JPanel{
             pstmt.setInt(3, _00main.id);
             pstmt.setString(4, _08reservation.type11);
             pstmt.setString(5, "카드");
-             pstmt.setInt(6, _08reservation.price11);
+            pstmt.setInt(6, _08reservation.price11);
             int rowp = pstmt.executeUpdate();
             
             //회원info 테이블에 저장(좌석번호,사물함번호,입실)
@@ -258,17 +233,13 @@ public class _09payment extends JPanel{
             System.out.printf("%d번 사물함이 예약되었습니다.(%d행 업데이트)\n", i+1,row3);
             System.out.printf("입실/퇴실 시간이 업데이트되었습니다.(%d행 업데이트)\n",rowt2);
             System.out.printf("결제 기록이 업데이트되었습니다.(%d행 업데이트)\n",rowp);
-             System.out.printf("회원 정보가 업데이트되었습니다.(%d행 업데이트)\n",row1);
-            
-             
-                  }
-               }
-         
-      
+            System.out.printf("회원 정보가 업데이트되었습니다.(%d행 업데이트)\n",row1); 
+            }
+         }
+
          JOptionPane.showMessageDialog(null,"결제 완료");
          
-         MainPage.user_page_panel.add
-         ("영수증",new _11receipt(ss,_08reservation.price));
+         MainPage.user_page_panel.add("영수증",new _11receipt(ss,_08reservation.price));
          MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
          MainPage.user_cards.show(MainPage.user_page_panel, "영수증");
          MainPage.userToggle = "영수증"; 
@@ -279,10 +250,9 @@ public class _09payment extends JPanel{
          if (conn != null) conn.close();
       } catch (ClassNotFoundException | SQLException e1) { 
          e1.printStackTrace();
-            } 
-
-         }
-      }); 
+      } 
+    }
+ }); 
       
       back_btn.addActionListener(new ActionListener() { 
    @Override
@@ -297,19 +267,11 @@ public class _09payment extends JPanel{
       for(int i=0;i<20;i++) {
          _08reservation.locker_btn.get(i).setSelected(false);
       } 
-
-      MainPage.user_page_panel.add
-      ("예약페이지", new _08reservation(_08reservation.time11,
-            _08reservation.price11,
-            _08reservation.type11));
+      MainPage.user_page_panel.add ("예약페이지", new _08reservation(_08reservation.time11, _08reservation.price11, _08reservation.type11));
       MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
       MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
       MainPage.userToggle = "예약페이지"; 
       }
-   
-   
       }); 
    } 
-
- 
 }

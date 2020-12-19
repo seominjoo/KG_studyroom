@@ -3,44 +3,18 @@ package login.page;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.awt.Font;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.UIManager;
-import javax.swing.border.MatteBorder;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
 
 import login.design.Conversion_image;
 import login.design.Style;
 import login.findPW.FindPasswordPageUser;
-import login.mainmenu._00main;
-import login.mainmenu._02dayOrWeek;
-import login.mainmenu._02dayRoom;
-import login.mainmenu._03whatHour;
-import login.mainmenu._03whatHourRoom;
-import login.mainmenu._03whatWeek;
-import login.mainmenu._05locker;
-import login.mainmenu._06move;
-import login.mainmenu._06move_selectSeat;
-import login.mainmenu._07in_selectSeat;
-import login.mainmenu._07out;
-import login.mainmenu._08reservation;
-import login.mainmenu._09payment;
-import login.mainmenu._10paycash;
 import login.signUp.SignUpPage;
 import login.swingTools.Login_SwingTool;
 import login.swingTools.State;
@@ -48,8 +22,10 @@ import login.window.MainBtn_Action;
 
 public class MainPage extends JFrame implements Runnable {
 
-   public static int x = new Conversion_image("image/배경화면(누런).jpg", 4).x;
-   public static int y = new Conversion_image("image/배경화면(누런).jpg", 4).y;
+   public static int x = new Conversion_image("image/배경화면(누런).jpg", 4).x; //전체 프레임 가로 길이
+   public static int y = new Conversion_image("image/배경화면(누런).jpg", 4).y; //전체 프레임 세로 길이
+   public static int w = 683; //메인 패널 가로 길이(width)
+   public static int h = 562; //메인 패널 세로 길이(height)
    public static JPanel main_page_panel;
    public static CardLayout main_cards;
    public static JPanel user_page_panel;
@@ -74,29 +50,30 @@ public class MainPage extends JFrame implements Runnable {
    public MainPage() {
 
       userToggle = "메인";
+      
       // 배경화면
       JPanel fram_panel = new JPanel();
       new Style(fram_panel);
       fram_panel.setLayout(null);
-      fram_panel.setBounds(0, 0, x, y);
+      fram_panel.setBounds(0, 0, x, y);//x=1000, y=562
       // 배경 이미지
       background = new JLabel(new Conversion_image("image/배경화면(누런).jpg", 4).imageicon_smooth);
       background.setOpaque(false);
-      background.setBounds(0, 0, x, y);
+      background.setBounds(0, 0, x, y);//x=1000, y=562
 
       // 메인 카드페이지 패널
       main_page_panel = new JPanel();
       main_cards = new CardLayout();
       main_page_panel.setLayout(main_cards);
       new Style(main_page_panel);
-      main_page_panel.setBounds(316, 0, 683, 562);
+      main_page_panel.setBounds(x-w, 0, w, h); //w=683, h=562
 
       // 사용자메뉴 카드페이지 패널
       user_page_panel = new JPanel();
       user_cards = new CardLayout();
       user_page_panel.setLayout(user_cards);
       new Style(user_page_panel);
-      user_page_panel.setBounds(316, 0, 683, 562);
+      user_page_panel.setBounds(x-w, 0, w, h); //w=683, h=562
       
       // 좌석현황 패널
       updateTable = new JPanel();
@@ -111,7 +88,7 @@ public class MainPage extends JFrame implements Runnable {
       new Style(logout);
       logoutcard = new CardLayout();
       logout.setLayout(logoutcard);
-      logout.setBounds(890, 0, 100, 30);
+      logout.setBounds(x-107, 5, 100, 30); //x=1000
       // 빈화면
       empty = new JButton();
       new Style(empty);
@@ -120,7 +97,8 @@ public class MainPage extends JFrame implements Runnable {
       // 로그아웃버튼
       logoutbtn = new JButton("로그아웃");
       new Style(logoutbtn);
-      logoutbtn.setBounds(0, 0, 100, 30);
+      logoutbtn.setBounds(0, 0, 90, 30);
+      logoutbtn.setFont(new Font("맑은 고딕", Font.BOLD, 13));
       logoutbtn.addActionListener(new MainBtn_Action(logoutbtn));
       logout.add("2",logoutbtn);
       
@@ -144,7 +122,7 @@ public class MainPage extends JFrame implements Runnable {
       main_page_panel.add("회원가입", new SignUpPage());
       main_page_panel.add("비번찾기", new FindPasswordPageUser());
 
-      // 사용자 메뉴 페이지 추가 작업
+        // 사용자 메뉴 페이지 추가 작업
 //      user_page_panel.add("메인메뉴", new _00main()); // 메뉴페이지
 //      user_page_panel.add("이용권구매", new _01start()); // 이용권구매 페이지
 //      user_page_panel.add("좌석이용권", new _02dayOrWeek()); // 좌석 이용권 페이지
@@ -156,12 +134,12 @@ public class MainPage extends JFrame implements Runnable {
 //      user_page_panel.add("자리이동", new _06move());
 //      user_page_panel.add("입실페이지", new _07in_seletSeat());
 //      user_page_panel.add("퇴실페이지", new _07out());
-//      //user_page_panel.add("예약페이지", new _08reservation(ss,price,seat_type));
+//      user_page_panel.add("예약페이지", new _08reservation(ss,price,seat_type));
 //      user_page_panel.add("자리페이지", new _06move_selectSeat());
-      // user_page_panel.add("결제페이지", new _09payment(ss, price, seat_type));
+//		user_page_panel.add("결제페이지", new _09payment(ss, price, seat_type));
 //      user_page_panel.add("결제알림창", new _10paycash(ss));
 
-      // 영수증에 확인 버튼(or 입장바로가기 or로그아웃off)
+        // 영수증에 확인 버튼(or 입장바로가기 or로그아웃off)
 //      user_page_panel.add("영수증", new _11receipt(ss, price));
 
       JButton changeUser = new JButton(new Conversion_image("image/관리자.png", 30, 30).imageicon_smooth);
@@ -187,13 +165,12 @@ public class MainPage extends JFrame implements Runnable {
       background.add(clock);
       background.add(updateTable);
       
-
       fram_panel.add(background);
 
       Login_SwingTool.initFrame(this);
       add(main_page_panel);
       add(fram_panel);
-      
+
    }
 
    @Override

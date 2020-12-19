@@ -1,35 +1,23 @@
 package login.page;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.Font;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import login.design.Conversion_image;
 import login.design.Style;
-import login.window.MainBtn_Action;
 
 public class AdminMenuPage extends JPanel{
-   
-   int x = new Conversion_image("image/로그인화면.jpg", 5).x;
-   int y = new Conversion_image("image/로그인화면.jpg", 5).y;
-   
+    
    public AdminMenuPage() {
 
-      // 페이지 작업
-      this.setBounds(315, 0, 484, 450);
       this.setLayout(null);
       new Style(this);
       
-//      page_Subtitle.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
+//    page_Subtitle.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
       
-      JLabel page_Title = new JLabel("관리자  페이지", JLabel.RIGHT);
+      JLabel page_Title = new JLabel("관리자 페이지", JLabel.RIGHT);
       new Style(page_Title);
       page_Title.setFont(new Font("맑은 고딕", Font.BOLD, 13));
       page_Title.setBounds(374, 395, 100, 30);
@@ -73,8 +61,7 @@ public class AdminMenuPage extends JPanel{
       this.add(price_change);
       
       price_change.addActionListener(new PassChange());
-      
-      
+
    }
 
 }

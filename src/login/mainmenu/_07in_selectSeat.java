@@ -9,14 +9,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -25,14 +22,13 @@ import login.design.Style;
 import login.page.MainPage;
 import login.swingTools.State;
 
-
 public class _07in_selectSeat extends JPanel implements ActionListener{
- 
 	 
 	static ArrayList<JButton> seats_btn = new ArrayList<>(); //1~20번 좌석 (1인석) 버튼
 	static ArrayList<JButton> room_btn = new ArrayList<>(); //1~20번 좌석 (1인석) 버튼
 	static ArrayList<JButton> locker_btn = new ArrayList<>(); //1~20번 좌석 (1인석) 버튼
-
+	static LocalDateTime time_now = LocalDateTime.now();
+	
 	static {
 		for(int i = 0; i < 20; i++) {
 			seats_btn.add(new JButton());
@@ -49,32 +45,19 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 	int d=0;
 	int e=0; 
 	int a=0;
+	
 	JLabel label_msg;
-	static LocalDateTime time_now = LocalDateTime.now();
 	String time_checkout;
-	 
 	
 	public _07in_selectSeat() {
 		 
 		new Style(this);
+		this.setLayout(null);
+		
 		JButton OK;
 		JButton back;
-//		JLabel label = new JLabel("1인석");
-//		JLabel label02 = new JLabel("룸");
-//		label_msg = new JLabel("");
-//		label.setBounds(10,10,50,30);
-//		label.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-//		this.add(label);
-//		label02.setBounds(10,100,50,30);
-//		label02.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-//	 
-//		label_msg.setBounds(200,310,500,30);
-//		label_msg.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-//		this.add(label_msg); 
-//		this.add(label02);
 		
 		JLabel label03 = new JLabel("사물함");
-	 
 		label03.setBounds(15,350,50,30);
 		label03.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		this.add(label03); 
@@ -107,7 +90,6 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 		this.add(label06);
 
 		for(int i=0;i<3;i++) {// 1인석 버튼 위치 설정
-
 			seats_btn.get(i).setBackground(Color.BLACK);
 			seats_btn.get(i).setText(i+1+"번");
 			seats_btn.get(i).setForeground(Color.orange);
@@ -118,7 +100,6 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 		}
 
 		for(int i=3;i<6;i++) {// 1인석 버튼 위치 설정
-
 			seats_btn.get(i).setBackground(Color.BLACK);
 			seats_btn.get(i).setText(i+1+"번");
 			seats_btn.get(i).setForeground(Color.orange);
@@ -127,8 +108,8 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 			seats_btn.get(i).setBounds(70+f,40,60,60); 
 			f+=60;  
 		}
+		
 		for(int i=6;i<11;i++) {// 1인석 버튼 위치 설정
-
 			seats_btn.get(i).setBackground(Color.BLACK);
 			seats_btn.get(i).setText(i+1+"번");
 			seats_btn.get(i).setForeground(Color.orange);
@@ -137,6 +118,7 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 			seats_btn.get(i).setBounds(120+f,40+a,60,60); 
 			a+=60;
 		}
+		
 		for(int i=11; i<14;i++) { // 1인석 버튼 위치 설정
 			seats_btn.add(new JButton()); 
 			seats_btn.get(i).setBackground(Color.BLACK);
@@ -147,6 +129,7 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 			seats_btn.get(i).setBounds(30+g,100,60,60);
 			g+=60;  
 		}
+		
 		for(int i=14; i<17;i++) { // 1인석 버튼 위치 설정
 			seats_btn.add(new JButton()); 
 			seats_btn.get(i).setBackground(Color.BLACK);
@@ -157,6 +140,7 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 			seats_btn.get(i).setBounds(70+g,100,60,60);
 			g+=60;  
 		}
+		
 		g-=180;
 		for(int i=17; i<20;i++) { // 1인석 버튼 위치 설정
 			seats_btn.add(new JButton()); 
@@ -179,6 +163,7 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 			e+=90; 
 			room_btn.get(i).setEnabled(false);
 		}
+		
 		for(int i=2;i<4;i++) {//0~3
 			room_btn.get(i).setBackground(Color.BLACK);
 			room_btn.get(i).setText(i+101+"호");
@@ -189,6 +174,7 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 			d+=90; 
 			room_btn.get(i).setEnabled(false);
 		}
+		
 		for(int i=0;i<10;i++) {// 사물함 버튼 위치 설정
 			locker_btn.get(i).setBackground(Color.BLACK);
 			locker_btn.get(i).setText(i+1+"번");
@@ -199,6 +185,7 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 			c+=55;
 			locker_btn.get(i).setEnabled(false);
 		}	
+		
 		d=0;
 		for(int i=10; i<20;i++) { // 사물함 버튼 위치 설정
 
@@ -212,7 +199,6 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 			locker_btn.get(i).setEnabled(false);
 		}
 
-		
 		ActionListener back_btn = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -220,20 +206,18 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 				for(int i=0;i<20;i++) {
 					seats_btn.get(i).setSelected(false);
 				} 
-				
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "메인메뉴");
 				MainPage.userToggle = "메인메뉴";
-				
 			}
 		};
 		
 		back = new JButton("이전 화면");
 		back.setBounds(200,460,150,80);
 		this.add(back);
-		back.addActionListener(back_btn);
 		new Style(back);
-	
+		back.addActionListener(back_btn);
+
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection conn = DriverManager.getConnection(
@@ -277,22 +261,16 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 			if(rs!=null) rs.close(); 
 			if (pstm != null) pstm.close();
 			if (conn != null) conn.close();
+			
 		} catch (ClassNotFoundException | SQLException e1) { 
 			e1.printStackTrace();
 		}
 		
 		OK = new JButton("좌석 선택(입실)");
-		OK.setBounds(360,460,150,80);
 		this.add(OK);
-		OK.addActionListener(this);
 		new Style(OK);
-		setSize(600,500);
-		setLocation(600,180);
-		setVisible(true);  
-		
-		this.setBounds(0, 100, 600, 500);
-		this.setLayout(null);
-		
+		OK.setBounds(360,460,150,80);
+		OK.addActionListener(this);		
 	}
 
 	@Override
@@ -321,17 +299,15 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 			}else if(count_only>1) {
 				String warning="1인 1선택 가능";
 				JOptionPane.showMessageDialog(this,warning); 
-			}else {
-				// (창끄기 or 예 or 취소)버튼 
+			}else { // (창끄기 or 예 or 취소) 버튼 
+				
 				int result= JOptionPane.showConfirmDialog(null, msg,"Message",JOptionPane.YES_NO_OPTION);
-				if(result ==JOptionPane.CLOSED_OPTION) { 
-					//(재 확인 창 끄기) 
-				}else if (result ==JOptionPane.NO_OPTION) {
-					JOptionPane.showMessageDialog(this,"취소");//취소 메세지
-				}else {   
+				if(result ==JOptionPane.CLOSED_OPTION) { // 재확인 창 끄기	
+				}else if (result ==JOptionPane.NO_OPTION) { //취소 메세지
+					JOptionPane.showMessageDialog(this,"취소");
+				}else { // yes버튼 -> 좌석예약  
 					 
-			 // yes버튼 -> 좌석예약
-						
+			 
 		for(int i=0;i<20;i++) {
 			if(seats_btn.get(i).isSelected()&&(seats_btn.get(i).isEnabled()==true)) {//이미 예약되있는 건(비활성화) 빼고 체크
 				seats_btn.get(i).setEnabled(false);
@@ -367,18 +343,13 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 			}
 		}
 		setVisible(false);
-					  
-					 
 				}
 			} 
-			 
 			if (pstmt != null) pstmt.close();
 			if (conn != null) conn.close();
 		} catch (ClassNotFoundException | SQLException e1) {
 			e1.printStackTrace();
 		} 
 	} 
-	
-
 }
 

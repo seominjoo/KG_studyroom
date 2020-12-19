@@ -1,46 +1,24 @@
 package login.mainmenu;
 
-import java.awt.EventQueue;
-import java.awt.Font;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JButton;
 
 import login.design.Style;
 import login.page.MainPage;
 
-
-import javax.swing.JButton;
-import java.awt.GridLayout;
-import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-
-import javax.swing.Action;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 
 public class _03whatHour extends JPanel {
 
 	public static LocalDateTime time_now = LocalDateTime.now(); 
  
 	public _03whatHour() {
+		
 		setLayout(null);
 		new Style(this);
-		
 		 
-	 
-		
 		JButton btn_2hr= new JButton(_01start.pass_price.get(2)+"("+_01start.pass_price.get(3)+")");
 		new Style(btn_2hr);
 		btn_2hr.setBounds(90, 130, 188, 80); 

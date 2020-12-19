@@ -1,6 +1,5 @@
 package login.mainmenu;
 
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -10,17 +9,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import login.design.Style;
 import login.page.MainPage;
 
 public class _06move extends JPanel {
 
-//	private JPanel this;
 	static int num_seat;
 	static int num_room;
 	String type;
@@ -32,18 +28,18 @@ public class _06move extends JPanel {
 	public _06move() {
 		
 		new Style(this);
-		setBounds(600, 150, 450, 300);
 		setLayout(null);
-	
 		
 		JButton move_seat = new JButton("좌석 이동하기");
 		this.add(move_seat);
+		new Style(move_seat);
 		move_seat.setBounds(160,100,300,100);
+		
 		JButton move_room = new JButton("룸 이동하기");
 		this.add(move_room);
-		move_room.setBounds(160,220,300,100);
-		new Style(move_seat);
 		new Style(move_room);
+		move_room.setBounds(160,220,300,100);
+
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection conn = DriverManager.getConnection(
@@ -117,6 +113,7 @@ public class _06move extends JPanel {
 
 		JButton back_btn = new JButton("이전 화면");
 		this.add(back_btn);
+		new Style(back_btn);
 		back_btn.setBounds(160,340,300,100);
 		back_btn.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) {
@@ -125,7 +122,5 @@ public class _06move extends JPanel {
 				MainPage.userToggle = "메인메뉴";
 			}
 		}); 
-		new Style(back_btn);
 	}
-
 }

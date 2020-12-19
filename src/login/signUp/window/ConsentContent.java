@@ -25,20 +25,21 @@ public class ConsentContent extends JFrame implements ActionListener {
 
 	private JPanel panel;
 	private JButton confirmButton;
-	private JScrollPane scrollPane;
+//	private JScrollPane scrollPane;
 	private JLabel contentLabel;
 	private int consentNum;
 	private String content;
-
+	int i;
+	int x;
+	
 	public ConsentContent(int consentNum) {
 		this.consentNum = consentNum;
-		scrollPane = new JScrollPane();
-		System.out.println("그어어억");
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("오오오오");
+
 		new Style(this);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setVisible(true);
@@ -64,7 +65,7 @@ public class ConsentContent extends JFrame implements ActionListener {
 			}
 		});
 
-
+		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 		scrollPane.setBounds(50, 36, 1100, 700);
 		new Style(scrollPane);

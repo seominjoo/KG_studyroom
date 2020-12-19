@@ -1,73 +1,35 @@
 package login.mainmenu;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.EventQueue;
-import java.awt.Font;
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.MatteBorder;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
+import javax.swing.JButton;
  
 import login.design.Style;
 import login.page.MainPage;
 
-
-import javax.swing.JButton;
-import java.awt.GridLayout;
-import java.awt.Image;
-
-import javax.imageio.ImageIO;
-import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-import javax.swing.Action;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.Panel;
-
-import javax.swing.ImageIcon;
-
 public class _01start extends JPanel {
 
-	
 	public static Connection conn;
-
-//	private JPanel this;
-	static Timestamp time_chk_seat;
 	DateTimeFormatter date = DateTimeFormatter.ofPattern("yyyy년 M월 d일");
 	DateTimeFormatter time = DateTimeFormatter.ofPattern("a h시 m분 ");
+	static Timestamp time_chk_seat;
 	static ArrayList<String> pass_price = new ArrayList<>();
+	
 	public _01start() {
 
 		new Style(this);
-		setBounds(600, 150, 450, 400);
-		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setLayout(null);
 
 		// 메뉴 버튼 4개
@@ -86,12 +48,12 @@ public class _01start extends JPanel {
 		JButton back_btn = new JButton("이전 화면");
 		back_btn.setBounds(298, 321, 213, 126);
 		this.add(back_btn);
+		
 		new Style(seat_btn);
 		new Style(locker_btn);
 		new Style(room_btn);
 		new Style(back_btn);
 		
-		 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "1234");
@@ -134,8 +96,6 @@ public class _01start extends JPanel {
 								MainPage.userToggle = "좌석이용권";
 			            }
 			         }
-				
-		  
 			}); 
 			
 		      room_btn.addActionListener(new ActionListener() { //룸 이용권 페이지
@@ -191,7 +151,6 @@ public class _01start extends JPanel {
 						} catch (SQLException e1) { 
 							e1.printStackTrace();
 						}
-			 
 				}
 			});
 			
@@ -206,10 +165,7 @@ public class _01start extends JPanel {
 		       });
 
 		} catch (ClassNotFoundException | SQLException e1) {
-
 			e1.printStackTrace();
 		}
-
 	}
-
 }

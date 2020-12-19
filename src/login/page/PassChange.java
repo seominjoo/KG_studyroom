@@ -34,7 +34,7 @@ public class PassChange extends JPanel implements ActionListener{
 	}
 
 	public static ArrayList<JComboBox<String>> combobox; 
-	
+
 	
 	ArrayList<JButton> change = new ArrayList<>();
 	{

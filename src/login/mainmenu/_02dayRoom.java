@@ -1,34 +1,16 @@
 package login.mainmenu;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import login.design.Style;
 import login.page.MainPage;
 
-
 import javax.swing.JButton;
-import java.awt.GridLayout;
-import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
-import javax.swing.Action;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.FlowLayout;
-import javax.swing.BoxLayout;
 
 public class _02dayRoom extends JPanel {
 
-	
 	public _02dayRoom() {
 
 		new Style(this);
@@ -37,12 +19,14 @@ public class _02dayRoom extends JPanel {
 		
 		JButton daily_btn = new JButton("일일 이용권"); 
 		this.add(daily_btn);
+		new Style(daily_btn); 
 		daily_btn.setBounds(140, 200, 300, 80);
+		
 		JButton back_btn = new JButton("이전 화면"); 
 		this.add(back_btn);
-		back_btn.setBounds(140, 300, 300, 80);
-		new Style(daily_btn); 
 		new Style(back_btn);
+		back_btn.setBounds(140, 300, 300, 80);
+
 		daily_btn.addActionListener(new ActionListener() { //다음 페이지
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -53,8 +37,6 @@ public class _02dayRoom extends JPanel {
 			}
 		}); 
 
-
-
 		back_btn.addActionListener(new ActionListener() { //이전 페이지
 			@Override
 			public void actionPerformed(ActionEvent e) { 
@@ -63,7 +45,5 @@ public class _02dayRoom extends JPanel {
 				MainPage.userToggle = "이용권구매";
 			}
 		}); 
-		
 	} 
-
 } 
