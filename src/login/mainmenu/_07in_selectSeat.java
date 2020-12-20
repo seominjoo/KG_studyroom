@@ -342,6 +342,8 @@ public class _07in_selectSeat extends JPanel implements ActionListener{
 			    MainPage.statecard.next(MainPage.updateTable);
 			}
 		}
+		msg = "입실되었습니다.";
+		JOptionPane.showMessageDialog(this,msg);
 		setVisible(false);
 				}
 			} 

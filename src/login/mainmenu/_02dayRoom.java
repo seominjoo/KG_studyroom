@@ -17,7 +17,7 @@ public class _02dayRoom extends JPanel {
 		setBounds(600, 150, 450, 300);
 		this.setLayout(null);
 		
-		JButton daily_btn = new JButton("일일 이용권"); 
+		JButton daily_btn = new JButton("당일 이용권"); 
 		this.add(daily_btn);
 		new Style(daily_btn); 
 		daily_btn.setBounds(140, 200, 300, 80);

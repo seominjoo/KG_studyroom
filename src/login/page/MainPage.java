@@ -115,12 +115,12 @@ public class MainPage extends JFrame implements Runnable {
 
       // 메인 페이지 추가 작업
       main_page_panel.add("메인", main);
-      main_page_panel.add("로그인", new LoginPage());
+      
       main_page_panel.add("사용자메뉴", user_page_panel);
       main_page_panel.add("관리자", new AdminPage());
       main_page_panel.add("관리자메뉴", new AdminMenuPage());
       main_page_panel.add("회원가입", new SignUpPage());
-      main_page_panel.add("비번찾기", new FindPasswordPageUser());
+
 
         // 사용자 메뉴 페이지 추가 작업
 //      user_page_panel.add("메인메뉴", new _00main()); // 메뉴페이지
