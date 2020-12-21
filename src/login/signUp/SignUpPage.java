@@ -66,16 +66,16 @@ public class SignUpPage extends JPanel {
 	public SignUpPage() {
 		setLayout(null);
 
-		passAlert = new JLabel("");
+		passAlert = new JLabel("", JLabel.RIGHT);
 		new Style(passAlert);
 		passAlert.setFont(new Font("맑은 고딕", Font.BOLD, 10));
-		passAlert.setBounds(517, 294, 100, 25);
+		passAlert.setBounds(475, 294, 100, 25);
 		add(passAlert);
 
-		passConfirmAlert = new JLabel("", JLabel.LEFT);
+		passConfirmAlert = new JLabel("", JLabel.RIGHT);
 		new Style(passConfirmAlert);
 		passConfirmAlert.setFont(new Font("맑은 고딕", Font.BOLD, 10));
-		passConfirmAlert.setBounds(517, 364, 100, 25);
+		passConfirmAlert.setBounds(475, 364, 100, 25);
 		add(passConfirmAlert);
 
 		setLayout(new BorderLayout(80, 0));
@@ -108,7 +108,7 @@ public class SignUpPage extends JPanel {
 
 			new Style(value.text, 4);
 			value.text.setHorizontalAlignment(SwingConstants.LEFT);
-			value.text.setBounds(18, 11, 149, 30);
+			value.text.setBounds(18, 11, 232, 30);
 			nullPanelInGrid2_2.add(value.text);
 
 			// 비번, 비번 확인
@@ -158,7 +158,7 @@ public class SignUpPage extends JPanel {
 
 				new Style(value.blindPW, 12);
 				value.blindPW.setHorizontalAlignment(SwingConstants.LEFT);
-				value.blindPW.setBounds(18, 0, 149, 30);
+				value.blindPW.setBounds(18, 0, 232, 30);
 
 				nullPanelInGrid56_2.add(value.blindPW);
 				gridInGrid.add(nullPanelInGrid56_2);
@@ -195,19 +195,19 @@ public class SignUpPage extends JPanel {
 				panelInGrid2.setLayout(null);
 
 				year = new JComboBox<String>(BirthEnum.getYearTable());
-				year.setBounds(18, 10, 65, 30);
+				year.setBounds(18, 10, 64, 30);
 				panelInGrid2.add(year);
 				new Style(year);
 				year.setSelectedItem("2000");
 
 				month = new JComboBox<String>(BirthEnum.getMonthTable());
-				month.setBounds(102, 10, 65, 30);
+				month.setBounds(102, 10, 64, 30);
 				panelInGrid2.add(month);
 				new Style(month);
 
 				day = new JComboBox<String>(BirthEnum.getDayTable());
 
-				day.setBounds(186, 10, 65, 30);
+				day.setBounds(186, 10, 64, 30);
 				panelInGrid2.add(day);
 				new Style(day);
 
@@ -228,27 +228,27 @@ public class SignUpPage extends JPanel {
 
 				phone_number1 = new JTextField("010");
 				new Style(phone_number1, 3);
-				phone_number1.setBounds(18, 10, 65, 30);
+				phone_number1.setBounds(18, 10, 64, 30);
 				phoneNumber3Texts.add(phone_number1);
 
 				JLabel str = new JLabel("-");
-				str.setBounds(91, 10, 10, 30);
+				str.setBounds(90, 10, 10, 30);
 				new Style(str);
 				phoneNumber3Texts.add(str);
 
 				phone_number2 = new JTextField("");
 				new Style(phone_number2, 4);
-				phone_number2.setBounds(102, 10, 65, 30);
+				phone_number2.setBounds(102, 10, 64, 30);
 				phoneNumber3Texts.add(phone_number2);
 
 				JLabel str2 = new JLabel("-");
-				str2.setBounds(175, 10, 10, 30);
+				str2.setBounds(174, 10, 10, 30);
 				new Style(str2);
 				phoneNumber3Texts.add(str2);
 
 				phone_number3 = new JTextField("");
 				new Style(phone_number3, 4);
-				phone_number3.setBounds(186, 10, 65, 30);
+				phone_number3.setBounds(186, 10, 64, 30);
 				phoneNumber3Texts.add(phone_number3);
 
 				gridInGrid.add(phoneNumber3Texts);
@@ -260,7 +260,7 @@ public class SignUpPage extends JPanel {
 
 			gridInGrid.add(nullPanelInGrid2_2);
 			grid.add(gridInGrid);
-			
+
 		}
 
 		// 텍스트를 마우스로 누를 때
@@ -289,7 +289,7 @@ public class SignUpPage extends JPanel {
 			new Style(gridInGrid72);
 			gridInGrid72.setLayout(null);
 			gridInGrid7.add(gridInGrid72);
-			kv.getValue().setBounds(67, 10, 100, 30);
+			kv.getValue().setBounds(150, 10, 100, 30);
 
 			gridInGrid72.add(kv.getValue());
 
@@ -348,7 +348,7 @@ public class SignUpPage extends JPanel {
 
 				for (SignUpEnum value : SignUpEnum.values()) {
 					value.text.setText(value.labelName);
-					
+
 					value.blindPW.setText(value.labelName);
 				}
 				for (int i = 0; i < phoneTotal.length; i++) {
@@ -367,10 +367,6 @@ public class SignUpPage extends JPanel {
 			phoneTotal[i].addMouseListener(new PhoneNumberClearTextField(phoneTotal[i], "회원가입"));
 			addMouseListener(new ClearTextBackGround(phoneTotal[i], PhoneNumberEnum.values()[i]));
 		}
-		
 
 	}
 }
-
-
-
