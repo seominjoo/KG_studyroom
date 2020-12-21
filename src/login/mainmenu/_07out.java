@@ -83,7 +83,7 @@ public class _07out extends JPanel {
                         int row5 = pstmt.executeUpdate();
                         System.out.printf("(%d행 업데이트)\n", row5);
                      }
-                     // 일일이용권 사용자는 만료시간 리셋
+                     // 당일이용권 사용자는 만료시간 리셋
                      else {
                         sql = "update person_info set seat_number=0,expiration_seat='01/01/01 00:00:00.000000000' ,seat_type='없음' where login_state = 'On'";
                         pstmt = conn.prepareStatement(sql);

@@ -16,7 +16,7 @@ public class ManagementDate {
 	String[] monthTable;
 	String[] dayTable;
 	String[] monthTable2;//월별 회원수(전체포함)
-	String[] typeTable;//정기,일일 이용권 현황
+	String[] typeTable;//정기,당일 이용권 현황
 	String[] use_statusTable;//좌석,룸,사물함 이용 현황
 	String[] passTable;//이용권 타입들
 	String[] passTable2;//이용권 타입들
@@ -57,7 +57,7 @@ public class ManagementDate {
 		typeTable = new String[3];//추가
 		typeTable[0]="전체";
 		typeTable[1]="정기";
-		typeTable[2]="일일";
+		typeTable[2]="당일";
 		
 		use_statusTable = new String[4];//추가
 		use_statusTable[0]="전체";
@@ -93,19 +93,19 @@ public class ManagementDate {
 		}
 		
 		passTable = new String[6];// 18일 추가
-		passTable[0] = "일일 이용권(1인석)";
+		passTable[0] = "당일 이용권(1인석)";
 		for(int i=0; i<passTable.length-1; i++) { 
 			passTable[i+1] = pass.get((i+1)*2);
 		}
 		
 		passTable2 = new String[4];// 18일 추가
-		passTable2[0] = "주간 이용권(1인석)";
+		passTable2[0] = "정기 이용권(1인석)";
 		for(int i=0; i<passTable2.length-1; i++) { 
 			passTable2[i+1] = pass.get((i+6)*2);
 		}
 		
 		passTable3 = new String[6];// 18일 추가
-		passTable3[0] = "일일 이용권(룸)";
+		passTable3[0] = "당일 이용권(룸)";
 		for(int i=0; i<passTable3.length-1; i++) { 
 			passTable3[i+1] = pass.get((i+9)*2);
 		}

@@ -66,11 +66,11 @@ public class MemberDB {
 							+ " from person_info a, seat b ,locker c"
 							+ " where (a.room_number=b.seat_number and a.locker_number = c.locker_number) and a.seat_type ='정기 이용권'";
 
-				} else if (MemberManagementPage.dayOrWeek.getSelectedItem().equals("일일")) {
+				} else if (MemberManagementPage.dayOrWeek.getSelectedItem().equals("당일")) {
 					sql = " SELECT distinct person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number, "
 							+ " b.time_checkout , a.locker_number ," + " c.l_time_checkout, seat_type, check_time "
 							+ " from person_info a, seat b ,locker c"
-							+ " where (a.room_number=b.seat_number and a.locker_number = c.locker_number) and a.seat_type ='일일 이용권'";
+							+ " where (a.room_number=b.seat_number and a.locker_number = c.locker_number) and a.seat_type ='당일 이용권'";
 				}
 
 			} else if (chk == 3) {

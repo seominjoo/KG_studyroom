@@ -55,7 +55,7 @@ public class StoreOutBtnAction {
 				
 			} else if (StoreManagementPage.type.equals("좌석")) {
 			
-				if (StoreBtnPage.seat_type.equals("일일 이용권")) {
+				if (StoreBtnPage.seat_type.equals("당일 이용권")) {
 
 					sql = "UPDATE seat AS s, person_info AS p"
 							+ " SET s.Seat_Statement ='사용 가능',s.time_enter='01/01/01 00:00:00.000000000',s.time_checkout='01/01/01 00:00:00.000000000',"
