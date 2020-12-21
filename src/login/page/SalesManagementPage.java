@@ -32,151 +32,151 @@ import login.signUp.window.ResultWindow;
 
 public class SalesManagementPage extends JPanel implements ActionListener {
 
-	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
-	JLabel title;
-	static JScrollPane scrollPane;
+   DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
+   JLabel title;
+   static JScrollPane scrollPane;
 
-	public static JComboBox<String> year;
-	public static JComboBox<String> month;
-	public static JComboBox<String> day;
+   public static JComboBox<String> year;
+   public static JComboBox<String> month;
+   public static JComboBox<String> day;
 
-	JButton yearTotal;
-	JButton monthTotal;
-	JButton dayTotal;
-	JButton total;
+   JButton yearTotal;
+   JButton monthTotal;
+   JButton dayTotal;
+   JButton total;
 
-	JButton back;
-	static JLabel totalPayment;
+   JButton back;
+   static JLabel totalPayment;
 
-	static JLabel[] weekTotal = new JLabel[5];
+   static JLabel[] weekTotal = new JLabel[5];
 
-	public SalesManagementPage() {
-		setLayout(null);
-		new Style(this);
+   public SalesManagementPage() {
+      setLayout(null);
+      new Style(this);
 
-		total = new JButton("누적매출");
-		new Style(total);
-		total.setBounds(50, 481, 100, 30);
-		add(total);
+      total = new JButton("누적매출");
+      new Style(total);
+      total.setBounds(80, 481, 100, 30);
+      add(total);
 
-		int y = 430;
-		for (int i = 0; i < weekTotal.length; i++) {
-			weekTotal[i] = new JLabel("");
-			new Style(weekTotal[i]);
-			weekTotal[i].setFont(new Font("맑은 고딕", Font.BOLD, 13));
-			weekTotal[i].setBounds(210, y, 200, 50);
-			y += 20;
-			add(weekTotal[i]);
-		}
+      int y = 430;
+      for (int i = 0; i < weekTotal.length; i++) {
+         weekTotal[i] = new JLabel("");
+         new Style(weekTotal[i]);
+         weekTotal[i].setFont(new Font("맑은 고딕", Font.BOLD, 13));
+         weekTotal[i].setBounds(240, y, 200, 50);
+         y += 20;
+         add(weekTotal[i]);
+      }
 
-		back = new JButton("이전");
-		new Style(back);
-		back.setBounds(449, 481, 100, 30);
-		add(back);
+      back = new JButton("이전");
+      new Style(back);
+      back.setBounds(479, 481, 100, 30);
+      add(back);
 
-		back.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				MainPage.main_cards.show(MainPage.main_page_panel, "관리자메뉴");
-				MainPage.userToggle = "관리자메뉴";
-			}
-		});
+      back.addActionListener(new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            MainPage.main_cards.show(MainPage.main_page_panel, "관리자메뉴");
+            MainPage.userToggle = "관리자메뉴";
+         }
+      });
 
-		totalPayment = new JLabel();
-		new Style(totalPayment);
-		totalPayment.setBounds(398, 403, 200, 100);
-		add(totalPayment);
+      totalPayment = new JLabel();
+      new Style(totalPayment);
+      totalPayment.setBounds(430, 403, 200, 100);
+      add(totalPayment);
 
-		scrollPane = new JScrollPane();
-		new Style(scrollPane);
-		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
-		scrollPane.setBounds(50, 85, 500, 350);
-		add(scrollPane);
+      scrollPane = new JScrollPane();
+      new Style(scrollPane);
+      scrollPane.getVerticalScrollBar().setUnitIncrement(20);
+      scrollPane.setBounds(80, 85, 500, 350);
+      add(scrollPane);
 
-		year = new JComboBox<String>(new ManagementDate().yearTable);
-		year.setBounds(105, 30, 65, 30);
-		add(year);
-		new Style(year);
-		year.setSelectedItem("2020");
+      year = new JComboBox<String>(new ManagementDate().yearTable);
+      year.setBounds(135, 30, 65, 30);
+      add(year);
+      new Style(year);
+      year.setSelectedItem("2020");
 
-		month = new JComboBox<String>(new ManagementDate().monthTable);
-		month.setBounds(250, 30, 50, 30);
-		add(month);
-		new Style(month);
+      month = new JComboBox<String>(new ManagementDate().monthTable);
+      month.setBounds(280, 30, 50, 30);
+      add(month);
+      new Style(month);
 
-		day = new JComboBox<String>(new ManagementDate().dayTable);
-		day.setBounds(380, 30, 50, 30);
-		add(day);
-		new Style(day);
+      day = new JComboBox<String>(new ManagementDate().dayTable);
+      day.setBounds(410, 30, 50, 30);
+      add(day);
+      new Style(day);
 
-		// 연도, 월 클릭
-		year.addActionListener(new YearMonthClick("year", "매출관리"));
-		month.addActionListener(new YearMonthClick("month", "매출관리"));
+      // 연도, 월 클릭
+      year.addActionListener(new YearMonthClick("year", "매출관리"));
+      month.addActionListener(new YearMonthClick("month", "매출관리"));
 
-		yearTotal = new JButton("연매출");
-		new Style(yearTotal);
-		yearTotal.setBounds(180, 30, 50, 30);
-		add(yearTotal);
+      yearTotal = new JButton("연매출");
+      new Style(yearTotal);
+      yearTotal.setBounds(210, 30, 50, 30);
+      add(yearTotal);
 
-		yearTotal.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new SalesDB("SELECT paid_time,person_id,seat_type,locker_type,pay_method,payment"
-						+ " FROM payment_record where substr(paid_time,1,2) = ? order by paid_time", 1);
-			}
-		});
+      yearTotal.addActionListener(new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            new SalesDB("SELECT paid_time,person_id,seat_type,locker_type,pay_method,payment"
+                  + " FROM payment_record where substr(paid_time,1,2) = ? order by paid_time", 1);
+         }
+      });
 
-		monthTotal = new JButton("월매출");
-		new Style(monthTotal);
-		monthTotal.setBounds(310, 30, 50, 30);
-		add(monthTotal);
+      monthTotal = new JButton("월매출");
+      new Style(monthTotal);
+      monthTotal.setBounds(340, 30, 50, 30);
+      add(monthTotal);
 
-		monthTotal.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new SalesDB("SELECT paid_time,person_id,seat_type,locker_type,pay_method,payment"
-						+ " FROM payment_record where substr(paid_time,1,2) = ? "
-						+ "and substr(paid_time,4,2) = ? order by paid_time", 2);
-			}
-		});
+      monthTotal.addActionListener(new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            new SalesDB("SELECT paid_time,person_id,seat_type,locker_type,pay_method,payment"
+                  + " FROM payment_record where substr(paid_time,1,2) = ? "
+                  + "and substr(paid_time,4,2) = ? order by paid_time", 2);
+         }
+      });
 
-		dayTotal = new JButton("일매출");
-		new Style(dayTotal);
-		dayTotal.setBounds(440, 30, 50, 30);
-		add(dayTotal);
+      dayTotal = new JButton("일매출");
+      new Style(dayTotal);
+      dayTotal.setBounds(470, 30, 50, 30);
+      add(dayTotal);
 
-		dayTotal.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new SalesDB(
-						"SELECT paid_time,person_id,seat_type,locker_type,pay_method,payment"
-								+ " FROM payment_record where substr(paid_time,1,2) = ? "
-								+ "and substr(paid_time,4,2) = ? " + "and substr(paid_time,7,2) = ? order by paid_time",
-						3);
-			}
-		});
+      dayTotal.addActionListener(new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            new SalesDB(
+                  "SELECT paid_time,person_id,seat_type,locker_type,pay_method,payment"
+                        + " FROM payment_record where substr(paid_time,1,2) = ? "
+                        + "and substr(paid_time,4,2) = ? " + "and substr(paid_time,7,2) = ? order by paid_time",
+                  3);
+         }
+      });
 
-		total.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				new SalesDB("SELECT paid_time,person_id,seat_type,locker_type,pay_method,payment"
-						+ " FROM payment_record order by paid_time", 0);
-			}
-		});
+      total.addActionListener(new ActionListener() {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            new SalesDB("SELECT paid_time,person_id,seat_type,locker_type,pay_method,payment"
+                  + " FROM payment_record order by paid_time", 0);
+         }
+      });
 
-		// 초기 화면
-		new SalesDB(
-				"SELECT paid_time,person_id,seat_type,locker_type,pay_method,payment" + " FROM payment_record order by paid_time",
-				0);
+      // 초기 화면
+      new SalesDB(
+            "SELECT paid_time,person_id,seat_type,locker_type,pay_method,payment" + " FROM payment_record order by paid_time",
+            0);
 
-	}
+   }
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		MainPage.main_page_panel.add("매출관리", new SalesManagementPage());
-		MainPage.main_cards.show(MainPage.main_page_panel, "매출관리");
-		MainPage.userToggle = "매출관리";
+   @Override
+   public void actionPerformed(ActionEvent e) {
+      MainPage.main_page_panel.add("매출관리", new SalesManagementPage());
+      MainPage.main_cards.show(MainPage.main_page_panel, "매출관리");
+      MainPage.userToggle = "매출관리";
 
-	}
+   }
 
 }

@@ -29,6 +29,11 @@ public class AdminPage extends JPanel{
       
       this.setLayout(null);
       new Style(this);
+      
+      JLabel title = new JLabel("Log - In");
+      title.setBounds(MainPage.w/2-20, 150, 90, 20);
+      add(title);
+      new Style(title);
 
       // °ü¸®ÀÚ
       admin_phone_number1 = new JTextField("010");
