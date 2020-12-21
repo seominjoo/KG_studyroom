@@ -58,7 +58,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
       JButton back;
       JLabel label03 = new JLabel("»ç¹°ÇÔ");
 
-      label03.setBounds(15,350,50,30);
+      label03.setBounds(65,350,50,30);
       label03.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
       this.add(label03);
       new Style(label03);
@@ -66,10 +66,10 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
       label_msg = new JLabel("ÇöÀç ÁÂ¼® : "+_06move.num_seat+"¹ø");
       label_msg1 = new JLabel("ÇöÀç ·ë : "+_06move.num_room+"È£");
 
-      label_msg.setBounds(122,465,150,30);
+      label_msg.setBounds(172,465,150,30);
       label_msg.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
       this.add(label_msg); 
-      label_msg1.setBounds(122,500,150,30);
+      label_msg1.setBounds(172,500,150,30);
       label_msg1.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
       this.add(label_msg1); 
       JLabel label04 = new JLabel("ÈÞ°Ô½Ç");
@@ -77,7 +77,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
       label04.setBorder(BorderFactory.createLineBorder(Color.gray));
       label04.setBackground(Color.black);
       label04.setForeground(Color.decode("#5590cf"));
-      label04.setBounds(250,255,180,85);
+      label04.setBounds(300,255,180,85);
       label04.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 15));
       label04.setHorizontalAlignment(JLabel.CENTER);
 
@@ -90,7 +90,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
       label05.setBackground(Color.black);
       label05.setForeground(Color.orange);
       label05.setHorizontalAlignment(JLabel.CENTER);
-      label05.setBounds(20,465,100,30);
+      label05.setBounds(70,465,100,30);
       this.add(label05);
 
       JLabel label06 = new JLabel("¼±ÅÃ ºÒ°¡");
@@ -98,7 +98,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
       label06.setBackground(Color.black);
       label06.setForeground(Color.gray);
       label06.setHorizontalAlignment(JLabel.CENTER);
-      label06.setBounds(20,500,100,30);
+      label06.setBounds(70,500,100,30);
       this.add(label06);
 
       for(int i=0;i<3;i++) {// 1ÀÎ¼® ¹öÆ° À§Ä¡ ¼³Á¤
@@ -108,7 +108,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
          seats_btn.get(i).setForeground(Color.orange);
          this.add(seats_btn.get(i));
          seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
-         seats_btn.get(i).setBounds(30+f,40,60,60); 
+         seats_btn.get(i).setBounds(80+f,40,60,60); 
          f+=60; 
          if(_06move.chk==2) {
             seats_btn.get(i).setEnabled(false);
@@ -122,7 +122,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
          seats_btn.get(i).setForeground(Color.orange);
          this.add(seats_btn.get(i));
          seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
-         seats_btn.get(i).setBounds(70+f,40,60,60); 
+         seats_btn.get(i).setBounds(120+f,40,60,60); 
          f+=60;  
          if(_06move.chk==2) {
             seats_btn.get(i).setEnabled(false);
@@ -136,7 +136,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
          seats_btn.get(i).setForeground(Color.orange);
          this.add(seats_btn.get(i));
          seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
-         seats_btn.get(i).setBounds(120+f,40+a,60,60); 
+         seats_btn.get(i).setBounds(170+f,40+a,60,60); 
          a+=60;
          if(_06move.chk==2) {
             seats_btn.get(i).setEnabled(false);
@@ -150,7 +150,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
          seats_btn.get(i).setForeground(Color.orange);
          this.add(seats_btn.get(i));
          seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
-         seats_btn.get(i).setBounds(30+g,100,60,60);
+         seats_btn.get(i).setBounds(80+g,100,60,60);
          g+=60;  
          if(_06move.chk==2) {
             seats_btn.get(i).setEnabled(false);
@@ -164,7 +164,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
          seats_btn.get(i).setForeground(Color.orange);
          this.add(seats_btn.get(i));
          seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
-         seats_btn.get(i).setBounds(70+g,100,60,60);
+         seats_btn.get(i).setBounds(120+g,100,60,60);
          g+=60;  
          if(_06move.chk==2) {
             seats_btn.get(i).setEnabled(false);
@@ -179,7 +179,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
          seats_btn.get(i).setForeground(Color.orange);
          this.add(seats_btn.get(i));
          seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
-         seats_btn.get(i).setBounds(70+g,190,60,60);
+         seats_btn.get(i).setBounds(120+g,190,60,60);
          g+=60;  
          if(_06move.chk==2) {
             seats_btn.get(i).setEnabled(false);
@@ -192,7 +192,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
          room_btn.get(i).setForeground(Color.orange);
          this.add(room_btn.get(i));
          room_btn.get(i).addActionListener(new ActionBtn_select(room_btn.get(i))); 
-         room_btn.get(i).setBounds(30+e,190,90,75);
+         room_btn.get(i).setBounds(80+e,190,90,75);
          e+=90; 
          if(_06move.chk==1) {
             room_btn.get(i).setEnabled(false);
@@ -205,7 +205,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
          room_btn.get(i).setForeground(Color.orange);
          this.add(room_btn.get(i));
          room_btn.get(i).addActionListener(new ActionBtn_select(room_btn.get(i))); 
-         room_btn.get(i).setBounds(30+d,265,90,75);
+         room_btn.get(i).setBounds(80+d,265,90,75);
          d+=90; 
          if(_06move.chk==1) {
             room_btn.get(i).setEnabled(false);
@@ -218,7 +218,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
          locker_btn.get(i).setForeground(Color.orange);
          this.add(locker_btn.get(i));
          locker_btn.get(i).addActionListener(new ActionBtn_select( locker_btn.get(i)));
-         locker_btn.get(i).setBounds(10+c,380,60,30);
+         locker_btn.get(i).setBounds(60+c,380,60,30);
          c+=55;
          locker_btn.get(i).setEnabled(false);
       }
@@ -230,7 +230,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
          locker_btn.get(i).setForeground(Color.orange);
          this.add(locker_btn.get(i));
          locker_btn.get(i).addActionListener(new ActionBtn_select( locker_btn.get(i)));
-         locker_btn.get(i).setBounds(10+d,410,60,30);
+         locker_btn.get(i).setBounds(60+d,410,60,30);
          d+=55;   
          locker_btn.get(i).setEnabled(false);
       }
@@ -254,7 +254,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
       };
 
       back = new JButton("ÀÌÀü È­¸é");
-      back.setBounds(240,460,140,80);
+      back.setBounds(290,460,140,80);
       this.add(back);
       back.addActionListener(back_btn);
       new Style(back);
@@ -292,7 +292,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
       }
 
       OK = new JButton("ÁÂ¼® ÀÌµ¿ÇÏ±â");
-      OK.setBounds(400,460,140,80);
+      OK.setBounds(450,460,140,80);
       this.add(OK);
       OK.addActionListener(this);
       new Style(OK);

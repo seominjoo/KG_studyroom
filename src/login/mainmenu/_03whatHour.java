@@ -22,34 +22,35 @@ public class _03whatHour extends JPanel {
 		setLayout(null);
 		new Style(this);
 		 
+		//메뉴 버튼 6개
 		JButton btn_2hr= new JButton(_01start.pass_price.get(2)+"("+_01start.pass_price.get(3)+")");
 		new Style(btn_2hr);
-		btn_2hr.setBounds(MainPage.w/2-210, MainPage.h/2-150, 200, 80); 
+		btn_2hr.setBounds(MainPage.w/2-235, MainPage.h/2-150, 220, 80); 
 		this.add(btn_2hr);
 
 		JButton btn_4hr = new JButton(_01start.pass_price.get(4)+"("+_01start.pass_price.get(5)+")");
 		new Style(btn_4hr);
-		btn_4hr.setBounds(MainPage.w/2+10, MainPage.h/2-150, 200, 80); 
+		btn_4hr.setBounds(MainPage.w/2+5, MainPage.h/2-150, 220, 80); 
 		this.add(btn_4hr);
 
 		JButton btn_6hr = new JButton(_01start.pass_price.get(6)+"("+_01start.pass_price.get(7)+")");
 		new Style(btn_6hr);
-		btn_6hr.setBounds(MainPage.w/2-210, MainPage.h/2-60, 200, 80); 
+		btn_6hr.setBounds(MainPage.w/2-235, MainPage.h/2-60, 220, 80); 
 		this.add(btn_6hr);
 
 		JButton btn_8hr = new JButton(_01start.pass_price.get(8)+"("+_01start.pass_price.get(9)+")");
 		new Style(btn_8hr);
-		btn_8hr.setBounds(MainPage.w/2+10, MainPage.h/2-60, 200, 80); 
+		btn_8hr.setBounds(MainPage.w/2+5, MainPage.h/2-60, 220, 80); 
 		this.add(btn_8hr);
 
 		JButton btn_12hr = new JButton(_01start.pass_price.get(10)+"("+_01start.pass_price.get(11)+")");
 		new Style(btn_12hr);
-		btn_12hr.setBounds(MainPage.w/2-210, MainPage.h/2+30, 200, 80);
+		btn_12hr.setBounds(MainPage.w/2-235, MainPage.h/2+30, 220, 80);
 		this.add(btn_12hr);
   
 		JButton btn_back = new JButton("이전 화면");
 		new Style(btn_back);
-		btn_back.setBounds(MainPage.w/2+10, MainPage.h/2+30, 200, 80);
+		btn_back.setBounds(MainPage.w/2+5, MainPage.h/2+30, 220, 80);
 		this.add(btn_back, btn_back);
 		
 

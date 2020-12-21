@@ -31,16 +31,21 @@ public class _07out extends JPanel {
 		new Style(this);
 		setLayout(null);
 
-		//메뉴 버튼 2개
+		//메뉴 버튼 3개
 		JButton out_seat = new JButton("좌석 퇴실하기");
 		this.add(out_seat);
 		new Style(out_seat);
-		out_seat.setBounds(MainPage.w/2-150, MainPage.h/2-140, 300, 100);
+		out_seat.setBounds(MainPage.w/2-150, MainPage.h/2-190, 300, 100);
 
 		JButton out_room = new JButton("룸 퇴실하기");
 		this.add(out_room);
 		new Style(out_room);
-		out_room.setBounds(MainPage.w/2-150, MainPage.h/2-10, 300, 100);
+		out_room.setBounds(MainPage.w/2-150, MainPage.h/2-60, 300, 100);
+		
+		JButton back_btn = new JButton("이전 화면");
+		this.add(back_btn);
+		new Style(back_btn);
+		back_btn.setBounds(MainPage.w/2-150, MainPage.h/2+70, 300, 100);
 
 		try {
 
@@ -134,10 +139,6 @@ public class _07out extends JPanel {
 			e1.printStackTrace();
 		}
 
-		JButton back_btn = new JButton("이전 화면");
-		this.add(back_btn);
-		new Style(back_btn);
-		back_btn.setBounds(160, 340, 300, 100);
 		back_btn.addActionListener(new ActionListener() { // 이전 페이지
 			@Override
 			public void actionPerformed(ActionEvent e) {

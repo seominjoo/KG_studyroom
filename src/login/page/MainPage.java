@@ -250,6 +250,7 @@ public class MainPage extends JFrame implements Runnable {
              
               if (MainBtn_Action.interval == 0) {
                    try {
+                	   deleteBrown.setOpaque(true);
                       Class.forName("oracle.jdbc.driver.OracleDriver");
                         Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr",
                               "1234");
