@@ -70,6 +70,7 @@ public class MainBtn_Action implements ActionListener {
          }
 
       }else if (loginbtns.getText().equals("로그아웃")) {
+    	  MainPage.deleteBrown.setOpaque(true);
          //로그아웃 
          try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -115,6 +116,7 @@ public class MainBtn_Action implements ActionListener {
          MainPage.userToggle = "로그인";
 
       } else if (loginbtns.getText().equals("관리자 로그인")) {
+    	  MainPage.deleteBrown.setOpaque(false);
          String admin_phonenumber = AdminPage.admin_phone_number1.getText() + "-"
                + AdminPage.admin_phone_number2.getText() + "-" + AdminPage.admin_phone_number3.getText();
          String admin_password = String.valueOf(AdminPage.admin_loginpass.getPassword());
@@ -150,6 +152,7 @@ public class MainBtn_Action implements ActionListener {
          }
 
       } else if (loginbtns.getText().equals("로그인")) {
+    	 MainPage.deleteBrown.setOpaque(false);
          MainPage.userToggle = "로그인";
 
          String login_phonenumber = LoginPage.phone_number1.getText() + "-" + LoginPage.phone_number2.getText() + "-"

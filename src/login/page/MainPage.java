@@ -31,10 +31,10 @@ import login.window.MainBtn_Action;
 
 public class MainPage extends JFrame implements Runnable {
 
-   public static int x = new Conversion_image("image/배경화면(with logout).jpg", 4).x; //전체 프레임 가로 길이
-   public static int y = new Conversion_image("image/배경화면(with logout).jpg", 4).y; //전체 프레임 세로 길이
+   public static int x = new Conversion_image("image/배경화면new.jpg", 4).x; //전체 프레임 가로 길이
+   public static int y = new Conversion_image("image/배경화면new.jpg", 4).y; //전체 프레임 세로 길이
    public static int plus = 120;
-   public static int w = 683+plus; //메인 패널 가로 길이(width)
+   public static int w = 560+plus; //메인 패널 가로 길이(width)
    public static int h = 562; //메인 패널 세로 길이(height)
 
    public static JPanel main_page_panel;
@@ -70,6 +70,8 @@ public class MainPage extends JFrame implements Runnable {
    public static int price;
    public static String seat_type;
 
+   public static JPanel deleteBrown;
+   
    public MainPage() {
 
       userToggle = "메인";
@@ -80,8 +82,14 @@ public class MainPage extends JFrame implements Runnable {
       fram_panel.setLayout(null);
       fram_panel.setBounds(0, 0, x+plus, y);//x=1000, y=562
       
+      // 로그인 전 오른쪽 갈색 부분 없애기
+      deleteBrown = new JPanel();
+      deleteBrown.setBackground(Color.decode("#ede4df"));
+      deleteBrown.setBounds(1000, 0, 120, 560);
+      add(deleteBrown);
+      
       // 배경 이미지
-      background = new JLabel(new Conversion_image("image/배경화면(with logout).jpg", 4).imageicon_smooth);
+      background = new JLabel(new Conversion_image("image/배경화면new.jpg", 4).imageicon_smooth);
       background.setOpaque(false);
       background.setBounds(0, 0, x+plus, y);//x=1000, y=562
       
@@ -90,14 +98,14 @@ public class MainPage extends JFrame implements Runnable {
       main_cards = new CardLayout();
       main_page_panel.setLayout(main_cards);
       new Style(main_page_panel);
-      main_page_panel.setBounds(x-w, 0, w-plus, h); //w=683, h=562   
+      main_page_panel.setBounds(x-w, 0, w, h); //w=683, h=562   
 
       // 사용자메뉴 카드페이지 패널
       user_page_panel = new JPanel();
       user_cards = new CardLayout();
       user_page_panel.setLayout(user_cards);
       new Style(user_page_panel);
-      user_page_panel.setBounds(x-w, 0, w-plus, h); //w=683, h=562
+      user_page_panel.setBounds(x-w, 0, w, h); //w=683, h=562
       
       // 좌석현황 패널
       updateTable = new JPanel();
@@ -112,7 +120,7 @@ public class MainPage extends JFrame implements Runnable {
       new Style(logout);
       logoutcard = new CardLayout();
       logout.setLayout(logoutcard);
-      logout.setBounds(x-5, 5, 107, 50); //x=1000
+      logout.setBounds(x-11, 5, 107, 50); //x=1000
       logout.setForeground(Color.decode("#805b38"));
       
       // 빈화면
@@ -126,15 +134,15 @@ public class MainPage extends JFrame implements Runnable {
       new Style(logoutbtn);
       logoutbtn.setFont(new Font("맑은 고딕", Font.BOLD, 13));
       logoutbtn.addActionListener(new MainBtn_Action(logoutbtn));
-      logoutbtn.setForeground(Color.decode("#805b38"));
+      logoutbtn.setForeground(Color.decode("#cfab8b"));
       logout.add("2",logoutbtn);
-    		       
+                 
       //연장하기 패널
       extend = new JPanel();
       new Style(extend);
       extendcard = new CardLayout();
       extend.setLayout(extendcard);
-      extend.setBounds(x-5,58,107,y-65);
+      extend.setBounds(x-11,58,107,y-65);
       
       //빈화면2
       empty2 = new JButton();
@@ -188,7 +196,7 @@ public class MainPage extends JFrame implements Runnable {
 //      user_page_panel.add("퇴실페이지", new _07out());
 //      user_page_panel.add("예약페이지", new _08reservation(ss,price,seat_type));
 //      user_page_panel.add("자리페이지", new _06move_selectSeat());
-//		user_page_panel.add("결제페이지", new _09payment(ss, price, seat_type));
+//      user_page_panel.add("결제페이지", new _09payment(ss, price, seat_type));
 //      user_page_panel.add("결제알림창", new _10paycash(ss));
 
         // 영수증에 확인 버튼(or 입장바로가기 or로그아웃off)
@@ -224,14 +232,14 @@ public class MainPage extends JFrame implements Runnable {
       add(fram_panel);
       
       extendbtn.addActionListener(new ActionListener() {
-     	 
-		@Override
-		public void actionPerformed(ActionEvent e) {  
-			  MainBtn_Action.interval = 300;
-			  extend_cnt--;
-			  
-		}
-	});
+         
+      @Override
+      public void actionPerformed(ActionEvent e) {  
+           MainBtn_Action.interval = 300;
+           extend_cnt--;
+           
+      }
+   });
       
    // 자동로그아웃 시간
       int delay = 1000;
@@ -239,10 +247,10 @@ public class MainPage extends JFrame implements Runnable {
       Timer time = new Timer(); 
       time.scheduleAtFixedRate(new TimerTask() { 
           public void run() {
-        	  
+             
               if (MainBtn_Action.interval == 0) {
-            	    try {
-            	    	Class.forName("oracle.jdbc.driver.OracleDriver");
+                   try {
+                      Class.forName("oracle.jdbc.driver.OracleDriver");
                         Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr",
                               "1234");
                         MainPage.main_cards.show(MainPage.main_page_panel, "로그인");
