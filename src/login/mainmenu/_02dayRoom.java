@@ -13,13 +13,13 @@ import java.awt.event.ActionListener;
 
 public class _02dayRoom extends JPanel {
 	
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		_02dayRoom main = new _02dayRoom();
-		frame.setBounds(0,0,683,562);
-		frame.add(main);
-		frame.setVisible(true);
-	}
+//	public static void main(String[] args) {
+//		JFrame frame = new JFrame();
+//		_02dayRoom main = new _02dayRoom();
+//		frame.setBounds(0,0,683,562);
+//		frame.add(main);
+//		frame.setVisible(true);
+//	}
 
 	public _02dayRoom() {
 
