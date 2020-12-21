@@ -70,10 +70,13 @@ public class SubWindow extends JFrame {
                MainPage.user_cards.show(MainPage.user_page_panel, "메인메뉴");
                MainPage.userToggle = "메인메뉴";
                MainPage.logoutcard.show(MainPage.logout, "2");
+               MainPage.extendcard.show(MainPage.extend, "2");
+               
             } else if (nextcard.equals("관리자메뉴")) {
                MainPage.main_cards.show(MainPage.main_page_panel, "관리자메뉴");
                MainPage.userToggle = "관리자메뉴";
                MainPage.logoutcard.show(MainPage.logout, "2");
+               MainPage.extendcard.show(MainPage.extend, "2");
             }
             dispose();
 
