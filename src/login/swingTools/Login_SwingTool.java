@@ -1,13 +1,9 @@
 package login.swingTools;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.awt.Color;
 
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
-import login.design.Conversion_image;
 import login.design.Style;
 import login.page.MainPage;
 
@@ -18,9 +14,13 @@ public class Login_SwingTool extends JFrame{
       new Style(frame);
       frame.setLayout(null);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      frame.setSize(MainPage.x+102, MainPage.y+35);
+      frame.setSize(MainPage.x+15, MainPage.y+30);
       frame.setVisible(true);
       frame.setLocationRelativeTo(null); 
-
+      frame.setBackground(Color.decode("#ede4df"));
+      frame.add(MainPage.rightup);
+      frame.add(MainPage.leftup);
+      frame.add(MainPage.extend);
+      frame.add(MainPage.logout);
    }
 }

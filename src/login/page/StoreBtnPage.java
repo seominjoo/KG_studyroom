@@ -131,6 +131,9 @@ public class StoreBtnPage extends JFrame {
                         System.out.printf("person_info %d행이 바뀌었습니다.\n",row2);
                         System.out.printf("%d번 사물함이 반납되었습니다.", StoreManagementPage.locker_number);
 
+                        MainPage.updateTable.add(new State());
+                        MainPage.statecard.next(MainPage.updateTable);
+                        
                      } catch (SQLException | ClassNotFoundException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -214,6 +217,9 @@ public class StoreBtnPage extends JFrame {
                         System.out.printf("person_info %d행이 바뀌었습니다.\n",row2);
                         System.out.printf("%d번 룸이 퇴실되었습니다.", StoreManagementPage.room_number);
 
+                        MainPage.updateTable.add(new State());
+                        MainPage.statecard.next(MainPage.updateTable);
+                        
                         if (pstmt != null) pstmt.close();
                         
                      } catch (SQLException | ClassNotFoundException e1) {
@@ -305,6 +311,9 @@ public class StoreBtnPage extends JFrame {
                            
                            System.out.printf("%d번 좌석이 퇴실되었습니다.\n",StoreManagementPage.seat_number);
 
+                           MainPage.updateTable.add(new State());
+                           MainPage.statecard.next(MainPage.updateTable);
+                           
                            if (pstmt != null) pstmt.close();
 
                         } else if (seat_type.equals("정기 이용권")) {
@@ -325,6 +334,9 @@ public class StoreBtnPage extends JFrame {
                            
                            System.out.printf("%d번 좌석이 퇴실되었습니다.\n",StoreManagementPage.seat_number);
 
+                           MainPage.updateTable.add(new State());
+                           MainPage.statecard.next(MainPage.updateTable);
+                           
                            if (pstmt != null) pstmt.close();
                         }
                      } catch (SQLException | ClassNotFoundException e1) {

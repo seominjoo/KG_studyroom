@@ -15,6 +15,7 @@ import java.util.TimerTask;
 import java.util.Calendar;
 import java.util.Timer;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -31,11 +32,11 @@ import login.window.MainBtn_Action;
 
 public class MainPage extends JFrame implements Runnable {
 
-   public static int x = new Conversion_image("image/배경화면(누런).jpg", 4).x; //전체 프레임 가로 길이
-   public static int y = new Conversion_image("image/배경화면(누런).jpg", 4).y; //전체 프레임 세로 길이
-   public static int plus = 120;
-   public static int w = 560+plus; //메인 패널 가로 길이(width)
-   public static int h = 562; //메인 패널 세로 길이(height)
+   public static int x = new Conversion_image("image/배경화면z.jpg", 4).x; //전체 프레임 가로 길이
+   public static int y = new Conversion_image("image/배경화면z.jpg", 4).y; //전체 프레임 세로 길이
+
+   public static int w = 716; //메인 패널 가로 길이(width)
+   public static int h = y+40; //메인 패널 세로 길이(height)
 
    public static JPanel main_page_panel;
    public static CardLayout main_cards;
@@ -43,13 +44,13 @@ public class MainPage extends JFrame implements Runnable {
    public static CardLayout user_cards;
    public static JPanel updateTable;
    public static CardLayout statecard;
-   public static JLabel logout_background;
    public static JLabel background;
-   public static JLabel extendlb;
+   
+   public static JPanel deleteBrown;
+   public static JPanel leftup;
+   public static JPanel rightup;
    public static JPanel logout;
    public static JPanel extend;
-   public static JPanel logout_time;
-   public static CardLayout logout_timecard;
    public static CardLayout logoutcard;
    public static CardLayout extendcard;
    public static JButton logoutbtn;
@@ -60,7 +61,7 @@ public class MainPage extends JFrame implements Runnable {
    JLabel clock;
 
    public static String userToggle;
-   public static  int extend_cnt=3;//연장 횟수 3번까지
+   public static int extend_cnt=3;//연장 횟수 3번까지
    int min;
    int sec;
    int k;
@@ -69,8 +70,6 @@ public class MainPage extends JFrame implements Runnable {
    public static LocalDateTime ss;
    public static int price;
    public static String seat_type;
-
-   public static JPanel deleteBrown;
    
    public MainPage() {
 
@@ -80,69 +79,81 @@ public class MainPage extends JFrame implements Runnable {
       JPanel fram_panel = new JPanel();
       new Style(fram_panel);
       fram_panel.setLayout(null);
-      fram_panel.setBounds(0, 0, x+plus, y);//x=1000, y=562
-      
-      // 로그인 전 오른쪽 갈색 부분 없애기
-      deleteBrown = new JPanel();
-      deleteBrown.setBackground(Color.decode("#ede4df"));
-      deleteBrown.setBounds(1000, 0, 120, 560);
-      //add(deleteBrown);
+      fram_panel.setBounds(0, 0, x, y);//x=1000, y=600
       
       // 배경 이미지
-      background = new JLabel(new Conversion_image("image/배경화면(누런).jpg", 4).imageicon_smooth);
+      background = new JLabel(new Conversion_image("image/배경화면z.jpg", 4).imageicon_smooth);
       background.setOpaque(false);
-      background.setBounds(0, 0, x+plus, y);//x=1000, y=562
+      background.setBounds(0, 0, x, y);//x=1000, y=600
       
       // 메인 카드페이지 패널
       main_page_panel = new JPanel();
       main_cards = new CardLayout();
       main_page_panel.setLayout(main_cards);
       new Style(main_page_panel);
-      main_page_panel.setBounds(x-w, 0, w, h); //w=683, h=562   
+      main_page_panel.setBounds(x-w, 0, w, y); //w=683, h=600   
 
       // 사용자메뉴 카드페이지 패널
       user_page_panel = new JPanel();
       user_cards = new CardLayout();
       user_page_panel.setLayout(user_cards);
       new Style(user_page_panel);
-      user_page_panel.setBounds(x-w, 0, w, h); //w=683, h=562
+      user_page_panel.setBounds(x-w, 0, w, y); //w=683, h=562
       
       // 좌석현황 패널
       updateTable = new JPanel();
       new Style(updateTable);
       statecard = new CardLayout();
       updateTable.setLayout(statecard);
-      updateTable.setBounds(38, 190, 280, 50);
+      updateTable.setBounds(18, 215, 280, 50);
       updateTable.add(new State());
       
-      // 로그아웃 패널
+      // 로그인 전 위쪽 부분 없애기
+      deleteBrown = new JPanel();
+      deleteBrown.setBackground(Color.decode("#ede4df"));
+      deleteBrown.setBounds(x-w, 0, w, 40);
+      add(deleteBrown);
+      
+      //위쪽 왼쪽부분
+      leftup = new JPanel();
+      new Style(leftup);
+      leftup.setBounds(0, 0, x-w, 40);
+      
+      //위쪽 오른쪽 부분
+      rightup = new JPanel();
+      new Style(rightup);
+      rightup.setBounds(0, 0, w, 40);
+      
+      // 로그아웃 패널    
       logout = new JPanel();
-      new Style(logout);
       logoutcard = new CardLayout();
       logout.setLayout(logoutcard);
-      logout.setBounds(x-11, 5, 107, 50); //x=1000
-      logout.setForeground(Color.decode("#805b38"));
+      logout.setBounds(x-270, 5, 100, 30); //x=1000
+      logout.setBackground(Color.decode("#ede4df"));
+      logout.setBounds(x-w, 5, w, 30);
       
       // 빈화면
       empty = new JButton();
       new Style(empty);
-      empty.setBounds(0, 0, 100, 30);
+      empty.setBounds(x-w, 0, w, 30);
       logout.add("1",empty);
       
       // 로그아웃버튼
       logoutbtn = new JButton("로그아웃");
       new Style(logoutbtn);
+      logoutbtn.setOpaque(true);
       logoutbtn.setFont(new Font("맑은 고딕", Font.BOLD, 13));
       logoutbtn.addActionListener(new MainBtn_Action(logoutbtn));
-      logoutbtn.setForeground(Color.decode("#cfab8b"));
       logout.add("2",logoutbtn);
+      logout.setBounds(x-w+450, 5, 100, 30);
+
                  
       //연장하기 패널
       extend = new JPanel();
       new Style(extend);
       extendcard = new CardLayout();
       extend.setLayout(extendcard);
-      extend.setBounds(x-11,58,107,y-65);
+      extend.setBounds(x-160,5,150,30);
       
       //빈화면2
       empty2 = new JButton();
@@ -152,17 +163,16 @@ public class MainPage extends JFrame implements Runnable {
       //연장하기 버튼
       extendbtn = new JButton(setInterval()+"");
       new Style(extendbtn);  
-      extendbtn.setForeground(Color.decode("#cfab8b"));
+      extendbtn.setOpaque(true);
+      extendbtn.setFont(new Font("맑은 고딕", Font.BOLD, 13));
       extend.add("2",extendbtn);
-      
-      background.add(extend);
       
       MainPage.updateTable.add(new State());
       MainPage.statecard.next(MainPage.updateTable);
 
       JPanel main = new JPanel(new BorderLayout());
       new Style(main);
-      JButton touch = new JButton("<html>터치를 하여<br/>이용해주세요</html>");
+      JButton touch = new JButton("<html>&nbsp;터치를 하여<br/>이용해주세요<br/><br/><br/><br/></html>");
       new Style(touch);
       touch.setBorder(null);
       touch.addActionListener(new MainBtn_Action(touch));
@@ -182,25 +192,26 @@ public class MainPage extends JFrame implements Runnable {
       JButton changeUser = new JButton(new Conversion_image("image/관리자.png", 30, 30).imageicon_smooth);
       new Style(changeUser);
       changeUser.setText("관리자버튼");
-      changeUser.setBounds(5, 5, 40, 40);
+      changeUser.setBounds(12, 10, 40, 40);
       changeUser.addActionListener(new MainBtn_Action(changeUser));
 
 
       // 현재 시간
       clock = new JLabel();
       new Style(clock);
-      clock.setForeground(Color.decode("#dec5ae"));
+      clock.setForeground(Color.decode("#a68c71"));
       clock.setHorizontalAlignment(JLabel.CENTER);
       if (thread == null) {
          thread = new Thread(this);
          thread.start();
       }
-      clock.setBounds(8, 150, 300, 30);
+      clock.setBounds(8, 175, 300, 30);
 
-      background.add(logout);
-      background.add(changeUser);
+      add(changeUser);
       background.add(clock);
       background.add(updateTable);
+      background.add(logout);
+      background.add(extend);
       
       fram_panel.add(background);
 
@@ -227,7 +238,7 @@ public class MainPage extends JFrame implements Runnable {
              
               if (MainBtn_Action.interval == 0) {
                    try {
-                	   deleteBrown.setOpaque(true);
+
                       Class.forName("oracle.jdbc.driver.OracleDriver");
                         Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr",
                               "1234");
@@ -269,16 +280,14 @@ public class MainPage extends JFrame implements Runnable {
                      sec = k % 60;
                      min = k / 60;
                      extendbtn.setText(
-                           "<html><body><center>" + min + "분" + sec + "초<br>" + "연장  " + extend_cnt + "회");
+                           "<html><body><center>" + min + "분 " + sec + "초 " + "[연장  " + extend_cnt + "회]");
                      if (extend_cnt == 0) {
                         extendbtn.setEnabled(false);
                      }
                   }
                }
             }, delay, period);
-
-         
-             
+  
          }
          private static int setInterval() {          
              return --MainBtn_Action.interval;
