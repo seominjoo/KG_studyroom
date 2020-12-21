@@ -62,6 +62,8 @@ public class SignUpPage extends JPanel {
 
 	public static JLabel passAlert;
 	public static JLabel passConfirmAlert;
+	
+	public static JCheckBox consentBox;
 
 	public SignUpPage() {
 		setLayout(null);
@@ -283,6 +285,8 @@ public class SignUpPage extends JPanel {
 			new Style(kv.getValue());
 			kv.getValue().setFont(new Font("맑은 고딕", Font.BOLD, 13));
 
+			kv.getKey().setEnabled(false);
+			consentBox = kv.getKey();
 			gridInGrid7.add(kv.getKey());
 
 			JPanel gridInGrid72 = new JPanel();
@@ -357,6 +361,7 @@ public class SignUpPage extends JPanel {
 				year.setSelectedItem("2000");
 				for (Entry<JCheckBox, JButton> kv : consent.entrySet()) {
 					kv.getKey().setSelected(false);
+					kv.getKey().setEnabled(false);
 				}
 			}
 		});

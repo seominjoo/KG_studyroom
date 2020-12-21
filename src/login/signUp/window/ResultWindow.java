@@ -113,6 +113,7 @@ public class ResultWindow extends JFrame {
 						SignUpPage.year.setSelectedItem("2000");
 						for (Entry<JCheckBox, JButton> kv : SignUpPage.consent.entrySet()) {
 							kv.getKey().setSelected(false);
+							kv.getKey().setEnabled(false);
 						}
 					}
 						dispose();

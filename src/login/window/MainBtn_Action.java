@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 
 import login.design.Conversion_image;
 import login.design.Style;
+import login.findPW.FindPasswordPageUser;
 import login.loginDataBase.DBLoggedIn;
 import login.mainmenu._00main;
 import login.page.AdminPage;
@@ -200,6 +201,10 @@ public class MainBtn_Action implements ActionListener {
          new SubWindow(label1, label2);
       }
 
+      FindPasswordPageUser.phone_number1.setText("010");
+      FindPasswordPageUser.phone_number1.setText("010");
+      FindPasswordPageUser.phone_number1.setText("010");
+      FindPasswordPageUser.year.setSelectedItem("2000");
       //로그인 값들 초기화
 //      LoginPage.phone_number1.setText("010");
 //      LoginPage.phone_number2.setText("");

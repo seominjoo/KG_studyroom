@@ -19,6 +19,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import login.design.Style;
+import login.signUp.SignUpPage;
 import login.swingTools.SwingToolsSubPage;
 
 public class ConsentContent extends JFrame implements ActionListener {
@@ -52,18 +53,6 @@ public class ConsentContent extends JFrame implements ActionListener {
 
 		add(panel);
 
-		confirmButton = new JButton("확인");
-		confirmButton.setBounds(550, 755, 145, 23);
-		new Style(confirmButton);
-		panel.add(confirmButton);
-
-		confirmButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (e.getButton() == MouseEvent.BUTTON1)
-					dispose();
-			}
-		});
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
@@ -122,6 +111,24 @@ public class ConsentContent extends JFrame implements ActionListener {
 		contentLabel.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
 		scrollPane.setViewportView(contentLabel);
 
+		System.out.println(scrollPane.getVerticalScrollBar().getValue());
+		confirmButton = new JButton("동의");
+		confirmButton.setBounds(550, 755, 145, 23);
+		new Style(confirmButton);
+		panel.add(confirmButton);
+
+		confirmButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getButton() == MouseEvent.BUTTON1) {
+					System.out.println(scrollPane.getVerticalScrollBar().getValue());
+					SignUpPage.consentBox.setEnabled(true);
+					SignUpPage.consentBox.setSelected(true);
+					dispose();
+				}
+			}
+		});
+		
 	}
 
 }

@@ -31,8 +31,8 @@ import login.window.MainBtn_Action;
 
 public class MainPage extends JFrame implements Runnable {
 
-   public static int x = new Conversion_image("image/배경화면new.jpg", 4).x; //전체 프레임 가로 길이
-   public static int y = new Conversion_image("image/배경화면new.jpg", 4).y; //전체 프레임 세로 길이
+   public static int x = new Conversion_image("image/배경화면(누런).jpg", 4).x; //전체 프레임 가로 길이
+   public static int y = new Conversion_image("image/배경화면(누런).jpg", 4).y; //전체 프레임 세로 길이
    public static int plus = 120;
    public static int w = 560+plus; //메인 패널 가로 길이(width)
    public static int h = 562; //메인 패널 세로 길이(height)
@@ -86,10 +86,10 @@ public class MainPage extends JFrame implements Runnable {
       deleteBrown = new JPanel();
       deleteBrown.setBackground(Color.decode("#ede4df"));
       deleteBrown.setBounds(1000, 0, 120, 560);
-      add(deleteBrown);
+      //add(deleteBrown);
       
       // 배경 이미지
-      background = new JLabel(new Conversion_image("image/배경화면new.jpg", 4).imageicon_smooth);
+      background = new JLabel(new Conversion_image("image/배경화면(누런).jpg", 4).imageicon_smooth);
       background.setOpaque(false);
       background.setBounds(0, 0, x+plus, y);//x=1000, y=562
       

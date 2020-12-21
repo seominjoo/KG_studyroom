@@ -195,6 +195,7 @@ public class FindPasswordPageUser extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (MainPage.userToggle.equals("관리자 비번찾기")) {
 					MainPage.main_cards.show(MainPage.main_page_panel, "관리자");
+					MainPage.userToggle = "관리자";
 				} else {
 					MainPage.main_cards.show(MainPage.main_page_panel, "로그인");
 					MainPage.userToggle = "로그인";
