@@ -31,7 +31,7 @@ public class AdminPage extends JPanel{
       new Style(this);
       
       JLabel title = new JLabel("Log - In");
-      title.setBounds(MainPage.w/2-20, 150, 90, 20);
+      title.setBounds(MainPage.w/2-34, 150, 90, 20);
       add(title);
       new Style(title);
 

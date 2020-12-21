@@ -105,7 +105,7 @@ public class MainPage extends JFrame implements Runnable {
       new Style(updateTable);
       statecard = new CardLayout();
       updateTable.setLayout(statecard);
-      updateTable.setBounds(18, 215, 280, 50);
+      updateTable.setBounds(18, 190, 280, 50);
       updateTable.add(new State());
       
       
@@ -114,14 +114,11 @@ public class MainPage extends JFrame implements Runnable {
       logout = new JPanel();
       logoutcard = new CardLayout();
       logout.setLayout(logoutcard);
-      logout.setBounds(x-270, 5, 100, 30); //x=1000
       logout.setBackground(Color.decode("#ede4df"));
-      logout.setBounds(x-w, 5, w, 30);
       
       // ºóÈ­¸é
       empty = new JButton();
       new Style(empty);
-      empty.setBounds(x-w, 0, w, 30);
       logout.add("1",empty);
       
       // ·Î±×¾Æ¿ô¹öÆ°
@@ -131,7 +128,7 @@ public class MainPage extends JFrame implements Runnable {
       logoutbtn.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
       logoutbtn.addActionListener(new MainBtn_Action(logoutbtn));
       logout.add("2",logoutbtn);
-      logout.setBounds(x-w+450, 5, 100, 30);
+      logout.setBounds(x-90, 37, 80, 27);
 
                  
       //¿¬ÀåÇÏ±â ÆÐ³Î
@@ -139,7 +136,7 @@ public class MainPage extends JFrame implements Runnable {
       new Style(extend);
       extendcard = new CardLayout();
       extend.setLayout(extendcard);
-      extend.setBounds(x-160,5,150,30);
+      extend.setBounds(x-160,5,150,27);
       
       //ºóÈ­¸é2
       empty2 = new JButton();
@@ -191,7 +188,7 @@ public class MainPage extends JFrame implements Runnable {
          thread = new Thread(this);
          thread.start();
       }
-      clock.setBounds(8, 175, 300, 30);
+      clock.setBounds(8, 150, 300, 30);
 
       add(changeUser);
       background.add(clock);

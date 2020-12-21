@@ -220,7 +220,7 @@ public class _08reservation extends JPanel implements ActionListener {
 			this.add(locker_btn.get(i));
 			locker_btn.get(i).addActionListener(new ActionBtn_select(locker_btn.get(i)));
 			locker_btn.get(i).setBounds(60 + c, 380, 60, 30);
-			c += 55;
+			c += 60;
 			locker_btn.get(i).setEnabled(true);
 			if (price != 25000) {
 				locker_btn.get(i).setEnabled(false);
@@ -235,7 +235,7 @@ public class _08reservation extends JPanel implements ActionListener {
 			this.add(locker_btn.get(i));
 			locker_btn.get(i).addActionListener(new ActionBtn_select(locker_btn.get(i)));
 			locker_btn.get(i).setBounds(60 + d, 410, 60, 30);
-			d += 55;
+			d += 60;
 			locker_btn.get(i).setEnabled(true);
 			if (price != 25000) {
 				locker_btn.get(i).setEnabled(false);

@@ -43,7 +43,7 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 	Thread thread;
 	
 	JMenuBar bar = new JMenuBar();
-	JMenu menu = new JMenu("                      번호별 현재 좌석 / 룸 / 사물함 사용 정보                    ");
+	JMenu menu = new JMenu("번호별 매장 사용 정보");
 	JMenu s = new JMenu("1인석");
 	JMenu r = new JMenu("룸");	
 	JMenu l = new JMenu("사물함");
@@ -119,19 +119,25 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 	}
 	
 	public StoreManagementPage() {
-
-		this.setLayout(new BorderLayout());
-		new Style(this);
-			
-		menu.add(s);
-		menu.add(r);
-		menu.add(l);
-		bar.add(menu);
+		setLayout(null);
 		
 		JPanel top = new JPanel();
 		top.add(bar);
 		new Style(top);
-		add(top, BorderLayout.NORTH);
+		top.setBounds(79, 0, 130, 27);
+		add(top);
+		
+		this.setLayout(new BorderLayout(0,20));
+		new Style(this);
+			
+		add(Style.getnewPanel(), BorderLayout.NORTH);
+		
+		menu.add(s);
+		menu.add(r);
+		menu.add(l);
+		//bar.setBounds(0, 0, 100, 50);
+		bar.add(menu);
+		
 		
 		JPanel c = new JPanel();
 		add(c, BorderLayout.CENTER);

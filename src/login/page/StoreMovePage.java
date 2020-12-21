@@ -261,7 +261,7 @@ public class StoreMovePage extends JPanel implements ActionListener {
 				}else if (sn>100) {
 					System.out.printf("[%dȣ] ",sn); 
 					room_btn.get(sn-101).setForeground(Color.gray);
-					room_btn.get(sn-1).setEnabled(false);
+					room_btn.get(sn-101).setEnabled(false);
 				}
 			}
 
