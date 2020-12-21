@@ -56,7 +56,7 @@ public class _10paycash extends JFrame {
 		cash.setColumns(10);
 
 		JButton back;
-		back = new JButton("搬力 秒家");
+		back = new JButton("秒家");
 		ActionListener back_btn = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -66,15 +66,15 @@ public class _10paycash extends JFrame {
 				frame.setVisible(false);
 			}
 		};
-		this.add(back);
-		new Style(back);
-		back.setBounds(198, 135, 90, 40);
-		back.addActionListener(back_btn);
+		  this.add(back);
+	      new Style(back);
+	      back.setBounds(73, 135, 90, 40);
+	      back.addActionListener(back_btn);
 
-		JButton pay_btn = new JButton("搬力");
-		new Style(pay_btn);
-		pay_btn.setBounds(73, 135, 90, 40);
-		this.add(pay_btn);
+	      JButton pay_btn = new JButton("搬力");
+	      new Style(pay_btn);
+	      pay_btn.setBounds(198, 135, 90, 40);
+	      this.add(pay_btn);
 
 		pay_btn.addActionListener(new ActionListener() {
 			@Override
