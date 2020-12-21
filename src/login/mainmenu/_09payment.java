@@ -24,12 +24,12 @@ import javax.swing.JButton;
 public class _09payment extends JPanel{
 
    private JTable table;
-   static LocalDateTime time_now = LocalDateTime.now();
+   static LocalDateTime time_now;
    String time_checkout;
    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
   
    public _09payment(LocalDateTime ss, int seat_price, String seat_type) {
-
+	   time_now = LocalDateTime.now();
       setLayout(null);
       new Style(this);
 

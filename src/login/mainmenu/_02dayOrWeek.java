@@ -6,28 +6,38 @@ import login.design.Style;
 import login.page.MainPage;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class _02dayOrWeek extends JPanel {
+	
+	public static void main(String[] args) {
+		JFrame frame = new JFrame();
+		_02dayOrWeek main = new _02dayOrWeek();
+		frame.setBounds(0,0,683,562);
+		frame.add(main);
+		frame.setVisible(true);
+	}
 
 	public _02dayOrWeek() {
 		 
 		new Style(this);
-		setBounds(600, 150, 450, 300);
 		this.setLayout(null);
 
+		//메뉴 버튼 3개
 		JButton daily_btn = new JButton("당일 이용권"); 
 		this.add(daily_btn);
-		daily_btn.setBounds(140, 120, 300, 80);
+		daily_btn.setBounds(MainPage.w/2-150, MainPage.h/2-190, 300, 100);
 
 		JButton weekly_btn = new JButton("정기 이용권"); 
 		this.add(weekly_btn);
-		weekly_btn.setBounds(140, 220, 300, 80);
+		weekly_btn.setBounds(MainPage.w/2-150, MainPage.h/2-80, 300, 100);
 		
 		JButton back_btn = new JButton("이전 화면"); 
 		this.add(back_btn);
-		back_btn.setBounds(140, 320, 300, 80);
+		back_btn.setBounds(MainPage.w/2-150, MainPage.h/2+30, 300, 100);
 		
 		new Style(daily_btn);
 		new Style(weekly_btn);

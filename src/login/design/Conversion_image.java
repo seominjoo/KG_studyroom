@@ -22,7 +22,7 @@ public class Conversion_image {
 			buf = ImageIO.read(new File(path));
 			this.x = buf.getWidth()/sizexy;
 			this.y = buf.getHeight()/sizexy;
-			this.image_smooth = buf.getScaledInstance( x, y, source.SCALE_SMOOTH);
+			this.image_smooth = buf.getScaledInstance( x+120, y, source.SCALE_SMOOTH);
 			this.imageicon = new ImageIcon(buf);
 			this.imageicon_smooth = new ImageIcon(image_smooth);
 		} catch (IOException e) {

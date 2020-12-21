@@ -19,24 +19,25 @@ public class _03whatWeek extends JPanel {
 		setLayout(null);
 		new Style(this);
 
+		//메뉴 버튼 4개
 		JButton btn_2wk = new JButton(_01start.pass_price.get(12)+"("+_01start.pass_price.get(13)+")"); 
 		new Style(btn_2wk);
-		btn_2wk.setBounds(150, 168, 250, 48); 
+		btn_2wk.setBounds(MainPage.w/2-230, MainPage.h/2-160, 220, 130);
 		this.add(btn_2wk);
 
 		JButton btn_4wk = new JButton(_01start.pass_price.get(14)+"("+_01start.pass_price.get(15)+")"); 
 		new Style(btn_4wk);
-		btn_4wk.setBounds(150, 233, 250, 48); 
+		btn_4wk.setBounds(MainPage.w/2+10, MainPage.h/2-160, 220, 130);
 		this.add(btn_4wk);
 
 		JButton btn_8wk = new JButton(_01start.pass_price.get(16)+"("+_01start.pass_price.get(17)+")");  
 		new Style(btn_8wk);
-		btn_8wk.setBounds(150, 303, 250, 48);
+		btn_8wk.setBounds(MainPage.w/2-230, MainPage.h/2-10, 220, 130);
 		this.add(btn_8wk);
 
 		JButton btn_back = new JButton("이전 화면"); 
 		new Style(btn_back);
-		btn_back.setBounds(150, 373, 250, 48);
+		btn_back.setBounds(MainPage.w/2+10, MainPage.h/2-10, 220, 130);
 		this.add(btn_back);
 
 		btn_2wk.addActionListener(new ActionListener() { //다음 페이지(2주 이용권)

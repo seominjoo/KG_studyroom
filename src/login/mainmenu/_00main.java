@@ -8,6 +8,9 @@ import login.design.Style;
 import login.page.MainPage;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
+
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -32,7 +35,7 @@ public class _00main extends JPanel {
 	static int id;
 	public static String type;
 	public static DateTimeFormatter datetime = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 ");
-
+	
 	public _00main() {
 
 		new Style(this);
@@ -123,40 +126,34 @@ public class _00main extends JPanel {
 				time_locker = rs.getTimestamp("l_time_checkout");
 			}
 
-			if (rs != null)
-				rs.close();
-			if (pstmt != null)
-				pstmt.close();
-			if (conn != null)
-				conn.close();
+			if (rs != null) rs.close();
+			if (pstmt != null) pstmt.close();
+			if (conn != null) conn.close();
 			
 		} catch (ClassNotFoundException | SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
-		this.setBorder(new EmptyBorder(5, 5, 5, 5));
-		this.setLayout(null);
-
 		// 메뉴 버튼 4개
 		JButton ticket_btn = new JButton("이용권구매");
-		ticket_btn.setBounds(130, 150, 208, 121);
+		ticket_btn.setBounds(MainPage.w/2-230, MainPage.h/2-10, 220, 130);
 		this.add(ticket_btn);
 
 		JButton in_btn = new JButton("입실하기");
-		in_btn.setBounds(348, 150, 213, 121);
+		in_btn.setBounds(MainPage.w/2-230, MainPage.h/2-150, 220, 130);
 		this.add(in_btn);
 
 		JButton move_btn = new JButton("자리이동");
-		move_btn.setBounds(130, 281, 208, 126);
+		move_btn.setBounds(MainPage.w/2+10, MainPage.h/2-10, 220, 130);
 		this.add(move_btn);
 
 		JButton out_btn = new JButton("퇴실하기");
-		out_btn.setBounds(348, 281, 213, 126);
+		out_btn.setBounds(MainPage.w/2+10, MainPage.h/2-150, 220, 130);
 		this.add(out_btn);
 
 		JButton chk_info = new JButton("마이 페이지");
-		chk_info.setBounds(130, 110, 120, 30);
+		chk_info.setBounds(MainPage.w/2-230, MainPage.h/2-190, 120, 30);
 		this.add(chk_info);
 
 		new Style(ticket_btn);

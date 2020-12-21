@@ -2,10 +2,13 @@ package login.mainmenu;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import login.design.Style;
 import login.page.MainPage;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
@@ -13,7 +16,7 @@ import java.time.LocalDateTime;
 public class _03whatHour extends JPanel {
 
 	public static LocalDateTime time_now = LocalDateTime.now(); 
- 
+
 	public _03whatHour() {
 		
 		setLayout(null);
@@ -21,32 +24,32 @@ public class _03whatHour extends JPanel {
 		 
 		JButton btn_2hr= new JButton(_01start.pass_price.get(2)+"("+_01start.pass_price.get(3)+")");
 		new Style(btn_2hr);
-		btn_2hr.setBounds(90, 130, 188, 80); 
+		btn_2hr.setBounds(MainPage.w/2-210, MainPage.h/2-150, 200, 80); 
 		this.add(btn_2hr);
 
 		JButton btn_4hr = new JButton(_01start.pass_price.get(4)+"("+_01start.pass_price.get(5)+")");
 		new Style(btn_4hr);
-		btn_4hr.setBounds(303, 130, 193, 80); 
+		btn_4hr.setBounds(MainPage.w/2+10, MainPage.h/2-150, 200, 80); 
 		this.add(btn_4hr);
 
 		JButton btn_6hr = new JButton(_01start.pass_price.get(6)+"("+_01start.pass_price.get(7)+")");
 		new Style(btn_6hr);
-		btn_6hr.setBounds(90, 230, 188, 80); 
+		btn_6hr.setBounds(MainPage.w/2-210, MainPage.h/2-60, 200, 80); 
 		this.add(btn_6hr);
 
 		JButton btn_8hr = new JButton(_01start.pass_price.get(8)+"("+_01start.pass_price.get(9)+")");
 		new Style(btn_8hr);
-		btn_8hr.setBounds(303, 230, 193, 80); 
+		btn_8hr.setBounds(MainPage.w/2+10, MainPage.h/2-60, 200, 80); 
 		this.add(btn_8hr);
 
 		JButton btn_12hr = new JButton(_01start.pass_price.get(10)+"("+_01start.pass_price.get(11)+")");
 		new Style(btn_12hr);
-		btn_12hr.setBounds(90, 330, 188, 80);
+		btn_12hr.setBounds(MainPage.w/2-210, MainPage.h/2+30, 200, 80);
 		this.add(btn_12hr);
   
 		JButton btn_back = new JButton("이전 화면");
 		new Style(btn_back);
-		btn_back.setBounds(303, 330, 193, 80);
+		btn_back.setBounds(MainPage.w/2+10, MainPage.h/2+30, 200, 80);
 		this.add(btn_back, btn_back);
 		
 

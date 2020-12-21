@@ -19,15 +19,16 @@ public class _05locker extends JPanel {
 		new Style(this);
 		setLayout(null);
 		
+		//메뉴 버튼 2개
 		JButton check_locker_btn = new JButton(_01start.pass_price.get(0)+"("+_01start.pass_price.get(1)+")"); 
 		this.add(check_locker_btn);
 		new Style(check_locker_btn);
-		check_locker_btn.setBounds(140, 200, 300, 80);
+		check_locker_btn.setBounds(MainPage.w/2-150, MainPage.h/2-140, 300, 100);
 		
 		JButton btn_back = new JButton("이전 화면"); 
 		this.add(btn_back);
 		new Style(btn_back);
-		btn_back.setBounds(140, 300, 300, 80);
+		btn_back.setBounds(MainPage.w/2-150, MainPage.h/2-10, 300, 100);
 	
 		check_locker_btn.addActionListener(new ActionListener() { //다음 페이지
 			@Override

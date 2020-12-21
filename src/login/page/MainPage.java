@@ -133,17 +133,14 @@ public class MainPage extends JFrame implements Runnable {
       logoutbtn.addActionListener(new MainBtn_Action(logoutbtn));
       logout.add("2",logoutbtn);
        
-      
-       
-      
-      
-      
-      //연장하기 패널
+      // 연장하기 패널
       extend = new JPanel();
       new Style(extend);
       extendcard = new CardLayout();
       extend.setLayout(extendcard);
-      extend.setBounds(890,31,100,130);
+      extend.setBounds(910, 31, 80, 50);
+       
+
       //빈화면2
       empty2 = new JButton();
       new Style(empty2);
@@ -240,64 +237,65 @@ public class MainPage extends JFrame implements Runnable {
 		}
 	});
       
-     
-      // 자동로그아웃 시간
+   // 자동로그아웃 시간
       int delay = 1000;
       int period = 1000;
-      Timer time = new Timer(); 
-      time.scheduleAtFixedRate(new TimerTask() { 
-          public void run() {
-        	  
-              if (MainBtn_Action.interval == 0) {
-            	    try {
-                        Class.forName("oracle.jdbc.driver.OracleDriver");
-                        Connection conn = DriverManager.getConnection(
-                              "jdbc:oracle:thin:@localhost:1521/XEPDB1",
-                              "hr",
-                              "1234"
-                              );
-                        MainPage.main_cards.show(MainPage.main_page_panel, "로그인");
-                        MainPage.userToggle = "로그인";
-                        
-                        PreparedStatement pstmt = null;
-                        String sql = "update person_info set login_state ='Off'";
-                        pstmt = conn.prepareStatement(sql);
-                        
-                        int row = pstmt.executeUpdate();
-                        
-                        PreparedStatement pstmt2 = null;
-                        String sql2 = "update Admin_Info set Admin_LoginState = 'Off'";
-                        pstmt2 = conn.prepareStatement(sql2);
-                        
-                        int row2 = pstmt2.executeUpdate();
-                        System.out.printf("로그아웃 %d\n",row);
-                        System.out.printf("로그아웃 %d\n",row2);
-                        if (pstmt2 != null) pstmt.close();
-                        if (pstmt != null) pstmt.close();
-                        if (conn != null) conn.close();
-                        MainPage.logoutcard.show(MainPage.logout, "1");
-                        MainPage.extendcard.show(MainPage.extend, "1");
-                        extend_cnt=3;
-                        extendbtn.setEnabled(true);
-                        //time.cancel();//타이머 종료
-                        //재시작 하려면 새로 선언?해야 한다고함
-                        MainBtn_Action.interval=1000;//db실행 반복을 제어하기 위해 임시로 시간 올려둠
-                     } catch (ClassNotFoundException | SQLException e1) { 
-                        e1.printStackTrace();
-                     }
-                   
-              } else {
-            	  k=setInterval();
-              	  minute = k%60;
-            	  min = k/60; 
-            	  extendbtn.setText("<html><body><center>자동<br>로그아웃까지<br>남은 시간:<br>"
-            			  			+min+"분"+minute+"초<br>(연장하기)<br>"+"잔여 횟수:"+extend_cnt); 
-            	  if(extend_cnt==0) {
-            		  extendbtn.setEnabled(false);
-            	  }
-              }
-          }
+      Timer time = new Timer();
+      time.scheduleAtFixedRate(new TimerTask() {
+         public void run() {
+
+            if (MainBtn_Action.interval == 0) {
+               try {
+                  Class.forName("oracle.jdbc.driver.OracleDriver");
+                  Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr",
+                        "1234");
+                  MainPage.main_cards.show(MainPage.main_page_panel, "로그인");
+                  MainPage.userToggle = "로그인";
+
+                  PreparedStatement pstmt = null;
+                  String sql = "update person_info set login_state ='Off'";
+                  pstmt = conn.prepareStatement(sql);
+
+                  int row = pstmt.executeUpdate();
+
+                  PreparedStatement pstmt2 = null;
+                  String sql2 = "update Admin_Info set Admin_LoginState = 'Off'";
+                  pstmt2 = conn.prepareStatement(sql2);
+
+                  int row2 = pstmt2.executeUpdate();
+                  System.out.printf("로그아웃 %d\n", row);
+                  System.out.printf("로그아웃 %d\n", row2);
+                  if (pstmt2 != null)
+                     pstmt.close();
+                  if (pstmt != null)
+                     pstmt.close();
+                  if (conn != null)
+                     conn.close();
+                  MainPage.logoutcard.show(MainPage.logout, "1");
+                  MainPage.extendcard.show(MainPage.extend, "1");
+                  extend_cnt = 3;
+                  extendbtn.setEnabled(true);
+                  // time.cancel();//타이머 종료
+                  // 재시작 하려면 새로 선언?해야 한다고함
+                  MainBtn_Action.interval = 1000;// db실행 반복을 제어하기 위해 임시로 시간 올려둠
+               } catch (ClassNotFoundException | SQLException e1) {
+                  e1.printStackTrace();
+               }
+
+            } else {
+               k = setInterval();
+               minute = k % 60;
+               min = k / 60;
+               extendbtn.setText(
+                     "<html><body><center>" + min + "분" + minute + "초<br>" + "연장  " + extend_cnt + "회");
+               if (extend_cnt == 0) {
+                  extendbtn.setEnabled(false);
+               }
+            }
+         }
       }, delay, period);
+
+   
        
    }
    private static int setInterval() {          

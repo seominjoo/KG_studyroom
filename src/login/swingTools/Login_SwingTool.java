@@ -18,7 +18,7 @@ public class Login_SwingTool extends JFrame{
       new Style(frame);
       frame.setLayout(null);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      frame.setSize(MainPage.x+12, MainPage.y+35);
+      frame.setSize(MainPage.x+122, MainPage.y+35);
       frame.setVisible(true);
       frame.setLocationRelativeTo(null); 
 

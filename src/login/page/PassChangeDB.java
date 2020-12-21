@@ -139,12 +139,5 @@ public class PassChangeDB {
 		} catch (ClassNotFoundException | SQLException e) { 
 			e.printStackTrace();
 		}
-
-
-
-
-
-
 	}
-
 }

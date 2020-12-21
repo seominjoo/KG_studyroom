@@ -30,15 +30,16 @@ public class _06move extends JPanel {
 		new Style(this);
 		setLayout(null);
 		
+		//메뉴 버튼 2개
 		JButton move_seat = new JButton("좌석 이동하기");
 		this.add(move_seat);
 		new Style(move_seat);
-		move_seat.setBounds(160,100,300,100);
+		move_seat.setBounds(MainPage.w/2-150, MainPage.h/2-140, 300, 100);
 		
 		JButton move_room = new JButton("룸 이동하기");
 		this.add(move_room);
 		new Style(move_room);
-		move_room.setBounds(160,220,300,100);
+		move_room.setBounds(MainPage.w/2-150, MainPage.h/2-10, 300, 100);
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");

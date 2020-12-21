@@ -68,6 +68,6 @@ public class _00myPage extends JFrame {
    }
 
    public static void main(String[] args) {
-      new MainPage();
+      new _00myPage();
    }
 }

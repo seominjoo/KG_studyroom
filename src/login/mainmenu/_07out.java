@@ -31,15 +31,16 @@ public class _07out extends JPanel {
 		new Style(this);
 		setLayout(null);
 
+		//¸Þ´º ¹öÆ° 2°³
 		JButton out_seat = new JButton("ÁÂ¼® Åð½ÇÇÏ±â");
 		this.add(out_seat);
 		new Style(out_seat);
-		out_seat.setBounds(160, 100, 300, 100);
+		out_seat.setBounds(MainPage.w/2-150, MainPage.h/2-140, 300, 100);
 
 		JButton out_room = new JButton("·ë Åð½ÇÇÏ±â");
 		this.add(out_room);
 		new Style(out_room);
-		out_room.setBounds(160, 220, 300, 100);
+		out_room.setBounds(MainPage.w/2-150, MainPage.h/2-10, 300, 100);
 
 		try {
 
