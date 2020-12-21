@@ -18,9 +18,6 @@ public class Login_SwingTool extends JFrame{
       frame.setVisible(true);
       frame.setLocationRelativeTo(null); 
       frame.setBackground(Color.decode("#ede4df"));
-      frame.add(MainPage.rightup);
-      frame.add(MainPage.leftup);
-      frame.add(MainPage.extend);
-      frame.add(MainPage.logout);
+
    }
 }

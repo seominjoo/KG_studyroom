@@ -108,21 +108,7 @@ public class MainPage extends JFrame implements Runnable {
       updateTable.setBounds(18, 215, 280, 50);
       updateTable.add(new State());
       
-      // 로그인 전 위쪽 부분 없애기
-      deleteBrown = new JPanel();
-      deleteBrown.setBackground(Color.decode("#ede4df"));
-      deleteBrown.setBounds(x-w, 0, w, 40);
-      add(deleteBrown);
       
-      //위쪽 왼쪽부분
-      leftup = new JPanel();
-      new Style(leftup);
-      leftup.setBounds(0, 0, x-w, 40);
-      
-      //위쪽 오른쪽 부분
-      rightup = new JPanel();
-      new Style(rightup);
-      rightup.setBounds(0, 0, w, 40);
       
       // 로그아웃 패널    
       logout = new JPanel();
