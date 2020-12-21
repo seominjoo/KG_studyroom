@@ -66,7 +66,7 @@ public class _07out extends JPanel {
                      num_seat = rs.getInt("seat_number");
                      type = rs.getString("seat_type");
                   }
-                  sql = "update seat set Seat_Statement ='사용 가능',time_enter='01/01/01 00:00:00.000000000',time_checkout='20/01/01 00:00:00.000000000' where Seat_Number= ?";
+                  sql = "update seat set Seat_Statement ='사용 가능',time_enter='01/01/01 00:00:00.000000000',time_checkout='01/01/01 00:00:00.000000000' where Seat_Number= ?";
                   pstmt = conn.prepareStatement(sql);
                   pstmt.setInt(1, num_seat);
                   int row3 = pstmt.executeUpdate();

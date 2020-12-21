@@ -157,20 +157,44 @@ public class MemberDB {
             contents[i][0] = Integer.toString(rs.getInt(1));
             for (int j = 1; j < header.length; j++) {
                if (j == 4) {
+            	   if(rs.getInt(5)==0) {
+            		   contents[i][j] = "없음";
+            	   }else {
                   contents[i][j] = Integer.toString(rs.getInt(5));
+            	   }
                }else if(j==6) {
+            	   if(rs.getInt(7)==0) {
+            		   contents[i][j] = "없음";
+            	   }else {
                   contents[i][j] = Integer.toString(rs.getInt(7));
+            	   }
                }else if(j==8) {
+            	   if(rs.getInt(9)==0) {
+            		   contents[i][j] = "없음";
+            	   }else {
                   contents[i][j] = Integer.toString(rs.getInt(9));
+            	   }
                }else if(j==5) {
+            	   if(rs.getTimestamp(6).toString().equals("2001-01-01 00:00:00.0")) {
+            		   contents[i][j] = "";
+            	   }else {
                   time_chk = rs.getTimestamp(6);
-                  contents[i][j] = Time.TimeStampTOlocalDateTime(time_chk).format(dateTimeFormatter);
+                  contents[i][j] = Time.TimeStampTOlocalDateTime(time_chk).format(dateTimeFormatter).substring(0,23);
+            	   }
                }else if(j==7) {
+            	   if(rs.getTimestamp(8).toString().contains("2001-01-01 00:00:00.0")) {
+            		   contents[i][j] = "";
+            	   }else {
                   time_chk = rs.getTimestamp(8);
-                  contents[i][j] = Time.TimeStampTOlocalDateTime(time_chk).format(dateTimeFormatter);
+                  contents[i][j] = Time.TimeStampTOlocalDateTime(time_chk).format(dateTimeFormatter).substring(0,23);
+            	   }
                }else if(j==9) {
+            	   if(rs.getTimestamp(10).toString().equals("2001-01-01 00:00:00.0")) {
+            		   contents[i][j] = "";
+            	   }else {
                   time_chk = rs.getTimestamp(10);
-                  contents[i][j] = Time.TimeStampTOlocalDateTime(time_chk).format(dateTimeFormatter);
+                  contents[i][j] = Time.TimeStampTOlocalDateTime(time_chk).format(dateTimeFormatter).substring(0,23);
+            	   }
                }else {
                   String mon = rs.getString(j + 1);
                   contents[i][j] = mon;
