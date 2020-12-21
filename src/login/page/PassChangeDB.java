@@ -82,7 +82,7 @@ public class PassChangeDB {
 				PreparedStatement pstm = conn.prepareStatement(sql); 
 
 				ResultSet rs = pstm.executeQuery(); 
-				String header[] = {"자리 이용권","가격","사물함 이용권","가격"};//12열
+				String header[] = {"이용권","가격","이용권","가격"};//12열
 
 				int row=0;
 				int i = 0;
@@ -93,14 +93,26 @@ public class PassChangeDB {
 				pstm = conn.prepareStatement(sql);
 				rs = pstm.executeQuery();
 
-				String[][] contents = new String[row][header.length];
+				String[][] contents = new String[row-3][header.length];
 				while (rs.next()) { 
-					contents[i][0] = rs.getString(1);
-					contents[i][1] = Integer.toString(rs.getInt(2));
-					if(i==0) {
+					
+					 
+					if(i==3) {
 						contents[i][2] = rs.getString(3);
 						contents[i][3] = Integer.toString(rs.getInt(4));
 					}
+					if(i>=5&&i<=7) {
+						contents[i-5][2] = rs.getString(1);
+						contents[i-5][3] = Integer.toString(rs.getInt(2));
+					}else if(i>=8&&i<=12) {
+						contents[i-3][0] = rs.getString(1);
+						contents[i-3][1] = Integer.toString(rs.getInt(2));
+					}else {
+						contents[i][0] = rs.getString(1);
+						contents[i][1] = Integer.toString(rs.getInt(2));
+					}
+
+					
 					i++;
 				} 
 
@@ -139,5 +151,12 @@ public class PassChangeDB {
 		} catch (ClassNotFoundException | SQLException e) { 
 			e.printStackTrace();
 		}
+
+
+
+
+
+
 	}
+
 }

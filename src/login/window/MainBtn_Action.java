@@ -139,7 +139,7 @@ public class MainBtn_Action implements ActionListener {
             System.out.println(update);
             DBLoggedIn db = new DBLoggedIn(update);
 
-            interval=10;//자동 로그아웃 카운트 시간
+            interval=300;//자동 로그아웃 카운트 시간
             
             // 버튼 이름
             nextcard = "관리자메뉴";
@@ -179,7 +179,7 @@ public class MainBtn_Action implements ActionListener {
             System.out.println(update);
             DBLoggedIn db = new DBLoggedIn(update);
             
-            interval=10;//자동 로그아웃 카운트 시간
+            interval=15;//자동 로그아웃 카운트 시간
             
             // 버튼 이름
             nextcard = "사용자메뉴";

@@ -167,11 +167,7 @@ public class MainPage extends JFrame implements Runnable {
       touch.setBorder(null);
       touch.addActionListener(new MainBtn_Action(touch));
       main.add(touch);   
-      
-//      JLabel rightside = new JLabel(new ImageIcon("image/rightside.jpg"));
-//      rightside.setSize(30,80);
-//      rightside.setLocation(0,0);
-//      add(rightside);
+
 
       // 메인 페이지 추가 작업
       main_page_panel.add("메인", main);
@@ -182,25 +178,6 @@ public class MainPage extends JFrame implements Runnable {
       main_page_panel.add("회원가입", new SignUpPage());
       main_page_panel.add("비번찾기", new FindPasswordPageUser());
 
-        // 사용자 메뉴 페이지 추가 작업
-//      user_page_panel.add("메인메뉴", new _00main()); // 메뉴페이지
-//      user_page_panel.add("이용권구매", new _01start()); // 이용권구매 페이지
-//      user_page_panel.add("좌석이용권", new _02dayOrWeek()); // 좌석 이용권 페이지
-//      user_page_panel.add("룸이용권", new _02dayRoom());
-//      user_page_panel.add("당일권가격표(좌석)", new _03whatHour());
-//      user_page_panel.add("정기권가격표", new _03whatWeek());
-//      user_page_panel.add("당일권가격표(룸)", new _03whatHourRoom());
-//      user_page_panel.add("사물함이용권", new _05locker());
-//      user_page_panel.add("자리이동", new _06move());
-//      user_page_panel.add("입실페이지", new _07in_seletSeat());
-//      user_page_panel.add("퇴실페이지", new _07out());
-//      user_page_panel.add("예약페이지", new _08reservation(ss,price,seat_type));
-//      user_page_panel.add("자리페이지", new _06move_selectSeat());
-//      user_page_panel.add("결제페이지", new _09payment(ss, price, seat_type));
-//      user_page_panel.add("결제알림창", new _10paycash(ss));
-
-        // 영수증에 확인 버튼(or 입장바로가기 or로그아웃off)
-//      user_page_panel.add("영수증", new _11receipt(ss, price));
 
       JButton changeUser = new JButton(new Conversion_image("image/관리자.png", 30, 30).imageicon_smooth);
       new Style(changeUser);
@@ -310,19 +287,19 @@ public class MainPage extends JFrame implements Runnable {
          
          @Override
          public void run() {
-//            while (true) {
-//               Calendar cal = Calendar.getInstance();
-//               String now = cal.get(Calendar.YEAR) + "년 " + (cal.get(Calendar.MONTH) + 1) + "월 " + cal.get(Calendar.DATE)
-//                     + "일 " + cal.get(Calendar.HOUR) + "시 " + cal.get(Calendar.MINUTE)+ "분 " + cal.get(Calendar.SECOND)
-//                     + "초 ";
-//               
-//               clock.setText(now);
-//               try {
-//                  Thread.sleep(1000);
-//               } catch (InterruptedException e) {
-//                  e.printStackTrace();
-//               }
-//            }
+            while (true) {
+               Calendar cal = Calendar.getInstance();
+               String now = cal.get(Calendar.YEAR) + "년 " + (cal.get(Calendar.MONTH) + 1) + "월 " + cal.get(Calendar.DATE)
+                     + "일 " + cal.get(Calendar.HOUR) + "시 " + cal.get(Calendar.MINUTE)+ "분 " + cal.get(Calendar.SECOND)
+                     + "초 ";
+               
+               clock.setText(now);
+               try {
+                  Thread.sleep(1000);
+               } catch (InterruptedException e) {
+                  e.printStackTrace();
+               }
+            }
          }
 
          public static void main(String[] args) {
