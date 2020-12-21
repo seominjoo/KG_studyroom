@@ -29,7 +29,7 @@ public class _08reservation extends JPanel implements ActionListener {
 	static String type11;
 	static int price11;
 	static int price;
-
+	static LocalDateTime whatclass_now;
 	JLabel label_msg;
 	String time_checkout;
 
@@ -54,8 +54,8 @@ public class _08reservation extends JPanel implements ActionListener {
 		}
 	}
 
-	public _08reservation(LocalDateTime ss, int price, String seat_type) {
-
+	public _08reservation(LocalDateTime whatclass_now, LocalDateTime ss, int price, String seat_type) {
+		this.whatclass_now = whatclass_now;
 		new Style(this);
 		setLayout(null);
 
@@ -65,7 +65,7 @@ public class _08reservation extends JPanel implements ActionListener {
 		new Style(OK);
 		OK.setBounds(410, 460, 150, 80);
 		OK.addActionListener(this);
-		
+
 		JButton back;
 		back = new JButton("이전 화면");
 		new Style(back);
@@ -107,7 +107,7 @@ public class _08reservation extends JPanel implements ActionListener {
 		for (int i = 0; i < 3; i++) {// 1인석 버튼 위치 설정
 			seats_btn.get(i).setBackground(Color.BLACK);
 			seats_btn.get(i).setText(i + 1 + "번");
-			System.out.println(   seats_btn.get(i).getText());
+			System.out.println(seats_btn.get(i).getText());
 			seats_btn.get(i).setForeground(Color.orange);
 			this.add(seats_btn.get(i));
 			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
@@ -242,7 +242,8 @@ public class _08reservation extends JPanel implements ActionListener {
 			}
 		}
 
-		//System.out.println(seats_btn.get(0).getSize() +" " + room_btn.get(0).getSize() + " " + locker_btn.get(0).getSize());
+		// System.out.println(seats_btn.get(0).getSize() +" " +
+		// room_btn.get(0).getSize() + " " + locker_btn.get(0).getSize());
 
 		ActionListener back_btn = new ActionListener() {
 			@Override
@@ -303,9 +304,12 @@ public class _08reservation extends JPanel implements ActionListener {
 
 			}
 
-			if (rs != null) rs.close();
-			if (pstm != null) pstm.close();
-			if (conn != null) conn.close();
+			if (rs != null)
+				rs.close();
+			if (pstm != null)
+				pstm.close();
+			if (conn != null)
+				conn.close();
 
 		} catch (ClassNotFoundException | SQLException e1) {
 			e1.printStackTrace();
@@ -321,7 +325,7 @@ public class _08reservation extends JPanel implements ActionListener {
 		int count_only = 0;
 		String msg = "";
 		price = 0;
-		
+
 		if ((price11 >= 3000 && price11 <= 10000 || price11 >= 90000)) {
 			for (int i = 0; i <= 19; i++) {// 자리 체크(비활성화 되있는건 제외)
 				if (seats_btn.get(i).isSelected() && (seats_btn.get(i).isEnabled() == true)) {
@@ -368,7 +372,7 @@ public class _08reservation extends JPanel implements ActionListener {
 			} else if (result == JOptionPane.NO_OPTION) { // 취소 메세지
 				JOptionPane.showMessageDialog(this, "취소");
 			} else { // yes버튼 -> 결제 페이지
-				setVisible(false); 
+				setVisible(false);
 				MainPage.user_page_panel.add("결제페이지", new _09payment(time11, price, type11));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "결제페이지");

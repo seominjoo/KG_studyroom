@@ -46,8 +46,8 @@ public class _11receipt extends JPanel {
 
 		String header[] = { "결제", "정보" };
 		String contents[][] = { { "번호", _08reservation.number },
-				{ "결제 시간", _09payment.time_now.format(dateTimeFormatter) },
-				{ "퇴실(만료) 예정 시간", ss.format(dateTimeFormatter) }, { "이용권", _08reservation.type11 },
+				{ "결제 시간", _09payment.time_now.format(dateTimeFormatter).substring(0, 23) },
+				{ "퇴실(만료) 예정 시간", ss.format(dateTimeFormatter).substring(0, 23) }, { "이용권", _08reservation.type11 },
 				{ "결제 금액", Integer.toString((_08reservation.price)) + "원" }, { "받은 금액", Integer.toString(price) + "원" },
 				{ "거스름 돈", Integer.toString(_10paycash.change) + "원" } };
 

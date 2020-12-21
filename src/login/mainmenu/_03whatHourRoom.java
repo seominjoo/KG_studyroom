@@ -57,7 +57,7 @@ public class _03whatHourRoom extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainPage.user_page_panel.add
-				("예약페이지",new _08reservation(time_now.plusHours(2), 
+				("예약페이지",new _08reservation(time_now, time_now.plusHours(2), 
 						Integer.parseInt(_01start.pass_price.get(19)), _01start.pass_price.get(18)));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
@@ -69,7 +69,7 @@ public class _03whatHourRoom extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainPage.user_page_panel.add
-				("예약페이지",new _08reservation(time_now.plusHours(4), 
+				("예약페이지",new _08reservation(time_now, time_now.plusHours(4), 
 						Integer.parseInt(_01start.pass_price.get(21)), _01start.pass_price.get(20)));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
@@ -81,7 +81,7 @@ public class _03whatHourRoom extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainPage.user_page_panel.add
-				("예약페이지",new _08reservation(time_now.plusHours(6), 
+				("예약페이지",new _08reservation(time_now, time_now.plusHours(6), 
 						Integer.parseInt(_01start.pass_price.get(23)), _01start.pass_price.get(22)));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
@@ -93,7 +93,7 @@ public class _03whatHourRoom extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainPage.user_page_panel.add
-				("예약페이지",new _08reservation(time_now.plusHours(8), 
+				("예약페이지",new _08reservation(time_now, time_now.plusHours(8), 
 						Integer.parseInt(_01start.pass_price.get(25)), _01start.pass_price.get(24)));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
@@ -105,7 +105,7 @@ public class _03whatHourRoom extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainPage.user_page_panel.add
-				("예약페이지",new _08reservation(time_now.plusHours(12), 
+				("예약페이지",new _08reservation(time_now, time_now.plusHours(12), 
 						Integer.parseInt(_01start.pass_price.get(27)), _01start.pass_price.get(26)));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
