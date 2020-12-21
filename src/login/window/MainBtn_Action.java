@@ -45,20 +45,20 @@ public class MainBtn_Action implements ActionListener {
 		String label2 = null;
 
 		if (loginbtns.getText().equals("회원가입")) {
-			MainPage.main_page_panel.add("로그인", new LoginPage());
+			//MainPage.main_page_panel.add("로그인", new LoginPage());
 			MainPage.main_cards.show(MainPage.main_page_panel, "회원가입");
 			MainPage.userToggle = "회원가입";
 			SignUpPage.passAlert.setText(""); // 회원가입 비번 알림 초기화
 			SignUpPage.passConfirmAlert.setText(""); // 회원가입 비번확인 알림 초기화
 
 		} else if (loginbtns.getText().equals("비번찾기")) {
-			MainPage.main_page_panel.add("로그인", new LoginPage());
+			//MainPage.main_page_panel.add("로그인", new LoginPage());
 			MainPage.main_page_panel.add("비번찾기", new FindPasswordPageUser());
 			MainPage.main_cards.show(MainPage.main_page_panel, "비번찾기");
 			MainPage.userToggle = "비번찾기";
 
 		} else if (loginbtns.getText().equals("관리자 비번찾기")) {
-			MainPage.main_page_panel.add("비번찾기", new FindPasswordPageUser());
+			//MainPage.main_page_panel.add("비번찾기", new FindPasswordPageUser());
 			MainPage.main_cards.show(MainPage.main_page_panel, "비번찾기");
 			MainPage.userToggle = "관리자 비번찾기";
 
@@ -107,7 +107,7 @@ public class MainBtn_Action implements ActionListener {
 			}
 
 		} else if (loginbtns.getText().contains("터치")) {
-			MainPage.main_page_panel.add("로그인", new LoginPage());
+			//MainPage.main_page_panel.add("로그인", new LoginPage());
 			MainPage.main_cards.show(MainPage.main_page_panel, "로그인");
 			MainPage.userToggle = "로그인";
 
@@ -145,7 +145,7 @@ public class MainBtn_Action implements ActionListener {
 			}
 
 		} else if (loginbtns.getText().equals("로그인")) {
-		      MainPage.main_page_panel.add("로그인", new LoginPage());
+		      //MainPage.main_page_panel.add("로그인", new LoginPage());
 			MainPage.userToggle = "로그인";
 
 			String login_phonenumber = LoginPage.phone_number1.getText() + "-" + LoginPage.phone_number2.getText() + "-"

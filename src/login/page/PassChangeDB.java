@@ -14,6 +14,7 @@ import javax.swing.table.JTableHeader;
 
 import login.design.Style;
 import login.mainmenu.Time;
+import login.mainmenu._05locker;
 
 public class PassChangeDB {
 
@@ -67,14 +68,13 @@ public class PassChangeDB {
 			}else if(k==3) { 
 				String sql= "update locker_price_info set locker_price=? where locker_type=?" ;
 				PreparedStatement pstm1 = conn.prepareStatement(sql);
-
+				
 				pstm1.setInt(1,Integer.parseInt(PassChange.text.get(3).getText()));
 				pstm1.setString(2,PassChange.combobox.get(3).getSelectedItem().toString()); 
 				int row = pstm1.executeUpdate();
 				System.out.printf("%d행 업뎃\n",row);
 				if (pstm1 != null)
 					pstm1.close(); 
-			 
 			}
 			if(p==1) { //가격표 현황 보이기(scroll 부분)
 				String sql= "select * from seat_price_info,locker_price_info" ;
