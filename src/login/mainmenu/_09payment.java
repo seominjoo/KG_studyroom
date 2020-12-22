@@ -103,11 +103,13 @@ public class _09payment extends JPanel{
                PreparedStatement pstmt = null;
 
          if(cash_btn.isSelected()) {// 현금 결제 프레임 창 띄우기
+        	new _11receipt("현금거래");
             new _10paycash(pluss);
          }
 
 
    if(card_btn.isSelected()==true) {//카드 결제
+	   new _11receipt("카드거래");
       int result= JOptionPane.showConfirmDialog(null, "카드를 삽입하세요","Message",JOptionPane.YES_NO_OPTION);
       if(result==JOptionPane.CLOSED_OPTION) {
 
