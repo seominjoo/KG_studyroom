@@ -46,38 +46,38 @@ public class _11receipt extends JPanel {
 
 		JLabel headTitle = new JLabel("<html><pre>KG STUDY</pre>");
 		new Style(headTitle);
-		headTitle.setBounds(300, 0, 440, 80);
+		headTitle.setBounds(290, 0, 440, 80);
 		headTitle.setFont(new Font("Courier", Font.PLAIN, 35));
 		p2.add(headTitle);
 		
 		JLabel smallTtile = new JLabel("KG STUDY");
 		new Style(smallTtile);
 		smallTtile.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 11));
-		smallTtile.setBounds(100, 70, 150, 20);
+		smallTtile.setBounds(100, 80, 150, 20);
 		p2.add(smallTtile);
 		
 		JLabel paidTime = new JLabel(_09payment.time_now.format(dateTimeFormatter).substring(0, 24));
 		new Style(paidTime);
 		paidTime.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 11));
-		paidTime.setBounds(370, 70, 250, 20);
+		paidTime.setBounds(500, 80, 250, 20);
 		p2.add(paidTime);
 		
 		JLabel businessNum = new JLabel("»ç¾÷ÀÚ¹øÈ£:1541600462");
 		new Style(businessNum);
 		businessNum.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 11));
-		businessNum.setBounds(100, 90, 170, 20);
+		businessNum.setBounds(100, 100, 170, 20);
 		p2.add(businessNum);
 
 		JLabel ceo = new JLabel("´ëÇ¥:¼­¹ÎÁÖ");
 		new Style(ceo);
 		ceo.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 11));
-		ceo.setBounds(100, 110, 170, 20);
+		ceo.setBounds(100, 120, 170, 20);
 		p2.add(ceo);
 		
 		JLabel address = new JLabel("¼­¿ï °­³²±¸ °­³²´ë·Î84±æ 16 11, 12Ãþ");
 		new Style(address);
 		address.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 11));
-		address.setBounds(100, 130, 250, 20);
+		address.setBounds(100, 140, 250, 20);
 		p2.add(address);
 		
 		String header1[] = { "»óÇ°¸í", "´Ü°¡", "¼ö·®", "±Ý¾×" };
@@ -89,7 +89,7 @@ public class _11receipt extends JPanel {
 		
 		JTable priceTable = new JTable(model1);
 		new Style(priceTable);
-		priceTable.setBounds(57, 104, 390, 50);
+		priceTable.setBounds(230, 174, 390, 50);
 		priceTable.setRowHeight(35);
 		p2.add(priceTable);
 		
@@ -106,13 +106,14 @@ public class _11receipt extends JPanel {
 
 		table = new JTable(model2);
 		new Style(table);
-		table.setBounds(57, 154, 390, 250);
+		table.setBounds(230, 224, 390, 240);
 		table.setRowHeight(35);
 		p2.add(table);
 		
 		JLabel payType = new JLabel("°Å·¡Á¾·ù:"+type);
 		new Style(payType);
-		payType.setBounds(57, 434, 130, 20);
+		payType.setBounds(230, 504, 130, 20);
+		payType.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 11));
 		p2.add(payType);
 
 		try {
