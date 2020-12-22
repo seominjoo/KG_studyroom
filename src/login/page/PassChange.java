@@ -1,5 +1,6 @@
 package login.page;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -61,19 +62,19 @@ public class PassChange extends JPanel implements ActionListener{
       new Style(scroll); 
       scroll.getVerticalScrollBar().setUnitIncrement(10);
       scroll.getHorizontalScrollBar().setUnitIncrement(10);
-      scroll.setBounds(90, 200, 500, 250);
+      scroll.setBounds(80, 200, 500, 250);
       add(scroll);
 
 
       for(int i=0;i<4;i++) {
-         combobox.get(i).setBounds(90, 40+a, 200, 30);
+         combobox.get(i).setBounds(80, 40+a, 200, 30);
          add(combobox.get(i));
          new Style(combobox.get(i));
          a+=40;
       }
       for(int i=0; i<4;i++) { 
          new Style(text.get(i));
-         text.get(i).setBounds(310, 40+b, 65, 30);
+         text.get(i).setBounds(300, 40+b, 65, 30);
          add(text.get(i));
          text.get(i).setColumns(10);
          b+=40;
@@ -81,6 +82,7 @@ public class PassChange extends JPanel implements ActionListener{
       for(int i=0; i<4;i++) { 
          new Style(change.get(i));
          change.get(i).setBounds(380, 40+c, 100, 30);
+         change.get(i).setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 13));
          add(change.get(i));
          c+=40;
       }
