@@ -85,14 +85,14 @@ public class LoginPage extends JPanel {
       JButton find_PW = new JButton(new Conversion_image("image/PW찾기(진한).png", 40, 40).imageicon_smooth);
       new Style(find_PW);
       find_PW.setText("비번찾기");
-      find_PW.setBounds(290, 362, 50, 50);
+      find_PW.setBounds(280, 362, 50, 50);
       find_PW.addActionListener(new MainBtn_Action(find_PW));
       this.add(find_PW);
 
       JButton signup = new JButton(new Conversion_image("image/회원가입(진한).png", 40, 40).imageicon_smooth);
       new Style(signup);
       signup.setText("회원가입");
-      signup.setBounds(365, 360, 50, 50);
+      signup.setBounds(385, 360, 50, 50);
       signup.addActionListener(new MainBtn_Action(signup));
       this.add(signup);
 

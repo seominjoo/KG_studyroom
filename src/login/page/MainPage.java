@@ -51,12 +51,20 @@ public class MainPage extends JFrame implements Runnable {
    public static JPanel rightup;
    public static JPanel logout;
    public static JPanel extend;
+   public static JPanel home;
    public static CardLayout logoutcard;
    public static CardLayout extendcard;
+   public static CardLayout homecard;
+   public static JPanel changeUser;// 자동로그아웃 카드패널
+   public static CardLayout changeUsercard;
    public static JButton logoutbtn;
+   public static JButton changeUserbtn;
    public static JButton empty;
    public static JButton empty2;
+   public static JButton empty3;
+   public static JButton empty4;
    public static JButton extendbtn;
+   public static JButton homebtn;
    Thread thread;
    JLabel clock;
 
@@ -80,6 +88,7 @@ public class MainPage extends JFrame implements Runnable {
       new Style(fram_panel);
       fram_panel.setLayout(null);
       fram_panel.setBounds(0, 0, x, y);//x=1000, y=600
+      
       
       // 배경 이미지
       background = new JLabel(new Conversion_image("image/배경화면z.jpg", 4).imageicon_smooth);
@@ -108,7 +117,24 @@ public class MainPage extends JFrame implements Runnable {
       updateTable.setBounds(18, 190, 280, 50);
       updateTable.add(new State());
       
+      // 홈 버튼 패널
+      home = new JPanel();
+      homecard = new CardLayout();
+      home.setLayout(homecard);
+      home.setBackground(Color.decode("#ede4df"));
       
+      //빈화면3
+      empty4 = new JButton();
+      new Style(empty4);
+      home.add("1",empty4);
+      
+      // 홈 버튼
+      homebtn = new JButton(new Conversion_image("image/홈버튼.png", 40, 40).imageicon_smooth);
+      new Style(homebtn); 
+      homebtn.setText("홈");
+      homebtn.addActionListener(new MainBtn_Action(homebtn));
+      home.add("2",homebtn);
+      home.setBounds(x-700,5,50,40);
       
       // 로그아웃 패널    
       logout = new JPanel();
@@ -153,14 +179,37 @@ public class MainPage extends JFrame implements Runnable {
       MainPage.updateTable.add(new State());
       MainPage.statecard.next(MainPage.updateTable);
 
+    
+      // 터치 화면
       JPanel main = new JPanel(new BorderLayout());
       new Style(main);
-      JButton touch = new JButton("<html>&nbsp;터치를 하여<br/>이용해주세요<br/><br/><br/><br/></html>");
+      JButton touch = new JButton("<html>&nbsp;<br/>터치를 하여<br/>이용해주세요<br/><br/><br/><br/></html>");
       new Style(touch);
       touch.setBorder(null);
       touch.addActionListener(new MainBtn_Action(touch));
-      main.add(touch);   
+      main.add(touch);
+      
+      
 
+      // 관리자아이콘 패널    
+      changeUser = new JPanel();
+      new Style(changeUser);
+      changeUsercard = new CardLayout();
+      changeUser.setLayout(changeUsercard);
+      changeUser.setBackground(Color.decode("#ede4df"));
+      changeUser.setBounds(8, 5, 40, 40);
+      
+      // 빈화면3
+      empty3 = new JButton();
+      new Style(empty3);
+      
+      // 관리자아이콘
+      changeUserbtn = new JButton(new Conversion_image("image/관리자.png", 30, 30).imageicon_smooth);
+      new Style(changeUserbtn);
+      changeUserbtn.setText("관리자버튼");
+      changeUserbtn.addActionListener(new MainBtn_Action(changeUserbtn));
+      changeUser.add("1",changeUserbtn);
+      changeUser.add("2",empty3);
 
       // 메인 페이지 추가 작업
       main_page_panel.add("메인", main);
@@ -172,11 +221,7 @@ public class MainPage extends JFrame implements Runnable {
       main_page_panel.add("비번찾기", new FindPasswordPageUser());
 
 
-      JButton changeUser = new JButton(new Conversion_image("image/관리자.png", 30, 30).imageicon_smooth);
-      new Style(changeUser);
-      changeUser.setText("관리자버튼");
-      changeUser.setBounds(12, 10, 40, 40);
-      changeUser.addActionListener(new MainBtn_Action(changeUser));
+     
 
 
       // 현재 시간
@@ -189,12 +234,14 @@ public class MainPage extends JFrame implements Runnable {
          thread.start();
       }
       clock.setBounds(8, 150, 300, 30);
-
-      add(changeUser);
+      
+      // 프레임에 붙이기
+      background.add(changeUser);
       background.add(clock);
       background.add(updateTable);
       background.add(logout);
       background.add(extend);
+      background.add(home);
       
       fram_panel.add(background);
 

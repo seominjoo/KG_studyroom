@@ -159,9 +159,11 @@ public class SignUpPage extends JPanel {
 				new Style(nullPanelInGrid56_2);
 
 				new Style(value.blindPW, 12);
-				value.blindPW.setHorizontalAlignment(SwingConstants.LEFT);
-				value.blindPW.setBounds(18, 0, 232, 30);
-
+				SignUpEnum.PASSWORD.blindPW.setHorizontalAlignment(SwingConstants.LEFT);
+				SignUpEnum.PASSWORD.blindPW.setBounds(18, 5, 232, 30);
+				SignUpEnum.PASSWORDCONFIRM.blindPW.setBounds(18, 0, 232, 30);
+				SignUpEnum.PASSWORDCONFIRM.blindPW.setHorizontalAlignment(SwingConstants.LEFT);
+				
 				nullPanelInGrid56_2.add(value.blindPW);
 				gridInGrid.add(nullPanelInGrid56_2);
 				grid.add(gridInGrid);
@@ -197,19 +199,19 @@ public class SignUpPage extends JPanel {
 				panelInGrid2.setLayout(null);
 
 				year = new JComboBox<String>(BirthEnum.getYearTable());
-				year.setBounds(18, 10, 64, 30);
+				year.setBounds(18, 11, 64, 30);
 				panelInGrid2.add(year);
 				new Style(year);
 				year.setSelectedItem("2000");
 
 				month = new JComboBox<String>(BirthEnum.getMonthTable());
-				month.setBounds(102, 10, 64, 30);
+				month.setBounds(102, 11, 64, 30);
 				panelInGrid2.add(month);
 				new Style(month);
 
 				day = new JComboBox<String>(BirthEnum.getDayTable());
 
-				day.setBounds(186, 10, 64, 30);
+				day.setBounds(186, 11, 64, 30);
 				panelInGrid2.add(day);
 				new Style(day);
 
@@ -230,27 +232,27 @@ public class SignUpPage extends JPanel {
 
 				phone_number1 = new JTextField("010");
 				new Style(phone_number1, 3);
-				phone_number1.setBounds(18, 10, 64, 30);
+				phone_number1.setBounds(18, 11, 64, 30);
 				phoneNumber3Texts.add(phone_number1);
 
 				JLabel str = new JLabel("-");
-				str.setBounds(90, 10, 10, 30);
+				str.setBounds(90, 11, 10, 30);
 				new Style(str);
 				phoneNumber3Texts.add(str);
 
 				phone_number2 = new JTextField("");
 				new Style(phone_number2, 4);
-				phone_number2.setBounds(102, 10, 64, 30);
+				phone_number2.setBounds(102, 11, 64, 30);
 				phoneNumber3Texts.add(phone_number2);
 
 				JLabel str2 = new JLabel("-");
-				str2.setBounds(174, 10, 10, 30);
+				str2.setBounds(174, 11, 10, 30);
 				new Style(str2);
 				phoneNumber3Texts.add(str2);
 
 				phone_number3 = new JTextField("");
 				new Style(phone_number3, 4);
-				phone_number3.setBounds(186, 10, 64, 30);
+				phone_number3.setBounds(186, 11, 64, 30);
 				phoneNumber3Texts.add(phone_number3);
 
 				gridInGrid.add(phoneNumber3Texts);

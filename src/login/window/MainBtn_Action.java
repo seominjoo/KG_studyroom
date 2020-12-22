@@ -105,11 +105,19 @@ public class MainBtn_Action implements ActionListener {
             MainPage.extendbtn.setEnabled(true);
             MainPage.logoutcard.show(MainPage.logout, "1");
             MainPage.extendcard.show(MainPage.extend, "1");
+            MainPage.homecard.show(MainPage.home, "1"); 
+            MainPage.changeUsercard.show(MainPage.changeUser, "1");
          } catch (ClassNotFoundException | SQLException e1) { 
             e1.printStackTrace();
          }
         
-      } else if (loginbtns.getText().contains("터치")) {
+      }	else if (loginbtns.getText().contains("홈")) {//추가부분
+    	  MainPage.user_page_panel.add("메인메뉴", new _00main()); // 메뉴페이지
+    	   MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
+           MainPage.user_cards.show(MainPage.user_page_panel, "메인메뉴");
+           MainPage.userToggle = "메인메뉴"; 
+          
+       } else if (loginbtns.getText().contains("터치")) {
          MainPage.main_cards.show(MainPage.main_page_panel, "로그인");
          MainPage.userToggle = "로그인";
 

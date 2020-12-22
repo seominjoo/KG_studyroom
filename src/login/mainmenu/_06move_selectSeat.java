@@ -107,7 +107,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
          seats_btn.get(i).setText(i+1+"번");
          seats_btn.get(i).setForeground(Color.orange);
          this.add(seats_btn.get(i));
-         seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
+         seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i),"이동"));
          seats_btn.get(i).setBounds(80+f,40,60,60); 
          f+=60; 
          if(_06move.chk==2) {
@@ -121,7 +121,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
          seats_btn.get(i).setText(i+1+"번");
          seats_btn.get(i).setForeground(Color.orange);
          this.add(seats_btn.get(i));
-         seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
+         seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i),"이동"));
          seats_btn.get(i).setBounds(120+f,40,60,60); 
          f+=60;  
          if(_06move.chk==2) {
@@ -135,7 +135,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
          seats_btn.get(i).setText(i+1+"번");
          seats_btn.get(i).setForeground(Color.orange);
          this.add(seats_btn.get(i));
-         seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
+         seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i),"이동"));
          seats_btn.get(i).setBounds(170+f,40+a,60,60); 
          a+=60;
          if(_06move.chk==2) {
@@ -149,7 +149,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
          seats_btn.get(i).setText(i+1+"번");
          seats_btn.get(i).setForeground(Color.orange);
          this.add(seats_btn.get(i));
-         seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
+         seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i),"이동"));
          seats_btn.get(i).setBounds(80+g,100,60,60);
          g+=60;  
          if(_06move.chk==2) {
@@ -163,7 +163,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
          seats_btn.get(i).setText(i+1+"번");
          seats_btn.get(i).setForeground(Color.orange);
          this.add(seats_btn.get(i));
-         seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
+         seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i),"이동"));
          seats_btn.get(i).setBounds(120+g,100,60,60);
          g+=60;  
          if(_06move.chk==2) {
@@ -178,7 +178,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
          seats_btn.get(i).setText(i+1+"번");
          seats_btn.get(i).setForeground(Color.orange);
          this.add(seats_btn.get(i));
-         seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
+         seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i),"이동"));
          seats_btn.get(i).setBounds(120+g,190,60,60);
          g+=60;  
          if(_06move.chk==2) {
@@ -191,7 +191,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
          room_btn.get(i).setText(i+101+"호");
          room_btn.get(i).setForeground(Color.orange);
          this.add(room_btn.get(i));
-         room_btn.get(i).addActionListener(new ActionBtn_select(room_btn.get(i))); 
+         room_btn.get(i).addActionListener(new ActionBtn_select(room_btn.get(i),"이동")); 
          room_btn.get(i).setBounds(80+e,190,90,75);
          e+=90; 
          if(_06move.chk==1) {
@@ -204,7 +204,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
          room_btn.get(i).setText(i+101+"호");
          room_btn.get(i).setForeground(Color.orange);
          this.add(room_btn.get(i));
-         room_btn.get(i).addActionListener(new ActionBtn_select(room_btn.get(i))); 
+         room_btn.get(i).addActionListener(new ActionBtn_select(room_btn.get(i),"이동")); 
          room_btn.get(i).setBounds(80+d,265,90,75);
          d+=90; 
          if(_06move.chk==1) {
@@ -217,7 +217,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
          locker_btn.get(i).setText(i+1+"번");
          locker_btn.get(i).setForeground(Color.orange);
          this.add(locker_btn.get(i));
-         locker_btn.get(i).addActionListener(new ActionBtn_select( locker_btn.get(i)));
+         locker_btn.get(i).addActionListener(new ActionBtn_select( locker_btn.get(i),"이동"));
          locker_btn.get(i).setBounds(60+c,380,60,30);
          c+=60;
          locker_btn.get(i).setEnabled(false);
@@ -229,7 +229,7 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
          locker_btn.get(i).setText(i+1+"번");
          locker_btn.get(i).setForeground(Color.orange);
          this.add(locker_btn.get(i));
-         locker_btn.get(i).addActionListener(new ActionBtn_select( locker_btn.get(i)));
+         locker_btn.get(i).addActionListener(new ActionBtn_select( locker_btn.get(i),"이동"));
          locker_btn.get(i).setBounds(60+d,410,60,30);
          d+=60;   
          locker_btn.get(i).setEnabled(false);

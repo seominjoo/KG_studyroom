@@ -110,7 +110,7 @@ public class _08reservation extends JPanel implements ActionListener {
 			System.out.println(seats_btn.get(i).getText());
 			seats_btn.get(i).setForeground(Color.orange);
 			this.add(seats_btn.get(i));
-			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
+			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i),"당일"));
 			seats_btn.get(i).setBounds(80 + f, 40, 60, 60);
 			f += 60;
 			seats_btn.get(i).setEnabled(true);
@@ -123,7 +123,7 @@ public class _08reservation extends JPanel implements ActionListener {
 			seats_btn.get(i).setText(i + 1 + "번");
 			seats_btn.get(i).setForeground(Color.orange);
 			this.add(seats_btn.get(i));
-			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
+			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i),"당일"));
 			seats_btn.get(i).setBounds(120 + f, 40, 60, 60);
 			f += 60;
 			seats_btn.get(i).setEnabled(true);
@@ -136,7 +136,7 @@ public class _08reservation extends JPanel implements ActionListener {
 			seats_btn.get(i).setText(i + 1 + "번");
 			seats_btn.get(i).setForeground(Color.orange);
 			this.add(seats_btn.get(i));
-			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
+			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i),"당일"));
 			seats_btn.get(i).setBounds(170 + f, 40 + a, 60, 60);
 			a += 60;
 			seats_btn.get(i).setEnabled(true);
@@ -150,7 +150,7 @@ public class _08reservation extends JPanel implements ActionListener {
 			seats_btn.get(i).setText(i + 1 + "번");
 			seats_btn.get(i).setForeground(Color.orange);
 			this.add(seats_btn.get(i));
-			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
+			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i),"당일"));
 			seats_btn.get(i).setBounds(80 + g, 110, 60, 60);
 			g += 60;
 			seats_btn.get(i).setEnabled(true);
@@ -164,7 +164,7 @@ public class _08reservation extends JPanel implements ActionListener {
 			seats_btn.get(i).setText(i + 1 + "번");
 			seats_btn.get(i).setForeground(Color.orange);
 			this.add(seats_btn.get(i));
-			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
+			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i),"당일"));
 			seats_btn.get(i).setBounds(120 + g, 110, 60, 60);
 			g += 60;
 			seats_btn.get(i).setEnabled(true);
@@ -179,7 +179,7 @@ public class _08reservation extends JPanel implements ActionListener {
 			seats_btn.get(i).setText(i + 1 + "번");
 			seats_btn.get(i).setForeground(Color.orange);
 			this.add(seats_btn.get(i));
-			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i)));
+			seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i),"당일"));
 			seats_btn.get(i).setBounds(120 + g, 190, 60, 60);
 			g += 60;
 			seats_btn.get(i).setEnabled(true);
@@ -193,7 +193,7 @@ public class _08reservation extends JPanel implements ActionListener {
 			room_btn.get(i).setText(i + 101 + "호");
 			room_btn.get(i).setForeground(Color.orange);
 			this.add(room_btn.get(i));
-			room_btn.get(i).addActionListener(new ActionBtn_select(room_btn.get(i)));
+			room_btn.get(i).addActionListener(new ActionBtn_select(room_btn.get(i),"당일"));
 			room_btn.get(i).setBounds(80 + e, 190, 90, 75);
 			e += 90;
 			room_btn.get(i).setEnabled(true);
@@ -206,7 +206,7 @@ public class _08reservation extends JPanel implements ActionListener {
 			room_btn.get(i).setText(i + 101 + "호");
 			room_btn.get(i).setForeground(Color.orange);
 			this.add(room_btn.get(i));
-			room_btn.get(i).addActionListener(new ActionBtn_select(room_btn.get(i)));
+			room_btn.get(i).addActionListener(new ActionBtn_select(room_btn.get(i),"당일"));
 			room_btn.get(i).setBounds(80 + d, 265, 90, 75);
 			d += 90;
 			room_btn.get(i).setEnabled(true);
@@ -218,7 +218,7 @@ public class _08reservation extends JPanel implements ActionListener {
 			locker_btn.get(i).setText(i + 1 + "번");
 			locker_btn.get(i).setForeground(Color.orange);
 			this.add(locker_btn.get(i));
-			locker_btn.get(i).addActionListener(new ActionBtn_select(locker_btn.get(i)));
+			locker_btn.get(i).addActionListener(new ActionBtn_select(locker_btn.get(i),"당일"));
 			locker_btn.get(i).setBounds(60 + c, 380, 60, 30);
 			c += 60;
 			locker_btn.get(i).setEnabled(true);
@@ -233,7 +233,7 @@ public class _08reservation extends JPanel implements ActionListener {
 			locker_btn.get(i).setText(i + 1 + "번");
 			locker_btn.get(i).setForeground(Color.orange);
 			this.add(locker_btn.get(i));
-			locker_btn.get(i).addActionListener(new ActionBtn_select(locker_btn.get(i)));
+			locker_btn.get(i).addActionListener(new ActionBtn_select(locker_btn.get(i),"당일"));
 			locker_btn.get(i).setBounds(60 + d, 410, 60, 30);
 			d += 60;
 			locker_btn.get(i).setEnabled(true);

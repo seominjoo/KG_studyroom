@@ -41,60 +41,60 @@ public class MemberDB {
 
 			if (chk == 1) {
 				if (MemberManagementPage.month.getSelectedItem().equals("전체")) {
-					sql = " SELECT distinct person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number,"
-							+ " b.time_checkout , a.locker_number ," + " c.l_time_checkout, seat_type, check_time "
+					sql = " SELECT distinct check_time,person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number,"
+							+ " b.time_checkout , a.locker_number ," + " c.l_time_checkout, seat_type  "
 							+ " from person_info a, seat b ,locker c"
 							+ " where a.room_number=b.seat_number and a.locker_number = c.locker_number";
 
 				} else {
-					sql = " SELECT distinct person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number,"
-							+ " b.time_checkout , a.locker_number ," + " c.l_time_checkout, seat_type, check_time "
+					sql = " SELECT distinct check_time,person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number,"
+							+ " b.time_checkout , a.locker_number ," + " c.l_time_checkout, seat_type  "
 							+ " from person_info a, seat b ,locker c"
 							+ " where (a.room_number=b.seat_number and a.locker_number = c.locker_number) and substr(a.CHECK_TIME,1,2) = ?";
 				}
 
 			} else if (chk == 2) {
 				if (MemberManagementPage.dayOrWeek.getSelectedItem().equals("전체")) {
-					sql = " SELECT distinct person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number, "
-							+ " b.time_checkout , a.locker_number ," + " c.l_time_checkout, seat_type, check_time "
+					sql = " SELECT distinct check_time,person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number, "
+							+ " b.time_checkout , a.locker_number ," + " c.l_time_checkout, seat_type  "
 							+ " from person_info a, seat b ,locker c"
 							+ " where (a.room_number=b.seat_number and a.locker_number = c.locker_number) and a.seat_type != '없음'";
 
 				} else if (MemberManagementPage.dayOrWeek.getSelectedItem().equals("정기")) {
-					sql = " SELECT distinct person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number, "
-							+ " b.time_checkout , a.locker_number ," + " c.l_time_checkout, seat_type, check_time "
+					sql = " SELECT distinct check_time,person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number, "
+							+ " b.time_checkout , a.locker_number ," + " c.l_time_checkout, seat_type  "
 							+ " from person_info a, seat b ,locker c"
 							+ " where (a.room_number=b.seat_number and a.locker_number = c.locker_number) and a.seat_type ='정기 이용권'";
 
 				} else if (MemberManagementPage.dayOrWeek.getSelectedItem().equals("당일")) {
-					sql = " SELECT distinct person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number, "
-							+ " b.time_checkout , a.locker_number ," + " c.l_time_checkout, seat_type, check_time "
+					sql = " SELECT distinct check_time,person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number, "
+							+ " b.time_checkout , a.locker_number ," + " c.l_time_checkout, seat_type  "
 							+ " from person_info a, seat b ,locker c"
 							+ " where (a.room_number=b.seat_number and a.locker_number = c.locker_number) and a.seat_type ='당일 이용권'";
 				}
 
 			} else if (chk == 3) {
 				if (MemberManagementPage.seat_room_locker.getSelectedItem().equals("전체")) {
-					sql = " SELECT distinct person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number, "
-							+ " b.time_checkout , a.locker_number ," + " c.l_time_checkout, seat_type, check_time "
+					sql = " SELECT distinct check_time,person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number, "
+							+ " b.time_checkout , a.locker_number ," + " c.l_time_checkout, seat_type  "
 							+ " from person_info a, seat b ,locker c"
 							+ " where (a.room_number=b.seat_number and a.locker_number = c.locker_number) and ((a.seat_number !=0) or (a.room_number !=0) or (a.locker_number !=0))";
 
 				} else if (MemberManagementPage.seat_room_locker.getSelectedItem().equals("좌석")) {
-					sql = " SELECT distinct person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number, "
-							+ " b.time_checkout , a.locker_number ," + " c.l_time_checkout, seat_type, check_time "
+					sql = " SELECT distinct check_time,person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number, "
+							+ " b.time_checkout , a.locker_number ," + " c.l_time_checkout, seat_type "
 							+ " from person_info a, seat b ,locker c"
 							+ " where (a.room_number=b.seat_number and a.locker_number = c.locker_number) and a.seat_number !=0";
 
 				} else if (MemberManagementPage.seat_room_locker.getSelectedItem().equals("룸")) {
-					sql = " SELECT distinct person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number, "
-							+ " b.time_checkout , a.locker_number ," + " c.l_time_checkout, seat_type, check_time "
+					sql = " SELECT distinct check_time,person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number, "
+							+ " b.time_checkout , a.locker_number ," + " c.l_time_checkout, seat_type  "
 							+ " from person_info a, seat b ,locker c"
 							+ " where (a.room_number=b.seat_number and a.locker_number = c.locker_number) and a.room_number !=0";
 
 				} else if (MemberManagementPage.seat_room_locker.getSelectedItem().equals("사물함")) {
-					sql = " SELECT distinct person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number, "
-							+ " b.time_checkout , a.locker_number ," + " c.l_time_checkout, seat_type, check_time "
+					sql = " SELECT distinct check_time,person_id,person_name,person_birth,phone_number, a.seat_number,expiration_seat ,a.room_number, "
+							+ " b.time_checkout , a.locker_number ," + " c.l_time_checkout, seat_type  "
 							+ " from person_info a, seat b ,locker c"
 							+ " where (a.room_number=b.seat_number and a.locker_number = c.locker_number) and a.locker_number !=0";
 				}
@@ -110,8 +110,8 @@ public class MemberDB {
 			}
 			ResultSet rs = pstm.executeQuery();
 
-			String header[] = { "회원 번호", "성함", "생일", "폰 번호", "좌석", "좌석 만료 시간", "룸", "룸 만료 시간", "사물함", "사물함 만료 시간",
-					"이용권 타입", "가입 날짜" };// 12열
+			String header[] = { "가입 날짜","회원 번호", "성함", "생일", "폰 번호", "좌석", "좌석 만료 시간", "룸", "룸 만료 시간", "사물함", "사물함 만료 시간",
+					"이용권 타입"  };// 12열
 
 			int row = 0;
 			int i = 0;
@@ -132,47 +132,48 @@ public class MemberDB {
 			String[][] contents = new String[row][header.length];
 			Timestamp time_chk = null;
 			while (rs.next()) {
-				contents[i][0] = Integer.toString(rs.getInt(1));
-				for (int j = 1; j < header.length; j++) {
-					if (j == 4) {
-						if (rs.getInt(5) == 0) {
+				contents[i][0] = rs.getString(1);
+				contents[i][1] = Integer.toString(rs.getInt(2));
+				for (int j = 2; j < header.length; j++) {
+					if (j == 5) {
+						if (rs.getInt(6) == 0) {
 							contents[i][j] = "없음";
 						} else {
-							contents[i][j] = Integer.toString(rs.getInt(5));
-						}
-					} else if (j == 6) {
-						if (rs.getInt(7) == 0) {
-							contents[i][j] = "없음";
-						} else {
-							contents[i][j] = Integer.toString(rs.getInt(7));
-						}
-					} else if (j == 8) {
-						if (rs.getInt(9) == 0) {
-							contents[i][j] = "없음";
-						} else {
-							contents[i][j] = Integer.toString(rs.getInt(9));
-						}
-					} else if (j == 5) {
-						if (rs.getTimestamp(6).toString().equals("2001-01-01 00:00:00.0")) {
-							contents[i][j] = "";
-						} else {
-							time_chk = rs.getTimestamp(6);
-							contents[i][j] = Time.TimeStampTOlocalDateTime(time_chk).format(dateTimeFormatter)
-									.substring(0, 23);
+							contents[i][j] = Integer.toString(rs.getInt(6));
 						}
 					} else if (j == 7) {
-						if (rs.getTimestamp(8).toString().contains("2001-01-01 00:00:00.0")) {
+						if (rs.getInt(8) == 0) {
+							contents[i][j] = "없음";
+						} else {
+							contents[i][j] = Integer.toString(rs.getInt(8));
+						}
+					} else if (j == 9) {
+						if (rs.getInt(10) == 0) {
+							contents[i][j] = "없음";
+						} else {
+							contents[i][j] = Integer.toString(rs.getInt(10));
+						}
+					} else if (j == 6) {
+						if (rs.getTimestamp(7).toString().equals("2001-01-01 00:00:00.0")) {
 							contents[i][j] = "";
 						} else {
-							time_chk = rs.getTimestamp(8);
+							time_chk = rs.getTimestamp(7);
 							contents[i][j] = Time.TimeStampTOlocalDateTime(time_chk).format(dateTimeFormatter)
 									.substring(0, 23);
 						}
-					} else if (j == 9) {
-						if (rs.getTimestamp(10).toString().equals("2001-01-01 00:00:00.0")) {
+					} else if (j == 8) {
+						if (rs.getTimestamp(9).toString().contains("2001-01-01 00:00:00.0")) {
 							contents[i][j] = "";
 						} else {
-							time_chk = rs.getTimestamp(10);
+							time_chk = rs.getTimestamp(9);
+							contents[i][j] = Time.TimeStampTOlocalDateTime(time_chk).format(dateTimeFormatter)
+									.substring(0, 23);
+						}
+					} else if (j == 10) {
+						if (rs.getTimestamp(11).toString().equals("2001-01-01 00:00:00.0")) {
+							contents[i][j] = "";
+						} else {
+							time_chk = rs.getTimestamp(11);
 							contents[i][j] = Time.TimeStampTOlocalDateTime(time_chk).format(dateTimeFormatter)
 									.substring(0, 23);
 						}
@@ -200,30 +201,30 @@ public class MemberDB {
 			table.setRowHeight(40);
 
 			table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-			table.getColumnModel().getColumn(0).setPreferredWidth(60);
 			table.getColumnModel().getColumn(1).setPreferredWidth(60);
-			table.getColumnModel().getColumn(2).setPreferredWidth(80);
-			table.getColumnModel().getColumn(3).setPreferredWidth(100);
-			table.getColumnModel().getColumn(4).setPreferredWidth(50);
-			if (contents[0][5].equals("")) {
-				table.getColumnModel().getColumn(5).setPreferredWidth(90);
+			table.getColumnModel().getColumn(2).setPreferredWidth(60);
+			table.getColumnModel().getColumn(3).setPreferredWidth(80);
+			table.getColumnModel().getColumn(4).setPreferredWidth(100);
+			table.getColumnModel().getColumn(5).setPreferredWidth(50);
+			if (contents[0][6].equals("")) {
+				table.getColumnModel().getColumn(6).setPreferredWidth(90);
 			} else {
-				table.getColumnModel().getColumn(5).setPreferredWidth(170);
+				table.getColumnModel().getColumn(6).setPreferredWidth(170);
 			}
-			table.getColumnModel().getColumn(6).setPreferredWidth(50);
-			if (contents[0][7].equals("")) {
-				table.getColumnModel().getColumn(7).setPreferredWidth(90);
+			table.getColumnModel().getColumn(7).setPreferredWidth(50);
+			if (contents[0][8].equals("")) {
+				table.getColumnModel().getColumn(8).setPreferredWidth(90);
 			} else {
-				table.getColumnModel().getColumn(7).setPreferredWidth(170);
+				table.getColumnModel().getColumn(8).setPreferredWidth(170);
 			}
-			table.getColumnModel().getColumn(8).setPreferredWidth(50);
-			if (contents[0][9].equals("")) {
-				table.getColumnModel().getColumn(9).setPreferredWidth(90);
+			table.getColumnModel().getColumn(9).setPreferredWidth(50);
+			if (contents[0][10].equals("")) {
+				table.getColumnModel().getColumn(10).setPreferredWidth(100);
 			} else {
-				table.getColumnModel().getColumn(9).setPreferredWidth(170);
+				table.getColumnModel().getColumn(10).setPreferredWidth(170);
 			}
-			table.getColumnModel().getColumn(10).setPreferredWidth(90);
-			table.getColumnModel().getColumn(11).setPreferredWidth(120);
+			table.getColumnModel().getColumn(11).setPreferredWidth(90);
+			table.getColumnModel().getColumn(0).setPreferredWidth(120);
 
 			JTableHeader headers = table.getTableHeader();
 			headers.setBackground(Color.darkGray);
