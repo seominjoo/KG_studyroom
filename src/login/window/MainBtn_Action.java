@@ -74,6 +74,7 @@ public class MainBtn_Action implements ActionListener {
 
          //로그아웃 
          try {
+        	 interval=-1;
             Class.forName("oracle.jdbc.driver.OracleDriver");
             Connection conn = DriverManager.getConnection(
                   "jdbc:oracle:thin:@localhost:1521/XEPDB1",
@@ -107,11 +108,7 @@ public class MainBtn_Action implements ActionListener {
          } catch (ClassNotFoundException | SQLException e1) { 
             e1.printStackTrace();
          }
-       
-         
-          
-         
-
+        
       } else if (loginbtns.getText().contains("터치")) {
          MainPage.main_cards.show(MainPage.main_page_panel, "로그인");
          MainPage.userToggle = "로그인";

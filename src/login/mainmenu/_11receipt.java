@@ -63,13 +63,7 @@ public class _11receipt extends JPanel {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "1234");
 			PreparedStatement pstmt = null;
-			String sql = "update person_info set login_state ='Off' where person_id=?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, _00main.id);
-			int row = pstmt.executeUpdate();
-
-			System.out.printf("%d번 회원 로그아웃(%d행 업데이트)\n", 1, _00main.id, row);
-
+		  
 			PreparedStatement readPrice = conn
 					.prepareStatement("SELECT payment FROM payment_record where person_id = ?");
 			readPrice.setInt(1, _00main.id);
