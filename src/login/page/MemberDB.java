@@ -111,7 +111,7 @@ public class MemberDB {
 			ResultSet rs = pstm.executeQuery();
 
 			String header[] = { "가입 날짜","회원 번호", "성함", "생일", "폰 번호", "좌석", "좌석 만료 시간", "룸", "룸 만료 시간", "사물함", "사물함 만료 시간",
-					"이용권 타입"  };// 12열
+					"이용권 타입(좌석)"  };// 12열
 
 			int row = 0;
 			int i = 0;
@@ -206,26 +206,27 @@ public class MemberDB {
 			table.getColumnModel().getColumn(3).setPreferredWidth(80);
 			table.getColumnModel().getColumn(4).setPreferredWidth(100);
 			table.getColumnModel().getColumn(5).setPreferredWidth(50);
-			if (contents[0][6].equals("")) {
+			for(int k=0;k<row;k++) {
+			if (contents[k][6].equals("")) {
 				table.getColumnModel().getColumn(6).setPreferredWidth(90);
 			} else {
 				table.getColumnModel().getColumn(6).setPreferredWidth(170);
 			}
 			table.getColumnModel().getColumn(7).setPreferredWidth(50);
-			if (contents[0][8].equals("")) {
+			if (contents[k][8].equals("")) {
 				table.getColumnModel().getColumn(8).setPreferredWidth(90);
 			} else {
 				table.getColumnModel().getColumn(8).setPreferredWidth(170);
 			}
 			table.getColumnModel().getColumn(9).setPreferredWidth(50);
-			if (contents[0][10].equals("")) {
+			if (contents[k][10].equals("")) {
 				table.getColumnModel().getColumn(10).setPreferredWidth(100);
 			} else {
 				table.getColumnModel().getColumn(10).setPreferredWidth(170);
 			}
-			table.getColumnModel().getColumn(11).setPreferredWidth(90);
+			table.getColumnModel().getColumn(11).setPreferredWidth(120);
 			table.getColumnModel().getColumn(0).setPreferredWidth(120);
-
+			}
 			JTableHeader headers = table.getTableHeader();
 			headers.setBackground(Color.darkGray);
 			headers.setForeground(Color.decode("#cfab8b"));

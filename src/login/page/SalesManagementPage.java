@@ -94,18 +94,18 @@ public class SalesManagementPage extends JPanel implements ActionListener {
       add(scrollPane);
 
       year = new JComboBox<String>(new ManagementDate().yearTable);
-      year.setBounds(135, 30, 65, 30);
+      year.setBounds(90, 40, 65, 30);
       add(year);
       new Style(year);
       year.setSelectedItem("2020");
 
       month = new JComboBox<String>(new ManagementDate().monthTable);
-      month.setBounds(280, 30, 50, 30);
+      month.setBounds(255, 40, 80, 30);
       add(month);
       new Style(month);
 
       day = new JComboBox<String>(new ManagementDate().dayTable);
-      day.setBounds(410, 30, 50, 30);
+      day.setBounds(420, 40, 80, 30);
       add(day);
       new Style(day);
 
@@ -115,7 +115,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 
       yearTotal = new JButton("연매출");
       new Style(yearTotal);
-      yearTotal.setBounds(210, 30, 50, 30);
+      yearTotal.setBounds(158, 40, 70, 30);
       add(yearTotal);
 
       yearTotal.addActionListener(new ActionListener() {
@@ -128,7 +128,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 
       monthTotal = new JButton("월매출");
       new Style(monthTotal);
-      monthTotal.setBounds(340, 30, 50, 30);
+      monthTotal.setBounds(338, 40, 60, 30);
       add(monthTotal);
 
       monthTotal.addActionListener(new ActionListener() {
@@ -142,7 +142,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 
       dayTotal = new JButton("일매출");
       new Style(dayTotal);
-      dayTotal.setBounds(470, 30, 50, 30);
+      dayTotal.setBounds(503, 40, 70, 30);
       add(dayTotal);
 
       dayTotal.addActionListener(new ActionListener() {
