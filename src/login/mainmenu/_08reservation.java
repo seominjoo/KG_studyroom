@@ -56,11 +56,11 @@ public class _08reservation extends JPanel implements ActionListener {
    }
 
    public _08reservation(LocalDateTime whatclass_now, LocalDateTime ss, int price, String seat_type) {
-      
+
       this.whatclass_now = whatclass_now;
       new Style(this);
       setLayout(null);
-      
+
       JLabel label01 = new JLabel("1인석");
       label01.setBounds(41,40,50,30);
       label01.setFont(new Font("맑은 고딕", Font.BOLD, 10));
@@ -99,18 +99,10 @@ public class _08reservation extends JPanel implements ActionListener {
 
       JLabel label06 = new JLabel("사용 중");
       label06.setOpaque(true);
-      label06.setBackground(Color.decode("#cfc1b8"));
-      label06.setForeground(Color.decode("#241614"));
-      label06.setHorizontalAlignment(JLabel.CENTER);
-      label06.setBounds(90,495,177,30);
-      this.add(label06);
-      
-      JLabel label07 = new JLabel("선택 불가");
-      label06.setOpaque(true);
       label06.setBackground(Color.decode("#241614"));
       label06.setForeground(Color.gray);
       label06.setHorizontalAlignment(JLabel.CENTER);
-      label06.setBounds(90,530,177,30);
+      label06.setBounds(90,495,177,30);
       this.add(label06);
 
       JButton back;
@@ -118,7 +110,7 @@ public class _08reservation extends JPanel implements ActionListener {
       new Style(back);
       back.setBounds(315,460,140,65);
       this.add(back);
-      
+
       JButton OK;
       OK = new JButton("결제하기");
       this.add(OK);
@@ -138,6 +130,7 @@ public class _08reservation extends JPanel implements ActionListener {
          seats_btn.get(i).setEnabled(true);
          if (!(price >= 3000 && price <= 10000 || price >= 90000)) {
             seats_btn.get(i).setEnabled(false);
+            seats_btn.get(i).setBackground(Color.decode("#cfc1b8"));
          }
       }
       for (int i = 3; i < 6; i++) {// 1인석 버튼 위치 설정
@@ -151,6 +144,7 @@ public class _08reservation extends JPanel implements ActionListener {
          seats_btn.get(i).setEnabled(true);
          if (!(price >= 3000 && price <= 10000 || price >= 90000)) {
             seats_btn.get(i).setEnabled(false);
+            seats_btn.get(i).setBackground(Color.decode("#cfc1b8"));
          }
       }
       for (int i = 6; i < 11; i++) {// 1인석 버튼 위치 설정
@@ -164,6 +158,7 @@ public class _08reservation extends JPanel implements ActionListener {
          seats_btn.get(i).setEnabled(true);
          if (!(price >= 3000 && price <= 10000 || price >= 90000)) {
             seats_btn.get(i).setEnabled(false);
+            seats_btn.get(i).setBackground(Color.decode("#cfc1b8"));
          }
       }
       for (int i = 11; i < 14; i++) { // 1인석 버튼 위치 설정
@@ -178,6 +173,7 @@ public class _08reservation extends JPanel implements ActionListener {
          seats_btn.get(i).setEnabled(true);
          if (!(price >= 3000 && price <= 10000 || price >= 90000)) {
             seats_btn.get(i).setEnabled(false);
+            seats_btn.get(i).setBackground(Color.decode("#cfc1b8"));
          }
       }
       for (int i = 14; i < 17; i++) { // 1인석 버튼 위치 설정
@@ -192,6 +188,7 @@ public class _08reservation extends JPanel implements ActionListener {
          seats_btn.get(i).setEnabled(true);
          if (!(price >= 3000 && price <= 10000 || price >= 90000)) {
             seats_btn.get(i).setEnabled(false);
+            seats_btn.get(i).setBackground(Color.decode("#cfc1b8"));
          }
       }
       g -= 180;
@@ -207,6 +204,7 @@ public class _08reservation extends JPanel implements ActionListener {
          seats_btn.get(i).setEnabled(true);
          if (!(price >= 3000 && price <= 10000 || price >= 90000)) {
             seats_btn.get(i).setEnabled(false);
+            seats_btn.get(i).setBackground(Color.decode("#cfc1b8"));
          }
       }
 
@@ -221,6 +219,7 @@ public class _08reservation extends JPanel implements ActionListener {
          //room_btn.get(i).setEnabled(true);
          if (!(price >= 12000 && price <= 40000 && price != 25000))
             room_btn.get(i).setEnabled(false);
+            room_btn.get(i).setBackground(Color.decode("#cfc1b8"));
       }
 
       for (int i = 2; i < 4; i++) {// 0~3
@@ -234,6 +233,7 @@ public class _08reservation extends JPanel implements ActionListener {
          room_btn.get(i).setEnabled(true);
          if (!(price >= 12000 && price <= 40000 && price != 25000))
             room_btn.get(i).setEnabled(false);
+            room_btn.get(i).setBackground(Color.decode("#cfc1b8"));
       }
       for (int i = 0; i < 10; i++) {// 사물함 버튼 위치 설정
          locker_btn.get(i).setBackground(Color.decode("#241614") );
@@ -246,6 +246,7 @@ public class _08reservation extends JPanel implements ActionListener {
          locker_btn.get(i).setEnabled(true);
          if (price != 25000) {
             locker_btn.get(i).setEnabled(false);
+            locker_btn.get(i).setBackground(Color.decode("#cfc1b8"));
          }
 
       }
@@ -261,6 +262,7 @@ public class _08reservation extends JPanel implements ActionListener {
          locker_btn.get(i).setEnabled(true);
          if (price != 25000) {
             locker_btn.get(i).setEnabled(false);
+            locker_btn.get(i).setBackground(Color.decode("#cfc1b8"));
          }
       }
 
@@ -300,21 +302,17 @@ public class _08reservation extends JPanel implements ActionListener {
          System.out.print("예약된 자리 : ");
 
          while (rs.next()) {
-             int sn = rs.getInt("seat_number");
-             if (sn <= 20) {
-                System.out.printf("%d번 ", sn);
-                seats_btn.get(sn - 1).setSelected(true);
-                seats_btn.get(sn - 1).setEnabled(false);
-//                seats_btn.get(sn-1).setBackground(Color.decode("#cfc1b8"));
-//                seats_btn.get(sn-1).setForeground(Color.decode("#241614"));
-             } else if (sn >= 101) {
-                System.out.printf("[%d호] ", sn);
-                room_btn.get(sn - 101).setSelected(true);
-                room_btn.get(sn - 101).setEnabled(false);
-//                room_btn.get(sn-101).setBackground(Color.decode("#cfc1b8"));
-//                room_btn.get(sn-101).setForeground(Color.decode("#241614"));
-             }
-          }
+            int sn = rs.getInt("seat_number");
+            if (sn <= 20) {
+               System.out.printf("%d번 ", sn);
+               seats_btn.get(sn - 1).setSelected(true);
+               seats_btn.get(sn - 1).setEnabled(false);
+            } else if (sn >= 101) {
+               System.out.printf("[%d호] ", sn);
+               room_btn.get(sn - 101).setSelected(true);
+               room_btn.get(sn - 101).setEnabled(false);
+            }
+         }
 
          // 사용중인 사물함이면 체크박스 체크 및 비활성화
          sql = "select locker_number from locker where locker_statement='사용 중'";
@@ -323,13 +321,11 @@ public class _08reservation extends JPanel implements ActionListener {
          System.out.println();
          System.out.printf("예약된 사물함 : ");
          while (rs.next()) {
-             int sn = rs.getInt("locker_number");
-             System.out.printf("%d번 ", sn);
-             locker_btn.get(sn - 1).setSelected(true);
-             locker_btn.get(sn - 1).setEnabled(false);
-//             locker_btn.get(sn-1).setBackground(Color.decode("#cfc1b8"));
-//             locker_btn.get(sn-1).setForeground(Color.decode("#241614"));
-          }
+            int sn = rs.getInt("locker_number");
+            System.out.printf("%d번 ", sn);
+            locker_btn.get(sn - 1).setSelected(true);
+            locker_btn.get(sn - 1).setEnabled(false);
+         }
 
          if (rs != null) rs.close();
          if (pstm != null) pstm.close();

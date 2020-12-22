@@ -33,7 +33,7 @@ public class StoreMovePage extends JPanel implements ActionListener {
    JButton back;
    JButton info;
    Thread thread;
-   
+
    JMenuBar bar = new JMenuBar();
    JMenu menu = new JMenu("번호별 매장 사용 정보");
    JMenu s = new JMenu("1인석");
@@ -79,75 +79,75 @@ public class StoreMovePage extends JPanel implements ActionListener {
          locker_btn.get(i).setEnabled(true);
       }
    }
-   
+
    ArrayList<JMenuItem> seat = new ArrayList<>(); //1~20번 좌석 (1인석) 메뉴 버튼
    {
-   for(int i=0; i<20; ++i) {
-      seat.add(new JMenuItem(Integer.toString(i+1)+"번"));
-      seat.get(i).addActionListener(new StoreMoveBtnAction(i, "좌석"));
-      seat.get(i).setEnabled(true);
-      s.add(seat.get(i));
+      for(int i=0; i<20; ++i) {
+         seat.add(new JMenuItem(Integer.toString(i+1)+"번"));
+         seat.get(i).addActionListener(new StoreMoveBtnAction(i, "좌석"));
+         seat.get(i).setEnabled(true);
+         s.add(seat.get(i));
+      }
    }
-   }
-   
+
    ArrayList<JMenuItem> room = new ArrayList<>(); //101~104호 (룸) 메뉴 버튼
    {
-   for(int i=0; i<4; ++i) {
-      room.add(new JMenuItem(Integer.toString(i+101)+"호"));
-      room.get(i).addActionListener(new StoreMoveBtnAction(i, "룸"));
-      room.get(i).setEnabled(true);
-      r.add(room.get(i));
-   }
+      for(int i=0; i<4; ++i) {
+         room.add(new JMenuItem(Integer.toString(i+101)+"호"));
+         room.get(i).addActionListener(new StoreMoveBtnAction(i, "룸"));
+         room.get(i).setEnabled(true);
+         r.add(room.get(i));
+      }
    }
 
    ArrayList<JMenuItem> locker = new ArrayList<>(); //1~20번 사물함 메뉴 버튼
    {
-   for(int i=0; i<20; ++i) {
-      locker.add(new JMenuItem(Integer.toString(i+1)+"번"));
-      locker.get(i).addActionListener(new StoreMoveBtnAction(i, "사물함"));
-      locker.get(i).setEnabled(true);
-      l.add(locker.get(i));
+      for(int i=0; i<20; ++i) {
+         locker.add(new JMenuItem(Integer.toString(i+1)+"번"));
+         locker.get(i).addActionListener(new StoreMoveBtnAction(i, "사물함"));
+         locker.get(i).setEnabled(true);
+         l.add(locker.get(i));
+      }
    }
-   }
-   
+
    public StoreMovePage() {
 
       setLayout(null);
-      
+
       JPanel top = new JPanel();
       top.add(bar);
       new Style(top);
       top.setBounds(85, 0, 130, 27);
       add(top);
-      
+
       this.setLayout(new BorderLayout(0,20));
       new Style(this);
-         
+
       add(Style.getnewPanel(), BorderLayout.NORTH);
-      
+
       menu.add(s);
       menu.add(r);
       menu.add(l);
       //bar.setBounds(0, 0, 100, 50);
       bar.add(menu);
-      
+
       JPanel c = new JPanel();
       add(c, BorderLayout.CENTER);
       c.setLayout(null);
       new Style(c);
-      
+
       JLabel label01 = new JLabel("1인석");
       label01.setBounds(43,50,50,30);
       new Style(label01); 
       label01.setFont(new Font("맑은 고딕", Font.BOLD, 12));
       c.add(label01);
-      
+
       JLabel label02 = new JLabel("룸");
       label02.setBounds(60,215,50,30);
       new Style(label02);
       label02.setFont(new Font("맑은 고딕", Font.BOLD, 13));
       c.add(label02);
- 
+
       JLabel label03 = new JLabel("사물함");
       label03.setBounds(60,320,50,30);
       new Style(label03);
@@ -167,25 +167,25 @@ public class StoreMovePage extends JPanel implements ActionListener {
       JLabel label05 = new JLabel("사용 가능");
       label05.setOpaque(true);
       label05.setBackground(Color.decode("#241614"));
-      label05.setForeground(Color.decode("#cfc1b8"));
+      label05.setForeground(Color.orange);
       label05.setHorizontalAlignment(JLabel.CENTER);
       label05.setBounds(90,435,177,30);
       c.add(label05);
 
       JLabel label06 = new JLabel("사용 중");
       label06.setOpaque(true);
-      label06.setBackground(Color.decode("#cfc1b8"));
-      label06.setForeground(Color.decode("#241614"));
+      label06.setBackground(Color.decode("#241614"));
+      label06.setForeground(Color.gray);
       label06.setHorizontalAlignment(JLabel.CENTER);
       label06.setBounds(90,470,177,30);
       c.add(label06);
-      
+
       info = new JButton("관리 테이블");
       info.addActionListener(new StoreDBPage());
       info.setBounds(465,435,140,65);
       new Style(info);
       c.add(info);
-      
+
       back = new JButton("이전 화면");
       new Style(back);
       back.setBounds(315,435,140,65);
@@ -194,7 +194,7 @@ public class StoreMovePage extends JPanel implements ActionListener {
       for(int i=0;i<3;i++) {// 1인석 버튼 위치 설정
          seats_btn.get(i).setBackground(Color.decode("#241614"));
          seats_btn.get(i).setText(i+1+"번");
-         seats_btn.get(i).setForeground(Color.decode("#cfc1b8"));
+         seats_btn.get(i).setForeground(Color.orange);
          c.add(seats_btn.get(i));
          seats_btn.get(i).setBounds(85+f,10,60,60); 
          f+=60;  
@@ -202,7 +202,7 @@ public class StoreMovePage extends JPanel implements ActionListener {
       for(int i=3;i<6;i++) {// 1인석 버튼 위치 설정
          seats_btn.get(i).setBackground(Color.decode("#241614"));
          seats_btn.get(i).setText(i+1+"번");
-         seats_btn.get(i).setForeground(Color.decode("#cfc1b8"));
+         seats_btn.get(i).setForeground(Color.orange);
          c.add(seats_btn.get(i));
          seats_btn.get(i).setBounds(135+f,10,60,60); 
          f+=60;  
@@ -210,7 +210,7 @@ public class StoreMovePage extends JPanel implements ActionListener {
       for(int i=6;i<11;i++) {// 1인석 버튼 위치 설정
          seats_btn.get(i).setBackground(Color.decode("#241614"));
          seats_btn.get(i).setText(i+1+"번");
-         seats_btn.get(i).setForeground(Color.decode("#cfc1b8"));
+         seats_btn.get(i).setForeground(Color.orange);
          c.add(seats_btn.get(i));
          seats_btn.get(i).setBounds(185+f,10+a,60,60); 
          a+=60;
@@ -218,7 +218,7 @@ public class StoreMovePage extends JPanel implements ActionListener {
       for(int i=11; i<14;i++) { // 1인석 버튼 위치 설정
          seats_btn.get(i).setBackground(Color.decode("#241614"));
          seats_btn.get(i).setText(i+1+"번");
-         seats_btn.get(i).setForeground(Color.decode("#cfc1b8"));
+         seats_btn.get(i).setForeground(Color.orange);
          c.add(seats_btn.get(i));
          seats_btn.get(i).setBounds(85+g,70,60,60);
          g+=60;  
@@ -226,7 +226,7 @@ public class StoreMovePage extends JPanel implements ActionListener {
       for(int i=14; i<17;i++) { // 1인석 버튼 위치 설정
          seats_btn.get(i).setBackground(Color.decode("#241614"));
          seats_btn.get(i).setText(i+1+"번");
-         seats_btn.get(i).setForeground(Color.decode("#cfc1b8"));
+         seats_btn.get(i).setForeground(Color.orange);
          c.add(seats_btn.get(i));
          seats_btn.get(i).setBounds(135+g,70,60,60);
          g+=60;  
@@ -235,7 +235,7 @@ public class StoreMovePage extends JPanel implements ActionListener {
       for(int i=17; i<20;i++) { // 1인석 버튼 위치 설정
          seats_btn.get(i).setBackground(Color.decode("#241614"));
          seats_btn.get(i).setText(i+1+"번");
-         seats_btn.get(i).setForeground(Color.decode("#cfc1b8"));
+         seats_btn.get(i).setForeground(Color.orange);
          c.add(seats_btn.get(i));
          seats_btn.get(i).setBounds(135+g,160,60,60);
          g+=60;  
@@ -243,7 +243,7 @@ public class StoreMovePage extends JPanel implements ActionListener {
       for(int i=0;i<2;i++) {//0~3 룸 버튼 위치 설정
          room_btn.get(i).setBackground(Color.decode("#241614"));
          room_btn.get(i).setText(i+101+"호");
-         room_btn.get(i).setForeground(Color.decode("#cfc1b8"));
+         room_btn.get(i).setForeground(Color.orange);
          c.add(room_btn.get(i));
          room_btn.get(i).setBounds(85+e,160,90,75);
          e+=90; 
@@ -251,7 +251,7 @@ public class StoreMovePage extends JPanel implements ActionListener {
       for(int i=2;i<4;i++) {//0~3 룸 버튼 위치 설정
          room_btn.get(i).setBackground(Color.decode("#241614"));
          room_btn.get(i).setText(i+101+"호");
-         room_btn.get(i).setForeground(Color.decode("#cfc1b8"));
+         room_btn.get(i).setForeground(Color.orange);
          c.add(room_btn.get(i));
          room_btn.get(i).setBounds(85+d,235,90,75);
          d+=90; 
@@ -259,7 +259,7 @@ public class StoreMovePage extends JPanel implements ActionListener {
       for(int i=0;i<10;i++) {// 사물함 버튼 위치 설정
          locker_btn.get(i).setBackground(Color.decode("#241614"));
          locker_btn.get(i).setText(i+1+"번");
-         locker_btn.get(i).setForeground(Color.decode("#cfc1b8"));
+         locker_btn.get(i).setForeground(Color.orange);
          c.add(locker_btn.get(i));
          locker_btn.get(i).setBounds(50+q,350,60,30);
          q+=60;
@@ -268,7 +268,7 @@ public class StoreMovePage extends JPanel implements ActionListener {
       for(int i=10; i<20;i++) { // 사물함 버튼 위치 설정
          locker_btn.get(i).setBackground(Color.decode("#241614"));
          locker_btn.get(i).setText(i+1+"번");
-         locker_btn.get(i).setForeground(Color.decode("#cfc1b8"));
+         locker_btn.get(i).setForeground(Color.orange);
          c.add(locker_btn.get(i));
          locker_btn.get(i).setBounds(50+d,380,60,30);
          d+=60;   
@@ -292,13 +292,9 @@ public class StoreMovePage extends JPanel implements ActionListener {
             int sn = rs.getInt("seat_number"); 
             if(sn<=20) {
                System.out.printf("%d번 ",sn); 
-               seats_btn.get(sn-1).setBackground(Color.decode("#cfc1b8"));
-               seats_btn.get(sn-1).setForeground(Color.decode("#241614"));
                seats_btn.get(sn-1).setEnabled(false);
             }else if (sn>100) {
                System.out.printf("[%d호] ",sn); 
-               room_btn.get(sn-101).setBackground(Color.decode("#cfc1b8"));
-               room_btn.get(sn-101).setForeground(Color.decode("#241614"));
                room_btn.get(sn-101).setEnabled(false);
             }
          }
@@ -312,8 +308,6 @@ public class StoreMovePage extends JPanel implements ActionListener {
          while(rs.next()) {
             int sn = rs.getInt("locker_number");
             System.out.printf("%d번 ",sn);
-            locker_btn.get(sn-1).setBackground(Color.decode("#cfc1b8"));
-            locker_btn.get(sn-1).setForeground(Color.decode("#241614"));
             locker_btn.get(sn-1).setEnabled(false);
          }
 
@@ -324,7 +318,7 @@ public class StoreMovePage extends JPanel implements ActionListener {
       } catch (ClassNotFoundException | SQLException e1) { 
          e1.printStackTrace();
       }      
-      
+
       info.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {

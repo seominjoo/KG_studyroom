@@ -43,7 +43,7 @@ public class StoreManagementPage extends JPanel implements ActionListener {
    JButton back;
    JButton info;
    Thread thread;
-   
+
    JMenuBar bar = new JMenuBar();
    JMenu menu = new JMenu("번호별 매장 사용 정보");
    JMenu s = new JMenu("1인석");
@@ -89,75 +89,75 @@ public class StoreManagementPage extends JPanel implements ActionListener {
          locker_btn.get(i).setEnabled(false);
       }
    }
-   
+
    ArrayList<JMenuItem> seat = new ArrayList<>(); //1~20번 좌석 (1인석) 메뉴 버튼
    {
-   for(int i=0; i<20; ++i) {
-      seat.add(new JMenuItem(Integer.toString(i+1)+"번"));
-      seat.get(i).addActionListener(new StoreBtnAction(i, "좌석"));
-      seat.get(i).setEnabled(false);
-      s.add(seat.get(i));
+      for(int i=0; i<20; ++i) {
+         seat.add(new JMenuItem(Integer.toString(i+1)+"번"));
+         seat.get(i).addActionListener(new StoreBtnAction(i, "좌석"));
+         seat.get(i).setEnabled(false);
+         s.add(seat.get(i));
+      }
    }
-   }
-   
+
    ArrayList<JMenuItem> room = new ArrayList<>(); //101~104호 (룸) 메뉴 버튼
    {
-   for(int i=0; i<4; ++i) {
-      room.add(new JMenuItem(Integer.toString(i+101)+"호"));
-      room.get(i).addActionListener(new StoreBtnAction(i, "룸"));
-      room.get(i).setEnabled(false);
-      r.add(room.get(i));
-   }
+      for(int i=0; i<4; ++i) {
+         room.add(new JMenuItem(Integer.toString(i+101)+"호"));
+         room.get(i).addActionListener(new StoreBtnAction(i, "룸"));
+         room.get(i).setEnabled(false);
+         r.add(room.get(i));
+      }
    }
 
    ArrayList<JMenuItem> locker = new ArrayList<>(); //1~20번 사물함 메뉴 버튼
    {
-   for(int i=0; i<20; ++i) {
-      locker.add(new JMenuItem(Integer.toString(i+1)+"번"));
-      locker.get(i).addActionListener(new StoreBtnAction(i, "사물함"));
-      locker.get(i).setEnabled(false);
-      l.add(locker.get(i));
+      for(int i=0; i<20; ++i) {
+         locker.add(new JMenuItem(Integer.toString(i+1)+"번"));
+         locker.get(i).addActionListener(new StoreBtnAction(i, "사물함"));
+         locker.get(i).setEnabled(false);
+         l.add(locker.get(i));
+      }
    }
-   }
-   
+
    public StoreManagementPage() {
-      
+
       setLayout(null);
-      
+
       JPanel top = new JPanel();
       top.add(bar);
       new Style(top);
       top.setBounds(85, 0, 130, 27);
       add(top);
-      
+
       this.setLayout(new BorderLayout(0,20));
       new Style(this);
-         
+
       add(Style.getnewPanel(), BorderLayout.NORTH);
-      
+
       menu.add(s);
       menu.add(r);
       menu.add(l);
       //bar.setBounds(0, 0, 100, 50);
       bar.add(menu);
-      
+
       JPanel c = new JPanel();
       add(c, BorderLayout.CENTER);
       c.setLayout(null);
       new Style(c);
-      
+
       JLabel label01 = new JLabel("1인석");
       label01.setBounds(43,50,50,30);
       new Style(label01); 
       label01.setFont(new Font("맑은 고딕", Font.BOLD, 12));
       c.add(label01);
-      
+
       JLabel label02 = new JLabel("룸");
       label02.setBounds(60,215,50,30);
       new Style(label02);
       label02.setFont(new Font("맑은 고딕", Font.BOLD, 13));
       c.add(label02);
- 
+
       JLabel label03 = new JLabel("사물함");
       label03.setBounds(60,320,50,30);
       new Style(label03);
@@ -176,8 +176,8 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 
       JLabel label05 = new JLabel("사용 중");
       label05.setOpaque(true);
-      label05.setBackground(Color.decode("#cfc1b8"));
-      label05.setForeground(Color.decode("#241614"));
+      label05.setBackground(Color.decode("#241614"));
+      label05.setForeground(Color.orange);
       label05.setHorizontalAlignment(JLabel.CENTER);
       label05.setBounds(90,435,177,30);
       c.add(label05);
@@ -189,13 +189,13 @@ public class StoreManagementPage extends JPanel implements ActionListener {
       label06.setHorizontalAlignment(JLabel.CENTER);
       label06.setBounds(90,470,177,30);
       c.add(label06);
-      
+
       info = new JButton("관리 테이블");
       info.addActionListener(new StoreDBPage());
       info.setBounds(465,435,140,65);
       new Style(info);
       c.add(info);
-      
+
       back = new JButton("이전 화면");
       new Style(back);
       back.setBounds(315,435,140,65);
@@ -304,14 +304,13 @@ public class StoreManagementPage extends JPanel implements ActionListener {
                System.out.printf("%d번 ",sn); 
                seats_btn.get(sn-1).setEnabled(true);
                seat.get(sn-1).setEnabled(true);
-               seats_btn.get(sn-1).setBackground(Color.decode("#cfc1b8"));
-               seats_btn.get(sn-1).setForeground(Color.decode("#241614"));
-;            }else if (sn>100) {
+               seats_btn.get(sn-1).setForeground(Color.orange);
+
+            }else if (sn>100) {
                System.out.printf("[%d호] ",sn); 
                room_btn.get(sn-101).setEnabled(true);
                room.get(sn-101).setEnabled(true);
-               room_btn.get(sn-101).setBackground(Color.decode("#cfc1b8"));
-               room_btn.get(sn-101).setForeground(Color.decode("#241614"));
+               room_btn.get(sn-101).setForeground(Color.orange);
             }
          }
 
@@ -324,10 +323,9 @@ public class StoreManagementPage extends JPanel implements ActionListener {
          while(rs.next()) {
             int sn = rs.getInt("locker_number");
             System.out.printf("%d번 ",sn);
-            locker_btn.get(sn-1).setBackground(Color.decode("#cfc1b8"));
-            locker_btn.get(sn-1).setForeground(Color.decode("#241614"));
             locker_btn.get(sn-1).setEnabled(true);
             locker.get(sn-1).setEnabled(true);
+            locker_btn.get(sn-1).setForeground(Color.orange);
          }
 
          if(rs!=null) rs.close(); 
@@ -337,7 +335,7 @@ public class StoreManagementPage extends JPanel implements ActionListener {
       } catch (ClassNotFoundException | SQLException e1) { 
          e1.printStackTrace();
       }      
-      
+
       info.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {

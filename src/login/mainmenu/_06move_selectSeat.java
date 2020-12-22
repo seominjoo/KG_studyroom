@@ -86,18 +86,18 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
       label04.setHorizontalAlignment(JLabel.CENTER);
       this.add(label04);
 
-      JLabel label05 = new JLabel("선택 가능");
+      JLabel label05 = new JLabel("사용 가능");
       label05.setOpaque(true);
       label05.setBackground(Color.decode("#241614"));
-      label05.setForeground(Color.decode("#cfc1b8"));
+      label05.setForeground(Color.orange);
       label05.setHorizontalAlignment(JLabel.CENTER);
       label05.setBounds(90,460,177,30);
       this.add(label05);
 
-      JLabel label06 = new JLabel("선택 불가");
+      JLabel label06 = new JLabel("사용 중");
       label06.setOpaque(true);
-      label06.setBackground(Color.decode("#cfc1b8"));
-      label06.setForeground(Color.decode("#241614"));
+      label06.setBackground(Color.decode("#241614"));
+      label06.setForeground(Color.gray);
       label06.setHorizontalAlignment(JLabel.CENTER);
       label06.setBounds(90,495,177,30);
       this.add(label06);
@@ -130,13 +130,14 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
 
          seats_btn.get(i).setBackground(Color.decode("#241614"));
          seats_btn.get(i).setText(i+1+"번");
-         seats_btn.get(i).setForeground(Color.decode("#cfc1b8"));
+         seats_btn.get(i).setForeground(Color.orange);
          this.add(seats_btn.get(i));
          seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i), "이동"));
          seats_btn.get(i).setBounds(85+f,40,60,60); 
          f+=60; 
          if(_06move.chk==2) {
             seats_btn.get(i).setEnabled(false);
+            seats_btn.get(i).setBackground(Color.decode("#cfc1b8"));
          } 
       }
 
@@ -144,13 +145,14 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
 
          seats_btn.get(i).setBackground(Color.decode("#241614"));
          seats_btn.get(i).setText(i+1+"번");
-         seats_btn.get(i).setForeground(Color.decode("#cfc1b8"));
+         seats_btn.get(i).setForeground(Color.orange);
          this.add(seats_btn.get(i));
          seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i), "이동"));
          seats_btn.get(i).setBounds(135+f,40,60,60); 
          f+=60;  
          if(_06move.chk==2) {
             seats_btn.get(i).setEnabled(false);
+            seats_btn.get(i).setBackground(Color.decode("#cfc1b8"));
          }
       }
 
@@ -158,13 +160,14 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
 
          seats_btn.get(i).setBackground(Color.decode("#241614"));
          seats_btn.get(i).setText(i+1+"번");
-         seats_btn.get(i).setForeground(Color.decode("#cfc1b8"));
+         seats_btn.get(i).setForeground(Color.orange);
          this.add(seats_btn.get(i));
          seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i), "이동"));
          seats_btn.get(i).setBounds(185+f,40+a,60,60); 
          a+=60;
          if(_06move.chk==2) {
             seats_btn.get(i).setEnabled(false);
+            seats_btn.get(i).setBackground(Color.decode("#cfc1b8"));
          }
       }
 
@@ -172,13 +175,14 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
          seats_btn.add(new JButton()); 
          seats_btn.get(i).setBackground(Color.decode("#241614"));
          seats_btn.get(i).setText(i+1+"번");
-         seats_btn.get(i).setForeground(Color.decode("#cfc1b8"));
+         seats_btn.get(i).setForeground(Color.orange);
          this.add(seats_btn.get(i));
          seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i), "이동"));
          seats_btn.get(i).setBounds(85+g,100,60,60);
          g+=60;  
          if(_06move.chk==2) {
             seats_btn.get(i).setEnabled(false);
+            seats_btn.get(i).setBackground(Color.decode("#cfc1b8"));
          }
       }
 
@@ -186,13 +190,14 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
          seats_btn.add(new JButton()); 
          seats_btn.get(i).setBackground(Color.decode("#241614"));
          seats_btn.get(i).setText(i+1+"번");
-         seats_btn.get(i).setForeground(Color.decode("#cfc1b8"));
+         seats_btn.get(i).setForeground(Color.orange);
          this.add(seats_btn.get(i));
          seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i), "이동"));
          seats_btn.get(i).setBounds(135+g,100,60,60);
          g+=60;  
          if(_06move.chk==2) {
             seats_btn.get(i).setEnabled(false);
+            seats_btn.get(i).setBackground(Color.decode("#cfc1b8"));
          }
       }
 
@@ -201,63 +206,68 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
          seats_btn.add(new JButton()); 
          seats_btn.get(i).setBackground(Color.decode("#241614"));
          seats_btn.get(i).setText(i+1+"번");
-         seats_btn.get(i).setForeground(Color.decode("#cfc1b8"));
+         seats_btn.get(i).setForeground(Color.orange);
          this.add(seats_btn.get(i));
          seats_btn.get(i).addActionListener(new ActionBtn_select(seats_btn.get(i), "이동"));
          seats_btn.get(i).setBounds(135+g,190,60,60);
          g+=60;  
          if(_06move.chk==2) {
             seats_btn.get(i).setEnabled(false);
+            seats_btn.get(i).setBackground(Color.decode("#cfc1b8"));
          }
       }
 
       for(int i=0;i<2;i++) {//0~3
          room_btn.get(i).setBackground(Color.decode("#241614"));
          room_btn.get(i).setText(i+101+"호");
-         room_btn.get(i).setForeground(Color.decode("#cfc1b8"));
+         room_btn.get(i).setForeground(Color.orange);
          this.add(room_btn.get(i));
          room_btn.get(i).addActionListener(new ActionBtn_select(room_btn.get(i), "이동")); 
          room_btn.get(i).setBounds(85+e,190,90,75);
          e+=90; 
          if(_06move.chk==1) {
             room_btn.get(i).setEnabled(false);
+            room_btn.get(i).setBackground(Color.decode("#cfc1b8"));
          }
       }
 
       for(int i=2;i<4;i++) {//0~3
          room_btn.get(i).setBackground(Color.decode("#241614"));
          room_btn.get(i).setText(i+101+"호");
-         room_btn.get(i).setForeground(Color.decode("#cfc1b8"));
+         room_btn.get(i).setForeground(Color.orange);
          this.add(room_btn.get(i));
          room_btn.get(i).addActionListener(new ActionBtn_select(room_btn.get(i), "이동")); 
          room_btn.get(i).setBounds(85+d,265,90,75);
          d+=90; 
          if(_06move.chk==1) {
             room_btn.get(i).setEnabled(false);
+            room_btn.get(i).setBackground(Color.decode("#cfc1b8"));
          }
       }
 
       for(int i=0;i<10;i++) {// 사물함 버튼 위치 설정
          locker_btn.get(i).setBackground(Color.decode("#241614"));
          locker_btn.get(i).setText(i+1+"번");
-         locker_btn.get(i).setForeground(Color.decode("#cfc1b8"));
+         locker_btn.get(i).setForeground(Color.orange);
          this.add(locker_btn.get(i));
          locker_btn.get(i).addActionListener(new ActionBtn_select( locker_btn.get(i), "이동"));
          locker_btn.get(i).setBounds(50+c,380,60,30);
          c+=60;
          locker_btn.get(i).setEnabled(false);
+         locker_btn.get(i).setBackground(Color.decode("#cfc1b8"));
       }
 
       d=0;
       for(int i=10; i<20;i++) { // 사물함 버튼 위치 설정
          locker_btn.get(i).setBackground(Color.decode("#241614"));
          locker_btn.get(i).setText(i+1+"번");
-         locker_btn.get(i).setForeground(Color.decode("#cfc1b8"));
+         locker_btn.get(i).setForeground(Color.orange);
          this.add(locker_btn.get(i));
          locker_btn.get(i).addActionListener(new ActionBtn_select( locker_btn.get(i), "이동"));
          locker_btn.get(i).setBounds(50+d,410,60,30);
          d+=60;   
          locker_btn.get(i).setEnabled(false);
+         locker_btn.get(i).setBackground(Color.decode("#cfc1b8"));
       }
 
       ActionListener back_btn = new ActionListener() {
@@ -299,14 +309,10 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
                System.out.printf("%d번 ",sn); 
                seats_btn.get(sn-1).setSelected(true);
                seats_btn.get(sn-1).setEnabled(false);
-               seats_btn.get(sn-1).setBackground(Color.decode("#cfc1b8"));
-               seats_btn.get(sn-1).setForeground(Color.decode("#241614"));
             }else if (sn>=101) {
                System.out.printf("[%d호] ",sn); 
                room_btn.get(sn-101).setSelected(true);
                room_btn.get(sn-101).setEnabled(false);
-               room_btn.get(sn-101).setBackground(Color.decode("#cfc1b8"));
-               room_btn.get(sn-101).setForeground(Color.decode("#241614"));
             }
          }
          if(rs!=null) rs.close(); 
@@ -468,9 +474,5 @@ public class _06move_selectSeat extends JPanel implements ActionListener{
       } catch (ClassNotFoundException | SQLException e1) {
          e1.printStackTrace();
       }         
-   } 
-
-   public static void main(String[] args) {
-
    } 
 }

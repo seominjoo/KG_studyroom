@@ -120,7 +120,7 @@ public class MainPage extends JFrame implements Runnable {
       new Style(updateTable);
       statecard = new CardLayout();
       updateTable.setLayout(statecard);
-      updateTable.setBounds(18, 190, 280, 50);
+      updateTable.setBounds(18, 185, 280, 50);
       updateTable.add(new State());
       
       // 홈 버튼 패널
@@ -216,13 +216,13 @@ public class MainPage extends JFrame implements Runnable {
       // 현재 시간
       clock = new JLabel();
       new Style(clock);
-      clock.setForeground(Color.decode("#a68c71"));
+      clock.setForeground(Color.decode("#cfab8b"));
       clock.setHorizontalAlignment(JLabel.CENTER);
       if (thread == null) {
          thread = new Thread(this);
          thread.start();
       }
-      clock.setBounds(8, 150, 300, 30);
+      clock.setBounds(8, 145, 300, 30);
       
       // 프레임에 붙이기
       background.add(changeUser);
