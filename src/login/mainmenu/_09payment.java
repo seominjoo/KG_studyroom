@@ -81,7 +81,7 @@ public class _09payment extends JPanel{
 
       JRadioButton card_btn = new JRadioButton("카드");
       new Style(card_btn);
-      card_btn.setBounds(436, 380, 70, 23);
+      card_btn.setBounds(433, 380, 70, 23);
       this.add(card_btn);
 
       JRadioButton cash_btn = new JRadioButton("현금");
@@ -95,12 +95,12 @@ public class _09payment extends JPanel{
 
       JButton back_btn = new JButton("돌아가기");
       new Style(back_btn);
-      back_btn.setBounds(170, 429, 121, 42);
+      back_btn.setBounds(167, 429, 121, 42);
       this.add(back_btn);
 
       JButton pay_btn = new JButton("결제하기");
       new Style(pay_btn);
-      pay_btn.setBounds(406, 429, 121, 42);
+      pay_btn.setBounds(393, 429, 121, 42);
       this.add(pay_btn);
       
       pay_btn.addActionListener(new ActionListener() { 
