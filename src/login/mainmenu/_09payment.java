@@ -1,5 +1,8 @@
 package login.mainmenu;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -12,14 +15,18 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JPanel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.TabExpander;
 
 import login.design.Style;
 import login.page.MainPage;
 
 import javax.swing.JRadioButton;
+import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 
 public class _09payment extends JPanel{
 
@@ -29,52 +36,58 @@ public class _09payment extends JPanel{
    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 a hh시 mm분 ss초");
    LocalDateTime pluss;
    public _09payment(LocalDateTime ss, int seat_price, String seat_type) {
-	   time_now = LocalDateTime.now().plusSeconds(30);
-	   
-	   // 결제 창 기준 time_now로 만료 시간 적용 (+ 결제 시간 30초)
-	   this.pluss = ss;
-	   pluss = ss.plusSeconds(time_now.getMinute() -_08reservation.whatclass_now.getMinute());
-	   pluss = ss.plusSeconds(((int) Math.ceil(time_now.getSecond() -_08reservation.whatclass_now.getSecond())));
+      time_now = LocalDateTime.now().plusSeconds(30);
       
-	  setLayout(null);
+      // 결제 창 기준 time_now로 만료 시간 적용 (+ 결제 시간 30초)
+      this.pluss = ss;
+      pluss = ss.plusSeconds(time_now.getMinute() -_08reservation.whatclass_now.getMinute());
+      pluss = ss.plusSeconds(((int) Math.ceil(time_now.getSecond() -_08reservation.whatclass_now.getSecond())));
+      
+      this.setLayout(null);
       new Style(this);
-
-      JPanel p2 = new JPanel();
-      p2.setBounds(0, 0, 706, 453);
-      this.add(p2);
-      p2.setLayout(null);
-      new Style(p2);
        
       String header[] = {"결제","정보"};
       String contents[][]= {
-            {"번호",_08reservation.number},
-            {"결제 시간",time_now.format(dateTimeFormatter).substring(0, 24)},
-            {"사용 만료 시간",pluss.format(dateTimeFormatter).substring(0, 24)}, 
-            {"이용권",_08reservation.type11},
-            {"결제 금액",Integer.toString((_08reservation.price))}
+          {"","  주문 내역 확인"},
+          {"",""},
+            {"    번호","   "+_08reservation.number},
+            {"    결제 시간","   "+time_now.format(dateTimeFormatter).substring(0, 24)},
+            {"    사용 만료 시간","   "+pluss.format(dateTimeFormatter).substring(0, 24)}, 
+            {"    이용권","   "+_08reservation.type11},
+            {"    결제 금액","   "+Integer.toString((_08reservation.price))},
+            {"",""}
       };
 
 
       DefaultTableModel model = new DefaultTableModel(contents,header);
       table = new JTable(model);
+      
+        // 가로 길이
+      table.getColumnModel().getColumn(0).setPreferredWidth(130);
+      table.getColumnModel().getColumn(1).setPreferredWidth(250);
+      
+      table.getColumnModel().getColumn(0).setPreferredWidth(130);
+      table.getColumnModel().getColumn(1).setPreferredWidth(250);
+      
       new Style(table);
-      table.setBounds(60, 104, 450, 175);
+      table.setBounds(155, 80, 380, 280);
       table.setRowHeight(35);
-      p2.add(table);
+      table.setForeground(Color.decode("#805b38"));
+      table.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+      table.setShowGrid(false);
+      table.setBorder(BorderFactory.createLineBorder(Color.decode("#805b38")));
+      this.add(table);
 
-//      Color color = UIManager.getColor("Table.gridColor");
-//      MatteBorder border = new MatteBorder(1, 1, 0, 0, color);
-//      table.setBorder(border);
 
       JRadioButton card_btn = new JRadioButton("카드");
       new Style(card_btn);
-      card_btn.setBounds(350, 320, 70, 23);
-      p2.add(card_btn);
+      card_btn.setBounds(436, 380, 70, 23);
+      this.add(card_btn);
 
       JRadioButton cash_btn = new JRadioButton("현금");
       new Style(cash_btn);
-      cash_btn.setBounds(150, 320, 70, 23);
-      p2.add(cash_btn);
+      cash_btn.setBounds(200, 380, 70, 23);
+      this.add(cash_btn);
 
       ButtonGroup group = new ButtonGroup();
       group.add(cash_btn);
@@ -82,14 +95,14 @@ public class _09payment extends JPanel{
 
       JButton back_btn = new JButton("돌아가기");
       new Style(back_btn);
-      back_btn.setBounds(120, 381, 121, 42);
-      p2.add(back_btn);
+      back_btn.setBounds(170, 429, 121, 42);
+      this.add(back_btn);
 
       JButton pay_btn = new JButton("결제하기");
       new Style(pay_btn);
-      pay_btn.setBounds(330, 381, 121, 42);
-      p2.add(pay_btn);
-
+      pay_btn.setBounds(406, 429, 121, 42);
+      this.add(pay_btn);
+      
       pay_btn.addActionListener(new ActionListener() { 
          @Override
          public void actionPerformed(ActionEvent e) { 
@@ -103,13 +116,13 @@ public class _09payment extends JPanel{
                PreparedStatement pstmt = null;
 
          if(cash_btn.isSelected()) {// 현금 결제 프레임 창 띄우기
-        	new _11receipt("현금거래");
-            new _10paycash(pluss);
+        	 new _11receipt("현금결제");
+            new _10paycash(pluss, seat_type);
          }
 
 
    if(card_btn.isSelected()==true) {//카드 결제
-	   new _11receipt("카드거래");
+	   new _11receipt("카드결제");
       int result= JOptionPane.showConfirmDialog(null, "카드를 삽입하세요","Message",JOptionPane.YES_NO_OPTION);
       if(result==JOptionPane.CLOSED_OPTION) {
 
@@ -151,7 +164,7 @@ public class _09payment extends JPanel{
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, i+1);
             pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(pluss));
-            if(_08reservation.price>=90000) {
+            if(seat_type.contains("주")) {
             pstmt.setString(3, "정기 이용권");
             }else {
             pstmt.setString(3, "당일 이용권");

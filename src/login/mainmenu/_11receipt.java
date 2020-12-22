@@ -40,39 +40,44 @@ public class _11receipt extends JPanel {
 
 		JPanel p2 = new JPanel();
 		new Style(p2);
-		p2.setBounds(70, 100, 693, 453);
+		p2.setBounds(0, 0, 800, 600);
 		p2.setLayout(null);
 		add(p2);
 
-		JLabel headTitle = new JLabel("<html><pre>MEMO STUDY</pre>");
+		JLabel headTitle = new JLabel("<html><pre>KG STUDY</pre>");
 		new Style(headTitle);
-		headTitle.setBounds(200, 0, 440, 80);
+		headTitle.setBounds(300, 0, 440, 80);
 		headTitle.setFont(new Font("Courier", Font.PLAIN, 35));
 		p2.add(headTitle);
 		
-		JLabel smallTtile = new JLabel("MEMO STUDY");
+		JLabel smallTtile = new JLabel("KG STUDY");
 		new Style(smallTtile);
-		smallTtile.setBounds(150, 60, 150, 20);
+		smallTtile.setFont(new Font("맑은 고딕", Font.PLAIN, 11));
+		smallTtile.setBounds(100, 70, 150, 20);
 		p2.add(smallTtile);
 		
 		JLabel paidTime = new JLabel(_09payment.time_now.format(dateTimeFormatter).substring(0, 24));
 		new Style(paidTime);
-		paidTime.setBounds(250, 60, 220, 20);
+		paidTime.setFont(new Font("맑은 고딕", Font.PLAIN, 11));
+		paidTime.setBounds(370, 70, 250, 20);
 		p2.add(paidTime);
 		
 		JLabel businessNum = new JLabel("사업자번호:1541600462");
 		new Style(businessNum);
-		businessNum.setBounds(150, 80, 170, 20);
+		businessNum.setFont(new Font("맑은 고딕", Font.PLAIN, 11));
+		businessNum.setBounds(100, 90, 170, 20);
 		p2.add(businessNum);
 
 		JLabel ceo = new JLabel("대표:서민주");
 		new Style(ceo);
-		ceo.setBounds(150, 100, 170, 20);
+		ceo.setFont(new Font("맑은 고딕", Font.PLAIN, 11));
+		ceo.setBounds(100, 110, 170, 20);
 		p2.add(ceo);
 		
-		JLabel address = new JLabel("죽전역과 오리역 사이에 있는 다이소 3층 건물 어딘가에");
+		JLabel address = new JLabel("서울 강남구 강남대로84길 16 11, 12층");
 		new Style(address);
-		address.setBounds(150, 140, 250, 20);
+		address.setFont(new Font("맑은 고딕", Font.PLAIN, 11));
+		address.setBounds(100, 130, 250, 20);
 		p2.add(address);
 		
 		String header1[] = { "상품명", "단가", "수량", "금액" };
@@ -95,17 +100,20 @@ public class _11receipt extends JPanel {
 				{ "공급가금액", String.valueOf(_08reservation.price / 1.1) },
 				{ "부가세", String.valueOf(_08reservation.price - _08reservation.price / 1.1) },
 				{ "투입 금액", Integer.toString(price)  },
-				{ "거스름 돈", Integer.toString(_10paycash.change) + "원" } };
+				{ "거스름 돈", Integer.toString(_10paycash.change) } };
 
 		DefaultTableModel model2 = new DefaultTableModel(contents2, header2);
 
 		table = new JTable(model2);
 		new Style(table);
-		table.setBounds(57, 154, 390, 270);
+		table.setBounds(57, 154, 390, 250);
 		table.setRowHeight(35);
 		p2.add(table);
 		
-		JLabel payType = new JLabel("");
+		JLabel payType = new JLabel("거래종류:"+type);
+		new Style(payType);
+		payType.setBounds(57, 434, 130, 20);
+		p2.add(payType);
 
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
