@@ -126,7 +126,7 @@ public class _10paycash extends JFrame {
 						if (_08reservation.price >= 90000) {
 							pstmt.setString(3, "정기 이용권");
 						} else {
-							pstmt.setString(3, "일일 이용권");
+							pstmt.setString(3, "당일 이용권");
 						}
 							pstmt.setInt(4, _00main.id);
 

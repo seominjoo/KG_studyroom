@@ -293,7 +293,7 @@ public class StoreBtnPage extends JFrame {
                               );
                         PreparedStatement pstmt = null;
 
-                        if (seat_type.equals("일일 이용권")) {
+                        if (seat_type.equals("당일 이용권")) {
                            
                            String sql_out = "UPDATE seat SET Seat_Statement = '사용 가능', time_enter='01/01/01 00:00:00.000000000', time_checkout='01/01/01 00:00:00.000000000'"
                                  + " WHERE Seat_Number=?";

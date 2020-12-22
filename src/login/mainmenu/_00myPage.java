@@ -66,8 +66,4 @@ public class _00myPage extends JFrame {
       setBounds(550, 300, 450, 220);
       setLocationRelativeTo(null);
    }
-
-   public static void main(String[] args) {
-      new _00myPage();
-   }
 }

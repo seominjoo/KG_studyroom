@@ -44,7 +44,7 @@ public class _03whatWeek extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainPage.user_page_panel.add
-				("예약페이지",new _08reservation(time_now.plusWeeks(2), 
+				("예약페이지",new _08reservation(time_now, time_now.plusWeeks(2), 
 						Integer.parseInt(_01start.pass_price.get(13)), _01start.pass_price.get(12)));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
@@ -56,7 +56,7 @@ public class _03whatWeek extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainPage.user_page_panel.add
-				("예약페이지",new _08reservation(time_now.plusWeeks(4), 
+				("예약페이지",new _08reservation(time_now, time_now.plusWeeks(4), 
 						Integer.parseInt(_01start.pass_price.get(15)),_01start.pass_price.get(14)));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
@@ -68,7 +68,7 @@ public class _03whatWeek extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainPage.user_page_panel.add
-				("예약페이지",new _08reservation(time_now.plusWeeks(8), 
+				("예약페이지",new _08reservation(time_now, time_now.plusWeeks(8), 
 						Integer.parseInt(_01start.pass_price.get(17)),_01start.pass_price.get(16)));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");

@@ -27,10 +27,16 @@ public class _09payment extends JPanel{
    static LocalDateTime time_now;
    String time_checkout;
    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
-  
+   LocalDateTime pluss;
    public _09payment(LocalDateTime ss, int seat_price, String seat_type) {
-	   time_now = LocalDateTime.now();
-      setLayout(null);
+	   time_now = LocalDateTime.now().plusSeconds(30);
+	   
+	   // 결제 창 기준 time_now로 만료 시간 적용 (+ 결제 시간 30초)
+	   this.pluss = ss;
+	   pluss = ss.plusSeconds(time_now.getMinute() -_08reservation.whatclass_now.getMinute());
+	   pluss = ss.plusSeconds(((int) Math.ceil(time_now.getSecond() -_08reservation.whatclass_now.getSecond())));
+      
+	  setLayout(null);
       new Style(this);
 
       JPanel p2 = new JPanel();
@@ -42,8 +48,8 @@ public class _09payment extends JPanel{
       String header[] = {"결제","정보"};
       String contents[][]= {
             {"번호",_08reservation.number},
-            {"결제 시간",time_now.format(dateTimeFormatter)},
-            {"사용 만료 시간",ss.format(dateTimeFormatter)}, 
+            {"결제 시간",time_now.format(dateTimeFormatter).substring(0, 23)},
+            {"사용 만료 시간",pluss.format(dateTimeFormatter).substring(0, 23)}, 
             {"이용권",_08reservation.type11},
             {"결제 금액",Integer.toString((_08reservation.price))}
       };
@@ -97,7 +103,7 @@ public class _09payment extends JPanel{
                PreparedStatement pstmt = null;
 
          if(cash_btn.isSelected()) {// 현금 결제 프레임 창 띄우기
-            new _10paycash(ss);
+            new _10paycash(pluss);
          }
 
 
@@ -123,7 +129,7 @@ public class _09payment extends JPanel{
             String sqlt1 = "update seat set time_enter =?,time_checkout=? where Seat_Number= ?";
             pstmt = conn.prepareStatement(sqlt1);
             pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
-            pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(ss));
+            pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(pluss));
             pstmt.setInt(3, i+1);
             int rowt1 = pstmt.executeUpdate();
 
@@ -131,7 +137,7 @@ public class _09payment extends JPanel{
             String sql_pay = " insert into Payment_Record(Paid_Time,Exit_Time,person_id,Seat_Type,Pay_Method,Payment) values(?,?,?,?,?,?)";
             pstmt = conn.prepareStatement(sql_pay);
             pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
-            pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(ss));
+            pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(pluss));
             pstmt.setInt(3, _00main.id);
             pstmt.setString(4, _08reservation.type11);
             pstmt.setString(5, "카드");
@@ -142,11 +148,11 @@ public class _09payment extends JPanel{
             sql = "update person_info set seat_number=?,Expiration_seat=?,seat_type=? where person_id=?";
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, i+1);
-            pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(ss));
+            pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(pluss));
             if(_08reservation.price>=90000) {
             pstmt.setString(3, "정기 이용권");
             }else {
-            pstmt.setString(3, "일일 이용권");
+            pstmt.setString(3, "당일 이용권");
             }
             pstmt.setInt(4, _00main.id);
             int row3 = pstmt.executeUpdate();
@@ -168,7 +174,7 @@ public class _09payment extends JPanel{
          String sqlt3 = "update seat set time_enter =?,time_checkout=? where Seat_Number= ?";
          pstmt = conn.prepareStatement(sqlt3);
          pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
-         pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(ss));
+         pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(pluss));
          pstmt.setInt(3, i+101);
          int rowt3 = pstmt.executeUpdate();
                            
@@ -176,7 +182,7 @@ public class _09payment extends JPanel{
          String sql_pay = " insert into Payment_Record(Paid_Time,Exit_Time,person_id,Seat_Type,Pay_Method,Payment) values(?,?,?,?,?,?)";
          pstmt = conn.prepareStatement(sql_pay);
          pstmt.setTimestamp(1, Time.localDateTimeTOTimeStamp(time_now));
-         pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(ss));
+         pstmt.setTimestamp(2, Time.localDateTimeTOTimeStamp(pluss));
          pstmt.setInt(3, _00main.id);
          pstmt.setString(4, _08reservation.type11);
          pstmt.setString(5, "카드");
@@ -239,7 +245,7 @@ public class _09payment extends JPanel{
 
          JOptionPane.showMessageDialog(null,"결제 완료");
          
-         MainPage.user_page_panel.add("영수증",new _11receipt(ss,_08reservation.price));
+         MainPage.user_page_panel.add("영수증",new _11receipt(pluss,_08reservation.price));
          MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
          MainPage.user_cards.show(MainPage.user_page_panel, "영수증");
          MainPage.userToggle = "영수증"; 
@@ -267,7 +273,7 @@ public class _09payment extends JPanel{
       for(int i=0;i<20;i++) {
          _08reservation.locker_btn.get(i).setSelected(false);
       } 
-      MainPage.user_page_panel.add ("예약페이지", new _08reservation(_08reservation.time11, _08reservation.price11, _08reservation.type11));
+      MainPage.user_page_panel.add ("예약페이지", new _08reservation(_08reservation.whatclass_now, _08reservation.time11, _08reservation.price11, _08reservation.type11));
       MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
       MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
       MainPage.userToggle = "예약페이지"; 

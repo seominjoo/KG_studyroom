@@ -29,7 +29,7 @@ public class StoreOutBtnAction {
 				int row = pstmt.executeUpdate(); 
 				System.out.printf("locker %d행이 바뀌었습니다\n",row);
 
-				sql = "UPDATE person_info SET locker_number=null WHERE Locker_Number=?";
+				sql = "UPDATE person_info SET locker_number=0 WHERE Locker_Number=?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, StoreMovePage.locker_move_number);
 				int row2 = pstmt.executeUpdate(); 
@@ -45,7 +45,7 @@ public class StoreOutBtnAction {
 				int row = pstmt.executeUpdate(); 
 				System.out.printf("seat %d행이 바뀌었습니다\n",row);
 
-				sql = "UPDATE person_info SET seat_number=null WHERE seat_Number=?";
+				sql = "UPDATE person_info SET seat_number=0 WHERE seat_Number=?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, StoreMovePage.room_move_number);
 				int row2 = pstmt.executeUpdate(); 
@@ -55,11 +55,11 @@ public class StoreOutBtnAction {
 				
 			} else if (StoreManagementPage.type.equals("좌석")) {
 			
-				if (StoreBtnPage.seat_type.equals("일일 이용권")) {
+				if (StoreBtnPage.seat_type.equals("당일 이용권")) {
 
 					sql = "UPDATE seat AS s, person_info AS p"
 							+ " SET s.Seat_Statement ='사용 가능',s.time_enter='01/01/01 00:00:00.000000000',s.time_checkout='01/01/01 00:00:00.000000000',"
-							+ " p.seat_number=null, p.seat_type=null, expiration_seat ='01/01/01 00:00:00.000000000'"
+							+ " p.seat_number=0, p.seat_type=0, expiration_seat ='01/01/01 00:00:00.000000000'"
 							+ " WHERE s.Seat_Number=? AND p.Seat_Number=?";
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setInt(1, StoreManagementPage.seat_number);
@@ -73,7 +73,7 @@ public class StoreOutBtnAction {
 
 					sql = "UPDATE seat AS s, person_info AS p"
 							+ " SET s.Seat_Statement ='사용 가능',s.time_enter='01/01/01 00:00:00.000000000',s.time_checkout='01/01/01 00:00:00.000000000',"
-							+ " p.seat_number=null"
+							+ " p.seat_number=0"
 							+ " WHERE s.Seat_Number=? AND p.Seat_Number=?";
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setInt(1, StoreManagementPage.seat_number);

@@ -58,7 +58,7 @@ public class _03whatHour extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainPage.user_page_panel.add
-				("예약페이지",new _08reservation(time_now.plusHours(2), Integer.parseInt(_01start.pass_price.get(3)), _01start.pass_price.get(2)));
+				("예약페이지",new _08reservation(time_now, time_now.plusHours(2), Integer.parseInt(_01start.pass_price.get(3)), _01start.pass_price.get(2)));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";
@@ -69,7 +69,7 @@ public class _03whatHour extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainPage.user_page_panel.add
-				("예약페이지",new _08reservation(time_now.plusHours(4), Integer.parseInt(_01start.pass_price.get(5)), _01start.pass_price.get(4)));
+				("예약페이지",new _08reservation(time_now, time_now.plusHours(4), Integer.parseInt(_01start.pass_price.get(5)), _01start.pass_price.get(4)));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";
@@ -80,7 +80,7 @@ public class _03whatHour extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainPage.user_page_panel.add
-				("예약페이지",new _08reservation(time_now.plusHours(6),Integer.parseInt(_01start.pass_price.get(7)), _01start.pass_price.get(6)));
+				("예약페이지",new _08reservation(time_now, time_now.plusHours(6),Integer.parseInt(_01start.pass_price.get(7)), _01start.pass_price.get(6)));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";
@@ -91,7 +91,7 @@ public class _03whatHour extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainPage.user_page_panel.add
-				("예약페이지",new _08reservation(time_now.plusHours(8), Integer.parseInt(_01start.pass_price.get(9)), _01start.pass_price.get(8)));
+				("예약페이지",new _08reservation(time_now, time_now.plusHours(8), Integer.parseInt(_01start.pass_price.get(9)), _01start.pass_price.get(8)));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";
@@ -102,7 +102,7 @@ public class _03whatHour extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainPage.user_page_panel.add
-				("예약페이지",new _08reservation(time_now.plusHours(12), Integer.parseInt(_01start.pass_price.get(11)), _01start.pass_price.get(10)));
+				("예약페이지",new _08reservation(time_now, time_now.plusHours(12), Integer.parseInt(_01start.pass_price.get(11)), _01start.pass_price.get(10)));
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "예약페이지");
 				MainPage.userToggle = "예약페이지";
