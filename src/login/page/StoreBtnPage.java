@@ -168,15 +168,15 @@ public class StoreBtnPage extends JFrame {
          } else if (StoreManagementPage.type.equals("·ë")) {
 
             out_locker.setVisible(false);
-            String sql2 = "SELECT Person_Id, Person_Name, Phone_Number, time_checkout FROM person_info, seat WHERE seat.seat_number =? AND seat.seat_number = person_info.seat_number";
+            String sql2 = "SELECT Person_Id, Person_Name, Phone_Number, time_checkout FROM person_info, seat WHERE seat.seat_number =? AND seat.seat_number = person_info.room_number";
             pstmt = conn.prepareStatement(sql2);
             pstmt.setInt(1, StoreManagementPage.room_number); 
-            ResultSet rs = pstmt.executeQuery(); 
-            while(rs.next()) { 
-               id = rs.getInt(1);
-               name = rs.getString(2);
-               pn = rs.getString(3);
-               time = rs.getTimestamp(4);
+            ResultSet rs2 = pstmt.executeQuery(); 
+            while(rs2.next()) { 
+               id = rs2.getInt(1);
+               name = rs2.getString(2);
+               pn = rs2.getString(3);
+               time = rs2.getTimestamp(4);
                exp = Time.TimeStampTOlocalDateTime(time).format(dateTimeFormatter);
             }
 
@@ -250,7 +250,7 @@ public class StoreBtnPage extends JFrame {
                   }
                }
             });
-            if (rs != null) rs.close();
+            if (rs2 != null) rs2.close();
 
          } else if (StoreManagementPage.type.equals("ÁÂ¼®")) {
 
@@ -258,13 +258,13 @@ public class StoreBtnPage extends JFrame {
             String sql3 = "SELECT Person_Id, Person_Name, seat_type, Phone_Number, time_checkout FROM person_info, seat WHERE seat.seat_number =? AND seat.seat_number = person_info.seat_number";
             pstmt = conn.prepareStatement(sql3);
             pstmt.setInt(1, StoreManagementPage.seat_number); 
-            ResultSet rs = pstmt.executeQuery(); 
-            while(rs.next()) { 
-               id = rs.getInt(1);
-               name = rs.getString(2);
-               seat_type = rs.getString(3);
-               pn = rs.getString(4);
-               time = rs.getTimestamp(5);
+            ResultSet rs3 = pstmt.executeQuery(); 
+            while(rs3.next()) { 
+               id = rs3.getInt(1);
+               name = rs3.getString(2);
+               seat_type = rs3.getString(3);
+               pn = rs3.getString(4);
+               time = rs3.getTimestamp(5);
                exp = Time.TimeStampTOlocalDateTime(time).format(dateTimeFormatter);
             }
 
@@ -366,7 +366,7 @@ public class StoreBtnPage extends JFrame {
                   }
                }
             });   
-            if (rs != null) rs.close();
+            if (rs3 != null) rs3.close();
          } 
 
          title.setBounds(120,10,300,40);

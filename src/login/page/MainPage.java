@@ -38,33 +38,31 @@ public class MainPage extends JFrame implements Runnable {
    public static int w = 716; //메인 패널 가로 길이(width)
    public static int h = y+40; //메인 패널 세로 길이(height)
 
-   public static JPanel main_page_panel;
-   public static CardLayout main_cards;
-   public static JPanel user_page_panel;
-   public static CardLayout user_cards;
-   public static JPanel updateTable;
-   public static CardLayout statecard;
-   public static JLabel background;
    
-   public static JPanel deleteBrown;
-   public static JPanel leftup;
-   public static JPanel rightup;
-   public static JPanel logout;
-   public static JPanel extend;
-   public static JPanel home;
+   public static JLabel background; // 배경화면
+   public static JPanel main_page_panel; // 메인페이지 카드패널
+   public static CardLayout main_cards;
+   public static JPanel user_page_panel; // 사용자메뉴페이지 카드패널
+   public static CardLayout user_cards;
+   public static JPanel updateTable; // 실시간 현황패널
+   public static CardLayout statecard;
+   
+   public static JPanel logout; // 로그아웃아이콘 카드패널
    public static CardLayout logoutcard;
+   public static JPanel extend;// 자동로그아웃 카드패널
    public static CardLayout extendcard;
-   public static CardLayout homecard;
-   public static JPanel changeUser;// 자동로그아웃 카드패널
+   public static JPanel changeUser; // 자동로그아웃 카드패널
    public static CardLayout changeUsercard;
+   public static JPanel home; // 홈버튼 카드패널
+   public static CardLayout homecard;
+   public static JButton homebtn;
    public static JButton logoutbtn;
+   public static JButton extendbtn;
    public static JButton changeUserbtn;
    public static JButton empty;
    public static JButton empty2;
    public static JButton empty3;
    public static JButton empty4;
-   public static JButton extendbtn;
-   public static JButton homebtn;
    Thread thread;
    JLabel clock;
 
@@ -89,7 +87,15 @@ public class MainPage extends JFrame implements Runnable {
       fram_panel.setLayout(null);
       fram_panel.setBounds(0, 0, x, y);//x=1000, y=600
       
-      
+      // 터치 화면
+      JPanel main = new JPanel(new BorderLayout());
+      new Style(main);
+      JButton touch = new JButton("<html>&nbsp;<br/>터치를 하여<br/>이용해주세요<br/><br/><br/><br/></html>");
+      new Style(touch);
+      touch.setBorder(null);
+      touch.addActionListener(new MainBtn_Action(touch));
+      main.add(touch);
+
       // 배경 이미지
       background = new JLabel(new Conversion_image("image/배경화면z.jpg", 4).imageicon_smooth);
       background.setOpaque(false);
@@ -129,12 +135,12 @@ public class MainPage extends JFrame implements Runnable {
       home.add("1",empty4);
       
       // 홈 버튼
-      homebtn = new JButton(new Conversion_image("image/홈버튼.png", 40, 40).imageicon_smooth);
+      homebtn = new JButton(new Conversion_image("image/홈버튼.png", 30, 30).imageicon_smooth);
       new Style(homebtn); 
       homebtn.setText("홈");
       homebtn.addActionListener(new MainBtn_Action(homebtn));
       home.add("2",homebtn);
-      home.setBounds(x-700,5,50,40);
+      home.setBounds(x-700,5,40,40);
       
       // 로그아웃 패널    
       logout = new JPanel();
@@ -155,7 +161,6 @@ public class MainPage extends JFrame implements Runnable {
       logoutbtn.addActionListener(new MainBtn_Action(logoutbtn));
       logout.add("2",logoutbtn);
       logout.setBounds(x-90, 37, 80, 27);
-
                  
       //연장하기 패널
       extend = new JPanel();
@@ -178,18 +183,6 @@ public class MainPage extends JFrame implements Runnable {
       
       MainPage.updateTable.add(new State());
       MainPage.statecard.next(MainPage.updateTable);
-
-    
-      // 터치 화면
-      JPanel main = new JPanel(new BorderLayout());
-      new Style(main);
-      JButton touch = new JButton("<html>&nbsp;<br/>터치를 하여<br/>이용해주세요<br/><br/><br/><br/></html>");
-      new Style(touch);
-      touch.setBorder(null);
-      touch.addActionListener(new MainBtn_Action(touch));
-      main.add(touch);
-      
-      
 
       // 관리자아이콘 패널    
       changeUser = new JPanel();
@@ -219,10 +212,6 @@ public class MainPage extends JFrame implements Runnable {
       main_page_panel.add("관리자메뉴", new AdminMenuPage());
       main_page_panel.add("회원가입", new SignUpPage());
       main_page_panel.add("비번찾기", new FindPasswordPageUser());
-
-
-     
-
 
       // 현재 시간
       clock = new JLabel();
