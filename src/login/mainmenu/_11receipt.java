@@ -34,7 +34,7 @@ public class _11receipt extends JPanel {
 
 		JLabel label01 = new JLabel("<html><pre>¿µ¼öÁõ</pre>");
 		new Style(label01);
-		label01.setBounds(183, 0, 440, 80);
+		label01.setBounds(200, 0, 440, 80);
 		label01.setFont(new Font("Courier", Font.PLAIN, 35));
 
 		JPanel p2 = new JPanel();
@@ -55,7 +55,7 @@ public class _11receipt extends JPanel {
 
 		table = new JTable(model);
 		new Style(table);
-		table.setBounds(40, 104, 390, 245);
+		table.setBounds(57, 104, 390, 245);
 		table.setRowHeight(35);
 		p2.add(table);
 

@@ -71,13 +71,13 @@ public class SignUpPage extends JPanel {
 		passAlert = new JLabel("", JLabel.RIGHT);
 		new Style(passAlert);
 		passAlert.setFont(new Font("맑은 고딕", Font.BOLD, 10));
-		passAlert.setBounds(475, 294, 100, 25);
+		passAlert.setBounds(495, 298, 100, 25);
 		add(passAlert);
 
 		passConfirmAlert = new JLabel("", JLabel.RIGHT);
 		new Style(passConfirmAlert);
 		passConfirmAlert.setFont(new Font("맑은 고딕", Font.BOLD, 10));
-		passConfirmAlert.setBounds(475, 364, 100, 25);
+		passConfirmAlert.setBounds(495, 364, 100, 25);
 		add(passConfirmAlert);
 
 		setLayout(new BorderLayout(80, 0));

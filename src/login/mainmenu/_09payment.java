@@ -26,7 +26,7 @@ public class _09payment extends JPanel{
    private JTable table;
    static LocalDateTime time_now;
    String time_checkout;
-   DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
+   DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 a hh시 mm분 ss초");
    LocalDateTime pluss;
    public _09payment(LocalDateTime ss, int seat_price, String seat_type) {
 	   time_now = LocalDateTime.now().plusSeconds(30);
@@ -48,8 +48,8 @@ public class _09payment extends JPanel{
       String header[] = {"결제","정보"};
       String contents[][]= {
             {"번호",_08reservation.number},
-            {"결제 시간",time_now.format(dateTimeFormatter).substring(0, 23)},
-            {"사용 만료 시간",pluss.format(dateTimeFormatter).substring(0, 23)}, 
+            {"결제 시간",time_now.format(dateTimeFormatter).substring(0, 24)},
+            {"사용 만료 시간",pluss.format(dateTimeFormatter).substring(0, 24)}, 
             {"이용권",_08reservation.type11},
             {"결제 금액",Integer.toString((_08reservation.price))}
       };
