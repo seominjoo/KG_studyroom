@@ -169,7 +169,7 @@ public class MainPage extends JFrame implements Runnable {
       information.getColumn("2").setCellRenderer(left);
       background.add(information);
       
-      JLabel line = new JLabel("天天天天天天天天天天天天天", JLabel.LEFT);
+      JLabel line = new JLabel("天天天天天天天天天天天天天天天天天", JLabel.LEFT);
       line.setBounds(18,y*3/4-30, 280, 20);
       line.setFont(new Font("蜈擎 堅蛐", Font.BOLD, 16));
       line.setForeground(Color.decode("#cfab8b"));
