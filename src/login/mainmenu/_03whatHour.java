@@ -18,10 +18,10 @@ public class _03whatHour extends JPanel {
 	public static LocalDateTime time_now = LocalDateTime.now(); 
 
 	public _03whatHour() {
-		
+
 		setLayout(null);
 		new Style(this);
-		 
+
 		//메뉴 버튼 6개
 		JButton btn_2hr= new JButton(_01start.pass_price.get(2)+"("+_01start.pass_price.get(3)+")");
 		new Style(btn_2hr);
@@ -47,12 +47,12 @@ public class _03whatHour extends JPanel {
 		new Style(btn_12hr);
 		btn_12hr.setBounds(MainPage.w/2-235, MainPage.h/2+30, 220, 80);
 		this.add(btn_12hr);
-  
+
 		JButton btn_back = new JButton("이전 화면");
 		new Style(btn_back);
 		btn_back.setBounds(MainPage.w/2+5, MainPage.h/2+30, 220, 80);
 		this.add(btn_back, btn_back);
-		
+
 
 		btn_2hr.addActionListener(new ActionListener() { //다음 페이지(2시간 이용권)
 			@Override
@@ -111,8 +111,7 @@ public class _03whatHour extends JPanel {
 
 		btn_back.addActionListener(new ActionListener() { //이전 페이지
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				 
+			public void actionPerformed(ActionEvent e) { 
 				MainPage.main_cards.show(MainPage.main_page_panel, "사용자메뉴");
 				MainPage.user_cards.show(MainPage.user_page_panel, "좌석이용권");
 				MainPage.userToggle = "좌석이용권";

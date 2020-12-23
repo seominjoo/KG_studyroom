@@ -20,28 +20,25 @@ public class PassChangeDB {
 
 	JTable table;
 
-	public PassChangeDB(int p,int k) { 
+	public PassChangeDB(int p,int k) {   
 
-
-		try {
+		try {//이용권 가격 변경 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
 			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "1234");
 
 			conn.setAutoCommit(false);
-		  
-			if(k==0) { 
+
+			if(k==0) {  
 				String sql= "update seat_price_info set seat_price=? where seat_type=?" ;
 				PreparedStatement pstm1 = conn.prepareStatement(sql);
 
 				pstm1.setInt(1,Integer.parseInt(PassChange.text.get(0).getText()));
 				pstm1.setString(2,PassChange.combobox.get(0).getSelectedItem().toString()); 
-				int row = pstm1.executeUpdate();
-				System.out.printf("%d행 업뎃\n",row);
+				int row = pstm1.executeUpdate(); 
 
 				if (pstm1 != null)
-					pstm1.close(); 
-				 
+					pstm1.close();  
 
 			}else if(k==1) { 
 				String sql= "update seat_price_info set seat_price=? where seat_type=?" ;
@@ -49,30 +46,27 @@ public class PassChangeDB {
 
 				pstm1.setInt(1,Integer.parseInt(PassChange.text.get(1).getText()));
 				pstm1.setString(2,PassChange.combobox.get(1).getSelectedItem().toString()); 
-				int row = pstm1.executeUpdate();
-				System.out.printf("%d행 업뎃\n",row);
+				int row = pstm1.executeUpdate(); 
 				if (pstm1 != null)
 					pstm1.close(); 
-				 
+
 			}else if(k==2) { 
 				String sql= "update seat_price_info set seat_price=? where seat_type=?" ;
 				PreparedStatement pstm1 = conn.prepareStatement(sql);
 
 				pstm1.setInt(1,Integer.parseInt(PassChange.text.get(2).getText()));
 				pstm1.setString(2,PassChange.combobox.get(2).getSelectedItem().toString()); 
-				int row = pstm1.executeUpdate();
-				System.out.printf("%d행 업뎃\n",row);
+				int row = pstm1.executeUpdate(); 
 				if (pstm1 != null)
 					pstm1.close(); 
-			 
+
 			}else if(k==3) { 
 				String sql= "update locker_price_info set locker_price=? where locker_type=?" ;
 				PreparedStatement pstm1 = conn.prepareStatement(sql);
-				
+
 				pstm1.setInt(1,Integer.parseInt(PassChange.text.get(3).getText()));
 				pstm1.setString(2,PassChange.combobox.get(3).getSelectedItem().toString()); 
-				int row = pstm1.executeUpdate();
-				System.out.printf("%d행 업뎃\n",row);
+				int row = pstm1.executeUpdate(); 
 				if (pstm1 != null)
 					pstm1.close(); 
 			}
@@ -82,7 +76,7 @@ public class PassChangeDB {
 				PreparedStatement pstm = conn.prepareStatement(sql); 
 
 				ResultSet rs = pstm.executeQuery(); 
-				String header[] = {"이용권","가격","이용권","가격"};//12열
+				String header[] = {"이용권","가격","이용권","가격"}; 
 
 				int row=0;
 				int i = 0;
@@ -94,9 +88,7 @@ public class PassChangeDB {
 				rs = pstm.executeQuery();
 
 				String[][] contents = new String[row-3][header.length];
-				while (rs.next()) { 
-					
-					 
+				while (rs.next()) {  
 					if(i==3) {
 						contents[i][2] = rs.getString(3);
 						contents[i][3] = Integer.toString(rs.getInt(4));
@@ -110,21 +102,15 @@ public class PassChangeDB {
 					}else {
 						contents[i][0] = rs.getString(1);
 						contents[i][1] = Integer.toString(rs.getInt(2));
-					}
-
-					
+					} 
 					i++;
-				} 
-
+				}  
 				DefaultTableModel model = new DefaultTableModel(contents, header);
 
 				table = new JTable(model);
 
-				table.getTableHeader().setOpaque(false);
-				// table.setBounds(40, 104, 390, 245);
-				table.setRowHeight(40);
-
-				//	           table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+				table.getTableHeader().setOpaque(false); 
+				table.setRowHeight(40); 
 				table.getColumnModel().getColumn(0).setPreferredWidth(150);
 				table.getColumnModel().getColumn(1).setPreferredWidth(60);
 				table.getColumnModel().getColumn(2).setPreferredWidth(150);
@@ -137,26 +123,16 @@ public class PassChangeDB {
 				new Style(table);
 				PassChange.scroll.setViewportView(table);
 
-
 				if (rs != null)
 					rs.close();
 				if (pstm != null)
 					pstm.close();
 
-			 
 			}
 			if (conn != null)
-				conn.close();
-
+				conn.close(); 
 		} catch (ClassNotFoundException | SQLException e) { 
 			e.printStackTrace();
-		}
-
-
-
-
-
-
-	}
-
-}
+		} 
+	} 
+} 

@@ -131,11 +131,6 @@ public class _10paycash extends JFrame {
                      pstmt.setInt(4, _00main.id);
 
                   int row3 = pstmt.executeUpdate();
-
-                  System.out.printf("%d번 자리가 예약되었습니다.(%d행 업데이트)\n", i + 1, row);
-                  System.out.printf("입실/퇴실 시간이 업데이트되었습니다.(%d행 업데이트)\n", rowt1);
-                  System.out.printf("결제 기록이 업데이트되었습니다.(%d행 업데이트)\n", rowp);
-                  System.out.printf("회원 정보가 업데이트되었습니다.(%d행 업데이트)\n", row3);
                   }
                }
             
@@ -171,12 +166,6 @@ public class _10paycash extends JFrame {
                   pstmt.setInt(1, i + 101);
                   pstmt.setInt(2, _00main.id);
                   int row5 = pstmt.executeUpdate();
-
-                  System.out.printf("%d호 룸이 예약되었습니다.(%d행 업데이트)\n", i + 101, row2);
-                  System.out.printf("입실/퇴실 시간이 업데이트되었습니다.(%d행 업데이트)\n", rowt3);
-                  System.out.printf("결제 기록이 업데이트되었습니다.(%d행 업데이트)\n", rowp);
-                  System.out.printf("회원정보가 업데이트되었습니다.(%d행 업데이트)\n", row5);
-
                   }
                }
             for (int i = 0; i < 20; i++) {
@@ -213,12 +202,6 @@ public class _10paycash extends JFrame {
                   pstmt.setInt(1, i + 1);
                   pstmt.setInt(2, _00main.id);
                   int row1 = pstmt.executeUpdate();
-
-                  System.out.printf("%d번 사물함이 예약되었습니다.(%d행 업데이트)\n", i + 1, row3);
-                  System.out.printf("입실/퇴실 시간이 업데이트되었습니다.(%d행 업데이트)\n", rowt2);
-                  System.out.printf("결제 기록이 업데이트되었습니다.(%d행 업데이트)\n", rowp);
-                  System.out.printf("회원 정보가 업데이트되었습니다.(%d행 업데이트)\n", row1);
-
                   }
                }
 

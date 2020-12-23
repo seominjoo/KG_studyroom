@@ -30,7 +30,7 @@ public class _05locker extends JPanel {
 		new Style(btn_back);
 		btn_back.setBounds(MainPage.w/2-150, MainPage.h/2-10, 300, 100);
 	
-		check_locker_btn.addActionListener(new ActionListener() { //다음 페이지
+		check_locker_btn.addActionListener(new ActionListener() { //예약 페이지
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainPage.user_page_panel.add

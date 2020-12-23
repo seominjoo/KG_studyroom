@@ -12,32 +12,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class _02dayRoom extends JPanel {
-	
-//	public static void main(String[] args) {
-//		JFrame frame = new JFrame();
-//		_02dayRoom main = new _02dayRoom();
-//		frame.setBounds(0,0,683,562);
-//		frame.add(main);
-//		frame.setVisible(true);
-//	}
 
 	public _02dayRoom() {
 
 		new Style(this);
 		this.setLayout(null);
-		
+
 		//메뉴 버튼 2개
 		JButton daily_btn = new JButton("당일 이용권"); 
 		this.add(daily_btn);
 		new Style(daily_btn); 
 		daily_btn.setBounds(MainPage.w/2-150, MainPage.h/2-140, 300, 100);
-		
+
 		JButton back_btn = new JButton("이전 화면"); 
 		this.add(back_btn);
 		new Style(back_btn);
 		back_btn.setBounds(MainPage.w/2-150, MainPage.h/2-10, 300, 100);
 
-		daily_btn.addActionListener(new ActionListener() { //다음 페이지
+		daily_btn.addActionListener(new ActionListener() { //당일권 페이지
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainPage.user_page_panel.add("당일권가격표(룸)", new _03whatHourRoom());

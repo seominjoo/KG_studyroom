@@ -25,7 +25,7 @@ public class ActionBtn_select extends JFrame implements ActionListener {
    @Override
    public void actionPerformed(ActionEvent e) {
 
-      if (on++ % 2 == 0) {
+      if (on++ % 2 == 0) { //선택 버튼 누를때마다 바뀌는 액션
             for (JButton seat_btn : _08reservation.seats_btn) {
                if (seat_btn.isSelected() == true && seat_btn.isEnabled() == true) { // 이미 있는 좌석은 제외
                   seat_btn.setBackground(Color.decode("#241614"));
@@ -34,35 +34,35 @@ public class ActionBtn_select extends JFrame implements ActionListener {
                }
             }
             for (JButton room_btn : _08reservation.room_btn) {
-               if (room_btn.isSelected() == true && room_btn.isEnabled() == true) { // 이미 있는 좌석은 제외
+               if (room_btn.isSelected() == true && room_btn.isEnabled() == true) {  
                   room_btn.setBackground(Color.decode("#241614"));
                   room_btn.setForeground(Color.orange);
                   room_btn.setSelected(false);
                }
             }
             for (JButton locker_btn : _08reservation.locker_btn) {
-               if (locker_btn.isSelected() == true && locker_btn.isEnabled() == true) { // 이미 있는 좌석은 제외
+               if (locker_btn.isSelected() == true && locker_btn.isEnabled() == true) {  
                   locker_btn.setBackground(Color.decode("#241614"));
                   locker_btn.setForeground(Color.orange);
                   locker_btn.setSelected(false);
                }
             }
             for (JButton seats_btn : _06move_selectSeat.seats_btn) {
-               if (seats_btn.isSelected() == true && seats_btn.isEnabled() == true) { // 이미 있는 좌석은 제외
+               if (seats_btn.isSelected() == true && seats_btn.isEnabled() == true) {  
                   seats_btn.setBackground(Color.decode("#241614"));
                   seats_btn.setForeground(Color.orange);
                   seats_btn.setSelected(false);
                }
             }
             for (JButton room_btn : _06move_selectSeat.room_btn) {
-               if (room_btn.isSelected() == true && room_btn.isEnabled() == true) { // 이미 있는 좌석은 제외
+               if (room_btn.isSelected() == true && room_btn.isEnabled() == true) {  
                   room_btn.setBackground(Color.decode("#241614"));
                   room_btn.setForeground(Color.orange);
                   room_btn.setSelected(false);
                }
             }
             for (JButton seats_btn : _07in_selectSeat.seats_btn) {
-               if (seats_btn.isSelected() == true && seats_btn.isEnabled() == true) { // 이미 있는 좌석은 제외
+               if (seats_btn.isSelected() == true && seats_btn.isEnabled() == true) {  
                   seats_btn.setBackground(Color.decode("#241614"));
                   seats_btn.setForeground(Color.orange);
                   seats_btn.setSelected(false);
@@ -70,8 +70,7 @@ public class ActionBtn_select extends JFrame implements ActionListener {
             }
          btn.setForeground(Color.decode("#241614"));
          btn.setBackground(Color.orange);
-         btn.setSelected(true);
-         System.out.println();
+         btn.setSelected(true); 
 
          on = 0;
       }
