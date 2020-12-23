@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
 
 public class Paycash extends JFrame {
@@ -31,7 +32,7 @@ public class Paycash extends JFrame {
       setBounds(400, 200, 380, 250);
       setVisible(true);
       
-      String price = Integer.toString((Reservation.price11));
+      String price = NumberFormat.getInstance().format(Reservation.price11);
       
       JPanel panel = new JPanel();
       panel.setBounds(0, 0, 420, 322);

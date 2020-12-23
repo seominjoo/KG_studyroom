@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -54,7 +55,7 @@ public class Payment extends JPanel{
             {"    결제 시간","   "+time_now.format(dateTimeFormatter)},
             {"    사용 만료 시간","   "+pluss.format(dateTimeFormatter)}, 
             {"    이용권","   "+Reservation.type11},
-            {"    결제 금액","   "+Integer.toString((Reservation.price))},
+            {"    결제 금액","   "+NumberFormat.getInstance().format(Reservation.price)},
             {"",""}
       };
 

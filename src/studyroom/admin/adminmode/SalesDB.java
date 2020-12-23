@@ -85,11 +85,13 @@ public class SalesDB {
 				while (rs1.next()) {
 					contents[i][0] = rs1.getString(1).substring(0, 19);
 					for (int j = 1; j < header.length; j++) {
-						contents[i][j] = rs1.getString(j + 1);
 
 						if (j == 5) {
+							contents[i][5] = NumberFormat.getInstance().format(Integer.parseInt(rs1.getString(j + 1)));
 							sum += Integer.parseInt(rs1.getString(j + 1));
+							continue;
 						}
+						contents[i][j] = rs1.getString(j + 1);
 					}
 
 					// 데이터 존재할 때, 월매출 눌렀을 때의 주간매출 DB

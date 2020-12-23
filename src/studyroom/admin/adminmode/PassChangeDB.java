@@ -7,8 +7,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.NumberFormat;
 
+import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
@@ -91,17 +94,17 @@ public class PassChangeDB {
 				while (rs.next()) {  
 					if(i==3) {
 						contents[i][2] = rs.getString(3);
-						contents[i][3] = Integer.toString(rs.getInt(4));
+						contents[i][3] = NumberFormat.getInstance().format(rs.getInt(4));
 					}
 					if(i>=5&&i<=7) {
 						contents[i-5][2] = rs.getString(1);
-						contents[i-5][3] = Integer.toString(rs.getInt(2));
+						contents[i-5][3] = NumberFormat.getInstance().format(rs.getInt(2));
 					}else if(i>=8&&i<=12) {
 						contents[i-3][0] = rs.getString(1);
-						contents[i-3][1] = Integer.toString(rs.getInt(2));
+						contents[i-3][1] = NumberFormat.getInstance().format(rs.getInt(2));
 					}else {
 						contents[i][0] = rs.getString(1);
-						contents[i][1] = Integer.toString(rs.getInt(2));
+						contents[i][1] = NumberFormat.getInstance().format(rs.getInt(2));
 					} 
 					i++;
 				}  
@@ -116,6 +119,13 @@ public class PassChangeDB {
 				table.getColumnModel().getColumn(2).setPreferredWidth(150);
 				table.getColumnModel().getColumn(3).setPreferredWidth(60);
 
+				DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+				centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+				centerRenderer.setOpaque(false);
+				for (int j = 0; j < header.length; j++) {
+					table.getColumnModel().getColumn(j).setCellRenderer(centerRenderer);
+				}
+				
 				JTableHeader headers = table.getTableHeader();
 				headers.setBackground(Color.darkGray);
 				headers.setForeground(Color.decode("#cfab8b"));
