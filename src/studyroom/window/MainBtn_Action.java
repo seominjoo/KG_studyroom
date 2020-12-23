@@ -179,7 +179,7 @@ public class MainBtn_Action implements ActionListener {
 						+ DBLoggedIn.phone_number + "' and pw = '" + DBLoggedIn.password + "'";
 				DBLoggedIn db = new DBLoggedIn(update);
 
-				interval = 5;// 자동 로그아웃 카운트 시간
+				interval = 300;// 자동 로그아웃 카운트 시간
 
 				// 버튼 이름
 				nextcard = "사용자메뉴";

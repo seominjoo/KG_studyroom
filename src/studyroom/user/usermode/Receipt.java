@@ -46,7 +46,7 @@ public class Receipt extends JPanel {
 		// 영수증처럼 보이게 하기 위한 하얀 패널
 		JPanel p2 = new JPanel();
 		p2.setBackground(Color.white);
-		p2.setBounds(125, 40, 430, 497);
+		p2.setBounds(140, 40, 430, 517);
 		p2.setLayout(null);
 		add(p2);
 
