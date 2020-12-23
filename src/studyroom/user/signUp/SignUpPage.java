@@ -35,8 +35,8 @@ import studyroom.design.ClearTextField;
 import studyroom.design.PhoneNumberClearTextField;
 import studyroom.design.Style;
 import studyroom.user.MainPage;
-import studyroom.user.login.LoginPage;
 import studyroom.user.signUp.window.ConsentContent;
+
 
 public class SignUpPage extends JPanel {
 	final int GRID = 8;
@@ -62,19 +62,19 @@ public class SignUpPage extends JPanel {
 	
 	public static JCheckBox consentBox;
 
-	// ?��?���???�� ?��?���?? ?��?��?��
+	// 회원가입 페이지 클래스
 	public SignUpPage() {
 		setLayout(null);
 
 		passAlert = new JLabel("", JLabel.RIGHT);
 		new Style(passAlert);
-		passAlert.setFont(new Font("맑�? 고딕", Font.BOLD, 10));
+		passAlert.setFont(new Font("맑은 고딕", Font.BOLD, 10));
 		passAlert.setBounds(495, 298, 100, 25);
 		add(passAlert);
 
 		passConfirmAlert = new JLabel("", JLabel.RIGHT);
 		new Style(passConfirmAlert);
-		passConfirmAlert.setFont(new Font("맑�? 고딕", Font.BOLD, 10));
+		passConfirmAlert.setFont(new Font("맑은 고딕", Font.BOLD, 10));
 		passConfirmAlert.setBounds(495, 364, 100, 25);
 		add(passConfirmAlert);
 
@@ -91,10 +91,10 @@ public class SignUpPage extends JPanel {
 		add(grid, BorderLayout.CENTER);
 		new Style(grid);
 
-		// ?���??
-		JLabel signup = new JLabel("?��?���???��", JLabel.CENTER);
+		// 제목
+		JLabel signup = new JLabel("회원가입", JLabel.CENTER);
 		new Style(signup);
-		signup.setFont(new Font("맑�? 고딕", Font.BOLD, 20));
+		signup.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		grid.add(signup);
 
 		for (SignUpEnum value : SignUpEnum.values()) {
@@ -111,7 +111,7 @@ public class SignUpPage extends JPanel {
 			value.text.setBounds(18, 11, 232, 30);
 			nullPanelInGrid2_2.add(value.text);
 
-			// 비번, 비번 ?��?��
+			// 비번, 비번 확인
 			if (value.equals(value.PASSWORD) || value.equals(value.PASSWORDCONFIRM)) {
 				panelInGrid5_1 = new JPanel();
 				panelInGrid5_1.setLayout(null);
@@ -123,9 +123,9 @@ public class SignUpPage extends JPanel {
 
 				if (value.equals(value.PASSWORD)) {
 
-					JLabel passNoticement = new JLabel("?? ???��문자 & ?��?�� �?? 1�?? (8~12?���??)");
+					JLabel passNoticement = new JLabel("※ 대소문자 & 숫자 각 1개 (8~12자리)");
 					new Style(passNoticement);
-					passNoticement.setFont(new Font("맑�? 고딕", Font.BOLD, 10));
+					passNoticement.setFont(new Font("맑은 고딕", Font.BOLD, 10));
 					passNoticement.setBounds(0, 19, 180, 25);
 					panelInGrid5_1.add(passNoticement);
 
@@ -135,10 +135,10 @@ public class SignUpPage extends JPanel {
 
 							if (Pattern.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,12}$",
 									String.valueOf(value.PASSWORD.blindPW.getPassword()))) {
-								passAlert.setText("?��?���???��");
+								passAlert.setText("사용가능");
 								passAlert.setForeground(Color.decode("#9fda84"));
 							} else if (String.valueOf(value.PASSWORD.blindPW.getPassword()).length() >= 1) {
-								passAlert.setText("?��?��불�?");
+								passAlert.setText("사용불가");
 								passAlert.setForeground(Color.decode("#da9784"));
 							} else {
 								passAlert.setText("");
@@ -172,12 +172,12 @@ public class SignUpPage extends JPanel {
 
 						if (String.valueOf(value.PASSWORD.blindPW.getPassword())
 								.equals(String.valueOf(value.PASSWORDCONFIRM.blindPW.getPassword()))) {
-							passConfirmAlert.setText("비�?번호 ?���??");
+							passConfirmAlert.setText("비밀번호 일치");
 							passConfirmAlert.setForeground(Color.decode("#9fda84"));
 						} else if (String.valueOf(value.PASSWORDCONFIRM.blindPW.getPassword()).equals("")) {
 							passConfirmAlert.setText("");
 						} else {
-							passConfirmAlert.setText("비�?번호 불일�??");
+							passConfirmAlert.setText("비밀번호 불일치");
 							passConfirmAlert.setForeground(Color.decode("#da9784"));
 						}
 					}
@@ -190,7 +190,7 @@ public class SignUpPage extends JPanel {
 			new Style(Label);
 			gridInGrid.add(Label);
 
-			// ?��?��?��?��
+			// 생년월일
 			if (value.equals(SignUpEnum.BIRTHDAY)) {
 				JPanel panelInGrid2 = new JPanel();
 				new Style(panelInGrid2);
@@ -213,16 +213,16 @@ public class SignUpPage extends JPanel {
 				panelInGrid2.add(day);
 				new Style(day);
 
-				// ?��?��, ?�� ?���??
-				year.addActionListener(new YearMonthClick("year", "?��?���???��"));
-				month.addActionListener(new YearMonthClick("month", "?��?���???��"));
+				// 연도, 월 클릭
+				year.addActionListener(new YearMonthClick("year", "회원가입"));
+				month.addActionListener(new YearMonthClick("month", "회원가입"));
 
 				gridInGrid.add(panelInGrid2);
 				grid.add(gridInGrid);
 				continue;
 			}
 
-			// ?��?��번호
+			// 전화번호
 			if (value.equals(SignUpEnum.PHONENUMBER)) {
 				JPanel phoneNumber3Texts = new JPanel();
 				phoneNumber3Texts.setLayout(null);
@@ -265,25 +265,25 @@ public class SignUpPage extends JPanel {
 
 		}
 
-		// ?��?��?���?? 마우?���?? ?���?? ?��
+		// 텍스트를 마우스로 누를 때
 		for (SignUpEnum value : SignUpEnum.values()) {
 			if (value.equals(value.PASSWORD) || value.equals(value.PASSWORDCONFIRM))
 				value.blindPW.addMouseListener(new ClearTextField(value));
 			else
 				value.text.addMouseListener(new ClearTextField(value));
 		}
-		// ?���?? ?��?��
+		// 약관 패널
 		JPanel gridInGrid7 = new JPanel(new GridLayout(1, 2, 0, 2));
 		new Style(gridInGrid7);
 		consent = new HashMap<>();
-		consent.put(new JCheckBox(" ?��비스 ?��?�� ?��?��"), new JButton("?���??보기"));
+		consent.put(new JCheckBox(" 서비스 이용 동의"), new JButton("약관보기"));
 
 		int consentNum = 0;
 		for (Entry<JCheckBox, JButton> kv : consent.entrySet()) {
 			new Style(kv.getKey());
 
 			new Style(kv.getValue());
-			kv.getValue().setFont(new Font("맑�? 고딕", Font.BOLD, 13));
+			kv.getValue().setFont(new Font("맑은 고딕", Font.BOLD, 13));
 
 			kv.getKey().setEnabled(false);
 			consentBox = kv.getKey();
@@ -297,14 +297,14 @@ public class SignUpPage extends JPanel {
 
 			gridInGrid72.add(kv.getValue());
 
-			// ?���?? ?��?�� 보기
+			// 약관 내용 보기
 			consentNum++;
 			kv.getValue().addActionListener(new ConsentContent(consentNum));
 		}
 
 		grid.add(gridInGrid7);
 
-		// ?��?��,거절 ?��?��
+		// 승인,거절 패널
 
 		int col = 4;
 		JPanel gridInGrid8 = new JPanel(new GridLayout(1, col, 30, 10));
@@ -314,7 +314,7 @@ public class SignUpPage extends JPanel {
 		nullPanelInGrid8_1.setLayout(null);
 		new Style(nullPanelInGrid8_1);
 
-		JButton s_Yes = new JButton("�???��");
+		JButton s_Yes = new JButton("가입");
 		s_Yes.setBounds(0, 0, 90, 30);
 
 		JPanel nullPanelInGrid8_2 = new JPanel();
@@ -345,12 +345,12 @@ public class SignUpPage extends JPanel {
 
 		s_Yes.addMouseListener(new ClickSignUp());
 		
-		// 취소 ?��???�� ?�� �???�� ?��?���?? ?��?�� 초기?��
+		// 취소 눌렀을 때 가입 페이지 내용 초기화
 		s_No.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MainPage.main_cards.show(MainPage.main_page_panel, "로그?��");
-				MainPage.userToggle = "로그?��";
+				MainPage.main_cards.show(MainPage.main_page_panel, "로그인");
+				MainPage.userToggle = "로그인";
 
 				for (SignUpEnum value : SignUpEnum.values()) {
 					value.text.setText(value.labelName);
@@ -369,9 +369,9 @@ public class SignUpPage extends JPanel {
 		});
 
 		phoneTotal = new JTextField[] { phone_number1, phone_number2, phone_number3 };
-		// ?���?? ?��?��?�� 마우?���?? ?���?? ?��
+		// 전번 텍스트 마우스로 누를 때
 		for (int i = 0; i < phoneTotal.length; i++) {
-			phoneTotal[i].addMouseListener(new PhoneNumberClearTextField(phoneTotal[i], "?��?���???��"));
+			phoneTotal[i].addMouseListener(new PhoneNumberClearTextField(phoneTotal[i], "회원가입"));
 			addMouseListener(new ClearTextBackGround(phoneTotal[i], PhoneNumberEnum.values()[i]));
 		}
 

@@ -121,16 +121,16 @@ public class MainPage extends JFrame implements Runnable {
       
       JLabel kg = new JLabel("KG");
       new Style(kg);
-      kg.setFont(new Font("Eras Bold ITC", Font.BOLD, 30));
+      kg.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 30));
       kg.setForeground(Color.decode("#cfab8b"));
-      kg.setBounds((x-w)/2-28, 30, 200, 100);
+      kg.setBounds((x-w)/2-28, 35, 200, 100);
       background.add(kg);
    
-      JLabel logo = new JLabel("STUDYROOM");
+      JLabel logo = new JLabel("STUDY ROOM");
       new Style(logo);
-      logo.setFont(new Font("Eras Bold ITC", Font.BOLD, 30));
+      logo.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 30));
       logo.setForeground(Color.decode("#cfab8b"));
-      logo.setBounds((x-w)/2-100, 60, 250, 100);
+      logo.setBounds((x-w)/2-102, 70, 250, 100);
       background.add(logo);
       
       updateTable = new JPanel();
@@ -154,6 +154,7 @@ public class MainPage extends JFrame implements Runnable {
 
       DefaultTableModel model = new DefaultTableModel(contents, header);
       JTable information = new JTable(model);
+      new Style(information);
       information.setBounds(18,y/2-5+16, 280, 100);
       information.getColumnModel().getColumn(1).setPreferredWidth(120);
       information.setRowHeight(25);
@@ -191,6 +192,7 @@ public class MainPage extends JFrame implements Runnable {
       
       DefaultTableModel model2 = new DefaultTableModel(contents2, header2);
       JTable caution = new JTable(model2);
+      new Style(caution);
       caution.setBounds(18,y*3/4+20, 280, 80);
       caution.setRowHeight(25);
       caution.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 12));
