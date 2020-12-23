@@ -22,24 +22,20 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import login.design.Style;
-import login.mainmenu.Time;
-import login.mainmenu._00main;
-import login.mainmenu._06move;
 
 public class StoreMoveBtnPage extends JFrame {
 
-	static BufferedImage image;
 	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
 	JButton move;
-
 	String sql_move ="";
 	String type ="";
-	
-	int id=0;
 	String exp = "";
 	String name ="";
 	String pn = "";
 	Timestamp time = null;
+	
+	static BufferedImage image;
+	int id=0;
 
 	public StoreMoveBtnPage() {
 		
@@ -60,20 +56,14 @@ public class StoreMoveBtnPage extends JFrame {
 			if (StoreManagementPage.type.equals("사물함")) {
 
 				title = new JLabel(StoreMovePage.locker_move_number +"번 사물함으로 이동하시겠습니까?");
-			
 				move.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {	
 						try {
 							Connection conn;
-							conn = DriverManager.getConnection(
-									"jdbc:oracle:thin:@localhost:1521/XEPDB1",
-									"hr",
-									"1234"
-									);
+							conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "1234");
 							PreparedStatement pstmt = null;
 							
-							//seat 테이블에 이동한 사물함 <-> 원래 사물함
 							String sql = "SELECT locker_statement, l_time_enter, l_time_checkout FROM locker WHERE locker_number =?";
 							pstmt = conn.prepareStatement(sql);
 							pstmt.setInt(1, StoreManagementPage.locker_number); 
@@ -84,7 +74,6 @@ public class StoreMoveBtnPage extends JFrame {
 								Timestamp te = rs.getTimestamp("l_time_enter");
 								Timestamp tco = rs.getTimestamp("l_time_checkout");
 								
-								//locker 테이블에 사물함 새로 업데이트
 								sql = "UPDATE locker SET locker_statement =?, l_time_enter=?, l_time_checkout=? WHERE Locker_Number= ?";
 								pstmt = conn.prepareStatement(sql);
 								pstmt.setString(1, st);
@@ -94,28 +83,22 @@ public class StoreMoveBtnPage extends JFrame {
 								int row2 = pstmt.executeUpdate();
 							}
 							
-							//locker 테이블에 이전 사물함 비우기
 							String sql2 = "UPDATE locker SET locker_statement='사용 가능', l_time_enter='01/01/01 00:00:00.000000000',"
 									+ " l_time_checkout = '01/01/01 00:00:00.000000000' WHERE Locker_Number= ?";
 							pstmt = conn.prepareStatement(sql2);
 							pstmt.setInt(1, StoreManagementPage.locker_number);
 							int row = pstmt.executeUpdate();
 							
-							//회원info 테이블에 사물함 번호 업데이트
 							String sql3 = "UPDATE person_info SET locker_number=? WHERE person_id=?";
 							pstmt = conn.prepareStatement(sql3);
 							pstmt.setInt(1, StoreMovePage.locker_move_number);
 							pstmt.setInt(2, StoreBtnPage.id);
 							int row3 = pstmt.executeUpdate();
-												
-							System.out.printf("%d번 자리로 이동되었습니다.(%d행 업데이트)\n", StoreMovePage.locker_move_number,row);
-							System.out.printf("회원 정보가 업데이트되었습니다.(%d행 업데이트)\n",row3); 
-							
+
 							if (pstmt != null) pstmt.close();
 							if (conn != null) conn.close();
 							
 						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}						
 						JOptionPane.showMessageDialog(null, "이동되었습니다.");
@@ -128,22 +111,16 @@ public class StoreMoveBtnPage extends JFrame {
 
 			} else if (StoreManagementPage.type.equals("룸")) {
 
-				title = new JLabel(StoreMovePage.room_move_number +"호 룸으로 이동하시겠습니까?");	
-				
+				title = new JLabel(StoreMovePage.room_move_number +"호 룸으로 이동하시겠습니까?");			
 				move.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 											
 						try {
 							Connection conn;
-							conn = DriverManager.getConnection(
-									"jdbc:oracle:thin:@localhost:1521/XEPDB1",
-									"hr",
-									"1234"
-									);
+							conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "1234");
 							PreparedStatement pstmt = null;
 							
-							//seat 테이블에 이동한 룸 <-> 원래 룸
 							String sql = "SELECT seat_statement, time_enter, time_checkout FROM seat WHERE seat_number =?";
 							pstmt = conn.prepareStatement(sql);
 							pstmt.setInt(1, StoreManagementPage.room_number); 
@@ -154,7 +131,6 @@ public class StoreMoveBtnPage extends JFrame {
 								Timestamp te = rs.getTimestamp("time_enter");
 								Timestamp tco = rs.getTimestamp("time_checkout");
 								
-								//seat 테이블에 룸 새로 업데이트
 								sql = "UPDATE seat SET seat_statement =?, time_enter=?, time_checkout=? WHERE Seat_Number= ?";
 								pstmt = conn.prepareStatement(sql);
 								pstmt.setString(1, st);
@@ -164,28 +140,22 @@ public class StoreMoveBtnPage extends JFrame {
 								int row2 = pstmt.executeUpdate();
 							}
 							
-							//seat 테이블에 이전 룸 비우기
 							String sql2 = "UPDATE seat SET seat_statement='사용 가능', time_enter='01/01/01 00:00:00.000000000', "
 									+ "time_checkout = '01/01/01 00:00:00.000000000' WHERE Seat_Number= ?";
 							pstmt = conn.prepareStatement(sql2);
 							pstmt.setInt(1, StoreManagementPage.room_number);
 							int row = pstmt.executeUpdate();
 							
-							//회원info 테이블에 좌석번호 업데이트
 							String sql3 = "UPDATE person_info SET room_number=? WHERE person_id=?";
 							pstmt = conn.prepareStatement(sql3);
 							pstmt.setInt(1, StoreMovePage.room_move_number);
 							pstmt.setInt(2, StoreBtnPage.id);
 							int row3 = pstmt.executeUpdate();
 												
-							System.out.printf("%d번 자리로 이동되었습니다.(%d행 업데이트)\n", StoreMovePage.room_move_number,row);
-							System.out.printf("회원 정보가 업데이트되었습니다.(%d행 업데이트)\n",row3); 
-							
 							if (pstmt != null) pstmt.close();
 							if (conn != null) conn.close();
 
 						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 						JOptionPane.showMessageDialog(null, "이동되었습니다.");
@@ -199,20 +169,14 @@ public class StoreMoveBtnPage extends JFrame {
 			} else if (StoreManagementPage.type.equals("좌석")) {
 
 				title = new JLabel(StoreMovePage.seat_move_number +"번 좌석으로 이동하시겠습니까?");
-
 				move.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						try {
 							Connection conn;
-							conn = DriverManager.getConnection(
-									"jdbc:oracle:thin:@localhost:1521/XEPDB1",
-									"hr",
-									"1234"
-									);
+							conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "1234");
 							PreparedStatement pstmt = null;
 							
-							//seat 테이블에 이동한 좌석 <-> 원래 좌석
 							String sql = "SELECT seat_statement, time_enter, time_checkout FROM seat WHERE seat_number =?";
 							pstmt = conn.prepareStatement(sql);
 							pstmt.setInt(1, StoreManagementPage.seat_number); 
@@ -223,7 +187,6 @@ public class StoreMoveBtnPage extends JFrame {
 								Timestamp te = rs.getTimestamp("time_enter");
 								Timestamp tco = rs.getTimestamp("time_checkout");
 								
-								//seat 테이블에 좌석 새로 업데이트
 								sql = "UPDATE seat SET seat_statement =?, time_enter=?, time_checkout=? WHERE Seat_Number= ?";
 								pstmt = conn.prepareStatement(sql);
 								pstmt.setString(1, st);
@@ -233,28 +196,22 @@ public class StoreMoveBtnPage extends JFrame {
 								int row2 = pstmt.executeUpdate();
 							}
 							
-							//seat 테이블에 이전 좌석 비우기
 							String sql2 = "UPDATE seat SET seat_statement='사용 가능', time_enter='01/01/01 00:00:00.000000000', "
 									+ "time_checkout = '01/01/01 00:00:00.000000000' WHERE Seat_Number= ?";
 							pstmt = conn.prepareStatement(sql2);
 							pstmt.setInt(1, StoreManagementPage.seat_number);
 							int row = pstmt.executeUpdate();
 							
-							//회원info 테이블에 좌석번호 업데이트
 							String sql3 = "UPDATE person_info SET seat_number=? WHERE person_id=?";
 							pstmt = conn.prepareStatement(sql3);
 							pstmt.setInt(1, StoreMovePage.seat_move_number);
 							pstmt.setInt(2, StoreBtnPage.id);
 							int row3 = pstmt.executeUpdate();
-												
-							System.out.printf("%d번 자리로 이동되었습니다.(%d행 업데이트)\n", StoreMovePage.seat_move_number,row);
-							System.out.printf("회원 정보가 업데이트되었습니다.(%d행 업데이트)\n",row3); 
-							
+
 							if (pstmt != null) pstmt.close();
 							if (conn != null) conn.close();
 							
 						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}						
 						JOptionPane.showMessageDialog(null, "이동되었습니다.");
@@ -273,8 +230,8 @@ public class StoreMoveBtnPage extends JFrame {
 			new Style(move);
 			move.setBorder(BorderFactory.createLineBorder(Color.white));
 			move.setForeground(Color.white);
-			add(move);
 			move.setBounds(80,100,180,50);
+			add(move);
 			
 			setLayout(null);
 			getContentPane().setBackground(Color.decode("#404040"));

@@ -14,9 +14,7 @@ public class AdminMenuPage extends JPanel{
 
       this.setLayout(null);
       new Style(this);
-      
-//    page_Subtitle.setBorder(BorderFactory.createLineBorder(Color.decode("#cfab8b"))); // 테두리?
-      
+
       JLabel page_Title = new JLabel("관리자 페이지", JLabel.RIGHT);
       new Style(page_Title);
       page_Title.setFont(new Font("맑은 고딕", Font.BOLD, 13));
@@ -63,5 +61,4 @@ public class AdminMenuPage extends JPanel{
       price_change.addActionListener(new PassChange());
 
    }
-
 }

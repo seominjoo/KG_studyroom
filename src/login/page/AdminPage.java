@@ -1,8 +1,5 @@
 package login.page;
 
-import java.awt.Component;
-
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -35,10 +32,9 @@ public class AdminPage extends JPanel{
       add(title);
       new Style(title);
 
-      // 관리자
       admin_phone_number1 = new JTextField("010");
       new Style(admin_phone_number1, 3);
-     admin_phone_number1.setBounds(255, 200, 55, 40);
+      admin_phone_number1.setBounds(255, 200, 55, 40);
       this.add(admin_phone_number1);
 
       JLabel hyphen1 = new JLabel("-", JLabel.CENTER);
@@ -82,13 +78,10 @@ public class AdminPage extends JPanel{
       this.add(admin_find_PW1);
       
       phoneTotal = new JTextField[] { admin_phone_number1, admin_phone_number2, admin_phone_number3 };
-      // 전번 텍스트 마우스로 누를 때
       for (int i = 0; i < phoneTotal.length; i++) {
          phoneTotal[i].addMouseListener(new PhoneNumberClearTextField(phoneTotal[i], "관리자"));
          addMouseListener(new ClearTextBackGround(phoneTotal[i], PhoneNumberEnum.values()[i]));
       }
-      
       admin_loginpass.addMouseListener(new EmptyPrice(admin_loginpass));
-      
    }
 }

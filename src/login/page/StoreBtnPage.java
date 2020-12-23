@@ -28,12 +28,12 @@ import login.swingTools.State;
 public class StoreBtnPage extends JFrame {
 
    static BufferedImage image;
+   static String seat_type ="";
    static int id=0;
 
    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
    String sql_out ="";
    String sql_out2 ="";
-   static String seat_type ="";
 
    public StoreBtnPage() {
 
@@ -44,7 +44,6 @@ public class StoreBtnPage extends JFrame {
       Timestamp time = null;
       JLabel title = null;
       JLabel info = null;
-
       JButton out = new JButton("퇴실");
       JButton out_locker = new JButton("반납");
       JButton move = new JButton("이동");
@@ -64,22 +63,15 @@ public class StoreBtnPage extends JFrame {
       out.setBounds(180,180,100,50);
       out_locker.setBounds(180,180,100,50);
 
-
       try {
 
          image = ImageIO.read(new File("image/로고.png"));
          Class.forName("oracle.jdbc.driver.OracleDriver");
-
          Connection conn;
-         conn = DriverManager.getConnection(
-               "jdbc:oracle:thin:@localhost:1521/XEPDB1",
-               "hr",
-               "1234"
-               );
+         conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "1234");
          PreparedStatement pstmt = null;
-
          if (StoreManagementPage.type.equals("사물함")) {
-
+        	 
             out.setVisible(false);
             sql = "SELECT Person_Id, Person_Name, Phone_Number, l_time_checkout FROM person_info, locker WHERE locker.locker_number =? AND locker.locker_number = person_info.locker_number";
             pstmt = conn.prepareStatement(sql);
@@ -96,10 +88,9 @@ public class StoreBtnPage extends JFrame {
             title = new JLabel(StoreManagementPage.locker_number +"번 사물함 정보");
             info = new JLabel(
                   "<html>회원번호 : "+id+"번"+
-                        "<br/>회원이름 : "+name+
-                        "<br/>핸드폰번호 : "+pn+
-                        "<br/>만료기간 : "+exp
-                  );
+                  "<br/>회원이름 : "+name+
+                  "<br/>핸드폰번호 : "+pn+
+                  "<br/>만료기간 : "+exp);
 
             out_locker.addActionListener(new ActionListener() {
                @Override
@@ -107,30 +98,22 @@ public class StoreBtnPage extends JFrame {
                   int result = JOptionPane.showConfirmDialog(null, "반납처리 하시겠습니까?",null, JOptionPane.OK_CANCEL_OPTION);
                   if(result==0) {               
                      setVisible(false);
-
                      try {
                         Class.forName("oracle.jdbc.driver.OracleDriver");
                         Connection conn;
-                        conn = DriverManager.getConnection(
-                              "jdbc:oracle:thin:@localhost:1521/XEPDB1",
-                              "hr",
-                              "1234"
-                              );
+                        conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "1234");
                         PreparedStatement pstmt = null;
 
                         String sql_out = "UPDATE locker SET Locker_Statement ='사용 가능',l_time_enter='01/01/01 00:00:00.000000000',l_time_checkout='01/01/01 00:00:00.000000000' WHERE Locker_Number=?";
                         pstmt = conn.prepareStatement(sql_out);
                         pstmt.setInt(1, StoreManagementPage.locker_number);
                         int row = pstmt.executeUpdate(); 
-                        System.out.printf("locker %d행이 바뀌었습니다\n",row);
 
                         String sql_out2 = "UPDATE person_info SET locker_number=0 WHERE Person_Id=?";
                         pstmt = conn.prepareStatement(sql_out2);
                         pstmt.setInt(1, id);
                         int row2 = pstmt.executeUpdate(); 
-                        System.out.printf("person_info %d행이 바뀌었습니다.\n",row2);
-                        System.out.printf("%d번 사물함이 반납되었습니다.", StoreManagementPage.locker_number);
-
+                       
                         MainPage.updateTable.add(new State());
                         MainPage.statecard.next(MainPage.updateTable);
                         
@@ -183,10 +166,9 @@ public class StoreBtnPage extends JFrame {
             title = new JLabel(StoreManagementPage.room_number +"호 룸 정보");
             info = new JLabel(
                   "<html>회원번호 : "+id+"번"+
-                        "<br/>회원이름 : "+name+
-                        "<br/>핸드폰번호 : "+pn+
-                        "<br/>만료기간 : "+exp
-                  );
+                  "<br/>회원이름 : "+name+
+                  "<br/>핸드폰번호 : "+pn+
+                  "<br/>만료기간 : "+exp);
 
             out.addActionListener(new ActionListener() {
                @Override
@@ -197,25 +179,18 @@ public class StoreBtnPage extends JFrame {
                      try {
                         Class.forName("oracle.jdbc.driver.OracleDriver");
                         Connection conn;
-                        conn = DriverManager.getConnection(
-                              "jdbc:oracle:thin:@localhost:1521/XEPDB1",
-                              "hr",
-                              "1234"
-                              );
+                        conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "1234");
                         PreparedStatement pstmt = null;
                         
                         String sql_out = "UPDATE seat SET Seat_Statement ='사용 가능',time_enter='01/01/01 00:00:00.000000000',time_checkout='01/01/01 00:00:00.000000000' WHERE seat_Number=?";
                         pstmt = conn.prepareStatement(sql_out);
                         pstmt.setInt(1, StoreManagementPage.room_number);
                         int row = pstmt.executeUpdate(); 
-                        System.out.printf("seat %d행이 바뀌었습니다\n",row);
 
                         String sql_out2 = "UPDATE person_info SET room_number=0 WHERE Person_Id=?";
                         pstmt = conn.prepareStatement(sql_out2);
                         pstmt.setInt(1, id);
                         int row2 = pstmt.executeUpdate(); 
-                        System.out.printf("person_info %d행이 바뀌었습니다.\n",row2);
-                        System.out.printf("%d번 룸이 퇴실되었습니다.", StoreManagementPage.room_number);
 
                         MainPage.updateTable.add(new State());
                         MainPage.statecard.next(MainPage.updateTable);
@@ -223,7 +198,6 @@ public class StoreBtnPage extends JFrame {
                         if (pstmt != null) pstmt.close();
                         
                      } catch (SQLException | ClassNotFoundException e1) {
-                        // TODO Auto-generated catch block
                         e1.printStackTrace();
                      }
                      JOptionPane.showMessageDialog(null, StoreManagementPage.room_number+ "호 룸이 퇴실되었습니다");
@@ -271,11 +245,10 @@ public class StoreBtnPage extends JFrame {
             title = new JLabel(StoreManagementPage.seat_number +"번 좌석 정보");
             info = new JLabel(
                   "<html>회원번호 : "+id+"번"+
-                        "<br/>회원이름 : "+name+
-                        "<br/>핸드폰번호 : "+pn+
-                        "<br/>만료기간 : "+exp+
-                        "<br/>이용권 : "+seat_type
-                  );
+                  "<br/>회원이름 : "+name+
+                  "<br/>핸드폰번호 : "+pn+
+                  "<br/>만료기간 : "+exp+
+                  "<br/>이용권 : "+seat_type);
 
             out.addActionListener(new ActionListener() {
                @Override
@@ -286,31 +259,21 @@ public class StoreBtnPage extends JFrame {
                      try {
                         Class.forName("oracle.jdbc.driver.OracleDriver");
                         Connection conn;
-                        conn = DriverManager.getConnection(
-                              "jdbc:oracle:thin:@localhost:1521/XEPDB1",
-                              "hr",
-                              "1234"
-                              );
+                        conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "1234");
                         PreparedStatement pstmt = null;
 
                         if (seat_type.equals("당일 이용권")) {
                            
-                           String sql_out = "UPDATE seat SET Seat_Statement = '사용 가능', time_enter='01/01/01 00:00:00.000000000', time_checkout='01/01/01 00:00:00.000000000'"
-                                 + " WHERE Seat_Number=?";
+                           String sql_out = "UPDATE seat SET Seat_Statement = '사용 가능', time_enter='01/01/01 00:00:00.000000000', time_checkout='01/01/01 00:00:00.000000000' WHERE Seat_Number=?";
                            pstmt = conn.prepareStatement(sql_out);
                            pstmt.setInt(1, StoreManagementPage.seat_number);
                            int row = pstmt.executeUpdate(); 
-                           System.out.printf("seat %d행이 변경되었습니다.\n", row);
-                           
-                           String sql_out2 = "UPDATE person_info SET seat_number=0, seat_type='없음', expiration_seat ='01/01/01 00:00:00.000000000'"
-                                 + " WHERE Person_Id = ?";
+                          
+                           String sql_out2 = "UPDATE person_info SET seat_number=0, seat_type='없음', expiration_seat ='01/01/01 00:00:00.000000000' WHERE Person_Id = ?";
                            pstmt = conn.prepareStatement(sql_out2);
                            pstmt.setInt(1, id);
                            int row2 = pstmt.executeUpdate(); 
-                           System.out.printf("person_info %d행이 변경되었습니다.\n", row2);
-                           
-                           System.out.printf("%d번 좌석이 퇴실되었습니다.\n",StoreManagementPage.seat_number);
-
+                          
                            MainPage.updateTable.add(new State());
                            MainPage.statecard.next(MainPage.updateTable);
                            
@@ -318,21 +281,15 @@ public class StoreBtnPage extends JFrame {
 
                         } else if (seat_type.equals("정기 이용권")) {
                
-                           String sql_out = "UPDATE seat SET Seat_Statement = '사용 가능', time_enter='01/01/01 00:00:00.000000000', time_checkout='01/01/01 00:00:00.000000000'"
-                                 + " WHERE Seat_Number=?";
+                           String sql_out = "UPDATE seat SET Seat_Statement = '사용 가능', time_enter='01/01/01 00:00:00.000000000', time_checkout='01/01/01 00:00:00.000000000' WHERE Seat_Number=?";
                            pstmt = conn.prepareStatement(sql_out);
                            pstmt.setInt(1, StoreManagementPage.seat_number);
-                           int row = pstmt.executeUpdate(); 
-                           System.out.printf("seat %d행이 변경되었습니다.\n", row);
+                           int row = pstmt.executeUpdate();     
                            
-                           String sql_out2 = "UPDATE person_info SET seat_number=0"
-                                 + " WHERE Person_Id = ?";
+                           String sql_out2 = "UPDATE person_info SET seat_number=0 WHERE Person_Id = ?";
                            pstmt = conn.prepareStatement(sql_out2);
                            pstmt.setInt(1, id);
                            int row2 = pstmt.executeUpdate(); 
-                           System.out.printf("person_info %d행이 변경되었습니다.\n", row2);
-                           
-                           System.out.printf("%d번 좌석이 퇴실되었습니다.\n",StoreManagementPage.seat_number);
 
                            MainPage.updateTable.add(new State());
                            MainPage.statecard.next(MainPage.updateTable);
@@ -340,7 +297,6 @@ public class StoreBtnPage extends JFrame {
                            if (pstmt != null) pstmt.close();
                         }
                      } catch (SQLException | ClassNotFoundException e1) {
-                        // TODO Auto-generated catch block
                         e1.printStackTrace();
                      }
                      JOptionPane.showMessageDialog(null, StoreManagementPage.seat_number+ "번 좌석이 퇴실되었습니다");
@@ -375,7 +331,6 @@ public class StoreBtnPage extends JFrame {
          info.setForeground(Color.white);
          add(title);
          add(info);
-
          setLayout(null);
          getContentPane().setBackground(Color.decode("#404040"));
          setBounds(550, 300, 350, 300);

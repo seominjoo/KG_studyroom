@@ -13,11 +13,7 @@ public class StoreOutBtnAction {
 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection conn;
-			conn = DriverManager.getConnection(
-					"jdbc:oracle:thin:@localhost:1521/XEPDB1",
-					"hr",
-					"1234"
-					);
+			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "1234");
 			PreparedStatement pstmt = null;
 			String sql ="";
 			
@@ -27,15 +23,11 @@ public class StoreOutBtnAction {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, StoreManagementPage.locker_number);
 				int row = pstmt.executeUpdate(); 
-				System.out.printf("locker %d행이 바뀌었습니다\n",row);
 
 				sql = "UPDATE person_info SET locker_number=0 WHERE Locker_Number=?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, StoreMovePage.locker_move_number);
 				int row2 = pstmt.executeUpdate(); 
-				System.out.printf("person_info %d행이 바뀌었습니다.\n",row2);
-		
-				System.out.printf("%d번 사물함이 반납되었습니다.", StoreManagementPage.locker_number);
 			
 			} else if (StoreManagementPage.type.equals("룸")) {
 			
@@ -43,15 +35,11 @@ public class StoreOutBtnAction {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, StoreManagementPage.room_number);
 				int row = pstmt.executeUpdate(); 
-				System.out.printf("seat %d행이 바뀌었습니다\n",row);
 
 				sql = "UPDATE person_info SET seat_number=0 WHERE seat_Number=?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, StoreMovePage.room_move_number);
 				int row2 = pstmt.executeUpdate(); 
-				System.out.printf("person_info %d행이 바뀌었습니다.\n",row2);
-				
-				System.out.printf("%d번 룸이 퇴실되었습니다.", StoreManagementPage.room_number);
 				
 			} else if (StoreManagementPage.type.equals("좌석")) {
 			
@@ -65,7 +53,6 @@ public class StoreOutBtnAction {
 					pstmt.setInt(1, StoreManagementPage.seat_number);
 					pstmt.setInt(2, StoreManagementPage.seat_number);
 					int row = pstmt.executeUpdate(); 
-					System.out.printf("%번 좌석이 퇴실되었습니다. (%d행이 변경되었습니다)\n",StoreManagementPage.seat_number, row);
 
 					if (pstmt != null) pstmt.close();
 
@@ -79,7 +66,6 @@ public class StoreOutBtnAction {
 					pstmt.setInt(1, StoreManagementPage.seat_number);
 					pstmt.setInt(2, StoreManagementPage.seat_number);
 					int row = pstmt.executeUpdate(); 
-					System.out.printf("%번 좌석이 퇴실되었습니다. (%d행이 변경되었습니다)\n",StoreManagementPage.seat_number, row);
 				}
 			}
 			
@@ -87,7 +73,6 @@ public class StoreOutBtnAction {
 			if (conn != null) conn.close();
 
 		} catch (SQLException | ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

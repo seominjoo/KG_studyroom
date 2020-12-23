@@ -19,12 +19,12 @@ public class StoreDB {
    
    JTable table;
    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
+   Timestamp time;
+   String[][] contents;
    int num=0;
    int row=0;
    int length;
-   Timestamp time;
-   String[][] contents;
-   
+
    public StoreDB(String type) {
       
       try {
@@ -35,7 +35,6 @@ public class StoreDB {
          if(type == "좌석") {
             
             sql="SELECT seat_number, seat_statement, time_enter,time_checkout FROM seat WHERE seat_statement = '사용 중' AND seat_number < 100"; 
-            
             String header[] = {"좌석", "사용 여부","입실 시간","퇴실(/예정)시간"};
             length = header.length;      
             PreparedStatement pstm = conn.prepareStatement(sql);
@@ -56,17 +55,13 @@ public class StoreDB {
             }
             DefaultTableModel model = new DefaultTableModel(contents, header);
             table = new JTable(model);
-            if (rs != null)
-               rs.close();
-            if (rs2 != null)
-               rs2.close();
-            if (pstm != null)
-               pstm.close();
+            if (rs != null) rs.close();
+            if (rs2 != null) rs2.close();
+            if (pstm != null) pstm.close();
             
          }else if(type == "룸") {
                
                sql="SELECT seat_number, seat_statement, time_enter,time_checkout FROM seat WHERE seat_statement = '사용 중' AND seat_number>100"; 
-               
                String header[] = {"룸", "사용 여부","입실 시간","퇴실(/예정)시간"};
                length = header.length;
                PreparedStatement pstm = conn.prepareStatement(sql);
@@ -87,18 +82,13 @@ public class StoreDB {
                }
                DefaultTableModel model = new DefaultTableModel(contents, header);
                table = new JTable(model);
-               if (rs3 != null)
-                  rs3.close();
-               if (rs4 != null)
-                  rs4.close();
-               if (pstm != null)
-                  pstm.close();
-               
+               if (rs3 != null) rs3.close();
+               if (rs4 != null) rs4.close();
+               if (pstm != null) pstm.close();
                
          }else if(type == "사물함") {   
             
             sql="SELECT locker_number, locker_statement, l_time_enter,l_time_checkout FROM locker WHERE locker_statement = '사용 중'"; 
-            
             String header[] = {"사물함", "사용 여부","사용 시작 시간","만료(/예정)시간"};
             length = header.length;
             PreparedStatement pstm = conn.prepareStatement(sql);
@@ -119,30 +109,24 @@ public class StoreDB {
             }
             DefaultTableModel model = new DefaultTableModel(contents, header);
             table = new JTable(model);
-            if (rs5 != null)
-               rs5.close();
-            if (rs6 != null)
-               rs6.close();
-            if (pstm != null)
-               pstm.close();
+            if (rs5 != null) rs5.close();
+            if (rs6 != null) rs6.close();
+            if (pstm != null) pstm.close();
          }
-         
          table.getColumnModel().getColumn(0).setPreferredWidth(55);
          table.getColumnModel().getColumn(1).setPreferredWidth(60);
          table.getColumnModel().getColumn(2).setPreferredWidth(190);
          table.getColumnModel().getColumn(3).setPreferredWidth(190);
-
-         StoreDBPage.total.setText("사용 중인 " + type + " 수 : "+ num);
-         
-         new Style(table);
          table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
          table.setRowHeight(35);
+         new Style(table);
+
+         StoreDBPage.total.setText("사용 중인 " + type + " 수 : "+ num);
          StoreDBPage.scrollPane.setViewportView(table);
          JTableHeader headers = table.getTableHeader();
          new Style(headers);
          
-         if (conn != null)
-            conn.close();
+         if (conn != null) conn.close();
  
       } catch (ClassNotFoundException | SQLException e) { 
          e.printStackTrace();

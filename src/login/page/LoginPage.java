@@ -55,7 +55,7 @@ public class LoginPage extends JPanel {
       hyphen1.setBounds(310, 200, 15, 40);
       this.add(hyphen1);
 
-      phone_number2 = new JTextField("1143");
+      phone_number2 = new JTextField("");
       new Style(phone_number2, 4);
       phone_number2.setBounds(325, 200, 55, 40);
       this.add(phone_number2);
@@ -65,12 +65,12 @@ public class LoginPage extends JPanel {
       hyphen2.setBounds(380, 200, 15, 40);
       this.add(hyphen2);
 
-      phone_number3 = new JTextField("1111");
+      phone_number3 = new JTextField("");
       new Style(phone_number3, 4);
       phone_number3.setBounds(395, 200, 55, 40);
       this.add(phone_number3);
 
-      loginpass = new JPasswordField("12345678");
+      loginpass = new JPasswordField("");
       loginpass.addMouseListener(new EmptyPrice(loginpass));
       new Style(loginpass, 12);
       loginpass.setBounds(255, 250, 195, 40);
@@ -97,12 +97,9 @@ public class LoginPage extends JPanel {
       this.add(signup);
 
       phoneTotal = new JTextField[] { phone_number1, phone_number2, phone_number3 };
-      // 전번 텍스트 마우스로 누를 때
       for (int i = 0; i < phoneTotal.length; i++) {
          phoneTotal[i].addMouseListener(new PhoneNumberClearTextField(phoneTotal[i], "로그인"));
          addMouseListener(new ClearTextBackGround(phoneTotal[i], PhoneNumberEnum.values()[i]));
       }
-
    }
-
 }
