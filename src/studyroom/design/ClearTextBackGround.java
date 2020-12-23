@@ -35,10 +35,10 @@ public class ClearTextBackGround extends MouseAdapter {
 			if (e.getButton() == MouseEvent.BUTTON1 && phonenum.getText().equals(""))
 				phonenum.setText(value.labelName);
 			if(e.getButton() == MouseEvent.BUTTON1 && String.valueOf(LoginPage.loginpass.getPassword()).equals("")) {
-				LoginPage.loginpass.setText("비밀번호");
+				LoginPage.loginpass.setText("");
 			}
 			if(e.getButton() == MouseEvent.BUTTON1 && String.valueOf(AdminPage.admin_loginpass.getPassword()).equals("")) {
-				AdminPage.admin_loginpass.setText("비밀번호");
+				AdminPage.admin_loginpass.setText("");
 			}
 	}
 
