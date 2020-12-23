@@ -74,7 +74,6 @@ public class DBLoggedIn {
 // 테스트
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			System.out.println("[ojdbc] 성공적으로 로드되었습니다.");
 			// 2. DriverManager 클래스를 통해 DB와의 연결을 수립
 			// - DriverManager.getConnection() 메서드에
 			// DB접속 주소와 아이디/패스워드를 전달하면 연결이 반환된다
@@ -95,7 +94,6 @@ public class DBLoggedIn {
 				phone_number = rs.getString(3);
 				password = rs.getString(4);
 			}
-			System.out.println(person_id +", "+ person_name +", "+ phone_number +", "+  password);
 			if (rs != null)
 				rs.close();
 			if (findID != null)
