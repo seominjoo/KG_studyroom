@@ -137,10 +137,10 @@ public class MainPage extends JFrame implements Runnable {
       new Style(updateTable);
       statecard = new CardLayout();
       updateTable.setLayout(statecard);
-      updateTable.setBounds(18, 185, 280, 50);
+      updateTable.setBounds(18, 189, 280, 50);
       updateTable.add(new State());
       
-      JLabel info = new JLabel("이용안내", JLabel.LEFT);
+      JLabel info = new JLabel("이용순서", JLabel.LEFT);
       info.setBounds(18,y/2-18, 280, 20);
       info.setFont(new Font("맑은 고딕", Font.BOLD, 16));
       info.setForeground(Color.decode("#cfab8b"));
@@ -150,13 +150,13 @@ public class MainPage extends JFrame implements Runnable {
       String contents[][] = { {"<html>1.&nbsp회원가입","<html>2.&nbsp로그인"},
             {"<html>3.&nbsp이용권&nbsp선택","<html>4.&nbsp원하는&nbsp시간&nbsp선택"},
             {"<html>5.&nbsp원하는&nbsp좌석&nbsp선택","<html>6.&nbsp결제방법&nbsp선택&nbsp(현금/카드)"},
-            {"<html>7.&nbsp영수증&nbsp발급","<html>8.&nbsp바로&nbsp입장"},};
+            {"<html>7.&nbsp영수증&nbsp발급&nbsp후&nbsp입실","<html>&nbsp※&nbsp정기권은&nbsp바로&nbsp입실&nbsp가능"},};
 
       DefaultTableModel model = new DefaultTableModel(contents, header);
       JTable information = new JTable(model);
       new Style(information);
-      information.setBounds(18,y/2-5+16, 280, 100);
-      information.getColumnModel().getColumn(1).setPreferredWidth(120);
+      information.setBounds(18,y/2-5+16, 290, 100);
+      information.getColumnModel().getColumn(1).setPreferredWidth(105);
       information.setRowHeight(25);
       information.setFont(new Font("맑은 고딕", Font.BOLD, 12));
       information.setForeground(Color.decode("#cfab8b"));
@@ -174,26 +174,26 @@ public class MainPage extends JFrame implements Runnable {
       background.add(information);
       
       JLabel line = new JLabel("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ", JLabel.LEFT);
-      line.setBounds(18,y*3/4-30, 280, 20);
+      line.setBounds(18,y*3/4-26, 280, 20);
       line.setFont(new Font("맑은 고딕", Font.BOLD, 16));
       line.setForeground(Color.decode("#cfab8b"));
       background.add(line);
       
       JLabel cau = new JLabel("주의사항", JLabel.LEFT);
-      cau.setBounds(18,y*3/4-8, 280, 20);
+      cau.setBounds(18,y*3/4, 280, 20);
       cau.setFont(new Font("맑은 고딕", Font.BOLD, 16));
       cau.setForeground(Color.decode("#cfab8b"));
       background.add(cau);
       
       String header2[] = {"1"};
       String contents2[][] = { {"<html>1.&nbsp당일권&nbsp사용자는&nbsp퇴실&nbsp처리&nbsp시&nbsp재입실&nbsp불가합니다."},
-            {"<html>2.&nbsp정기권&nbsp사용자는&nbsp반드시나가실&nbsp때&nbsp퇴실처리"},
+            {"<html>2.&nbsp정기권&nbsp사용자는&nbsp반드시&nbsp나가실&nbsp때&nbsp퇴실&nbsp처리"},
             {"<html>&nbsp&nbsp&nbsp해주시기&nbsp바랍니다."}};
       
       DefaultTableModel model2 = new DefaultTableModel(contents2, header2);
       JTable caution = new JTable(model2);
       new Style(caution);
-      caution.setBounds(18,y*3/4+20, 290, 80);
+      caution.setBounds(18,y*3/4+28, 290, 80);
       caution.setRowHeight(25);
       caution.setFont(new Font("맑은 고딕", Font.BOLD, 12));
       caution.setForeground(Color.decode("#cfab8b"));
@@ -294,7 +294,7 @@ public class MainPage extends JFrame implements Runnable {
          thread = new Thread(this);
          thread.start();
       }
-      clock.setBounds(8, 145, 300, 30);
+      clock.setBounds(8, 149, 300, 30);
 
       background.add(changeUser);
       background.add(clock);
