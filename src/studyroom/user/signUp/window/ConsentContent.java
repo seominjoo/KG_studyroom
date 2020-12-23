@@ -48,7 +48,7 @@ public class ConsentContent extends JFrame implements ActionListener {
 		new Style(this);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setVisible(true);
-		setBounds(50, 50, 1215, 840);
+		setBounds(280, 50, 1215, 840);
 
 		panel = new JPanel();
 
