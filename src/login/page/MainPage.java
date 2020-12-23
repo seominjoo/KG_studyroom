@@ -127,7 +127,7 @@ public class MainPage extends JFrame implements Runnable {
       new Style(logo);
       logo.setFont(new Font("Eras Bold ITC", Font.BOLD, 30));
       logo.setForeground(Color.decode("#cfab8b"));
-      logo.setBounds((x-w)/2-108, 60, 250, 100);
+      logo.setBounds((x-w)/2-100, 60, 250, 100);
       background.add(logo);
       
       updateTable = new JPanel();
