@@ -70,7 +70,7 @@ public class LoginPage extends JPanel {
       phone_number3.setBounds(395, 200, 55, 40);
       this.add(phone_number3);
 
-      loginpass = new JPasswordField("비밀번호");
+      loginpass = new JPasswordField("");
       loginpass.addMouseListener(new EmptyPrice(loginpass));
       new Style(loginpass, 12);
       loginpass.setBounds(255, 250, 195, 40);
