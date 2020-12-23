@@ -86,14 +86,12 @@ public class MainBtn_Action implements ActionListener {
 				pstmt = conn.prepareStatement(sql);
 
 				int row = pstmt.executeUpdate();
-				System.out.printf("로그아웃 %d\n", row);
 
 				PreparedStatement pstmt2 = null;
 				String sql2 = "update Admin_Info set Admin_LoginState = 'Off'";
 				pstmt2 = conn.prepareStatement(sql2);
 
 				int row2 = pstmt2.executeUpdate();
-				System.out.printf("로그아웃 %d\n", row2);
 
 				if (pstmt2 != null)
 					pstmt.close();
@@ -136,10 +134,6 @@ public class MainBtn_Action implements ActionListener {
 			// 관리자 로그인 클릭 시
 			new DBLoggedIn(admin_phonenumber, admin_password);
 
-			// 들고온 값이 디비에 있는지 확인
-			System.out.println(admin_phonenumber + ", " + admin_password);
-			System.out.println(DBLoggedIn.phone_number + ", " + DBLoggedIn.password);
-
 			if (DBLoggedIn.person_name != null && DBLoggedIn.phone_number.equals(admin_phonenumber)
 					&& DBLoggedIn.password.equals(admin_password)) {
 				// 번호와 비번이 일치 하면
@@ -148,7 +142,6 @@ public class MainBtn_Action implements ActionListener {
 
 				String update = "update admin_info set admin_loginstate = 'On' " + "where admin_phonenumber = '"
 						+ DBLoggedIn.phone_number + "' and admin_pw = '" + DBLoggedIn.password + "'";
-				System.out.println(update);
 				DBLoggedIn db = new DBLoggedIn(update);
 
 				interval = 300;// 자동 로그아웃 카운트 시간
@@ -175,10 +168,6 @@ public class MainBtn_Action implements ActionListener {
 
 			new DBLoggedIn(login_phonenumber, login_password);
 
-			// 들고온 값이 디비에 있는지 확인
-			System.out.println(login_phonenumber + ", " + login_password);
-			System.out.println(DBLoggedIn.phone_number + ", " + DBLoggedIn.password);
-
 			if (DBLoggedIn.person_name != null && DBLoggedIn.phone_number.equals(login_phonenumber)
 					&& DBLoggedIn.password.equals(login_password)) {
 
@@ -188,7 +177,6 @@ public class MainBtn_Action implements ActionListener {
 
 				String update = "update person_info set login_state = 'On' " + "where phone_number = '"
 						+ DBLoggedIn.phone_number + "' and pw = '" + DBLoggedIn.password + "'";
-				System.out.println(update);
 				DBLoggedIn db = new DBLoggedIn(update);
 
 				interval = 300;// 자동 로그아웃 카운트 시간
