@@ -1,5 +1,6 @@
 package studyroom.admin.adminmode;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -59,22 +61,28 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 
       total = new JButton("누적매출");
       new Style(total);
-      total.setBounds(80, 481, 100, 30);
+      total.setBounds(540, 455, 90, 30);
       add(total);
 
-      int y = 430;
+      int x = 78;
+      int y = 0;
       for (int i = 0; i < weekTotal.length; i++) {
          weekTotal[i] = new JLabel("");
          new Style(weekTotal[i]);
          weekTotal[i].setFont(new Font("맑은 고딕", Font.BOLD, 13));
-         weekTotal[i].setBounds(240, y, 200, 50);
-         y += 20;
+         weekTotal[i].setBounds(x, 447+y, 135, 50);
+         x += 141;
+         if(i==2) {
+        	 x = 78;
+        	 y += 36;
+         }
+//         weekTotal[i].setBorder(BorderFactory.createLineBorder(Color.decode("#805b38")));
          add(weekTotal[i]);
       }
 
       back = new JButton("이전");
       new Style(back);
-      back.setBounds(479, 481, 100, 30);
+      back.setBounds(540, 495, 90, 30);
       add(back);
 
       back.addActionListener(new ActionListener() {
@@ -87,28 +95,28 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 
       totalPayment = new JLabel();
       new Style(totalPayment);
-      totalPayment.setBounds(430, 403, 200, 100);
+      totalPayment.setBounds(360, 493, 200, 30);
       add(totalPayment);
 
       scrollPane = new JScrollPane();
       new Style(scrollPane);
       scrollPane.getVerticalScrollBar().setUnitIncrement(20);
-      scrollPane.setBounds(50, 85, 560, 350);
+      scrollPane.setBounds(72, 110, 560, 335);
       add(scrollPane);
 
       year = new JComboBox<String>(new ManagementDate().yearTable);
-      year.setBounds(90, 40, 65, 30);
+      year.setBounds(112, 65, 65, 30);
       add(year);
       new Style(year);
       year.setSelectedItem("2020");
 
       month = new JComboBox<String>(new ManagementDate().monthTable);
-      month.setBounds(255, 40, 80, 30);
+      month.setBounds(277, 65, 80, 30);
       add(month);
       new Style(month);
 
       day = new JComboBox<String>(new ManagementDate().dayTable);
-      day.setBounds(420, 40, 80, 30);
+      day.setBounds(442, 65, 80, 30);
       add(day);
       new Style(day);
 
@@ -118,7 +126,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 
       yearTotal = new JButton("연매출");
       new Style(yearTotal);
-      yearTotal.setBounds(158, 40, 70, 30);
+      yearTotal.setBounds(180, 65, 70, 30);
       add(yearTotal);
 
       // 연매출 버튼 클릭 시 DB로 넘길 sql
@@ -132,7 +140,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 
       monthTotal = new JButton("월매출");
       new Style(monthTotal);
-      monthTotal.setBounds(338, 40, 60, 30);
+      monthTotal.setBounds(360, 65, 60, 30);
       add(monthTotal);
 
    // 월매출 버튼 클릭 시 DB로 넘길 sql
@@ -147,7 +155,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 
       dayTotal = new JButton("일매출");
       new Style(dayTotal);
-      dayTotal.setBounds(503, 40, 70, 30);
+      dayTotal.setBounds(525, 65, 70, 30);
       add(dayTotal);
 
    // 일매출 버튼 클릭 시 DB로 넘길 sql

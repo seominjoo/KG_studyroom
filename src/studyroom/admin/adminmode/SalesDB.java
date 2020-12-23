@@ -13,6 +13,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+
+import studyroom.MainPage;
 import studyroom.design.Style;
 
 public class SalesDB {
@@ -43,7 +45,7 @@ public class SalesDB {
 
 			ResultSet rs = read_data.executeQuery();
 
-			String header[] = {"결제일시", "회원번호", "이용권명", "사물함", "결제방식", "결제금액" };
+			String header[] = { "결제일시", "회원번호", "이용권명", "사물함", "결제방식", "결제금액" };
 
 			int realRow = 0;
 
@@ -52,7 +54,6 @@ public class SalesDB {
 			}
 
 			String[][] contents = new String[realRow][header.length];
-
 
 			int i = 0;
 			int sum = 0;
@@ -68,17 +69,16 @@ public class SalesDB {
 			// 데이터가 존재 안 하는데 월매출 눌렀을 경우, 주간매출을 띄우되 0원으로
 			if (realRow == 0 && maxCnt == 2) {
 				for (int i2 = 0; i2 < weeks.length; i2++) {
-					SalesManagementPage.weekTotal[i2].setText(
-							(i2 + 1) + "주차 매출 : " + 0 + "원");
+					SalesManagementPage.weekTotal[i2].setText((i2 + 1) + "주차 : " + 0 + "원");
 				}
-			} 
+			}
 			// 데이터가 존재 안 하는데 월매출이 아닌 다른걸 눌렀을 경우, 주간매출을 띄우지 않기
-			else if(realRow == 0 && maxCnt != 2) {
+			else if (realRow == 0 && maxCnt != 2) {
 				for (int i2 = 0; i2 < weeks.length; i2++) {
 					SalesManagementPage.weekTotal[i2].setText("");
 				}
 			}
-			
+
 			// 그외 데이터가 존재할 때
 			else {
 				ResultSet rs1 = read_data.executeQuery();
@@ -113,11 +113,11 @@ public class SalesDB {
 
 						// 주간 매출 settext
 						for (int i2 = 0; i2 < weeks.length; i2++) {
-							SalesManagementPage.weekTotal[i2].setText(
-									(i2 + 1) + "주차 매출 : " + NumberFormat.getInstance().format(weeks[i2]) + "원");
+							SalesManagementPage.weekTotal[i2]
+									.setText((i2 + 1) + "주차 : " + NumberFormat.getInstance().format(weeks[i2]) + "원");
 						}
 
-					} 
+					}
 					// 월매출이 아닌 다른걸 눌렀을 때 주간매출 안 보이게 하기
 					else {
 						for (int i2 = 0; i2 < SalesManagementPage.weekTotal.length; i2++) {
@@ -136,7 +136,7 @@ public class SalesDB {
 			DefaultTableModel model = new DefaultTableModel(contents, header);
 
 			// 매출관리 테이블
-			String[] columns = {"결제일시", "회원번호", "이용권명", "사물함", "결제방식", "결제금액"};
+			String[] columns = { "결제일시", "회원번호", "이용권명", "사물함", "결제방식", "결제금액" };
 			table = new JTable(model);
 			new Style(table, columns);
 			table.setRowHeight(35);
@@ -146,25 +146,28 @@ public class SalesDB {
 			table.getColumnModel().getColumn(3).setPreferredWidth(120);
 			table.getColumnModel().getColumn(4).setPreferredWidth(55);
 			table.getColumnModel().getColumn(5).setPreferredWidth(55);
-			
-			SalesManagementPage.scrollPane.setViewportView(table);		
-			
+
+			SalesManagementPage.scrollPane.setViewportView(table);
+
 			if (rs != null)
 				rs.close();
 			if (read_data != null)
-				read_data.close();		
+				read_data.close();
 			if (conn != null)
 				conn.close();
 
-			//System.out.println("성공");
+			// System.out.println("성공");
 
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 			// System.out.println(e1.toString());
 		} catch (ClassNotFoundException e1) {
 			// e1.printStackTrace();
-			//System.out.println("[ojdbc] 클래스 경로가 틀렸습니다.");
+			// System.out.println("[ojdbc] 클래스 경로가 틀렸습니다.");
 		}
 	}
 
+	public static void main(String[] args) {
+		new MainPage();
+	}
 }

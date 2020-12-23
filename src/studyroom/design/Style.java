@@ -78,7 +78,7 @@ public class Style {
 			} else if (label.getText().equals("-")) {
 				label.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 			} else if (label.getText().equals("")) {
-				label.setFont(new Font("맑은 고딕", Font.BOLD, 16));
+				label.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 			} else {
 				label.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 			}
@@ -90,7 +90,7 @@ public class Style {
 				btn.setFocusable(false);
 				btn.setOpaque(false); // 배경 투명
 				btn.setFocusPainted(false);
-				btn.setBorder(BorderFactory.createLineBorder(Color.decode("#805b38"))); // 테두리?
+				btn.setBorder(BorderFactory.createLineBorder(Color.decode("#805b38"))); // 테두리
 				btn.setForeground(Color.decode("#805b38"));
 				btn.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 			} else {
@@ -98,7 +98,7 @@ public class Style {
 				btn.setFocusable(false);
 				btn.setOpaque(false); // 배경 투명
 				btn.setFocusPainted(false);
-				btn.setBorder(BorderFactory.createLineBorder(Color.decode("#805b38"))); // 테두리?
+				btn.setBorder(BorderFactory.createLineBorder(Color.decode("#805b38"))); // 테두리
 				btn.setForeground(Color.decode("#805b38"));
 				btn.setBorderPainted(false); // 외곽선을 없앰
 				btn.setContentAreaFilled(false); // 내용영역을 안채움
@@ -107,7 +107,7 @@ public class Style {
 		} else if (cp instanceof JTextField) {
 			text = (JTextField) cp;
 			text.setOpaque(false); // 배경 투명
-			text.setBorder(BorderFactory.createLineBorder(Color.decode("#805b38"))); // 테두리?
+			text.setBorder(BorderFactory.createLineBorder(Color.decode("#805b38"))); // 테두리
 			text.setHorizontalAlignment(SwingConstants.CENTER);
 			text.setForeground(Color.decode("#805b38"));
 			text.setFont(new Font("맑은 고딕", Font.BOLD, 13));
@@ -115,7 +115,7 @@ public class Style {
 		} else if (cp instanceof JPasswordField) {
 			pass = (JPasswordField) cp;
 			pass.setOpaque(false); // 배경 투명
-			pass.setBorder(BorderFactory.createLineBorder(Color.decode("#805b38"))); // 테두리?
+			pass.setBorder(BorderFactory.createLineBorder(Color.decode("#805b38"))); // 테두리
 			pass.setHorizontalAlignment(SwingConstants.CENTER);
 			pass.setForeground(Color.decode("#805b38"));
 			pass.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
@@ -123,7 +123,7 @@ public class Style {
 		} else if (cp instanceof JComboBox<?>) {
 			jcombo = (JComboBox<?>) cp;
 			jcombo.setOpaque(false); // 배경 투명
-			jcombo.setBorder(BorderFactory.createLineBorder(Color.decode("#805b38"))); // 테두리?
+			jcombo.setBorder(BorderFactory.createLineBorder(Color.decode("#805b38"))); // 테두리
 			jcombo.setForeground(Color.decode("#805b38"));
 			jcombo.setBackground(Color.decode("#f2ede9"));
 			jcombo.setUI(new BasicComboBoxUI() {

@@ -28,12 +28,12 @@ public class StoreDBPage extends JPanel implements ActionListener {
       scrollPane = new JScrollPane();
       scrollPane.getVerticalScrollBar().setUnitIncrement(20);
       scrollPane.getHorizontalScrollBar().setUnitIncrement(20);
-      scrollPane.setBounds(50, 85, 560, 350);
+      scrollPane.setBounds(72, 110, 560, 350);
       new Style(scrollPane);
       add(scrollPane);
       
       seat = new JButton("ÁÂ¼®");
-      seat.setBounds(90, 40, 120, 30);
+      seat.setBounds(127, 65, 120, 30);
       new Style(seat);
       add(seat);
       seat.addActionListener(new ActionListener() { 
@@ -43,7 +43,7 @@ public class StoreDBPage extends JPanel implements ActionListener {
       });
       
       room = new JButton("·ë");
-      room.setBounds(255, 40, 120, 30);
+      room.setBounds(292, 65, 120, 30);
       new Style(room);
       add(room);
       room.addActionListener(new ActionListener() { 
@@ -53,7 +53,7 @@ public class StoreDBPage extends JPanel implements ActionListener {
       });
       
       locker = new JButton("»ç¹°ÇÔ");
-      locker.setBounds(420, 40, 120, 30);
+      locker.setBounds(457, 65, 120, 30);
       new Style(locker);
       add(locker);
       locker.addActionListener(new ActionListener() { 
@@ -63,12 +63,12 @@ public class StoreDBPage extends JPanel implements ActionListener {
       });
       
       total = new JLabel();
-      total.setBounds(396, 408, 200, 100);
+      total.setBounds(72, 475, 200, 30);
       new Style(total);
       add(total);
       
       back = new JButton("ÀÌÀü");
-      back.setBounds(479, 481, 100, 30);
+      back.setBounds(540, 475, 90, 30);
       new Style(back);
       add(back);
 

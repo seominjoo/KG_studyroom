@@ -37,12 +37,12 @@ public class MemberManagementPage extends JPanel implements ActionListener{
 
 		totalmember = new JLabel();
 		new Style(totalmember);
-		totalmember.setBounds(80, 451, 150, 30);
+		totalmember.setBounds(72, 475, 150, 30);
 		add(totalmember);
 
 		newmember = new JLabel();
 		new Style(newmember);
-		newmember.setBounds(80, 481, 150, 30);
+		newmember.setBounds(215, 475, 150, 30);
 		add(newmember);
 
 		scrollPane = new JScrollPane();
@@ -50,27 +50,27 @@ public class MemberManagementPage extends JPanel implements ActionListener{
 
 		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 		scrollPane.getHorizontalScrollBar().setUnitIncrement(20);
-		scrollPane.setBounds(50, 85, 560, 350);
+		scrollPane.setBounds(72, 110, 560, 350);
 		add(scrollPane);
 
 		month = new JComboBox<String>(new ManagementDate().monthTable2);
-		month.setBounds(90, 40, 65, 30);
+		month.setBounds(95, 65, 80, 30);
 		add(month);
 		new Style(month);
 
 		dayOrWeek = new JComboBox<String>(new ManagementDate().typeTable);
-		dayOrWeek.setBounds(255, 40, 80, 30);
+		dayOrWeek.setBounds(276, 65, 80, 30);
 		add(dayOrWeek);
 		new Style(dayOrWeek);
 
 		seat_room_locker = new JComboBox<String>(new ManagementDate().use_statusTable);
-		seat_room_locker.setBounds(420, 40, 80, 30);
+		seat_room_locker.setBounds(447, 65, 80, 30);
 		add(seat_room_locker);
 		new Style(seat_room_locker);
 
 		num_member = new JButton("회원 수");
 		new Style(num_member);
-		num_member.setBounds(158, 40, 70, 30);
+		num_member.setBounds(180, 65, 70, 30);
 		add(num_member);
 
 		num_member.addActionListener(new ActionListener() { 
@@ -82,7 +82,7 @@ public class MemberManagementPage extends JPanel implements ActionListener{
 
 		type = new JButton("이용권");
 		new Style(type);
-		type.setBounds(338, 40, 60, 30);
+		type.setBounds(361, 65, 60, 30);
 		add(type);
 
 		type.addActionListener(new ActionListener() { 
@@ -94,7 +94,7 @@ public class MemberManagementPage extends JPanel implements ActionListener{
 
 		current_user = new JButton("이용 현황");
 		new Style(current_user);
-		current_user.setBounds(503, 40, 70, 30);
+		current_user.setBounds(532, 65, 70, 30);
 		add(current_user);
 
 		current_user.addActionListener(new ActionListener() { 
@@ -106,7 +106,7 @@ public class MemberManagementPage extends JPanel implements ActionListener{
 
 		back = new JButton("이전");
 		new Style(back);
-		back.setBounds(479, 481, 100, 30);
+		back.setBounds(540, 475, 90, 30);
 		add(back);
 
 		back.addActionListener(new ActionListener() {

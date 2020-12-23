@@ -51,7 +51,7 @@ public class Receipt extends JPanel {
 		add(p2);
 
 		int x = 36;
-		
+
 		// 그 안의 내용들
 		JLabel headTitle = new JLabel("<html><pre>KG STUDY</pre>");
 		new Style(headTitle);
@@ -65,7 +65,8 @@ public class Receipt extends JPanel {
 		smallTtile.setBounds(x, 65, 150, 20);
 		p2.add(smallTtile);
 
-		JLabel paidTime = new JLabel(Payment.time_now.format(DateTimeFormatter.ofPattern("yyyy - MM - dd  HH : mm : ss")));
+		JLabel paidTime = new JLabel(
+				Payment.time_now.format(DateTimeFormatter.ofPattern("yyyy - MM - dd  HH : mm : ss")));
 		new Style(paidTime);
 		paidTime.setFont(new Font("맑은 고딕", Font.PLAIN, 11));
 		paidTime.setBounds(258, 65, 250, 20);
@@ -94,24 +95,23 @@ public class Receipt extends JPanel {
 		line1.setFont(new Font("맑은 고딕", Font.PLAIN, 11));
 		line1.setBounds(x, 308, 360, 10);
 		p2.add(line1);
-		
+
 		JLabel line2 = new JLabel("------------------------------------------------------------------------");
 		new Style(line2);
 		line2.setFont(new Font("맑은 고딕", Font.PLAIN, 11));
 		line2.setBounds(x, 398, 360, 10);
 		p2.add(line2);
-		
+
 		JLabel line3 = new JLabel("------------------------------------------------------------------------");
 		new Style(line3);
 		line3.setFont(new Font("맑은 고딕", Font.PLAIN, 11));
 		line3.setBounds(x, 458, 360, 10);
 		p2.add(line3);
 
-		
 		String header1[] = { "상품명", "단가", "수량", "금액" };
 		String contents1[][] = { { "상품명", "단가", "수량", "금액" },
 				{ Reservation.type11, NumberFormat.getInstance().format(Reservation.price), "1",
-				NumberFormat.getInstance().format(Reservation.price * Integer.parseInt("1")) } };
+						NumberFormat.getInstance().format(Reservation.price * Integer.parseInt("1")) } };
 
 		DefaultTableModel model1 = new DefaultTableModel(contents1, header1);
 
@@ -128,18 +128,16 @@ public class Receipt extends JPanel {
 		priceTable.getColumnModel().getColumn(3).setPreferredWidth(80);
 		p2.add(priceTable);
 
-
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 		centerRenderer.setOpaque(false);
 		for (int i = 0; i < header1.length; i++) {
 			priceTable.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
 		}
-		
+
 		String header2[] = { "결제", "정보" };
-		String contents2[][] = { { "번호", Reservation.number },
-				{ "입실 시간", Payment.time_now.format(dateTimeFormatter)},
-				{ "퇴실(만료) 예정 시간", ss.format(dateTimeFormatter)},
+		String contents2[][] = { { "번호", Reservation.number }, { "입실 시간", Payment.time_now.format(dateTimeFormatter) },
+				{ "퇴실(만료) 예정 시간", ss.format(dateTimeFormatter) },
 				{ "결제 금액", NumberFormat.getInstance().format((Reservation.price)) },
 				{ "공급가금액", NumberFormat.getInstance().format((int) (Math.ceil(Reservation.price / 1.1))) },
 				{ "부가세", NumberFormat.getInstance()
@@ -156,19 +154,19 @@ public class Receipt extends JPanel {
 		table.setRowHeight(30);
 		table.setBorder(null);
 		p2.add(table);
-		
+
 		DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
 		rightRenderer.setOpaque(false);
 		rightRenderer.setHorizontalAlignment(JLabel.RIGHT);
 		table.getColumnModel().getColumn(1).setCellRenderer(rightRenderer);
-		
+
 		JLabel payType = new JLabel("거래종류 : " + type);
 		new Style(payType);
 		payType.setBounds(x, 472, 130, 20);
 		payType.setFont(new Font("맑은 고딕", Font.PLAIN, 11));
 		p2.add(payType);
 		// 여기까지가 눈에 보이는 영수증 디자인
-		
+
 		// totalPayment를 person_info table에 넣기 위한 DB
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");

@@ -179,7 +179,7 @@ public class StoreManagementPage extends JPanel implements ActionListener {
 
 		info = new JButton("관리 테이블");
 		info.addActionListener(new StoreDBPage());
-		info.setBounds(465,435,140,65);
+		info.setBounds(485,435,140,65);
 		new Style(info);
 		c.add(info);
 
