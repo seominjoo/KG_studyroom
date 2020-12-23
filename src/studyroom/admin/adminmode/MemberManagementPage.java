@@ -10,8 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import studyroom.MainPage;
 import studyroom.design.Style;
-import studyroom.user.MainPage;
 
 public class MemberManagementPage extends JPanel implements ActionListener{
 

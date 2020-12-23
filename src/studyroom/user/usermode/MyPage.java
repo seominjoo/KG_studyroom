@@ -9,9 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import studyroom.MainPage;
 import studyroom.design.Style;
 import studyroom.swingTools.SwingToolsSubPage;
-import studyroom.user.MainPage;
 
 public class MyPage extends JFrame {
 

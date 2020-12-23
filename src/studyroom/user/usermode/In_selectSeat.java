@@ -19,9 +19,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import studyroom.MainPage;
 import studyroom.design.Style;
 import studyroom.swingTools.State;
-import studyroom.user.MainPage;
 
 public class In_selectSeat extends JPanel implements ActionListener{
 

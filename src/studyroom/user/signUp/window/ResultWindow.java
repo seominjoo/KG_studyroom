@@ -19,9 +19,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import studyroom.MainPage;
 import studyroom.design.Style;
 import studyroom.swingTools.SwingToolsSubPage;
-import studyroom.user.MainPage;
 import studyroom.user.login.LoginPage;
 import studyroom.user.signUp.PhoneNumberEnum;
 import studyroom.user.signUp.SignUpEnum;

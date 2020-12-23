@@ -1,4 +1,4 @@
-package studyroom.user;
+package studyroom;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;

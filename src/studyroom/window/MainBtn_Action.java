@@ -20,12 +20,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import studyroom.MainPage;
 import studyroom.admin.AdminPage;
 import studyroom.design.Conversion_image;
 import studyroom.design.Style;
 import studyroom.swingTools.Login_SwingTool;
 import studyroom.swingTools.SwingToolsSubPage;
-import studyroom.user.MainPage;
 import studyroom.user.findPW.FindPasswordPageUser;
 import studyroom.user.login.LoginPage;
 import studyroom.user.login.loginDataBase.DBLoggedIn;

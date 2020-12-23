@@ -32,10 +32,10 @@ import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.plaf.basic.BasicComboPopup;
 import javax.swing.plaf.basic.ComboPopup;
 
+import studyroom.MainPage;
 import studyroom.design.ClearTextBackGround;
 import studyroom.design.PhoneNumberClearTextField;
 import studyroom.design.Style;
-import studyroom.user.MainPage;
 import studyroom.user.login.LoginPage;
 import studyroom.user.signUp.BirthEnum;
 import studyroom.user.signUp.PhoneNumberEnum;

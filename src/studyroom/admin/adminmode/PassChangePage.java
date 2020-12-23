@@ -18,8 +18,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.text.NumberFormatter;
 
+import studyroom.MainPage;
 import studyroom.design.Style;
-import studyroom.user.MainPage;
 
 public class PassChangePage extends JPanel implements ActionListener{
 

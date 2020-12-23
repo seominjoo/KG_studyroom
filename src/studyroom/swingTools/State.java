@@ -17,8 +17,8 @@ import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
+import studyroom.MainPage;
 import studyroom.design.Style;
-import studyroom.user.MainPage;
 
 public class State extends JPanel {
 	public int count_seat;

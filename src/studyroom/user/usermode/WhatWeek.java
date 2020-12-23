@@ -3,8 +3,8 @@ package studyroom.user.usermode;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
+import studyroom.MainPage;
 import studyroom.design.Style;
-import studyroom.user.MainPage;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -9,7 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 
-import studyroom.user.MainPage;
+import studyroom.MainPage;
 
 public class ActionBtn_select extends JFrame implements ActionListener {
 

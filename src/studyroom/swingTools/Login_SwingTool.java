@@ -4,8 +4,8 @@ import java.awt.Color;
 
 import javax.swing.JFrame;
 
+import studyroom.MainPage;
 import studyroom.design.Style;
-import studyroom.user.MainPage;
 
 public class Login_SwingTool extends JFrame {
 

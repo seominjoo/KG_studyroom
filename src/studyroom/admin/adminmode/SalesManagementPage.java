@@ -21,8 +21,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import studyroom.MainPage;
 import studyroom.design.Style;
-import studyroom.user.MainPage;
 import studyroom.user.signUp.BirthEnum;
 import studyroom.user.signUp.SignUpEnum;
 import studyroom.user.signUp.YearMonthClick;

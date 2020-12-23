@@ -10,9 +10,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import studyroom.MainPage;
 import studyroom.design.Style;
 import studyroom.swingTools.SwingToolsSubPage;
-import studyroom.user.MainPage;
 import studyroom.user.usermode.Mainmenu;
 
 public class SubWindow extends JFrame {

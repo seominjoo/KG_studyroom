@@ -2,8 +2,8 @@ package studyroom.user.usermode;
 
 import javax.swing.JPanel;
 
+import studyroom.MainPage;
 import studyroom.design.Style;
-import studyroom.user.MainPage;
 
 import javax.swing.JButton;
 import java.awt.event.ActionEvent;

@@ -21,9 +21,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import studyroom.MainPage;
 import studyroom.design.Style;
 import studyroom.swingTools.State;
-import studyroom.user.MainPage;
 import studyroom.user.usermode.Time;
 
 public class StoreBtnPage extends JFrame {

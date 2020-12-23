@@ -6,8 +6,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import studyroom.MainPage;
 import studyroom.design.Style;
-import studyroom.user.MainPage;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

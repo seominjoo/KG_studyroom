@@ -18,9 +18,9 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
+import studyroom.MainPage;
 import studyroom.design.Style;
 import studyroom.swingTools.State;
-import studyroom.user.MainPage;
 
 public class Receipt extends JPanel {
 

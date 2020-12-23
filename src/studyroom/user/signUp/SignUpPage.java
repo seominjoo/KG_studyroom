@@ -30,11 +30,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import studyroom.MainPage;
 import studyroom.design.ClearTextBackGround;
 import studyroom.design.ClearTextField;
 import studyroom.design.PhoneNumberClearTextField;
 import studyroom.design.Style;
-import studyroom.user.MainPage;
 import studyroom.user.signUp.window.ConsentContent;
 
 

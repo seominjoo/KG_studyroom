@@ -9,7 +9,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import studyroom.user.MainPage;
+import studyroom.MainPage;
 import studyroom.user.signUp.BirthEnum;
 import studyroom.user.signUp.SignUpEnum;
 

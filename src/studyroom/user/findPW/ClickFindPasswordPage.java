@@ -14,7 +14,6 @@ import java.util.Date;
 import javax.swing.JLabel;
 
 import studyroom.*;
-import studyroom.user.MainPage;
 import studyroom.user.findPW.window.PassWordSearchResultPage;
 import studyroom.window.MainBtn_Action;
 

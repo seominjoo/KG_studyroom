@@ -6,12 +6,12 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import studyroom.MainPage;
 import studyroom.admin.adminmode.MemberManagementPage;
 import studyroom.admin.adminmode.PassChangePage;
 import studyroom.admin.adminmode.SalesManagementPage;
 import studyroom.admin.adminmode.StoreManagementPage;
 import studyroom.design.Style;
-import studyroom.user.MainPage;
 
 public class AdminMenuPage extends JPanel{
     
