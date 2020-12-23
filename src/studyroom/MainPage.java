@@ -130,7 +130,7 @@ public class MainPage extends JFrame implements Runnable {
       new Style(logo);
       logo.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 30));
       logo.setForeground(Color.decode("#cfab8b"));
-      logo.setBounds((x-w)/2-102, 70, 250, 100);
+      logo.setBounds((x-w)/2-104, 70, 250, 100);
       background.add(logo);
       
       updateTable = new JPanel();
