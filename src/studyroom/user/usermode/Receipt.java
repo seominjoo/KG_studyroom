@@ -25,7 +25,7 @@ import studyroom.swingTools.State;
 public class Receipt extends JPanel {
 
 	JTable table;
-	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 a hh시 mm분 ss초");
+	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 a hh시 mm분");
 
 	static String type;
 
@@ -138,8 +138,8 @@ public class Receipt extends JPanel {
 		
 		String header2[] = { "결제", "정보" };
 		String contents2[][] = { { "번호", Reservation.number },
-				{ "입실 시간", Payment.time_now.format(dateTimeFormatter).substring(0, 24) },
-				{ "퇴실(만료) 예정 시간", ss.format(dateTimeFormatter).substring(0, 24) },
+				{ "입실 시간", Payment.time_now.format(dateTimeFormatter)},
+				{ "퇴실(만료) 예정 시간", ss.format(dateTimeFormatter)},
 				{ "결제 금액", NumberFormat.getInstance().format((Reservation.price)) },
 				{ "공급가금액", NumberFormat.getInstance().format((int) (Math.ceil(Reservation.price / 1.1))) },
 				{ "부가세", NumberFormat.getInstance()

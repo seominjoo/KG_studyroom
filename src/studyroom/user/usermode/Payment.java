@@ -33,7 +33,7 @@ public class Payment extends JPanel{
    private JTable table;
    static LocalDateTime time_now;
    String time_checkout;
-   DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 a hh시 mm분 ss초");
+   DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 a hh시 mm분");
    LocalDateTime pluss;
    public Payment(LocalDateTime ss, int seat_price, String seat_type) {
       time_now = LocalDateTime.now().plusSeconds(30);
@@ -51,8 +51,8 @@ public class Payment extends JPanel{
           {"","  주문 내역 확인"},
           {"",""},
             {"    번호","   "+Reservation.number},
-            {"    결제 시간","   "+time_now.format(dateTimeFormatter).substring(0, 24)},
-            {"    사용 만료 시간","   "+pluss.format(dateTimeFormatter).substring(0, 24)}, 
+            {"    결제 시간","   "+time_now.format(dateTimeFormatter)},
+            {"    사용 만료 시간","   "+pluss.format(dateTimeFormatter)}, 
             {"    이용권","   "+Reservation.type11},
             {"    결제 금액","   "+Integer.toString((Reservation.price))},
             {"",""}

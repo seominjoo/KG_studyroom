@@ -34,7 +34,7 @@ public class Mainmenu extends JPanel {
 
 	static int id;
 	public static String type;
-	public static DateTimeFormatter datetime = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 ");
+	public static DateTimeFormatter datetime = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분");
 
 	public Mainmenu() {
 
