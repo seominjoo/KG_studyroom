@@ -193,7 +193,7 @@ public class MainPage extends JFrame implements Runnable {
       DefaultTableModel model2 = new DefaultTableModel(contents2, header2);
       JTable caution = new JTable(model2);
       new Style(caution);
-      caution.setBounds(18,y*3/4+20, 280, 80);
+      caution.setBounds(18,y*3/4+20, 290, 80);
       caution.setRowHeight(25);
       caution.setFont(new Font("¸¼Àº °íµñ", Font.BOLD, 12));
       caution.setForeground(Color.decode("#cfab8b"));
