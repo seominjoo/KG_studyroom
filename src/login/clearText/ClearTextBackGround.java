@@ -21,7 +21,9 @@ public class ClearTextBackGround extends MouseAdapter {
 		this.phonenum = phonenum;
 		this.value = value;
 	}
-
+	
+	// 텍스트 밖을 눌렀을 때 텍스트 안을 초기화하는 클래스
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		for (SignUpEnum value : SignUpEnum.values()) {

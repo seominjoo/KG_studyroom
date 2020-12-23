@@ -22,7 +22,8 @@ public class ClearTextField extends MouseAdapter {
 		this.value = value;
 	}
 
-
+	// 전화번호를 제외한 텍스트 안을 눌렀을 때 해당 텍스트는 ""이 되고, 나머지 텍스트는 초기화되는 클래스
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getButton() == MouseEvent.BUTTON1 && value.text.getText().contains(value.labelName)) {

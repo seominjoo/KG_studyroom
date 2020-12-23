@@ -50,6 +50,8 @@ public class SalesManagementPage extends JPanel implements ActionListener {
 
    static JLabel[] weekTotal = new JLabel[5];
 
+   // 관리자 매출관리 페이지 클래스
+   
    public SalesManagementPage() {
       setLayout(null);
       new Style(this);
@@ -118,6 +120,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
       yearTotal.setBounds(158, 40, 70, 30);
       add(yearTotal);
 
+      // 연매출 버튼 클릭 시 DB로 넘길 sql
       yearTotal.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
@@ -131,6 +134,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
       monthTotal.setBounds(338, 40, 60, 30);
       add(monthTotal);
 
+   // 월매출 버튼 클릭 시 DB로 넘길 sql
       monthTotal.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
@@ -145,6 +149,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
       dayTotal.setBounds(503, 40, 70, 30);
       add(dayTotal);
 
+   // 일매출 버튼 클릭 시 DB로 넘길 sql
       dayTotal.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {
@@ -156,6 +161,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
          }
       });
 
+   // 누적매출 버튼 클릭 시 DB로 넘길 sql
       total.addActionListener(new ActionListener() {
          @Override
          public void actionPerformed(ActionEvent e) {

@@ -38,6 +38,8 @@ public class PhoneNumberClearTextField extends MouseAdapter {
 		}
 	}
 
+	// 전화번호 텍스트 안을 눌렀을 때 해당 텍스트는 ""이 되고, 나머지 텍스트는 초기화되는 클래스
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
@@ -60,29 +62,5 @@ public class PhoneNumberClearTextField extends MouseAdapter {
 				AdminPage.admin_loginpass.setText("비밀번호");
 			}
 		}
-		
-
-		
-		
-//		int i = 0;
-//		for (PhoneNumberEnum other : PhoneNumberEnum.values()) {
-//			if (e.getButton() == MouseEvent.BUTTON1 && jtext[i].getText().equals(value.labelName)) {
-//				jtext[i].setText("");
-//			}
-//			if (!(jtext[i].equals(jtext[i]) && jtext[i].getText().equals(""))) {
-//				jtext[i].setText(value.labelName);
-//			}
-//			i++;
-//			if (!other.equals(value) && other.text.getText().equals("")) {
-//				other.text.setText(other.labelName);
-//			}
-//		}
-//		for (SignUpEnum value : SignUpEnum.values()) {
-//			if (String.valueOf(value.blindPW.getPassword()).equals(""))
-//				value.blindPW.setText(value.labelName);
-//			if (value.text.getText().equals(""))
-//				value.text.setText(value.labelName);
-//
-//		}
 	}
 }

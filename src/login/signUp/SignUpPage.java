@@ -65,6 +65,7 @@ public class SignUpPage extends JPanel {
 	
 	public static JCheckBox consentBox;
 
+	// 회원가입 페이지 클래스
 	public SignUpPage() {
 		setLayout(null);
 
@@ -346,6 +347,8 @@ public class SignUpPage extends JPanel {
 		new Style(this);
 
 		s_Yes.addMouseListener(new ClickSignUp());
+		
+		// 취소 눌렀을 때 가입 페이지 내용 초기화
 		s_No.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

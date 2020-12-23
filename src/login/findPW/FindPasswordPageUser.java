@@ -58,6 +58,7 @@ public class FindPasswordPageUser extends JPanel {
 
 	public static JTextField[] phoneTotal;
 
+	// 비번찾기 페이지 클래스
 	public FindPasswordPageUser() {
 
 		JPanel background = this;
@@ -150,7 +151,7 @@ public class FindPasswordPageUser extends JPanel {
 		grid3.add(phone_number3);
 
 		phoneTotal = new JTextField[] { phone_number1, phone_number2, phone_number3 };
-
+		// 전화번호 텍스트 클릭했을 때 텍스트들 초기화
 		for (int i = 0; i < phoneTotal.length; i++) {
 			phoneTotal[i].addMouseListener(new PhoneNumberClearTextField(phoneTotal[i], "비번찾기"));
 		}
@@ -186,10 +187,10 @@ public class FindPasswordPageUser extends JPanel {
 			grid5.add(findCancel[i]);
 			x += 120;
 		}
-		System.out.println(MainPage.userToggle);
 
 		find.addActionListener(new ClickFindPasswordPage(foundPW));
 
+		// 취소 눌렀을 때 관리자냐 사용자냐에 따라 알맞은 페이지로 back 및 pw찾기 페이지의 텍스트 초기화
 		cancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

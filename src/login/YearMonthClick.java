@@ -35,6 +35,7 @@ public class YearMonthClick implements ActionListener {
 		}
 	}
 
+	// 연도 클릭 시 월,일 초기화 & 월 클릭 시 일 초기화
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -44,7 +45,7 @@ public class YearMonthClick implements ActionListener {
 		} else {
 			int yearselect = Integer.parseInt((String) year.getSelectedItem());
 			int monthselect = Integer.parseInt((String) month.getSelectedItem());
-			System.out.println(yearselect + ", " + monthselect);
+
 			DefaultComboBoxModel<String> realDay = new DefaultComboBoxModel<>(BirthEnum.DAY.dayTable);
 			day.setModel(realDay);
 			day.setSelectedItem("");

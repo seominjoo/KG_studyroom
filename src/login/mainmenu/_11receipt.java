@@ -35,6 +35,7 @@ public class _11receipt extends JPanel {
 
 	public _11receipt(LocalDateTime ss, int price) {
 
+		// 왼쪽 실시간 좌석현황 업데이트
 		MainPage.updateTable.add(new State());
 		MainPage.statecard.next(MainPage.updateTable);
 
@@ -42,6 +43,7 @@ public class _11receipt extends JPanel {
 		new Style(this);
 		setVisible(true);
 
+		// 영수증처럼 보이게 하기 위한 하얀 패널
 		JPanel p2 = new JPanel();
 		p2.setBackground(Color.white);
 		p2.setBounds(125, 40, 430, 497);
@@ -50,6 +52,7 @@ public class _11receipt extends JPanel {
 
 		int x = 36;
 		
+		// 그 안의 내용들
 		JLabel headTitle = new JLabel("<html><pre>KG STUDY</pre>");
 		new Style(headTitle);
 		headTitle.setBounds(162, -15, 360, 80);
@@ -104,6 +107,7 @@ public class _11receipt extends JPanel {
 		line3.setBounds(x, 458, 360, 10);
 		p2.add(line3);
 
+		
 		String header1[] = { "상품명", "단가", "수량", "금액" };
 		String contents1[][] = { { "상품명", "단가", "수량", "금액" },
 				{ _08reservation.type11, NumberFormat.getInstance().format(_08reservation.price), "1",
@@ -124,17 +128,12 @@ public class _11receipt extends JPanel {
 		priceTable.getColumnModel().getColumn(3).setPreferredWidth(80);
 		p2.add(priceTable);
 
-//		JTableHeader priceHeader = priceTable.getTableHeader();
-//		priceHeader.setOpaque(false);
-//		priceHeader.setBounds(165, 164, 390, 30);
-//		p2.add(priceHeader);
 
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 		centerRenderer.setOpaque(false);
 		for (int i = 0; i < header1.length; i++) {
 			priceTable.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
-//			priceHeader.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
 		}
 		
 		String header2[] = { "결제", "정보" };
@@ -168,7 +167,9 @@ public class _11receipt extends JPanel {
 		payType.setBounds(x, 472, 130, 20);
 		payType.setFont(new Font("맑은 고딕", Font.PLAIN, 11));
 		p2.add(payType);
-
+		// 여기까지가 눈에 보이는 영수증 디자인
+		
+		// totalPayment를 person_info table에 넣기 위한 DB
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XEPDB1", "hr", "1234");

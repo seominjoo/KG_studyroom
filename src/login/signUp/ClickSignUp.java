@@ -36,6 +36,7 @@ public class ClickSignUp extends MouseAdapter {
 
 	static String phoneNumber;
 
+	// È¸¿ø°¡ÀÔ ÆäÀÌÁö¿¡¼­ °¡ÀÔ ¹öÆ° ´­·¶À» ½Ã
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		boolean consentCheck = true;
@@ -53,6 +54,7 @@ public class ClickSignUp extends MouseAdapter {
 		pw = SignUpEnum.PASSWORD.blindPW;
 		pwConfirm = SignUpEnum.PASSWORDCONFIRM.blindPW;
 
+		// °¡ÀÔ Á¶°Ç ÇÊÅÍ¸µ
 		if (e.getButton() == MouseEvent.BUTTON1) {
 			if (!Pattern.matches("[°¡-ÆR]{2,4}", SignUpEnum.NAME.text.getText())) {
 				new ResultWindow("¼º ÇÔ");
@@ -76,7 +78,6 @@ public class ClickSignUp extends MouseAdapter {
 				new ResultWindow("ºñ¹Ð ¹øÈ£ È®ÀÎ");
 				pwConfirm.setText("");
 			} else {
-				// ¾à°ü Ã¼Å©
 				for (Entry<JCheckBox, JButton> kv : SignUpPage.consent.entrySet()) {
 					if (!kv.getKey().isSelected()) {
 						consentCheck = false;
@@ -84,9 +85,9 @@ public class ClickSignUp extends MouseAdapter {
 						break;
 					}
 				}
-
+				// ÇÊÅÍ¸µ °ÅÄ¡°í °É·¯Áø°Ô ¾ø´Ù¸é, ¾Æ·¡ °¡ÀÔDB ½ÇÇà
 				if (consentCheck) {
-
+					
 					try {
 
 						Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -101,6 +102,7 @@ public class ClickSignUp extends MouseAdapter {
 
 						ResultSet rs = read_PhoneNumber.executeQuery();
 
+						// ÀüÈ­ ¹øÈ£ Áßº¹ÀÌ¶ó¸é ÇÊÅÍ¸µ
 						while (rs.next()) {
 							phoneNumber = rs.getString(1);
 							if (text.equals(phoneNumber)) {
@@ -118,6 +120,7 @@ public class ClickSignUp extends MouseAdapter {
 						if (read_PhoneNumber != null)
 							read_PhoneNumber.close();
 
+						// ÀüÈ­¹øÈ£µµ Áßº¹ÀÌ ¾Æ´Ï¶ó¸é
 						if (!samePhoneNumber) {
 
 							PreparedStatement read_MaxIDNum = conn
@@ -133,7 +136,6 @@ public class ClickSignUp extends MouseAdapter {
 									+ "(Person_Id,Check_Time,Person_Name, person_birth, Phone_Number,PW,Total_Payment)"
 									+ " VALUES(?, ?, ?, ?, ?, ?, ?)");
 
-							// Batch : ÀÏ°ýÃ³¸®
 							DateFormat simple = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 							Date now = new Date();
 
@@ -164,6 +166,7 @@ public class ClickSignUp extends MouseAdapter {
 								person_name = rs2.getString(2);
 							}
 
+							// È¸¿ø¹øÈ£, ¼ºÇÔÀ» °¡ÀÔ¼º°ø ÆäÀÌÁö·Î º¸³»±â
 							new ResultWindow(person_id, person_name);
 
 							if (rs1 != null)
@@ -177,17 +180,16 @@ public class ClickSignUp extends MouseAdapter {
 							if (conn != null)
 								conn.close();
 
-							System.out.println("¼º°ø");
+							//System.out.println("¼º°ø");
 						}
 
 					} catch (SQLException e1) {
-						// e1.printStackTrace();
-						System.out.println(e1.toString());
-						// new SignUpFailWindow(e1);
+						 e1.printStackTrace();
+						//System.out.println(e1.toString());
 
 					} catch (ClassNotFoundException e1) {
 						e1.printStackTrace();
-						System.out.println("[ojdbc] Å¬·¡½º °æ·Î°¡ Æ²·È½À´Ï´Ù.");
+						//System.out.println("[ojdbc] Å¬·¡½º °æ·Î°¡ Æ²·È½À´Ï´Ù.");
 					}
 				}
 			}

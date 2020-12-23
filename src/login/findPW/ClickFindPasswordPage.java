@@ -35,7 +35,8 @@ public class ClickFindPasswordPage implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		
+		// 사용자 and 관리자 비번찾기 sql 구분 
 		if(MainPage.userToggle.equals("비번찾기")) {
 			query = "SELECT pw FROM person_info where phone_number = ?" + "and person_birth = ?";
 		}
@@ -50,6 +51,7 @@ public class ClickFindPasswordPage implements ActionListener {
 				+ (String) FindPasswordPageUser.month.getSelectedItem()
 				+ (String) FindPasswordPageUser.day.getSelectedItem();
 
+		// 비번찾기 위한 DB
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
@@ -68,7 +70,6 @@ public class ClickFindPasswordPage implements ActionListener {
 			while (rs2.next()) {
 				password = rs2.getString(1);
 			}
-			System.out.println(password);
 
 			new PassWordSearchResultPage(foundPW, password);
 
@@ -83,12 +84,10 @@ public class ClickFindPasswordPage implements ActionListener {
 
 		} catch (SQLException e1) {
 			e1.printStackTrace();
-			// System.out.println(e1.toString());
-			// new SignUpFailWindow(e1);
 
 		} catch (ClassNotFoundException e1) {
 			e1.printStackTrace();
-			System.out.println("[ojdbc] 클래스 경로가 틀렸습니다.");
+			//System.out.println("[ojdbc] 클래스 경로가 틀렸습니다.");
 		}
 
 	}

@@ -41,6 +41,8 @@ public class ResultWindow extends JFrame {
 	private String person_name;
 	private boolean result = false;
 
+	// 가입 성공 & 실패 창 클래스
+	
 	public ResultWindow(int person_id, String person_name) {
 		this.person_id = person_id;
 		this.person_name = person_name;
@@ -97,6 +99,7 @@ public class ResultWindow extends JFrame {
 		new Style(confirmButton);
 		panelInGrid2.add(confirmButton);
 
+		// 확인 누르면 성공했을 때 회원가입창 초기화 및 로그인페이지로 귀환
 		confirmButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

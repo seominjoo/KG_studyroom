@@ -35,6 +35,7 @@ public class ConsentContent extends JFrame implements ActionListener {
 	int i;
 	int x;
 
+	// 약관 페이지 클래스
 	public ConsentContent(int consentNum) {
 		this.consentNum = consentNum;
 		scrollPane = new JScrollPane();
@@ -85,7 +86,6 @@ public class ConsentContent extends JFrame implements ActionListener {
 		}
 
 		String replaced1 = content.replace("\r\n", "<br/> ");
-		//String replaced2 = replaced1.replace(".", ".<br/> ");
 		String replaced3 = replaced1.replace("(", "<br/> (");
 		String replaced4 = replaced3.replace(")", ")<br/> ");
 		String replaced5 = replaced4.replace(",", ",<br/> ");
@@ -101,6 +101,7 @@ public class ConsentContent extends JFrame implements ActionListener {
 		confirmButton.setEnabled(false);
 		panel.add(confirmButton);
 
+		// 스크롤 바 리스너
 		scrollPane.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
 			
 			@Override
