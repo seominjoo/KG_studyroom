@@ -235,6 +235,7 @@ public class StoreMoveBtnPage extends JFrame {
 			add(move);
 			
 			setLayout(null);
+			setLocationRelativeTo(null);
 			getContentPane().setBackground(Color.decode("#404040"));
 			setBounds(550, 200, 350, 250);
 			setVisible(true);

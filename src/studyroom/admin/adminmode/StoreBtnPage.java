@@ -333,6 +333,7 @@ public class StoreBtnPage extends JFrame {
          add(title);
          add(info);
          setLayout(null);
+         setLocationRelativeTo(null);
          getContentPane().setBackground(Color.decode("#404040"));
          setBounds(550, 300, 350, 300);
          setVisible(true);
