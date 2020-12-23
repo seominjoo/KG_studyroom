@@ -245,8 +245,12 @@ public class MainPage extends JFrame implements Runnable {
 						if (pstmt != null) pstmt.close();
 						if (conn != null) conn.close();
 
-						MainPage.logoutcard.show(MainPage.logout, "1");
-						MainPage.extendcard.show(MainPage.extend, "1");
+						// 카드레이아웃 표시 또는 가리기
+		                  MainPage.logoutcard.show(MainPage.logout, "1");
+		                  MainPage.extendcard.show(MainPage.extend, "1");
+		                  MainPage.homecard.show(MainPage.home, "1");
+		                  MainPage.changeUsercard.show(MainPage.changeUser, "1");
+		                  
 						extend_cnt = 3;
 						extendbtn.setEnabled(true);
 						// time.cancel();//타이머 종료
