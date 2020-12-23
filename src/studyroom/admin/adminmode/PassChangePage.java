@@ -63,7 +63,7 @@ public class PassChangePage extends JPanel implements ActionListener{
 		new Style(scroll); 
 		scroll.getVerticalScrollBar().setUnitIncrement(10);
 		scroll.getHorizontalScrollBar().setUnitIncrement(10);
-		scroll.setBounds(80, 200, 500, 250);
+		scroll.setBounds(50, 200, 560, 250);
 		add(scroll);
 
 

@@ -50,7 +50,7 @@ public class MemberManagementPage extends JPanel implements ActionListener{
 
 		scrollPane.getVerticalScrollBar().setUnitIncrement(20);
 		scrollPane.getHorizontalScrollBar().setUnitIncrement(20);
-		scrollPane.setBounds(80, 85, 500, 350);
+		scrollPane.setBounds(50, 85, 560, 350);
 		add(scrollPane);
 
 		month = new JComboBox<String>(new ManagementDate().monthTable2);

@@ -28,7 +28,7 @@ public class StoreDBPage extends JPanel implements ActionListener {
       scrollPane = new JScrollPane();
       scrollPane.getVerticalScrollBar().setUnitIncrement(20);
       scrollPane.getHorizontalScrollBar().setUnitIncrement(20);
-      scrollPane.setBounds(80, 85, 500, 350);
+      scrollPane.setBounds(50, 85, 560, 350);
       new Style(scrollPane);
       add(scrollPane);
       

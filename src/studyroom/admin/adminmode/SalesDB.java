@@ -141,7 +141,7 @@ public class SalesDB {
 			table.getColumnModel().getColumn(0).setPreferredWidth(140);
 			table.getColumnModel().getColumn(1).setPreferredWidth(60);
 			table.getColumnModel().getColumn(2).setPreferredWidth(130);
-			table.getColumnModel().getColumn(3).setPreferredWidth(60);
+			table.getColumnModel().getColumn(3).setPreferredWidth(120);
 			table.getColumnModel().getColumn(4).setPreferredWidth(55);
 			table.getColumnModel().getColumn(5).setPreferredWidth(55);
 			

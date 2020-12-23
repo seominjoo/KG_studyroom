@@ -56,10 +56,10 @@ public class PhoneNumberClearTextField extends MouseAdapter {
 				phoneTotal[i].setText(PhoneNumberEnum.values()[i].labelName);
 			}
 			if(String.valueOf(LoginPage.loginpass.getPassword()).equals("")) {
-				LoginPage.loginpass.setText("비밀번호");
+				LoginPage.loginpass.setText("");
 			}
 			if(String.valueOf(AdminPage.admin_loginpass.getPassword()).equals("")) {
-				AdminPage.admin_loginpass.setText("비밀번호");
+				AdminPage.admin_loginpass.setText("");
 			}
 		}
 	}

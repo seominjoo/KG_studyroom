@@ -24,7 +24,7 @@ import studyroom.user.usermode.Time;
 public class MemberDB {
 
 	JTable table;
-	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일 a h시 m분 s초");
+	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
 	DateTimeFormatter monthFormatter = DateTimeFormatter.ofPattern("M");
 	LocalDate date = LocalDate.now();
 
@@ -104,20 +104,19 @@ public class MemberDB {
 
 			if (chk == 1) {
 				if (!MemberManagementPage.month.getSelectedItem().equals("전체")) {
-					pstm.setString(1, (String) MemberManagementPage.month.getSelectedItem()); 
+					pstm.setString(1, (String) MemberManagementPage.month.getSelectedItem());
 				}
 			}
-			ResultSet rs = pstm.executeQuery(); 
-			String header[] = { "가입 날짜","회원 번호", "성함", "생일", "폰 번호", 
-					"좌석", "좌석 만료 시간", "룸", "룸 만료 시간", "사물함", 
-					"사물함 만료 시간","이용권 타입(좌석)"  };  
+			ResultSet rs = pstm.executeQuery();
+			String header[] = { "가입 날짜", "회원 번호", "성함", "생일", "폰 번호", "좌석", "좌석 만료 시간", "룸", "룸 만료 시간", "사물함",
+					"사물함 만료 시간", "이용권 타입(좌석)" };
 			int row = 0;
 			int i = 0;
 			int sum = 0;
 			int last_month = 0;
 			while (rs.next()) {
 				row++;
-			} 
+			}
 			pstm = conn.prepareStatement(sql);
 			if (chk == 1) {
 				if (!MemberManagementPage.month.getSelectedItem().equals("전체")) {
@@ -155,24 +154,21 @@ public class MemberDB {
 							contents[i][j] = "";
 						} else {
 							time_chk = rs.getTimestamp(7);
-							contents[i][j] = Time.TimeStampTOlocalDateTime(time_chk).format(dateTimeFormatter)
-									.substring(0, 23);
+							contents[i][j] = Time.TimeStampTOlocalDateTime(time_chk).format(dateTimeFormatter);
 						}
 					} else if (j == 8) {
 						if (rs.getTimestamp(9).toString().contains("2001-01-01 00:00:00.0")) {
 							contents[i][j] = "";
 						} else {
 							time_chk = rs.getTimestamp(9);
-							contents[i][j] = Time.TimeStampTOlocalDateTime(time_chk).format(dateTimeFormatter)
-									.substring(0, 23);
+							contents[i][j] = Time.TimeStampTOlocalDateTime(time_chk).format(dateTimeFormatter);
 						}
 					} else if (j == 10) {
 						if (rs.getTimestamp(11).toString().equals("2001-01-01 00:00:00.0")) {
 							contents[i][j] = "";
 						} else {
 							time_chk = rs.getTimestamp(11);
-							contents[i][j] = Time.TimeStampTOlocalDateTime(time_chk).format(dateTimeFormatter)
-									.substring(0, 23);
+							contents[i][j] = Time.TimeStampTOlocalDateTime(time_chk).format(dateTimeFormatter);
 						}
 					} else {
 						String mon = rs.getString(j + 1);
@@ -180,7 +176,7 @@ public class MemberDB {
 
 						if (j == 11 && mon.substring(0, 2).equals(date.format(monthFormatter))) {
 							last_month++;
-						} 
+						}
 					}
 				}
 				i++;
@@ -192,7 +188,7 @@ public class MemberDB {
 
 			table = new JTable(model);
 
-			table.getTableHeader().setOpaque(false); 
+			table.getTableHeader().setOpaque(false);
 			table.setRowHeight(40);
 
 			table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -201,30 +197,31 @@ public class MemberDB {
 			table.getColumnModel().getColumn(3).setPreferredWidth(80);
 			table.getColumnModel().getColumn(4).setPreferredWidth(100);
 			table.getColumnModel().getColumn(5).setPreferredWidth(50);
-			for(int k=0;k<row;k++) {
-				if (contents[k][6].equals("")) {
-					table.getColumnModel().getColumn(6).setPreferredWidth(90);
-				} else {
+			for (int k = 0; k < row; k++) {
+				
 					table.getColumnModel().getColumn(6).setPreferredWidth(170);
-				}
+				
 				table.getColumnModel().getColumn(7).setPreferredWidth(50);
-				if (contents[k][8].equals("")) {
-					table.getColumnModel().getColumn(8).setPreferredWidth(90);
-				} else {
+				
 					table.getColumnModel().getColumn(8).setPreferredWidth(170);
-				}
+				
 				table.getColumnModel().getColumn(9).setPreferredWidth(50);
-				if (contents[k][10].equals("")) {
-					table.getColumnModel().getColumn(10).setPreferredWidth(100);
-				} else {
+				
 					table.getColumnModel().getColumn(10).setPreferredWidth(170);
-				}
+				
 				table.getColumnModel().getColumn(11).setPreferredWidth(120);
 				table.getColumnModel().getColumn(0).setPreferredWidth(120);
 			}
 			JTableHeader headers = table.getTableHeader();
 			headers.setBackground(Color.darkGray);
 			headers.setForeground(Color.decode("#cfab8b"));
+
+			DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+			centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+			centerRenderer.setOpaque(false);
+			for (int j = 0; j < header.length; j++) {
+				table.getColumnModel().getColumn(j).setCellRenderer(centerRenderer);
+			}
 
 			new Style(table);
 			MemberManagementPage.scrollPane.setViewportView(table);

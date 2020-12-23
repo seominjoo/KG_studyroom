@@ -93,7 +93,7 @@ public class SalesManagementPage extends JPanel implements ActionListener {
       scrollPane = new JScrollPane();
       new Style(scrollPane);
       scrollPane.getVerticalScrollBar().setUnitIncrement(20);
-      scrollPane.setBounds(80, 85, 500, 350);
+      scrollPane.setBounds(50, 85, 560, 350);
       add(scrollPane);
 
       year = new JComboBox<String>(new ManagementDate().yearTable);

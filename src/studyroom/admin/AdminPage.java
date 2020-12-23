@@ -43,7 +43,7 @@ public class AdminPage extends JPanel{
       hyphen1.setBounds(310, 200, 15, 40);
       this.add(hyphen1);
 
-      admin_phone_number2 = new JTextField("1111");
+      admin_phone_number2 = new JTextField("");
       new Style(admin_phone_number2, 4);
       admin_phone_number2.setBounds(325, 200, 55, 40);
       this.add(admin_phone_number2);
@@ -53,13 +53,13 @@ public class AdminPage extends JPanel{
       hyphen2.setBounds(380, 200, 15, 40);
       this.add(hyphen2);
 
-      admin_phone_number3 = new JTextField("1111");
+      admin_phone_number3 = new JTextField("");
       new Style(admin_phone_number3, 4);
       admin_phone_number3.setBounds(395, 200, 55, 40);
       this.add(admin_phone_number3);
       this.add(admin_phone_number3);
 
-      admin_loginpass = new JPasswordField("12345678");
+      admin_loginpass = new JPasswordField("");
       admin_loginpass.addMouseListener(new EmptyPrice(admin_loginpass));
       new Style(admin_loginpass, 12);
       admin_loginpass.setBounds(255, 250, 195, 40);
