@@ -23,12 +23,11 @@ public class YearMonthClick implements ActionListener {
 			year = SignUpPage.year;
 			month = SignUpPage.month;
 			day = SignUpPage.day;
-		} else if(flag.equals("비번찾기")){
+		} else if (flag.equals("비번찾기")) {
 			year = FindPasswordPageUser.year;
 			month = FindPasswordPageUser.month;
 			day = FindPasswordPageUser.day;
-		}
-		else if(flag.equals("매출관리")) {
+		} else if (flag.equals("매출관리")) {
 			year = SalesManagementPage.year;
 			month = SalesManagementPage.month;
 			day = SalesManagementPage.day;
@@ -43,8 +42,12 @@ public class YearMonthClick implements ActionListener {
 			month.setSelectedItem("01");
 			day.setSelectedItem("01");
 		} else {
+			int monthselect = 0;
 			int yearselect = Integer.parseInt((String) year.getSelectedItem());
-			int monthselect = Integer.parseInt((String) month.getSelectedItem());
+			if (month.getSelectedItem().equals(" ")) {
+				month.setSelectedItem("01");
+			}
+			monthselect = Integer.parseInt((String) month.getSelectedItem());
 
 			DefaultComboBoxModel<String> realDay = new DefaultComboBoxModel<>(BirthEnum.DAY.dayTable);
 			day.setModel(realDay);

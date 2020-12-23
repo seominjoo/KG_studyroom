@@ -36,6 +36,7 @@ public enum BirthEnum {
 	public static String[] getMonthTable() {
 		int lastMonth = 12;
 		String[] monthTable = new String[lastMonth + 1];
+		monthTable[0] = " ";
 		for (int i = 1; i < monthTable.length; i++) {
 			monthTable[i] = (i + "").format("%02d", i);
 		}
@@ -44,6 +45,7 @@ public enum BirthEnum {
 
 	public static String[] getDayTable() {
 		String[] dayTable = new String[32];
+		dayTable[0] = " ";
 		for (int i = 1; i < dayTable.length; i++) {
 			dayTable[i] = (i + "").format("%02d", i);
 		}
