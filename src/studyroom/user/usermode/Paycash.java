@@ -32,7 +32,7 @@ public class Paycash extends JFrame {
       setBounds(400, 200, 380, 250);
       setVisible(true);
       
-      String price = NumberFormat.getInstance().format(Reservation.price11);
+      String price = Integer.toString(Reservation.price11);
       
       JPanel panel = new JPanel();
       panel.setBounds(0, 0, 420, 322);
@@ -40,7 +40,7 @@ public class Paycash extends JFrame {
       add(panel);
       panel.setLayout(null);
 
-      JLabel payment = new JLabel("결제 금액  :  " + price + "원");
+      JLabel payment = new JLabel("결제 금액  :  " + NumberFormat.getInstance().format(Integer.parseInt(price)) + "원");
       new Style(payment);
       payment.setBounds(73, 23, 236, 39);
       panel.add(payment);

@@ -41,8 +41,8 @@ public class Payment extends JPanel{
       
       // 결제 창 기준 time_now로 만료 시간 적용 (+ 결제 시간 30초)
       this.pluss = ss;
-      pluss = ss.plusSeconds(((int) Math.ceil(time_now.getMinute() -Reservation.whatclass_now.getMinute())));
-      pluss = ss.plusSeconds(((int) Math.ceil(time_now.getSecond() -Reservation.whatclass_now.getSecond())));
+      pluss = ss.plusMinutes(((int) Math.ceil(time_now.getMinute() - Reservation.whatclass_now.getMinute())));
+      pluss = ss.plusSeconds(((int) Math.ceil(time_now.getSecond() - Reservation.whatclass_now.getSecond())));
       
       this.setLayout(null);
       new Style(this);
