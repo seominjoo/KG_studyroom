@@ -58,6 +58,7 @@ public class ResultWindow extends JFrame {
 	void ResultCalc() {
 		SwingToolsSubPage.initTestFrame(this);
 		setLayout(new BorderLayout(0, 15));
+		setLocationRelativeTo(null);
 		add(Style.getnewPanel(), BorderLayout.NORTH);
 		
 		gridPanel21 = new JPanel();
