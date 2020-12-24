@@ -69,7 +69,7 @@ public class PassChangeDB {
 
 				pstm1.setInt(1,Integer.parseInt(PassChangePage.text.get(3).getText()));
 				pstm1.setString(2,PassChangePage.combobox.get(3).getSelectedItem().toString()); 
-				int row = pstm1.executeUpdate(); 
+				int row = pstm1.executeUpdate();
 				if (pstm1 != null)
 					pstm1.close(); 
 			}

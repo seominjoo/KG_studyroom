@@ -27,13 +27,13 @@ public class PassChangePage extends JPanel implements ActionListener{
 
 	static JScrollPane scroll;
 
-	static ArrayList<JFormattedTextField> text = new ArrayList<>(); 
-	{
-		for (int i = 0; i < 4; i++) {
-			text.add(new JFormattedTextField(new NumberFormatter()));
-			text.get(i).setText("0");
-		}
-	}
+	static ArrayList<JTextField> text = new ArrayList<>(); 
+    {
+        for (int i = 0; i < 4; i++) {
+            text.add(new JTextField());
+            text.get(i).setText("0");
+        }
+    }
 
 	public static ArrayList<JComboBox<String>> combobox; 
 
@@ -73,6 +73,7 @@ public class PassChangePage extends JPanel implements ActionListener{
 			new Style(combobox.get(i));
 			a+=40;
 		}
+		
 		for(int i=0; i<4;i++) { 
 			new Style(text.get(i));
 			text.get(i).setBounds(300, 50+b, 65, 30);
@@ -80,6 +81,7 @@ public class PassChangePage extends JPanel implements ActionListener{
 			text.get(i).setColumns(10);
 			b+=40;
 		}
+		
 		for(int i=0; i<4;i++) { 
 			new Style(change.get(i));
 			change.get(i).setBounds(380, 50+c, 100, 30);

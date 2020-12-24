@@ -197,21 +197,43 @@ public class MemberDB {
 			table.getColumnModel().getColumn(3).setPreferredWidth(80);
 			table.getColumnModel().getColumn(4).setPreferredWidth(100);
 			table.getColumnModel().getColumn(5).setPreferredWidth(50);
+			table.getColumnModel().getColumn(7).setPreferredWidth(50);
+			table.getColumnModel().getColumn(11).setPreferredWidth(120);
+			table.getColumnModel().getColumn(0).setPreferredWidth(120);
+
+			int[] cnt = new int[3];
 			for (int k = 0; k < row; k++) {
-				
-					table.getColumnModel().getColumn(6).setPreferredWidth(170);
-				
-				table.getColumnModel().getColumn(7).setPreferredWidth(50);
-				
-					table.getColumnModel().getColumn(8).setPreferredWidth(170);
-				
-				table.getColumnModel().getColumn(9).setPreferredWidth(50);
-				
-					table.getColumnModel().getColumn(10).setPreferredWidth(170);
-				
-				table.getColumnModel().getColumn(11).setPreferredWidth(120);
-				table.getColumnModel().getColumn(0).setPreferredWidth(120);
+				if (contents[k][6].equals("")) {
+				} else {
+					cnt[0]++;
+				}
+				if (contents[k][8].equals("")) {
+				} else {
+					cnt[1]++;
+				}
+				if (contents[k][10].equals("")) {
+				} else {
+					cnt[2]++;
+				}
 			}
+
+			if (cnt[0] == 0) {
+				table.getColumnModel().getColumn(6).setPreferredWidth(90);
+			} else {
+				table.getColumnModel().getColumn(6).setPreferredWidth(150);
+			}
+			if (cnt[1] == 0) {
+				table.getColumnModel().getColumn(8).setPreferredWidth(90);
+			} else {
+				table.getColumnModel().getColumn(8).setPreferredWidth(150);
+			}
+			table.getColumnModel().getColumn(9).setPreferredWidth(50);
+			if (cnt[2] == 0) {
+				table.getColumnModel().getColumn(10).setPreferredWidth(100);
+			} else {
+				table.getColumnModel().getColumn(10).setPreferredWidth(150);
+			}
+
 			JTableHeader headers = table.getTableHeader();
 			headers.setBackground(Color.darkGray);
 			headers.setForeground(Color.decode("#cfab8b"));

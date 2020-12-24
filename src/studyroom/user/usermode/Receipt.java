@@ -66,7 +66,7 @@ public class Receipt extends JPanel {
 		p2.add(smallTtile);
 
 		JLabel paidTime = new JLabel(
-				Payment.time_now.format(DateTimeFormatter.ofPattern("yyyy - MM - dd  HH : mm : ss")));
+				Payment.time_now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
 		new Style(paidTime);
 		paidTime.setFont(new Font("¸¼Àº °íµñ", Font.PLAIN, 11));
 		paidTime.setBounds(258, 65, 250, 20);
