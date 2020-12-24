@@ -357,7 +357,7 @@ public class MainPage extends JFrame implements Runnable {
 						extendbtn.setEnabled(true);
 						// time.cancel();//타이머 종료
 						// 재시작하려면 새로 선언?해야 한다고함
-
+						MainBtn_Action.interval = -1;
 					} catch (ClassNotFoundException | SQLException e1) {
 						e1.printStackTrace();
 					}
