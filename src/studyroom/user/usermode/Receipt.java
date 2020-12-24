@@ -197,6 +197,8 @@ public class Receipt extends JPanel {
 				pstmt.close();
 			if (conn != null)
 				conn.close();
+			
+			Paycash.change=0;//√ ±‚»≠
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
