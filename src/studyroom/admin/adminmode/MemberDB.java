@@ -25,7 +25,7 @@ public class MemberDB {
 
 	JTable table;
 	DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
-	DateTimeFormatter monthFormatter = DateTimeFormatter.ofPattern("M");
+	DateTimeFormatter monthFormatter = DateTimeFormatter.ofPattern("MM");
 	LocalDate date = LocalDate.now();
 
 	public MemberDB(int chk) {
@@ -128,7 +128,12 @@ public class MemberDB {
 			String[][] contents = new String[row][header.length];
 			Timestamp time_chk = null;
 			while (rs.next()) {
-				contents[i][0] = rs.getString(1);
+				String mon = rs.getString(1);
+				contents[i][0] = mon;
+				if (mon.substring(0, 2).equals(date.format(monthFormatter))) {
+                    last_month++;
+                }
+				
 				contents[i][1] = Integer.toString(rs.getInt(2));
 				for (int j = 2; j < header.length; j++) {
 					if (j == 5) {
@@ -170,13 +175,8 @@ public class MemberDB {
 							time_chk = rs.getTimestamp(11);
 							contents[i][j] = Time.TimeStampTOlocalDateTime(time_chk).format(dateTimeFormatter);
 						}
-					} else {
-						String mon = rs.getString(j + 1);
-						contents[i][j] = mon;
-
-						if (j == 11 && mon.substring(0, 2).equals(date.format(monthFormatter))) {
-							last_month++;
-						}
+					} else { 
+						contents[i][j] = rs.getString(j + 1); 
 					}
 				}
 				i++;
