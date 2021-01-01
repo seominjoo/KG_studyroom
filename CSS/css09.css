@@ -1,0 +1,90 @@
+* {
+    box-sizing: border-box ;
+}
+
+[id^="align"]{
+    border: 1px solid black;
+    margin: 3px;
+    width: 300px;
+}
+#align1{
+    /*
+        text-align: initial;
+        초기상태 
+        text-align: inherit;
+        상속 받음 body 
+    */
+    text-align: left;
+}
+#align2 {
+    text-align: right;
+}
+#align3 {
+    text-align: center;
+}
+#align4 {
+    text-align: justify;
+}
+[id^="vali"] {
+    border: 1px solid black;
+}
+[id^="vali"] > img {
+    width: 70px;
+}
+#valign1 > span {
+    color: brown;
+    vertical-align: bottom;
+}
+#valign2 > span {
+    color: brown;
+    vertical-align: middle;
+}
+#valign3 > span {
+    color: brown;
+    vertical-align: top;
+}
+#valign1 > img {
+    vertical-align: top;
+}
+#valign2 > img {
+    vertical-align: middle;
+}
+#valign3 > img {
+    vertical-align: bottom;
+}
+
+[id^="deco"]{
+    border: 1px solid black;
+    padding: 3px;
+}
+
+#deco1 > a{
+    text-decoration: none;
+}
+#deco2 > a{
+    text-decoration: overline dashed red;
+}
+#deco3 > a{
+    text-decoration: line-through dashed 3px darkslategray; 
+    text-decoration-color: darkslategray;
+    
+}
+#deco4 > a {
+    text-decoration: underline dashed 3px tomato;
+}
+#deco5 > a{
+    text-decoration: overline underline line-through;
+    text-decoration-color:mediumblue;
+    text-decoration-style: wavy;
+    text-decoration-thickness: 3px;
+}
+
+#transform1{
+    text-transform: uppercase;
+}
+#transform2{
+    text-transform: lowercase;
+}
+#transform3{
+    text-transform: capitalize;
+}

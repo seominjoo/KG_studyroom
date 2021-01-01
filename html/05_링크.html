@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>링크(Link)</title>
+</head>
+<body>
+<h3># a 태그로 링크 걸기</h3>
+<!-- a : anchor. 마우스로 클릭하면 href 속성에 정의한 URL로 이동한다. -->
+<a href="https://naver.com">Link01</a><br> <!-- 외부의 웹 페이지로 링크 -->
+<a href="./01_HTML_이란.html">Link02</a><br> <!-- 같은 폴더의 파일로 링크 -->
+<a href="../">Link03</a><br> <!-- 상위 폴더로 이동 - 보안상 매우 취약하여 거의 금지되어 있다. -->
+<a href="/">Link04</a><br> <!-- 절대경로를 이용한 링크 -->
+<a href="D:\penguin.jpg">Link05</a><br>
+<!-- 상대 경로로 취급되는 링크들 (에러) -->
+<a href="naver.com">Link06</a><br>
+<a href="penguin.jpg">Link07</a><br>
+
+<!-- a태그(id) 목차 만들기 -->
+<a href="#chapter2">02.chapter2</a><br>
+
+<h3># 자바스크립트를 이용해 링크 걸기</h3>
+
+<!--# onclick 
+    - 자바스크립트 이벤트 속성. 모든 요소에 적용할 수 있는 글로벌 속성이다. 
+    - 마우스 리스너와 비슷하다.
+    # 자바스크립트
+    - 웹브라우저를 컨트롤
+    # location  
+    - 현재 브라우저가 보고있는 정보의 링크를 바꾸면 다른 페이지로 이동 
+    # script 자바스크립트 영역
+    # 자바스크립트 이벤트 속성안에서는 자바스크립트로 쓰인다. -->
+<h5 onclick="location.href='https://naver.com'">1. onclick event</h5>
+<button onclick="location.href='https://google.com'">눌러보세요</button>
+<p onclick="move('#chapter3')">누르면 이동함</p>
+
+<script> 
+// JavaScript 영역 (웹 점유율 100%)
+/* JavaScript 주석 */
+function move(url) {
+    console.log('매개변수로 전달된 값 : ' + url);
+    location.href=url;
+}
+</script>
+
+<hr id="chapter1"> <!-- 가로 줄을 그어주는 태그 -->
+
+<!-- id는 유일한 값 class는 분류 -->
+<p id = "pk1" class="important">Content</p>
+<p id="pk2">Content</p>
+<p class="important">Content</p>
+<p class="important">Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+
+<hr>
+<h3 id = "chapter2"># chapter2</h3>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+<p>Content</p>
+
+<hr>
+<h3 id="chapter3">chapter3</h3>
+<!-- Emmet
+    
+    p#content*50 : id 생성
+    p#content$*50 : id="content1" ~ id="content50"까지 자동 생성하는 Emmet
+    p.content*50 : class 생성
+-->
+p#content$*50
+
+</body>
+</html>

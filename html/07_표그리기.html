@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>테이블(Table)</title>
+</head>
+<body>
+    
+    <h3># 웹 페이지에 표 출력하기</h3>
+
+    <p border="3"><!-- p태그에는 볼더가 해당 되지 않는다. -->
+        table : 표의 범위를 설정하는 태크 <br>
+        tr : table row. table태그 내부에 사용하면 해당 테이블에 한 행을 추가한다. <br>
+        th : table header. tr 태그 내부에 사용하면 제목 칸을 하나 추가한다. <br>
+        td : table data. tr태크 내부에 사용하면 데이터 칸을 하나 추가한다. <br>
+    </p>
+        <!-- tr*5>th+td -->
+    <table border="1">
+        <tr>
+            <th>이름</th>
+            <td>홍길동</td>
+            <td>Hong Gildong</td>
+        </tr>
+        <tr>
+            <th>가족 구성원</th>
+            <td colspan="2">4인</td>
+            <!--colspan ""만큼의 열을 차지 한다.-->
+        </tr>
+        <tr>
+            <th>이메일</th>
+            <td colspan="2">abc@tester.com</td>
+        </tr>
+        <tr>
+            <th>주소</th>
+            <td colspan="2">~</td>
+        </tr>
+        <tr>
+            <th rowspan="2">전화번호</th>
+            <td colspan="2">h.p 010-1111-1111</td>
+        </tr>
+        <tr>
+            <td colspan="2">home 031-111-1111</td>
+        </tr>
+    </table>
+
+
+    <h3># 문제 </h3>
+    <p>- table만들기</p>
+    <table border="1" width="1000" height="300">
+        <tr>
+            <th rowspan="3" colspan="5">A</th>
+            <td rowspan="2" width="100">E</td>
+            <td rowspan="3" colspan="3">G</td>
+            <td rowspan="3" colspan="2">J</td>
+            <td colspan="5">N</td>
+
+        </tr>
+        <tr>
+            <td rowspan="2" colspan="4">O</td>
+            <td rowspan="2" width="70">　</td>
+        </tr>
+        <tr>
+            <td>F</td>
+        </tr>
+        <tr>
+            <th rowspan="3" colspan="7">B</th>
+            <td width="70">H</td>
+            <td colspan="4">　</th>
+            <td rowspan="6" colspan="4">P</th>
+        </tr>
+        <tr>
+            <td colspan="2" width="400">I</td>
+            <td rowspan="4" colspan="3" >K</th>
+        </tr>
+        <tr>
+            <td colspan="2">　</td>
+        </tr>
+        <tr>
+            <th rowspan="3" colspan="2">C</th>
+            <td rowspan="3" colspan="7">D</td>
+        </tr>
+        <tr>
+        </tr>
+        <tr>
+            <td width="100">L</td>
+            <td colspan="2">M</td>
+        </tr>
+</body>
+</html>

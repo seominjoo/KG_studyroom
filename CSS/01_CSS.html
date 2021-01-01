@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS</title>
+    <style>
+        /* style 태그 내부는 CSS문법 영역이 된다.*/
+        ul {
+            background-color: indigo;
+            color: white;
+            padding: 15px;
+            list-style-type: none;
+        }
+        ul >li :first {
+            background-color: skyblue;
+            color: white;
+            margin: 5px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        #div1{
+            background-color: forestgreen;
+            color: ghostwhite;
+            width: 80px;
+            height: 80px;
+            padding: 10px;
+            font-size: 1.5em;
+        }
+      
+        #div2{
+            border: indianred 2px dashed; /*border : 선과 굵기*/
+            padding: 30px; /*padding : 세로크기*/
+            margin: 10px;  /*margin : 바깥여백*/
+            font-size: x-large;
+            font-weight: 900;
+        }
+    </style>
+</head>
+<body>
+    
+    <h3># CSS (Cascading Style Sheet)</h3>
+    <ul>
+        <li>HTML이 웹 페이지의 뼈대를 담당한다면 CSS는 디자인을 담당한다.</li>
+        <li>CSS를 통해 HTML요소가 사용자에게 어떻게 보여야할지를 설정한다.</li>
+    </ul>
+
+    <div id="div1">BOX1</div>
+    <div id="div2">BOX2</div>
+
+</body>
+</html>

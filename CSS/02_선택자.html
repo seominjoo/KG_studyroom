@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>선택자</title>
+
+    <style>
+        body{
+            background-color: peru;
+            color: white;
+        }
+        #list-item2{
+            color: blue;
+        }
+        .big{
+            font-size: 25px;
+        }
+        .normal{
+            font-size: 15px;
+        }
+        .small{
+            font-size: 5px;
+        }
+        .important{
+            font-weight: 900;
+        }
+        .forbidden{
+            text-decoration: line-through;
+        }
+        ul + h3{
+            color: darkolivegreen;
+        }
+    </style>
+
+</head>
+<body>
+    
+<h3># CSS 선택자(Selector)를 통해 원하는 요소를 정확하게 선택할 수 있어야 한다</h3>
+
+<ul type = "none">
+    <!-- 클래스는 여러개 적용할 수 있다 -->
+    <h3># 리스트의 아이템의 형제 요소 #</h3>
+    <li id="list-item1" class="big important">tag : 해당 HTML태그를 모두 선택</li>
+    <li id="list-item2" class="big forbidden">#id : 해당 요소의 ID속성을 이용해 선택</li>
+    <li class="normal">.className : 해당 요소의 클래스 속성을 이용해 선택</li>
+    <li class="small">※ 클래스는 여러개 적용할 수도 있다.</li>
+    <li>
+        + : 형제 요소(바로 다음에 나오는 요소)를 선택한다. <br>
+        ex: div + ul : div와 형제인 ul만 선택한다.(div와 형제가 아닌 ul은 선택되지 않음)
+    </li>
+    <li>
+        공백 : 해당 요소의 모든 자손 요소들을 선택한다.
+    </li>
+    <li>
+        &gt : 해당 요소의 직계 자손 요소들만 선택한다.
+    </li>
+    <li>
+        *  : 모든 요소를 선택한다.
+    </li>
+</ul>
+<h3># 누가 UL의 형제일까</h3>
+
+<style>
+    /*
+    # CSS 적용 우선 순위
+    id > class > tag > *
+    */
+/* #test1 > p {
+    color: red;
+}
+#test1 p {
+    color: blue;
+}
+#test1 *{
+    color: green;
+} */
+div > div{
+    color: darkred;
+}
+
+</style>
+<div id="test1">
+    <div>div text 1</div>
+    <p>paragraph 1</p>
+    <div>
+        <p>paragraph 2</p>
+    </div>
+    <div>
+        <div>
+        <p>paragraph 3</p>
+        </div>
+    </div>
+       <p> paragraph 4 </p>   
+</div>
+
+
+</body>
+</html>
