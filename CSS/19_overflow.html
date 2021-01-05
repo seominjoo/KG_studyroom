@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overflow</title>
+    <style>
+        div{
+            width: 200px;
+            max-height: 500px;
+            background-color: salmon;
+            text-align: center;     
+            padding: 10px; 
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    
+<h3># 내용이 넘칠 때 처리</h3>
+<dl>
+    <dt>overflow: visible</dt>
+    <dd>- 넘치는 내용을 그냥 보여준다. (기본 설정)</dd>
+    <dt>overflow: hidden</dt>
+    <dd>넘치는 내용을 숨긴다</dd>
+    <dt>overflow: scroll</dt>
+    <dd>- 내용이 넘치면 스크롤을 생성한다 (필요없는 스크롤까지 생성)</dd>
+    <dt>overflow: auto</dt>
+    <dd>- 필요한 곳에만 스크롤을 생성한다 </dd>
+    <h5>※ overflow-x와 overflow-y를 통해 각각 다르게 설정할 수 있다</h5>
+</dl>
+<div>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus consequat congue est, eget fermentum ex lobortis sit amet. 
+    Sed interdum ipsum sed lectus convallis, vestibulum varius libero vehicula. Maecenas ligula sapien, auctor sed metus a, facilisis auctor ex. 
+    Nulla nulla nunc, semper vel massa ut, semper tristique ligula. Donec mollis quis leo nec vestibulum. 
+    Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; 
+    Morbi eget ipsum cursus, vehicula ante sed, imperdiet libero. Sed nec tortor pharetra, rhoncus dolor iaculis, luctus erat. 
+    Maecenas ullamcorper accumsan mi, nec facilisis enim semper ut. Vestibulum lectus magna, placerat at feugiat ut, convallis laoreet turpis. 
+    Donec condimentum suscipit est, eget efficitur risus ultrices ac. 
+    Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; 
+    Nam tempus lorem et nulla congue, sit amet lacinia tortor tristique. Aenean pulvinar non tellus et mattis. Ut id neque in mi mattis varius.
+</div>
+
+</body>
+</html>

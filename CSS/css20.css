@@ -1,0 +1,36 @@
+.article {
+    border: solid 3px gray;
+    padding: 10px;
+    /* overflow: auto; */
+}
+
+.article::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+img {
+    width: 150px;
+}
+
+.article.left > img {
+    float:left;
+    margin-right: 5px;
+}
+
+.article.right > img {
+    float:right;
+    margin-left: 5px;
+}
+
+.article.both > img:first-of-type {
+    float: left;
+}
+
+.article.both > img:last-of-type {
+    float: right;
+    clear: left;
+    margin-top: 5px;
+    margin-left: 5px;
+}
