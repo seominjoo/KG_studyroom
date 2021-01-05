@@ -1,0 +1,18 @@
+#example::first-letter{
+    font-size: 30px;
+}
+#example::first-line{
+    color: red;
+}
+#example::selection{
+    color: yellow;
+    background-color: black;
+}
+#example::before{
+    content: "이것은 예제입니다. ";
+}
+#example::after{
+    content: "<- Good";
+    border: solid black 1px;
+    display: block;
+}

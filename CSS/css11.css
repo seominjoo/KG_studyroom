@@ -1,0 +1,29 @@
+/* @import: 다른 스타일 시트를 가져온다. */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@500&family=Darker+Grotesque&family=East+Sea+Dokdo&family=Lobster&display=swap');
+
+li {
+    font-family: 'monospace';
+}
+#font-sample1 {
+    border: 1px solid black;
+    width: 500px;
+    padding: 20px;
+}
+
+#font-sample1 > h3 {
+    font-family: 'Lobster', cursive;
+}
+#font-sample1 > p {
+    font-family: 'Anton', sans-serif;
+    font-size: 13px;
+}
+
+#weight1 { font-weight: 100;}
+#weight2 { font-weight: 200;}
+#weight3 { font-weight: 300;}
+#weight4 { font-weight: 400;}
+#weight5 { font-weight: 500;}
+#weight6 { font-weight: 600;}
+#weight7 { font-weight: 700;}
+#weight8 { font-weight: 800;}
+#weight9 { font-weight: 900;}

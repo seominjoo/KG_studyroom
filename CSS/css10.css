@@ -1,0 +1,67 @@
+* {
+    box-sizing: border-box;
+}
+
+p#neon {
+    padding: 10px;
+}
+
+#neon {
+    color: #FFFFFF;
+    background: #232323;
+    text-shadow: 0 0 5px #FFF, 
+                 0 0 10px #FFF, 
+                 0 0 15px #FFF, 
+                 0 0 20px #2213eb, 
+                 0 0 30px #2213eb, 
+                 0 0 40px #2213eb, 
+                 0 0 55px #2213eb, 
+                 0 0 75px #2213eb;
+    color: #FFFFFF;
+    background: #232323;
+}
+
+#shadow1 {
+    text-shadow: 2px 10px 3px black;
+    
+}
+
+#shadow2 {
+    font-size: 20px;
+    text-shadow: 0 14px 10px black,
+                 0 25px 2px gray,
+                 0 34px 30px gray,
+                 0 3px 0 darkgray;
+}
+
+#box-shadow1 {
+    border: solid black 1px;
+    padding: 5px;
+    width: 200px;
+    height: 100px;
+    box-shadow: 3px 3px 5px black;
+    margin-bottom: 8px;
+}
+
+#box-shadow2 {
+    width: 570px;
+    box-shadow: 3px 3px 5px black;
+}
+#box-shadow2 > * {
+    margin: 0;
+}
+#box-shadow2 > p {
+    padding: 30px;
+    background-color: black;
+}
+#box-shadow2 > p > img {
+    width: 100%;
+}
+#box-shadow2 > p.msg {
+    width: 100%;
+    text-align: center;
+    padding: 25px;
+    background-color: gray;
+    color: white;
+    font-weight: 900;
+}

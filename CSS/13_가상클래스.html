@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>가상클래스(Pseudo Class)</title>
+    <link rel="stylesheet" href="../CSS/css13.css">
+</head>
+<body>
+    <h3># 가상 클래스(Pseudo Class)</h3>
+    <ul>
+        <p>P태그의 내용</p>
+        <li>가상 클래스를 이용해 해당 요소의 특징 상황을 선택할 수 있다.</li>
+        <li>선택자 뒤에 :을 붙여서 원하는 상황을 선택한다.</li>
+    </ul>
+
+    <h3># 가상 클래스 종류</h3>
+    <ul>
+        <dt>first-child, nth-child(n/even/odd), last-child</dt>
+        <dd>- 요소가 부모의 특정 번째 요소일 때를 선택한다.</dd>
+        <dt>first-of-type, nth-of-type(n/even/odd), last-of-type</dt>
+        <dd>- 요소가 같은 타입들 중에서 부모의 특정 번째 요소일 때를 선택한다.</dd>
+        
+        <dt>hover</dt>
+        <dd>- 해당 요소에 마우스가 올라가 있는 상태를 선택한다.</dd>
+
+        <dt>link</dt>
+        <dd>- 해당 요소가 일반적인 상태의 링크인 상태를 선택한다.</dd>
+        
+        <dt>active</dt>
+        <dd>- 해당 요소가 활성화된 링크인 상태를 선택한다.</dd>
+        
+        <dt>visited</dt>
+        <dd>- 해당 요소가 방문했던 링크인 상태를 선택한다.</dd>
+    </ul>
+
+    <hr>
+
+    <h3># 링크와 함께 사용할만한 가상 클래스</h3>
+
+    <a href="#">Link01</a> <br>
+    <a href="#chap01">1장</a> <br>
+    <a href="#chap02">2장</a> <br>
+
+    <h5>:target</h5>
+    <h3 id="chap01">제 1장. 오늘 저녁은 뭘 먹을까</h3>
+    <h3 id="chap02">제 2장. 잠은 몇시에 잘까</h3>
+
+    <hr>
+
+    <h3># input과 함께 사용할만한 가상 클래스들</h3>
+    <h5>:checked - radio나 checkbox가 체크된 상태를 선택</h5>
+
+    <input type="radio" name="place">바다 <br>
+    <input type="radio" name="place">산<br>
+    <input type="radio" name="place">강<br>
+
+    <input id="soccer" type="checkbox" name="sports"><label for="soccer">축구</label> <br>
+    <input id="base" type="checkbox" name="sports"><label for="base">야구</label> <br>
+    <input id="basket" type="checkbox" name="sports"><label for="basket">농구</label> <br>
+
+    <h5>
+        :focucs - 커서가 해당 요소에 있는 상태 <br>
+        :disabled - disabled 속성이 활성화 된 상태 <br>
+        :enabled - disabled가 아닌 나머지들 <br>
+    </h5>
+    
+    이름: <input type="text" name="name" required> <br>
+    나이: <input type="number" name="age"> <br>
+    주민등록번호: <input type="text" name="social_number" value="12345678" disabled required> <br>
+
+    <h5>
+        :required - required 속성이 정의된 상태 <br>
+        :optional - required 속성이 붙지 않은 상태<br>
+        :read-only - readonly 속성이 정의된 상태 <br>
+        :
+    </h5>
+</body>
+</html>

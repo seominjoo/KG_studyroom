@@ -1,0 +1,89 @@
+.remocon {
+    width: 100px;
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: white;
+    text-align: center;
+    padding-bottom: 10px;
+    /* transparent 투명 */
+    cursor: move;
+
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+    /* stiky는 top/bottom 값을 통해 붙어서 내려올 위치를 설정하고,
+    left/right는 relative와 유사하게 동작한다. */
+.remocon.sticky {
+    width: 150px;
+    position: sticky;
+    top: 10px;
+    left: 1000px;
+}
+
+.container {
+    width: 300px;
+    height: 300px;
+    background-color: blanchedalmond;
+    color: white;
+    font-weight: bold;
+    padding: 5px;
+
+    position: relative;
+    z-index: 1002;
+}
+
+.abs-item {
+    background-color: teal;
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.rel-item {
+    background-color: thistle;
+    width: 100px;
+    height: 100px;
+    padding: 5px;
+    position: relative;
+    top: 40px;
+    left: 40px;
+    z-index: 1001;
+}
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    display: none;
+}
+.modal > .content {
+    background-color: white;
+    width: 800px;
+    margin: auto;
+    text-align: center;
+    margin-top: 100px;
+}
+.modal > .content > h1 {
+    background-color:  rgb(19, 95, 76);
+    color: white;
+    padding: 50px;
+}
+.modal.modal > .content > h3 {
+    background-color: rgb(19, 95, 76);
+    color: white;
+    padding: 30px;
+}
+
+.modal.modal > .content > p {
+  height: 300px;
+}
