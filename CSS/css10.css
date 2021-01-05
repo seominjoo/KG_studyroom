@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 * {
     box-sizing: border-box;
 }
@@ -24,10 +25,15 @@ p#neon {
 #shadow1 {
     text-shadow: 2px 10px 3px black;
     
+=======
+#shadow1 {
+    text-shadow: 2px 3px 5px olive;
+>>>>>>> e67a834361deb151dc3b61ba321e0a0ee945db79
 }
 
 #shadow2 {
     font-size: 20px;
+<<<<<<< HEAD
     text-shadow: 0 14px 10px black,
                  0 25px 2px gray,
                  0 34px 30px gray,
@@ -65,3 +71,20 @@ p#neon {
     color: white;
     font-weight: 900;
 }
+=======
+    text-shadow: 0 14px 10px red,
+                 0 25px 2px orangered,
+                 0 34px 30px yellow,
+                 0 3px 0 green
+}
+
+#love {
+    font-size: 30px;
+    width: 100px;
+    color: #FFFFFF;
+    background: #333333;
+    text-shadow: #FFF 0px 0px 5px, #FFF 0px 0px 10px, #FFF 0px 0px 15px, #FF2D95 0px 0px 20px, #FF2D95 0px 0px 30px, #FF2D95 0px 0px 40px, #FF2D95 0px 0px 50px, #FF2D95 0px 0px 75px;
+    color: #FFFFFF;
+    background: #333333;
+    }
+>>>>>>> e67a834361deb151dc3b61ba321e0a0ee945db79

@@ -62,10 +62,18 @@
     text-decoration: none;
 }
 #deco2 > a{
+<<<<<<< HEAD
     text-decoration: overline dashed 3px red;
 }
 #deco3 > a{
     text-decoration: line-through dashed 3px darkslategray;
+=======
+    text-decoration: overline dashed red;
+}
+#deco3 > a{
+    text-decoration: line-through dashed 3px darkslategray; 
+    text-decoration-color: darkslategray;
+>>>>>>> e67a834361deb151dc3b61ba321e0a0ee945db79
     
 }
 #deco4 > a {
