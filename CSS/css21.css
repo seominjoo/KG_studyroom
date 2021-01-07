@@ -1,0 +1,38 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: seagreen;
+    color: white;
+    font-weight: bolder;
+    margin: 0px;
+}
+
+.flex-container{
+    display: flex;
+    flex-direction: row;
+}
+.flex-container > *{
+    background-color: darkred;
+    min-height: 80px;
+    padding: 30px;
+}
+.flex-container > *:hover{
+    background-color: salmon;
+    cursor: pointer;
+}
+@media screen and (max-width: 600px) {
+    body{
+        background-color: tomato;
+    }
+    .flex-container{
+        flex-direction: column;
+    }
+    .flex-container > *{
+        background-color: seagreen;
+    }
+    .flex-container > *:hover{
+        background-color: springgreen;
+    }
+}

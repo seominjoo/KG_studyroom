@@ -50,7 +50,7 @@ p#neon {
 }
 
 #box-shadow2 {
-    width: 570px;
+    width: 600px;
     box-shadow: 3px 3px 5px black;
 }
 #box-shadow2 > * {
