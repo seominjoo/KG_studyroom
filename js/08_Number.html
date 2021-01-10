@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        #con {
+            /* border: 1px black solid; */
+            padding: 5px;
+        }
+        #lotto {
+            margin: 20px;
+            display: grid;
+            grid-template-columns: 80px 80px 80px 80px 80px 80px 80px;
+            text-align: center;
+        }
+        #lotto > * {
+            height: 70px;
+            padding: 23px;
+            margin: 5px;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+        #lotto > :nth-child(odd) {
+            background-image: linear-gradient(120deg, #cf9ffb 0%, #8ec5fc 100%);
+        }
+        #lotto > :nth-child(even) {
+            background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+        }
+        #lotto > :last-child {
+            background-image: linear-gradient(120deg, #f6d365 0%, #ff663c 100%);
+        }
+
+        #newlotto {
+            position: relative;
+            top: 25px;
+            left: 240px;
+            color: white;
+            text-decoration: none;
+            background-color: rgb(38, 146, 160);
+            font-weight: bold;
+            border-radius: 14%;
+            padding: 10px 40px;
+        }
+        
+    </style>
+</head>
+<body>
+    <h3># Number</h3>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>
+    
+    <h3># Math</h3>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math">Math</a>
+    
+    <h3># 중복 없는 1~45의 숫자 7개 뽑아서 HTML로 이쁘게 공모양으로 출력하기</h3>
+
+    <hr>
+    <div id="con">
+        <div id="lotto"></div>
+        <button id="newlotto" onclick="genNum()">pick!</button>
+    </div>
+
+    <script>
+        let a = 123;
+        console.log(typeof a.toString());
+        console.log(Number.parseFloat(a));
+        for(i=0; i<10; ++i){
+            console.log(Math.floor(Math.random() * 10) + ", ");
+        }
+        function genNum() {
+            let numbers = new Array;
+            document.getElementById('lotto').innerHTML = "";
+            for (let i = 0; i < 7; i++) {
+                numbers[i] = Math.floor(Math.random() * 45 + 1); 
+                for(j = 0; j < i; j++){
+                    if(numbers[i] === numbers[j]) {
+                        i--;
+                        break;
+                    }
+                }
+            }
+            for (let index = 1; index <= 7; index++) {
+                str = document.getElementById('lotto');
+                str.innerHTML += `<p>${numbers[index-1]}</p>`;
+            }
+        }
+            
+        
+       
+
+        
+        
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배열 예제</title>
+</head>
+<body>
+
+    <h3># Array</h3>
+
+    <script>
+        // 1. [3, 4, 5]인 배열과 length가 9인 배열을 생성하시오
+        array1_1 = Array.of(3, 4, 5);
+        array1_2 = Array(9);
+        document.write('[3, 4, 5]인 배열: ' + array1_1 + '<br>');
+        document.write('length가 9인 배열: ' + array1_2 + '<br>');
+
+        // 2. array2_1과 array2_2를 합치고 '새', '로', '운', '값'을 넣어 array2_3을 만드시오.
+        document.write('--------------------------<br>')
+        array2_1 = ['가', '나', '다'];
+        array2_2 = ['라', '마', '바'];
+        array2_3 = array2_1.concat(array2_2, '새', '로', '운', '값');
+        document.write('array2_3: ' + array2_3 + '<br>');
+
+        // 3. copyWithin()
+        document.write('--------------------------<br>')
+
+        // 4. array4_1의 iterator를 생성하고 출력해보시오.
+        document.write('--------------------------<br>')
+        array4_1 = ['서', '민', '주'];
+        iterator4_1 = array4_1.entries();
+
+        for (let e of iterator4_1) {
+            document.write('iterator4_1: ' + e + '<br>');
+        }
+
+        // 5. array5_1값이 26보다 큰 값인지 확인 하시오.every()
+        document.write('--------------------------<br>')
+        array5_1 = [1, 30, 39, 29, 10, 13];
+        document.write('array5_1의 값은 26보다 큰가: ' 
+                    + array5_1.every(elem => elem > 26) + '<br>');
+        document.write('array5_1의 값: ' + array5_1 + '<br>');
+
+        // 6. array6_1의 값을 [2, 2, 6, 7, 8]로 변경 하시오. fill()
+        document.write('--------------------------<br>')
+        array6_1 = [4, 5, 6, 7, 8];
+        array6_1.fill(2, -5, -3);
+        document.write('array6_1의 값: ' + array6_1 + '<br>');
+
+
+        // 7. 요소의 lenght가 3이상인 요소만 출력하시오 
+        document.write('--------------------------<br>')
+        array7_1 = ['menu', 'nav', 'main', 'profile', 'footer'];
+        result7_1 = array7_1.filter(array7_1 => array7_1.length > 3);
+        document.write('result7_1의 값: ' + result7_1 + '<br>');
+        
+        // 8. array8_1의 첫번째로 나온 '다'의 인덱스와 값을 출력 하시오. find()
+        document.write('--------------------------<br>')
+        array8_1 = ['가', '나', '다', '다', '라'];
+        found = array8_1.find(array8_1 => array8_1 === '다');
+        foundindex = array8_1.findIndex(array8_1 => array8_1 === '다');
+        document.write('인덱스: ' + foundindex + ' ' + '값: ' + found + '<br>');
+        
+        // 9. 중첩 배열과 공백을 제거 하시오.
+        document.write('--------------------------<br>')
+        array9_1 = [1, , 2, [3, 4, , [5, 6]]];
+        array9_2 = array9_1.flat(2);
+        document.write('array9_2의 값: ' + array9_2 + '<br>');
+        
+        // 10. 다음 배열을 /로 잘라서 새로운 배열을 만드시오.
+        document.write('--------------------------<br>')
+        array10_1 = ["20220/01/07", "/", "생일/"];
+        array10_2 = array10_1.flatMap(x => x.split("/"));
+        document.write('array10_1 값: ' + array10_1 + '<br>');
+        document.write('array10_2 값: ' + array10_2 + '<br>');
+
+        // 11. items
+        document.write('--------------------------<br>')
+        array11_1 = ['item1', 'item2', 'item3'];
+        array11_2 = [];
+        array11_1.forEach(function(item){
+            array11_2.push(item);
+        });
+        document.write('array11_2 값: ' + array11_2 + '<br>');
+
+
+        // 12. 다음 배열을 7먼저 더한 후 모든 값을 더하시오 reduce()
+        document.write('--------------------------<br>')
+        array12_1 = [1, 2, 3, 4];
+        reducer = (accumulator, currentValue) => accumulator + currentValue;
+        document.write('reducer 값: ' + array12_1.reduce(reducer, 7) + '<br>');
+
+    </script>
+    
+</body>
+</html>

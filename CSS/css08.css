@@ -1,0 +1,18 @@
+#div1 {
+    /* width/height property로 컨텐츠 박스의 사이즈를 결정하게 된다. */
+    box-sizing: content-box;
+    width: 300px;
+    height: 200px;
+    border: solid 2px indigo;
+    padding: 50px;
+    margin: auto;
+}
+#div2 {
+    /* width/height property가 테두리를 포함한 크기를 설정하게 된다. */
+    box-sizing: border-box;
+    width: 300px;
+    height: 300px;
+    border: solid 50px darkgreen;
+    padding: 50px;
+    margin: auto;
+}

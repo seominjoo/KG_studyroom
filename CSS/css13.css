@@ -1,0 +1,59 @@
+li:first-child {
+    /* li태그 중에서 첫번째인것 */
+    color: red ;
+    font-weight: bold;
+}
+li:hover {
+    background-color: black;
+    color: white;
+}
+/* 
+    ※ hover는 반드시 link와 visited 다음에 나와야 한다.
+    ※ active는 반드시 hover 다음에 나와야 한다. 
+*/
+a:link {
+    color: purple;
+}
+a:visited {
+    color: darkslategrey;
+}
+a:hover {
+    color: red;
+}
+a:active {
+    color: green;
+}
+
+input[name="place"]:checked {
+    width: 20px;
+    height: 20px;
+}
+
+input[name="sports"]:checked + label {
+    width: 20px;
+    height: 20px;
+    color: red;
+    font-size: 1.1em;
+}
+/* 
+    :focus는 : enabled, :disabled 뒤에 나와야 한다.
+*/
+input:enabled{
+    background-color:bisque;
+}
+input:disabled{
+    background-color: lightgray;
+}
+input:focus{
+    background-color: yellow;
+}
+input:required {
+    color: red;
+}
+input:optional {
+    color: blue;
+}
+:target {
+    border: solid gray 2px;
+    background-color: darksalmon;
+}

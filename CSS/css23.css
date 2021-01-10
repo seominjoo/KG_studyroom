@@ -1,0 +1,78 @@
+* {
+    box-sizing: border-box;
+}
+
+.grid-container{
+    display: grid;
+
+    grid-template-columns: 20% 20% 20% 20%;
+    grid-template-rows: 80px 200px 100px 100px 150px;
+    column-gap: 6.67%;
+    row-gap: 5px;
+    background-color: lightsalmon;
+    border: solid 2px darkred;
+}
+
+.grid-container > * {
+    background-color: white;
+    border: solid 2px rosybrown;
+}
+
+#grid-item1 {
+    grid-column: 1 / 5;
+}
+
+#grid-item2 {
+    /* 꼭지점으로 설정 */
+    grid-column: 1 / 4;
+    grid-row: 2 / 4;
+}
+
+#grid-item5 {
+    height: auto;
+}
+
+#grid-item3 {
+    grid-row: 2 / 7;
+}
+
+.grid-area-container {
+    display: grid;
+    background-color: rgb(53, 92, 72);
+    
+    grid-template-areas:
+                         "nav head main"
+                         "nav head profile"
+                         "nav head footer";
+    grid-template-columns: 100px 1fr 2fr;
+    grid-template-rows: 100px 100px 100px;
+
+    /* grid 세로 정렬 */
+    align-content: space-around;
+    /* grid 가로 정렬 */
+    justify-content: stretch;
+
+    gap: 5px;
+    padding: 5px;
+}
+
+.grid-area-container > * {
+    background-color: white;
+    border-radius: 5px;
+}
+
+#header {
+    grid-area: head;
+}
+#nav {
+    grid-area: nav;
+}
+#main {
+    grid-area: main;
+}
+#profile {
+    grid-area: profile;
+}
+#footer {
+    grid-area: footer;
+}

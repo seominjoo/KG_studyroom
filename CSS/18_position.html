@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포지션(Position)</title>
+    <link rel="stylesheet" href=".//css18.css">
+</head>
+<body>
+    
+    <h3># 요소들의 포지션 설정하기</h3>
+    <ul>
+        <li>position property를 통해 요소의 위치를 마음대로 설정할 수 있다.</li>
+        <li>position property는 포지션이 설정된 가장 가까운 부모를 기준으로 동작한다.</li>
+        <li>
+            position이 static 이외의 것으로 설정된 요소는
+            top, right, left, bottom property를 설정 할 수 있다.
+        </li>
+        <li>
+            포지션이 설정된 요소 끼리는 겹칠 수 있는데,
+            겹친 요소들 중 누가 위로 올라 올지는 z-index property가 결정한다. <br>
+            ※ 아무리 z-index가 높더라도 부모보다 밑에 깔릴 수는 없다.
+        </li>
+    </ul>
+    <ul>
+        <li>static: 기본값, 포지션이 설정되지 않은 상태.</li>
+        <li>relative: 요소가 원래 있던 위치에서 상대적인 위치를 설정한다.</li>
+        <li>fixed: 웹 브라우저에서 항상 고정적인 위치를 차지한다.</li>
+        <li>absolute: 절대 위치를 설정한다.</li>
+        <li>sticky: 스크롤이 내려갈때 따라 내려오도록 설정한다.
+            원래 있던 위치에서 위치 설정
+        </li>
+    </ul>
+
+<div class="container">
+    <div class="abs-item">absolute item</div>
+    <div class="rel-item">relative item</div>
+</div>
+
+<hr>
+<div id="modal1" class="modal" onclick="closeModal();">
+    <div class="content">
+        <h1>Heading</h1>
+        <p>Paragraph</p>
+        <h3>Footer</h3>
+    </div>
+</div>
+<button onclick="openModal()">눌러보세요</button>
+
+<div class="remocon">
+        <h3>리모컨</h3>
+        <hr>
+        <div>
+            <button>&lt;</button>
+            <button>&gt;</button>
+        </div>
+</div>
+
+<div class="remocon sticky">
+    <h3>sticky 리모컨</h3>
+    <hr>
+    <div>
+        <button>&lt;</button>
+        <button>&gt;</button>
+    </div>
+</div>
+
+<hr>
+<p id="희동">
+    <img src="../assets/image/희동이.png" alt="">
+</p>
+<p id="고길동">
+    <img src="../assets/image/고길동.png" alt="">
+</p>
+<p id="도우너">
+    <img src="../assets/image/도우너.png" alt="">
+</p>
+<p id="또치">
+    <img src="../assets/image/또치.png" alt="">
+</p>
+<p id="마이콜">
+    <img src="../assets/image/마이콜.png" alt="">
+</p>
+
+<script>
+    modal = document.getElementById("modal1");
+    function openModal(){
+        modal.style.display = "block";
+    }
+    function closeModal(){
+        modal.style.display="none ";
+    }
+</script>
+
+</body>
+</html>
