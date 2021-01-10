@@ -4,107 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculaor.html</title>
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-        #calculaor {
-            display: grid;
-            grid-template-columns: 50px 50px 50px 50px;
-            grid-template-rows: 50px 50px 50px 50px 50px 50px;
-            background-color: black;
-            width: fit-content;
-            column-gap: 5px;
-            row-gap: 5px;
-            padding: 10px;
-            border-radius: 8%;
-        }
-        #calculaor > * {
-            background-color: rgb(39, 39, 39);
-            color: rgb(255, 255, 255);
-            display: grid;
-            grid-template-columns: auto;
-            border-radius: 50%;
-            text-align: center;
-            vertical-align: middle;
-            align-items: center;
-            font-size: 20px;
-            border: rgba(253, 253, 253, 0);
-           
-        }
-        #c0 {
-            grid-column: 1 / 3;
-            border-radius: 35%;
-            text-align: left;
-            padding-left: 20px;
-        }
-
-        #ctext {
-            background-color: transparent;
-            grid-column: 1 / 5;
-            border-radius: 0%;
-            text-align: right;
-            font-size: 25px;
-            font-weight: bold;
-            padding-right: 24px;
-        }
-
-        #c÷, #c×, #c-, #cp, #cr {
-            background-color: rgb(223, 159, 76);
-        }
-
-        #cAC, #cdel, #cf {
-            background-color: rgb(202, 202, 202);
-            color: black;
-        }
-    </style>
+    <link rel="stylesheet" href="./css11.css">
 
 </head>
 <body>
     <h3># 계산기를 만들어보시오.</h3>
-    <div id="calculaor">
-        <input id="ctext" class="caltext" type="text" value="0">
-        <button onclick="AC()" id="cAC">AC</button>
-        <button id="cdel">←</button>
-        <button id="cf">%</button>
-        <button id="c÷">÷</button>
+    <div id="con">
+        <div id="calculaor">
+            <input id="ctext1" class="caltext" type="text">
+            <input id="ctext2" class="caltext" type="text" value="0">
+            <div onclick="AC()" id="cAC" class="top3">AC</div>
+            <div onclick="del()" id="cdel" class="top3">←</div>
+            <div onclick="Output()" id="cf" class="top3">%</div>
+            <div onclick="Calculation('/')" id="c÷" class="right5">÷</div>
 
-        <button id="c7">7</button>
-        <button id="c8">8</button>
-        <button id="c9">9</button>
-        <button id="c×">×</button>
+            <div onclick="Output(7)" id="c7" class="cnumber">7</div>
+            <div onclick="Output(8)" id="c8" class="cnumber">8</div>
+            <div onclick="Output(9)" id="c9" class="cnumber">9</div>
+            <div onclick="Calculation('*')" id="c×" class="right5">×</div>
 
-        <button id="c4">4</button>
-        <button id="c5">5</button>
-        <button id="c6">6</button>
-        <button id="c-">-</button>
+            <div onclick="Output(4)" id="c4" class="cnumber">4</div>
+            <div onclick="Output(5)" id="c5" class="cnumber">5</div>
+            <div onclick="Output(6)" id="c6" class="cnumber">6</div>
+            <div onclick="Calculation('-')" id="c-" class="right5">-</div>
 
-        <button id="c1">1</button>
-        <button id="c2">2</button>
-        <button id="c3">3</button>
-        <button id="cp">+</button>
+            <div onclick="Output(1)" id="c1" class="cnumber">1</div>
+            <div onclick="Output(2)" id="c2" class="cnumber">2</div>
+            <div onclick="Output(3)" id="c3" class="cnumber">3</div>
+            <div onclick="Calculation('+')" id="cp" class="right5">+</div>
 
-        <button id="c0">0</button>
-        <button id="c.">.</button>
-        <button id="cr">=</button>
+            <div onclick="Output(0)" id="c0" class="cnumber zero">0</div>
+            <div onclick="Output(0)" id="c00 zero"></div>
+            <div onclick="Calculation('.')" id="cc">.</div>
+            <div onclick="calresult()" id="cr" class="right5">=</div>
+        </div>
+        <div onclick="Output(0)" id="c000" class="zero"></div>
     </div>
 
-
-    <script>
-        caltext = document.getElementById('ctext');
-        function AC() {
-            caltext.value = 0;
-        }
-        for
-    </script>
-
-
-
-
-
-
-
-
+    <script src="./js11.js"></script>
 
 
 </body>

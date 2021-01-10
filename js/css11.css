@@ -1,0 +1,85 @@
+
+* {
+    box-sizing: border-box;
+}
+#con {
+    background-color: black;
+    width: fit-content;
+    border-radius: 10%;
+}
+
+#calculaor {
+    position: relative;
+    display: grid;
+    grid-template-columns: 50px 50px 50px 50px;
+    grid-template-rows: 50px 50px 50px 50px 50px 50px 50px;
+    column-gap: 5px;
+    row-gap: 5px;
+    padding: 15px;
+    z-index: 1;
+}
+#calculaor > * {
+    background-color: rgb(39, 39, 39);
+    color: rgb(255, 255, 255);
+    grid-template-columns: auto;
+    border-radius: 50%;
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+    border: rgba(253, 253, 253, 0);
+    font-weight: bold;
+}
+
+#calculaor > .cnumber:hover, #cc:hover {
+    background-color: rgb(168, 168, 168);
+}
+
+.zero:hover {
+    background-color: rgb(168, 168, 168);
+}
+
+#calculaor > .top3:hover {
+    background-color: rgb(255, 255, 255);
+}
+
+#calculaor > .right5:hover {
+    background-color: rgb(219, 174, 115);
+}
+
+#c0 {
+    text-align: left;
+    padding-left: 20px;
+}
+
+#c000{
+    position: absolute;
+    border-radius: 0%;
+    background-color:  rgb(39, 39, 39);
+    top: 407px;
+    left: 50px;
+    width: 50px;
+    height: 50px;
+}
+
+#ctext1, #ctext2 {
+    background-color: transparent;
+    grid-column: 1 / 5;
+    border-radius: 0%;
+    text-align: right;
+    font-size: 25px;
+    font-weight: bold;
+    padding-right: 24px;
+}
+
+#ctext1 {
+    color: rgb(190, 190, 190);
+}
+
+#c÷, #c×, #c-, #cp, #cr {
+    background-color: rgb(212, 146, 59);
+}
+
+#cAC, #cdel, #cf {
+    background-color: rgb(202, 202, 202);
+    color: black;
+}
