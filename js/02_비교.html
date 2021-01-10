@@ -7,12 +7,47 @@
 </head>
 <body>
     <h3># Javascript의 비교 연산</h3>
+    <ul>
+        <li>==, != : 값만 일치해도 true (타입 불일치 검사 x)</li>
+        <li>===, !== : 값과 타입이 모두 일치 해야 true (타입 )</li>
+    </ul>
     <script>
         console.log(1 == 2);
         console.log(1 != 2);
 
         console.log('1 === 1:', 1 === 1);
         console.log('1 !== 1:', 1 !== 1);
+
+        console.log('==은 타입이 달라도 값이 같으면 true가 된다.(타입이 같으면 당연히 true)')
+        console.log('"1" == 1', '1' == 1);
+        console.log('1 == 1', 1 == 1);
+        console.log('"1" != 1', '1' != 1);
+        console.log('1 != 1', 1 != 1);
+
+        console.log('===은 타입이 다르면 false가 된다.')
+        console.log('"1" === 1:', "1" === 1);
+        console.log('1 === 1:', 1 === 1);
+
+        console.log('"1" !== 1:', "1" !== 1);
+        console.log('1 !== 1:', 1 !== 1);
+
+        console.log('a' < 'c');
+        console.log(10 < 11);
+
+        // 문자와 숫자의 비교 연산은 무조건 false가 나온다.
+        // 자바스크립트는 문자와 숫자를 비교하기위해 우선 문자를 숫자로 변환한다.
+        // 아무것도 없는 문자열은 0이되고, 숫자가 될 수 없는 문자열은 NaN이 된다.
+        console.log('a' > 10);
+        console.log('a' >= 'a');
+        console.log(10 <= 10);
+        console.log('' == 0);
+        console.log('' == null);
+        console.log(typeof null);
+        console.log(typeof '');
+
+        console.log(null == undefined); // 값은 같다
+        console.log(null === undefined); // 타입은 다르다
     </script>
+
 </body>
 </html>

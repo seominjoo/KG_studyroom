@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow Function</title>
+</head>
+<body>
+    
+    <h3># Arrow Function</h3>
+
+<script>
+    function plus() {
+        return a + b;
+    }
+
+    // 변수에 함수를 넣는 방식으로 선언
+    const plus2 = function() {
+        return a + b;
+    }
+    console.log(plus2(10, 11));
+
+    // Arrow Function
+    const plus3 = (a, b) => {
+        return a + b;
+    }
+
+    // Function 구현 부분에 리턴만 있는 함수의 경우 {}와 return을 생략할 수 있다.
+    const plus4 = (a, b) => {
+        a = 2;
+        if(b === undefined){
+            b = 0;
+        }
+        return a + b;
+    }
+    console.log(plus4(10));
+
+    // Function 매개변수가 단 하나인 경우 ()도 생략할 수 있다.
+    const plus5 = num => num + 5;
+    
+
+
+
+
+
+ </script>
+
+
+
+
+
+
+</body>
+</html>
