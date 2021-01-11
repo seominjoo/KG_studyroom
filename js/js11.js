@@ -56,7 +56,7 @@ function calresult() {
 
 function calculate(string){
 
-    splited = string.split(/(?<=[*/%()+-])|(?=[*/%+()-])/); 
+    splited = string.split(/(?<=[*/%()+-])|(?=[*/%+()-])/);
     splited2 = splited
 
     for ( i = 0; i < splited2.length; i++) {
@@ -69,6 +69,7 @@ function calculate(string){
             splited2[i - 1]= temp;
             splited2.splice(i+1, 1);
             splited2.splice(i, 1);
+            // splited2.splice(i, 2);
             i--;
         } else if (splited2[i]==="/") {
             temp_int = Number.parseInt(splited2[i - 1]) / Number.parseInt(splited2[i + 1]);
