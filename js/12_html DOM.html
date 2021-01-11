@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Document Object Model</title>
+    <style>
+        body{
+            background-color: silver;
+        }
+    </style>
+</head>
+<body>
+    
+<h3># Document Object Model</h3>
+
+<ul>
+    <li>HTML코드를 브라우저가 해석하여 만들어놓은 전체 HTML 객체</li>
+    <li>자바스크립트는 DOM을 이용해 원하는 HTML요소를 추가/수정/삭제 할 수 있다</li>
+</ul>
+
+<h3># 메서드를 이용하지 않아도 찾을 수 있는 요소들</h3>
+<ul>
+    <li>document.head</li>
+    <li>document.body</li>
+    <li>document.forms : 현재 페이지에 등록된 모든 form태그들로 이루어진 객체</li>
+    <li>document.anchors : 현재 페이지에 등록된 모든 a 태그들로 이루어진 객체</li>
+    <li>document.links : ...</li>
+    <li>document.images : ...</li>
+</ul>
+
+<div id="div1" class="danger big">content</div>
+<div id="div2" class="danger big">content</div>
+<div id="div3" class="danger small">content</div>
+<div id="div4" class="warning depricated big">content</div>
+<div id="div5" class="warning small">content</div>
+
+<script>
+    // console.dir() : 전달한 obj를 콘솔에 디렉토리 형식으로 보여줌
+    console.dir(document);
+    /* 
+        # DOM의 HTML 요소를 찾는 메서드들
+
+        - Vanilla JS의 경우
+        document.getElementById() : id 속성을 이용해 HTML 요소에 접근한다 (같은 id가 여러개 있으면 맨 앞의 것 반환)
+        document.getElementsByClassName() : class 속성 이용해 HTML요소들의 배열을 반환 받는다
+        document.getElementsByTagName() : 태그 이름을 이용해 여러 HTML 요소들의 배열 반환 받음
+        document.querySelector() : CSS선택자를 이용해 HTML 요소 하나를 반환 받는다
+        document.querySelectorAll() : CSS선택자를 이용해 HTML 요소 여러개를 배열로 반환 받음
+
+        - Jquery의 경우
+        $("#p").
+    */
+   danger_elements = document.getElementsByClassName("danger");
+    console.log(danger_elements instanceof HTMLCollection); // 배열이 아닌 HTMLCollection 
+    for(e of danger_elements){
+        e.style.color = 'tomato';
+    }
+
+   warning_elements = document.getElementsByClassName("warning");
+   for(e of warning_elements){
+       e.style.color = 'gold';
+   }
+
+   // 클래스 여러 개
+   warning_big_elements = document.getElementsByClassName('warning big');
+   for(e of warning_big_elements){
+       console.log(e);
+   }
+
+
+
+   
+   var parentElement = document.getElementById('parent');
+    var targetElement = document.querySelector('#parent > div:last-child');
+
+    var newElement1 = document.createElement('div');
+    newElement1.style.backgroundColor = 'black';  // -가 들어가는 css property는 자바스크립트에서 camelCase로 변환해야 한다.
+    newElement1.style.color = 'white';
+    newElement1.innerText = '입양한 자식1';
+
+    var newElement2 = document.createElement('div');
+    newElement2.style.backgroundColor = 'black';  
+    newElement2.style.color = 'white';
+    newElement2.innerText = '입양한 자식2';
+
+    // # 자식 요소 추가
+    parentElement.appendChild(newElement1);                  // 맨 뒤에 추가
+    parentElement.insertBefore(newElement2, targetElement);  // 원하는 자식 요소의 앞에 추가
+
+    // # 자식 요소 삭제
+    parentElement.removeChild(targetElement);  
+
+</script>
+
+</body>
+</html>

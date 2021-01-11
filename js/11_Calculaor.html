@@ -4,18 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculaor.html</title>
+    <script src="https://kit.fontawesome.com/6421ed9b05.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css11.css">
+    
 
 </head>
 <body>
     <h3># 계산기를 만들어보시오.</h3>
     <div id="con">
         <div id="calculaor">
-            <input id="ctext1" class="caltext" type="text">
-            <input id="ctext2" class="caltext" type="text" value="0">
+            <input id="ctext1" class="caltext" type="text" maxlength="3">
+            <input id="ctext2" class="caltext" type="text" value="0" maxlength="3">
             <div onclick="AC()" id="cAC" class="top3">AC</div>
             <div onclick="del()" id="cdel" class="top3">←</div>
-            <div onclick="Output()" id="cf" class="top3">%</div>
+            <div onclick="Calculation('%')" id="cf" class="top3">%</div>
             <div onclick="Calculation('/')" id="c÷" class="right5">÷</div>
 
             <div onclick="Output(7)" id="c7" class="cnumber">7</div>
@@ -39,8 +41,10 @@
             <div onclick="calresult()" id="cr" class="right5">=</div>
         </div>
         <div onclick="Output(0)" id="c000" class="zero"></div>
+        <div" id="sound"></div>
+        <i onclick="caldisplay()" class="fas fa-history"></i>
+        <div id="calhistory"></div>
     </div>
-
     <script src="./js11.js"></script>
 
 
