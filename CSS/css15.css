@@ -1,0 +1,19 @@
+* {
+    border: solid 0 black;
+}
+
+h1, h2, h3, h4, h5, h6, div, p {
+    display: inline;
+    border-width: 1px;
+}
+span, b, a, strong {
+    display: block;
+    border-width: 1px;
+    border-color: navy;
+    width: 100px;
+    height: 100px;
+}
+strong {
+    /* display: none; */
+    visibility: hidden;
+}

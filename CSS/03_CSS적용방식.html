@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 적용방식</title>
+    <link rel="stylesheet" href="./css03.css">
+    <style>
+        div{
+            background-color: brown;
+        }
+    </style>
+</head>
+<body>
+
+    <h3># 페이지에 스타일을 적용하는 방법 3가지</h3>
+    <dl>
+        <dt>inline CSS (줄내부CSS)</dt>
+        <dd>
+            - style속성으로 요소에 스타일을 적용한다.
+            - 우선순위가 가장 높다.(!important를 붙이면 우선순위를 높일 수 있다.)
+        </dd>
+
+        <dt>internal CSS (내부 CSS)</dt>
+        <dd>- 페이지 내부의 style 태그를 통해 스타일을 적용한다.</dd>
+
+        <dt>external CSS (외부 CSS)</dt>
+        <dd>
+            - 외부의 .css파일을 불러와 스타일을 적용한다.
+            - 외부의 .css파일을 불러올 때는 link태그를 사용한다.
+        </dd>
+    </dl>
+
+    <div style="background-color: cornflowerblue !important;">TEST DIV </div>
+    <style>
+        div{
+            background-color: darkred !important;
+        }
+    </style>
+
+</body>
+</html>

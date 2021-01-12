@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Hoisting</title>
+</head>
+<body>
+
+<h3># Hoist(끌어올리기)</h3>
+
+<script>
+    ff();
+    g();
+
+    // 선언은 끌어 올려진다.
+    function ff(){
+        console.log('hello, world!');
+    }
+
+    // 초기화는 끌어올려지지 않는다.
+    const f = () => {
+        console.log('hello, world!')
+    }
+    const g = function() {
+        console.log('hello, world!')
+    }
+    var name = '홍길동';
+    console.log(`이름: ${name}\n 나이: ${age}`);
+    // 선언은 끌어올려지고 대입은 나중에 진행된다.
+    var age = 123;
+
+
+</script>
+    
+</body>
+</html>

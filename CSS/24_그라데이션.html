@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradient</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+            border-radius: 50%;
+        }
+        #gra1{
+            background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+        }
+        #gra2{
+            background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+        }
+        #gra3{
+            /*
+                linear-gradient(방향(각도), 색상1, 색상2) : 직선 그라데이션
+               
+                background-image: linear-gradient(to bottom left, red, yellow);
+            */
+            background-image: linear-gradient(90deg, red, yellow, green, blue, purple, violet);
+        }
+        #gra4{
+            /*
+                radial-gradient() : 원형 그라데이션
+            */
+            background-image: radial-gradient(purple 0%, transparent 20%, salmon 80%);
+        }
+    </style>
+</head>
+<body>
+    
+<h3># https://webgradients.com/</h3>
+
+<div id="gra1"></div>
+<div id="gra2"></div>
+<div id="gra3"></div>
+
+<div style="position: relative">
+    <p style="position:absolute; top: 5px; left:0; z-index: -1;">
+        다람쥐 헌 쳇바퀴에 타고파
+        다람쥐 헌 쳇바퀴에 타고파
+        다람쥐 헌 쳇바퀴에 타고파
+        다람쥐 헌 쳇바퀴에 타고파
+        다람쥐 헌 쳇바퀴에 타고파
+    </p>
+    <div id="gra4"></div>
+</div>
+
+
+</body>
+</html>

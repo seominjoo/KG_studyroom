@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display</title>
+    <link rel="stylesheet" href="css15.css">
+</head>
+<body>
+    
+<h3># Display</h3>
+<ul>
+    <li>해당 요소가 어떻게 보여야 하는지를 결정하는 속성(property)</li>
+    <li>대부분의 요소들은 display 속성의 기본값으로 inline과 block을 가지고 있다</li>
+</ul>
+
+<h3># display: block</h3>
+<p>항상 새 줄에서 시작하고, 너비를 100% 차지하려고 한다.</p>
+
+<p>p content</p>
+<div>div content</div>
+<h1>heading content</h1>
+<h2>heading content</h2>
+<h3>heading content</h3>
+<h4>heading content</h4>
+<h5>heading content</h5>
+<h6>heading content</h6>
+
+<h3># display: inline</h3>
+<p>새 줄에서 시작하지 않고, 필요한 만큼만의 너비를 차지한다(글자취급)</p>
+<span>span content</span>
+<b>bold content</b>
+<strong>strong content</strong>
+<a href="">link content</a>
+
+<h3># display: none</h3>
+<p>해당 요소를 보이지 않게 숨긴다.(영역도 사라진다.)</p>
+
+<h3># visiblty: hidden</h3>
+<p>해당 요소를 보이지 않게 만든다.(영역은 그대로 유지된다.)</p>
+
+<button onclick="myFunction()">click me!</button>
+<script>
+    function myFunction() {
+        // querySelector(): CSS Selector를 이용해 HTML요소를 불러온다. 
+        strong = document.querySelector("strong:first-of-type")
+        display = strong.style.display
+        if(display==="none"){
+            strong.style.display = "block";
+        } else {
+            strong.style.display = "none";
+        }
+    }
+</script>
+</body>
+</html>

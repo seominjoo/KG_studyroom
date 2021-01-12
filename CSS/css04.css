@@ -1,0 +1,66 @@
+/* 블록 요소 화면 너비 100%를 차지한다. */
+
+div:first-of-type{
+    background-color: yellowgreen;
+    width: 200px;
+    padding: 30px;
+}
+/* 인라인 요소의 기본 영역은 글자만큼의 영역만 차지한다.
+    너비와 높이를 가질 수 없다.*/
+div:first-of-type > b{
+    background-color: blue;
+    color: white
+}
+/* 블록요소는 width/height를 조절할 수 있지만
+인라인 요수는 조절 할 수 없다. */
+
+/* 
+    Selector{
+        property:value;
+    } 
+*/
+
+/* 
+    선택자 {
+    property:value
+    }
+*/
+
+div:nth-of-type(2){  
+
+    /* padding: 60px; */
+    border: 3px solid black;
+    height: 1500px;
+    /* 
+        background-image: url(이미지 경로); 
+
+        background-size: 배경이미지 크기 조절;
+        ※ auto(원본 크기-기본값)
+           cover(이미지의 최대 크기), 
+           contain(이미지가 잘리지 않는 선에서 최대크기로 설정)
+           100px auto 가로 크기만 지정하고 싶을 때
+           auto 100px 세로 크기만 지정하고 싶을 때
+
+        background-repeat: 배경 반복 설정;
+        ※ space, repeat-x, repeat-y, no-repeat...
+
+        background-position: 배경 위치 설정;
+        ※ left, right, top, bottom, center...를 조합하여 위치 지정
+           또는 값을 직접 입력
+        
+        background-attachment: 이미지를 웹브라우저에 고정시킬 수 있다.;
+        ※ fixed, scroll ...
+    */
+    background-image: url('../assets/image/둘리.png'); 
+    background-size: 200px;
+    background-repeat: no-repeat; 
+    background-position: center; 
+    background-attachment: fixed;
+}
+
+div:nth-of-type(3){
+    border: solid black;
+    height: 300px;
+    background: url(../assets/image/도우너.png) no-repeat right;
+    background-size: contain;
+}

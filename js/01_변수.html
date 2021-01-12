@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Tutorial</title>
+</head>
+<body>
+
+    <h3># 자바스크립트 변수 선언</h3>
+
+    <ul>
+        <li>var : 단순히 변수를 선언한다 (생략 가능)</li>
+        <li>let : 변경이 가능한 변수를 선언한다 (변경을 허락해준다)</li>
+        <li>const : 변경이 불가능한 변수를 선언한다 (상수 선언)</li>
+    </ul>
+
+    <script>
+        //자바스크립트 한 줄 주석
+        /* 여러 줄 주석 */
+
+        /*
+            자바스크립트는 웹 브라우저상에서 동작하는 프로그래밍 언어다
+
+            .java를 해석하는 프로그램 -> javac (자바 컴파일러)
+            .js를 해석하는 프로그램 -> 웹 브라우저
+            
+            => 타입스크립트 (자바스크립트에 타입을 추가한 버전)
+        */
+
+        let a = 10
+        const b = 20;
+        var c = a + b;
+
+        a = 123;
+       
+
+        d = 123.456;
+        msg = "Hello world!";
+        msg2 = "Hello, world!"
+        complete = true;
+
+
+        console.log(a)
+        console.log(b)
+        console.log(c)
+        console.log(d)
+        console.log(msg)
+        console.log(msg2)
+
+        x = 3;
+        y = 5;
+
+        console.log(x + y);
+        console.log(x - y);
+        console.log(x * y);
+        console.log(x / y);
+        console.log(x % y);
+        console.log(x ** y);
+        console.log(++x);
+        console.log(x);
+
+        let result = typeof a;
+        console.log(result);
+        console.log(typeof b);
+        console.log(typeof c);
+        console.log(typeof d);
+        console.log(typeof msg);
+        console.log(typeof msg2);
+        console.log(typeof complete);
+
+        // JavaScript Object not eq JSON (JavaScript Object Notation), json표준 ' ', 스크립트 표준 none
+        let obj = {
+            'name': '길동',
+            'age': 54,
+        };
+
+        console.log(typeof obj.name);
+        console.log(typeof obj.age);
+        console.log(typeof obj);
+
+
+
+    </script>
+    
+</body>
+</html>

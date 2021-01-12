@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+</head>
+<body>
+    
+<h3># DOM을 이용해 다른 Element을 찾아가는 방법</h3>
+<ul>
+    <li>parentNode</li>
+    <li>children</li>
+    <li>firstChild</li>
+    <li>lastChild</li>
+    <li>nextSibling : tag 와 다른 tag 사이의 공백..</li>
+    <li>nextElementSibling</li>
+    <li>previousElementSibling</li>
+</ul>
+
+<div id="container">
+    <div id="div1">Apple</div>
+    <div id="div2">Banana</div>
+    <div id="div3">Cocoa</div>''
+    <div id="div4">Pineapple</div>
+    <div id="div5">Kiwi</div>
+</div>
+
+<script>
+    const div3 = document.getElementById('div3');
+    const container = div3.parentNode;
+
+    console.log(div3.parentNode); // contain
+    console.log(div3.nextElementSibling); // pine
+    console.log(div3.nextElementSibling.nextElementSibling); // kiwi
+    console.log(div3.previousElementSibling); // banana
+    
+    console.log(container.children); // 5 개 배열 htmlcollection
+    console.log(container.children.length); // 5
+    
+    for(i = 0; i < container.children.length; i++){
+        console.log(container.children[i]);
+    }
+
+
+</script>
+
+</body>
+</html>

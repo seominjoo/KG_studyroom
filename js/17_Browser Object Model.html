@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Object Model</title>
+</head>
+
+<body>
+
+    <h3># BOM (Browser Object Model)</h3>
+    <ul>
+        <li>Javascript로 브라우저를 직접 컨트롤 할 수 있도록 만들어져있는 객체</li>
+        <li>window 객체를 사용한다 (window 객체는 항상 생략이 가능하다)</li>
+    </ul>
+
+    <hr>
+
+    <h3># history</h3>
+    <button onclick="window.history.back();">back</button>
+    <button onclick="window.history.forward();">forward</button>
+    <button onclick="window.history.go(-2)">두 페이지 뒤로 가기</button>
+
+    <hr>
+
+    <h3># timer</h3>
+
+    <!-- HTML 속성으로 이벤트를 추가하면 로딩이 끝난 이후에 생성된 함수는 사용할 수 없다. -->
+    <button onclick="onoffbtn('on', 100)">도배 ON</button>
+    <button onclick="onoffbtn('off', 0)">도배 OFF</button>
+
+    <div id="poll"></div>
+
+    <script>
+        // # window : 최상위 BOM
+        console.log('width:', window.innerWidth);
+        console.log('height:', window.innerHeight);
+
+        window.addEventListener('resize', (e) => {
+            console.log('width:', window.innerWidth);
+            console.log('height:', window.innerHeight);
+        });
+
+        // # window.screen : 사용자가 사용하는 모니터의 정보
+        console.log(window.screen);
+
+        // # window.location : 현재 페이지 주소와 새로운 페이지로 이동하기 위한 정보들을 담은 객체
+        console.log(window.location);
+
+        // # window.history : 웹 브라우저 history를 관리한다 (이전 페이지, 다음 페이지)
+        console.log(window.history);
+
+        // # window.navigator : 사용자의 브라우저 정보를 알 수 있다.
+        console.log(window.navigator);
+
+        // # window의 팝업 메서드들
+
+        const pollDiv = document.getElementById('poll');
+
+        const popupSet = () => {
+            window.alert('alert box!');
+            var age = window.prompt('당신의 나이를 입력하세요.', '10'); // age = 10 return type string
+            var confirm = window.confirm('난이도가 어려우신가요?'); // return type boolean
+
+            // window.console.log(`나이:${age}, 선택:${confirm?'어려워요':'할만해요'}`);
+            document.getElementById('poll').innerHTML = `<p>나이:${age}, 선택:${confirm ? '어려워요' : '할만해요'}</p>`;
+        }
+        // # window의 타이머 메서드들
+
+
+        window.onload = () => {
+            // setTimeout(callback, time(millisec)) : 설정한 시간 뒤에 한 번 실행한다
+            var timeout1 = window.setTimeout(popupSet, 5000);
+
+            // setInterval(callback, interval(millisec)) : 일정 시간마다 한 번씩 실행
+            var interval1 = window.setInterval(() => {
+                pollDiv.innerHTML += '<span style="color: red;">안녕하세요!</span>';
+            }, 1000);
+
+            // clearTimeout(timer instance) : 전달한 타이머를 중지시킨다.
+            window.clearTimeout(timeout1);
+            window.clearInterval(interval1);
+        }
+
+        var dobae_itv;
+        function onoffbtn(onoff, time) {
+            if (onoff === 'on') {
+                dobae_itv = window.setInterval(() => {
+                    pollDiv.innerHTML += '<span style="color: red;">무한 반복..</span>';
+                }, time);
+            } else if (onoff === 'off') {
+                window.clearInterval(dobae_itv);
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

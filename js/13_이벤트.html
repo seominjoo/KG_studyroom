@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자바스크립트 이벤트 처리</title>
+    <style>
+        #outter {
+            background-color: green;
+            width: 500px;           
+            padding: 50px;
+        }
+        #inner {
+            background-color: springgreen;
+            width: 300px;
+            height: 100px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    
+<h3># 이벤트 처리</h3>
+<ol>
+    <li>HTML속성을 이용하는 방식 (속성 이름은 이벤트명 앞에 on을 붙인다)</li>
+    <li>자바스크립트를 이용해 속성에 추가하는 방식</li>
+    <li>해당 노드에 이벤트 리스너(콜백 함수)를 추가하는 방식</li>
+</ol>
+
+<h3># 엄청 많은 이벤트들이 존재한다. </h3>
+
+<ul>
+    <li>click : 마우스 클릭</li>
+    <li>mouseover : 마우스가 해당 요소위에 올라감</li>
+    <li>mouseout : 마우스가 해당 요소를 벗어남</li>
+    <li>mousedown : 마우스 버튼이 눌림</li>
+    <li>mouseup : 마우스 버튼이 원래대로 돌아옴</li>
+    <li>keydown : 키보드 키가 눌림</li>
+    <li>keypress : 키보드가 오래 눌림</li>
+    <li>keyup : 키보드 버튼이 원래대로 돌아옴</li>
+    <li>load : 페이지의 로딩이 끝남</li>
+    <li>focus : 커서가 해당 요소에 있을 때</li>
+    <li>focusout : 포커스를 잃을 때</li>
+    <li>submit : submit이 발생했을 때</li>
+    <li>https://developer.mozilla.org/en-US/docs/Web/Events</li>
+</ul>
+
+<h3 onclick="this.innerText = 'Well done!';">Click this text!</h3>
+
+<p id="p1">Click this paragraph!!!</p>
+
+<textarea name="ta" id="ta01" cols="30" rows="10"></textarea>
+
+
+<div id="status-bar" style="border: dashed 3px black;"></div>
+
+<div id="outter">
+    <div id="inner"></div>
+</div>
+
+<ul id="transport">
+    <li><input id="car" type="checkbox" name="trans" value="car"><label for="car">자동차</label></li>
+    <li><input id="plane" type="checkbox" name="trans" value="plane"><label for="plane">비행기</label></li>
+    <li><input id="train" type="checkbox" name="trans" value="train"><label for="train">기차</label></li>    
+</ul>
+
+<script src="./js13.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+.text{
+    border: 1px black solid;
+    width: 100px;
+    height: 100px;
+    padding: 15px;
+    display: inline-block;
+}
+
+span {
+    background-color: salmon;
+    color: white;
+    font-weight: bolder;
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    margin: 15px 0; /* 얘도 block만 적용 */
+}
+
+span.a{
+    display: inline;
+}
+span.b{
+    display: inline-block;
+}
+span.c{
+    display: block;
+}

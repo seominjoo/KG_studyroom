@@ -1,0 +1,139 @@
+
+* {
+    box-sizing: border-box;
+    user-select: none;
+}
+#con {
+    background-color: black;
+    width: fit-content;
+    border-radius: 13%;
+    border: rgb(182, 182, 182) 7px solid;
+    box-shadow: 3px 3px 5px rgb(94, 94, 94);
+}
+
+#calculaor {
+    position: relative;
+    display: grid;
+    grid-template-columns: 50px 50px 50px 50px;
+    grid-template-rows: 50px 50px 50px 50px 50px 50px 50px;
+    column-gap: 7px;
+    row-gap: 7px;
+    padding: 40px 30px 30px 30px;
+    z-index: 1;
+}
+
+#calculaor > * {
+    background-color: rgb(48, 48, 48);
+    color: rgb(255, 255, 255);
+    grid-template-columns: auto;
+    border-radius: 50%;
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+    border: rgba(253, 253, 253, 0);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#calculaor > .cnumber:hover, #cc:hover {
+    background-color: rgb(168, 168, 168);
+}
+
+.zero:hover {
+    background-color: rgb(168, 168, 168);
+}
+
+#calculaor > .top3:hover {
+    background-color: rgb(255, 255, 255);
+}
+
+#calculaor > .right5:hover {
+    background-color: rgb(219, 174, 115);
+}
+
+#c0 {
+    text-align: left;
+    padding-left: 20px;
+}
+
+#c000{
+    position: absolute;
+    border-radius: 0%;
+    background-color:  rgb(48, 48, 48);
+    top: 452px;
+    left: 72px;
+    width: 52px;
+    height: 50px;
+}
+
+#sound {
+    position: absolute;
+    border-radius: 0%;
+    /* background-color:  rgb(70, 70, 70); */
+    background-image: linear-gradient(to right, #555555 70%, #7c7c7c 97%, #f1f1f18c 100%);
+    top: 89px;
+    left: 118px;
+    width: 70px;
+    height: 5px;
+    border-radius: 1px;
+}
+
+.fa-history {
+    position: absolute;
+    color: rgb(168, 168, 168);
+    top: 182px;
+    left: 59px;
+    font-size: 20px;
+    z-index: 4; 
+    border-radius: 50%;
+}
+
+.fa-history:hover{
+    background-color: rgb(168, 168, 168);
+}
+
+
+#ctext1, #ctext2 {
+    background-color: transparent;
+    grid-column: 1 / 5;
+    border-radius: 0%;
+    text-align: right;
+    font-size: 25px;
+    font-weight: bold;
+    padding-right: 20px;
+}
+
+#ctext1:focus, #ctext2:focus{
+    outline: 0px;
+}
+
+#ctext1 {
+    color: rgb(190, 190, 190);
+}
+
+#c÷, #c×, #c-, #cp, #cr {
+    background-color: rgb(212, 146, 59);
+}
+
+#cAC, #cdel, #cf {
+    background-color: rgb(202, 202, 202);
+    color: black;
+}
+
+#calhistory{
+    position: absolute;
+    background-color: rgba(158, 158, 158, 0.925);
+    top: 106px;
+    left: 35px;
+    width: 240px;
+    height: 300px;
+    z-index: 3;
+    display: none;
+    padding-right: 20px;
+    overflow: auto;
+}
+
+#calhistory > *{
+    font-size: 20px;
+    text-align: right;
+}
