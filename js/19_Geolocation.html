@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation</title>
+</head>
+
+<body>
+
+    <h3># 지리 정보 알아내기</h3>
+
+    <div id="currentposition"></div>
+
+    <script>
+        const c = document.getElementById('currentposition');
+
+        const positionHandler = ((position) => {
+            c.innerHTML = `Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`;
+
+        });
+
+        console.log(
+            window.navigator.geolocation.getCurrentPosition((position) => {
+                console.log(position);
+                c.innerHTML = `Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`
+            })
+        );
+
+        const errorHandler = (error) => {
+    	console.log(error);
+    	console.log(error.code);  // Magic Number (지만 아는 번호) => 해당 API에 상수가 존재할 가능성이 높다
+    	console.log(error.message);
+        
+    	// 에러정보를 이용해 로직을 구성할 수 있다.
+    	switch(error.code) {
+        	case error.PERMISSION_DENIED:
+            	break;
+        	case error.POSITION_UNAVAILABLE:
+            	break;
+    	}
+	};
+ 
+	window.navigator.geolocation.getCurrentPosition(positionHandler, errorHandler);
+
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>브라우저에 데이터 보관하기</title>
+</head>
+
+<body>
+    <h3># Cookie</h3>
+    <ul>
+        <li>사실 쿠키의 본래 용도는 브라우저에 저장만 해두고, 서버로 데이터를 전송할 때 포함시키는 용도였다.</li>
+        <li>하지만 자바스크립트로도 제어할 수 있다.</li>
+        <li>다음에 하도록 하자</li>
+    </ul>
+
+    <p>
+        ※ 크롬에서는 도메인이나 http통신이 없는 경우 쿠키 저장을 하지 않는다.
+        즉, 로컬 파이로 열린 코드(file://)에서는 쿠키 저장이 안된다.
+    </p>
+
+    <h3># localStorage</h3>
+    <ul>
+        <li>브라우저에 데이터를 보관하는 용도</li>
+        <li>서버로 일일이 전송할 필요 없는 정보를 저장하는 것이 좋다.</li>
+        <li>sessionStorage는 브라우저가 닫히면 데이터가 사라진 점만 다르다.</li>
+    </ul>
+
+    <script>
+        // # Cookie - 만료일/범위등을 설정할 수 있고 http요청 마다 포함되는 데이터
+        document.cookie = 'user_name=abc';
+        window.cookie = 'user_name = 홍길동';
+        console.log(window.cookie)
+
+        // # localStorage - 지우지 전까지 유지되는 데이터
+        localStorage.setItem("name", "홍길동"); //add
+        localStorage.setItem("name", "박길동"); // modify
+
+        localStorage.setItem("favcookie", "Zombie");
+        localStorage.setItem("highscore", "9999088");
+
+        localStorage.removeItem("highscore"); // remove
+        var name = localStorage.getItem("name"); // read
+        console.log(name);
+        console.log('현재 로컬스토리지 데이터 개수 : ', localStorage.length);
+
+         // # sessionStorage - 브라우저를 끌때까지 유지되는 데이터
+
+        sessionStorage.setItem("name", "세션-홍길동"); //add
+        sessionStorage.setItem("name", "세션-박길동"); // modify
+
+        sessionStorage.setItem("favcookie", "세션-Zombie");
+        sessionStorage.setItem("highscore", "세션-9999088");
+
+        sessionStorage.removeItem("highscore"); // remove
+        var name = sessionStorage.getItem("name"); // read
+        console.log(name);
+        
+        console.log('현재 세션스토리지 데이터 개수 : ', sessionStorage.length);
+
+    </script>
+
+</body>
+
+</html>
