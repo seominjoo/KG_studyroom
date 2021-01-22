@@ -26,13 +26,14 @@ public class ManagementDate {
 	static ArrayList<String> pass = new ArrayList<>();
 	public ManagementDate() {
 		int firstYear = LocalDate.now().getYear() - 3;
+		int firstYearFor = firstYear;
 		int lastYear = LocalDate.now().getYear();
 		yearTable = new String[lastYear - firstYear + 1];
-		for (int i = 0; i < lastYear - 2017 + 1; i++) {
-			yearTable[i] = (firstYear + "").format("%d", firstYear);
-			firstYear++;
+		for (int i = 0; i < lastYear - firstYear + 1; i++) {
+			yearTable[i] = (firstYearFor + "").format("%d", firstYearFor);
+			firstYearFor++;
 		}
-
+		
 
 		int lastMonth = 12;
 		monthTable = new String[lastMonth + 1];
