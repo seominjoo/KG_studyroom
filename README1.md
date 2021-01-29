@@ -26,7 +26,7 @@
 * 관련 JAR 파일로는 'ojdbc8(DB 관련)'이 존재합니다.
 * Oracle DB 해당 프로젝트의 데이터베이스는 'Oracle Database 11g express Version'으로 구현하였습니다. 사용된 테이블은 Admin_info, Persin_info, Payment_Record, Seat, Locker, Seat_price_info, Locker_price_info가 있습니다.
 각 테이블의 항목은 다음으로 구성되어 있습니다.
-![image](./assets/image/db.png)
+![image](./image/db.png)
 # 프로그램 설계에 관련된 기술
 >  해당 프로그램은 JAVA 프로그래밍 언어로 설계되어 있습니다. 또한 DB 구현을 위한 데이터베이스 언어(SQL)가 포함되어 있습니다. 화면 설계는 JAVA API 중 대표적으로 JFRAME, SWING 등이 적용되었으며 그밖에 다양한 API을 적용시켰습니다.
 
